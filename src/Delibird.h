@@ -12,8 +12,7 @@
 #include<commons/config.h>
 #include<readline/readline.h>
 
-t_log* completar_logger(char* mensaje,char* programa);
-t_config* leer_config(void);
+
 void terminar_programa(int conexion, t_log* logger, t_config* config);
 
 

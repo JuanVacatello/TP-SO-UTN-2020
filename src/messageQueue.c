@@ -5,7 +5,7 @@
  *      Author: utnso
  */
 
-#include "utils.h"
+#include "messageQueue.h"
 
 //TODO
 /*
@@ -29,7 +29,7 @@ void* serializar_paquete(t_paquete* paquete, int *bytes)
 	return a_enviar;
 }
 
-int crear_conexion(char ip, char puerto)
+int crear_conexion(char* ip, char* puerto)
 {
 	struct addrinfo hints;
 	struct addrinfo *server_info;

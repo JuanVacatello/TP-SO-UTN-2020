@@ -5,6 +5,7 @@
 #include<sys/socket.h>
 #include<netdb.h>
 #include<string.h>
+#include<commons/log.h>
 
 
 t_log* completar_logger(char* mensaje,char* programa);

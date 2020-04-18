@@ -40,6 +40,5 @@ void eliminar_paquete(t_paquete* paquete);
 void liberar_conexion(int socket_cliente);
 t_paquete* inicializar_paquete(char* mensaje);
 void* serializar_paquete(t_paquete* paquete , int *bytes);
-char* deserializar_paquete(t_buffer* buffer);
 
 #endif /* MSGQ_H_ */

@@ -9,6 +9,9 @@
  */
 
 #include "Delibird.h"
+#include "log.h"
+#include "config.h"
+#include "messageQueue.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -55,33 +58,6 @@ int main(void) {
 		terminar_programa(conexion, logger, config);
 	}
 
-	//TODO
-	t_log* iniciar_logger(void)
-	{
-			t_log* logger;
-			logger = log_create("tp0.log","tu vieja", true , LOG_LEVEL_INFO);
-			log_info(logger,"soy un log");
-			return logger;
-	}
-
-	t_log* completar_logger(char* mensaje,char* programa)
-	{
-		t_log* logger;
-		logger = log_create("tp0.log",programa, true , LOG_LEVEL_INFO);
-		log_info(logger,mensaje);
-		return logger;
-	}
-
-	//TODO
-	t_config* leer_config(void)
-	{
-		t_config* config;
-		config = config_create("/home/utnso/Documentos/Tp0/Game-watch-client/tp0.config");
-		//config_set_value(config,"IP", "127.0.0.1");
-		//config_set_value(config,"PUERTO", "4444");
-		//config_save_in_file(config,"/home/utnso/Documentos/Tp0/Game-watch-client/tp0.config");
-		return config;
-	}
 
 	//TODO
 	void terminar_programa(int conexion, t_log* logger, t_config* config)
@@ -93,4 +69,3 @@ int main(void) {
 		//Y por ultimo, para cerrar, hay que liberar lo que utilizamos (conexion, log y config) con las funciones de las commons y del TP mencionadas en el enunciado
 	}
 
-}
