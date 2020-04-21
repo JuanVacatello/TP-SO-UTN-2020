@@ -9,9 +9,7 @@
  */
 
 #include "Delibird.h"
-#include "log.h"
-#include "config.h"
-#include "messageQueue.h"
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -47,13 +45,13 @@ int main(void) {
 		conexion = crear_conexion(ip, puerto);
 
 		//enviar mensaje
-		enviar_mensaje("los negros son iguales que todos los demas", conexion);
+		enviar_mensaje("funciona!!!!!", conexion);
 
 		//recibir mensaje
 		char* mensaje = recibir_mensaje(conexion);
 
 		//loguear mensaje recibido
-		logger = completar_logger(mensaje, "servidor");
+		logger = completar_logger(mensaje, "servidor", LOG_LEVEL_INFO);
 
 		terminar_programa(conexion, logger, config);
 	}

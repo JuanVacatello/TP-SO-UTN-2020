@@ -1,9 +1,10 @@
 #ifndef DLB_H_
 #define DLB_H_
 
-#include "log.h"
-#include "config.h"
-#include "messageQueue.h"
+
+#include "utils/log.h"
+#include "utils/config.h"
+#include "utils/messageQueue.h"
 
 #include<stdio.h>
 #include<stdlib.h>
