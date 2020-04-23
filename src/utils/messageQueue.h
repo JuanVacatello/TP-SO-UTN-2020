@@ -1,10 +1,3 @@
-/*
- * conexiones.h
- *
- *  Created on: 2 mar. 2019
- *      Author: utnso
- */
-
 #ifndef MSGQ_H_
 #define MSGQ_H_
 
