@@ -17,8 +17,13 @@
 
 typedef enum
 {
-	MENSAJE=1
-}op_code;
+	NEW_POKEMON=1,
+	APPEARED_POKEMON=2,
+	CATCH_POKEMON=3,
+	CAUGHT_POKEMON=4,
+	GET_POKEMON=5,
+	LOCALIZED_POKEMON=6
+} op_code;
 
 typedef struct
 {
@@ -32,7 +37,15 @@ typedef struct
 	t_buffer* buffer;
 } t_paquete;
 
+typedef struct
+{
+	void* suscriptores[];
+	t_paquete mensajes[];
+
+} cola_mensaje;
+
 pthread_t thread;
+
 
 void* recibir_buffer(int*, int);
 
