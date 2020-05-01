@@ -52,33 +52,37 @@ void moverse_A(t_posicion* posicion, t_posicion* posicionAMoverse)
 	if( posicion->x == posicionX && posicion->y == posicionY)
 		printf("Has llegado al pokemon")
 	else
+	{
 		//moverse izquierda
-		int moverse_izquierda(int x);
+		void moverse_izquierda(t_posicion* posicion);
 		//moverse derecha
-		int moverse_derecha(int x);
+		void moverse_derecha(t_posicion* posicion);
 		//moverse arriba
+		void moverse_arriba(t_posicion* posicion);
 		//moverse abajo
+		void moverse_abajo(t_posicion* posicion);
+	}
 }
 
-int moverse_izquierda(int x){
-	x--;
-	return x;
-	completar_logger("El entrenador se movio una posicion a la izquierda", ,)
+void moverse_izquierda(t_posicion* posicion){
+
+	posicion->x -= 1;
+	//completar_logger("El entrenador se movio una posicion a la izquierda", ,);
 }
-int moverse_derecha(int x) {
-	x++;
-	return x;
-	completar_logger("El entrenador se movio una posicion a la derecha", ,)
+void moverse_derecha(t_posicion* posicion) {
+
+	posicion->x += 1;
+	//completar_logger("El entrenador se movio una posicion a la derecha", ,);
 }
 
-int moverse_arriba(int y){
-	y--;
-	return y;
-	completar_logger("El entrenador se movio una posicion a la arriba", ,)
+void moverse_arriba(t_posicion* posicion){
+
+	posicion->y += 1;
+	//completar_logger("El entrenador se movio una posicion a la arriba", ,);
 }
 
-int moverse_abajo(int y, int y){
-	y++;
-	return y;
-	completar_logger("El entrenador se movio una posicion a la abajo", ,)
+void moverse_abajo(t_posicion* posicion){
+
+	posicion->y -= 1;
+	//completar_logger("El entrenador se movio una posicion a la abajo", ,);
 }
