@@ -1,4 +1,6 @@
 #include "Team.h"
+#include "entrenador.h"
+#include "movimiento.c"
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -6,6 +8,7 @@
 #include<commons/string.h>
 #include<commons/config.h>
 #include<readline/readline.h>
+#include<stdbool.h>
 
 typedef struct
 {
@@ -44,45 +47,41 @@ t_posicion* posicion = {1,2};
 t_posicion* posicionAMoverse = {3,3};
 
 
-void moverse_A(t_posicion* posicion, t_posicion* posicionAMoverse)
+t_posicion moverse_A(t_posicion* posicion, t_posicion* posicionAMoverse)
 {
 	int posicionX =  posicionAMoverse -> x;
 	int posicionY = posicionAMoverse -> y;
 
-	if( posicion->x == posicionX && posicion->y == posicionY)
-		printf("Has llegado al pokemon")
-	else
-	{
-		//moverse izquierda
-		void moverse_izquierda(t_posicion* posicion);
-		//moverse derecha
-		void moverse_derecha(t_posicion* posicion);
-		//moverse arriba
-		void moverse_arriba(t_posicion* posicion);
-		//moverse abajo
-		void moverse_abajo(t_posicion* posicion);
+	while( posicion->x != posicionX || posicion->y != posicionY){
+		if(posicion->x < posicionX){
+			//moverse derecha
+	 		void moverse_derecha(t_posicion* posicion);
+		}
+		else{
+			//moverse arriba
+			void moverse_izquierda(t_posicion* posicion);
+		}
+		if(posicion->y < posicionY){
+			void moverse_abajo(t_posicion* posicion);
+			//moverse abajo
+
+		}
+		else{
+			void moverse_arriba(t_posicion* posicion);
+		}
 	}
+		printf("Has llegado al pokemon");
+		return posicion;
 }
 
-void moverse_izquierda(t_posicion* posicion){
 
-	posicion->x -= 1;
-	//completar_logger("El entrenador se movio una posicion a la izquierda", ,);
-}
-void moverse_derecha(t_posicion* posicion) {
 
-	posicion->x += 1;
-	//completar_logger("El entrenador se movio una posicion a la derecha", ,);
+
+void ciclos_de_cpu(int ciclos){
+	int segundos = transformarCiclos(ciclos);
+	sleep(segundos);
 }
 
-void moverse_arriba(t_posicion* posicion){
-
-	posicion->y += 1;
-	//completar_logger("El entrenador se movio una posicion a la arriba", ,);
-}
-
-void moverse_abajo(t_posicion* posicion){
-
-	posicion->y -= 1;
-	//completar_logger("El entrenador se movio una posicion a la abajo", ,);
+int transformarCiclos(int ciclos){
+	return ciclos*2;
 }

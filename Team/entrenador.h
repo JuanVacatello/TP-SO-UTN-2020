@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 typedef struct
 {
 	int x;
@@ -30,4 +33,16 @@ typedef struct
 
 } t_team;
 
-void moverse_A(t_posicion* posicionAMoverse);
+t_posicion moverse_A(t_posicion* posicion,t_posicion* posicionAMoverse);
+
+void moverse_derecha(t_posicion* posicion);
+
+void moverse_arriba(t_posicion* posicion);
+
+void moverse_abajo(t_posicion* posicion);
+
+_Bool sePuedeMover(int posicion);
+
+void ciclos_de_cpu(int ciclos);
+
+int transformarCiclos(int ciclos);
