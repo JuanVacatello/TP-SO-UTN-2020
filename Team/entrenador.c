@@ -10,6 +10,13 @@
 #include<readline/readline.h>
 #include<stdbool.h>
 
+typedef enum{
+
+	READY = 1,
+	BLOCKED = 2
+
+}op_estado;
+
 typedef struct
 {
 	int x;
@@ -28,6 +35,8 @@ typedef struct
 
 typedef struct
 {
+	int ciclos_de_cpu;
+	op_estado estado;
 	t_pokemon objetivo[];
 	t_posicion posicion;
 	t_pokemon atrapados[];
@@ -42,46 +51,83 @@ typedef struct
 
 } t_team;
 
-
+/*
 t_posicion* posicion = {1,2};
 t_posicion* posicionAMoverse = {3,3};
+*/
 
 
-t_posicion moverse_A(t_posicion* posicion, t_posicion* posicionAMoverse)
+t_entrenador moverse_A(t_entrenador* entrenador, t_posicion* posicionAMoverse)
 {
-	int posicionX =  posicionAMoverse -> x;
-	int posicionY = posicionAMoverse -> y;
+	int posicionXPokemon =  posicionAMoverse -> x;
+	int posicionYPokemon = posicionAMoverse -> y;
 
-	while( posicion->x != posicionX || posicion->y != posicionY){
-		if(posicion->x < posicionX){
+	while(entrenador->posicion->x != posicionXPokemon) {
+		if(entrenador->posicion->x < posicionXPokemon){
 			//moverse derecha
-	 		void moverse_derecha(t_posicion* posicion);
+	 		moverse_derecha(entrenador->posicion);
 		}
 		else{
 			//moverse arriba
-			void moverse_izquierda(t_posicion* posicion);
+			moverse_izquierda(entrenador->posicion);
 		}
-		if(posicion->y < posicionY){
-			void moverse_abajo(t_posicion* posicion);
-			//moverse abajo
 
-		}
-		else{
-			void moverse_arriba(t_posicion* posicion);
-		}
+		efectuar_ciclo_cpu(entrenador, 1);
 	}
+
+	while(entrenador->posicion->y != posicionYPokemon){
+
+		if(entrenador->posicion->y < posicionYPokemon){
+			moverse_abajo(entrenador->posicion);
+			//moverse abajo
+		}
+		else if(entrenador->posicion->y > posicionYPokemon){
+			moverse_arriba(entrenador->posicion);
+		}
+
+		efectuar_ciclo_cpu(entrenador, 1);
+	}
+
 		printf("Has llegado al pokemon");
-		return posicion;
+		return entrenador;
+
+}
+
+t_entrenador atrapar_Pokemon(t_entrenador* entrenador, t_pokemon* pokemon){ //PREGUNTAR POR ESTA FUNCION
+
+	int ultimaPosicion=0;
+
+	for(int i=0; i<sizeof(entrenador->atrapados);i++){
+		ultimaPosicion = i;
+	}
+
+	entrenador->atrapados[ultimaPosicion+1] = pokemon;
+	entrenador->estado = READY;
+
+	return entrenador;
 }
 
 
 
+
+//------------CICLOS DE CPU---------------
+
+void efectuar_ciclo_cpu(t_entrenador entrenador, int ciclos){
+	contabilizar_ciclos( entrenador,ciclos);
+	ciclos_de_cpu(ciclos);
+}
+
+void contabilizar_ciclos(t_entrenador* entrenador, int ciclos){
+	entrenador->ciclos_de_cpu += ciclos;
+}
+
+int transformarCiclos(int ciclos){
+	return ciclos*2;
+}
 
 void ciclos_de_cpu(int ciclos){
 	int segundos = transformarCiclos(ciclos);
 	sleep(segundos);
 }
 
-int transformarCiclos(int ciclos){
-	return ciclos*2;
-}
+
