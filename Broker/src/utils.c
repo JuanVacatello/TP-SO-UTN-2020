@@ -1,4 +1,3 @@
-
 #include"utils.h"
 
 void iniciar_servidor(void)
@@ -118,3 +117,5 @@ void devolver_mensaje(void* payload, int size, int socket_cliente)
 	free(paquete->buffer);
 	free(paquete);
 }
+
+
