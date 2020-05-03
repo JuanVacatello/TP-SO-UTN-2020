@@ -46,11 +46,11 @@ int crear_conexion(char* ip, char* puerto)
 
 //TODO
 
-t_paquete* inicializar_paquete(char* mensaje){
+t_paquete* inicializar_paquete(op_code codigo_operacion,char* mensaje){
 
-	t_paquete* paquete = malloc(sizeof(paquete));
+	t_paquete* paquete = malloc(sizeof(t_paquete));
 
-	paquete->codigo_operacion = MENSAJE;
+	paquete->codigo_operacion = codigo_operacion;
 
 	t_buffer* buffer = malloc(sizeof(t_buffer));
 
@@ -62,9 +62,9 @@ t_paquete* inicializar_paquete(char* mensaje){
 
 }
 
-void enviar_mensaje(char* mensaje, int socket_cliente)
+void enviar_mensaje(int socket_cliente,op_code codigo_operacion,char* mensaje)
 {
-	t_paquete* paquete = inicializar_paquete(mensaje);
+	t_paquete* paquete = inicializar_paquete(codigo_operacion,mensaje);
 	fflush(stdout);
 
 	int tamanio_paquete = 0;
