@@ -1,9 +1,9 @@
-#include "broker.h"
+#include "Broker.h"
 
 int main(void)
 {
 
 	iniciar_servidor();
 
-	return EXIT_SUCCESS;
+	return 0;
 }

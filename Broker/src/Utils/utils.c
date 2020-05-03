@@ -1,9 +1,11 @@
-#include"utils.h"
+#include "utils.h"
+#include <pthread.h>
+
+int cantidadProcesosregistrados = 0;
 
 void iniciar_servidor(void)
 {
 	int socket_servidor;
-
     struct addrinfo hints, *servinfo, *p;
 
     memset(&hints, 0, sizeof(hints));
@@ -25,7 +27,9 @@ void iniciar_servidor(void)
         break;
     }
 
-	listen(socket_servidor, SOMAXCONN);
+	if(listen(socket_servidor, SOMAXCONN) == -1){
+		close(socket_servidor);
+	}
 
     freeaddrinfo(servinfo);
 
@@ -58,12 +62,14 @@ void process_request(int cod_op, int cliente_fd) {
 	int size;
 	void* msg;
 		switch (cod_op) {
-		case MENSAJE:
+		case 1:
 			msg = recibir_mensaje(cliente_fd, &size);
 			devolver_mensaje(msg, size, cliente_fd);
 			free(msg);
 			break;
 		case 0:
+			atenderSuscripcion(cliente_fd);
+
 			pthread_exit(NULL);
 		case -1:
 			pthread_exit(NULL);
@@ -116,6 +122,15 @@ void devolver_mensaje(void* payload, int size, int socket_cliente)
 	free(paquete->buffer->stream);
 	free(paquete->buffer);
 	free(paquete);
+}
+
+void atenderSuscripcion(int socket_suscriptor)
+{
+	proceso* suscriptor = malloc(sizeof(proceso));
+			 suscriptor -> id = cantidadProcesosregistrados + 1 ;
+			 cantidadProcesosregistrados++ ;
+			 suscriptor -> socket_cliente = socket_suscriptor;
+
 }
 
 
