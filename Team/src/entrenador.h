@@ -1,6 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef enum{
+
+	READY = 1,
+	BLOCKED = 2
+
+}op_estado;
+
+
 typedef struct
 {
 	int x;
@@ -19,19 +27,15 @@ typedef struct
 
 typedef struct
 {
-	t_pokemon objetivo[];
+	int ciclos_de_cpu;
+	op_estado estado;
+	t_list* objetivo;
 	t_posicion posicion;
-	t_pokemon atrapados[];
+	t_list* atrapados;
 
 } t_entrenador;
 
-typedef struct
-{
-	t_pokemon objetivoGlobal[];
-	t_posicion posicion;
-	t_pokemon atrapadosGlobal[];
 
-} t_team;
 
 t_posicion moverse_A(t_posicion* posicion,t_posicion* posicionAMoverse);
 

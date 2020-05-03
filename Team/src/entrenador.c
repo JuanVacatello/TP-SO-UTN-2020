@@ -1,7 +1,3 @@
-#include "Team.h"
-#include "entrenador.h"
-#include "movimiento.c"
-
 #include<stdio.h>
 #include<stdlib.h>
 #include<commons/log.h>
@@ -10,46 +6,9 @@
 #include<readline/readline.h>
 #include<stdbool.h>
 
-typedef enum{
-
-	READY = 1,
-	BLOCKED = 2
-
-}op_estado;
-
-typedef struct
-{
-	int x;
-	int y;
-
-} t_posicion;
-
-
-typedef struct
-{
-	char* especie;
-	char* tipo;
-	t_posicion posicion;
-
-} t_pokemon;
-
-typedef struct
-{
-	int ciclos_de_cpu;
-	op_estado estado;
-	t_pokemon objetivo[];
-	t_posicion posicion;
-	t_pokemon atrapados[];
-
-} t_entrenador;
-
-typedef struct
-{
-	t_pokemon objetivoGlobal[];
-	t_posicion posicion;
-	t_pokemon atrapadosGlobal[];
-
-} t_team;
+#include "Team.h"
+#include "entrenador.h"
+#include "movimiento.c"
 
 /*
 t_posicion* posicion = {1,2};
@@ -102,7 +61,7 @@ t_entrenador atrapar_Pokemon(t_entrenador* entrenador, t_pokemon* pokemon){ //PR
 	}
 
 	entrenador->atrapados[ultimaPosicion+1] = pokemon;
-	entrenador->estado = READY;
+	entrenador->estado = 1;
 
 	return entrenador;
 }
@@ -122,7 +81,9 @@ void contabilizar_ciclos(t_entrenador* entrenador, int ciclos){
 }
 
 int transformarCiclos(int ciclos){
-	return ciclos*2;
+	int retardo;
+	retardo = obtener_retardo_ciclo_cpu(t_config* config);
+	return ciclos * retardo ;
 }
 
 void ciclos_de_cpu(int ciclos){
