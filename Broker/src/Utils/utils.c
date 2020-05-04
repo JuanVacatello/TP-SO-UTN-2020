@@ -2,6 +2,8 @@
 #include <pthread.h>
 
 int cantidadProcesosregistrados = 0;
+cola_mensaje newPokemon, appearedPokemon , catchPokemon ,
+caughtPokemon, getPokemon, localizedPokemon;
 
 void iniciar_servidor(void)
 {
@@ -34,7 +36,7 @@ void iniciar_servidor(void)
     freeaddrinfo(servinfo);
 
     while(1)
-    	esperar_cliente(socket_servidor);
+    	esperar_cliente(socket_servidor); // hacerlo con select, NUNCA ESPERA ACTIVA
 }
 
 void esperar_cliente(int socket_servidor)
@@ -47,7 +49,6 @@ void esperar_cliente(int socket_servidor)
 
 	pthread_create(&thread,NULL,(void*)serve_client,&socket_cliente);
 	pthread_detach(thread);
-
 }
 
 void serve_client(int* socket)
@@ -58,17 +59,17 @@ void serve_client(int* socket)
 	process_request(cod_op, *socket);
 }
 
-void process_request(int cod_op, int cliente_fd) {
+void process_request(int cod_op, int socket_cliente) {
 	int size;
 	void* msg;
 		switch (cod_op) {
 		case 1:
-			msg = recibir_mensaje(cliente_fd, &size);
-			devolver_mensaje(msg, size, cliente_fd);
+			msg = recibir_mensaje(socket_cliente, &size);
+			devolver_mensaje(msg, size, socket_cliente);
 			free(msg);
 			break;
 		case 0:
-			atenderSuscripcion(cliente_fd);
+			atenderSuscripcion(socket_cliente);
 
 			pthread_exit(NULL);
 		case -1:
@@ -124,13 +125,55 @@ void devolver_mensaje(void* payload, int size, int socket_cliente)
 	free(paquete);
 }
 
-void atenderSuscripcion(int socket_suscriptor)
+void atenderSuscripcion(int socket_cliente)
 {
-	proceso* suscriptor = malloc(sizeof(proceso));
-			 suscriptor -> id = cantidadProcesosregistrados + 1 ;
-			 cantidadProcesosregistrados++ ;
-			 suscriptor -> socket_cliente = socket_suscriptor;
-
+	proceso* suscriptor = modelarProceso(socket_cliente);
+	suscribirseAColas( suscriptor, socket_cliente );
 }
 
+void suscribirseACola(proceso* suscriptor,cola_mensaje cola_mensaje ){
+	list_add(cola_mensaje.suscriptores, suscriptor);
+}
 
+proceso* modelarProceso(int socket){
+	proceso* suscriptor = malloc(sizeof(proceso));
+		suscriptor -> id = cantidadProcesosregistrados + 1 ;
+		cantidadProcesosregistrados++;
+		suscriptor -> socket_cliente = socket;
+	return suscriptor;
+}
+
+void suscribirseAColas(proceso* suscriptor, int socket ){
+	int size;
+	recv(socket, &size, sizeof(int), MSG_WAITALL);
+
+		for(int cantidad_colas = size/sizeof(op_code); cantidad_colas >0; cantidad_colas--){
+			op_code cola_mensaje;
+
+			recv(socket, &cola_mensaje,sizeof(op_code), MSG_WAITALL);
+				switch(cola_mensaje){
+				case 0:
+					break; //OPCION SUSCRIBIRSE
+				case 1:
+					suscribirseACola(suscriptor, newPokemon);
+					break;
+				case 2:
+					suscribirseACola(suscriptor, appearedPokemon);
+						break;
+				case 3:
+					suscribirseACola(suscriptor, catchPokemon);
+						break;
+				case 4:
+					suscribirseACola(suscriptor, caughtPokemon);
+						break;
+				case 5:
+					suscribirseACola(suscriptor, getPokemon);
+						break;
+				case 6:
+					suscribirseACola(suscriptor, localizedPokemon);
+						break;
+				case 7:
+					break; //HAY QUE BORRAR LA OPCION MENSAJE
+			}
+		}
+}

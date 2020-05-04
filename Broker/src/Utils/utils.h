@@ -30,7 +30,6 @@ typedef struct
 {
 	int id;
 	int socket_cliente;
-
 }proceso;
 
 typedef struct
@@ -47,10 +46,12 @@ typedef struct t_paquete
 
 typedef struct
 {
-	proceso* suscriptores;
-	t_paquete mensajes[];
+	t_list* suscriptores;// = list_create(); // lista de procesos. t_list de las commons
+	t_paquete mensajes[]; // LOS MENSAJES LLEVAN ID E ID CORRELATIVO POR LO QUE NO SERAN
+						  //UNA LISTA T_PAQUETE
 
-} cola_mensaje;
+} cola_mensaje; codigo_operacion;
+t_buffer* buffer;
 
 pthread_t thread;
 
@@ -62,11 +63,15 @@ void iniciar_servidor(void);
 void esperar_cliente(int);
 void* recibir_mensaje(int socket_cliente, int* size);
 int recibir_operacion(int);
-void process_request(int cod_op, int cliente_fd);
+void process_request(int cod_op, int socket_cliente);
 void serve_client(int *socket);
 void* serializar_paquete(t_paquete* paquete, int bytes);
 void devolver_mensaje(void* payload, int size, int socket_cliente);
-void atenderSuscripcion(int socket_suscriptor);
+void atenderSuscripcion(int socket_cliente);
+void suscribirseACola(proceso* suscriptor,cola_mensaje cola_mensaje );
+proceso* modelarProceso(int socket);
+void suscribirseAColas(proceso* suscriptor, int socket);
+
 
 
 #endif /* CONEXIONES_H_ */
