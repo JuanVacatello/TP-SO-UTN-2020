@@ -5,7 +5,8 @@
 #include "utils/log.h"
 #include "utils/config.h"
 #include "utils/messageQueue.h"
-#include"config.h"
+#include "config.h"
+#include "entrenador.h"
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -15,11 +16,13 @@
 #include<commons/config.h>
 #include<readline/readline.h>
 
+
 typedef struct
 {
 	t_list* objetivoGlobal;
-	t_posicion posicion;
+	t_posicion* posicion;
 	t_list* atrapadosGlobal;
+	t_list* entrenadores;
 
 } t_team;
 
