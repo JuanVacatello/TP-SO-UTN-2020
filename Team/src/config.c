@@ -1,15 +1,16 @@
 #include "config.h"
 
 
-t_config* config = leer_config();
+//t_config* config = leer_config();
 
-t_config leer_config(void)
+t_config* leer_config(void)
 {
-	t_config* config;
-	if((config = config_create("/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team/Team.config") == NULL){
-			printf("Error en La conexion");
-			exit(2);
-	}
+	t_config *config;
+	//if(config = config_create("/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team/Team.config") == NULL){
+	//		printf("Error en La conexion");
+	//		exit(2);
+	//}
+	config = config_create("/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team/Team.config");
 	return config;
 }
 
@@ -25,17 +26,54 @@ char obtener_puerto(t_config* config){
 }
 int obtener_retardo_ciclo_cpu(t_config* config){
 	int retardo;
-	retardo = config_get_string_value(config, "RETARDO_CICLO_CPU");
+	retardo = config_get_int_value(config, "RETARDO_CICLO_CPU");
 	return retardo;
+}
+int obtener_tiempo_reconexion(t_config* config){
+	int tiempo_reconexion;
+	tiempo_reconexion = config_get_int_value(config, "TIEMPO_RECONEXION");
+	return tiempo_reconexion;
+}
+char obtener_algoritmo_planificacion(t_config){
+	char* algoritmo_planificacion;
+	algoritmo_planificacion = config_get_string_value(config, "ALGORITMO_PLANIFICACION");
+	return algoritmo_planificacion;
+}
+int obtener_estimacion_inicial(t_config* config){
+	int estimacion_inicial;
+	estimacion_inicial = config_get_int_value(config, "ESTIMACION_INICIAL");
+	return estimacion_inicial;
+}
+int obtener_quantum(t_config* config){
+	int quantum;
+	quantum = config_get_int_value(config, "QUANTUM");
+	return quantum;
+}
+char obtener_log_file(t_config* config){
+	char* ruta_log;
+	ruta_log = config_get_string_value(config, "LOG_FILE");
+	return ruta_log;
+}
+
+//Acá obtengo un vector, hay que ver como vamos obteniendo los elementos
+char** obtener_posiciones_entrenadores(t_config* config){
+	char** posiciones_entrenadores;
+	posiciones_entrenadores = config_get_array_value(config, "POSICIONES_ENTRENADORES");
+	return posiciones_entrenadores;
+}
+
+char** obtener_pokemon_entrenadores(t_config* config){
+	char** pokemon_entrenadores;
+	pokemon_entrenadores = config_get_array_value(config, "POKEMON_ENTRENADORES");
+	return pokemon_entrenadores;
+}
+
+char** obtener_objetivos_entrenadores(t_config* config){
+	char** objetivos_entrenadores;
+	objetivos_entrenadores = config_get_array_value(config, "OBJETIVOS_ENTRENADORES");
+	return objetivos_entrenadores;
 }
 
 
 
 
-
-char* ip;
-char* puerto;
-
-
-
-ip = config_get_string_value(config, "IP");
