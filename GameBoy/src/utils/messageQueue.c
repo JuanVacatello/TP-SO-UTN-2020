@@ -1,6 +1,5 @@
 #include "messageQueue.h"
 
-//TODO
 /*
  * Recibe un paquete a serializar, y un puntero a un int en el que dejar
  * el tamaño del stream de bytes serializados que devuelve
@@ -44,9 +43,7 @@ int crear_conexion(char* ip, char* puerto)
 	return socket_cliente;
 }
 
-//TODO
-
-t_paquete* inicializar_paquete(op_code codigo_operacion,char* mensaje){
+t_paquete* inicializar_paquete(op_code codigo_operacion, t_list* argumentos){
 
 	t_paquete* paquete = malloc(sizeof(t_paquete));
 
@@ -54,26 +51,45 @@ t_paquete* inicializar_paquete(op_code codigo_operacion,char* mensaje){
 
 	t_buffer* buffer = malloc(sizeof(t_buffer));
 
-	buffer->size = strlen(mensaje)+1;
-	buffer->stream = mensaje;
+	buffer->size = 0;
+	void* stream = malloc(buffer->size);
 
-	paquete -> buffer = buffer;
+	switch(codigo_operacion){
+	case 1:
+
+		break;
+	case 2:
+		break;
+	case 3:
+		break;
+	case 4:
+		break;
+	case 5:
+		break;
+	case 6:
+		break;
+	}
+
+	buffer->stream = argumentos;
+
+	paquete->buffer = buffer;
+
 	return paquete;
-
 }
 
-void enviar_mensaje(int socket_cliente,op_code codigo_operacion,char* mensaje)
+void enviar_mensaje(int socket_cliente, op_code codigo_operacion, t_list* argumentos)
 {
-	t_paquete* paquete = inicializar_paquete(codigo_operacion,mensaje);
+	t_paquete* paquete = inicializar_paquete(codigo_operacion, argumentos);
 	fflush(stdout);
 
 	int tamanio_paquete = 0;
 
-	void* a_enviar = serializar_paquete(paquete,&tamanio_paquete);
+	void* a_enviar = serializar_paquete(paquete, &tamanio_paquete);
 
 	send(socket_cliente,a_enviar,tamanio_paquete,0);
 }
 
+/*
 char* recibir_mensaje(int socket_cliente)
 {
 	char* mensaje;
@@ -94,14 +110,13 @@ char* recibir_mensaje(int socket_cliente)
 	memcpy(mensaje,stream,size);
 
 	break;
-
 	}
 
 	free(stream);
 
 	return mensaje;
 
-}
+} GAMEBOY NO RECIBE MENSAJES*/
 
 void liberar_conexion(int socket_cliente)
 {
