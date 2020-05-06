@@ -1,51 +1,8 @@
-#include "entrenador.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 
 
-typedef enum{
-
-	READY = 1,
-	BLOCKED = 2
-
-}op_estado;
-
-typedef struct
-{
-	int x;
-	int y;
-
-} t_posicion;
-
-
-typedef struct
-{
-	char* especie;
-	char* tipo;
-	t_posicion posicion;
-
-} t_pokemon;
-
-typedef struct
-{
-	int ciclos_de_cpu;
-	op_estado estado;
-	t_pokemon objetivo[];
-	t_posicion posicion;
-	t_pokemon atrapados[];
-
-} t_entrenador;
-
-typedef struct
-{
-	t_pokemon objetivoGlobal[];
-	t_posicion posicion;
-	t_pokemon atrapadosGlobal[];
-
-} t_team;
-
-
+#include "entrenador.h"
 
 void moverse_izquierda(t_posicion* posicion){
 

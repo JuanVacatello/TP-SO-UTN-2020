@@ -17,15 +17,15 @@
 #include<readline/readline.h>
 
 
-typedef struct
-{
+/*typedef struct
+/{
 	t_list* objetivoGlobal;
 	t_posicion* posicion;
 	t_list* atrapadosGlobal;
 	t_list* entrenadores;
 
 } t_team;
-
+*/
 
 void terminar_programa(int conexion, t_log* logger, t_config* config);
 

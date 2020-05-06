@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<commons/config.h>
+#include<commons/collections/list.h>
 
 t_config* leer_config(void);
 char obtener_ip(t_config* config);

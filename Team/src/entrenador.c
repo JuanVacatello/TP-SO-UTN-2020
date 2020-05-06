@@ -3,6 +3,7 @@
 #include<commons/log.h>
 #include<commons/string.h>
 #include<commons/config.h>
+#include<commons/collections/list.h>
 #include<readline/readline.h>
 #include<stdbool.h>
 
@@ -10,10 +11,6 @@
 #include "entrenador.h"
 #include "movimiento.c"
 
-/*
-t_posicion* posicion = {1,2};
-t_posicion* posicionAMoverse = {3,3};
-*/
 
 
 t_entrenador moverse_A(t_entrenador* entrenador, t_posicion* posicionAMoverse)

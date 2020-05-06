@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include<commons/collections/list.h>
+
 
 typedef enum{
 
 	READY = 1,
 	BLOCKED = 2
 
-}op_estado;
-
+} op_estado;
 
 typedef struct
 {
@@ -24,6 +25,7 @@ typedef struct
 	t_posicion posicion;
 
 } t_pokemon;
+
 
 typedef struct
 {
