@@ -34,7 +34,7 @@ int obtener_tiempo_reconexion(t_config* config){
 	tiempo_reconexion = config_get_int_value(config, "TIEMPO_RECONEXION");
 	return tiempo_reconexion;
 }
-char obtener_algoritmo_planificacion(t_config config){
+char obtener_algoritmo_planificacion(t_config* config){
 	char* algoritmo_planificacion;
 	algoritmo_planificacion = config_get_string_value(config, "ALGORITMO_PLANIFICACION");
 	return algoritmo_planificacion;

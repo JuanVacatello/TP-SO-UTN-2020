@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 
 #include "entrenador.h"
@@ -42,6 +43,6 @@ void moverse_abajo(t_posicion* posicion){
 	ciclos_de_cpu(1);
 }
 
-bool sePuedeMover(int posicion){
+_Bool sePuedeMover(int posicion){
 	return posicion != 0;
 }

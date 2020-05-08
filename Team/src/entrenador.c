@@ -112,8 +112,8 @@ t_entrenador* armar_entrenador(t_config* config, int indice){
 
 	//LISTA ATRAPADOS
 	t_list* atrapados = obtener_atrapados_entrenadores(config);
-	t_list* atrapados = obtener_atrapados(list_get(atrapados, indice));
-	entrenador->atrapados = atrapados;
+	t_list* atrapado = obtener_atrapados(list_get(atrapados, indice));
+	entrenador->atrapados = atrapado;
 
 	//ESTADO
 	entrenador->estado = 1;

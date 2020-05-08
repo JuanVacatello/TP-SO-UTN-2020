@@ -1,7 +1,10 @@
+#ifndef ENTRENADOR_H_
+#define ENTRENADOR_H_
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include<commons/collections/list.h>
-
 
 typedef enum{
 
@@ -50,3 +53,4 @@ t_list* obtener_objetivos(char* objetivos);
 t_list* obtener_atrapados(char* atrapados);
 int cantidad_de_elementos(char* pokemons);
 
+#endif /* ENTRENADOR_H_ */
