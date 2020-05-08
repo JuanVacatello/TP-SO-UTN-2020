@@ -27,8 +27,11 @@
 } t_team;
 */
 
-void terminar_programa(int conexion, t_log* logger, t_config* config);
 
+int cantidad_entrenadores(t_config* config);
+void armar_entrenadores(t_config* config);
+void generar_objetivo_global(t_config* config);
+void terminar_programa(int conexion, t_log* logger, t_config* config);
 
 
 #endif /* TEAM_H_ */

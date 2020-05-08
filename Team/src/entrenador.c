@@ -13,7 +13,7 @@
 
 
 
-t_entrenador moverse_A(t_entrenador* entrenador, t_posicion* posicionAMoverse)
+t_entrenador* moverse_A(t_entrenador* entrenador, t_posicion* posicionAMoverse)
 {
 	int posicionXPokemon =  posicionAMoverse -> x;
 	int posicionYPokemon = posicionAMoverse -> y;

@@ -42,6 +42,6 @@ void moverse_abajo(t_posicion* posicion){
 	ciclos_de_cpu(1);
 }
 
-_Bool sePuedeMover(int posicion){
+bool sePuedeMover(int posicion){
 	return posicion != 0;
 }
