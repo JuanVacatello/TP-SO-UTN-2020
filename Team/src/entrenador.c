@@ -1,3 +1,7 @@
+#include "Team.h"
+#include "entrenador.h"
+#include "movimiento.h"
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<commons/log.h>
@@ -7,13 +11,8 @@
 #include<readline/readline.h>
 #include<stdbool.h>
 
-#include "Team.h"
-#include "entrenador.h"
-#include "movimiento.c"
 
-
-
-t_entrenador* moverse_A(t_entrenador* entrenador, t_posicion* posicionAMoverse)
+t_entrenador* moverse_A(t_entrenador* entrenador, t_posicion* posicionAMoverse, t_config* config)
 {
 	int posicionXPokemon =  posicionAMoverse -> x;
 	int posicionYPokemon = posicionAMoverse -> y;
@@ -21,35 +20,35 @@ t_entrenador* moverse_A(t_entrenador* entrenador, t_posicion* posicionAMoverse)
 	while(entrenador->posicion->x != posicionXPokemon) {
 		if(entrenador->posicion->x < posicionXPokemon){
 			//moverse derecha
-	 		moverse_derecha(entrenador->posicion);
+	 		moverse_derecha(entrenador->posicion, config);
 		}
 		else{
 			//moverse arriba
-			moverse_izquierda(entrenador->posicion);
+			moverse_izquierda(entrenador->posicion, config);
 		}
 
-		efectuar_ciclo_cpu(entrenador, 1);
+		efectuar_ciclo_cpu(entrenador, 1, config);
 	}
 
 	while(entrenador->posicion->y != posicionYPokemon){
 
 		if(entrenador->posicion->y < posicionYPokemon){
-			moverse_abajo(entrenador->posicion);
+			moverse_abajo(entrenador->posicion, config);
 			//moverse abajo
 		}
 		else if(entrenador->posicion->y > posicionYPokemon){
-			moverse_arriba(entrenador->posicion);
+			moverse_arriba(entrenador->posicion, config);
 		}
 
-		efectuar_ciclo_cpu(entrenador, 1);
+		efectuar_ciclo_cpu(entrenador, 1, config);
 	}
 
 		printf("Has llegado al pokemon");
 		return entrenador;
 
 }
-
-t_entrenador atrapar_Pokemon(t_entrenador* entrenador, t_pokemon* pokemon){ //PREGUNTAR POR ESTA FUNCION
+/*
+t_entrenador* atrapar_Pokemon(t_entrenador* entrenador, t_pokemon* pokemon){ //PREGUNTAR POR ESTA FUNCION
 
 	int ultimaPosicion=0;
 
@@ -62,15 +61,15 @@ t_entrenador atrapar_Pokemon(t_entrenador* entrenador, t_pokemon* pokemon){ //PR
 
 	return entrenador;
 }
-
+*/
 
 
 
 //------------CICLOS DE CPU---------------
 
-void efectuar_ciclo_cpu(t_entrenador entrenador, int ciclos){
+void efectuar_ciclo_cpu(t_entrenador* entrenador, int ciclos, t_config* config){
 	contabilizar_ciclos( entrenador,ciclos);
-	ciclos_de_cpu(ciclos);
+	ciclos_de_cpu(ciclos, config);
 }
 
 void contabilizar_ciclos(t_entrenador* entrenador, int ciclos){
@@ -83,8 +82,8 @@ int transformarCiclos(int ciclos, t_config* config){
 	return ciclos * retardo ;
 }
 
-void ciclos_de_cpu(int ciclos){
-	int segundos = transformarCiclos(ciclos);
+void ciclos_de_cpu(int ciclos, t_config* config){
+	int segundos = transformarCiclos(ciclos, config);
 	sleep(segundos);
 }
 
@@ -102,8 +101,8 @@ t_entrenador* armar_entrenador(t_config* config, int indice){
 
 	//POSICION
 	t_list* posiciones = obtener_posiciones_entrenadores(config);
-	t_posicion posicion = obtener_posicion(list_get(posiciones,indice));
-	entrenador->posicion = posicion;
+	t_posicion* posicion_entrenador = obtener_posicion(list_get(posiciones,indice));
+	entrenador->posicion = posicion_entrenador;
 
 	//LISTA OBJETIVOS
 	t_list* objetivos = obtener_objetivos_entrenadores(config);
@@ -111,7 +110,7 @@ t_entrenador* armar_entrenador(t_config* config, int indice){
 	entrenador->objetivo = objetivo;
 
 	//LISTA ATRAPADOS
-	t_list* atrapados = obtener_atrapados_entrenadores(config);
+	t_list* atrapados = obtener_pokemon_entrenadores(config);
 	t_list* atrapado = obtener_atrapados(list_get(atrapados, indice));
 	entrenador->atrapados = atrapado;
 

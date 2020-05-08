@@ -2,9 +2,6 @@
 #define TEAM_H_
 
 
-#include "utils/log.h"
-#include "utils/config.h"
-#include "utils/messageQueue.h"
 #include "config.h"
 #include "entrenador.h"
 
