@@ -42,8 +42,8 @@ void moverse_abajo(t_posicion* posicion, t_config* config){
 	//completar_logger("El entrenador se movio una posicion a la abajo", ,);
 	ciclos_de_cpu(1, config);
 }
-/*
+
 _Bool sePuedeMover(int posicion){
 	return posicion != 0;
-}*/
+}
 

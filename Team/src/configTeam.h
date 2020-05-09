@@ -15,3 +15,4 @@ char obtener_log_file(t_config* config);
 t_list* obtener_posiciones_entrenadores(t_config* config);
 t_list* obtener_pokemon_entrenadores(t_config* config);
 t_list* obtener_objetivos_entrenadores(t_config* config);
+

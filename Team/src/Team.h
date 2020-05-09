@@ -2,7 +2,6 @@
 #define TEAM_H_
 
 
-#include "config.h"
 #include "entrenador.h"
 
 #include<stdio.h>
@@ -12,6 +11,7 @@
 #include<commons/string.h>
 #include<commons/config.h>
 #include<readline/readline.h>
+#include "configTeam.h"
 
 
 /*typedef struct

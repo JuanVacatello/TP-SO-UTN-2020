@@ -1,4 +1,4 @@
-#include "config.h"
+#include "configTeam.h"
 
 
 //t_config* config = leer_config();
@@ -73,7 +73,6 @@ t_list* obtener_objetivos_entrenadores(t_config* config){
 	objetivos_entrenadores = config_get_array_value(config, "OBJETIVOS_ENTRENADORES");
 	return objetivos_entrenadores;
 }
-
 
 
 

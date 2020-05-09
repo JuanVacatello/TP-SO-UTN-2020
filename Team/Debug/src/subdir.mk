@@ -5,23 +5,23 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../src/Team.c \
-../src/config.c \
+../src/configTeam.c \
 ../src/entrenador.c \
-../src/log.c \
+../src/logTeam.c \
 ../src/movimiento.c 
 
 OBJS += \
 ./src/Team.o \
-./src/config.o \
+./src/configTeam.o \
 ./src/entrenador.o \
-./src/log.o \
+./src/logTeam.o \
 ./src/movimiento.o 
 
 C_DEPS += \
 ./src/Team.d \
-./src/config.d \
+./src/configTeam.d \
 ./src/entrenador.d \
-./src/log.d \
+./src/logTeam.d \
 ./src/movimiento.d 
 
 
