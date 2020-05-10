@@ -32,6 +32,7 @@
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.debug.1407295850" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.debug">
 								<option id="gnu.c.link.option.libs.706655685" name="Libraries (-l)" superClass="gnu.c.link.option.libs" useByScannerDiscovery="false" valueType="libs">
 									<listOptionValue builtIn="false" value="commons"/>
+									<listOptionValue builtIn="false" value="pthread"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.linker.input.1579504605" superClass="cdt.managedbuild.tool.gnu.c.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
@@ -44,6 +45,15 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
+					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.814186748.1264532627" name="utils.c" rcbsApplicability="disable" resourcePath="Broker/src/Utils/utils.c" toolsToInvoke="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.760206375.8521559">
+						<tool id="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.760206375.8521559" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.760206375">
+							<option id="gnu.c.compiler.option.include.paths.1928519559" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
+								<listOptionValue builtIn="false" value="commons"/>
+								<listOptionValue builtIn="false" value="pthread"/>
+							</option>
+							<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.5546928" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+						</tool>
+					</fileInfo>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>

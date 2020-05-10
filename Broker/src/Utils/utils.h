@@ -50,7 +50,8 @@ typedef struct
 	t_paquete mensajes[]; // LOS MENSAJES LLEVAN ID E ID CORRELATIVO POR LO QUE NO SERAN
 						  //UNA LISTA T_PAQUETE
 
-} cola_mensaje; codigo_operacion;
+} cola_mensaje;
+
 t_buffer* buffer;
 
 pthread_t thread;
