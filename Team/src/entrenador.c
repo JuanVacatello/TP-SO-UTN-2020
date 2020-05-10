@@ -12,7 +12,7 @@
 #include<stdbool.h>
 
 
-t_entrenador* moverse_A(t_entrenador* entrenador, t_posicion* posicionAMoverse, t_config* config)
+t_entrenador* moverse_A(t_entrenador* entrenador, t_posicion* posicionAMoverse)
 {
 	int posicionXPokemon =  posicionAMoverse -> x;
 	int posicionYPokemon = posicionAMoverse -> y;
@@ -27,7 +27,7 @@ t_entrenador* moverse_A(t_entrenador* entrenador, t_posicion* posicionAMoverse, 
 			moverse_izquierda(entrenador->posicion, config);
 		}
 
-		efectuar_ciclo_cpu(entrenador, 1, config);
+		efectuar_ciclo_cpu(entrenador, 1);
 	}
 
 	while(entrenador->posicion->y != posicionYPokemon){
@@ -40,7 +40,7 @@ t_entrenador* moverse_A(t_entrenador* entrenador, t_posicion* posicionAMoverse, 
 			moverse_arriba(entrenador->posicion, config);
 		}
 
-		efectuar_ciclo_cpu(entrenador, 1, config);
+		efectuar_ciclo_cpu(entrenador, 1);
 	}
 
 		printf("Has llegado al pokemon");
@@ -67,23 +67,23 @@ t_entrenador* atrapar_Pokemon(t_entrenador* entrenador, t_pokemon* pokemon){ //P
 
 //------------CICLOS DE CPU---------------
 
-void efectuar_ciclo_cpu(t_entrenador* entrenador, int ciclos, t_config* config){
+void efectuar_ciclo_cpu(t_entrenador* entrenador, int ciclos){
 	contabilizar_ciclos( entrenador,ciclos);
-	ciclos_de_cpu(ciclos, config);
+	ciclos_de_cpu(ciclos);
 }
 
 void contabilizar_ciclos(t_entrenador* entrenador, int ciclos){
 	entrenador->ciclos_de_cpu += ciclos;
 }
 
-int transformarCiclos(int ciclos, t_config* config){
+int transformarCiclos(int ciclos){
 	int retardo;
-	retardo = obtener_retardo_ciclo_cpu(config);
+	retardo = obtener_retardo_ciclo_cpu();
 	return ciclos * retardo ;
 }
 
-void ciclos_de_cpu(int ciclos, t_config* config){
-	int segundos = transformarCiclos(ciclos, config);
+void ciclos_de_cpu(int ciclos){
+	int segundos = transformarCiclos(ciclos);
 	sleep(segundos);
 }
 
@@ -95,22 +95,22 @@ void ciclos_de_cpu(int ciclos, t_config* config){
 //ARMAMOS EL ENTRENADOR
 
 
-t_entrenador* armar_entrenador(t_config* config, int indice){
+t_entrenador* armar_entrenador(int indice){
 
 	t_entrenador* entrenador = malloc(sizeof(entrenador));
 
 	//POSICION
-	t_list* posiciones = obtener_posiciones_entrenadores(config);
+	t_list* posiciones = obtener_posiciones_entrenadores();
 	t_posicion* posicion_entrenador = obtener_posicion(list_get(posiciones,indice));
 	entrenador->posicion = posicion_entrenador;
 
 	//LISTA OBJETIVOS
-	t_list* objetivos = obtener_objetivos_entrenadores(config);
+	t_list* objetivos = obtener_objetivos_entrenadores();
 	t_list* objetivo = obtener_objetivos(list_get(objetivos, indice));
 	entrenador->objetivo = objetivo;
 
 	//LISTA ATRAPADOS
-	t_list* atrapados = obtener_pokemon_entrenadores(config);
+	t_list* atrapados = obtener_pokemon_entrenadores();
 	t_list* atrapado = obtener_atrapados(list_get(atrapados, indice));
 	entrenador->atrapados = atrapado;
 

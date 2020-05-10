@@ -14,21 +14,11 @@
 #include "configTeam.h"
 
 
-/*typedef struct
-/{
-	t_list* objetivoGlobal;
-	t_posicion* posicion;
-	t_list* atrapadosGlobal;
-	t_list* entrenadores;
 
-} t_team;
-*/
-
-
-int cantidad_entrenadores(t_config* config);
-void armar_entrenadores(t_config* config);
-void generar_objetivo_global(t_config* config);
-void terminar_programa(int conexion, t_log* logger, t_config* config);
+int cantidad_entrenadores(void);
+void armar_entrenadores(void);
+void generar_objetivo_global(void);
+void terminar_programa(int conexion, t_log* logger);
 
 
 #endif /* TEAM_H_ */

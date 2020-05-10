@@ -3,19 +3,14 @@
 
 #include<stdio.h>
 #include<stdlib.h>
-#include<commons/log.h>
-#include<commons/string.h>
-#include<commons/config.h>
-#include<commons/collections/list.h>
-#include<commons/collections/dictionary.h>
 #include<readline/readline.h>
 #include<stdbool.h>
 
 
 #include "Team.h"
 #include "entrenador.h"
-#include "movimiento.c"
 #include "utils/utils.h"
+#include "configTeam.h"
 
 int main(void) {
 
@@ -24,14 +19,14 @@ int main(void) {
 		char* puerto;
 
 		t_log* logger;
-		t_config* config;
+
 
 		//logger = iniciar_logger();
 		//log_destroy(logger);
 		//Loggear "soy un log"
 
-		config = leer_config();
-		armar_entrenadores(config);
+		leer_config();
+		armar_entrenadores();
 		ip = config_get_string_value(config,"IP");
 		puerto = config_get_string_value(config,"PUERTO");
 		puts("/n");
@@ -44,30 +39,30 @@ int main(void) {
 //ARMAMOS EL TEAM
 
 
-int cantidad_entrenadores(t_config* config){
-	t_list* entrenadores = obtener_posiciones_entrenadores(config);
+int cantidad_entrenadores(void){
+	t_list* entrenadores = obtener_posiciones_entrenadores();
 	int cantidad = list_size(entrenadores);
 	return cantidad;
 }
 
 
-void armar_entrenadores(t_config* config){
+void armar_entrenadores(void){
 
 	lista_de_entrenadores = list_create();
 
 	//total_entrenadores es para saber el total de entrenadores del config
 
-	int cantidad_elementos = cantidad_entrenadores(config);
+	int cantidad_elementos = cantidad_entrenadores();
 
 	for (int indice=0; indice<cantidad_elementos; indice++){
 
-		list_add(lista_de_entrenadores, armar_entrenador(config, indice));
+		list_add(lista_de_entrenadores, armar_entrenador(indice));
 
 	}
 
 }
 
-void generar_objetivo_global(t_config* config){
+void generar_objetivo_global(void){
 
 	objetivo_global = dictionary_create();
 
@@ -77,7 +72,7 @@ void generar_objetivo_global(t_config* config){
 	int cantidad_pokemon;
 
 	//DE CADA ENTRENADOR OBTENEMOS SU LISTA DE OBJETIVOS Y LA PASAMOS A UN DICCIONARIO
-	for (int indice_entrenador=0; indice_entrenador<cantidad_entrenadores(config); indice_entrenador++){
+	for (int indice_entrenador=0; indice_entrenador<cantidad_entrenadores(); indice_entrenador++){
 
 	entrenador = list_get(entrenadores, indice_entrenador);
 	lista_pokemons_entrenador = entrenador->objetivo;
