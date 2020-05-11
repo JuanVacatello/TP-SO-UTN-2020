@@ -115,7 +115,7 @@ t_entrenador* armar_entrenador(int indice){
 	entrenador->atrapados = atrapado;
 
 	//ESTADO
-	entrenador->estado = 1;
+	entrenador->estado = READY;
 
 	return entrenador;
 }

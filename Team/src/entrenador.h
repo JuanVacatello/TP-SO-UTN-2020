@@ -26,7 +26,7 @@ typedef struct
 typedef struct
 {
 	char* especie;
-	char* tipo;
+	//char* tipo;
 	t_posicion* posicion;
 
 } t_pokemon;
