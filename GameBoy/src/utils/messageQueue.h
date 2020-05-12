@@ -33,11 +33,12 @@ typedef struct
 } t_paquete;
 
 int crear_conexion(char* ip, char* puerto);
-void enviar_mensaje(int socket_cliente, op_code codigo_operacion, t_list* argumentos);
-char* recibir_mensaje(int socket_cliente);
+void enviar_mensaje(int socket_cliente, op_code codigo_operacion);
+void recibir_mensaje(int socket_cliente);
 void eliminar_paquete(t_paquete* paquete);
 void liberar_conexion(int socket_cliente);
 t_paquete* inicializar_paquete(op_code codigo_operacion, t_list* argumentos);
 void* serializar_paquete(t_paquete* paquete , int *bytes);
+void* iniciar_paquete_serializado(int* tamanio_paquete);
 
 #endif /* MSGQ_H_ */

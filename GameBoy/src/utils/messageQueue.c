@@ -77,46 +77,92 @@ t_paquete* inicializar_paquete(op_code codigo_operacion, t_list* argumentos){
 	return paquete;
 }
 
-void enviar_mensaje(int socket_cliente, op_code codigo_operacion, t_list* argumentos)
+void enviar_mensaje(int socket_cliente, op_code codigo_operacion)
 {
-	t_paquete* paquete = inicializar_paquete(codigo_operacion, argumentos);
-	fflush(stdout);
+	//t_paquete* paquete = inicializar_paquete(codigo_operacion);
+	//fflush(stdout);
 
 	int tamanio_paquete = 0;
 
-	void* a_enviar = serializar_paquete(paquete, &tamanio_paquete);
+	void* a_enviar = iniciar_paquete_serializado(&tamanio_paquete);//// NEW_POKEMON "PIKACHU" 2 4 5
 
 	send(socket_cliente,a_enviar,tamanio_paquete,0);
+	free(a_enviar);
 }
 
-/*
-char* recibir_mensaje(int socket_cliente)
+
+void recibir_mensaje(int socket_cliente)
 {
-	char* mensaje;
-	void* stream;
-	int size;
-	int codigo;
+	int caracteresPokemon, posX, posY, cantidad;
+	char* pokemon;
 
-	recv(socket_cliente,&codigo,sizeof(op_code),0);
-	recv(socket_cliente,&size,sizeof(int),0);
+	recv(socket_cliente,&caracteresPokemon ,sizeof(int),0);
+	recv(socket_cliente,&pokemon ,caracteresPokemon,0);
+	recv(socket_cliente,&posX ,sizeof(int),0);
+	recv(socket_cliente,&posY ,sizeof(int),0);
+	recv(socket_cliente,&cantidad ,sizeof(int),0);
 
-	switch(codigo){
-	case 1:
+	printf("%d /n",caracteresPokemon);
+	printf("%d /n",posX);
+	printf("%d /n",posY);
+	printf("%d /n",cantidad);
+	puts(pokemon);
 
-	stream = malloc(size);
-	recv(socket_cliente,stream,size,0);
+} //GAMEBOY NO RECIBE MENSAJES*/
 
-	//mensaje = malloc(size);
-	memcpy(mensaje,stream,size);
+void* iniciar_paquete_serializado(int* tamanio_paquete){
 
-	break;
-	}
+	t_paquete* paquete = malloc(sizeof(t_paquete));
 
-	free(stream);
+	paquete->codigo_operacion = NEW_POKEMON;
 
-	return mensaje;
+	paquete->buffer = malloc(sizeof(t_buffer));
 
-} GAMEBOY NO RECIBE MENSAJES*/
+		// NEW_POKEMON "PIKACHU" 2 4 5
+	char* pokemon = "Pikachu";
+	int caracteresPokemon = strlen(pokemon)+1;
+	int posX = 2;
+	int posY = 4;
+	int cantidad = 5;
+
+	paquete->buffer->size =sizeof(int) + caracteresPokemon +sizeof(int)+sizeof(int)+sizeof(int);
+	void* stream = malloc(paquete->buffer->size);
+	int offset = 0;
+
+		memcpy(stream + offset, &caracteresPokemon, sizeof(int));
+		offset += sizeof(int);
+
+		memcpy(stream + offset, &pokemon, caracteresPokemon);
+		offset +=caracteresPokemon;
+
+		memcpy(stream + offset, &posX, sizeof(int));
+		offset += sizeof(int);
+
+		memcpy(stream + offset, &posY, sizeof(int));
+		offset += sizeof(int);
+
+		memcpy(stream + offset, &cantidad, sizeof(int));
+		offset += sizeof(int);
+
+		paquete->buffer->stream = stream;
+
+
+	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(int);
+
+	void* a_enviar = malloc((*tamanio_paquete));
+	int offsetDeSerializacion = 0;
+
+		memcpy(a_enviar + offset, &(paquete->codigo_operacion), sizeof(op_code));
+		offsetDeSerializacion += sizeof(op_code);
+
+		memcpy(a_enviar + offset, &(paquete->buffer->size), sizeof(int));
+		offsetDeSerializacion +=sizeof(int);
+
+		memcpy(a_enviar + offset, paquete->buffer->stream, paquete->buffer->size);
+
+	return a_enviar;
+
+}
 
 void liberar_conexion(int socket_cliente)
 {

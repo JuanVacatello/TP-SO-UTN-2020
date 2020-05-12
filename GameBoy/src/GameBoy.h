@@ -18,10 +18,11 @@
 #include<commons/string.h>
 #include<commons/config.h>
 #include<readline/readline.h>
+#include<commons/string.h>
 
 
-void terminar_programa(int conexion, t_log* logger, t_config* config);
+void terminar_programa(int conexion);
 
-
+//void terminar_programa(int conexion, t_log* logger, t_config* config);
 
 #endif /* GAMEBOY_H_ */
