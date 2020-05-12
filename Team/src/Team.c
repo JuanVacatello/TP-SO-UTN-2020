@@ -9,7 +9,7 @@
 
 #include "Team.h"
 #include "entrenador.h"
-#include "utils/utils.h"
+#include "utils.h"
 #include "configTeam.h"
 
 int main(void) {

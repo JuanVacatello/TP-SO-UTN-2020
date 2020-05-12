@@ -1,7 +1,7 @@
 #include "Team.h"
 #include "entrenador.h"
 #include "movimiento.h"
-#include "utils/utils.h"
+#include "utils.h"
 
 #include<stdio.h>
 #include<stdlib.h>
