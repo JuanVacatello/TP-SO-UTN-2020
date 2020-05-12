@@ -1,6 +1,7 @@
 #include "Team.h"
 #include "entrenador.h"
 #include "movimiento.h"
+#include "utils/utils.h"
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -183,4 +184,61 @@ int cantidad_de_elementos(char* pokemons){
 
 	return contador+1;
 }
+
+
+//DADO UN POKEMON EVALUAR QUE ENTRENADOR ESTÁ MAS CERCA//
+
+t_list* entrenadores_mas_cercanos(t_pokemon* pokemon){
+
+	t_list* entrenadores = lista_de_entrenadores;
+
+	t_list* entrenadores_cercanos;
+
+	t_posicion* posicion_pokemon = pokemon->posicion;
+
+	t_entrenador* entrenador;
+
+	t_posicion* posicion_entrenador;
+
+	int menor_distancia=-1;
+
+	for (int indice_entrenador=0; indice_entrenador<cantidad_entrenadores(); indice_entrenador++){
+
+		entrenador = list_get(entrenadores, indice_entrenador);
+		posicion_entrenador = entrenador->posicion;
+		int distancia_actual;
+		distancia_actual=sacar_distancia(posicion_pokemon,posicion_entrenador);
+
+		if(menor_distancia>=distancia_actual || menor_distancia==-1){
+			menor_distancia=distancia_actual;
+			list_add(entrenadores_cercanos,entrenador);
+		}
+	}
+	return entrenadores_cercanos;
+}
+
+//OBTIENE CANTIDAD DE MOVIMIENTOS A REALIZAR PARA MOVILIZARSE//
+
+int sacar_distancia(t_posicion* pokeposicion,t_posicion* entreposicion){
+
+	int x,y,distancia;
+
+	x = pokeposicion->x - entreposicion->x;
+	y = pokeposicion->y - entreposicion->y;
+
+	distancia = abs(x) + abs(y);
+
+	return distancia;
+}
+
+
+t_entrenador* prioridad_fifo(t_list* entrenadores){
+
+	t_entrenador*  entrenador;
+
+	entrenador = list_get(entrenadores,0);
+
+	return entrenador;
+}
+
 

@@ -5,19 +5,18 @@
 
 #include "entrenador.h"
 
-void moverse_izquierda(t_posicion* posicion, t_config* config){
+void moverse_izquierda(t_posicion* posicion){
 
 
-	if(sePuedeMover(posicion->x)){
+
 	posicion->x -= 1;
 	//completar_logger("El entrenador se movio una posicion a la izquierda", ,);
-	}
-	else{
+
 	//completar_logger("No es posible realizar ese movimiento");
-}
+
 	ciclos_de_cpu(1);
 }
-void moverse_derecha(t_posicion* posicion, t_config* config) {
+void moverse_derecha(t_posicion* posicion) {
 
 	posicion->x += 1;
 	//completar_logger("El entrenador se movio una posicion a la derecha", ,);
@@ -25,18 +24,18 @@ void moverse_derecha(t_posicion* posicion, t_config* config) {
 
 }
 
-void moverse_arriba(t_posicion* posicion, t_config* config){
-	if(sePuedeMover(posicion->y)){
+void moverse_arriba(t_posicion* posicion){
+
 	posicion->y -= 1;
 	//completar_logger("El entrenador se movio una posicion a la arriba", ,);
-	}
-	else{
+
+
 	//completar_logger("No es posible realizar ese movimiento");
-}
+
 	ciclos_de_cpu(1);
 }
 
-void moverse_abajo(t_posicion* posicion, t_config* config){
+void moverse_abajo(t_posicion* posicion){
 
 	posicion->y += 1;
 	//completar_logger("El entrenador se movio una posicion a la abajo", ,);
@@ -45,7 +44,6 @@ void moverse_abajo(t_posicion* posicion, t_config* config){
 
 
 //ARMAR BIEN ESTA FUNCION, no existe en c el tipo bool
-_Bool sePuedeMover(int posicion){
-	return posicion != 0;
-}
+
+
 

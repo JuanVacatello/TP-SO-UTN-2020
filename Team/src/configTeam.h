@@ -17,4 +17,4 @@ char obtener_log_file(void);
 t_list* obtener_posiciones_entrenadores(void);
 t_list* obtener_pokemon_entrenadores(void);
 t_list* obtener_objetivos_entrenadores(void);
-
+int obtener_alpha(void);

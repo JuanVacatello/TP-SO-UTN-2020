@@ -73,5 +73,10 @@ t_list* obtener_objetivos_entrenadores(void){
 	return objetivos_entrenadores;
 }
 
+int obtener_alpha(void){
+	int alpha;
+	alpha = config_get_int_value(config, "ALPHA");
+	return alpha;
+}
 
 
