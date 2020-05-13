@@ -19,6 +19,8 @@ t_list* lista_de_entrenadores;
 
 t_dictionary* objetivo_global;
 
+t_dictionary* atrapados_global;
+
 typedef enum
 {
 	MENSAJE=1

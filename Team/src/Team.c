@@ -99,6 +99,44 @@ void generar_objetivo_global(void){
 
 }
 
+void generar_atrapados_global(void){
+
+	atrapados_global = dictionary_create();
+
+	t_list* entrenadores = lista_de_entrenadores;
+	t_entrenador* entrenador;
+	t_list* lista_pokemons_entrenador;
+	int cantidad_pokemon;
+
+	//DE CADA ENTRENADOR OBTENEMOS SU LISTA DE ATRAPADOS Y LA PASAMOS A UN DICCIONARIO
+	for (int indice_entrenador=0; indice_entrenador<cantidad_entrenadores(); indice_entrenador++){
+
+	entrenador = list_get(entrenadores, indice_entrenador);
+	lista_pokemons_entrenador = entrenador->atrapados;
+
+
+			for(int indice_pokemon=0; indice_pokemon<list_size(lista_pokemons_entrenador); indice_pokemon++){
+
+				if(dictionary_has_key(atrapados_global, list_get(lista_pokemons_entrenador,indice_pokemon))){
+
+					cantidad_pokemon = dictionary_get(atrapados_global, list_get(lista_pokemons_entrenador, indice_pokemon));
+
+					dictionary_put(atrapados_global, list_get(lista_pokemons_entrenador, indice_pokemon), cantidad_pokemon++);
+
+				}
+
+				else{
+
+				dictionary_put(atrapados_global, list_get(lista_pokemons_entrenador, indice_pokemon), 1);
+
+				}
+
+			}
+		}
+
+}
+
+
 
 
 
