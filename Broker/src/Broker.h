@@ -8,7 +8,7 @@
 #include<commons/config.h>
 #include "Utils/utils.h"
 
-t_config* leer_config(void);
+void terminar_programa(void);
 
 #endif /* BROKER_H_ */
 
