@@ -155,24 +155,19 @@ void planificar_fifo(void){
 		t_entrenador*  entrenador;
 
 		entrenador = list_remove(lista_de_entrenadores_ready,0);
-
-
 }
 
 void aparicion_pokemon(t_pokemon* pokemon){
 
 
 	if(es_pokemon_requerido(pokemon)==1){
-		pokemon = malloc(sizeof(pokemon));
 		t_entrenador* entrenador = entrenador_mas_cercano(pokemon);
 		list_add(lista_de_entrenadores_ready,entrenador);
 		list_add(pokemones_requeridos,pokemon);
 	}
-
-
-
-
-
+	else{
+		//ESPERAMOS A LOG//
+	}
 }
 
 //0 PARA NO | 1 PARA SI//
@@ -182,9 +177,10 @@ int es_pokemon_requerido(t_pokemon* pokemon){
 			return 0;
 		}
 		else{
+		}
 		return 1;
 }
-}
+
 	else{
 	return 0;
 	}
