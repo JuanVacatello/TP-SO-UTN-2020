@@ -137,6 +137,61 @@ void generar_atrapados_global(void){
 }
 
 
+void planificacion(void){
+	op_planificacion planificacion = obtener_algoritmo_planificacion();
+
+	switch(planificacion){
+	case FIFO:
+	planificar_fifo();
+	break;
+
+}
+}
+
+void planificar_fifo(void){
+
+		pthread_t hilo_planificador;
+
+		t_entrenador*  entrenador;
+
+		entrenador = list_remove(lista_de_entrenadores_ready,0);
+
+
+}
+
+void aparicion_pokemon(t_pokemon* pokemon){
+
+
+	if(es_pokemon_requerido(pokemon)==1){
+		pokemon = malloc(sizeof(pokemon));
+		t_entrenador* entrenador = entrenador_mas_cercano(pokemon);
+		list_add(lista_de_entrenadores_ready,entrenador);
+		list_add(pokemones_requeridos,pokemon);
+	}
+
+
+
+
+
+}
+
+//0 PARA NO | 1 PARA SI//
+int es_pokemon_requerido(t_pokemon* pokemon){
+	if(dictionary_has_key(objetivo_global,pokemon->especie)){
+		if(dictionary_get(objetivo_global,pokemon->especie)==0){
+			return 0;
+		}
+		else{
+		return 1;
+}
+}
+	else{
+	return 0;
+	}
+}
+
+
+
 
 
 

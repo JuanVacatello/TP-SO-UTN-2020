@@ -13,6 +13,15 @@
 #include<readline/readline.h>
 #include "configTeam.h"
 
+typedef enum{
+	FIFO = 1,
+	RR = 2,
+	SJF_CD = 3,
+	SJF_SD = 4
+
+} op_planificacion;
+
+
 
 
 int cantidad_entrenadores(void);

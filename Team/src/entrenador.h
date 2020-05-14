@@ -10,8 +10,11 @@
 
 typedef enum{
 
+	NEW = 0,
 	READY = 1,
-	BLOCKED = 2
+	BLOCKED = 2,
+	EXEC = 3,
+	EXIT = 4
 
 } op_estado;
 

@@ -116,7 +116,7 @@ t_entrenador* armar_entrenador(int indice){
 	entrenador->atrapados = atrapado;
 
 	//ESTADO
-	entrenador->estado = READY;
+	entrenador->estado = NEW;
 
 	return entrenador;
 }
@@ -188,15 +188,15 @@ int cantidad_de_elementos(char* pokemons){
 
 //DADO UN POKEMON EVALUAR QUE ENTRENADOR ESTÁ MAS CERCA//
 
-t_list* entrenadores_mas_cercanos(t_pokemon* pokemon){
+t_entrenador* entrenador_mas_cercano(t_pokemon* pokemon){
 
 	t_list* entrenadores = lista_de_entrenadores;
-
-	t_list* entrenadores_cercanos;
 
 	t_posicion* posicion_pokemon = pokemon->posicion;
 
 	t_entrenador* entrenador;
+
+	t_entrenador* entrenador_cercano;
 
 	t_posicion* posicion_entrenador;
 
@@ -209,12 +209,12 @@ t_list* entrenadores_mas_cercanos(t_pokemon* pokemon){
 		int distancia_actual;
 		distancia_actual=sacar_distancia(posicion_pokemon,posicion_entrenador);
 
-		if(menor_distancia>=distancia_actual || menor_distancia==-1){
+		if(menor_distancia>distancia_actual || menor_distancia==-1){
 			menor_distancia=distancia_actual;
-			list_add(entrenadores_cercanos,entrenador);
+			entrenador_cercano = entrenador;
 		}
 	}
-	return entrenadores_cercanos;
+	return entrenador_cercano;
 }
 
 //OBTIENE CANTIDAD DE MOVIMIENTOS A REALIZAR PARA MOVILIZARSE//
@@ -232,13 +232,14 @@ int sacar_distancia(t_posicion* pokeposicion,t_posicion* entreposicion){
 }
 
 
-t_entrenador* prioridad_fifo(t_list* entrenadores){
 
-	t_entrenador*  entrenador;
 
-	entrenador = list_get(entrenadores,0);
 
-	return entrenador;
-}
+
+
+
+
+
+
 
 

@@ -21,6 +21,10 @@ t_dictionary* objetivo_global;
 
 t_dictionary* atrapados_global;
 
+t_list* lista_de_entrenadores_ready;
+
+t_list* pokemones_requeridos;
+
 typedef enum
 {
 	MENSAJE=1
