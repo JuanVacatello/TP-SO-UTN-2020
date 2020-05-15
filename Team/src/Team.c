@@ -1,6 +1,3 @@
-#include "Team.h"
-
-
 #include<stdio.h>
 #include<stdlib.h>
 #include<readline/readline.h>
@@ -12,7 +9,7 @@
 #include "utils.h"
 #include "configTeam.h"
 
-int main(void) {
+/*int main(void) {
 
 		int conexion;
 		char* ip;
@@ -34,7 +31,7 @@ int main(void) {
 		puts(puerto);
 
 }
-
+*/
 
 //ARMAMOS EL TEAM
 
@@ -136,7 +133,7 @@ void generar_atrapados_global(void){
 
 }
 
-
+/*
 void planificacion(void){
 	op_planificacion planificacion = obtener_algoritmo_planificacion();
 
@@ -146,7 +143,7 @@ void planificacion(void){
 		break;
 
 	}
-}
+}*/
 
 void planificar_fifo(void){
 

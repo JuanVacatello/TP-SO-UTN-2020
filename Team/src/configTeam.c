@@ -6,19 +6,19 @@
 void leer_config(void)
 {
 	if(config_create("/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team/Team.config") == NULL){
-			printf("Error en La conexion");
+			printf("Error en la conexion");
 			exit(2);
+
 	}
 	config = config_create("/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team/Team.config");
-
 }
 
-char obtener_ip(void){
+char* obtener_ip(void){
 	char* ip;
 	ip = config_get_string_value(config, "IP_BROKER");
 	return ip;
 }
-char obtener_puerto(void){
+char* obtener_puerto(void){
 	char* puerto;
 	puerto = config_get_string_value(config, "PUERTO_BROKER");
 	return puerto;
@@ -33,7 +33,7 @@ int obtener_tiempo_reconexion(void){
 	tiempo_reconexion = config_get_int_value(config, "TIEMPO_RECONEXION");
 	return tiempo_reconexion;
 }
-char obtener_algoritmo_planificacion(void){
+char* obtener_algoritmo_planificacion(void){
 	char* algoritmo_planificacion;
 	algoritmo_planificacion = config_get_string_value(config, "ALGORITMO_PLANIFICACION");
 	return algoritmo_planificacion;
@@ -48,7 +48,7 @@ int obtener_quantum(void){
 	quantum = config_get_int_value(config, "QUANTUM");
 	return quantum;
 }
-char obtener_log_file(void){
+char* obtener_log_file(void){
 	char* ruta_log;
 	ruta_log = config_get_string_value(config, "LOG_FILE");
 	return ruta_log;
