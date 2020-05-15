@@ -43,7 +43,7 @@ void moverse_abajo(t_posicion* posicion){
 }
 
 
-//ARMAR BIEN ESTA FUNCION, no existe en c el tipo bool
+
 
 
 

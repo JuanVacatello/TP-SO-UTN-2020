@@ -105,7 +105,7 @@ t_entrenador* armar_entrenador(int indice){
 	t_posicion* posicion_entrenador = obtener_posicion(list_get(posiciones,indice));
 	entrenador->posicion = posicion_entrenador;
 
-	//LISTA OBJETIVOS
+	//LISTA OBJETIVOSpthread_mutex_unlock(&hilo_planificador);
 	t_list* objetivos = obtener_objetivos_entrenadores();
 	t_list* objetivo = obtener_objetivos(list_get(objetivos, indice));
 	entrenador->objetivo = objetivo;

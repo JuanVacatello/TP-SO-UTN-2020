@@ -158,6 +158,7 @@ void planificar_fifo(void){
 
 		entrenador = list_remove(lista_de_entrenadores_ready,0);
 
+		//Le decimos al entrenador que ejecute sus acciones
 
 	}
 
@@ -172,6 +173,7 @@ void aparicion_pokemon(t_pokemon* pokemon){
 
 		t_entrenador* entrenador = entrenador_mas_cercano(pokemon);
 		entrenador->pokemon_a_atrapar = pokemon;
+		//AGREGAMOS ACCION A ENTRENADOR
 		list_add(lista_de_entrenadores_ready,entrenador);
 		list_add(pokemones_requeridos,pokemon);
 		pthread_mutex_unlock(&hilo_planificador);

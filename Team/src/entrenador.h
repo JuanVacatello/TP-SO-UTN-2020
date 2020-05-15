@@ -44,8 +44,18 @@ typedef struct
 	t_list* atrapados;
 	t_pokemon* pokemon_a_atrapar;
 	pthread_t hilo_entrenador;
+	//Armar estructura de acciones
 
 } t_entrenador;
+
+//PREGUNTAR BIEN ESTA PARTE
+
+typedef struct
+{
+	//void*();
+	int ciclo_cpu;
+
+}t_accion;
 
 
 t_entrenador* moverse_A(t_entrenador* entrenador, t_posicion* posicionAMoverse);
