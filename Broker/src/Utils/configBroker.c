@@ -22,10 +22,11 @@ int obtener_tamanio_minimo_particion(void){
 	return tam_min_particion;
 }
 
-int obtener_puerto_broker(void){
+char* obtener_puerto_broker(void){
 	int puerto_b;
 	puerto_b = config_get_int_value(configBroker, "PUERTO_BROKER");
-	return puerto_b;
+	char* puerto_en_string = string_itoa(puerto_b);
+	return puerto_en_string;
 }
 
 int obtener_frecuencia_compactacion(void){

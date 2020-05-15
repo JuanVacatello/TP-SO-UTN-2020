@@ -7,6 +7,7 @@
 #include<commons/log.h>
 #include<commons/config.h>
 #include "Utils/utils.h"
+#include "Utils/configBroker.h"
 
 void terminar_programa(void);
 
