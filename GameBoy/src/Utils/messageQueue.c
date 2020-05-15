@@ -1,4 +1,4 @@
-#include "messageQueue.h"
+#include "../Utils/messageQueue.h"
 
 /*
  * Recibe un paquete a serializar, y un puntero a un int en el que dejar
@@ -77,17 +77,23 @@ t_paquete* inicializar_paquete(op_code codigo_operacion, t_list* argumentos){
 	return paquete;
 }
 
-void enviar_mensaje(int socket_cliente, op_code codigo_operacion)
+void enviar_mensaje(int socket_cliente, op_code codigo_operacion, char* argv[])
 {
-	//t_paquete* paquete = inicializar_paquete(codigo_operacion);
-	//fflush(stdout);
-
 	int tamanio_paquete = 0;
+	void* a_enviar;
 
-	void* a_enviar = iniciar_paquete_serializado(&tamanio_paquete);//// NEW_POKEMON "PIKACHU" 2 4 5
+	switch(codigo_operacion){
+	case 1:
+		a_enviar = iniciar_paquete_serializado_NewPokemon(&tamanio_paquete,argv);
+
+
+		break;
+	}
 
 	send(socket_cliente,a_enviar,tamanio_paquete,0);
 	free(a_enviar);
+
+//fflush(stdout);
 }
 
 
@@ -110,7 +116,7 @@ void recibir_mensaje(int socket_cliente)
 
 } //GAMEBOY NO RECIBE MENSAJES*/
 
-void* iniciar_paquete_serializado(int* tamanio_paquete){
+void* iniciar_paquete_serializado_NewPokemon(int* tamanio_paquete,char* argv[]){
 
 	t_paquete* paquete = malloc(sizeof(t_paquete));
 
@@ -119,11 +125,14 @@ void* iniciar_paquete_serializado(int* tamanio_paquete){
 	paquete->buffer = malloc(sizeof(t_buffer));
 
 		// NEW_POKEMON "PIKACHU" 2 4 5
-	char* pokemon = "Pikachu";
-	int caracteresPokemon = strlen(pokemon)+1;
-	int posX = 2;
-	int posY = 4;
-	int cantidad = 5;
+	char* pokemon = argv[2];
+	int caracteresPokemon = strlen(pokemon) + 1;
+	int posX;
+	sscanf(argv[3], "%d",&posX);
+	int posY ;
+	sscanf(argv[4], "%d",&posY);
+	int cantidad_pokemon;
+	sscanf(argv[5], "%d",&cantidad_pokemon);
 
 	paquete->buffer->size =sizeof(int) + caracteresPokemon +sizeof(int)+sizeof(int)+sizeof(int);
 	void* stream = malloc(paquete->buffer->size);
@@ -141,7 +150,7 @@ void* iniciar_paquete_serializado(int* tamanio_paquete){
 		memcpy(stream + offset, &posY, sizeof(int));
 		offset += sizeof(int);
 
-		memcpy(stream + offset, &cantidad, sizeof(int));
+		memcpy(stream + offset, &cantidad_pokemon, sizeof(int));
 		offset += sizeof(int);
 
 		paquete->buffer->stream = stream;
