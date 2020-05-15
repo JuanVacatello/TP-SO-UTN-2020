@@ -42,6 +42,8 @@ typedef struct
 	t_list* objetivo;
 	t_posicion* posicion;
 	t_list* atrapados;
+	t_pokemon* pokemon_a_atrapar;
+	pthread_t hilo_entrenador;
 
 } t_entrenador;
 

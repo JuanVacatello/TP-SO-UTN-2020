@@ -141,29 +141,41 @@ void planificacion(void){
 	op_planificacion planificacion = obtener_algoritmo_planificacion();
 
 	switch(planificacion){
-	case FIFO:
-	planificar_fifo();
-	break;
+		case FIFO:
+		planificar_fifo();
+		break;
 
-}
+	}
 }
 
 void planificar_fifo(void){
 
-		pthread_t hilo_planificador;
+	while (1){
+
+		pthread_mutex_lock(&hilo_planificador);
 
 		t_entrenador*  entrenador;
 
 		entrenador = list_remove(lista_de_entrenadores_ready,0);
+
+
+	}
+
 }
+
+
+
 
 void aparicion_pokemon(t_pokemon* pokemon){
 
-
 	if(es_pokemon_requerido(pokemon)==1){
+
 		t_entrenador* entrenador = entrenador_mas_cercano(pokemon);
+		entrenador->pokemon_a_atrapar = pokemon;
 		list_add(lista_de_entrenadores_ready,entrenador);
 		list_add(pokemones_requeridos,pokemon);
+		pthread_mutex_unlock(&hilo_planificador);
+
 	}
 	else{
 		//ESPERAMOS A LOG//

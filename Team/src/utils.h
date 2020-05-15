@@ -25,6 +25,9 @@ t_list* lista_de_entrenadores_ready;
 
 t_list* pokemones_requeridos;
 
+pthread_t* hilo_planificador;
+
+
 typedef enum
 {
 	MENSAJE=1
