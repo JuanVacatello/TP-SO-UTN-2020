@@ -37,8 +37,11 @@
 
 
 int cantidad_entrenadores(void){
-	t_list* entrenadores = obtener_posiciones_entrenadores();
-	int cantidad = list_size(entrenadores);
+	char** entrenadores = obtener_posiciones_entrenadores();
+	int cantidad = 0;
+	for(int i=0; entrenadores[i] != NULL; i++){
+		cantidad = i;
+	}
 	return cantidad;
 }
 

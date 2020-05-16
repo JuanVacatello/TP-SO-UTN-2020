@@ -55,20 +55,20 @@ char* obtener_log_file(void){
 }
 
 //Acá obtengo un vector, hay que ver como vamos obteniendo los elementos
-t_list* obtener_posiciones_entrenadores(void){
-	t_list* posiciones_entrenadores = list_create();
+char** obtener_posiciones_entrenadores(void){
+	char** posiciones_entrenadores;
 	posiciones_entrenadores = config_get_array_value(config, "POSICIONES_ENTRENADORES");
 	return posiciones_entrenadores;
 }
 
-t_list* obtener_pokemon_entrenadores(void){
-	t_list* pokemon_entrenadores = list_create();
+char** obtener_pokemon_entrenadores(void){
+	char** pokemon_entrenadores;
 	pokemon_entrenadores = config_get_array_value(config, "POKEMON_ENTRENADORES");
 	return pokemon_entrenadores;
 }
 
-t_list* obtener_objetivos_entrenadores(void){
-	t_list* objetivos_entrenadores = list_create();
+char** obtener_objetivos_entrenadores(void){
+	char** objetivos_entrenadores;
 	objetivos_entrenadores = config_get_array_value(config, "OBJETIVOS_ENTRENADORES");
 	return objetivos_entrenadores;
 }

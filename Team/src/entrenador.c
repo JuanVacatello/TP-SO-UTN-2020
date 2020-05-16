@@ -101,18 +101,18 @@ t_entrenador* armar_entrenador(int indice){
 	t_entrenador* entrenador = malloc(sizeof(entrenador));
 
 	//POSICION
-	t_list* posiciones = obtener_posiciones_entrenadores();
-	t_posicion* posicion_entrenador = obtener_posicion(list_get(posiciones,indice));
+	char**posiciones = obtener_posiciones_entrenadores();
+	t_posicion* posicion_entrenador = obtener_posicion(posiciones[indice]);
 	entrenador->posicion = posicion_entrenador;
 
 	//LISTA OBJETIVOSpthread_mutex_unlock(&hilo_planificador);
-	t_list* objetivos = obtener_objetivos_entrenadores();
-	t_list* objetivo = obtener_objetivos(list_get(objetivos, indice));
+	char** objetivos = obtener_objetivos_entrenadores();
+	t_list* objetivo = obtener_objetivos(objetivos[indice]);
 	entrenador->objetivo = objetivo;
 
 	//LISTA ATRAPADOS
-	t_list* atrapados = obtener_pokemon_entrenadores();
-	t_list* atrapado = obtener_atrapados(list_get(atrapados, indice));
+	char** atrapados = obtener_pokemon_entrenadores();
+	t_list* atrapado = obtener_atrapados(atrapados[indice]);
 	entrenador->atrapados = atrapado;
 
 	//ESTADO
