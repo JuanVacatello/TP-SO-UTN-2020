@@ -71,6 +71,6 @@ t_list* obtener_atrapados(char* atrapados);
 int cantidad_de_elementos(char* pokemons);
 t_list* entrenadores_mas_cercanos(t_pokemon* pokemon);
 int sacar_distancia(t_posicion* pokeposicion,t_posicion* entreposicion);
-t_entrenador* prioridad_fifo(t_list* entrenadores);
+
 
 #endif /* ENTRENADOR_H_ */

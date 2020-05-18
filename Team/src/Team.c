@@ -203,5 +203,11 @@ int es_pokemon_requerido(t_pokemon* pokemon){
 
 
 
+void terminar_programa(int conexion, t_log* logger){
+	if(logger =! NULL)
+		log_destroy(logger);
 
+	if(config =! NULL)
+		config_destroy(config);
+}
 

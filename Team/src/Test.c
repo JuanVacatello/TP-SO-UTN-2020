@@ -5,11 +5,12 @@
 #include "entrenador.h"
 #include "utils.h"
 #include "configTeam.h"
+#include "logTeam.h"
 
 
 int main(void) {
 
-		//int conexion;
+		int conexion;
 		char* ip;
 		char* puerto;
 		char* algoritmo;
@@ -17,7 +18,7 @@ int main(void) {
 		int retardo, tiempoReconexion, estimacion, quantum;// alpha;
 
 
-		//t_log* logger;
+
 
 
 		//logger = iniciar_logger();
@@ -46,25 +47,31 @@ int main(void) {
 		//alpha = obtener_alpha();
 		//printf("%d\n",alpha);
 
+		puts(" ");
 
 		char** posiciones = obtener_posiciones_entrenadores();
-
-		char* posicion = posiciones[0];
-
 		char** objetivos = obtener_objetivos_entrenadores();
-
-		char* objetivo = objetivos[0];
-
 		char** atrapados = obtener_pokemon_entrenadores();
 
-		char* atrapado = atrapados[0];
+		char* posicion;
+		char* objetivo;
+		char* atrapado;
 
-		puts(posicion);
+		for(int i = 0; i < 3; i++){
+			posicion = posiciones[i];
+			objetivo = objetivos[i];
+			atrapado = atrapados[i];
+			printf("Posicion entrenador = ");
+			puts(posicion);
+			printf("Objetivos entrenador = ");
+			puts(objetivo);
+			printf("Atrapados entrenador = ");
+		    puts(atrapado);
+		    puts(" ");
 
-		puts(objetivo);
+		}
 
-		puts(atrapado);
-
+		t_log* logger = iniciar_logger();
 		//obtener_posiciones_entrenadores();
 		//obtener_pokemon_entrenadores();
 		//obtener_objetivos_entrenadores();
@@ -72,7 +79,7 @@ int main(void) {
 		//armar_entrenadores();
 
 
-
+		terminar_programa(conexion, logger);
 
 
 		return 0;

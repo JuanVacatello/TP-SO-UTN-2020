@@ -30,8 +30,15 @@ pthread_t* hilo_planificador;
 
 typedef enum
 {
-	MENSAJE=1
-}op_code;
+	SUSCRIBIRSE=0,
+	NEW_POKEMON=1,
+	APPEARED_POKEMON=2,
+	CATCH_POKEMON=3,
+	CAUGHT_POKEMON=4,
+	GET_POKEMON=5,
+	LOCALIZED_POKEMON=6,
+	MENSAJE = 7
+} op_code;
 
 
 //////////////////////////////////////////////SOCKETS//////////////////////////////////////////////////////
