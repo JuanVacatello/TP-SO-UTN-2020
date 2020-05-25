@@ -7,6 +7,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<commons/collections/list.h>
+#include<commons/collections/queue.h>
 #include<commons/log.h>
 #include<commons/string.h>
 #include<commons/config.h>

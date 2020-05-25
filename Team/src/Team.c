@@ -173,6 +173,7 @@ void aparicion_pokemon(t_pokemon* pokemon){
 
 		t_entrenador* entrenador = entrenador_mas_cercano(pokemon);
 		entrenador->pokemon_a_atrapar = pokemon;
+		queue_push(entrenador->cola_de_acciones, moverse_A(entrenador, pokemon->posicion));
 		//AGREGAMOS ACCION A ENTRENADOR
 		list_add(lista_de_entrenadores_ready,entrenador);
 		list_add(pokemones_requeridos,pokemon);
@@ -199,7 +200,6 @@ int es_pokemon_requerido(t_pokemon* pokemon){
 	return 0;
 	}
 }
-
 
 
 

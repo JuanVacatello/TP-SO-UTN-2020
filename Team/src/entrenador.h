@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include<commons/collections/list.h>
+#include<commons/collections/queue.h>
 #include<commons/config.h>
 
 
@@ -37,13 +38,14 @@ typedef struct
 
 typedef struct
 {
-	int ciclos_de_cpu;
+	int ciclos_de_cpu_totales;
 	op_estado estado;
 	t_list* objetivo;
 	t_posicion* posicion;
 	t_list* atrapados;
 	t_pokemon* pokemon_a_atrapar;
 	pthread_t hilo_entrenador;
+	t_queue* cola_de_acciones;
 	//Armar estructura de acciones
 
 } t_entrenador;
@@ -52,8 +54,8 @@ typedef struct
 
 typedef struct
 {
-	//void*();
-	int ciclo_cpu;
+	void(*accion)(void*);
+	//int ciclo_cpu;
 
 }t_accion;
 
