@@ -16,14 +16,16 @@
 #include<readline/readline.h>
 #include<commons/string.h>
 #include<commons/error.h>
-#include "Utils/log.h"
 #include "Utils/messageQueue.h"
 #include "Utils/configGameBoy.h"
+#include "Utils/logGameBoy.h"
 
 
 void terminar_programa(int conexion); //void terminar_programa(int conexion, t_log* logger, t_config* config);
 void controlar_cant_argumentos(int argc);
 void cumple_cant_parametros(int argc, int cantidad_necesaria);
-void atenderMensajeBroker(argc, argv[]);
+void enviarMensajeBroker(int argc,char* argv[]);
+void enviarMensajeTeam(int argc, char *argv[]);
+void enviarMensajeGameCard(int argc, char *argv[]);
 
 #endif /* GAMEBOY_H_ */

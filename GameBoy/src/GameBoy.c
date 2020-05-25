@@ -8,26 +8,33 @@
  ============================================================================
  */
 #include "GameBoy.h"
+#include<commons/string.h>
 
 int main(int argc, char* argv[]) {
 
+	iniciar_logger();
+	completar_logger("estoy vivo","GAMEBOY",LOG_LEVEL_INFO);
+
+
+}
+/*
 	controlar_cant_argumentos(argc);
 
 	leer_config();
 
 	char* proceso = argv[0];
-	switch(proceso){
-		case "BROKER":
-			atenderMensajeBroker(argc, argv);
-			break;
-		case "TEAM":
-			atenderMensajeTeam(argc, argv);
-			break;
-		case "GAMECARD":
-			atenderMensajeGameCard(argc, argv);
-			break;
-	}
 
+	if(proceso == "BROKER")
+			completar_logger("estoy en switch proceso","GAMEBOY", LOG_LEVEL_INFO)
+			enviarMensajeBroker(argc, argv);
+
+	if(proceso == "TEAM")
+			enviarMensajeTeam(argc, argv);
+
+	if(proceso == "GAMECARD")
+			enviarMensajeGameCard(argc, argv);
+	}
+*/
 	/*int conexion = crear_conexion(ip,puertoEnString);
 
 
@@ -35,10 +42,11 @@ int main(int argc, char* argv[]) {
 	recibir_mensaje(conexion);
 	terminar_programa(conexion);
 	*/
-}
 
 void terminar_programa(int conexion){
 	liberar_conexion(conexion);
+	log_destroy(logger);
+	config_destroy(configGameBoy);
 }
 
 void controlar_cant_argumentos(int argc){
@@ -48,20 +56,37 @@ void controlar_cant_argumentos(int argc){
 		}
 }
 
-void atenderMensajeBroker(argc, argv[]){
+void enviarMensajeBroker(int argc, char *argv[]){
 	char* puerto = obtener_puerto_broker();
 	char* ip = obtener_ip_broker();
 
 	int socket_conexion = crear_conexion(ip,puerto);
 
 	char* codigo_mensaje = argv[1];
-	switch(codigo_mensaje){
+	if(codigo_mensaje == "NEW_POKEMON"){
 
-	case "NEW_POKEMON":
 		cumple_cant_parametros(argc, 6);
 		enviar_mensaje(socket_conexion, 1, argv); // 1 es el op_code de NEW_POKEMON
 
 	}
+}
+
+void enviarMensajeTeam(int argc, char *argv[]){
+	char* puerto = obtener_puerto_team();
+	char* ip = obtener_ip_team();
+
+	int socket_conexion = crear_conexion(ip,puerto);
+
+	//FALTA
+}
+
+void enviarMensajeGameCard(int argc, char *argv[]){
+	char* puerto = obtener_puerto_gamecard();
+	char* ip = obtener_ip_gamecard();
+
+	int socket_conexion = crear_conexion(ip,puerto);
+
+	//FALTA
 }
 
 void cumple_cant_parametros(int argc, int cantidad_necesaria){
