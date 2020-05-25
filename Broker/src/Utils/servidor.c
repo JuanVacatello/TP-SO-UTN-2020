@@ -1,4 +1,5 @@
-#include "utils.h"
+#include "servidor.h"
+
 #include <pthread.h>
 
 int cantidadProcesosregistrados = 0;
@@ -60,13 +61,14 @@ void serve_client(int* socket)
 }
 
 void process_request(int cod_op, int socket_cliente) {
-	int size;
-	void* msg;
+	//int size;
 		switch (cod_op) {
 		case 1:
-			msg = recibir_mensaje(socket_cliente, &size);
-			devolver_mensaje(msg, size, socket_cliente);
-			free(msg);
+			recibir_new_pokemon(socket_cliente);
+
+			//msg = recibir_mensaje(socket_cliente, &size);
+			//devolver_mensaje(msg, size, socket_cliente);
+			//free(msg);
 			break;
 		case 0:
 			atenderSuscripcion(socket_cliente);
@@ -77,15 +79,49 @@ void process_request(int cod_op, int socket_cliente) {
 		}
 }
 
-void* recibir_mensaje(int socket_cliente, int* size)
+/*void* recibir_mensaje(int socket_cliente, int* size)
 {
-	void * buffer;
+	t_paquete* paquete = malloc(sizeof(t_paquete));
+
+	void* buffer;
 
 	recv(socket_cliente, size, sizeof(int), MSG_WAITALL);
 	buffer = malloc(*size);
 	recv(socket_cliente, buffer, *size, MSG_WAITALL);
 
 	return buffer;
+}
+*/
+void recibir_new_pokemon(int socket_cliente)
+{
+	t_paquete* paquete = malloc(sizeof(t_paquete));
+	paquete->codigo_operacion = NEW_POKEMON;
+	completar_logger("recibo new pokemon","Broker",LOG_LEVEL_INFO);
+
+	paquete->buffer = malloc(sizeof(t_buffer));
+
+	recv(socket_cliente, &(paquete->buffer->size), sizeof(int), MSG_WAITALL);
+
+	int caracteresPokemon;
+	recv(socket_cliente, &caracteresPokemon, sizeof(int), MSG_WAITALL);
+	completar_logger("recibo caracteres Pokemon","Broker",LOG_LEVEL_INFO);
+
+	char* pokemon;
+	recv(socket_cliente, &pokemon, caracteresPokemon, MSG_WAITALL);
+	completar_logger(pokemon,"Broker",LOG_LEVEL_INFO);
+
+	int posX;
+	recv(socket_cliente, &posX, sizeof(int), MSG_WAITALL);
+	completar_logger("recibo posX Pokemon ","Broker",LOG_LEVEL_INFO);
+
+	int posY;
+	recv(socket_cliente, &posY, sizeof(int), MSG_WAITALL);
+	completar_logger("recibo posY Pokemon ","Broker",LOG_LEVEL_INFO);
+
+	int cantidad;
+	recv(socket_cliente, &cantidad, sizeof(int), MSG_WAITALL);
+	completar_logger("recibo cantidad Pokemon ","Broker",LOG_LEVEL_INFO);
+
 }
 
 void* serializar_paquete(t_paquete* paquete, int bytes)

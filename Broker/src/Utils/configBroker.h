@@ -12,7 +12,7 @@ t_config* configBroker;
 void leer_config(void);
 int obtener_tamanio_memoria(void);
 int obtener_tamanio_minimo_particion(void);
-int obtener_puerto_broker(void);
+char* obtener_puerto_broker(void);
 int obtener_frecuencia_compactacion(void);
 char* obtener_algoritmo_memoria(void);
 char* obtener_algoritmo_reemplazo(void);

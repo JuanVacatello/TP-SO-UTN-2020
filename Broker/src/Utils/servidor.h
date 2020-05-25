@@ -11,6 +11,7 @@
 #include<commons/string.h>
 #include<string.h>
 #include<pthread.h>
+#include"logBroker.h"
 
 #define IP "127.0.0.1"
 #define PUERTO "4444"
@@ -73,6 +74,7 @@ void atenderSuscripcion(int socket_cliente);
 void suscribirseACola(proceso* suscriptor,cola_mensaje cola_mensaje );
 proceso* modelarProceso(int socket);
 void suscribirseAColas(proceso* suscriptor, int socket);
+void recibir_new_pokemon(int socket_cliente);
 
 
 
