@@ -13,11 +13,11 @@
 #include<stdbool.h>
 
 
-void moverse_A(t_entrenador* entrenador, t_posicion* posicionAMoverse)
+void moverse_A(t_entrenador* entrenador) //, t_posicion* posicionAMoverse)
 {
 	int contador_cpu = 0;
-	int x_a_moverse =  posicionAMoverse -> x;
-	int y_a_moverse = posicionAMoverse -> y;
+	int x_a_moverse =  entrenador->pokemon_a_atrapar->posicion->x;
+	int y_a_moverse = entrenador->pokemon_a_atrapar->posicion->y;
 
 	while(entrenador->posicion->x != x_a_moverse) {
 		if(entrenador->posicion->x < x_a_moverse){
@@ -26,7 +26,7 @@ void moverse_A(t_entrenador* entrenador, t_posicion* posicionAMoverse)
 		}
 		else{
 			//moverse arriba
-			moverse_izquierda(entrenador->posicion, config);
+			moverse_izquierda(entrenador->posicion);
 		}
 
 		contador_cpu++;
@@ -36,11 +36,11 @@ void moverse_A(t_entrenador* entrenador, t_posicion* posicionAMoverse)
 	while(entrenador->posicion->y != y_a_moverse){
 
 		if(entrenador->posicion->y < y_a_moverse){
-			moverse_abajo(entrenador->posicion, config);
+			moverse_abajo(entrenador->posicion);
 			//moverse abajo
 		}
 		else if(entrenador->posicion->y > y_a_moverse){
-			moverse_arriba(entrenador->posicion, config);
+			moverse_arriba(entrenador->posicion);
 		}
 
 		contador_cpu++;

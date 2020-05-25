@@ -55,12 +55,12 @@ typedef struct
 typedef struct
 {
 	void(*accion)(void*);
-	//int ciclo_cpu;
+	int ciclo_cpu;
 
 }t_accion;
 
 
-t_entrenador* moverse_A(t_entrenador* entrenador, t_posicion* posicionAMoverse);
+void moverse_A(t_entrenador* entrenador); // t_posicion* posicionAMoverse);
 t_entrenador atrapar_Pokemon(t_entrenador* entrenador, t_pokemon* pokemon); //PREGUNTAR POR ESTA FUNCION
 void efectuar_ciclo_cpu(t_entrenador* entrenador, int ciclos);
 void contabilizar_ciclos(t_entrenador* entrenador, int ciclos);

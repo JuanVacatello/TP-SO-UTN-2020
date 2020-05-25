@@ -158,13 +158,28 @@ void planificar_fifo(void){
 
 		entrenador = list_remove(lista_de_entrenadores_ready,0);
 
+		/* IMPORTANTE HILOS
+		 *
+		 *	pthread_create(&hilo_entrenador, NULL, accion, entrenador);
+		 *		la accion la sacamos de la cola de acciones (QUEUE_POP())
+		 *	pthread_join(hilo_entrenador,NULL);
+		 *		siempre abajo de un create tiene que haber un join
+		*/
+
 		//Le decimos al entrenador que ejecute sus acciones
 
 	}
 
 }
 
+t_accion* armar_accion(void(*accion)(void*), int ciclos){
 
+	t_accion* accionNueva;
+	accionNueva->accion = accion;
+	accionNueva->ciclo_cpu = ciclos;
+
+	return accionNueva;
+}
 
 
 void aparicion_pokemon(t_pokemon* pokemon){
@@ -173,7 +188,9 @@ void aparicion_pokemon(t_pokemon* pokemon){
 
 		t_entrenador* entrenador = entrenador_mas_cercano(pokemon);
 		entrenador->pokemon_a_atrapar = pokemon;
-		queue_push(entrenador->cola_de_acciones, moverse_A(entrenador, pokemon->posicion));
+
+		t_accion* accion= armar_accion(moverse_derecha, 1);
+		queue_push(entrenador->cola_de_acciones, moverse_derecha);
 		//AGREGAMOS ACCION A ENTRENADOR
 		list_add(lista_de_entrenadores_ready,entrenador);
 		list_add(pokemones_requeridos,pokemon);
