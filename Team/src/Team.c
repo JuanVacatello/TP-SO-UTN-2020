@@ -8,6 +8,7 @@
 #include "entrenador.h"
 #include "utils.h"
 #include "configTeam.h"
+#include "movimiento.h"
 
 /*int main(void) {
 
@@ -189,9 +190,12 @@ void aparicion_pokemon(t_pokemon* pokemon){
 		t_entrenador* entrenador = entrenador_mas_cercano(pokemon);
 		entrenador->pokemon_a_atrapar = pokemon;
 
-		t_accion* accion= armar_accion(moverse_derecha, 1);
-		queue_push(entrenador->cola_de_acciones, moverse_derecha);
+		while(entrenador->posicion->x != pokemon->posicion->x || entrenador->posicion->y != pokemon->posicion->y){
+		t_accion* accion= armar_movimiento(entrenador);
+		queue_push(entrenador->cola_de_acciones, accion);
 		//AGREGAMOS ACCION A ENTRENADOR
+		}
+
 		list_add(lista_de_entrenadores_ready,entrenador);
 		list_add(pokemones_requeridos,pokemon);
 		pthread_mutex_unlock(&hilo_planificador);

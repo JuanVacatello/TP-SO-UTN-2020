@@ -218,6 +218,7 @@ t_entrenador* entrenador_mas_cercano(t_pokemon* pokemon){
 		if(menor_distancia>distancia_actual || menor_distancia==-1){
 			menor_distancia=distancia_actual;
 			entrenador_cercano = entrenador;
+			entrenador_cercano->ciclos_de_cpu_totales = entrenador_cercano->ciclos_de_cpu_totales + menor_distancia;
 		}
 	}
 	return entrenador_cercano;
