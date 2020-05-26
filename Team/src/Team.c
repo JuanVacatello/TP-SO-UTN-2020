@@ -187,13 +187,21 @@ void aparicion_pokemon(t_pokemon* pokemon){
 
 	if(es_pokemon_requerido(pokemon)==1){
 
+		int posicion_ficticia_x;
+		int posicion_ficticia_y;
+
 		t_entrenador* entrenador = entrenador_mas_cercano(pokemon);
 		entrenador->pokemon_a_atrapar = pokemon;
 
-		while(entrenador->posicion->x != pokemon->posicion->x || entrenador->posicion->y != pokemon->posicion->y){
-		t_accion* accion= armar_movimiento(entrenador);
-		queue_push(entrenador->cola_de_acciones, accion);
+		posicion_ficticia_x = entrenador->posicion->x;
+
+		posicion_ficticia_y = entrenador->posicion->y;
+
+		while(posicion_ficticia_x != pokemon->posicion->x || posicion_ficticia_y != pokemon->posicion->y){
+
+		armar_movimiento(entrenador);
 		//AGREGAMOS ACCION A ENTRENADOR
+
 		}
 
 		list_add(lista_de_entrenadores_ready,entrenador);

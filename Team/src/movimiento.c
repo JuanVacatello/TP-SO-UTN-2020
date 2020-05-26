@@ -38,7 +38,7 @@ void moverse_abajo(t_entrenador* entrenador){
 }
 
 
-t_accion* armar_movimiento(t_entrenador* entrenador){
+void armar_movimiento(t_entrenador* entrenador){
 
 	t_accion* accionNueva;
 		//accionNueva->accion = accion;
@@ -47,29 +47,38 @@ t_accion* armar_movimiento(t_entrenador* entrenador){
 	int x_a_moverse = entrenador->pokemon_a_atrapar->posicion->x;
 	int y_a_moverse = entrenador->pokemon_a_atrapar->posicion->y;
 
-	while(entrenador->posicion->x != x_a_moverse) {
+	int posicion_ficticia_entrenador_x = entrenador->posicion->x;
+	int posicion_ficticia_entrenador_y = entrenador->posicion->y;
+
+	while(posicion_ficticia_entrenador_x != x_a_moverse) {
 			if(entrenador->posicion->x < x_a_moverse){
 				//moverse derecha
 		 		accionNueva->accion = moverse_derecha;
-		 		return accionNueva;
+				queue_push(entrenador->cola_de_acciones,accionNueva);
+				posicion_ficticia_entrenador_x ++;
+
 			}
-			else{
+			else if(posicion_ficticia_entrenador_x > x_a_moverse){
 				//moverse izquierda
-				accionNueva->accion = moverse_derecha;
-				return accionNueva;
+				accionNueva->accion = moverse_izquierda;
+				queue_push(entrenador->cola_de_acciones,accionNueva);
+				posicion_ficticia_entrenador_x --;
+
 			}
 		}
 
-	while(entrenador->posicion->y != y_a_moverse){
+	while(posicion_ficticia_entrenador_y != y_a_moverse){
 
-			if(entrenador->posicion->y < y_a_moverse){
+			if(posicion_ficticia_entrenador_y < y_a_moverse){
 				accionNueva->accion = moverse_abajo;
-				return accionNueva;
+				queue_push(entrenador->cola_de_acciones,accionNueva);
+				posicion_ficticia_entrenador_y --;
 				//moverse abajo
 			}
-			else if(entrenador->posicion->y > y_a_moverse){
+			else if(posicion_ficticia_entrenador_y > y_a_moverse){
 				accionNueva->accion = moverse_arriba;
-				return accionNueva;
+				queue_push(entrenador->cola_de_acciones,accionNueva);
+				posicion_ficticia_entrenador_y ++;
 			}
 
 		}
