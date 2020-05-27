@@ -71,7 +71,12 @@ int main(void) {
 
 		}
 
-		t_log* logger = iniciar_logger();
+		iniciar_logger();
+
+		//movimiento_entrenador(2,1);
+
+		completar_logger("hola como estas", "TEAM", LOG_LEVEL_INFO);
+
 		//obtener_posiciones_entrenadores();
 		//obtener_pokemon_entrenadores();
 		//obtener_objetivos_entrenadores();
