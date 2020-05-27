@@ -33,12 +33,21 @@ typedef struct
 } t_paquete;
 
 int crear_conexion(char* ip, char* puerto);
-void enviar_mensaje(int socket_cliente, op_code codigo_operacion, char* argv[]);
 void recibir_mensaje(int socket_cliente);
 void eliminar_paquete(t_paquete* paquete);
-void liberar_conexion(int socket_cliente);
 t_paquete* inicializar_paquete(op_code codigo_operacion, t_list* argumentos);
 void* serializar_paquete(t_paquete* paquete , int *bytes);
+
+void enviar_mensaje_a_broker(int socket_cliente, op_code codigo_operacion, char* argv[]);
 void* iniciar_paquete_serializado_NewPokemon(int* tamanio_paquete, char* argv[]);
+void* iniciar_paquete_serializado_AppearedPokemon(int* tamanio_paquete,char* argv[]);
+void* iniciar_paquete_serializado_CatchPokemon(int* tamanio_paquete,char* argv[]);
+void* iniciar_paquete_serializado_CaughtPokemon(int* tamanio_paquete,char* argv[]);
+void* iniciar_paquete_serializado_GetPokemon(int* tamanio_paquete,char* argv[]);
+
+void enviar_mensaje_a_team(int socket_cliente, op_code codigo_operacion, char* argv[]);
+void* iniciar_paquete_serializado_AppearedPokemonTeam(int* tamanio_paquete,char* argv[]);
+
+void liberar_conexion(int socket_cliente);
 
 #endif /* MSGQ_H_ */
