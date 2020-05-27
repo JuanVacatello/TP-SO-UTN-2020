@@ -40,7 +40,7 @@ void moverse_abajo(t_entrenador* entrenador){
 
 void armar_movimiento(t_entrenador* entrenador){
 
-	t_accion* accionNueva;
+	t_accion* accionNueva = malloc(sizeof(t_accion));
 		//accionNueva->accion = accion;
 		accionNueva->ciclo_cpu = 1;
 
@@ -72,13 +72,13 @@ void armar_movimiento(t_entrenador* entrenador){
 			if(posicion_ficticia_entrenador_y < y_a_moverse){
 				accionNueva->accion = moverse_abajo;
 				queue_push(entrenador->cola_de_acciones,accionNueva);
-				posicion_ficticia_entrenador_y --;
+				posicion_ficticia_entrenador_y ++;
 				//moverse abajo
 			}
 			else if(posicion_ficticia_entrenador_y > y_a_moverse){
 				accionNueva->accion = moverse_arriba;
 				queue_push(entrenador->cola_de_acciones,accionNueva);
-				posicion_ficticia_entrenador_y ++;
+				posicion_ficticia_entrenador_y --;
 			}
 
 		}

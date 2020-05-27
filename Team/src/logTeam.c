@@ -46,13 +46,14 @@ void completar_logger(char* mensaje, char* programa, t_log_level log_level)
 
 
 //2. Movimiento de un entrenador (indicando la ubicación a la que se movió).
+
 /*void movimiento_entrenador(int x, int y){
 	//entrenador ya movido
 	//int x = entrenador->posicion->x;
 	//int y = entrenador->posicion->y;
 
 
-	 //char* mensaje = "El entrenador se movio a la posicion %d,%d",x,y);
+	 char* mensaje = "El entrenador se movio a la posicion";
 
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
 }

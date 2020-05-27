@@ -13,61 +13,6 @@
 #include<stdbool.h>
 
 
-void moverse_A(t_entrenador* entrenador) //, t_posicion* posicionAMoverse)
-{
-	int contador_cpu = 0;
-	int x_a_moverse =  entrenador->pokemon_a_atrapar->posicion->x;
-	int y_a_moverse = entrenador->pokemon_a_atrapar->posicion->y;
-
-	while(entrenador->posicion->x != x_a_moverse) {
-		if(entrenador->posicion->x < x_a_moverse){
-			//moverse derecha
-	 		moverse_derecha(entrenador->posicion);
-		}
-		else{
-			//moverse arriba
-			moverse_izquierda(entrenador->posicion);
-		}
-
-		contador_cpu++;
-		//efectuar_ciclo_cpu(entrenador, 1);
-	}
-
-	while(entrenador->posicion->y != y_a_moverse){
-
-		if(entrenador->posicion->y < y_a_moverse){
-			moverse_abajo(entrenador->posicion);
-			//moverse abajo
-		}
-		else if(entrenador->posicion->y > y_a_moverse){
-			moverse_arriba(entrenador->posicion);
-		}
-
-		contador_cpu++;
-		//efectuar_ciclo_cpu(entrenador, 1);
-	}
-
-		printf("Has llegado al pokemon");
-
-		contabilizar_ciclos(entrenador, contador_cpu);
-}
-/*
-t_entrenador* atrapar_Pokemon(t_entrenador* entrenador, t_pokemon* pokemon){ //PREGUNTAR POR ESTA FUNCION
-
-	int ultimaPosicion=0;
-
-	for(int i=0; i<sizeof(entrenador->atrapados);i++){
-		ultimaPosicion = i;
-	}
-
-	entrenador->atrapados[ultimaPosicion+1] = pokemon;
-	entrenador->estado = 1;
-
-	return entrenador;
-}
-*/
-
-
 
 //------------CICLOS DE CPU---------------
 
@@ -101,14 +46,14 @@ void ciclos_de_cpu(int ciclos){
 
 t_entrenador* armar_entrenador(int indice){
 
-	t_entrenador* entrenador = malloc(sizeof(entrenador));
+	t_entrenador* entrenador = malloc(sizeof(t_entrenador));
 
 	//POSICION
-	char**posiciones = obtener_posiciones_entrenadores();
+	char** posiciones = obtener_posiciones_entrenadores();
 	t_posicion* posicion_entrenador = obtener_posicion(posiciones[indice]);
 	entrenador->posicion = posicion_entrenador;
 
-	//LISTA OBJETIVOSpthread_mutex_unlock(&hilo_planificador);
+	//LISTA OBJETIVOS
 	char** objetivos = obtener_objetivos_entrenadores();
 	t_list* objetivo = obtener_objetivos(objetivos[indice]);
 	entrenador->objetivo = objetivo;
@@ -132,10 +77,10 @@ t_entrenador* armar_entrenador(int indice){
 t_posicion* obtener_posicion(char* posicion){
 
 	char** vector_posicion = string_split(posicion, "|");
-	int posicion_x = list_get(vector_posicion,0);
-	int posicion_y = list_get(vector_posicion,1);
+	int posicion_x = atoi(vector_posicion[0]);
+	int posicion_y = atoi(vector_posicion[1]);
 
-	t_posicion* posicion_casteada;
+	t_posicion* posicion_casteada = malloc(sizeof(t_posicion));
 	posicion_casteada->x = posicion_x;
 	posicion_casteada->y = posicion_y;
 
@@ -183,7 +128,7 @@ int cantidad_de_elementos(char* pokemons){
 
 	int contador = 0;
 	for(int i=0; i < string_length(pokemons); i++){
-		if(pokemons[i] =="|"){
+		if(pokemons[i] =='|'){
 			contador++;
 		}
 	}
@@ -211,16 +156,18 @@ t_entrenador* entrenador_mas_cercano(t_pokemon* pokemon){
 	for (int indice_entrenador=0; indice_entrenador<cantidad_entrenadores(); indice_entrenador++){
 
 		entrenador = list_get(entrenadores, indice_entrenador);
-		posicion_entrenador = entrenador->posicion;
-		int distancia_actual;
-		distancia_actual=sacar_distancia(posicion_pokemon,posicion_entrenador);
+		if(entrenador->estado == NEW || entrenador->estado == BLOCKED){
+			posicion_entrenador = entrenador->posicion;
+			int distancia_actual;
+			distancia_actual=sacar_distancia(posicion_pokemon,posicion_entrenador);
 
-		if(menor_distancia>distancia_actual || menor_distancia==-1){
-			menor_distancia=distancia_actual;
-			entrenador_cercano = entrenador;
-			entrenador_cercano->ciclos_de_cpu_totales = entrenador_cercano->ciclos_de_cpu_totales + menor_distancia;
+			if(menor_distancia>distancia_actual || menor_distancia==-1){
+				menor_distancia=distancia_actual;
+				entrenador_cercano = entrenador;
+			}
 		}
 	}
+	entrenador_cercano->ciclos_de_cpu_totales = entrenador_cercano->ciclos_de_cpu_totales + menor_distancia;
 	return entrenador_cercano;
 }
 
@@ -238,6 +185,47 @@ int sacar_distancia(t_posicion* pokeposicion,t_posicion* entreposicion){
 	return distancia;
 }
 
+
+/*
+void moverse_A(t_entrenador* entrenador) //, t_posicion* posicionAMoverse)
+{
+	int contador_cpu = 0;
+	int x_a_moverse =  entrenador->pokemon_a_atrapar->posicion->x;
+	int y_a_moverse = entrenador->pokemon_a_atrapar->posicion->y;
+
+	while(entrenador->posicion->x != x_a_moverse) {
+		if(entrenador->posicion->x < x_a_moverse){
+			//moverse derecha
+	 		moverse_derecha(entrenador->posicion);
+		}
+		else{
+			//moverse arriba
+			moverse_izquierda(entrenador->posicion);
+		}
+
+		contador_cpu++;
+		//efectuar_ciclo_cpu(entrenador, 1);
+	}
+
+	while(entrenador->posicion->y != y_a_moverse){
+
+		if(entrenador->posicion->y < y_a_moverse){
+			moverse_abajo(entrenador->posicion);
+			//moverse abajo
+		}
+		else if(entrenador->posicion->y > y_a_moverse){
+			moverse_arriba(entrenador->posicion);
+		}
+
+		contador_cpu++;
+		//efectuar_ciclo_cpu(entrenador, 1);
+	}
+
+		printf("Has llegado al pokemon");
+
+		contabilizar_ciclos(entrenador, contador_cpu);
+}
+*/
 
 
 

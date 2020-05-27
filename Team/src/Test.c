@@ -18,9 +18,6 @@ int main(void) {
 		int retardo, tiempoReconexion, estimacion, quantum;// alpha;
 
 
-
-
-
 		//logger = iniciar_logger();
 		//log_destroy(logger);
 		//Loggear "soy un log"
@@ -54,17 +51,17 @@ int main(void) {
 		char** atrapados = obtener_pokemon_entrenadores();
 
 		char* posicion;
-		char* objetivo;
+		char* objetivo_entrenador;
 		char* atrapado;
 
 		for(int i = 0; i < 3; i++){
 			posicion = posiciones[i];
-			objetivo = objetivos[i];
+			objetivo_entrenador = objetivos[i];
 			atrapado = atrapados[i];
 			printf("Posicion entrenador = ");
 			puts(posicion);
 			printf("Objetivos entrenador = ");
-			puts(objetivo);
+			puts(objetivo_entrenador);
 			printf("Atrapados entrenador = ");
 		    puts(atrapado);
 		    puts(" ");
@@ -73,18 +70,32 @@ int main(void) {
 
 		iniciar_logger();
 
-		//movimiento_entrenador(2,1);
-
 		completar_logger("hola como estas", "TEAM", LOG_LEVEL_INFO);
 
 		//obtener_posiciones_entrenadores();
 		//obtener_pokemon_entrenadores();
 		//obtener_objetivos_entrenadores();
 
-		//armar_entrenadores();
+		armar_entrenadores();
 
 
-		terminar_programa(conexion, logger);
+		t_entrenador* entrenador = armar_entrenador(0);
+
+
+		printf("%d\n",entrenador->posicion->x);
+		printf("%d\n",entrenador->posicion->y);
+		puts(" ");
+		puts(list_get(entrenador->objetivo,0));
+		puts(list_get(entrenador->objetivo,1));
+		puts(list_get(entrenador->objetivo,2));
+		puts(list_get(entrenador->objetivo,3));
+		puts(" ");
+		puts(list_get(entrenador->atrapados,0));
+		puts(list_get(entrenador->atrapados,1));
+		puts(list_get(entrenador->atrapados,2));
+
+
+		//terminar_programa(conexion, logger);
 
 
 		return 0;
