@@ -4,22 +4,6 @@
  * Recibe un paquete a serializar, y un puntero a un int en el que dejar
  * el tamaño del stream de bytes serializados que devuelve
  */
-void* serializar_paquete(t_paquete* paquete, int *bytes)
-{
-	*bytes = (paquete->buffer->size)+sizeof(op_code)+sizeof(int);
-	void* a_enviar = malloc((*bytes));
-	int offset = 0;
-
-	memcpy(a_enviar + offset, &(paquete->codigo_operacion), sizeof(op_code));
-	offset += sizeof(op_code);
-
-	memcpy(a_enviar + offset, &(paquete->buffer->size), sizeof(int));
-	offset +=sizeof(int);
-
-	memcpy(a_enviar + offset, paquete->buffer->stream, paquete->buffer->size);
-
-	return a_enviar;
-}
 
 t_paquete* inicializar_paquete(op_code codigo_operacion, t_list* argumentos){
 
@@ -77,6 +61,23 @@ int crear_conexion(char* ip, char* puerto)
 	return socket_cliente;
 }
 
+void* serializar_paquete(t_paquete* paquete, int *bytes)
+{
+	*bytes = (paquete->buffer->size)+sizeof(op_code)+sizeof(int);
+	void* a_enviar = malloc((*bytes));
+	int offset = 0;
+
+	memcpy(a_enviar + offset, &(paquete->codigo_operacion), sizeof(op_code));
+	offset += sizeof(op_code);
+
+	memcpy(a_enviar + offset, &(paquete->buffer->size), sizeof(int));
+	offset +=sizeof(int);
+
+	memcpy(a_enviar + offset, paquete->buffer->stream, paquete->buffer->size);
+
+	return a_enviar;
+}
+
 // ENVIO DE MENSAJE
 
 // A PARTIR DE ACÁ SE TRATAN LOS MENSAJES A BROKER
@@ -102,8 +103,9 @@ void enviar_mensaje_a_broker(int socket_cliente, op_code codigo_operacion, char*
 	case 5:
 		a_enviar = iniciar_paquete_serializado_GetPokemon(&tamanio_paquete,argv);
 		break;
+	case 6:
+		break;
 	}
-
 
 	send(socket_cliente,a_enviar,tamanio_paquete,0);
 	free(a_enviar);
@@ -149,12 +151,15 @@ void* iniciar_paquete_serializado_NewPokemon(int* tamanio_paquete,char* argv[]){
 		memcpy(stream + offset, &cantidad_pokemon, sizeof(int));
 		offset += sizeof(int);
 
-		paquete->buffer->stream = stream;
+	paquete->buffer->stream = stream;
 
+	void* a_enviar = serializar_paquete(paquete, &tamanio_paquete); // y me ahorro todo esto:
+
+	/*
 						// TAMAÑO STREAM + OP CODE + VARIABLE SIZE
 	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(int);
-
 	void* a_enviar = malloc((*tamanio_paquete));
+
 	int offsetDeSerializacion = 0;
 
 		memcpy(a_enviar + offset, &(paquete->codigo_operacion), sizeof(op_code));
@@ -164,6 +169,8 @@ void* iniciar_paquete_serializado_NewPokemon(int* tamanio_paquete,char* argv[]){
 		offsetDeSerializacion +=sizeof(int);
 
 		memcpy(a_enviar + offset, &(paquete->buffer->stream), paquete->buffer->size);
+
+	*/
 
 	free(stream);
 	free(paquete->buffer);
