@@ -7,6 +7,7 @@
  Description : Hello World in C, Ansi-style
  ============================================================================
  */
+
 #include "GameBoy.h"
 #include<commons/string.h>
 
@@ -120,7 +121,23 @@ void enviarMensajeGameCard(int argc, char *argv[]){
 
 	int socket_conexion = crear_conexion(ip,puerto);
 
-	//FALTA
+	char* codigo_mensaje = argv[1];
+
+	if(codigo_mensaje == "NEW_POKEMON"){
+		cumple_cant_parametros(argc, 7);
+		enviar_mensaje_a_gamecard(socket_conexion, 1, argv); // 1 es el op_code de NEW_POKEMON
+	}
+
+	if(codigo_mensaje == "CATCH_POKEMON"){
+		cumple_cant_parametros(argc, 6);
+		enviar_mensaje_a_gamecard(socket_conexion, 3, argv); // 3 es el op_code de CATCH_POKEMON
+	}
+
+	if(codigo_mensaje == "GET_POKEMON"){
+		cumple_cant_parametros(argc, 4);
+		enviar_mensaje_a_gamecard(socket_conexion, 5, argv); // 5 es el op_code de GET_POKEMON
+	}
+	// GameCard solo recibe estos 3 mensajes del GameBoy
 }
 
 void cumple_cant_parametros(int argc, int cantidad_necesaria){

@@ -48,6 +48,11 @@ void* iniciar_paquete_serializado_GetPokemon(int* tamanio_paquete,char* argv[]);
 void enviar_mensaje_a_team(int socket_cliente, op_code codigo_operacion, char* argv[]);
 void* iniciar_paquete_serializado_AppearedPokemonTeam(int* tamanio_paquete,char* argv[]);
 
+void enviar_mensaje_a_gamecard(int socket_cliente, op_code codigo_operacion, char* argv[]);
+void* iniciar_paquete_serializado_NewPokemonGC(int* tamanio_paquete,char* argv[]);
+void* iniciar_paquete_serializado_CatchPokemonGC(int* tamanio_paquete,char* argv[]);
+void* iniciar_paquete_serializado_GetPokemonGC(int* tamanio_paquete,char* argv[]);
+
 void liberar_conexion(int socket_cliente);
 
 #endif /* MSGQ_H_ */
