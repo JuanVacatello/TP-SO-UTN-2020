@@ -20,7 +20,6 @@
 #include "Utils/configGameBoy.h"
 #include "Utils/logGameBoy.h"
 
-
 void terminar_programa(int conexion); //void terminar_programa(int conexion, t_log* logger, t_config* config);
 void controlar_cant_argumentos(int argc);
 void cumple_cant_parametros(int argc, int cantidad_necesaria);

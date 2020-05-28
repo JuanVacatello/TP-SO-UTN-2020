@@ -16,17 +16,18 @@ int main(int argc, char* argv[]) {
 	iniciar_logger();
 	completar_logger("estoy vivo","GAMEBOY",LOG_LEVEL_INFO);
 
-}
-/*
-	controlar_cant_argumentos(argc);
 
-	leer_config();
+
+	controlar_cant_argumentos(argc);
+	puts(argv[0]);
+
+	//leer_config();
 
 	char* proceso = argv[0];
 
 	if(proceso == "BROKER")
-			completar_logger("estoy en switch proceso","GAMEBOY", LOG_LEVEL_INFO)
-			enviarMensajeBroker(argc, argv);
+			completar_logger("estoy en switch proceso","GAMEBOY", LOG_LEVEL_INFO);
+			//enviarMensajeBroker(argc, argv);
 
 	if(proceso == "TEAM")
 			enviarMensajeTeam(argc, argv);
@@ -34,7 +35,6 @@ int main(int argc, char* argv[]) {
 	if(proceso == "GAMECARD")
 			enviarMensajeGameCard(argc, argv);
 	}
-*/
 	/*int conexion = crear_conexion(ip,puertoEnString);
 
 
@@ -50,7 +50,7 @@ void terminar_programa(int conexion){
 }
 
 void controlar_cant_argumentos(int argc){
-	if(argc < 3){
+	if(argc <= 3 ){
 			error_show("Error: cantidad de parametros insuficientes para efectuar cualquier accion \n");
 			exit(2);
 		}
