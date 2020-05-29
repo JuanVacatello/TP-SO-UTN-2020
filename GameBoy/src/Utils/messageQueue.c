@@ -1,44 +1,5 @@
 #include "../Utils/messageQueue.h"
 
-/*
- * Recibe un paquete a serializar, y un puntero a un int en el que dejar
- * el tamaño del stream de bytes serializados que devuelve
- */
-
-t_paquete* inicializar_paquete(op_code codigo_operacion, t_list* argumentos){
-
-	t_paquete* paquete = malloc(sizeof(t_paquete));
-
-	paquete->codigo_operacion = codigo_operacion;
-
-	t_buffer* buffer = malloc(sizeof(t_buffer));
-
-	buffer->size = 0;
-	void* stream = malloc(buffer->size);
-
-	switch(codigo_operacion){
-	case 1:
-
-		break;
-	case 2:
-		break;
-	case 3:
-		break;
-	case 4:
-		break;
-	case 5:
-		break;
-	case 6:
-		break;
-	}
-
-	buffer->stream = argumentos;
-
-	paquete->buffer = buffer;
-
-	return paquete;
-}
-
 int crear_conexion(char* ip, char* puerto)
 {
 	struct addrinfo hints;
@@ -50,14 +11,19 @@ int crear_conexion(char* ip, char* puerto)
 	hints.ai_flags = AI_PASSIVE;
 
 	getaddrinfo(ip, puerto, &hints, &server_info);
-
+	completar_logger("paso 1 conectar","GAMEBOY",LOG_LEVEL_INFO);
 	int socket_cliente = socket(server_info->ai_family, server_info->ai_socktype, server_info->ai_protocol);
 
-	if(connect(socket_cliente, server_info->ai_addr, server_info->ai_addrlen) == -1)
+	if(connect(socket_cliente, server_info->ai_addr, server_info->ai_addrlen) == -1){
 		printf("error");
+		exit(1);
+	}
 
-	freeaddrinfo(server_info);
 
+	completar_logger("paso 2 conectar","GAMEBOY",LOG_LEVEL_INFO);
+
+	//freeaddrinfo(server_info);
+	completar_logger("paso 3 conectar","GAMEBOY",LOG_LEVEL_INFO);
 	return socket_cliente;
 }
 
@@ -705,4 +671,48 @@ void recibir_mensaje(int socket_cliente)
 void liberar_conexion(int socket_cliente)
 {
 	close(socket_cliente);
+}
+
+void* iniciar_paquete_prueba(int* tamanio_paquete){
+
+	t_paquete* paquete = malloc(sizeof(t_paquete));
+
+	paquete->codigo_operacion = PRUEBA;
+
+	paquete->buffer = malloc(sizeof(t_buffer));
+
+
+
+	int numero = 2;
+
+	paquete->buffer->size =sizeof(int);
+	void* stream = malloc(paquete->buffer->size);
+	int offset = 0;
+
+		memcpy(stream + offset, &numero, sizeof(int));
+		offset += sizeof(int);
+
+	paquete->buffer->stream = stream;
+
+						// TAMAÑO STREAM + OP CODE + VARIABLE SIZE
+	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(int);
+	void* a_enviar = malloc((*tamanio_paquete));
+
+	int offsetDeSerializacion = 0;
+
+		memcpy(a_enviar + offset, &(paquete->codigo_operacion), sizeof(op_code));
+		offsetDeSerializacion += sizeof(op_code);
+
+		memcpy(a_enviar + offset, &(paquete->buffer->size), sizeof(int));
+		offsetDeSerializacion +=sizeof(int);
+
+		memcpy(a_enviar + offset, &(paquete->buffer->stream), paquete->buffer->size);
+
+
+	free(stream);
+	free(paquete->buffer);
+	free(paquete);
+
+	return a_enviar;
+
 }

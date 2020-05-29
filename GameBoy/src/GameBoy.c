@@ -11,7 +11,29 @@
 #include "GameBoy.h"
 #include<commons/string.h>
 
-int main(int argc, char* argv[]) {
+
+int main(){
+	iniciar_logger();
+	completar_logger("estoy vivo","GAMEBOY",LOG_LEVEL_INFO);
+
+		char* puerto = "127.0.0.1";
+		char* ip = "4444";
+
+		int socket_conexion = crear_conexion(ip,puerto);
+		completar_logger("Me conecte","GAMEBOY",LOG_LEVEL_INFO);
+
+		int tamanio_paquete;
+
+		void* a_enviar = iniciar_paquete_prueba(&tamanio_paquete);
+		completar_logger("Cree un paquete","GAMEBOY",LOG_LEVEL_INFO);
+
+		send(socket_conexion,a_enviar,tamanio_paquete,0);
+		completar_logger("Envie un paquete","GAMEBOY",LOG_LEVEL_INFO);
+		free(a_enviar);
+}
+
+
+/*int main(int argc, char* argv[]) {
 
 	iniciar_logger();
 	completar_logger("estoy vivo","GAMEBOY",LOG_LEVEL_INFO);
@@ -34,14 +56,7 @@ int main(int argc, char* argv[]) {
 
 	if(proceso == "GAMECARD")
 			enviarMensajeGameCard(argc, argv);
-	}
-	/*int conexion = crear_conexion(ip,puertoEnString);
-
-
-	enviar_mensaje(conexion,NEW_POKEMON); //hardcodeado NEWPOKEMON
-	recibir_mensaje(conexion);
-	terminar_programa(conexion);
-	*/
+	}  */
 
 void terminar_programa(int conexion){
 	liberar_conexion(conexion);

@@ -10,6 +10,8 @@
 #include<string.h>
 #include<commons/collections/list.h>
 
+#include"logGameBoy.h"
+
 typedef enum
 {
 	NEW_POKEMON=1,
@@ -17,7 +19,8 @@ typedef enum
 	CATCH_POKEMON=3,
 	CAUGHT_POKEMON=4,
 	GET_POKEMON=5,
-	LOCALIZED_POKEMON=6
+	LOCALIZED_POKEMON=6,
+	PRUEBA=7
 }op_code;
 
 typedef struct
@@ -52,6 +55,8 @@ void enviar_mensaje_a_gamecard(int socket_cliente, op_code codigo_operacion, cha
 void* iniciar_paquete_serializado_NewPokemonGC(int* tamanio_paquete,char* argv[]);
 void* iniciar_paquete_serializado_CatchPokemonGC(int* tamanio_paquete,char* argv[]);
 void* iniciar_paquete_serializado_GetPokemonGC(int* tamanio_paquete,char* argv[]);
+
+void* iniciar_paquete_prueba(int* tamanio_paquete);
 
 void liberar_conexion(int socket_cliente);
 
