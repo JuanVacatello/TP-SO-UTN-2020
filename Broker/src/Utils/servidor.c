@@ -8,6 +8,8 @@ caughtPokemon, getPokemon, localizedPokemon;
 
 void iniciar_servidor(void)
 {
+	iniciar_logger();
+	completar_logger("me creo","BROKER",LOG_LEVEL_INFO);
 	int socket_servidor;
     struct addrinfo hints, *servinfo, *p;
 
@@ -72,10 +74,12 @@ void process_request(int cod_op, int socket_cliente) {
 			break;
 		case 0:
 			atenderSuscripcion(socket_cliente);
-
-			pthread_exit(NULL);
+			break;
 		case -1:
 			pthread_exit(NULL);
+		case 7:
+			atenderMensajePrueba(socket_cliente);
+			break;
 		}
 }
 
@@ -143,7 +147,7 @@ void devolver_mensaje(void* payload, int size, int socket_cliente)
 {
 	t_paquete* paquete = malloc(sizeof(t_paquete));
 
-	paquete->codigo_operacion = MENSAJE;
+	paquete->codigo_operacion = PRUEBA;
 	paquete->buffer = malloc(sizeof(t_buffer));
 	paquete->buffer->size = size;
 	paquete->buffer->stream = malloc(paquete->buffer->size);
@@ -212,4 +216,10 @@ void suscribirseAColas(proceso* suscriptor, int socket ){
 					break; //HAY QUE BORRAR LA OPCION MENSAJE
 			}
 		}
+}
+
+void atenderMensajePrueba(int socket_cliente){
+	int numero;
+	recv(socket_cliente, &numero, sizeof(int), MSG_WAITALL);
+	completar_logger("recibi el numero" ,"BROKER", LOG_LEVEL_INFO);
 }

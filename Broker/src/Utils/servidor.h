@@ -25,7 +25,7 @@ typedef enum
 	CAUGHT_POKEMON=4,
 	GET_POKEMON=5,
 	LOCALIZED_POKEMON=6,
-	MENSAJE = 7
+	PRUEBA = 7
 } op_code;
 
 typedef struct
@@ -75,6 +75,8 @@ void suscribirseACola(proceso* suscriptor,cola_mensaje cola_mensaje );
 proceso* modelarProceso(int socket);
 void suscribirseAColas(proceso* suscriptor, int socket);
 void recibir_new_pokemon(int socket_cliente);
+
+void atenderMensajePrueba(int socket_cliente);
 
 
 
