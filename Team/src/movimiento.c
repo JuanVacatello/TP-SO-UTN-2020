@@ -7,14 +7,13 @@
 void moverse_izquierda(t_entrenador* entrenador){
 
 	entrenador->posicion->x -= 1;
-	//completar_logger("El entrenador se movio una posicion a la izquierda", ,);
-
+	log_movimiento_entrenador(entrenador);
 	ciclos_de_cpu(1);
 }
 void moverse_derecha(t_entrenador* entrenador) {
 
 	entrenador->posicion->x += 1;
-	//completar_logger("El entrenador se movio una posicion a la derecha", ,);
+	log_movimiento_entrenador(entrenador);
 	ciclos_de_cpu(1);
 
 }
@@ -22,18 +21,14 @@ void moverse_derecha(t_entrenador* entrenador) {
 void moverse_arriba(t_entrenador* entrenador){
 
 	entrenador->posicion->y -= 1;
-	//completar_logger("El entrenador se movio una posicion a la arriba", ,);
-
-
-	//completar_logger("No es posible realizar ese movimiento");
-
+	log_movimiento_entrenador(entrenador);
 	ciclos_de_cpu(1);
 }
 
 void moverse_abajo(t_entrenador* entrenador){
 
 	entrenador->posicion->y += 1;
-	//completar_logger("El entrenador se movio una posicion a la abajo", ,);
+	log_movimiento_entrenador(entrenador);
 	ciclos_de_cpu(1);
 }
 

@@ -47,17 +47,15 @@ void completar_logger(char* mensaje, char* programa, t_log_level log_level)
 
 //2. Movimiento de un entrenador (indicando la ubicación a la que se movió).
 
-/*void movimiento_entrenador(int x, int y){
+void log_movimiento_entrenador(t_entrenador* entrenador){
 	//entrenador ya movido
-	//int x = entrenador->posicion->x;
-	//int y = entrenador->posicion->y;
+	char* xPosicion = string_itoa(entrenador->posicion->x);
+	char* yPosicion = string_itoa(entrenador->posicion->y);
 
-
-	 char* mensaje = "El entrenador se movio a la posicion";
+	char* mensaje = string_from_format("El entrenador se movió a la posicion %s|%s.", xPosicion, yPosicion);
 
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
 }
-*/
 
 
 
