@@ -18,11 +18,12 @@ int main(void) {
 		int retardo, tiempoReconexion, estimacion, quantum;// alpha;
 
 
-		//logger = iniciar_logger();
+
 		//log_destroy(logger);
 		//Loggear "soy un log"
 
 		leer_config();
+		iniciar_logger();
 
 
 		ip = obtener_ip();
@@ -68,9 +69,7 @@ int main(void) {
 
 		}
 
-		iniciar_logger();
 
-		completar_logger("hola como estas", "TEAM", LOG_LEVEL_INFO);
 
 		//obtener_posiciones_entrenadores();
 		//obtener_pokemon_entrenadores();
@@ -95,6 +94,19 @@ int main(void) {
 		puts(list_get(entrenador->atrapados,2));
 
 
+		printf("%d\n",entrenador->posicion->x);
+		printf("%d\n",entrenador->posicion->y);
+
+		moverse_derecha(entrenador);
+		moverse_derecha(entrenador);
+		moverse_derecha(entrenador);
+		moverse_izquierda(entrenador);
+		moverse_arriba(entrenador);
+		moverse_arriba(entrenador);
+		moverse_arriba(entrenador);
+		moverse_arriba(entrenador);
+
+		//completar_logger("hola como estas", "TEAM", LOG_LEVEL_INFO);
 		//terminar_programa(conexion, logger);
 
 

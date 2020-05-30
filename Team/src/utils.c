@@ -120,3 +120,151 @@ void devolver_mensaje(void* payload, int size, int socket_cliente)
 	free(paquete);
 }
 
+
+//----------------------- COMUNICACION CON BROKER -----------------------
+
+void enviar_mensaje_a_broker(int socket_cliente, op_code codigo_operacion, char* argv[], t_entrenador* entrenador) //HAY QUE VER ESTE TEMA DEL PARAMETRO
+{
+	int tamanio_paquete = 0;
+	void* a_enviar;
+
+	switch(codigo_operacion){
+	case CATCH_POKEMON:
+		a_enviar = iniciar_paquete_serializado_CatchPokemon(&tamanio_paquete,entrenador);
+		break;
+	case GET_POKEMON:
+		a_enviar = iniciar_paquete_serializado_GetPokemon(&tamanio_paquete,argv);
+		break;
+	case 6:
+		break;
+	}
+
+	send(socket_cliente,a_enviar,tamanio_paquete,0);
+	free(a_enviar);
+
+//fflush(stdout);
+}
+
+//////////////// CATCH POKEMON ////////////////
+
+void* iniciar_paquete_serializado_CatchPokemon(int* tamanio_paquete,t_entrenador* entrenador){ //Deberia de recibir el entrenador pero no estoy seguro si como parametro o VG.
+
+	t_paquete* paquete = malloc(sizeof(t_paquete));
+
+	paquete->codigo_operacion = CATCH_POKEMON;
+
+	paquete->buffer = malloc(sizeof(t_buffer));
+
+	char* pokemon = entrenador->pokemon_a_atrapar->especie;
+	int caracteresPokemon = strlen(pokemon) + 1;
+	//Quizas es mejor hacer una variable pokemon para no tener tantas flechitas
+	int posX = entrenador->pokemon_a_atrapar->posicion->x;
+	int posY = entrenador->pokemon_a_atrapar->posicion->y;
+
+						//INT CARACTERES + POKEMON + POSX + POSY
+	paquete->buffer->size = sizeof(int) + caracteresPokemon + sizeof(int) + sizeof(int);
+	void* stream = malloc(paquete->buffer->size);
+	int offset = 0;
+
+		memcpy(stream + offset, &caracteresPokemon, sizeof(int));
+		offset += sizeof(int);
+
+		memcpy(stream + offset, &pokemon, caracteresPokemon);
+		offset +=caracteresPokemon;
+
+		memcpy(stream + offset, &posX, sizeof(int));
+		offset += sizeof(int);
+
+		memcpy(stream + offset, &posY, sizeof(int));
+		offset += sizeof(int);
+
+		paquete->buffer->stream = stream;
+
+						// TAMAÑO STREAM + OP CODE + VARIABLE SIZE
+	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(int);
+
+	void* a_enviar = malloc((*tamanio_paquete));
+	int offsetDeSerializacion = 0;
+
+		memcpy(a_enviar + offset, &(paquete->codigo_operacion), sizeof(op_code));
+		offsetDeSerializacion += sizeof(op_code);
+
+		memcpy(a_enviar + offset, &(paquete->buffer->size), sizeof(int));
+		offsetDeSerializacion +=sizeof(int);
+
+		memcpy(a_enviar + offset, &(paquete->buffer->stream), paquete->buffer->size);
+
+	free(stream);
+	free(paquete->buffer);
+	free(paquete);
+
+	return a_enviar;
+
+}
+
+//////////////// GET POKEMON ////////////////
+
+void* iniciar_paquete_serializado_GetPokemon(int* tamanio_paquete,char* argv[]){
+
+	t_paquete* paquete = malloc(sizeof(t_paquete));
+
+	paquete->codigo_operacion = GET_POKEMON;
+
+	paquete->buffer = malloc(sizeof(t_buffer));
+
+	char* pokemon = argv[2];
+	int caracteresPokemon = strlen(pokemon) + 1;
+
+						//INT CARACTERES + POKEMON
+	paquete->buffer->size = sizeof(int) + caracteresPokemon;
+	void* stream = malloc(paquete->buffer->size);
+	int offset = 0;
+
+		memcpy(stream + offset, &caracteresPokemon, sizeof(int));
+		offset += sizeof(int);
+
+		memcpy(stream + offset, &pokemon, caracteresPokemon);
+		offset +=caracteresPokemon;
+
+		paquete->buffer->stream = stream;
+
+						// TAMAÑO STREAM + OP CODE + VARIABLE SIZE
+	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(int);
+
+	void* a_enviar = malloc((*tamanio_paquete));
+	int offsetDeSerializacion = 0;
+
+		memcpy(a_enviar + offset, &(paquete->codigo_operacion), sizeof(op_code));
+		offsetDeSerializacion += sizeof(op_code);
+
+		memcpy(a_enviar + offset, &(paquete->buffer->size), sizeof(int));
+		offsetDeSerializacion +=sizeof(int);
+
+		memcpy(a_enviar + offset, &(paquete->buffer->stream), paquete->buffer->size);
+
+	free(stream);
+	free(paquete->buffer);
+	free(paquete);
+
+	return a_enviar;
+
+}
+
+void recibir_mensaje2(int socket_cliente)
+{
+	int caracteresPokemon, posX, posY, cantidad;
+	char* pokemon;
+
+	recv(socket_cliente,&caracteresPokemon ,sizeof(int),0);
+	recv(socket_cliente,&pokemon ,caracteresPokemon,0);
+	recv(socket_cliente,&posX ,sizeof(int),0);
+	recv(socket_cliente,&posY ,sizeof(int),0);
+	recv(socket_cliente,&cantidad ,sizeof(int),0);
+
+	printf("%d /n",caracteresPokemon);
+	printf("%d /n",posX);
+	printf("%d /n",posY);
+	printf("%d /n",cantidad);
+	puts(pokemon);
+
+}

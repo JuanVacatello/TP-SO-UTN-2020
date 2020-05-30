@@ -11,6 +11,7 @@
 #include<commons/collections/dictionary.h>
 #include<string.h>
 #include<pthread.h>
+#include "entrenador.h"
 
 
 //DEFINO VARIABLES GLOBALES
@@ -26,6 +27,7 @@ t_list* lista_de_entrenadores_ready;
 t_list* pokemones_requeridos;
 
 pthread_t* hilo_planificador;
+
 
 
 typedef enum
@@ -67,6 +69,11 @@ void process_request(int cod_op, int cliente_fd);
 void serve_client(int *socket);
 void* serializar_paquete(t_paquete* paquete, int bytes);
 void devolver_mensaje(void* payload, int size, int socket_cliente);
+
+void enviar_mensaje_a_broker(int socket_cliente, op_code codigo_operacion,char* argv[], t_entrenador* entrenador);
+void* iniciar_paquete_serializado_CatchPokemon(int* tamanio_paquete,t_entrenador* entrenador);
+void* iniciar_paquete_serializado_GetPokemon(int* tamanio_paquete,char* argv[]);
+void recibir_mensaje2(int socket_cliente);
 
 
 #endif /* CONEXIONES_H_ */
