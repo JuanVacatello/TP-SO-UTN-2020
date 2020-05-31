@@ -20,20 +20,21 @@ void iniciar_servidor(void)
 
     getaddrinfo(IP, PUERTO, &hints, &servinfo);
 
-    for (p=servinfo; p != NULL; p = p->ai_next)
-    {
+    //for (p=servinfo; p != NULL; p = p->ai_next)
+   // {
         if ((socket_servidor = socket(p->ai_family, p->ai_socktype, p->ai_protocol)) == -1)
-            continue;
+            exit(5);
 
         if (bind(socket_servidor, p->ai_addr, p->ai_addrlen) == -1) {
             close(socket_servidor);
-            continue;
+            exit(4);
         }
-        break;
-    }
+       // break;
+    //}
 
 	if(listen(socket_servidor, SOMAXCONN) == -1){
 		close(socket_servidor);
+		exit(6);
 	}
 
     freeaddrinfo(servinfo);
@@ -56,9 +57,14 @@ void esperar_cliente(int socket_servidor)
 
 void serve_client(int* socket)
 {
+	completar_logger("llego un mensaje","BROKER",LOG_LEVEL_INFO);
 	int cod_op;
 	if(recv(*socket, &cod_op, sizeof(int), MSG_WAITALL) == -1)
 		cod_op = -1;
+
+	char* mensaje = string_from_format("El codigo de operacion es: %d.", cod_op);
+	completar_logger(mensaje, "Broker", LOG_LEVEL_INFO);
+
 	process_request(cod_op, *socket);
 }
 
