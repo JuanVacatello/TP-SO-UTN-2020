@@ -46,7 +46,7 @@ void* serializar_paquete(t_paquete* paquete, int *bytes)
 
 // ENVIO DE MENSAJE
 
-// A PARTIR DE ACÁ SE TRATAN LOS MENSAJES A BROKER
+// MENSAJES A BROKER
 
 void enviar_mensaje_a_broker(int socket_cliente, op_code codigo_operacion, char* argv[])
 {
@@ -89,14 +89,14 @@ void* iniciar_paquete_serializado_NewPokemon(int* tamanio_paquete,char* argv[]){
 
 	paquete->buffer = malloc(sizeof(t_buffer));
 
-	char* pokemon = argv[2];
+	char* pokemon = argv[3];
 	int caracteresPokemon = strlen(pokemon) + 1;
 	int posX;
-	sscanf(argv[3], "%d",&posX);
+	sscanf(argv[4], "%d",&posX);
 	int posY ;
-	sscanf(argv[4], "%d",&posY);
+	sscanf(argv[5], "%d",&posY);
 	int cantidad_pokemon;
-	sscanf(argv[5], "%d",&cantidad_pokemon);
+	sscanf(argv[6], "%d",&cantidad_pokemon);
 						//INT CARACTERES + POKEMON + POSX + POSY + CANTIDAD
 	paquete->buffer->size =sizeof(int) + caracteresPokemon +sizeof(int)+sizeof(int)+sizeof(int);
 	void* stream = malloc(paquete->buffer->size);
@@ -156,14 +156,14 @@ void* iniciar_paquete_serializado_AppearedPokemon(int* tamanio_paquete,char* arg
 
 	paquete->buffer = malloc(sizeof(t_buffer));
 
-	char* pokemon = argv[2];
+	char* pokemon = argv[3];
 	int caracteresPokemon = strlen(pokemon) + 1;
 	int posX;
-	sscanf(argv[3], "%d",&posX);
+	sscanf(argv[4], "%d",&posX);
 	int posY ;
-	sscanf(argv[4], "%d",&posY);
+	sscanf(argv[5], "%d",&posY);
 	int id_mensaje_correlativo;
-	sscanf(argv[5], "%d",&id_mensaje_correlativo); //el id lo definimos nosotros y debe ser único
+	sscanf(argv[6], "%d",&id_mensaje_correlativo); //el id lo definimos nosotros y debe ser único
 
 						//INT CARACTERES + POKEMON + POSX + POSY + ID_MENSAJE_CORRELATIVO
 	paquete->buffer->size =sizeof(int) + caracteresPokemon +sizeof(int)+sizeof(int)+sizeof(int);
@@ -219,12 +219,12 @@ void* iniciar_paquete_serializado_CatchPokemon(int* tamanio_paquete,char* argv[]
 
 	paquete->buffer = malloc(sizeof(t_buffer));
 
-	char* pokemon = argv[2];
+	char* pokemon = argv[3];
 	int caracteresPokemon = strlen(pokemon) + 1;
 	int posX;
-	sscanf(argv[3], "%d",&posX);
+	sscanf(argv[4], "%d",&posX);
 	int posY ;
-	sscanf(argv[4], "%d",&posY);
+	sscanf(argv[5], "%d",&posY);
 
 						//INT CARACTERES + POKEMON + POSX + POSY
 	paquete->buffer->size = sizeof(int) + caracteresPokemon + sizeof(int) + sizeof(int);
@@ -278,10 +278,10 @@ void* iniciar_paquete_serializado_CaughtPokemon(int* tamanio_paquete,char* argv[
 	paquete->buffer = malloc(sizeof(t_buffer));
 
 	int id_mensaje_correlativo;
-	sscanf(argv[2], "%d", &id_mensaje_correlativo);
+	sscanf(argv[3], "%d", &id_mensaje_correlativo);
 
 	int se_pudo_atrapar; // devuelve 1 o 0 dependiendo de si se pudo o no -> lo mandamos asi o como true/false string?
-	sscanf(argv[3], "%d", &se_pudo_atrapar);
+	sscanf(argv[4], "%d", &se_pudo_atrapar);
 
 						// ID_MENSAJE_CORRELATIVO + OK/FAIL
 	paquete->buffer->size = sizeof(int) + sizeof(int);
@@ -328,7 +328,7 @@ void* iniciar_paquete_serializado_GetPokemon(int* tamanio_paquete,char* argv[]){
 
 	paquete->buffer = malloc(sizeof(t_buffer));
 
-	char* pokemon = argv[2];
+	char* pokemon = argv[3];
 	int caracteresPokemon = strlen(pokemon) + 1;
 
 						//INT CARACTERES + POKEMON
@@ -366,7 +366,7 @@ void* iniciar_paquete_serializado_GetPokemon(int* tamanio_paquete,char* argv[]){
 
 }
 
-// A PARTIR DE ACÁ SE TRATAN LOS MENSAJES A TEAM
+// MENSAJE A TEAM
 
 void enviar_mensaje_a_team(int socket_cliente, op_code codigo_operacion, char* argv[])
 {
@@ -393,12 +393,12 @@ void* iniciar_paquete_serializado_AppearedPokemonTeam(int* tamanio_paquete,char*
 
 	paquete->buffer = malloc(sizeof(t_buffer));
 
-	char* pokemon = argv[2];
+	char* pokemon = argv[3];
 	int caracteresPokemon = strlen(pokemon) + 1;
 	int posX;
-	sscanf(argv[3], "%d",&posX);
+	sscanf(argv[4], "%d",&posX);
 	int posY ;
-	sscanf(argv[4], "%d",&posY);
+	sscanf(argv[5], "%d",&posY);
 
 							//INT CARACTERES + POKEMON + POSX + POSY
 	paquete->buffer->size = sizeof(int) + caracteresPokemon +sizeof(int)+sizeof(int);
@@ -440,7 +440,7 @@ void* iniciar_paquete_serializado_AppearedPokemonTeam(int* tamanio_paquete,char*
 	return a_enviar;
 }
 
-// A PARTIR DE ACÁ SE TRATAN LOS MENSAJES A GAMECARD
+// MENSAJES A GAMECARD
 
 void enviar_mensaje_a_gamecard(int socket_cliente, op_code codigo_operacion, char* argv[])
 {
@@ -456,6 +456,12 @@ void enviar_mensaje_a_gamecard(int socket_cliente, op_code codigo_operacion, cha
 			break;
 		case 5:
 			a_enviar = iniciar_paquete_serializado_GetPokemonGC(&tamanio_paquete,argv);
+			break;
+		case 2:
+			break;
+		case 4:
+			break;
+		case 6:
 			break;
 		}
 
@@ -476,16 +482,16 @@ void* iniciar_paquete_serializado_NewPokemonGC(int* tamanio_paquete,char* argv[]
 
 		paquete->buffer = malloc(sizeof(t_buffer));
 
-		char* pokemon = argv[2];
+		char* pokemon = argv[3];
 		int caracteresPokemon = strlen(pokemon) + 1;
 		int posX;
-		sscanf(argv[3], "%d",&posX);
-		int posY ;
-		sscanf(argv[4], "%d",&posY);
+		sscanf(argv[4], "%d",&posX);
+		int posY;
+		sscanf(argv[5], "%d",&posY);
 		int cantidad_pokemon;
-		sscanf(argv[5], "%d",&cantidad_pokemon);
+		sscanf(argv[6], "%d",&cantidad_pokemon);
 		int id_mensaje;
-		sscanf(argv[6], "%d",&id_mensaje);
+		sscanf(argv[7], "%d",&id_mensaje);
 
 							//INT CARACTERES + POKEMON + POSX + POSY + CANTIDAD + ID MENSAJE
 		paquete->buffer->size =sizeof(int) + caracteresPokemon +sizeof(int)+sizeof(int)+sizeof(int)+sizeof(int);
@@ -543,14 +549,14 @@ void* iniciar_paquete_serializado_CatchPokemonGC(int* tamanio_paquete,char* argv
 
 	paquete->buffer = malloc(sizeof(t_buffer));
 
-	char* pokemon = argv[2];
+	char* pokemon = argv[3];
 	int caracteresPokemon = strlen(pokemon) + 1;
 	int posX;
-	sscanf(argv[3], "%d",&posX);
+	sscanf(argv[4], "%d",&posX);
 	int posY ;
-	sscanf(argv[4], "%d",&posY);
+	sscanf(argv[5], "%d",&posY);
 	int id_mensaje;
-	sscanf(argv[5], "%d",&id_mensaje);
+	sscanf(argv[6], "%d",&id_mensaje);
 
 						//INT CARACTERES + POKEMON + POSX + POSY + ID MENSAJE
 	paquete->buffer->size = sizeof(int) + caracteresPokemon + sizeof(int) + sizeof(int) + sizeof(int);
@@ -606,10 +612,10 @@ void* iniciar_paquete_serializado_GetPokemonGC(int* tamanio_paquete,char* argv[]
 
 	paquete->buffer = malloc(sizeof(t_buffer));
 
-	char* pokemon = argv[2];
+	char* pokemon = argv[3];
 	int caracteresPokemon = strlen(pokemon) + 1;
 	int id_mensaje;
-	sscanf(argv[3], "%d",&id_mensaje);
+	sscanf(argv[4], "%d",&id_mensaje);
 
 						//INT CARACTERES + POKEMON + ID MENSAJE
 	paquete->buffer->size = sizeof(int) + caracteresPokemon + sizeof(int);
