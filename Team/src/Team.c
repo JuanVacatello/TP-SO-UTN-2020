@@ -203,8 +203,6 @@ void aparicion_pokemon(t_pokemon* pokemon){
 
 	if(es_pokemon_requerido(pokemon)==1){
 
-		int posicion_ficticia_x;
-		int posicion_ficticia_y;
 
 		t_entrenador* entrenador = entrenador_mas_cercano(pokemon);
 		entrenador->pokemon_a_atrapar = pokemon;
@@ -249,10 +247,12 @@ void ejecutar_entrenador(t_entrenador* entrenador){
 	while(contador_cpu > 0) {
 		t_accion* accion_a_ejecutar = queue_pop(entrenador->cola_de_acciones);
 
-		pthread_create(&hilo_entrenador, NULL , accion_a_ejecutar->accion ,&entrenador);
+		pthread_create(&hilo_entrenador, NULL , accion_a_ejecutar->accion , entrenador);
 		pthread_join(hilo_entrenador, NULL);
 
 		contador_cpu -= accion_a_ejecutar->ciclo_cpu;
+		free(accion_a_ejecutar->accion);
+		free(accion_a_ejecutar->ciclo_cpu);
 		free(accion_a_ejecutar);
 	}
 }
