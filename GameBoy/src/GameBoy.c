@@ -13,11 +13,12 @@
 
 
 int main(){
+	int numero = 2;
 	iniciar_logger();
-	completar_logger("estoy vivo","GAMEBOY",LOG_LEVEL_INFO);
+	completar_logger("estoy vivo" ,"GAMEBOY",LOG_LEVEL_INFO);
 
-		char* puerto = "127.0.0.1";
-		char* ip = "4444";
+		char* ip = "127.0.0.1";
+		char* puerto = "4444";
 
 		int socket_conexion = crear_conexion(ip,puerto);
 		completar_logger("Me conecte","GAMEBOY",LOG_LEVEL_INFO);
@@ -27,7 +28,10 @@ int main(){
 		void* a_enviar = iniciar_paquete_prueba(&tamanio_paquete);
 		completar_logger("Cree un paquete","GAMEBOY",LOG_LEVEL_INFO);
 
-		send(socket_conexion,a_enviar,tamanio_paquete,0);
+		if(send(socket_conexion,a_enviar,tamanio_paquete,0) == -1){
+			printf("error en enviar por el socket");
+			exit(3);
+		}
 		completar_logger("Envie un paquete","GAMEBOY",LOG_LEVEL_INFO);
 		free(a_enviar);
 }
