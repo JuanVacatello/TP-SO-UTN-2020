@@ -49,10 +49,10 @@ void completar_logger(char* mensaje, char* programa, t_log_level log_level)
 
 void log_movimiento_entrenador(t_entrenador* entrenador){
 	//entrenador ya movido
-	char* xPosicion = string_itoa(entrenador->posicion->x);
-	char* yPosicion = string_itoa(entrenador->posicion->y);
+	int xPosicion = entrenador->posicion->x;
+	int yPosicion = entrenador->posicion->y;
 
-	char* mensaje = string_from_format("El entrenador se movió a la posicion %s|%s.", xPosicion, yPosicion);
+	char* mensaje = string_from_format("El entrenador se movió a la posicion %d|%d.", xPosicion, yPosicion);
 
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
 }

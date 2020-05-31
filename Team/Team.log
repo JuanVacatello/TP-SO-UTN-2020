@@ -1,19 +1,9 @@
-[INFO] 19:41:53:927 TEAM/(7007:7007): hola como estas
-[INFO] 19:44:04:261 TEAM/(7122:7122): El entrenador se movio a la posicion 
-[INFO] 19:45:35:474 TEAM/(7192:7192): El entrenador se movio a la posicion 3 , 2 .
-[INFO] 19:46:13:175 TEAM/(7252:7252): El entrenador se movio a la posicion 3,2.
-[INFO] 19:46:13:175 TEAM/(7252:7252): El entrenador se movio a la posicion 3,3.
-[INFO] 19:46:13:175 TEAM/(7252:7252): El entrenador se movio a la posicion 3,4.
-[INFO] 19:46:13:175 TEAM/(7252:7252): El entrenador se movio a la posicion 3,5.
-[INFO] 20:23:49:836 TEAM/(8530:8530): El entrenador se movio a la posicion 2|2.
-[INFO] 20:23:51:837 TEAM/(8530:8530): El entrenador se movio a la posicion 3|2.
-[INFO] 20:23:53:837 TEAM/(8530:8530): El entrenador se movio a la posicion 4|2.
-[INFO] 20:23:55:839 TEAM/(8530:8530): El entrenador se movio a la posicion 5|2.
-[INFO] 20:29:56:38 TEAM/(8920:8920): El entrenador se movió a la posicion 2|2.
-[INFO] 20:29:58:40 TEAM/(8920:8920): El entrenador se movió a la posicion 3|2.
-[INFO] 20:30:00:41 TEAM/(8920:8920): El entrenador se movió a la posicion 4|2.
-[INFO] 20:30:02:42 TEAM/(8920:8920): El entrenador se movió a la posicion 3|2.
-[INFO] 20:30:04:43 TEAM/(8920:8920): El entrenador se movió a la posicion 3|1.
-[INFO] 20:30:06:44 TEAM/(8920:8920): El entrenador se movió a la posicion 3|0.
-[INFO] 20:30:08:44 TEAM/(8920:8920): El entrenador se movió a la posicion 3|-1.
-[INFO] 20:30:10:45 TEAM/(8920:8920): El entrenador se movió a la posicion 3|-2.
+
+[INFO] 19:17:02:828 TEAM/(30327:30327): El entrenador se movió a la posicion 2|2.
+[INFO] 19:17:04:828 TEAM/(30327:30327): El entrenador se movió a la posicion 3|2.
+[INFO] 19:17:06:829 TEAM/(30327:30327): El entrenador se movió a la posicion 4|2.
+[INFO] 19:17:08:829 TEAM/(30327:30327): El entrenador se movió a la posicion 3|2.
+[INFO] 19:17:10:829 TEAM/(30327:30327): El entrenador se movió a la posicion 3|1.
+[INFO] 19:17:12:830 TEAM/(30327:30327): El entrenador se movió a la posicion 3|0.
+[INFO] 19:17:14:830 TEAM/(30327:30327): El entrenador se movió a la posicion 3|-1.
+[INFO] 19:17:16:831 TEAM/(30327:30327): El entrenador se movió a la posicion 3|-2.
