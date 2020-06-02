@@ -141,7 +141,9 @@ int cantidad_de_elementos(char* pokemons){
 
 t_entrenador* entrenador_mas_cercano(t_pokemon* pokemon){
 
-	t_list* entrenadores = lista_de_entrenadores;
+	//Filtrar sólo a los entrenadores que se puedan planificar
+
+	t_list* entrenadores = list_filter(entrenadores, se_puede_planificar);
 
 	t_posicion* posicion_pokemon = pokemon->posicion;
 
@@ -185,6 +187,21 @@ int sacar_distancia(t_posicion* pokeposicion,t_posicion* entreposicion){
 	return distancia;
 }
 
+
+bool se_puede_planificar(t_entrenador* entrenador){
+	if (entrenador->estado == READY || entrenador->estado == NEW){
+		if(list_size(entrenador->atrapados) < list_size(entrenador->objetivo)){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	else{
+		return false;
+	}
+
+}
 
 /*
 void moverse_A(t_entrenador* entrenador) //, t_posicion* posicionAMoverse)

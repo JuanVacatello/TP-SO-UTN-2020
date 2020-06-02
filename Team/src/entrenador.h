@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include<commons/collections/list.h>
 #include<commons/collections/queue.h>
 #include<commons/config.h>
@@ -73,6 +74,7 @@ t_list* obtener_atrapados(char* atrapados);
 int cantidad_de_elementos(char* pokemons);
 t_list* entrenadores_mas_cercanos(t_pokemon* pokemon);
 int sacar_distancia(t_posicion* pokeposicion,t_posicion* entreposicion);
+bool se_puede_planificar(t_entrenador* entrenador);
 
 
 #endif /* ENTRENADOR_H_ */

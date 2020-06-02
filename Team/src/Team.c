@@ -139,6 +139,9 @@ void generar_atrapados_global(void){
 
 
 void planificacion(void){
+
+	//Esta funcion se la mandamos al hilo principal para que la ejecute
+
 	op_planificacion* planificacion = obtener_algoritmo_planificacion();
 
 	//HAY QUE CHEQUEAR ESTO
@@ -164,7 +167,7 @@ void planificar_fifo(void){
 
 	while (1){
 
-		//creamos el hilo?¿
+		//El hilo se crea en el main principal
 
 		pthread_mutex_lock(&hilo_planificador);
 
