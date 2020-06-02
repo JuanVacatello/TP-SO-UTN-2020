@@ -66,7 +66,7 @@ void iniciar_servidor(void);
 void esperar_cliente(int);
 void* recibir_mensaje(int socket_cliente, int* size);
 int recibir_operacion(int);
-void process_request(int cod_op, int socket_cliente);
+void process_request(op_code cod_op, int socket_cliente);
 void serve_client(int *socket);
 void* serializar_paquete(t_paquete* paquete, int bytes);
 void devolver_mensaje(void* payload, int size, int socket_cliente);

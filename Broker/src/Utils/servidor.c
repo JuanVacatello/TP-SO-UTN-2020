@@ -20,17 +20,16 @@ void iniciar_servidor(void)
 
     getaddrinfo(IP, PUERTO, &hints, &servinfo);
 
-    //for (p=servinfo; p != NULL; p = p->ai_next)
-   // {
+    for (p=servinfo; p != NULL; p = p->ai_next){
         if ((socket_servidor = socket(p->ai_family, p->ai_socktype, p->ai_protocol)) == -1)
-            exit(5);
+            continue;
 
         if (bind(socket_servidor, p->ai_addr, p->ai_addrlen) == -1) {
             close(socket_servidor);
-            exit(4);
+            continue;
         }
-       // break;
-    //}
+        break;
+    }
 
 	if(listen(socket_servidor, SOMAXCONN) == -1){
 		close(socket_servidor);
@@ -38,6 +37,8 @@ void iniciar_servidor(void)
 	}
 
     freeaddrinfo(servinfo);
+
+    completar_logger("termino de establecer socket","BROKER",LOG_LEVEL_INFO);
 
     while(1)
     	esperar_cliente(socket_servidor); // hacerlo con select, NUNCA ESPERA ACTIVA
@@ -58,8 +59,8 @@ void esperar_cliente(int socket_servidor)
 void serve_client(int* socket)
 {
 	completar_logger("llego un mensaje","BROKER",LOG_LEVEL_INFO);
-	int cod_op;
-	if(recv(*socket, &cod_op, sizeof(int), MSG_WAITALL) == -1)
+	op_code cod_op;
+	if(recv(*socket, &cod_op, sizeof(op_code), MSG_WAITALL) == -1)
 		cod_op = -1;
 
 	char* mensaje = string_from_format("El codigo de operacion es: %d.", cod_op);
@@ -68,22 +69,24 @@ void serve_client(int* socket)
 	process_request(cod_op, *socket);
 }
 
-void process_request(int cod_op, int socket_cliente) {
+void process_request(op_code cod_op, int socket_cliente) {
 	//int size;
 		switch (cod_op) {
-		case 1:
+		case NEW_POKEMON:
 			recibir_new_pokemon(socket_cliente);
 
 			//msg = recibir_mensaje(socket_cliente, &size);
 			//devolver_mensaje(msg, size, socket_cliente);
 			//free(msg);
 			break;
-		case 0:
-			atenderSuscripcion(socket_cliente);
+		case SUSCRIBIRSE:
+			completar_logger("Entre al SUSCRIBIRSE", "Broker", LOG_LEVEL_INFO);
+			atenderMensajePrueba(socket_cliente);
+			//atenderSuscripcion(socket_cliente);
 			break;
 		case -1:
 			pthread_exit(NULL);
-		case 7:
+		case PRUEBA:
 			atenderMensajePrueba(socket_cliente);
 			break;
 		}
@@ -225,7 +228,15 @@ void suscribirseAColas(proceso* suscriptor, int socket ){
 }
 
 void atenderMensajePrueba(int socket_cliente){
+	int tamanio;
 	int numero;
-	recv(socket_cliente, &numero, sizeof(int), MSG_WAITALL);
-	completar_logger("recibi el numero" ,"BROKER", LOG_LEVEL_INFO);
+	recv(socket_cliente, &tamanio, sizeof(int), MSG_WAITALL);
+	recv(socket_cliente, &numero, tamanio, MSG_WAITALL);
+
+	char* mensaje1 = string_from_format("El tamanio es: %d.", tamanio);
+	completar_logger(mensaje1, "Broker", LOG_LEVEL_INFO);
+
+	char* mensaje = string_from_format("El numero es: %d.", numero);
+	completar_logger(mensaje, "Broker", LOG_LEVEL_INFO);
+
 }
