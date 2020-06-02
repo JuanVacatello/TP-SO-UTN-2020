@@ -6,6 +6,7 @@
 C_SRCS += \
 ../src/Team.c \
 ../src/Test.c \
+../src/conexiones.c \
 ../src/configTeam.c \
 ../src/entrenador.c \
 ../src/logTeam.c \
@@ -15,6 +16,7 @@ C_SRCS += \
 OBJS += \
 ./src/Team.o \
 ./src/Test.o \
+./src/conexiones.o \
 ./src/configTeam.o \
 ./src/entrenador.o \
 ./src/logTeam.o \
@@ -24,6 +26,7 @@ OBJS += \
 C_DEPS += \
 ./src/Team.d \
 ./src/Test.d \
+./src/conexiones.d \
 ./src/configTeam.d \
 ./src/entrenador.d \
 ./src/logTeam.d \
