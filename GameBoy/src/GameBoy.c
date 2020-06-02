@@ -13,7 +13,6 @@
 
 
 int main(){
-	int numero = 2;
 	iniciar_logger();
 	completar_logger("estoy vivo" ,"GAMEBOY",LOG_LEVEL_INFO);
 
@@ -23,7 +22,7 @@ int main(){
 		int socket_conexion = crear_conexion(ip,puerto);
 		completar_logger("Me conecte","GAMEBOY",LOG_LEVEL_INFO);
 
-		int tamanio_paquete;
+		int tamanio_paquete=0;
 
 		void* a_enviar = iniciar_paquete_prueba(&tamanio_paquete);
 		completar_logger("Cree un paquete","GAMEBOY",LOG_LEVEL_INFO);

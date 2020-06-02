@@ -12,7 +12,9 @@ int crear_conexion(char* ip, char* puerto)
 
 	getaddrinfo(ip, puerto, &hints, &server_info);
 	completar_logger("paso 1 conectar","GAMEBOY",LOG_LEVEL_INFO);
+
 	int socket_cliente;
+
 	if((socket_cliente = socket(server_info->ai_family, server_info->ai_socktype, server_info->ai_protocol)) == -1){
 		printf("error en crear socket");
 		exit(3);
