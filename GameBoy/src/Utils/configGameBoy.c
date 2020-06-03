@@ -6,7 +6,6 @@
  */
 
 #include "../Utils/configGameBoy.h"
-#include <commons/string.h>
 
 void leer_config(void)
 {

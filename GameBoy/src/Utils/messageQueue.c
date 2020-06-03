@@ -11,24 +11,33 @@ int crear_conexion(char* ip, char* puerto)
 	hints.ai_flags = AI_PASSIVE;
 
 	getaddrinfo(ip, puerto, &hints, &server_info);
-	completar_logger("paso 1 conectar","GAMEBOY",LOG_LEVEL_INFO);
+
+	////
+	completar_logger("Paso 1 conectar","GAMEBOY",LOG_LEVEL_INFO);
+	////
 
 	int socket_cliente;
 
 	if((socket_cliente = socket(server_info->ai_family, server_info->ai_socktype, server_info->ai_protocol)) == -1){
-		printf("error en crear socket");
-		exit(3);
-	}
-
-	if(connect(socket_cliente, server_info->ai_addr, server_info->ai_addrlen) == -1){
-		printf("error en conectar socket");
+		printf("Error en crear socket.");
 		exit(1);
 	}
 
+	if(connect(socket_cliente, server_info->ai_addr, server_info->ai_addrlen) == -1){
+		printf("Error en conectar socket.");
+		exit(2);
+	}
+
+	////
 	completar_logger("paso 2 conectar","GAMEBOY",LOG_LEVEL_INFO);
+	////
 
 	freeaddrinfo(server_info);
+
+	/////
 	completar_logger("paso 3 conectar","GAMEBOY",LOG_LEVEL_INFO);
+	////
+
 	return socket_cliente;
 }
 
@@ -49,7 +58,7 @@ void* serializar_paquete(t_paquete* paquete, int *bytes)
 	return a_enviar;
 }
 
-// ENVIO DE MENSAJE
+// ENVIO DE MENSAJES
 
 // MENSAJES A BROKER
 
@@ -102,7 +111,8 @@ void* iniciar_paquete_serializado_NewPokemon(int* tamanio_paquete,char* argv[]){
 	sscanf(argv[5], "%d",&posY);
 	int cantidad_pokemon;
 	sscanf(argv[6], "%d",&cantidad_pokemon);
-						//INT CARACTERES + POKEMON + POSX + POSY + CANTIDAD
+
+						    //INT CARACTERES + POKEMON + POSX + POSY + CANTIDAD
 	paquete->buffer->size =sizeof(int) + caracteresPokemon +sizeof(int)+sizeof(int)+sizeof(int);
 	void* stream = malloc(paquete->buffer->size);
 	int offset = 0;
@@ -660,29 +670,7 @@ void* iniciar_paquete_serializado_GetPokemonGC(int* tamanio_paquete,char* argv[]
 
 }
 
-void recibir_mensaje(int socket_cliente)
-{
-	int caracteresPokemon, posX, posY, cantidad;
-	char* pokemon;
-
-	recv(socket_cliente,&caracteresPokemon ,sizeof(int),0);
-	recv(socket_cliente,&pokemon ,caracteresPokemon,0);
-	recv(socket_cliente,&posX ,sizeof(int),0);
-	recv(socket_cliente,&posY ,sizeof(int),0);
-	recv(socket_cliente,&cantidad ,sizeof(int),0);
-
-	printf("%d /n",caracteresPokemon);
-	printf("%d /n",posX);
-	printf("%d /n",posY);
-	printf("%d /n",cantidad);
-	puts(pokemon);
-
-} //GAMEBOY NO RECIBE MENSAJES*/
-
-void liberar_conexion(int socket_cliente)
-{
-	close(socket_cliente);
-}
+// Paquete de prueba
 
 void* iniciar_paquete_prueba(int* tamanio_paquete){
 
@@ -692,18 +680,17 @@ void* iniciar_paquete_prueba(int* tamanio_paquete){
 
 	paquete->buffer = malloc(sizeof(t_buffer));
 
-
-
 	int numero = 2;
 
-	paquete->buffer->size =sizeof(int);
+	paquete->buffer->size = sizeof(int);
+
 	void* stream = malloc(paquete->buffer->size);
 	int offset = 0;
 
 		memcpy(stream + offset, &numero, sizeof(int));
-		offset += sizeof(int);
+		//offset += sizeof(int);
 
-	paquete->buffer->stream = stream;
+		paquete->buffer->stream = stream;
 
 						// TAMAÑO STREAM + OP CODE + VARIABLE SIZE
 	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(int);
@@ -727,3 +714,31 @@ void* iniciar_paquete_prueba(int* tamanio_paquete){
 	return a_enviar;
 
 }
+
+void liberar_conexion(int socket_cliente)
+{
+	close(socket_cliente);
+}
+
+// El proceso GameBoy no recibe mensajes
+
+void recibir_mensaje(int socket_cliente)
+{
+	int caracteresPokemon, posX, posY, cantidad;
+	char* pokemon;
+
+	recv(socket_cliente,&caracteresPokemon ,sizeof(int),0);
+	recv(socket_cliente,&pokemon ,caracteresPokemon,0);
+	recv(socket_cliente,&posX ,sizeof(int),0);
+	recv(socket_cliente,&posY ,sizeof(int),0);
+	recv(socket_cliente,&cantidad ,sizeof(int),0);
+
+	printf("%d /n",caracteresPokemon);
+	printf("%d /n",posX);
+	printf("%d /n",posY);
+	printf("%d /n",cantidad);
+	puts(pokemon);
+
+}
+
+

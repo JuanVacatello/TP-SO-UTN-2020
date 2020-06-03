@@ -60,19 +60,6 @@ int main(){
 			enviarMensajeGameCard(argc, argv);
 	}  */
 
-void terminar_programa(int conexion){
-	liberar_conexion(conexion);
-	log_destroy(logger);
-	config_destroy(configGameBoy);
-}
-
-void controlar_cant_argumentos(int argc){
-	if(argc < 4 ){
-			error_show("Error: cantidad de parametros insuficientes para efectuar cualquier accion \n");
-			exit(2);
-		}
-}
-
 void enviarMensajeBroker(int argc, char *argv[]){
 
 	char* puerto = obtener_puerto_broker();
@@ -87,7 +74,7 @@ void enviarMensajeBroker(int argc, char *argv[]){
 		enviar_mensaje_a_broker(socket_conexion, 1, argv); // 1 es el op_code de NEW_POKEMON
 	}
 
-	if(codigo_mensaje == "APPEARED_POKEMON"){ //HAY QUE VER COMO HACEMOS LO DEL ID PARA QUE NO SE REPITA
+	if(codigo_mensaje == "APPEARED_POKEMON"){ // HAY QUE VER COMO HACEMOS LO DEL ID PARA QUE NO SE REPITA
 		cumple_cant_parametros(argc, 7);
 		enviar_mensaje_a_broker(socket_conexion, 2, argv); // 2 es el op_code de APPEARED_POKEMON
 	}
@@ -162,4 +149,17 @@ void cumple_cant_parametros(int argc, int cantidad_necesaria){
 		error_show("Cantidad de parametros incorrectos. Se requieren %d parámetros para este mensaje pero se encontraron %d \n", cantidad_necesaria, argc);
 		exit(3);
 	}
+}
+
+void controlar_cant_argumentos(int argc){
+	if(argc < 4 ){
+			error_show("Error: cantidad de parametros insuficientes para efectuar cualquier accion \n");
+			exit(2);
+		}
+}
+
+void terminar_programa(int conexion){
+	liberar_conexion(conexion);
+	log_destroy(logger);
+	config_destroy(configGameBoy);
 }
