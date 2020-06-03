@@ -16,9 +16,9 @@
 
 typedef enum{
 	FIFO = 1,
-	RR = 2,
+	SJF_SD = 2,
 	SJF_CD = 3,
-	SJF_SD = 4
+	RR = 4
 
 } op_planificacion;
 
@@ -34,5 +34,7 @@ void planificar_fifo(void);
 void aparicion_pokemon(t_pokemon* pokemon);
 int es_pokemon_requerido(t_pokemon* pokemon);
 void terminar_programa(int conexion, t_log* logger);
+
+int hay_pokemones_sueltos();
 
 #endif /* TEAM_H_ */

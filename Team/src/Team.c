@@ -43,7 +43,7 @@ int cantidad_entrenadores(void){
 	for(int i=0; entrenadores[i] != NULL; i++){
 		cantidad = i;
 	}
-	return cantidad;
+	return cantidad + 1;
 }
 
 
@@ -139,28 +139,33 @@ void generar_atrapados_global(void){
 
 
 void planificacion(void){
-
+	puts("aca entra3");
 	//Esta funcion se la mandamos al hilo principal para que la ejecute
 
-	op_planificacion* planificacion = obtener_algoritmo_planificacion();
+	int planificador = obtener_algoritmo_planificacion();
 
+	puts("aca entra0");
 	//HAY QUE CHEQUEAR ESTO
-	/*switch(planificacion){
-		case FIFO:
+
+	/*if(planificacion == 1)
+		puts("aca entra0");
+		planificar_fifo();*/
+	switch(planificador){
+		case 1:
 		planificar_fifo();
 		break;
-		//case "FIFO":
+		//case "SJF_SD":
 		//planificar_fifo();
 		//break;
-		//case "FIFO":
+		//case "SJF_CD":
 		//planificar_fifo();
 		//break;
-		//case "FIFO":
+		//case "RR":
 		//planificar_fifo();
 		//break;
 
-	}*/
-	puts(planificacion);
+	}
+	//puts(planificacion);
 }
 
 void planificar_fifo(void){
@@ -169,7 +174,17 @@ void planificar_fifo(void){
 
 		//El hilo se crea en el main principal
 
-		pthread_mutex_lock(&hilo_planificador);
+		puts("aca entra1");
+
+		if(hay_pokemones_sueltos() == 1){
+			puts("aca entra11");
+			t_pokemon* pokeNuevo = list_remove(lista_de_pokemones_sueltos, 0);
+			aparicion_pokemon(pokeNuevo);
+		}
+		else
+			pthread_mutex_lock(hilo_planificador);
+
+		//prueba
 
 		t_entrenador*  entrenador;
 
@@ -187,7 +202,7 @@ void planificar_fifo(void){
 
 		//Le decimos al entrenador que ejecute sus acciones
 
-		pthread_mutex_lock(&hilo_planificador);
+		pthread_mutex_lock(hilo_planificador);
 	}
 
 }
@@ -203,9 +218,8 @@ t_accion* armar_accion(void(*accion)(void*), int ciclos){
 
 
 void aparicion_pokemon(t_pokemon* pokemon){
-
+	puts("aca entra 9");
 	if(es_pokemon_requerido(pokemon)==1){
-
 
 		t_entrenador* entrenador = entrenador_mas_cercano(pokemon);
 		entrenador->pokemon_a_atrapar = pokemon;
@@ -213,10 +227,9 @@ void aparicion_pokemon(t_pokemon* pokemon){
 		armar_movimiento(entrenador);
 		//AGREGAMOS ACCION A ENTRENADOR
 
-
 		list_add(lista_de_entrenadores_ready,entrenador);
 		list_add(pokemones_requeridos,pokemon);
-		pthread_mutex_unlock(&hilo_planificador);
+		pthread_mutex_unlock(hilo_planificador);
 		//ejecutamos las acciones
 
 	}
@@ -247,6 +260,7 @@ void ejecutar_entrenador(t_entrenador* entrenador){
 
 	pthread_t hilo_entrenador = entrenador->hilo_entrenador;
 
+	entrenador->estado = EXEC;
 	while(contador_cpu > 0) {
 		t_accion* accion_a_ejecutar = queue_pop(entrenador->cola_de_acciones);
 
@@ -258,6 +272,7 @@ void ejecutar_entrenador(t_entrenador* entrenador){
 		free(accion_a_ejecutar->ciclo_cpu);
 		free(accion_a_ejecutar);
 	}
+	entrenador->estado = BLOCKED; // Hay que ver si termina aca
 }
 
 
@@ -269,4 +284,29 @@ void terminar_programa(int conexion, t_log* logger){
 	if(config =! NULL)
 		config_destroy(config);
 }
+
+
+//----------------
+
+int hay_pokemones_sueltos(){
+	if(list_size(lista_de_pokemones_sueltos) == 0)
+		return 0;
+	else
+		return 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

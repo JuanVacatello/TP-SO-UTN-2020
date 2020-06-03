@@ -10,17 +10,12 @@
 
 int main(void) {
 
-		int conexion;
+		//int conexion;
 		char* ip;
 		char* puerto;
-		char* algoritmo;
+		int algoritmo;
 		char* logFile;
 		int retardo, tiempoReconexion, estimacion, quantum;// alpha;
-
-
-
-		//log_destroy(logger);
-		//Loggear "soy un log"
 
 		leer_config();
 		iniciar_logger();
@@ -41,7 +36,7 @@ int main(void) {
 		logFile = obtener_log_file();
 		puts(logFile);
 		algoritmo = obtener_algoritmo_planificacion();
-		puts(algoritmo);
+		printf("%d\n",algoritmo);
 		//alpha = obtener_alpha();
 		//printf("%d\n",alpha);
 
@@ -94,7 +89,7 @@ int main(void) {
 		puts(list_get(entrenador->atrapados,2));
 
 
-		printf("%d\n",entrenador->posicion->x);
+		/*printf("%d\n",entrenador->posicion->x);
 		printf("%d\n",entrenador->posicion->y);
 
 		moverse_derecha(entrenador);
@@ -105,6 +100,32 @@ int main(void) {
 		moverse_arriba(entrenador);
 		moverse_arriba(entrenador);
 		moverse_arriba(entrenador);
+		*/
+
+		puts("aca entra");
+		lista_de_pokemones_sueltos = list_create();
+/*
+		t_pokemon* pokemonPikachu = malloc(sizeof(t_pokemon));
+		pokemonPikachu->especie = 'Pikachu';
+		pokemonPikachu->posicion->x = 6;
+		pokemonPikachu->posicion->y = 6;
+
+
+		//lista_de_pokemones_sueltos = list_create();
+		list_add(lista_de_pokemones_sueltos, pokemonPikachu);
+		puts("aca entra8");
+		int pokemones = hay_pokemones_sueltos();
+
+		printf("%d\n",pokemones);
+		*/
+
+		pthread_create(&hilo_planificador, NULL , planificacion ,NULL);
+		pthread_join(hilo_planificador, NULL);
+
+		puts("hola");
+
+		//aparicion_pokemon(pokemon);
+
 
 		//completar_logger("hola como estas", "TEAM", LOG_LEVEL_INFO);
 		//terminar_programa(conexion, logger);

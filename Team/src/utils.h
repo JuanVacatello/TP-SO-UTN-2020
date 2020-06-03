@@ -28,6 +28,8 @@ t_list* pokemones_requeridos;
 
 pthread_t* hilo_planificador;
 
+t_list* lista_de_pokemones_sueltos;
+
 
 
 typedef enum

@@ -33,10 +33,23 @@ int obtener_tiempo_reconexion(void){
 	tiempo_reconexion = config_get_int_value(config, "TIEMPO_RECONEXION");
 	return tiempo_reconexion;
 }
-char* obtener_algoritmo_planificacion(void){
+
+int obtener_algoritmo_planificacion(void){
 	char* algoritmo_planificacion;
+	int algoritmo;
 	algoritmo_planificacion = config_get_string_value(config, "ALGORITMO_PLANIFICACION");
-	return algoritmo_planificacion;
+
+	if(string_equals_ignore_case(algoritmo_planificacion, "FIFO"))
+		algoritmo = 1;
+	else if(string_equals_ignore_case(algoritmo_planificacion, "SJF-SD"))
+		algoritmo = 2;
+	else if(string_equals_ignore_case(algoritmo_planificacion, "SJF-CD"))
+		algoritmo = 3;
+	else if (string_equals_ignore_case(algoritmo_planificacion, "RR"))
+		algoritmo = 4;
+
+	puts("aca entra7");
+	return algoritmo;
 }
 int obtener_estimacion_inicial(void){
 	int estimacion_inicial;
