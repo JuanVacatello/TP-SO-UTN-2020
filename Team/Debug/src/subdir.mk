@@ -11,6 +11,7 @@ C_SRCS += \
 ../src/entrenador.c \
 ../src/logTeam.c \
 ../src/movimiento.c \
+../src/planificacion.c \
 ../src/utils.c 
 
 OBJS += \
@@ -21,6 +22,7 @@ OBJS += \
 ./src/entrenador.o \
 ./src/logTeam.o \
 ./src/movimiento.o \
+./src/planificacion.o \
 ./src/utils.o 
 
 C_DEPS += \
@@ -31,6 +33,7 @@ C_DEPS += \
 ./src/entrenador.d \
 ./src/logTeam.d \
 ./src/movimiento.d \
+./src/planificacion.d \
 ./src/utils.d 
 
 

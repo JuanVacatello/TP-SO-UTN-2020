@@ -39,6 +39,7 @@ typedef struct
 typedef struct
 {
 	int ciclos_de_cpu_totales;
+	int rafaga_anterior;
 	op_estado estado;
 	t_list* objetivo;
 	t_posicion* posicion;
@@ -60,12 +61,6 @@ typedef struct
 }t_accion;
 
 
-void moverse_A(t_entrenador* entrenador); // t_posicion* posicionAMoverse);
-t_entrenador atrapar_Pokemon(t_entrenador* entrenador, t_pokemon* pokemon); //PREGUNTAR POR ESTA FUNCION
-void efectuar_ciclo_cpu(t_entrenador* entrenador, int ciclos);
-void contabilizar_ciclos(t_entrenador* entrenador, int ciclos);
-int transformarCiclos(int ciclos);
-void ciclos_de_cpu(int ciclos);
 t_entrenador* armar_entrenador(int indice);
 t_posicion* obtener_posicion(char* posicion);
 t_list* obtener_objetivos(char* objetivos);
@@ -73,7 +68,9 @@ t_list* obtener_atrapados(char* atrapados);
 int cantidad_de_elementos(char* pokemons);
 t_list* entrenadores_mas_cercanos(t_pokemon* pokemon);
 int sacar_distancia(t_posicion* pokeposicion,t_posicion* entreposicion);
-bool se_puede_planificar(t_entrenador* entrenador);
+bool puede_atrapar(t_entrenador* entrenador);
+void ejecutar_entrenador(t_entrenador* entrenador);
+bool termino_de_atrapar(t_entrenador* entrenador);
 
 
 #endif /* ENTRENADOR_H_ */

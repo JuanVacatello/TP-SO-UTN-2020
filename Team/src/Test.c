@@ -64,8 +64,6 @@ int main(void) {
 
 		}
 
-
-
 		//obtener_posiciones_entrenadores();
 		//obtener_pokemon_entrenadores();
 		//obtener_objetivos_entrenadores();

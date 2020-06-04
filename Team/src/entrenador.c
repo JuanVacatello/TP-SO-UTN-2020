@@ -14,28 +14,6 @@
 
 
 
-//------------CICLOS DE CPU---------------
-
-void efectuar_ciclo_cpu(t_entrenador* entrenador, int ciclos){
-	//contabilizar_ciclos( entrenador,ciclos);
-	ciclos_de_cpu(ciclos);
-}
-
-void contabilizar_ciclos(t_entrenador* entrenador, int ciclos){
-	entrenador->ciclos_de_cpu_totales += ciclos;
-}
-
-int transformarCiclos(int ciclos){
-	int retardo;
-	retardo = obtener_retardo_ciclo_cpu();
-	return ciclos * retardo ;
-}
-
-void ciclos_de_cpu(int ciclos){
-	int segundos = transformarCiclos(ciclos);
-	sleep(segundos);
-}
-
 //ARMAMOS TODOS LOS ENTRENADORES
 
 
@@ -68,6 +46,12 @@ t_entrenador* armar_entrenador(int indice){
 
 	//ESTADO
 	entrenador->estado = NEW;
+
+	//CICLOS DE CPU
+	entrenador->ciclos_de_cpu_totales = 0;
+
+	//RAFAGA ANTERIOR
+	entrenador->rafaga_anterior = 0;
 
 	return entrenador;
 }
@@ -125,14 +109,12 @@ t_list* obtener_atrapados(char* atrapados){
 
 
 int cantidad_de_elementos(char* pokemons){
-
 	int contador = 0;
 	for(int i=0; i < string_length(pokemons); i++){
 		if(pokemons[i] =='|'){
 			contador++;
 		}
 	}
-
 	return contador+1;
 }
 
@@ -143,7 +125,7 @@ t_entrenador* entrenador_mas_cercano(t_pokemon* pokemon){
 
 	//Filtrar sólo a los entrenadores que se puedan planificar
 
-	t_list* entrenadores = list_filter(lista_de_entrenadores, se_puede_planificar);
+	t_list* entrenadores = list_filter(lista_de_entrenadores, puede_atrapar);
 
 	t_posicion* posicion_pokemon = pokemon->posicion;
 
@@ -187,8 +169,8 @@ int sacar_distancia(t_posicion* pokeposicion,t_posicion* entreposicion){
 }
 
 
-bool se_puede_planificar(t_entrenador* entrenador){
-	if (entrenador->estado == READY || entrenador->estado == NEW){
+bool puede_atrapar(t_entrenador* entrenador){
+	if (entrenador->estado == BLOCKED || entrenador->estado == NEW){
 		if(list_size(entrenador->atrapados) < list_size(entrenador->objetivo)){
 			return true;
 		}
@@ -202,9 +184,58 @@ bool se_puede_planificar(t_entrenador* entrenador){
 
 }
 
+void ejecutar_entrenador(t_entrenador* entrenador){
+
+	entrenador->rafaga_anterior = 0;
+
+	int contador_cpu = entrenador->ciclos_de_cpu_totales;
+
+	pthread_t hilo_entrenador = entrenador->hilo_entrenador;
+
+	entrenador->estado = EXEC;
+	while(contador_cpu > 0) {
+		t_accion* accion_a_ejecutar = queue_pop(entrenador->cola_de_acciones);
+		entrenador->rafaga_anterior += accion_a_ejecutar->ciclo_cpu;
+
+		pthread_create(&hilo_entrenador, NULL , accion_a_ejecutar->accion , entrenador);
+		pthread_join(hilo_entrenador, NULL);
+
+		contador_cpu -= accion_a_ejecutar->ciclo_cpu;
+		free(accion_a_ejecutar->accion);
+		free(accion_a_ejecutar->ciclo_cpu);
+		free(accion_a_ejecutar);
+	}
+	entrenador->estado = BLOCKED; // Hay que ver si termina aca
+}
+
+void atrapar_pokemon(t_entrenador* entrenador){
+
+	list_add(entrenador->atrapados, entrenador->pokemon_a_atrapar);
+	entrenador->pokemon_a_atrapar = NULL;
+
+	free(entrenador->pokemon_a_atrapar);
 
 
+}
 
+void puede_seguir_atrapando(t_entrenador* entrenador){
+
+	if(list_size(entrenador->objetivo) == list_size(entrenador->atrapados)){
+
+		if(termino_de_atrapar(entrenador)){
+			//LO PASAMOS A EXIT
+		}
+		else{
+			entrenador->estado = BLOCKED;
+			}
+	}
+}
+
+bool termino_de_atrapar(t_entrenador* entrenador){
+
+	//LISTA DE OBJETIVOS MISMOS POKEMONES Y CANTIDADES QUE LISTA ATRAPADOS
+
+}
 
 
 
