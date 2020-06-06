@@ -9,6 +9,7 @@
 #include<netdb.h>
 #include<string.h>
 #include<commons/collections/list.h>
+#include<stdint.h>
 
 #include"logGameBoy.h"
 
@@ -26,7 +27,7 @@ typedef enum
 
 typedef struct
 {
-	int size;
+	uint32_t size;
 	void* stream;
 } t_buffer;
 

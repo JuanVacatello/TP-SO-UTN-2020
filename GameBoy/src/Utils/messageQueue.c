@@ -680,20 +680,20 @@ void* iniciar_paquete_prueba(int* tamanio_paquete){
 
 	paquete->buffer = malloc(sizeof(t_buffer));
 
-	int numero = 2;
+	uint32_t numero = 2;
 
-	paquete->buffer->size = sizeof(int);
+	paquete->buffer->size = sizeof(uint32_t);
 
 	void* stream = malloc(paquete->buffer->size);
 	int offset = 0;
 
-		memcpy(stream + offset, &numero, sizeof(int));
+		memcpy(stream + offset, &numero, sizeof(uint32_t));
 		//offset += sizeof(int);
 
 		paquete->buffer->stream = stream;
 
 						// TAMAÑO STREAM + OP CODE + VARIABLE SIZE
-	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(int);
+	*tamanio_paquete = (paquete->buffer->size)+sizeof(uint32_t)+sizeof(uint32_t);
 	void* a_enviar = malloc((*tamanio_paquete));
 
 	int offsetDeSerializacion = 0;
@@ -701,7 +701,7 @@ void* iniciar_paquete_prueba(int* tamanio_paquete){
 		memcpy(a_enviar + offset, &(paquete->codigo_operacion), sizeof(op_code));
 		offsetDeSerializacion += sizeof(op_code);
 
-		memcpy(a_enviar + offset, &(paquete->buffer->size), sizeof(int));
+		memcpy(a_enviar + offset, &(paquete->buffer->size), sizeof(uint32_t));
 		offsetDeSerializacion +=sizeof(int);
 
 		memcpy(a_enviar + offset, &(paquete->buffer->stream), paquete->buffer->size);
