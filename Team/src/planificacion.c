@@ -3,6 +3,9 @@
 
 void planificar_fifo(void){
 
+	//pthread_mutex_init(&mutex_planificador);
+
+
 	while (1){
 
 		//El hilo se crea en el main principal
@@ -10,12 +13,12 @@ void planificar_fifo(void){
 		puts("aca entra1");
 
 		//prueba
-		if(hay_pokemones_sueltos() == 1){
+		/*if(hay_pokemones_sueltos() == 1){
 			puts("aca entra11");
 			t_pokemon* pokeNuevo = list_remove(lista_de_pokemones_sueltos, 0);
 			aparicion_pokemon(pokeNuevo);
 		}
-		else
+		else*/
 		//
 			pthread_mutex_lock(hilo_planificador);
 
@@ -37,16 +40,18 @@ void planificar_fifo(void){
 
 		//Le decimos al entrenador que ejecute sus acciones
 
-		pthread_mutex_lock(hilo_planificador);
+		pthread_mutex_lock(&mutex_planificador);
 	}
 
 }
 
 void planificar_sjf_sd(void){
 
+	//pthread_mutex_init(&mutex_planificador);
+
 	while(1){
 
-		pthread_mutex_lock(hilo_planificador);
+		pthread_mutex_lock(&mutex_planificador);
 
 		t_entrenador* entrenador;
 
@@ -54,7 +59,7 @@ void planificar_sjf_sd(void){
 
 		ejecutar_entrenador(entrenador);
 
-		pthread_mutex_lock(hilo_planificador);
+		pthread_mutex_lock(&mutex_planificador);
 	}
 
 }

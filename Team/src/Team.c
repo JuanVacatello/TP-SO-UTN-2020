@@ -129,7 +129,7 @@ void generar_atrapados_global(void){
 }
 
 
-void planificacion(void){
+void planificacion(){
 	puts("aca entra3");
 	//Esta funcion se la mandamos al hilo principal para que la ejecute
 
@@ -219,9 +219,9 @@ void terminar_programa(int conexion, t_log* logger){
 
 //----------------
 
-//falopa
-int hay_pokemones_sueltos(){
-	if(list_size(lista_de_pokemones_sueltos) == 0)
+//
+int hay_pokemones_sueltos(t_list* listaTest){
+	if(list_size(listaTest) == 0)
 		return 0;
 	else
 		return 1;

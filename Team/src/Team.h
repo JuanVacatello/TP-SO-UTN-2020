@@ -23,17 +23,15 @@ typedef enum{
 } op_planificacion;
 
 
-
-
 int cantidad_entrenadores(void);
 void armar_entrenadores(void);
 void generar_objetivo_global(void);
 void generar_atrapados_global(void);
-void planificacion(void);
+void planificacion();
 void aparicion_pokemon(t_pokemon* pokemon);
 int es_pokemon_requerido(t_pokemon* pokemon);
 void terminar_programa(int conexion, t_log* logger);
 
-int hay_pokemones_sueltos();
+int hay_pokemones_sueltos(t_list*);
 
 #endif /* TEAM_H_ */

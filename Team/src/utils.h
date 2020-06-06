@@ -30,6 +30,8 @@ pthread_t* hilo_planificador;
 
 t_list* lista_de_pokemones_sueltos;
 
+pthread_mutex_t mutex_planificador;
+
 
 
 typedef enum

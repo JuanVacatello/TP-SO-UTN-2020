@@ -21,6 +21,7 @@ int main(void) {
 		iniciar_logger();
 
 
+
 		ip = obtener_ip();
 		puts(ip);
 		puerto = obtener_puerto();
@@ -100,29 +101,29 @@ int main(void) {
 		moverse_arriba(entrenador);
 		*/
 
+
 		puts("aca entra");
-		lista_de_pokemones_sueltos = list_create();
-/*
+
 		t_pokemon* pokemonPikachu = malloc(sizeof(t_pokemon));
-		pokemonPikachu->especie = 'Pikachu';
+		pokemonPikachu->especie = "Pikachu";
+		pokemonPikachu->posicion = malloc(sizeof(t_posicion));
 		pokemonPikachu->posicion->x = 6;
 		pokemonPikachu->posicion->y = 6;
 
-
-		//lista_de_pokemones_sueltos = list_create();
-		list_add(lista_de_pokemones_sueltos, pokemonPikachu);
+		t_list* listaTest = list_create();
+		list_add(listaTest, pokemonPikachu);
 		puts("aca entra8");
-		int pokemones = hay_pokemones_sueltos();
+		int pokemones = hay_pokemones_sueltos(listaTest);
 
 		printf("%d\n",pokemones);
-		*/
 
-		pthread_create(&hilo_planificador, NULL , planificacion ,NULL);
-		pthread_join(hilo_planificador, NULL);
 
 		puts("hola");
-
+		pthread_t hilo_test;
+		pthread_create(&hilo_test, NULL , (void *) planificacion ,NULL);
+		pthread_join(hilo_test,NULL);
 		//aparicion_pokemon(pokemon);
+		puts("chau");
 
 
 		//completar_logger("hola como estas", "TEAM", LOG_LEVEL_INFO);
