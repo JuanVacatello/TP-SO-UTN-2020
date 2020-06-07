@@ -119,9 +119,8 @@ int main(void) {
 
 
 		puts("hola");
-		pthread_t hilo_test;
-		pthread_create(&hilo_test, NULL , (void *) planificacion ,NULL);
-		pthread_join(hilo_test,NULL);
+		pthread_create(&hilo_planificador, NULL , (void *) planificacion ,NULL);
+		pthread_join(hilo_planificador,NULL);
 		//aparicion_pokemon(pokemon);
 		puts("chau");
 

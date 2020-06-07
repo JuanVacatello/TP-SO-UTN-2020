@@ -3,7 +3,7 @@
 
 void planificar_fifo(void){
 
-	//pthread_mutex_init(&mutex_planificador);
+	//pthread_mutex_init(mutex_planificador, NULL);
 
 
 	while (1){
@@ -21,8 +21,6 @@ void planificar_fifo(void){
 		else*/
 		//
 			pthread_mutex_lock(hilo_planificador);
-
-
 
 		t_entrenador*  entrenador;
 
@@ -47,7 +45,7 @@ void planificar_fifo(void){
 
 void planificar_sjf_sd(void){
 
-	//pthread_mutex_init(&mutex_planificador);
+	//pthread_mutex_init(mutex_planificador, NULL);
 
 	while(1){
 

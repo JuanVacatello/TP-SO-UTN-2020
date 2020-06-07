@@ -157,32 +157,32 @@ void* iniciar_paquete_serializado_CatchPokemon(int* tamanio_paquete,t_entrenador
 	paquete->buffer = malloc(sizeof(t_buffer));
 
 	char* pokemon = entrenador->pokemon_a_atrapar->especie;
-	int caracteresPokemon = strlen(pokemon) + 1;
+	uint32_t caracteresPokemon = strlen(pokemon) + 1;
 	//Quizas es mejor hacer una variable pokemon para no tener tantas flechitas
-	int posX = entrenador->pokemon_a_atrapar->posicion->x;
-	int posY = entrenador->pokemon_a_atrapar->posicion->y;
+	uint32_t posX = entrenador->pokemon_a_atrapar->posicion->x;
+	uint32_t posY = entrenador->pokemon_a_atrapar->posicion->y;
 
 						//INT CARACTERES + POKEMON + POSX + POSY
-	paquete->buffer->size = sizeof(int) + caracteresPokemon + sizeof(int) + sizeof(int);
+	paquete->buffer->size = sizeof(uint32_t) + caracteresPokemon + sizeof(uint32_t) + sizeof(uint32_t);
 	void* stream = malloc(paquete->buffer->size);
 	int offset = 0;
 
-		memcpy(stream + offset, &caracteresPokemon, sizeof(int));
-		offset += sizeof(int);
+		memcpy(stream + offset, &caracteresPokemon, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
 
 		memcpy(stream + offset, &pokemon, caracteresPokemon);
 		offset +=caracteresPokemon;
 
-		memcpy(stream + offset, &posX, sizeof(int));
-		offset += sizeof(int);
+		memcpy(stream + offset, &posX, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
 
-		memcpy(stream + offset, &posY, sizeof(int));
-		offset += sizeof(int);
+		memcpy(stream + offset, &posY, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
 
 		paquete->buffer->stream = stream;
 
 						// TAMAÑO STREAM + OP CODE + VARIABLE SIZE
-	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(int);
+	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
 
 	void* a_enviar = malloc((*tamanio_paquete));
 	int offsetDeSerializacion = 0;
@@ -190,8 +190,8 @@ void* iniciar_paquete_serializado_CatchPokemon(int* tamanio_paquete,t_entrenador
 		memcpy(a_enviar + offset, &(paquete->codigo_operacion), sizeof(op_code));
 		offsetDeSerializacion += sizeof(op_code);
 
-		memcpy(a_enviar + offset, &(paquete->buffer->size), sizeof(int));
-		offsetDeSerializacion +=sizeof(int);
+		memcpy(a_enviar + offset, &(paquete->buffer->size), sizeof(uint32_t));
+		offsetDeSerializacion +=sizeof(uint32_t);
 
 		memcpy(a_enviar + offset, &(paquete->buffer->stream), paquete->buffer->size);
 

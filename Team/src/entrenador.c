@@ -234,7 +234,7 @@ void puede_seguir_atrapando(t_entrenador* entrenador){
 bool termino_de_atrapar(t_entrenador* entrenador){
 
 	//LISTA DE OBJETIVOS MISMOS POKEMONES Y CANTIDADES QUE LISTA ATRAPADOS
-
+	return true;
 }
 
 

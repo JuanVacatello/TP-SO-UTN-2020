@@ -138,9 +138,6 @@ void planificacion(){
 	puts("aca entra0");
 	//HAY QUE CHEQUEAR ESTO
 
-	/*if(planificacion == 1)
-		puts("aca entra0");
-		planificar_fifo();*/
 	switch(planificador){
 		case 1:
 		planificar_fifo();
