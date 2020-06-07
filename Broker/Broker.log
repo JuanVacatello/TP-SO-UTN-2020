@@ -1,9 +1,6 @@
-[INFO] 11:23:11:644 BROKER/(7197:7197): me creo
-[INFO] 11:23:11:644 BROKER/(7197:7197): termino de establecer socket
-[INFO] 11:23:17:126 BROKER/(7197:7205): llego un mensaje
-[INFO] 11:23:17:126 BROKER/(7197:7205): El codigo de operacion es: 159929192.
-[INFO] 11:25:39:361 BROKER/(7278:7278): me creo
-[INFO] 11:25:53:912 BROKER/(7288:7288): me creo
-[INFO] 11:25:53:912 BROKER/(7288:7288): termino de establecer socket
-[INFO] 11:25:56:329 BROKER/(7288:7294): llego un mensaje
-[INFO] 11:25:56:329 BROKER/(7288:7294): El codigo de operacion es: 150144272.
+[INFO] 18:23:00:137 BROKER/(12204:12204): me creo
+[INFO] 18:23:00:139 BROKER/(12204:12204): termino de establecer socket
+[INFO] 18:23:01:999 BROKER/(12204:12211): llego un mensaje
+[INFO] 18:23:01:999 BROKER/(12204:12211): El codigo de operacion es: 7.
+[INFO] 18:23:01:999 BROKER/(12204:12211): El tamanio es: 4.
+[INFO] 18:23:01:999 BROKER/(12204:12211): El numero es: 138155280.

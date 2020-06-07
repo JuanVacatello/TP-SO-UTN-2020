@@ -59,9 +59,10 @@ void esperar_cliente(int socket_servidor)
 void serve_client(int* socket)
 {
 	completar_logger("llego un mensaje","BROKER",LOG_LEVEL_INFO);
-	uint32_t cod_op;
-	if(recv(*socket, &cod_op, sizeof(uint32_t), MSG_WAITALL) == -1)
+	op_code cod_op;
+	if(recv(*socket, &cod_op, sizeof(op_code), MSG_WAITALL) == -1)
 		cod_op = -1;
+
 
 	char* mensaje = string_from_format("El codigo de operacion es: %d.", cod_op);
 	completar_logger(mensaje, "Broker", LOG_LEVEL_INFO);
@@ -69,7 +70,7 @@ void serve_client(int* socket)
 	process_request(cod_op, *socket);
 }
 
-void process_request(uint32_t cod_op, int socket_cliente) {
+void process_request(op_code cod_op, int socket_cliente) {
 	//int size;
 		switch (cod_op) {
 		case 1:
@@ -231,12 +232,13 @@ void atenderMensajePrueba(int socket_cliente){
 	uint32_t tamanio;
 	uint32_t numero;
 	recv(socket_cliente, &tamanio, sizeof(uint32_t), MSG_WAITALL);
+
 	recv(socket_cliente, &numero, tamanio, MSG_WAITALL);
 
-	//char* mensaje1 = string_from_format("El tamanio es: %d.", tamanio);
-	completar_logger("llega tamanio", "Broker", LOG_LEVEL_INFO);
+	char* mensajeTamanio = string_from_format("El tamanio es: %d.", tamanio);
+	completar_logger(mensajeTamanio, "Broker", LOG_LEVEL_INFO);
 
-	char* mensaje = string_from_format("El numero es: %d.", numero);
-	completar_logger("llega numero", "Broker", LOG_LEVEL_INFO);
+	char* mensajeNumero = string_from_format("El numero es: %d.", numero);
+	completar_logger(mensajeNumero, "Broker", LOG_LEVEL_INFO);
 
 }
