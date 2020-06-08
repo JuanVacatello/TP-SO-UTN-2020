@@ -58,11 +58,9 @@ void esperar_cliente(int socket_servidor)
 
 void serve_client(int* socket)
 {
-	completar_logger("llego un mensaje","BROKER",LOG_LEVEL_INFO);
 	op_code cod_op;
 	if(recv(*socket, &cod_op, sizeof(op_code), MSG_WAITALL) == -1)
 		cod_op = -1;
-
 
 	char* mensaje = string_from_format("El codigo de operacion es: %d.", cod_op);
 	completar_logger(mensaje, "Broker", LOG_LEVEL_INFO);
@@ -71,16 +69,12 @@ void serve_client(int* socket)
 }
 
 void process_request(op_code cod_op, int socket_cliente) {
-	//int size;
-		switch (cod_op) {
+
+	switch (cod_op) {
 		case 1:
 			recibir_new_pokemon(socket_cliente);
-
-			//msg = recibir_mensaje(socket_cliente, &size);
-			//devolver_mensaje(msg, size, socket_cliente);
-			//free(msg);
 			break;
-		case 0:
+	/*	case 0:
 			completar_logger("Entre al SUSCRIBIRSE", "Broker", LOG_LEVEL_INFO);
 			atenderMensajePrueba(socket_cliente);
 			//atenderSuscripcion(socket_cliente);
@@ -89,7 +83,7 @@ void process_request(op_code cod_op, int socket_cliente) {
 			pthread_exit(NULL);
 		case 7:
 			atenderMensajePrueba(socket_cliente);
-			break;
+			break;*/
 		}
 }
 
@@ -108,6 +102,42 @@ void process_request(op_code cod_op, int socket_cliente) {
 */
 void recibir_new_pokemon(int socket_cliente)
 {
+	uint32_t tamanio_buffer;
+	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
+
+	char* m1 = string_from_format("El tamanio del buffer es: %d.", tamanio_buffer);
+	completar_logger(m1, "BROKER", LOG_LEVEL_INFO);
+
+	uint32_t caracteresPokemon;
+	recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
+
+	char* m2 = string_from_format("Los caracteres de pokemon son: %d.", caracteresPokemon);
+	completar_logger(m2, "BROKER", LOG_LEVEL_INFO);
+
+	char* pokemon;
+	recv(socket_cliente, &pokemon, sizeof(caracteresPokemon), MSG_WAITALL);
+
+	completar_logger(pokemon, "BROKER", LOG_LEVEL_INFO);
+
+	uint32_t posX;
+	recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
+
+	char* m3 = string_from_format("La posicion en X es: %d", posX);
+	completar_logger(m3, "BROKER", LOG_LEVEL_INFO);
+
+	uint32_t posY;
+	recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
+
+	char* m4 = string_from_format("La posicion en Y es: %d", posY);
+	completar_logger(m4, "BROKER", LOG_LEVEL_INFO);
+
+	uint32_t cantidad;
+	recv(socket_cliente, &cantidad, sizeof(uint32_t), MSG_WAITALL);
+
+	char* m5 = string_from_format("La cantidad de pokemons es: %d.", cantidad);
+	completar_logger(m5, "BROKER", LOG_LEVEL_INFO);
+
+	/*
 	t_paquete* paquete = malloc(sizeof(t_paquete));
 	paquete->codigo_operacion = NEW_POKEMON;
 	completar_logger("recibo new pokemon","Broker",LOG_LEVEL_INFO);
@@ -135,7 +165,7 @@ void recibir_new_pokemon(int socket_cliente)
 	int cantidad;
 	recv(socket_cliente, &cantidad, sizeof(int), MSG_WAITALL);
 	completar_logger("recibo cantidad Pokemon ","Broker",LOG_LEVEL_INFO);
-
+*/
 }
 
 void* serializar_paquete(t_paquete* paquete, int bytes)
@@ -228,6 +258,8 @@ void suscribirseAColas(proceso* suscriptor, int socket ){
 		}
 }
 
+/* mensaje prueba
+
 void atenderMensajePrueba(int socket_cliente){
 	uint32_t tamanio_buffer;
 	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
@@ -242,4 +274,4 @@ void atenderMensajePrueba(int socket_cliente){
 	char* mensajeNumero = string_from_format("El numero es: %d.", numero);
 	completar_logger(mensajeNumero, "Broker", LOG_LEVEL_INFO);
 
-}
+} */
