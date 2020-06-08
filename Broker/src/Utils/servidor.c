@@ -187,7 +187,7 @@ void suscribirseACola(proceso* suscriptor,cola_mensaje cola_mensaje ){
 
 proceso* modelarProceso(int socket){
 	proceso* suscriptor = malloc(sizeof(proceso));
-		suscriptor -> id = cantidadProcesosregistrados + 1 ;
+		//suscriptor -> id = cantidadProcesosregistrados + 1 ;
 		cantidadProcesosregistrados++;
 		suscriptor -> socket_cliente = socket;
 	return suscriptor;
@@ -229,13 +229,14 @@ void suscribirseAColas(proceso* suscriptor, int socket ){
 }
 
 void atenderMensajePrueba(int socket_cliente){
-	uint32_t tamanio;
+	uint32_t tamanio_buffer;
+	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
+
 	uint32_t numero;
-	recv(socket_cliente, &tamanio, sizeof(uint32_t), MSG_WAITALL);
 
-	recv(socket_cliente, &numero, tamanio, MSG_WAITALL);
+	recv(socket_cliente, &numero, tamanio_buffer, MSG_WAITALL);
 
-	char* mensajeTamanio = string_from_format("El tamanio es: %d.", tamanio);
+	char* mensajeTamanio = string_from_format("El tamanio es: %d.", tamanio_buffer);
 	completar_logger(mensajeTamanio, "Broker", LOG_LEVEL_INFO);
 
 	char* mensajeNumero = string_from_format("El numero es: %d.", numero);

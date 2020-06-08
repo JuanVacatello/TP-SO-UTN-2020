@@ -1,6 +1,19 @@
-[INFO] 18:23:00:137 BROKER/(12204:12204): me creo
-[INFO] 18:23:00:139 BROKER/(12204:12204): termino de establecer socket
-[INFO] 18:23:01:999 BROKER/(12204:12211): llego un mensaje
-[INFO] 18:23:01:999 BROKER/(12204:12211): El codigo de operacion es: 7.
-[INFO] 18:23:01:999 BROKER/(12204:12211): El tamanio es: 4.
-[INFO] 18:23:01:999 BROKER/(12204:12211): El numero es: 138155280.
+
+[INFO] 14:23:57:208 BROKER/(4994:4994): me creo
+[INFO] 14:23:57:208 BROKER/(4994:4994): termino de establecer socket
+[INFO] 14:24:00:707 BROKER/(4994:5000): llego un mensaje
+[INFO] 14:24:00:707 BROKER/(4994:5000): El codigo de operacion es: 7.
+[INFO] 14:24:00:707 BROKER/(4994:5000): El tamanio es: 4.
+[INFO] 14:24:00:707 BROKER/(4994:5000): El numero es: 2.
+[INFO] 14:24:50:585 BROKER/(5025:5025): me creo
+[INFO] 14:24:50:585 BROKER/(5025:5025): termino de establecer socket
+[INFO] 14:24:53:582 BROKER/(5025:5031): llego un mensaje
+[INFO] 14:24:53:582 BROKER/(5025:5031): El codigo de operacion es: 7.
+[INFO] 14:24:53:582 BROKER/(5025:5031): El tamanio es: 4.
+[INFO] 14:24:53:582 BROKER/(5025:5031): El numero es: 2.
+[INFO] 14:25:39:349 BROKER/(5079:5079): me creo
+[INFO] 14:25:39:349 BROKER/(5079:5079): termino de establecer socket
+[INFO] 14:25:42:831 BROKER/(5079:5085): llego un mensaje
+[INFO] 14:25:42:831 BROKER/(5079:5085): El codigo de operacion es: 7.
+[INFO] 14:25:42:831 BROKER/(5079:5085): El tamanio es: 4.
+[INFO] 14:25:42:831 BROKER/(5079:5085): El numero es: 1120.
