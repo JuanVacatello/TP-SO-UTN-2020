@@ -87,7 +87,11 @@ void enviar_mensaje_a_broker(int socket_cliente, op_code codigo_operacion, char*
 		break;
 	}
 
-	send(socket_cliente,a_enviar,tamanio_paquete,0);
+	if(send(socket_cliente,a_enviar,tamanio_paquete,0) == -1){
+		printf("Error en enviar por el socket");
+		exit(3);
+	}
+
 	free(a_enviar);
 
 //fflush(stdout);
@@ -97,64 +101,58 @@ void enviar_mensaje_a_broker(int socket_cliente, op_code codigo_operacion, char*
 
 void* iniciar_paquete_serializado_NewPokemon(int* tamanio_paquete,char* argv[]){
 
-	t_paquete* paquete = malloc(sizeof(t_paquete));
-
-	paquete->codigo_operacion = NEW_POKEMON;
-
-	paquete->buffer = malloc(sizeof(t_buffer));
+	t_buffer* buf = malloc(sizeof(t_buffer));
 
 	char* pokemon = argv[3];
-	int caracteresPokemon = strlen(pokemon) + 1;
-	int posX;
-	sscanf(argv[4], "%d",&posX);
-	int posY ;
-	sscanf(argv[5], "%d",&posY);
-	int cantidad_pokemon;
-	sscanf(argv[6], "%d",&cantidad_pokemon);
+	uint32_t caracteresPokemon = strlen(pokemon) + 1;
+	uint32_t posX;
+	sscanf(argv[4], "%d", &posX);
+	uint32_t posY ;
+	sscanf(argv[5], "%d", &posY);
+	uint32_t cantidad_pokemon;
+	sscanf(argv[6], "%d", &cantidad_pokemon);
 
-						    //INT CARACTERES + POKEMON + POSX + POSY + CANTIDAD
-	paquete->buffer->size =sizeof(int) + caracteresPokemon +sizeof(int)+sizeof(int)+sizeof(int);
-	void* stream = malloc(paquete->buffer->size);
+	buf->size = sizeof(uint32_t) + caracteresPokemon +sizeof(uint32_t)+sizeof(uint32_t)+sizeof(uint32_t);
+					//INT CARACTERES + POKEMON 			+ POSX +		 POSY 				+ CANTIDAD
+	void* strm = malloc(buf->size);
 	int offset = 0;
 
-		memcpy(stream + offset, &caracteresPokemon, sizeof(int));
-		offset += sizeof(int);
+		memcpy(strm + offset, &caracteresPokemon, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
 
-		memcpy(stream + offset, &pokemon, caracteresPokemon);
-		offset +=caracteresPokemon;
+		memcpy(strm + offset, &pokemon, caracteresPokemon);
+		offset += caracteresPokemon;
 
-		memcpy(stream + offset, &posX, sizeof(int));
-		offset += sizeof(int);
+		memcpy(strm + offset, &posX, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
 
-		memcpy(stream + offset, &posY, sizeof(int));
-		offset += sizeof(int);
+		memcpy(strm + offset, &posY, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
 
-		memcpy(stream + offset, &cantidad_pokemon, sizeof(int));
-		offset += sizeof(int);
+		memcpy(strm + offset, &cantidad_pokemon, sizeof(uint32_t));
 
-	paquete->buffer->stream = stream;
+	buf->stream = strm;
 
-	void* a_enviar = serializar_paquete(paquete, &tamanio_paquete); // y me ahorro todo esto:
+	t_paquete* paquete = malloc(sizeof(t_paquete));
+	paquete->codigo_operacion = NEW_POKEMON;
+	paquete->buffer = buf;
 
-	/*
 						// TAMAÑO STREAM + OP CODE + VARIABLE SIZE
-	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(int);
+	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
 	void* a_enviar = malloc((*tamanio_paquete));
 
 	int offsetDeSerializacion = 0;
 
-		memcpy(a_enviar + offset, &(paquete->codigo_operacion), sizeof(op_code));
+		memcpy(a_enviar + offsetDeSerializacion, &(paquete->codigo_operacion), sizeof(op_code));
 		offsetDeSerializacion += sizeof(op_code);
 
-		memcpy(a_enviar + offset, &(paquete->buffer->size), sizeof(int));
-		offsetDeSerializacion +=sizeof(int);
+		memcpy(a_enviar + offsetDeSerializacion, &(paquete->buffer->size), sizeof(uint32_t));
+		offsetDeSerializacion +=sizeof(uint32_t);
 
-		memcpy(a_enviar + offset, &(paquete->buffer->stream), paquete->buffer->size);
+		memcpy(a_enviar + offsetDeSerializacion, &(paquete->buffer->stream), paquete->buffer->size);
 
-	*/
-
-	free(stream);
-	free(paquete->buffer);
+	free(buf);
+	free(strm);
 	free(paquete);
 
 	return a_enviar;
@@ -670,7 +668,33 @@ void* iniciar_paquete_serializado_GetPokemonGC(int* tamanio_paquete,char* argv[]
 
 }
 
-// Paquete de prueba
+void liberar_conexion(int socket_cliente)
+{
+	close(socket_cliente);
+}
+
+// El proceso GameBoy no recibe mensajes
+
+void recibir_mensaje(int socket_cliente)
+{
+	int caracteresPokemon, posX, posY, cantidad;
+	char* pokemon;
+
+	recv(socket_cliente,&caracteresPokemon ,sizeof(int),0);
+	recv(socket_cliente,&pokemon ,caracteresPokemon,0);
+	recv(socket_cliente,&posX ,sizeof(int),0);
+	recv(socket_cliente,&posY ,sizeof(int),0);
+	recv(socket_cliente,&cantidad ,sizeof(int),0);
+
+	printf("%d /n",caracteresPokemon);
+	printf("%d /n",posX);
+	printf("%d /n",posY);
+	printf("%d /n",cantidad);
+	puts(pokemon);
+
+}
+
+/* Paquete de prueba
 
 void* iniciar_paquete_prueba(int* tamanio_paquete){
 
@@ -713,32 +737,6 @@ void* iniciar_paquete_prueba(int* tamanio_paquete){
 
 	return a_enviar;
 
-}
-
-void liberar_conexion(int socket_cliente)
-{
-	close(socket_cliente);
-}
-
-// El proceso GameBoy no recibe mensajes
-
-void recibir_mensaje(int socket_cliente)
-{
-	int caracteresPokemon, posX, posY, cantidad;
-	char* pokemon;
-
-	recv(socket_cliente,&caracteresPokemon ,sizeof(int),0);
-	recv(socket_cliente,&pokemon ,caracteresPokemon,0);
-	recv(socket_cliente,&posX ,sizeof(int),0);
-	recv(socket_cliente,&posY ,sizeof(int),0);
-	recv(socket_cliente,&cantidad ,sizeof(int),0);
-
-	printf("%d /n",caracteresPokemon);
-	printf("%d /n",posX);
-	printf("%d /n",posY);
-	printf("%d /n",cantidad);
-	puts(pokemon);
-
-}
+} */
 
 
