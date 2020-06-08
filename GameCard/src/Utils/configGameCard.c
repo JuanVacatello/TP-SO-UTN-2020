@@ -73,3 +73,11 @@ char* obtener_punto_montaje(){
 	return punto_montaje;
 
 }
+
+char* block_size(){
+
+	char* block_size;
+	block_size = config_get_string_value(configGameCard, "BLOCK_SIZE");
+	return block_size;
+
+}
