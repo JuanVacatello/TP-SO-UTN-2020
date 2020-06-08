@@ -28,7 +28,7 @@ t_entrenador* armar_entrenador(int indice){
 
 	//POSICION
 	char** posiciones = obtener_posiciones_entrenadores();
-	t_posicion* posicion_entrenador = obtener_posicion(posiciones[indice]);
+	t_posicion posicion_entrenador = obtener_posicion(posiciones[indice]);
 	entrenador->posicion = posicion_entrenador;
 
 	//LISTA OBJETIVOS
@@ -58,15 +58,15 @@ t_entrenador* armar_entrenador(int indice){
 
 //"PIKACHU|PIKACHU|SQUIRTLE"  string_n_split ("texto", n, "|")
 
-t_posicion* obtener_posicion(char* posicion){
+t_posicion obtener_posicion(char* posicion){
 
 	char** vector_posicion = string_split(posicion, "|");
 	int posicion_x = atoi(vector_posicion[0]);
 	int posicion_y = atoi(vector_posicion[1]);
 
-	t_posicion* posicion_casteada = malloc(sizeof(t_posicion));
-	posicion_casteada->x = posicion_x;
-	posicion_casteada->y = posicion_y;
+	t_posicion posicion_casteada;
+	posicion_casteada.x = posicion_x;
+	posicion_casteada.y = posicion_y;
 
 	return posicion_casteada;
 }
@@ -127,13 +127,13 @@ t_entrenador* entrenador_mas_cercano(t_pokemon* pokemon){
 
 	t_list* entrenadores = list_filter(lista_de_entrenadores, puede_atrapar);
 
-	t_posicion* posicion_pokemon = pokemon->posicion;
+	t_posicion posicion_pokemon = pokemon->posicion;
 
 	t_entrenador* entrenador;
 
 	t_entrenador* entrenador_cercano;
 
-	t_posicion* posicion_entrenador;
+	t_posicion posicion_entrenador;
 
 	int menor_distancia=-1;
 	int distancia_actual = 0;
@@ -156,12 +156,12 @@ t_entrenador* entrenador_mas_cercano(t_pokemon* pokemon){
 
 //OBTIENE CANTIDAD DE MOVIMIENTOS A REALIZAR PARA MOVILIZARSE//
 
-int sacar_distancia(t_posicion* pokeposicion,t_posicion* entreposicion){
+int sacar_distancia(t_posicion pokeposicion,t_posicion entreposicion){
 
 	int x,y,distancia;
 
-	x = pokeposicion->x - entreposicion->x;
-	y = pokeposicion->y - entreposicion->y;
+	x = pokeposicion.x - entreposicion.x;
+	y = pokeposicion.y - entreposicion.y;
 
 	distancia = abs(x) + abs(y);
 

@@ -31,7 +31,7 @@ typedef struct
 typedef struct
 {
 	char* especie;
-	t_posicion* posicion;
+	t_posicion posicion;
 
 } t_pokemon;
 
@@ -42,7 +42,7 @@ typedef struct
 	int rafaga_anterior;
 	op_estado estado;
 	t_list* objetivo;
-	t_posicion* posicion;
+	t_posicion posicion;
 	t_list* atrapados;
 	t_pokemon* pokemon_a_atrapar;
 	pthread_t hilo_entrenador;
@@ -62,12 +62,12 @@ typedef struct
 
 
 t_entrenador* armar_entrenador(int indice);
-t_posicion* obtener_posicion(char* posicion);
+t_posicion obtener_posicion(char* posicion);
 t_list* obtener_objetivos(char* objetivos);
 t_list* obtener_atrapados(char* atrapados);
 int cantidad_de_elementos(char* pokemons);
 t_list* entrenadores_mas_cercanos(t_pokemon* pokemon);
-int sacar_distancia(t_posicion* pokeposicion,t_posicion* entreposicion);
+int sacar_distancia(t_posicion pokeposicion,t_posicion entreposicion);
 bool puede_atrapar(t_entrenador* entrenador);
 void ejecutar_entrenador(t_entrenador* entrenador);
 bool termino_de_atrapar(t_entrenador* entrenador);

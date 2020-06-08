@@ -3,49 +3,52 @@
 
 void planificar_fifo(void){
 
-	//pthread_mutex_init(mutex_planificador, NULL);
+	pthread_mutex_init(&mutex_planificador, NULL);
 
+	t_pokemon* pokemonPikachu = malloc(sizeof(t_pokemon));
+	pokemonPikachu->especie = "Pikachu";
+		pokemonPikachu->posicion.x = 6;
+		pokemonPikachu->posicion.y = 6;
 
+	lista_de_pokemones_sueltos = list_create();
+		list_add(lista_de_pokemones_sueltos, pokemonPikachu);
+		puts("aca entra8");
+
+	//int pokemones = hay_pokemones_sueltos(lista_de_pokemones_sueltos);
+	//printf("%d\n",pokemones);
 	while (1){
 
-		//El hilo se crea en el main principal
 
 		puts("aca entra1");
 
 		//prueba
-		/*if(hay_pokemones_sueltos() == 1){
+		//if(hay_pokemones_sueltos(lista_de_pokemones_sueltos)){
+
 			puts("aca entra11");
 			t_pokemon* pokeNuevo = list_remove(lista_de_pokemones_sueltos, 0);
 			aparicion_pokemon(pokeNuevo);
-		}
-		else*/
+		//}
+		//else
 		//
-			pthread_mutex_lock(hilo_planificador);
-
+		//	pthread_mutex_lock(hilo_planificador);
+		puts("aca entra2");
 		t_entrenador*  entrenador;
 
 		entrenador = list_remove(lista_de_entrenadores_ready,0);
-
+		puts("aca entra4");
 		ejecutar_entrenador(entrenador);
 
-		/* IMPORTANTE HILOS
-		 *
-		 *	pthread_create(&hilo_entrenador, NULL, accion, entrenador);
-		 *		la accion la sacamos de la cola de acciones (QUEUE_POP())
-		 *	pthread_join(hilo_entrenador,NULL);
-		 *		siempre abajo de un create tiene que haber un join
-		*/
 
 		//Le decimos al entrenador que ejecute sus acciones
 
-		pthread_mutex_lock(&mutex_planificador);
+		pthread_mutex_lock(hilo_planificador);
 	}
 
 }
 
 void planificar_sjf_sd(void){
 
-	//pthread_mutex_init(mutex_planificador, NULL);
+	pthread_mutex_init(&mutex_planificador, NULL);
 
 	while(1){
 

@@ -21,7 +21,7 @@ int main(void) {
 		iniciar_logger();
 
 
-
+/*
 		ip = obtener_ip();
 		puts(ip);
 		puerto = obtener_puerto();
@@ -69,14 +69,15 @@ int main(void) {
 		//obtener_pokemon_entrenadores();
 		//obtener_objetivos_entrenadores();
 
-		armar_entrenadores();
+
+
 
 
 		t_entrenador* entrenador = armar_entrenador(0);
 
 
-		printf("%d\n",entrenador->posicion->x);
-		printf("%d\n",entrenador->posicion->y);
+		printf("%d\n",entrenador->posicion.x);
+		printf("%d\n",entrenador->posicion.y);
 		puts(" ");
 		puts(list_get(entrenador->objetivo,0));
 		puts(list_get(entrenador->objetivo,1));
@@ -101,28 +102,48 @@ int main(void) {
 		moverse_arriba(entrenador);
 		*/
 
+		armar_entrenadores();
+		generar_objetivo_global();
+		generar_atrapados_global();
 
 		puts("aca entra");
 
 		t_pokemon* pokemonPikachu = malloc(sizeof(t_pokemon));
 		pokemonPikachu->especie = "Pikachu";
-		pokemonPikachu->posicion = malloc(sizeof(t_posicion));
-		pokemonPikachu->posicion->x = 6;
-		pokemonPikachu->posicion->y = 6;
+		pokemonPikachu->posicion.x = 6;
+		pokemonPikachu->posicion.y = 6;
 
-		t_list* listaTest = list_create();
-		list_add(listaTest, pokemonPikachu);
+		t_entrenador* entrenadorCercano = entrenador_mas_cercano(pokemonPikachu);
+		printf("%d\n",entrenadorCercano->posicion.x);
+		printf("%d\n",entrenadorCercano->posicion.y);
+
+
+		if(es_pokemon_requerido(pokemonPikachu)){
+			puts("true");
+		}
+
+		//printf("%d\n",numero);
+
+
+		//lista_de_pokemones_sueltos = list_create();
+		//list_add(lista_de_pokemones_sueltos, pokemonPikachu);
 		puts("aca entra8");
-		int pokemones = hay_pokemones_sueltos(listaTest);
+		//int pokemones = hay_pokemones_sueltos(lista_de_pokemones_sueltos);
 
-		printf("%d\n",pokemones);
+		//printf("%d\n",pokemones);
 
+		/*t_pokemon* pokemonLista = malloc(sizeof(t_pokemon));
 
+		pokemonLista = list_get(lista_de_pokemones_sueltos,0);
+		char* especie = pokemonLista->especie;
+		puts(especie)*/;
 		puts("hola");
 		pthread_create(&hilo_planificador, NULL , (void *) planificacion ,NULL);
 		pthread_join(hilo_planificador,NULL);
 		//aparicion_pokemon(pokemon);
 		puts("chau");
+
+
 
 
 		//completar_logger("hola como estas", "TEAM", LOG_LEVEL_INFO);

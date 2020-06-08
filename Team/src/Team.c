@@ -11,6 +11,7 @@
 #include "movimiento.h"
 #include "planificacion.h"
 
+
 /*int main(void) {
 
 		int conexion;
@@ -138,6 +139,10 @@ void planificacion(){
 	puts("aca entra0");
 	//HAY QUE CHEQUEAR ESTO
 
+	armar_entrenadores();
+	generar_objetivo_global();
+	generar_atrapados_global();
+
 	switch(planificador){
 		case 1:
 		planificar_fifo();
@@ -153,7 +158,22 @@ void planificacion(){
 		//break;
 
 	}
-	//puts(planificacion);
+
+}
+
+bool es_pokemon_requerido(t_pokemon* pokemon){
+	if(dictionary_has_key(objetivo_global,pokemon->especie)){
+		if(dictionary_get(objetivo_global,pokemon->especie)==0){
+			return false;
+		}
+		else{
+		}
+		return true;
+}
+
+	else{
+	return false;
+	}
 }
 
 
@@ -169,16 +189,18 @@ t_accion* armar_accion(void(*accion)(void*), int ciclos){
 
 void aparicion_pokemon(t_pokemon* pokemon){
 	puts("aca entra 9");
-	if(es_pokemon_requerido(pokemon)==1){
-
+	if(es_pokemon_requerido(pokemon)){
+		puts("aca entra 18");
 		t_entrenador* entrenador = entrenador_mas_cercano(pokemon);
+		puts("aca entra 19");
 		entrenador->pokemon_a_atrapar = pokemon;
 
 		armar_movimiento(entrenador);
 		//AGREGAMOS ACCION A ENTRENADOR
-
+		puts("aca entra 20");
 		list_add(lista_de_entrenadores_ready,entrenador);
 		list_add(pokemones_requeridos,pokemon);
+
 		pthread_mutex_unlock(hilo_planificador);
 		//ejecutamos las acciones
 
@@ -188,21 +210,7 @@ void aparicion_pokemon(t_pokemon* pokemon){
 	}
 }
 
-//0 PARA NO | 1 PARA SI//
-int es_pokemon_requerido(t_pokemon* pokemon){
-	if(dictionary_has_key(objetivo_global,pokemon->especie)){
-		if(dictionary_get(objetivo_global,pokemon->especie)==0){
-			return 0;
-		}
-		else{
-		}
-		return 1;
-}
 
-	else{
-	return 0;
-	}
-}
 
 
 void terminar_programa(int conexion, t_log* logger){
@@ -216,12 +224,12 @@ void terminar_programa(int conexion, t_log* logger){
 
 //----------------
 
-//
-int hay_pokemones_sueltos(t_list* listaTest){
-	if(list_size(listaTest) == 0)
-		return 0;
+//0 para vacia, 1 para hay un pokemons
+bool hay_pokemones_sueltos(t_list* listaTest){
+	if(list_is_empty(listaTest))
+		return false;
 	else
-		return 1;
+		return true;
 }
 
 

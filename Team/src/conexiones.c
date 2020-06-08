@@ -159,8 +159,8 @@ void* iniciar_paquete_serializado_CatchPokemon(int* tamanio_paquete,t_entrenador
 	char* pokemon = entrenador->pokemon_a_atrapar->especie;
 	uint32_t caracteresPokemon = strlen(pokemon) + 1;
 	//Quizas es mejor hacer una variable pokemon para no tener tantas flechitas
-	uint32_t posX = entrenador->pokemon_a_atrapar->posicion->x;
-	uint32_t posY = entrenador->pokemon_a_atrapar->posicion->y;
+	uint32_t posX = entrenador->pokemon_a_atrapar->posicion.x;
+	uint32_t posY = entrenador->pokemon_a_atrapar->posicion.y;
 
 						//INT CARACTERES + POKEMON + POSX + POSY
 	paquete->buffer->size = sizeof(uint32_t) + caracteresPokemon + sizeof(uint32_t) + sizeof(uint32_t);
