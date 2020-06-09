@@ -58,10 +58,17 @@ pthread_t thread;
 
 void serve_client(int *socket);
 void process_request(op_code cod_op, int socket_cliente);
-void recibir_new_pokemon(int socket_cliente);
 void* recibir_caught_pokemon(int socket_cliente, int* tamanio_paquete);
+void recibir_caught_pokemon_loggeo(int socket_cliente);
+
+void atender_suscripcion(int socket_cliente);
+proceso* modelar_proceso(int socket);
+void suscribirse_a_cola(proceso* suscriptor, int socket);
+
+void recibir_new_pokemon(int socket_cliente);
 
 void* recibir_buffer(int*, int);
+
 
 void iniciar_servidor(void);
 void esperar_cliente(int);
@@ -69,10 +76,6 @@ void* recibir_mensaje(int socket_cliente, int* size);
 int recibir_operacion(int);
 void* serializar_paquete(t_paquete* paquete, int bytes);
 void devolver_mensaje(void* payload, int size, int socket_cliente);
-
-void atenderSuscripcion(int socket_cliente);
-proceso* modelarProceso(int socket);
-void suscribirseAColas(proceso* suscriptor, int socket);
 
 //void atenderMensajePrueba(int socket_cliente);
 

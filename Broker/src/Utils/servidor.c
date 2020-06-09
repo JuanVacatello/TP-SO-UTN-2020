@@ -73,11 +73,9 @@ void process_request(op_code cod_op, int socket_cliente) {
 	void* a_enviar;
 	int tamanio_paquete = 0;
 
-	if(cod_op == 0){
-		atenderSuscripcion(socket_cliente);
-	}
 	switch (cod_op) {
 		case 0:
+			atender_suscripcion(socket_cliente);
 			break;
 		case 1:
 			recibir_new_pokemon(socket_cliente);
@@ -87,6 +85,7 @@ void process_request(op_code cod_op, int socket_cliente) {
 		case 3:
 			break;
 		case 4:
+			recibir_caught_pokemon_loggeo(socket_cliente);
 			a_enviar = recibir_caught_pokemon(socket_cliente,&tamanio_paquete); //el unico q anda bien xq no tiene pokemon
 
 			for(int i = 0; i < list_size(caughtPokemon.suscriptores); i++){
@@ -94,7 +93,6 @@ void process_request(op_code cod_op, int socket_cliente) {
 				int socket_suscriptor = suscriptor->socket_cliente;
 				send(socket_suscriptor,a_enviar,tamanio_paquete,0);
 			}
-
 			break;
 		case 5:
 			break;
@@ -119,6 +117,78 @@ void process_request(op_code cod_op, int socket_cliente) {
 	return buffer;
 }
 */
+
+void atender_suscripcion(int socket_cliente)
+{
+	proceso* suscriptor = modelar_proceso(socket_cliente);
+	suscribirse_a_cola(suscriptor, socket_cliente);
+}
+
+proceso* modelar_proceso(int socket){
+	proceso* suscriptor = malloc(sizeof(proceso));
+	uint32_t tamanio_buffer;
+	recv(socket, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL); // no se que hacer con esto
+
+	recv(socket, &(suscriptor->id), sizeof(uint32_t), MSG_WAITALL);
+	suscriptor->socket_cliente = socket;
+	return suscriptor;
+}
+
+void suscribirse_a_cola(proceso* suscriptor, int socket){
+	uint32_t cola_a_suscribirse;
+	recv(socket, &cola_a_suscribirse, sizeof(uint32_t), MSG_WAITALL);
+
+	//for(int cantidad_colas = size/sizeof(op_code); cantidad_colas >0; cantidad_colas--){
+	//	op_code cola_mensaje;
+	//	recv(socket, &cola_mensaje,sizeof(op_code), MSG_WAITALL);
+
+	switch(cola_a_suscribirse){
+		case 0:
+			break; //OPCION SUSCRIBIRSE
+		case 1:
+			list_add(newPokemon.suscriptores, suscriptor);
+			break;
+		case 2:
+			list_add(appearedPokemon.suscriptores, suscriptor);
+			break;
+		case 3:
+			list_add(catchPokemon.suscriptores, suscriptor);
+			break;
+		case 4:
+			list_add(caughtPokemon.suscriptores, suscriptor);
+			break;
+		case 5:
+			list_add(getPokemon.suscriptores, suscriptor);
+			break;
+		case 6:
+			list_add(localizedPokemon.suscriptores, suscriptor);
+			break;
+		}
+
+	uint32_t tiempo_de_suscripcion; // no se que hacer con esto
+	recv(socket, &tiempo_de_suscripcion, sizeof(uint32_t), MSG_WAITALL);
+}
+
+void recibir_caught_pokemon_loggeo(int socket_cliente){
+	uint32_t tamanio_buffer;
+	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
+
+	char* m1 = string_from_format("El tamanio del buffer es: %d.", tamanio_buffer);
+	completar_logger(m1, "BROKER", LOG_LEVEL_INFO);
+
+	uint32_t id_mensaje_correlativo;
+	recv(socket_cliente, &id_mensaje_correlativo, sizeof(uint32_t), MSG_WAITALL);
+
+	char* m2 = string_from_format("El id_mensaje_correlativo es: %d.", id_mensaje_correlativo);
+	completar_logger(m2, "BROKER", LOG_LEVEL_INFO);
+
+	uint32_t se_pudo_atrapar;
+	recv(socket_cliente, &se_pudo_atrapar, sizeof(uint32_t), MSG_WAITALL);
+
+	char* m3 = string_from_format("Ese_pudo_atrapar: %d.", se_pudo_atrapar);
+	completar_logger(m3, "BROKER", LOG_LEVEL_INFO);
+}
+
 void* recibir_caught_pokemon(int socket_cliente, int* tamanio_paquete){
 //abrirlo y meterlo en otro paquete, serializarlo y mandarlo. no se si esta bien esto:
 
@@ -186,6 +256,25 @@ void recibir_new_pokemon(int socket_cliente)
 */
 }
 
+/* mensaje prueba
+
+void atenderMensajePrueba(int socket_cliente){
+	uint32_t tamanio_buffer;
+	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
+
+	uint32_t numero;
+
+	recv(socket_cliente, &numero, tamanio_buffer, MSG_WAITALL);
+
+	char* mensajeTamanio = string_from_format("El tamanio es: %d.", tamanio_buffer);
+	completar_logger(mensajeTamanio, "Broker", LOG_LEVEL_INFO);
+
+	char* mensajeNumero = string_from_format("El numero es: %d.", numero);
+	completar_logger(mensajeNumero, "Broker", LOG_LEVEL_INFO);
+
+} */
+
+
 void* serializar_paquete(t_paquete* paquete, int bytes)
 {
 	void * magic = malloc(bytes);
@@ -222,67 +311,3 @@ void devolver_mensaje(void* payload, int size, int socket_cliente)
 	free(paquete->buffer);
 	free(paquete);
 }
-
-void atenderSuscripcion(int socket_cliente)
-{
-	proceso* suscriptor = modelarProceso(socket_cliente);
-	suscribirseAColas(suscriptor, socket_cliente);
-}
-
-proceso* modelarProceso(int socket){
-	proceso* suscriptor = malloc(sizeof(proceso));
-	recv(socket, &(suscriptor->id), sizeof(uint32_t), MSG_WAITALL); // el id le llega PRIMERO con el socket, luego las colas
-	suscriptor -> socket_cliente = socket;
-	return suscriptor;
-}
-
-void suscribirseAColas(proceso* suscriptor, int socket){
-	int size;
-	recv(socket, &size, sizeof(int), MSG_WAITALL);
-
-	for(int cantidad_colas = size/sizeof(op_code); cantidad_colas >0; cantidad_colas--){
-		op_code cola_mensaje;
-
-		recv(socket, &cola_mensaje,sizeof(op_code), MSG_WAITALL);
-		switch(cola_mensaje){
-			case 0:
-				break; //OPCION SUSCRIBIRSE
-			case 1:
-				list_add(newPokemon.suscriptores, suscriptor);
-				break;
-			case 2:
-				list_add(appearedPokemon.suscriptores, suscriptor);
-				break;
-			case 3:
-				list_add(catchPokemon.suscriptores, suscriptor);
-				break;
-			case 4:
-				list_add(caughtPokemon.suscriptores, suscriptor);
-				break;
-			case 5:
-				list_add(getPokemon.suscriptores, suscriptor);
-				break;
-			case 6:
-				list_add(localizedPokemon.suscriptores, suscriptor);
-				break;
-			}
-	}
-}
-
-/* mensaje prueba
-
-void atenderMensajePrueba(int socket_cliente){
-	uint32_t tamanio_buffer;
-	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
-
-	uint32_t numero;
-
-	recv(socket_cliente, &numero, tamanio_buffer, MSG_WAITALL);
-
-	char* mensajeTamanio = string_from_format("El tamanio es: %d.", tamanio_buffer);
-	completar_logger(mensajeTamanio, "Broker", LOG_LEVEL_INFO);
-
-	char* mensajeNumero = string_from_format("El numero es: %d.", numero);
-	completar_logger(mensajeNumero, "Broker", LOG_LEVEL_INFO);
-
-} */

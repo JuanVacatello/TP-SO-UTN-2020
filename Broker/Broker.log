@@ -6,5 +6,5 @@
 [INFO] 23:13:55:600 BROKER/(7846:7853): La posicion en X es: 1
 [INFO] 23:13:55:600 BROKER/(7846:7853): La posicion en Y es: 2
 [INFO] 23:13:55:601 BROKER/(7846:7853): La cantidad de pokemons es: 4.
-[INFO] 23:13:55:601 BROKER/(7846:7853): Retorno: 4.[INFO] 00:19:28:900 BROKER/(9932:9932): me creo
-[INFO] 00:19:28:900 BROKER/(9932:9932): termino de establecer socket
+[INFO] 23:13:55:601 BROKER/(7846:7853): Retorno: 4.
+
