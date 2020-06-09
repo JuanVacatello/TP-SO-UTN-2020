@@ -47,6 +47,7 @@ typedef struct
 	t_pokemon* pokemon_a_atrapar;
 	pthread_t hilo_entrenador;
 	t_queue* cola_de_acciones;
+	uint32_t ID_catch_pokemon;
 	//Armar estructura de acciones
 
 } t_entrenador;

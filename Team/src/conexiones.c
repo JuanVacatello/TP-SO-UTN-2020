@@ -2,7 +2,6 @@
 #include"configTeam.h"
 
 
-
 void iniciar_servidor(void)
 {
 	int socket_servidor;
@@ -34,6 +33,33 @@ void iniciar_servidor(void)
 
     while(1)
     	esperar_cliente(socket_servidor);
+}
+
+int crear_conexion(char* ip, char* puerto)
+{
+	struct addrinfo hints;
+	struct addrinfo *server_info;
+
+	memset(&hints, 0, sizeof(hints));
+	hints.ai_family = AF_UNSPEC;
+	hints.ai_socktype = SOCK_STREAM;
+	hints.ai_flags = AI_PASSIVE;
+
+	getaddrinfo(ip, puerto, &hints, &server_info);
+	int socket_cliente;
+
+	if((socket_cliente = socket(server_info->ai_family, server_info->ai_socktype, server_info->ai_protocol)) == -1){
+		printf("Error en crear socket.");
+		exit(1);
+	}
+
+	if(connect(socket_cliente, server_info->ai_addr, server_info->ai_addrlen) == -1){
+		printf("Error en conectar socket.");
+		exit(2);
+	}
+
+	freeaddrinfo(server_info);
+	return socket_cliente;
 }
 
 void esperar_cliente(int socket_servidor)
@@ -121,30 +147,84 @@ void devolver_mensaje(void* payload, int size, int socket_cliente)
 	free(paquete);
 }
 
+//---SUSCRIPCION
 
-//----------------------- COMUNICACION CON BROKER -----------------------
 
-void enviar_mensaje_a_broker(int socket_cliente, op_code codigo_operacion, char* argv[], t_entrenador* entrenador) //HAY QUE VER ESTE TEMA DEL PARAMETRO
+void* suscribirse_a_cola(int* tamanio_paquete, int cola){
+	t_paquete* paquete = malloc(sizeof(t_paquete));
+	paquete->codigo_operacion = SUSCRIPTOR;
+	paquete->buffer = malloc(sizeof(t_buffer));
+
+	uint32_t proccess_id = getpid();
+
+	paquete->buffer->size = sizeof(uint32_t)+sizeof(uint32_t);
+	void* stream = malloc(paquete->buffer->size);
+	int offset = 0;
+
+		memcpy(stream + offset, &proccess_id, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
+
+		memcpy(stream + offset, &cola, sizeof(uint32_t));
+
+
+	paquete->buffer->stream = stream;
+
+						// TAMAÑO STREAM + OP CODE + VARIABLE SIZE
+	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
+	void* a_enviar = serializar_paquete(paquete, tamanio_paquete);
+
+	free(paquete->buffer);
+	free(stream);
+	free(paquete);
+
+	return a_enviar;
+}
+
+
+void enviar_suscripcion_a_cola(int socket_cliente, int cola) //HAY QUE VER ESTE TEMA DEL PARAMETRO
 {
 	int tamanio_paquete = 0;
 	void* a_enviar;
 
-	switch(codigo_operacion){
-	case CATCH_POKEMON:
-		a_enviar = iniciar_paquete_serializado_CatchPokemon(&tamanio_paquete,entrenador);
-		break;
-	case GET_POKEMON:
-		a_enviar = iniciar_paquete_serializado_GetPokemon(&tamanio_paquete,argv);
-		break;
-	case 6:
-		break;
-	}
+	void* a_enviar = suscribirse_a_cola(socket_cliente, cola);
 
 	send(socket_cliente,a_enviar,tamanio_paquete,0);
 	free(a_enviar);
-
-//fflush(stdout);
 }
+//----------------------- COMUNICACION CON BROKER -----------------------
+
+void enviar_CatchPokemon_a_broker(int socket_cliente, op_code codigo_operacion, t_entrenador* entrenador )
+{
+	int tamanio_paquete = 0;
+	void* a_enviar;
+
+	a_enviar = iniciar_paquete_serializado_CatchPokemon(&tamanio_paquete, entrenador);
+
+	if(send(socket_cliente,a_enviar,tamanio_paquete,0) == -1){
+		printf("Error en enviar por el socket");
+		exit(3);
+	}
+
+	free(a_enviar);
+
+}
+
+void enviar_GetPokemon_a_broker(int socket_cliente, op_code codigo_operacion, t_pokemon* pokemon)
+{
+	int tamanio_paquete = 0;
+	void* a_enviar;
+
+	a_enviar = iniciar_paquete_serializado_GetPokemon(&tamanio_paquete, pokemon);
+
+	if(send(socket_cliente,a_enviar,tamanio_paquete,0) == -1){
+		printf("Error en enviar por el socket");
+		exit(3);
+	}
+
+	free(a_enviar);
+
+}
+
 
 //////////////// CATCH POKEMON ////////////////
 
@@ -184,6 +264,45 @@ void* iniciar_paquete_serializado_CatchPokemon(int* tamanio_paquete,t_entrenador
 						// TAMAÑO STREAM + OP CODE + VARIABLE SIZE
 	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
 
+	void* a_enviar = serializar_paquete(paquete,tamanio_paquete)
+
+	free(stream);
+	free(paquete->buffer);
+	free(paquete);
+
+	return a_enviar;
+
+}
+
+//////////////// GET POKEMON ////////////////
+
+void* iniciar_paquete_serializado_GetPokemon(int* tamanio_paquete,t_pokemon* pokemon_pedido){
+
+	t_paquete* paquete = malloc(sizeof(t_paquete));
+
+	paquete->codigo_operacion = GET_POKEMON;
+
+	paquete->buffer = malloc(sizeof(t_buffer));
+
+	char* pokemon = pokemon_pedido->especie;
+	uint32_t caracteresPokemon = strlen(pokemon) + 1;
+
+						//INT CARACTERES + POKEMON
+	paquete->buffer->size = sizeof(uint32_t) + caracteresPokemon;
+	void* stream = malloc(paquete->buffer->size);
+	int offset = 0;
+
+		memcpy(stream + offset, &caracteresPokemon, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
+
+		memcpy(stream + offset, &pokemon, caracteresPokemon);
+		offset +=caracteresPokemon;
+
+		paquete->buffer->stream = stream;
+
+						// TAMAÑO STREAM + OP CODE + VARIABLE SIZE
+	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
+
 	void* a_enviar = malloc((*tamanio_paquete));
 	int offsetDeSerializacion = 0;
 
@@ -203,53 +322,8 @@ void* iniciar_paquete_serializado_CatchPokemon(int* tamanio_paquete,t_entrenador
 
 }
 
-//////////////// GET POKEMON ////////////////
 
-void* iniciar_paquete_serializado_GetPokemon(int* tamanio_paquete,char* argv[]){
 
-	t_paquete* paquete = malloc(sizeof(t_paquete));
-
-	paquete->codigo_operacion = GET_POKEMON;
-
-	paquete->buffer = malloc(sizeof(t_buffer));
-
-	char* pokemon = argv[2];
-	int caracteresPokemon = strlen(pokemon) + 1;
-
-						//INT CARACTERES + POKEMON
-	paquete->buffer->size = sizeof(int) + caracteresPokemon;
-	void* stream = malloc(paquete->buffer->size);
-	int offset = 0;
-
-		memcpy(stream + offset, &caracteresPokemon, sizeof(int));
-		offset += sizeof(int);
-
-		memcpy(stream + offset, &pokemon, caracteresPokemon);
-		offset +=caracteresPokemon;
-
-		paquete->buffer->stream = stream;
-
-						// TAMAÑO STREAM + OP CODE + VARIABLE SIZE
-	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(int);
-
-	void* a_enviar = malloc((*tamanio_paquete));
-	int offsetDeSerializacion = 0;
-
-		memcpy(a_enviar + offset, &(paquete->codigo_operacion), sizeof(op_code));
-		offsetDeSerializacion += sizeof(op_code);
-
-		memcpy(a_enviar + offset, &(paquete->buffer->size), sizeof(int));
-		offsetDeSerializacion +=sizeof(int);
-
-		memcpy(a_enviar + offset, &(paquete->buffer->stream), paquete->buffer->size);
-
-	free(stream);
-	free(paquete->buffer);
-	free(paquete);
-
-	return a_enviar;
-
-}
 
 void recibir_mensaje2(int socket_cliente)
 {

@@ -18,7 +18,7 @@
 
 typedef struct
 {
-	int size;
+	uint32_t size;
 	void* stream;
 } t_buffer;
 
@@ -32,6 +32,7 @@ pthread_t thread;
 
 void* recibir_buffer(int*, int);
 
+int crear_conexion(char* ip, char* puerto);
 void iniciar_servidor(void);
 void esperar_cliente(int);
 void* recibir_mensaje(int socket_cliente, int* size);
@@ -41,38 +42,15 @@ void serve_client(int *socket);
 void* serializar_paquete(t_paquete* paquete, int bytes);
 void devolver_mensaje(void* payload, int size, int socket_cliente);
 
-void enviar_mensaje_a_broker(int socket_cliente, op_code codigo_operacion,char* argv[], t_entrenador* entrenador);
+void* suscribirse_a_cola(int* tamanio_paquete, int cola);
+void enviar_suscripcion_a_cola(int socket_cliente, int cola);
+
+void enviar_CatchPokemon_a_broker(int socket_cliente, op_code codigo_operacion, t_entrenador* entrenador);
+void enviar_GetPokemon_a_broker(int socket_cliente, op_code codigo_operacion, t_pokemon* pokemon);
+
 void* iniciar_paquete_serializado_CatchPokemon(int* tamanio_paquete,t_entrenador* entrenador);
-void* iniciar_paquete_serializado_GetPokemon(int* tamanio_paquete,char* argv[]);
+void* iniciar_paquete_serializado_GetPokemon(int* tamanio_paquete,t_pokemon* pokemon_pedido);
 void recibir_mensaje2(int socket_cliente);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

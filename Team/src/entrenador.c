@@ -53,6 +53,9 @@ t_entrenador* armar_entrenador(int indice){
 	//RAFAGA ANTERIOR
 	entrenador->rafaga_anterior = 0;
 
+	//ID_CATCH_POKEMON
+	entrenador->ID_catch_pokemon = 0;
+
 	return entrenador;
 }
 
@@ -205,7 +208,9 @@ void ejecutar_entrenador(t_entrenador* entrenador){
 		free(accion_a_ejecutar->ciclo_cpu);
 		free(accion_a_ejecutar);
 	}
-	entrenador->estado = BLOCKED; // Hay que ver si termina aca
+	entrenador->estado = BLOCKED;// Hay que ver si termina aca
+
+	enviar_mensaje_a_broker(socket_conexion_broker, 3 , entrenador); //HABRIA QUE VER SI ES VG EL SOCKET
 }
 
 void atrapar_pokemon(t_entrenador* entrenador){

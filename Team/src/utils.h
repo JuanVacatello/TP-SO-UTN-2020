@@ -22,7 +22,7 @@ t_dictionary* objetivo_global;
 
 t_dictionary* atrapados_global;
 
-t_list* lista_de_entrenadores_ready;
+t_list* lista_de_entrenadores_ready; // CUANDO LLEGA UN CAUGHT EL ENTRENADOR CON ESE ID ENTRA A ESTA LISTA
 
 t_list* pokemones_requeridos;
 
@@ -32,11 +32,13 @@ t_list* lista_de_pokemones_sueltos;
 
 pthread_mutex_t* mutex_planificador;
 
+int socket_conexion_broker;
+
 
 
 typedef enum
 {
-	SUSCRIBIRSE=0,
+	SUSCRIPTOR=0,
 	NEW_POKEMON=1,
 	APPEARED_POKEMON=2,
 	CATCH_POKEMON=3,

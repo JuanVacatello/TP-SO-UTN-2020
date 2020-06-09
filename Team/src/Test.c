@@ -20,6 +20,20 @@ int main(void) {
 		leer_config();
 		iniciar_logger();
 
+		char* puerto = obtener_puerto_broker();
+		char* ip = obtener_ip_broker();
+
+		socket_conexion_broker = crear_conexion(ip,puerto);
+
+		enviar_suscripcion_a_cola(socket_conexion_broker, 2);
+		enviar_suscripcion_a_cola(socket_conexion_broker, 4);
+		enviar_suscripcion_a_cola(socket_conexion_broker, 6);
+
+		armar_entrenadores();
+		generar_objetivo_global();
+		generar_atrapados_global();
+
+		//pedir_ubicacion_pokemones(socket_conexion_broker);
 
 /*
 		ip = obtener_ip();
@@ -152,3 +166,9 @@ int main(void) {
 
 		return 0;
 }
+
+
+void pedir_ubicacion_pokemones(socket_conexion_broker){
+
+}
+

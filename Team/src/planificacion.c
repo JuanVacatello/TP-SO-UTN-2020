@@ -5,17 +5,17 @@ void planificar_fifo(void){
 
 	pthread_mutex_init(&mutex_planificador, NULL);
 
+	//prueba
 	t_pokemon* pokemonPikachu = malloc(sizeof(t_pokemon));
 	pokemonPikachu->especie = "Pikachu";
-		pokemonPikachu->posicion.x = 6;
-		pokemonPikachu->posicion.y = 6;
+	pokemonPikachu->posicion.x = 6;
+	pokemonPikachu->posicion.y = 6;
 
 	lista_de_pokemones_sueltos = list_create();
-		list_add(lista_de_pokemones_sueltos, pokemonPikachu);
-		puts("aca entra8");
+	list_add(lista_de_pokemones_sueltos, pokemonPikachu);
+	puts("aca entra8");
+	//
 
-	//int pokemones = hay_pokemones_sueltos(lista_de_pokemones_sueltos);
-	//printf("%d\n",pokemones);
 	while (1){
 
 
