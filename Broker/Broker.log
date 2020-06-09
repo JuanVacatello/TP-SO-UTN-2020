@@ -1,22 +1,10 @@
-[INFO] 17:39:27:475 BROKER/(8378:8378): me creo
-[INFO] 17:39:27:502 BROKER/(8378:8378): termino de establecer socket
-[INFO] 17:39:33:670 BROKER/(8378:8384): El codigo de operacion es: 1.
-[INFO] 17:39:33:670 BROKER/(8378:8384): El tamanio del buffer es: 24.
-[INFO] 17:39:33:671 BROKER/(8378:8384): Los caracteres de pokemon son: 154649624.
-[INFO] 17:39:33:671 BROKER/(8378:8384): 
-[INFO] 17:39:33:671 BROKER/(8378:8384): La posicion en X es: 41
-[INFO] 17:39:33:671 BROKER/(8378:8384): La posicion en Y es: 8
-[INFO] 17:39:33:671 BROKER/(8378:8384): La cantidad de pokemons es: -1077960749.
-[INFO] 17:45:04:24 BROKER/(8535:8535): me creo
-[INFO] 17:45:04:46 BROKER/(8535:8535): termino de establecer socket
-[INFO] 17:45:12:878 BROKER/(8535:8541): El codigo de operacion es: -1216434160.
-[INFO] 17:45:15:350 BROKER/(8535:8549): El codigo de operacion es: -1216434160.
-[INFO] 18:00:05:773 BROKER/(9014:9014): me creo
-[INFO] 18:00:05:862 BROKER/(9014:9014): termino de establecer socket
-[INFO] 18:00:18:868 BROKER/(9014:9020): El codigo de operacion es: 1.
-[INFO] 18:00:18:868 BROKER/(9014:9020): El tamanio del buffer es: 24.
-[INFO] 18:00:18:868 BROKER/(9014:9020): Los caracteres de pokemon son: 142107656.
-[INFO] 18:00:18:868 BROKER/(9014:9020): 
-[INFO] 18:00:18:868 BROKER/(9014:9020): La posicion en X es: 17
-[INFO] 18:00:18:868 BROKER/(9014:9020): La posicion en Y es: 142107392
-[INFO] 18:00:18:868 BROKER/(9014:9020): La cantidad de pokemons es: 142107480.
+[INFO] 23:13:46:619 BROKER/(7846:7846): me creo
+[INFO] 23:13:46:647 BROKER/(7846:7846): termino de establecer socket
+[INFO] 23:13:55:600 BROKER/(7846:7853): El codigo de operacion es: 1.
+[INFO] 23:13:55:600 BROKER/(7846:7853): El tamanio del buffer es: 24.
+[INFO] 23:13:55:600 BROKER/(7846:7853): Los caracteres de pokemon son: 8.
+[INFO] 23:13:55:600 BROKER/(7846:7853): La posicion en X es: 1
+[INFO] 23:13:55:600 BROKER/(7846:7853): La posicion en Y es: 2
+[INFO] 23:13:55:601 BROKER/(7846:7853): La cantidad de pokemons es: 4.
+[INFO] 23:13:55:601 BROKER/(7846:7853): Retorno: 4.[INFO] 00:19:28:900 BROKER/(9932:9932): me creo
+[INFO] 00:19:28:900 BROKER/(9932:9932): termino de establecer socket
