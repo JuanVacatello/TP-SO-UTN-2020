@@ -12,6 +12,8 @@
 #include<sys/stat.h>
 #include<sys/types.h>
 #include<commons/string.h>
+#include<commons/txt.h>
+#include<commons/bitarray.h>
 #include<string.h>
 #include"Utils/configGameCard.h"
 #include<stdlib.h>
