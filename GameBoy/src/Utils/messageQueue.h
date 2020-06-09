@@ -15,7 +15,7 @@
 
 typedef enum
 {
-	SUSCRIBIRSE=0,
+	SUSCRIPTOR=0,
 	NEW_POKEMON=1,
 	APPEARED_POKEMON=2,
 	CATCH_POKEMON=3,
@@ -56,8 +56,6 @@ void enviar_mensaje_a_gamecard(int socket_cliente, op_code codigo_operacion, cha
 void* iniciar_paquete_serializado_NewPokemonGC(int* tamanio_paquete,char* argv[]);
 void* iniciar_paquete_serializado_CatchPokemonGC(int* tamanio_paquete,char* argv[]);
 void* iniciar_paquete_serializado_GetPokemonGC(int* tamanio_paquete,char* argv[]);
-
-void* iniciar_paquete_prueba(int* tamanio_paquete);
 
 void liberar_conexion(int socket_cliente);
 

@@ -13,6 +13,8 @@
 
 int main(int argc, char* argv[]) {
 
+	completar_logger("Nuevo mensaje", "GAMEBOY", LOG_LEVEL_INFO); // LOG OBLIGATORIO
+
 	controlar_cant_argumentos(argc);
 
 	iniciar_logger();
@@ -38,6 +40,8 @@ void enviarMensajeBroker(int argc, char *argv[]){
 	char* ip = obtener_ip_broker();
 
 	int socket_conexion = crear_conexion(ip,puerto);
+
+	completar_logger("GameBoy se conectó a Broker", "GAMEBOY", LOG_LEVEL_INFO); // LOG OBLIGATORIO
 
 	char* codigo_mensaje = argv[2];
 
@@ -75,6 +79,8 @@ void enviarMensajeTeam(int argc, char *argv[]){
 
 	int socket_conexion = crear_conexion(ip,puerto);
 
+	completar_logger("GameBoy se conectó a Team", "GAMEBOY", LOG_LEVEL_INFO); // LOG OBLIGATORIO
+
 	char* codigo_mensaje = argv[2];
 
 	if(!(strcmp(codigo_mensaje, "APPEARED_POKEMON"))){
@@ -93,6 +99,8 @@ void enviarMensajeGameCard(int argc, char *argv[]){
 	char* ip = obtener_ip_gamecard();
 
 	int socket_conexion = crear_conexion(ip,puerto);
+
+	completar_logger("GameBoy se conectó a GameCard", "GAMEBOY", LOG_LEVEL_INFO); // LOG OBLIGATORIO
 
 	char* codigo_mensaje = argv[2];
 
