@@ -55,6 +55,7 @@ void enviar_mensaje_a_broker(int socket_cliente, op_code codigo_operacion, char*
 
 	switch(codigo_operacion){
 	case 0:
+		a_enviar = suscribirse_a_cola(&tamanio_paquete,argv);
 		break;
 	case 1:
 		a_enviar = iniciar_paquete_serializado_NewPokemon(&tamanio_paquete,argv);
@@ -83,6 +84,44 @@ void enviar_mensaje_a_broker(int socket_cliente, op_code codigo_operacion, char*
 	free(a_enviar);
 
 //fflush(stdout);
+}
+
+// BROKER - SUSCRIPTOR
+
+void* suscribirse_a_cola(int* tamanio_paquete,char* argv[]){
+	t_paquete* paquete = malloc(sizeof(t_paquete));
+	paquete->codigo_operacion = SUSCRIPTOR;
+	paquete->buffer = malloc(sizeof(t_buffer));
+
+	uint32_t proccess_id = getpid();
+	uint32_t cola;
+	sscanf(argv[2], "%d", &cola);
+	uint32_t tiempo_de_suscripción;
+	sscanf(argv[3], "%d", &tiempo_de_suscripción);
+
+	paquete->buffer->size = sizeof(uint32_t)+sizeof(uint32_t);
+	void* stream = malloc(paquete->buffer->size);
+	int offset = 0;
+
+		memcpy(stream + offset, &proccess_id, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
+
+		memcpy(stream + offset, &cola, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
+
+		memcpy(stream + offset, &tiempo_de_suscripción, sizeof(uint32_t));
+
+	paquete->buffer->stream = stream;
+
+						// TAMAÑO STREAM + OP CODE + VARIABLE SIZE
+	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
+	void* a_enviar = serializar_paquete(paquete, tamanio_paquete);
+
+	free(paquete->buffer);
+	free(stream);
+	free(paquete);
+
+	return a_enviar;
 }
 
 // BROKER - NEW POKEMON
@@ -118,7 +157,7 @@ void* iniciar_paquete_serializado_NewPokemon(int* tamanio_paquete,char* argv[]){
 		memcpy(stream + offset, &cantidad_pokemon, sizeof(uint32_t));
 		offset += sizeof(uint32_t);
 
-		memcpy(stream + offset, pokemon, caracteresPokemon);
+		memcpy(stream + offset, &pokemon, 8);
 
 	paquete->buffer->stream = stream;
 
@@ -269,7 +308,6 @@ void* iniciar_paquete_serializado_CaughtPokemon(int* tamanio_paquete,char* argv[
 	free(paquete);
 
 	return a_enviar;
-
 }
 
 // BROKER - GET POKEMON

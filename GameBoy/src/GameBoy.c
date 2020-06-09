@@ -13,11 +13,9 @@
 
 int main(int argc, char* argv[]) {
 
-	completar_logger("Nuevo mensaje", "GAMEBOY", LOG_LEVEL_INFO); // LOG OBLIGATORIO
-
 	controlar_cant_argumentos(argc);
-
 	iniciar_logger();
+	completar_logger("Nuevo mensaje", "GAMEBOY", LOG_LEVEL_INFO); // LOG OBLIGATORIO
 	leer_config();
 	const char* proceso = argv[1];
 
@@ -31,6 +29,16 @@ int main(int argc, char* argv[]) {
 
 	if(!(strcmp(proceso, "GAMECARD"))){
 		enviarMensajeGameCard(argc, argv);
+	}
+
+	if(!(strcmp(proceso, "SUSCRIPTOR"))){ // no es proceso sino "codigo de operacion" pero bueno
+		cumple_cant_parametros(argc, 4); // se tiene que conectar a 1 cola a la vez, no todas al mismo tiempo
+
+		char* puerto = obtener_puerto_broker();
+		char* ip = obtener_ip_broker();
+		int socket_conexion = crear_conexion(ip,puerto);
+
+		enviar_mensaje_a_broker(socket_conexion, 0, argv); // 0 es el op_code de SUSCRIPTOR
 	}
 }
 
