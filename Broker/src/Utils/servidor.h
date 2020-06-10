@@ -45,21 +45,19 @@ typedef struct t_paquete
 	t_buffer* buffer;
 } t_paquete;
 
-typedef struct
+/*typedef struct
 {
 	t_list* suscriptores;// = list_create(); // lista de procesos. t_list de las commons
 	t_paquete mensajes[]; // LOS MENSAJES LLEVAN ID E ID CORRELATIVO POR LO QUE NO SERAN UNA LISTA T_PAQUETE
 
-} cola_mensaje;
+} colaDeMensajes;*/
 
 t_list* suscriptores_new_pokemon;
-
-cola_mensaje* newPokemon;
-cola_mensaje* appearedPokemon;
-cola_mensaje* catchPokemon;
-cola_mensaje* caughtPokemon;
-cola_mensaje* getPokemon;
-cola_mensaje* localizedPokemon;
+t_list* suscriptores_appeared_pokemon;
+t_list* suscriptores_catch_pokemon;
+t_list* suscriptores_caught_pokemon;
+t_list* suscriptores_get_pokemon;
+t_list* suscriptores_localized_pokemon;
 
 t_buffer* buffer;
 

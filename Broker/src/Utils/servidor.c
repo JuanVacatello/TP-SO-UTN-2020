@@ -86,8 +86,8 @@ void process_request(op_code cod_op, int socket_cliente) {
 			//recibir_caught_pokemon_loggeo(socket_cliente); -> Para probar
 			a_enviar = recibir_caught_pokemon(socket_cliente,&tamanio_paquete); //el unico q anda bien xq no tiene pokemon
 
-			for(int i = 0; i < list_size(caughtPokemon->suscriptores); i++){
-				proceso* suscriptor = list_get(caughtPokemon->suscriptores, i);
+			for(int i = 0; i < list_size(suscriptores_caught_pokemon); i++){
+				proceso* suscriptor = list_get(suscriptores_caught_pokemon, i);
 				int socket_suscriptor = suscriptor->socket_cliente;
 				send(socket_suscriptor,a_enviar,tamanio_paquete,0);
 			}
@@ -170,11 +170,10 @@ void suscribirse_a_cola(proceso* suscriptor, int socket, uint32_t tamanio_buffer
 	char* m5;
 
 	switch(cola_a_suscribirse){
+	completar_logger("Entre al switch", "BROKER", LOG_LEVEL_INFO);
 		case 0:
 			break; //OPCION SUSCRIBIRSE
 		case 1:
-			completar_logger("Entre al switch", "BROKER", LOG_LEVEL_INFO);
-
 			list_add(suscriptores_new_pokemon, suscriptor);
 
 			size = list_size(suscriptores_new_pokemon);
@@ -184,19 +183,40 @@ void suscribirse_a_cola(proceso* suscriptor, int socket, uint32_t tamanio_buffer
 			break;
 
 		case 2:
-			list_add(appearedPokemon->suscriptores, suscriptor);
+			list_add(suscriptores_appeared_pokemon, suscriptor);
+
+			size = list_size(suscriptores_appeared_pokemon);
+			m5 = string_from_format("El tamanio de la lista es: %d.", size);
+			completar_logger(m5, "BROKER", LOG_LEVEL_INFO);
 			break;
 		case 3:
-			list_add(catchPokemon->suscriptores, suscriptor);
+			list_add(suscriptores_catch_pokemon, suscriptor);
+
+			size = list_size(suscriptores_catch_pokemon);
+			m5 = string_from_format("El tamanio de la lista es: %d.", size);
+			completar_logger(m5, "BROKER", LOG_LEVEL_INFO);
+
 			break;
 		case 4:
-			list_add(caughtPokemon->suscriptores, suscriptor);
+			list_add(suscriptores_caught_pokemon, suscriptor);
+
+			size = list_size(suscriptores_caught_pokemon);
+			m5 = string_from_format("El tamanio de la lista es: %d.", size);
+			completar_logger(m5, "BROKER", LOG_LEVEL_INFO);
 			break;
 		case 5:
-			list_add(getPokemon->suscriptores, suscriptor);
+			list_add(suscriptores_get_pokemon, suscriptor);
+
+			size = list_size(suscriptores_get_pokemon);
+			m5 = string_from_format("El tamanio de la lista es: %d.", size);
+			completar_logger(m5, "BROKER", LOG_LEVEL_INFO);
 			break;
 		case 6:
-			list_add(localizedPokemon->suscriptores, suscriptor);
+			list_add(suscriptores_localized_pokemon, suscriptor);
+
+			size = list_size(suscriptores_localized_pokemon);
+			m5 = string_from_format("El tamanio de la lista es: %d.", size);
+			completar_logger(m5, "BROKER", LOG_LEVEL_INFO);
 			break;
 	}
 

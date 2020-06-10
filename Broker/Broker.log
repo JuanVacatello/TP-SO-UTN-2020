@@ -1,1 +1,34 @@
 
+[INFO] 19:01:51:586 BROKER/(12103:12103): Se conectó proceso al Broker
+[INFO] 19:02:05:190 BROKER/(12103:12111): El codigo de operacion es: 0.
+[INFO] 19:02:05:190 BROKER/(12103:12111): El id del suscriptor es: 12110.
+[INFO] 19:02:05:190 BROKER/(12103:12111): El socket del suscriptor es: 5.
+[INFO] 19:02:05:190 BROKER/(12103:12111): La cola a suscribirse es es: 2.
+[INFO] 19:02:05:190 BROKER/(12103:12111): El tamanio de la lista es: 1.
+[INFO] 19:02:05:190 BROKER/(12103:12111): Se suscribió el proceso con id 12110 a la cola de mensajes 2
+[INFO] 19:10:31:561 BROKER/(12273:12273): Se conectó proceso al Broker
+[INFO] 19:10:35:20 BROKER/(12273:12280): El codigo de operacion es: 0.
+[INFO] 19:10:35:21 BROKER/(12273:12280): El id del suscriptor es: 12279.
+[INFO] 19:10:35:21 BROKER/(12273:12280): El socket del suscriptor es: 5.
+[INFO] 19:10:35:21 BROKER/(12273:12280): La cola a suscribirse es es: 2.
+[INFO] 19:10:35:21 BROKER/(12273:12280): El tamanio de la lista es: 1.
+[INFO] 19:10:35:21 BROKER/(12273:12280): Se suscribió el proceso con id 12279 a la cola de mensajes 2
+[INFO] 19:12:00:617 BROKER/(12273:12387): El codigo de operacion es: 0.
+[INFO] 19:12:00:617 BROKER/(12273:12387): El id del suscriptor es: 12386.
+[INFO] 19:12:00:617 BROKER/(12273:12387): El socket del suscriptor es: 6.
+[INFO] 19:12:00:617 BROKER/(12273:12387): La cola a suscribirse es es: 2.
+[INFO] 19:12:00:617 BROKER/(12273:12387): El tamanio de la lista es: 2.
+[INFO] 19:12:00:617 BROKER/(12273:12387): Se suscribió el proceso con id 12386 a la cola de mensajes 2
+[INFO] 19:12:21:677 BROKER/(12401:12401): Se conectó proceso al Broker
+[INFO] 19:12:27:930 BROKER/(12401:12413): El codigo de operacion es: 0.
+[INFO] 19:12:27:930 BROKER/(12401:12413): El id del suscriptor es: 12412.
+[INFO] 19:12:27:930 BROKER/(12401:12413): El socket del suscriptor es: 5.
+[INFO] 19:12:27:930 BROKER/(12401:12413): La cola a suscribirse es es: 2.
+[INFO] 19:12:27:930 BROKER/(12401:12413): El tamanio de la lista es: 1.
+[INFO] 19:12:27:930 BROKER/(12401:12413): Se suscribió el proceso con id 12412 a la cola de mensajes 2
+[INFO] 19:16:06:442 BROKER/(12401:12609): El codigo de operacion es: 0.
+[INFO] 19:16:06:453 BROKER/(12401:12609): El id del suscriptor es: 12604.
+[INFO] 19:16:06:453 BROKER/(12401:12609): El socket del suscriptor es: 6.
+[INFO] 19:16:06:453 BROKER/(12401:12609): La cola a suscribirse es es: 2.
+[INFO] 19:16:06:453 BROKER/(12401:12609): El tamanio de la lista es: 2.
+[INFO] 19:16:06:453 BROKER/(12401:12609): Se suscribió el proceso con id 12604 a la cola de mensajes 2
