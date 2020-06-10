@@ -39,11 +39,11 @@ void* recibir_mensaje(int socket_cliente, int* size);
 int recibir_operacion(int);
 void process_request(int cod_op, int cliente_fd);
 void serve_client(int *socket);
-void* serializar_paquete(t_paquete* paquete, int bytes);
+void* serializar_paquete(t_paquete* paquete, int* bytes);
 void devolver_mensaje(void* payload, int size, int socket_cliente);
 
-void* suscribirse_a_cola(int* tamanio_paquete, int cola);
-void enviar_suscripcion_a_cola(int socket_cliente, int cola);
+void* suscribirse_a_cola(int socket_cliente, uint32_t cola, int* tamanio_paquete);
+void enviar_suscripcion_a_cola(int socket_cliente, uint32_t cola);
 
 void enviar_CatchPokemon_a_broker(int socket_cliente, op_code codigo_operacion, t_entrenador* entrenador);
 void enviar_GetPokemon_a_broker(int socket_cliente, op_code codigo_operacion, t_pokemon* pokemon);

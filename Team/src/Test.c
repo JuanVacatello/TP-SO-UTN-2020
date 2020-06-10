@@ -24,14 +24,20 @@ int main(void) {
 		ip = obtener_ip();
 
 		socket_conexion_broker = crear_conexion(ip,puerto);
+		puts("aca entra1");
 
 		enviar_suscripcion_a_cola(socket_conexion_broker, 2);
-		enviar_suscripcion_a_cola(socket_conexion_broker, 4);
+		sleep(10);
+		puts("aca entra2");
+		//enviar_suscripcion_a_cola(socket_conexion_broker, 4);
+		//sleep(10);
 		enviar_suscripcion_a_cola(socket_conexion_broker, 6);
-
+		sleep(10);
+		puts("aca entra3");
 		armar_entrenadores();
 		generar_objetivo_global();
 		generar_atrapados_global();
+		puts("aca entra4");
 
 		//pedir_ubicacion_pokemones(socket_conexion_broker);
 
@@ -116,12 +122,9 @@ int main(void) {
 		moverse_arriba(entrenador);
 		*/
 
-		armar_entrenadores();
-		generar_objetivo_global();
-		generar_atrapados_global();
 
 		puts("aca entra");
-
+/*
 		t_pokemon* pokemonPikachu = malloc(sizeof(t_pokemon));
 		pokemonPikachu->especie = "Pikachu";
 		pokemonPikachu->posicion.x = 6;
@@ -135,7 +138,7 @@ int main(void) {
 		if(es_pokemon_requerido(pokemonPikachu)){
 			puts("true");
 		}
-
+*/
 		//printf("%d\n",numero);
 
 

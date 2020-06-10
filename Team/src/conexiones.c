@@ -110,19 +110,21 @@ void* recibir_mensaje(int socket_cliente, int* size)
 	return buffer;
 }
 
-void* serializar_paquete(t_paquete* paquete, int bytes)
+void* serializar_paquete(t_paquete* paquete, int *bytes)
 {
-	void * magic = malloc(bytes);
-	int desplazamiento = 0;
+	*bytes = (paquete->buffer->size)+sizeof(op_code)+sizeof(int);
+	void* a_enviar = malloc((*bytes));
+	int offset = 0;
 
-	memcpy(magic + desplazamiento, &(paquete->codigo_operacion), sizeof(int));
-	desplazamiento+= sizeof(int);
-	memcpy(magic + desplazamiento, &(paquete->buffer->size), sizeof(int));
-	desplazamiento+= sizeof(int);
-	memcpy(magic + desplazamiento, paquete->buffer->stream, paquete->buffer->size);
-	desplazamiento+= paquete->buffer->size;
+	memcpy(a_enviar + offset, &(paquete->codigo_operacion), sizeof(op_code));
+	offset += sizeof(op_code);
 
-	return magic;
+	memcpy(a_enviar + offset, &(paquete->buffer->size), sizeof(int));
+	offset +=sizeof(int);
+
+	memcpy(a_enviar + offset, paquete->buffer->stream, paquete->buffer->size);
+
+	return a_enviar;
 }
 
 void devolver_mensaje(void* payload, int size, int socket_cliente)
@@ -149,9 +151,9 @@ void devolver_mensaje(void* payload, int size, int socket_cliente)
 
 //---SUSCRIPCION
 
-
-void* suscribirse_a_cola(int* tamanio_paquete, int cola){
+void* suscribirse_a_cola(int socket_cliente, uint32_t cola, int* tamanio_paquete){
 	t_paquete* paquete = malloc(sizeof(t_paquete));
+
 	paquete->codigo_operacion = SUSCRIPTOR;
 	paquete->buffer = malloc(sizeof(t_buffer));
 
@@ -181,12 +183,12 @@ void* suscribirse_a_cola(int* tamanio_paquete, int cola){
 }
 
 
-void enviar_suscripcion_a_cola(int socket_cliente, int cola) //HAY QUE VER ESTE TEMA DEL PARAMETRO
+void enviar_suscripcion_a_cola(int socket_cliente, uint32_t cola) //HAY QUE VER ESTE TEMA DEL PARAMETRO
 {
 	int tamanio_paquete = 0;
 	void* a_enviar;
-
-	a_enviar = suscribirse_a_cola(socket_cliente, cola);
+	puts("aca entra1.5");
+	a_enviar = suscribirse_a_cola(socket_cliente, cola, &tamanio_paquete);
 
 	send(socket_cliente,a_enviar,tamanio_paquete,0);
 	free(a_enviar);
