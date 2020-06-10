@@ -89,17 +89,18 @@ void enviar_mensaje_a_broker(int socket_cliente, op_code codigo_operacion, char*
 // BROKER - SUSCRIPTOR
 
 void* suscribirse_a_cola(int* tamanio_paquete,char* argv[]){
+
 	t_paquete* paquete = malloc(sizeof(t_paquete));
 	paquete->codigo_operacion = SUSCRIPTOR;
 	paquete->buffer = malloc(sizeof(t_buffer));
 
-	uint32_t proccess_id = getpid();
+	uint32_t proccess_id = getpid();//obtener_id_propio();
 	uint32_t cola;
 	sscanf(argv[2], "%d", &cola);
-	uint32_t tiempo_de_suscripción;
-	sscanf(argv[3], "%d", &tiempo_de_suscripción);
+	uint32_t tiempo_de_suscripcion;
+	sscanf(argv[3], "%d", &tiempo_de_suscripcion);
 
-	paquete->buffer->size = sizeof(uint32_t)+sizeof(uint32_t);
+	paquete->buffer->size = sizeof(uint32_t)+sizeof(uint32_t)+sizeof(uint32_t);
 	void* stream = malloc(paquete->buffer->size);
 	int offset = 0;
 
@@ -109,7 +110,7 @@ void* suscribirse_a_cola(int* tamanio_paquete,char* argv[]){
 		memcpy(stream + offset, &cola, sizeof(uint32_t));
 		offset += sizeof(uint32_t);
 
-		memcpy(stream + offset, &tiempo_de_suscripción, sizeof(uint32_t));
+		memcpy(stream + offset, &tiempo_de_suscripcion, sizeof(uint32_t));
 
 	paquete->buffer->stream = stream;
 

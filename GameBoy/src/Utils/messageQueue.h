@@ -11,6 +11,7 @@
 #include<commons/collections/list.h>
 #include<stdint.h>
 
+#include"configGameBoy.h"
 #include"logGameBoy.h"
 
 typedef enum

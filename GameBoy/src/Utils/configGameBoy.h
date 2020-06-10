@@ -24,5 +24,6 @@ char* obtener_ip_team(void);
 char* obtener_puerto_gamecard(void);
 char* obtener_ip_gamecard(void);
 char* obtener_log_file(void);
+int obtener_id_propio(void);
 
 #endif /* CONFIGGAMEBOY_H_ */
