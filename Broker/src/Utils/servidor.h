@@ -72,7 +72,8 @@ void recibir_caught_pokemon_loggeo(int socket_cliente);
 
 void atender_suscripcion(int socket_cliente);
 proceso* modelar_proceso(int socket);
-void suscribirse_a_cola(proceso* suscriptor, int socket);
+int recibir_tamanio_buffer(int socket);
+void suscribirse_a_cola(proceso* suscriptor, int socket, uint32_t tamanio_buffer);
 
 void recibir_new_pokemon(int socket_cliente);
 

@@ -118,6 +118,10 @@ void process_request(op_code cod_op, int socket_cliente) {
 
 void atender_suscripcion(int socket_cliente)
 {
+	uint32_t tamanio_buffer;
+
+	tamanio_buffer = recibir_tamanio_buffer(socket_cliente);
+
 	proceso* suscriptor = modelar_proceso(socket_cliente);
 
 	char* m = string_from_format("El id del suscriptor es: %d.", suscriptor->id);
@@ -126,25 +130,26 @@ void atender_suscripcion(int socket_cliente)
 	char* m2 = string_from_format("El socket del suscriptor es: %d.", suscriptor->socket_cliente);
 	completar_logger(m2, "BROKER", LOG_LEVEL_INFO);
 
-	suscribirse_a_cola(suscriptor, socket_cliente);
+	suscribirse_a_cola(suscriptor, socket_cliente, tamanio_buffer);
 }
 
 proceso* modelar_proceso(int socket){
-	proceso* suscriptor = malloc(sizeof(proceso));
 
-	uint32_t tamanio_buffer;
-	recv(socket, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL); // no se que hacer con esto
+	proceso* suscriptor = malloc(sizeof(proceso));
 
 	recv(socket, &(suscriptor->id), sizeof(uint32_t), MSG_WAITALL);
 	suscriptor->socket_cliente = socket;
 
-	char* m = string_from_format("El tamanio del buffer es: %d.", tamanio_buffer);
-	completar_logger(m, "BROKER", LOG_LEVEL_INFO);
-
 	return suscriptor;
 }
 
-void suscribirse_a_cola(proceso* suscriptor, int socket){
+int recibir_tamanio_buffer(int socket){
+	uint32_t tamanio_buffer;
+	recv(socket, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
+	return tamanio_buffer;
+}
+
+void suscribirse_a_cola(proceso* suscriptor, int socket, uint32_t tamanio_buffer){
 
 	uint32_t cola_a_suscribirse;
 	recv(socket, &cola_a_suscribirse, sizeof(uint32_t), MSG_WAITALL);
@@ -152,15 +157,15 @@ void suscribirse_a_cola(proceso* suscriptor, int socket){
 	char* m1 = string_from_format("La cola a suscribirse es es: %d.", cola_a_suscribirse);
 	completar_logger(m1, "BROKER", LOG_LEVEL_INFO);
 
-	uint32_t tiempo_de_suscripcion; // no se que hacer con esto
-	recv(socket, &tiempo_de_suscripcion, sizeof(uint32_t), MSG_WAITALL);
+		if(tamanio_buffer == 12){
+			uint32_t tiempo_de_suscripcion; // no se que hacer con esto
+			recv(socket, &tiempo_de_suscripcion, sizeof(uint32_t), MSG_WAITALL);
 
-	char* m = string_from_format("El tiempo de suscripcion es: %d.", tiempo_de_suscripcion);
-	completar_logger(m, "BROKER", LOG_LEVEL_INFO);
-
+			char* m = string_from_format("El tiempo de suscripcion es: %d.", tiempo_de_suscripcion);
+			completar_logger(m, "BROKER", LOG_LEVEL_INFO);
+		}
 	int size;
 	char* m5;
-	int elemento_agregado;
 
 	switch(cola_a_suscribirse){
 		case 0:
@@ -175,6 +180,7 @@ void suscribirse_a_cola(proceso* suscriptor, int socket){
 			completar_logger(m5, "BROKER", LOG_LEVEL_INFO);
 
 			break;
+
 		case 2:
 			list_add(appearedPokemon->suscriptores, suscriptor);
 			break;

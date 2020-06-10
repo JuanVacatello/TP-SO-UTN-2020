@@ -16,3 +16,133 @@
 [INFO] 13:44:31:330 BROKER/(8458:8466): La cola a suscribirse es es: 1.
 [INFO] 13:44:31:330 BROKER/(8458:8466): El tiempo de suscripcion es: 2.
 [INFO] 13:44:31:330 BROKER/(8458:8466): Entre al switch
+[INFO] 16:44:39:138 BROKER/(5300:5300): Se conectó proceso al Broker
+[INFO] 16:46:04:47 BROKER/(5300:5429): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 16:46:04:47 BROKER/(5300:5429): El codigo de operacion es: 7.
+[INFO] 16:48:09:372 BROKER/(5527:5527): Se conectó proceso al Broker
+[INFO] 16:51:47:381 BROKER/(5644:5644): Se conectó proceso al Broker
+[INFO] 16:53:15:991 BROKER/(5724:5724): Se conectó proceso al Broker
+[INFO] 16:55:57:115 BROKER/(5885:5885): Se conectó proceso al Broker
+[INFO] 16:56:19:44 BROKER/(5885:5933): El codigo de operacion es: 0.
+[INFO] 16:56:19:44 BROKER/(5885:5933): El tamanio del buffer es: 12.
+[INFO] 16:56:19:44 BROKER/(5885:5933): El id del suscriptor es: 5932.
+[INFO] 16:56:19:44 BROKER/(5885:5933): El socket del suscriptor es: 5.
+[INFO] 16:56:19:44 BROKER/(5885:5933): La cola a suscribirse es es: 1.
+[INFO] 16:56:19:44 BROKER/(5885:5933): El tiempo de suscripcion es: 2.
+[INFO] 16:56:19:44 BROKER/(5885:5933): Entre al switch
+[INFO] 16:56:49:214 BROKER/(5970:5970): Se conectó proceso al Broker
+[INFO] 16:57:28:705 BROKER/(5970:5996): El codigo de operacion es: 0.
+[INFO] 16:57:29:258 BROKER/(5970:5996): El tamanio del buffer es: 12.
+[INFO] 16:57:29:258 BROKER/(5970:5996): El id del suscriptor es: 5995.
+[INFO] 16:57:29:258 BROKER/(5970:5996): El socket del suscriptor es: 5.
+[INFO] 16:57:29:258 BROKER/(5970:5996): La cola a suscribirse es es: 1.
+[INFO] 16:57:29:258 BROKER/(5970:5996): El tiempo de suscripcion es: 2.
+[INFO] 16:57:29:258 BROKER/(5970:5996): Entre al switch
+[INFO] 16:57:50:289 BROKER/(6062:6062): Se conectó proceso al Broker
+[INFO] 16:58:21:483 BROKER/(6062:6086): El codigo de operacion es: 0.
+[INFO] 16:58:24:359 BROKER/(6062:6086): El tamanio del buffer es: 12.
+[INFO] 16:58:24:360 BROKER/(6062:6086): El id del suscriptor es: 6085.
+[INFO] 16:58:24:360 BROKER/(6062:6086): El socket del suscriptor es: 5.
+[INFO] 16:58:24:360 BROKER/(6062:6086): La cola a suscribirse es es: 1.
+[INFO] 16:58:24:360 BROKER/(6062:6086): El tiempo de suscripcion es: 2.
+[INFO] 16:58:24:360 BROKER/(6062:6086): Entre al switch
+[INFO] 17:03:38:742 BROKER/(6354:6354): Se conectó proceso al Broker
+[INFO] 17:04:05:942 BROKER/(6354:6365): El codigo de operacion es: 0.
+[INFO] 17:04:06:807 BROKER/(6354:6365): El tamanio del buffer es: 12.
+[INFO] 17:04:06:807 BROKER/(6354:6365): El id del suscriptor es: 6364.
+[INFO] 17:04:06:807 BROKER/(6354:6365): El socket del suscriptor es: 5.
+[INFO] 17:04:06:807 BROKER/(6354:6365): La cola a suscribirse es es: 1.
+[INFO] 17:04:06:807 BROKER/(6354:6365): El tiempo de suscripcion es: 2.
+[INFO] 17:04:06:808 BROKER/(6354:6365): Entre al switch
+[INFO] 17:04:06:808 BROKER/(6354:6365): El tamanio de la lista es: 1.
+[INFO] 17:04:06:808 BROKER/(6354:6365): Se suscribió el proceso con id 6364 a la cola de mensajes 1
+[INFO] 17:04:49:464 BROKER/(6413:6413): Se conectó proceso al Broker
+[INFO] 17:04:54:540 BROKER/(6413:6425): El codigo de operacion es: 0.
+[INFO] 17:04:54:540 BROKER/(6413:6425): El tamanio del buffer es: 12.
+[INFO] 17:04:54:540 BROKER/(6413:6425): El id del suscriptor es: 6424.
+[INFO] 17:04:54:540 BROKER/(6413:6425): El socket del suscriptor es: 5.
+[INFO] 17:04:54:540 BROKER/(6413:6425): La cola a suscribirse es es: 1.
+[INFO] 17:04:54:540 BROKER/(6413:6425): El tiempo de suscripcion es: 10.
+[INFO] 17:04:54:540 BROKER/(6413:6425): Entre al switch
+[INFO] 17:04:54:540 BROKER/(6413:6425): El tamanio de la lista es: 1.
+[INFO] 17:04:54:540 BROKER/(6413:6425): Se suscribió el proceso con id 6424 a la cola de mensajes 1
+[INFO] 17:18:06:605 BROKER/(7026:7026): Se conectó proceso al Broker
+[INFO] 17:18:07:805 BROKER/(7026:7038): El codigo de operacion es: 0.
+[INFO] 17:18:07:805 BROKER/(7026:7038): El id del suscriptor es: 7037.
+[INFO] 17:18:07:805 BROKER/(7026:7038): El socket del suscriptor es: 5.
+[INFO] 17:18:07:805 BROKER/(7026:7038): La cola a suscribirse es es: 1.
+[INFO] 17:18:07:805 BROKER/(7026:7038): El tiempo de suscripcion es: 10.
+[INFO] 17:18:07:805 BROKER/(7026:7038): Entre al switch
+[INFO] 17:18:07:805 BROKER/(7026:7038): El tamanio de la lista es: 1.
+[INFO] 17:18:07:805 BROKER/(7026:7038): Se suscribió el proceso con id 7037 a la cola de mensajes 1
+[INFO] 17:20:15:437 BROKER/(7026:7166): El codigo de operacion es: 0.
+[INFO] 17:20:15:437 BROKER/(7026:7166): El id del suscriptor es: 7165.
+[INFO] 17:20:15:437 BROKER/(7026:7166): El socket del suscriptor es: 6.
+[INFO] 17:20:15:437 BROKER/(7026:7166): La cola a suscribirse es es: 1.
+[INFO] 17:20:15:437 BROKER/(7026:7166): El tiempo de suscripcion es: 10.
+[INFO] 17:20:15:437 BROKER/(7026:7166): Entre al switch
+[INFO] 17:20:15:437 BROKER/(7026:7166): El tamanio de la lista es: 1.
+[INFO] 17:20:15:437 BROKER/(7026:7166): Se suscribió el proceso con id 7165 a la cola de mensajes 1
+[INFO] 17:20:24:148 BROKER/(7026:7168): El codigo de operacion es: 0.
+[INFO] 17:20:24:148 BROKER/(7026:7168): El id del suscriptor es: 7167.
+[INFO] 17:20:24:148 BROKER/(7026:7168): El socket del suscriptor es: 7.
+[INFO] 17:20:24:148 BROKER/(7026:7168): La cola a suscribirse es es: 1.
+[INFO] 17:20:24:148 BROKER/(7026:7168): El tiempo de suscripcion es: 10.
+[INFO] 17:20:24:148 BROKER/(7026:7168): Entre al switch
+[INFO] 17:20:24:148 BROKER/(7026:7168): El tamanio de la lista es: 1.
+[INFO] 17:20:24:148 BROKER/(7026:7168): Se suscribió el proceso con id 7167 a la cola de mensajes 1
+[INFO] 17:20:50:485 BROKER/(7202:7202): Se conectó proceso al Broker
+[INFO] 17:21:01:186 BROKER/(7202:7213): El codigo de operacion es: 0.
+[INFO] 17:21:04:473 BROKER/(7202:7213): El id del suscriptor es: 7212.
+[INFO] 17:21:04:473 BROKER/(7202:7213): El socket del suscriptor es: 5.
+[INFO] 17:21:04:473 BROKER/(7202:7213): La cola a suscribirse es es: 1.
+[INFO] 17:21:04:473 BROKER/(7202:7213): El tiempo de suscripcion es: 10.
+[INFO] 17:21:04:473 BROKER/(7202:7213): Entre al switch
+[INFO] 17:26:01:299 BROKER/(7459:7459): Se conectó proceso al Broker
+[INFO] 17:26:07:358 BROKER/(7459:7469): El codigo de operacion es: 0.
+[INFO] 17:26:08:50 BROKER/(7459:7469): El id del suscriptor es: 7468.
+[INFO] 17:26:08:50 BROKER/(7459:7469): El socket del suscriptor es: 5.
+[INFO] 17:26:08:50 BROKER/(7459:7469): La cola a suscribirse es es: 1.
+[INFO] 17:26:08:50 BROKER/(7459:7469): El tiempo de suscripcion es: 10.
+[INFO] 17:26:24:928 BROKER/(7459:7469): Entre al switch
+[INFO] 17:33:31:780 BROKER/(7764:7764): Se conectó proceso al Broker
+[INFO] 17:33:34:720 BROKER/(7764:7771): El codigo de operacion es: 0.
+[INFO] 17:33:34:720 BROKER/(7764:7771): El id del suscriptor es: 7770.
+[INFO] 17:33:34:720 BROKER/(7764:7771): El socket del suscriptor es: 5.
+[INFO] 17:33:34:720 BROKER/(7764:7771): La cola a suscribirse es es: 1.
+[INFO] 17:33:34:720 BROKER/(7764:7771): El tiempo de suscripcion es: 10.
+[INFO] 17:33:34:720 BROKER/(7764:7771): Entre al switch
+[INFO] 17:33:34:720 BROKER/(7764:7771): El tamanio de la lista es: 1.
+[INFO] 17:33:34:720 BROKER/(7764:7771): Se suscribió el proceso con id 7770 a la cola de mensajes 1
+[INFO] 17:38:07:492 BROKER/(7954:7954): Se conectó proceso al Broker
+[INFO] 17:38:12:798 BROKER/(7954:8024): El codigo de operacion es: 0.
+[INFO] 17:38:12:798 BROKER/(7954:8024): El id del suscriptor es: 8023.
+[INFO] 17:38:12:798 BROKER/(7954:8024): El socket del suscriptor es: 5.
+[INFO] 17:38:12:798 BROKER/(7954:8024): La cola a suscribirse es es: 1.
+[INFO] 17:38:12:798 BROKER/(7954:8024): El tiempo de suscripcion es: 10.
+[INFO] 17:38:12:798 BROKER/(7954:8024): Entre al switch
+[INFO] 17:41:43:243 BROKER/(8186:8186): Se conectó proceso al Broker
+[INFO] 17:41:52:302 BROKER/(8186:8257): El codigo de operacion es: 0.
+[INFO] 17:41:52:302 BROKER/(8186:8257): El id del suscriptor es: 8256.
+[INFO] 17:41:52:302 BROKER/(8186:8257): El socket del suscriptor es: 5.
+[INFO] 17:41:52:302 BROKER/(8186:8257): La cola a suscribirse es es: 1.
+[INFO] 17:41:52:302 BROKER/(8186:8257): El tiempo de suscripcion es: 10.
+[INFO] 17:41:52:302 BROKER/(8186:8257): Entre al switch
+[INFO] 17:41:52:302 BROKER/(8186:8257): El tamanio de la lista es: 1.
+[INFO] 17:41:52:302 BROKER/(8186:8257): Se suscribió el proceso con id 8256 a la cola de mensajes 1
+[INFO] 17:42:03:493 BROKER/(8186:8259): El codigo de operacion es: 0.
+[INFO] 17:42:03:493 BROKER/(8186:8259): El id del suscriptor es: 8258.
+[INFO] 17:42:03:493 BROKER/(8186:8259): El socket del suscriptor es: 6.
+[INFO] 17:42:03:493 BROKER/(8186:8259): La cola a suscribirse es es: 1.
+[INFO] 17:42:03:493 BROKER/(8186:8259): El tiempo de suscripcion es: 8.
+[INFO] 17:42:03:493 BROKER/(8186:8259): Entre al switch
+[INFO] 17:42:03:493 BROKER/(8186:8259): El tamanio de la lista es: 2.
+[INFO] 17:42:03:493 BROKER/(8186:8259): Se suscribió el proceso con id 8258 a la cola de mensajes 1
+[INFO] 17:42:53:108 BROKER/(8186:8283): El codigo de operacion es: 0.
+[INFO] 17:42:53:108 BROKER/(8186:8283): El id del suscriptor es: 8282.
+[INFO] 17:42:53:108 BROKER/(8186:8283): El socket del suscriptor es: 7.
+[INFO] 17:42:53:108 BROKER/(8186:8283): La cola a suscribirse es es: 1.
+[INFO] 17:42:53:108 BROKER/(8186:8283): El tiempo de suscripcion es: 9.
+[INFO] 17:42:53:108 BROKER/(8186:8283): Entre al switch
+[INFO] 17:42:53:108 BROKER/(8186:8283): El tamanio de la lista es: 3.
+[INFO] 17:42:53:108 BROKER/(8186:8283): Se suscribió el proceso con id 8282 a la cola de mensajes 1

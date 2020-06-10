@@ -2,6 +2,7 @@
 
 int main(void)
 {
+	suscriptores_new_pokemon = list_create();
 	iniciar_servidor();
 
 	return 0;
