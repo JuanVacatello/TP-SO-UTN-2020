@@ -119,9 +119,31 @@ void agregar_pokemon(char* pokemon,int posX,int posY,int cantidad, char* path_fi
 		string_append(&path_pokemon, path_files);
 		string_append(&path_pokemon, "/");
 		string_append(&path_pokemon, pokemon);
-		mkdir(path_pokemon, 0777);
 
-		//FALTA COMPLETAR EL METADATA
+		if(existe_pokemon(path_files,pokemon)){ //FALTA IMPLEMENTAR EXISTE POKEMON
+			actualizar_valores_pokemon(path_pokemon,posX,posY,cantidad); //FALTA IMPLEMENTAR, TENDRIA QUE FUNCIONAR TANTO PARA SUMAR COMO RESTAR
+		}
+		else{
+
+			mkdir(path_pokemon, 0777);
+			string_append(&path_pokemon,"/");
+			string_append(&path_pokemon,"Metadata.bin");
+
+			FILE* metadata = txt_open_for_append(path_pokemon);
+
+			txt_write_in_file(metadata, "DIRECTORY=N\n");
+			txt_write_in_file(metadata, "SIZE=250\n");
+
+			char* bloque_asignado = obtener_siguiente_bloque(); //FALTA IMPLEMENTAR.OBTENER PROX BLOQUE FORMATO:[]
+			txt_write_in_file(metadata, bloque_asignado);
+			txt_write_in_file(metadata, "\n");
+
+			txt_write_in_file(metadata, "OPEN=N");
+			txt_close_file(metadata);
+
+			actualizar_valores_pokemon(path_pokemon,posX,posY,cantidad);
+
+		}
 }
 
 void obtener_bloque_pokemon(char* pokemon,char* path_files){
@@ -132,27 +154,18 @@ void obtener_bloque_pokemon(char* pokemon,char* path_files){
 	string_append(&path_metadata_pokemon,"/");
 	string_append(&path_metadata_pokemon,"Metadata.bin");
 
-	FILE* metadata = txt_open_for_append(path_metadata_pokemon);
+	FILE *metadata=NULL;
+	metadata = fopen(path_metadata_pokemon,"rb");
 
-		txt_write_in_file(metadata, "DIRECTORY=N\n");
-		txt_write_in_file(metadata, "SIZE=250\n");
-		txt_write_in_file(metadata, "BLOCKS=[40,21,82,3]\n");
-		txt_close_file(metadata);
-
-
-
-
-	FILE *metadata_lectura= fopen(path_metadata_pokemon,"rb");
-
-	if(metadata_lectura == NULL){
+	if(metadata == NULL){
 		printf("Error no se pudo abrir el file\n");
 	}
 	char* letra= string_new();
 	char palabra[12];
 
 
-	fseek(metadata_lectura, 28,SEEK_SET);
-	fread(palabra,12,1,metadata_lectura);
+	fseek(metadata, 28,SEEK_SET);
+	fread(palabra,12,1,metadata);
 
 	printf("%s \n" ,palabra);
 	char** vector =string_get_string_as_array(palabra);
