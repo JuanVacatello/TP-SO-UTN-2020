@@ -68,7 +68,6 @@ pthread_t thread;
 void serve_client(int *socket);
 void process_request(op_code cod_op, int socket_cliente);
 void* recibir_caught_pokemon(int socket_cliente, int* tamanio_paquete);
-void recibir_caught_pokemon_loggeo(int socket_cliente);
 
 void atender_suscripcion(int socket_cliente);
 proceso* modelar_proceso(int socket);
@@ -87,6 +86,10 @@ int recibir_operacion(int);
 void* serializar_paquete(t_paquete* paquete, int bytes);
 void devolver_mensaje(void* payload, int size, int socket_cliente);
 
-//void atenderMensajePrueba(int socket_cliente);
+/* Para probar:
+
+void recibir_caught_pokemon_loggeo(int socket_cliente);
+
+ */
 
 #endif /* CONEXIONES_H_ */

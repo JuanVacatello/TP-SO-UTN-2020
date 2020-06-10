@@ -57,9 +57,9 @@ void serve_client(int* socket)
 	if(recv(*socket, &cod_op, sizeof(op_code), MSG_WAITALL) == -1)
 		cod_op = -1;
 
-	if(cod_op != 0){
-		completar_logger("Llegó un nuevo mensaje a la cola de mensajes", "BROKER", LOG_LEVEL_INFO); // LOG OBLIGATORIO
-	}
+			if(cod_op != 0){
+				completar_logger("Llegó un nuevo mensaje a la cola de mensajes", "BROKER", LOG_LEVEL_INFO); // LOG OBLIGATORIO
+			}
 
 	char* mensaje = string_from_format("El codigo de operacion es: %d.", cod_op);
 	completar_logger(mensaje, "Broker", LOG_LEVEL_INFO);
@@ -76,14 +76,14 @@ void process_request(op_code cod_op, int socket_cliente) {
 			atender_suscripcion(socket_cliente);
 			break;
 		case 1:
-			recibir_new_pokemon(socket_cliente);
+			//recibir_new_pokemon_loggeo(socket_cliente); -> Para probar
 			break;
 		case 2:
 			break;
 		case 3:
 			break;
 		case 4:
-			//recibir_caught_pokemon_loggeo(socket_cliente);
+			//recibir_caught_pokemon_loggeo(socket_cliente); -> Para probar
 			a_enviar = recibir_caught_pokemon(socket_cliente,&tamanio_paquete); //el unico q anda bien xq no tiene pokemon
 
 			for(int i = 0; i < list_size(caughtPokemon->suscriptores); i++){
@@ -91,6 +91,7 @@ void process_request(op_code cod_op, int socket_cliente) {
 				int socket_suscriptor = suscriptor->socket_cliente;
 				send(socket_suscriptor,a_enviar,tamanio_paquete,0);
 			}
+
 			break;
 		case 5:
 			break;
@@ -164,6 +165,7 @@ void suscribirse_a_cola(proceso* suscriptor, int socket, uint32_t tamanio_buffer
 			char* m = string_from_format("El tiempo de suscripcion es: %d.", tiempo_de_suscripcion);
 			completar_logger(m, "BROKER", LOG_LEVEL_INFO);
 		}
+
 	int size;
 	char* m5;
 
@@ -203,26 +205,6 @@ void suscribirse_a_cola(proceso* suscriptor, int socket, uint32_t tamanio_buffer
 
 }
 
-void recibir_caught_pokemon_loggeo(int socket_cliente){
-	uint32_t tamanio_buffer;
-	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
-
-	char* m1 = string_from_format("El tamanio del buffer es: %d.", tamanio_buffer);
-	completar_logger(m1, "BROKER", LOG_LEVEL_INFO);
-
-	uint32_t id_mensaje_correlativo;
-	recv(socket_cliente, &id_mensaje_correlativo, sizeof(uint32_t), MSG_WAITALL);
-
-	char* m2 = string_from_format("El id_mensaje_correlativo es: %d.", id_mensaje_correlativo);
-	completar_logger(m2, "BROKER", LOG_LEVEL_INFO);
-
-	uint32_t se_pudo_atrapar;
-	recv(socket_cliente, &se_pudo_atrapar, sizeof(uint32_t), MSG_WAITALL);
-
-	char* m3 = string_from_format("Ese_pudo_atrapar: %d.", se_pudo_atrapar);
-	completar_logger(m3, "BROKER", LOG_LEVEL_INFO);
-}
-
 void* recibir_caught_pokemon(int socket_cliente, int* tamanio_paquete){
 //abrirlo y meterlo en otro paquete, serializarlo y mandarlo. no se si esta bien esto:
 
@@ -241,43 +223,38 @@ void* recibir_caught_pokemon(int socket_cliente, int* tamanio_paquete){
 	return a_enviar;
 }
 
-void recibir_new_pokemon(int socket_cliente)
+void recibir_new_pokemon_loggeo(int socket_cliente)
 {
 	uint32_t tamanio_buffer;
 	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
-	char* m1 = string_from_format("El tamanio del buffer es: %d.", tamanio_buffer);
-	completar_logger(m1, "BROKER", LOG_LEVEL_INFO);
+	void* buffer = malloc(tamanio_buffer);
+
+		char* m1 = string_from_format("El tamanio del buffer es: %d.", tamanio_buffer);
+		completar_logger(m1, "BROKER", LOG_LEVEL_INFO);
 
 	uint32_t caracteresPokemon;
 	recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
 
-	char* m2 = string_from_format("Los caracteres de pokemon son: %d.", caracteresPokemon);
-	completar_logger(m2, "BROKER", LOG_LEVEL_INFO);
+		char* m2 = string_from_format("Los caracteres de pokemon son: %d.", caracteresPokemon);
+		completar_logger(m2, "BROKER", LOG_LEVEL_INFO);
+
+	char* pokemon = (char*)malloc(caracteresPokemon);
+	recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
+
+		completar_logger(pokemon, "BROKER", LOG_LEVEL_INFO);
+			//int retorno = recv(socket_cliente, &pokemon, sizeof(caracteresPokemon), MSG_WAITALL);
+			//char* m6 = string_from_format("Retorno: %d.", retorno);
+			//completar_logger(m6, "BROKER", LOG_LEVEL_INFO);
 
 	uint32_t posX;
 	recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
 
-	char* m3 = string_from_format("La posicion en X es: %d", posX);
-	completar_logger(m3, "BROKER", LOG_LEVEL_INFO);
-
 	uint32_t posY;
 	recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
 
-	char* m4 = string_from_format("La posicion en Y es: %d", posY);
-	completar_logger(m4, "BROKER", LOG_LEVEL_INFO);
-
 	uint32_t cantidad;
 	recv(socket_cliente, &cantidad, sizeof(uint32_t), MSG_WAITALL);
-
-	char* m5 = string_from_format("La cantidad de pokemons es: %d.", cantidad);
-	completar_logger(m5, "BROKER", LOG_LEVEL_INFO);
-
-	char* pokemon;
-		int retorno = recv(socket_cliente, &pokemon, sizeof(caracteresPokemon), MSG_WAITALL);
-		char* m6 = string_from_format("Retorno: %d.", retorno);
-		completar_logger(m6, "BROKER", LOG_LEVEL_INFO);
-	completar_logger(pokemon, "BROKER", LOG_LEVEL_INFO);
 
 	/*
 	t_paquete* paquete = malloc(sizeof(t_paquete));
@@ -289,24 +266,6 @@ void recibir_new_pokemon(int socket_cliente)
 	recv(socket_cliente, &(paquete->buffer->size), sizeof(int), MSG_WAITALL);
 */
 }
-
-/* mensaje prueba
-
-void atenderMensajePrueba(int socket_cliente){
-	uint32_t tamanio_buffer;
-	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
-
-	uint32_t numero;
-
-	recv(socket_cliente, &numero, tamanio_buffer, MSG_WAITALL);
-
-	char* mensajeTamanio = string_from_format("El tamanio es: %d.", tamanio_buffer);
-	completar_logger(mensajeTamanio, "Broker", LOG_LEVEL_INFO);
-
-	char* mensajeNumero = string_from_format("El numero es: %d.", numero);
-	completar_logger(mensajeNumero, "Broker", LOG_LEVEL_INFO);
-
-} */
 
 
 void* serializar_paquete(t_paquete* paquete, int bytes)
@@ -345,3 +304,79 @@ void devolver_mensaje(void* payload, int size, int socket_cliente)
 	free(paquete->buffer);
 	free(paquete);
 }
+
+/* Para probar:
+
+ void recibir_caught_pokemon_loggeo(int socket_cliente){
+	uint32_t tamanio_buffer;
+	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
+
+	char* m1 = string_from_format("El tamanio del buffer es: %d.", tamanio_buffer);
+	completar_logger(m1, "BROKER", LOG_LEVEL_INFO);
+
+	uint32_t id_mensaje_correlativo;
+	recv(socket_cliente, &id_mensaje_correlativo, sizeof(uint32_t), MSG_WAITALL);
+
+	char* m2 = string_from_format("El id_mensaje_correlativo es: %d.", id_mensaje_correlativo);
+	completar_logger(m2, "BROKER", LOG_LEVEL_INFO);
+
+	uint32_t se_pudo_atrapar;
+	recv(socket_cliente, &se_pudo_atrapar, sizeof(uint32_t), MSG_WAITALL);
+
+	char* m3 = string_from_format("Ese_pudo_atrapar: %d.", se_pudo_atrapar);
+	completar_logger(m3, "BROKER", LOG_LEVEL_INFO);
+}
+
+void recibir_new_pokemon_loggeo(int socket_cliente)
+{
+	uint32_t tamanio_buffer;
+	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
+
+	void* buffer = malloc(tamanio_buffer);
+
+		char* m1 = string_from_format("El tamanio del buffer es: %d.", tamanio_buffer);
+		completar_logger(m1, "BROKER", LOG_LEVEL_INFO);
+
+	uint32_t caracteresPokemon;
+	recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
+
+		char* m2 = string_from_format("Los caracteres de pokemon son: %d.", caracteresPokemon);
+		completar_logger(m2, "BROKER", LOG_LEVEL_INFO);
+
+	char* pokemon = (char*)malloc(caracteresPokemon);
+	recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
+
+		completar_logger(pokemon, "BROKER", LOG_LEVEL_INFO);
+			//int retorno = recv(socket_cliente, &pokemon, sizeof(caracteresPokemon), MSG_WAITALL);
+			//char* m6 = string_from_format("Retorno: %d.", retorno);
+			//completar_logger(m6, "BROKER", LOG_LEVEL_INFO);
+
+	uint32_t posX;
+	recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
+
+	char* m3 = string_from_format("La posicion en X es: %d", posX);
+	completar_logger(m3, "BROKER", LOG_LEVEL_INFO);
+
+	uint32_t posY;
+	recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
+
+	char* m4 = string_from_format("La posicion en Y es: %d", posY);
+	completar_logger(m4, "BROKER", LOG_LEVEL_INFO);
+
+	uint32_t cantidad;
+	recv(socket_cliente, &cantidad, sizeof(uint32_t), MSG_WAITALL);
+
+	char* m5 = string_from_format("La cantidad de pokemons es: %d.", cantidad);
+	completar_logger(m5, "BROKER", LOG_LEVEL_INFO);
+
+
+	t_paquete* paquete = malloc(sizeof(t_paquete));
+	paquete->codigo_operacion = NEW_POKEMON;
+	completar_logger("recibo new pokemon","Broker",LOG_LEVEL_INFO);
+
+	paquete->buffer = malloc(sizeof(t_buffer));
+
+	recv(socket_cliente, &(paquete->buffer->size), sizeof(int), MSG_WAITALL);
+
+}
+*/
