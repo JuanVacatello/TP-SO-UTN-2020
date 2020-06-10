@@ -149,6 +149,9 @@ void* iniciar_paquete_serializado_NewPokemon(int* tamanio_paquete,char* argv[]){
 		memcpy(stream + offset, &caracteresPokemon, sizeof(uint32_t));
 		offset += sizeof(uint32_t);
 
+		memcpy(stream + offset, pokemon, caracteresPokemon);
+		offset += caracteresPokemon;
+
 		memcpy(stream + offset, &posX, sizeof(uint32_t));
 		offset += sizeof(uint32_t);
 
@@ -156,9 +159,6 @@ void* iniciar_paquete_serializado_NewPokemon(int* tamanio_paquete,char* argv[]){
 		offset += sizeof(uint32_t);
 
 		memcpy(stream + offset, &cantidad_pokemon, sizeof(uint32_t));
-		offset += sizeof(uint32_t);
-
-		memcpy(stream + offset, &pokemon, 8);
 
 	paquete->buffer->stream = stream;
 
