@@ -31,7 +31,7 @@ typedef struct
 {
 	int id;
 	int socket_cliente;
-}proceso;
+} proceso;
 
 typedef struct
 {
@@ -51,6 +51,15 @@ typedef struct
 	t_paquete mensajes[]; // LOS MENSAJES LLEVAN ID E ID CORRELATIVO POR LO QUE NO SERAN UNA LISTA T_PAQUETE
 
 } cola_mensaje;
+
+t_list* suscriptores_new_pokemon;
+
+cola_mensaje* newPokemon;
+cola_mensaje* appearedPokemon;
+cola_mensaje* catchPokemon;
+cola_mensaje* caughtPokemon;
+cola_mensaje* getPokemon;
+cola_mensaje* localizedPokemon;
 
 t_buffer* buffer;
 

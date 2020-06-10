@@ -2,13 +2,9 @@
 
 #include <pthread.h>
 
-int cantidadProcesosregistrados = 0;
-cola_mensaje newPokemon, appearedPokemon, catchPokemon, caughtPokemon, getPokemon, localizedPokemon;
-
 void iniciar_servidor(void)
 {
 	iniciar_logger();
-	completar_logger("me creo","BROKER",LOG_LEVEL_INFO);
 	int socket_servidor;
     struct addrinfo hints, *servinfo, *p;
 
@@ -35,9 +31,9 @@ void iniciar_servidor(void)
 		exit(6);
 	}
 
-    freeaddrinfo(servinfo);
+	completar_logger("Se conectó proceso al Broker", "BROKER", LOG_LEVEL_INFO); // LOG OBLIGATORIO
 
-    completar_logger("termino de establecer socket","BROKER",LOG_LEVEL_INFO);
+    freeaddrinfo(servinfo);
 
     while(1)
     	esperar_cliente(socket_servidor); // hacerlo con select, NUNCA ESPERA ACTIVA
@@ -57,11 +53,13 @@ void esperar_cliente(int socket_servidor)
 
 void serve_client(int* socket)
 {
-	completar_logger("Se conectó proceso al Broker", "BROKER", LOG_LEVEL_INFO); // LOG OBLIGATORIO
-
 	op_code cod_op;
 	if(recv(*socket, &cod_op, sizeof(op_code), MSG_WAITALL) == -1)
 		cod_op = -1;
+
+	if(cod_op != 0){
+		completar_logger("Llegó un nuevo mensaje a la cola de mensajes", "BROKER", LOG_LEVEL_INFO); // LOG OBLIGATORIO
+	}
 
 	char* mensaje = string_from_format("El codigo de operacion es: %d.", cod_op);
 	completar_logger(mensaje, "Broker", LOG_LEVEL_INFO);
@@ -85,11 +83,11 @@ void process_request(op_code cod_op, int socket_cliente) {
 		case 3:
 			break;
 		case 4:
-			recibir_caught_pokemon_loggeo(socket_cliente);
+			//recibir_caught_pokemon_loggeo(socket_cliente);
 			a_enviar = recibir_caught_pokemon(socket_cliente,&tamanio_paquete); //el unico q anda bien xq no tiene pokemon
 
-			for(int i = 0; i < list_size(caughtPokemon.suscriptores); i++){
-				proceso* suscriptor = list_get(caughtPokemon.suscriptores, i);
+			for(int i = 0; i < list_size(caughtPokemon->suscriptores); i++){
+				proceso* suscriptor = list_get(caughtPokemon->suscriptores, i);
 				int socket_suscriptor = suscriptor->socket_cliente;
 				send(socket_suscriptor,a_enviar,tamanio_paquete,0);
 			}
@@ -121,52 +119,82 @@ void process_request(op_code cod_op, int socket_cliente) {
 void atender_suscripcion(int socket_cliente)
 {
 	proceso* suscriptor = modelar_proceso(socket_cliente);
+
+	char* m = string_from_format("El id del suscriptor es: %d.", suscriptor->id);
+	completar_logger(m, "BROKER", LOG_LEVEL_INFO);
+
+	char* m2 = string_from_format("El socket del suscriptor es: %d.", suscriptor->socket_cliente);
+	completar_logger(m2, "BROKER", LOG_LEVEL_INFO);
+
 	suscribirse_a_cola(suscriptor, socket_cliente);
 }
 
 proceso* modelar_proceso(int socket){
 	proceso* suscriptor = malloc(sizeof(proceso));
+
 	uint32_t tamanio_buffer;
 	recv(socket, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL); // no se que hacer con esto
 
 	recv(socket, &(suscriptor->id), sizeof(uint32_t), MSG_WAITALL);
 	suscriptor->socket_cliente = socket;
+
+	char* m = string_from_format("El tamanio del buffer es: %d.", tamanio_buffer);
+	completar_logger(m, "BROKER", LOG_LEVEL_INFO);
+
 	return suscriptor;
 }
 
 void suscribirse_a_cola(proceso* suscriptor, int socket){
+
 	uint32_t cola_a_suscribirse;
 	recv(socket, &cola_a_suscribirse, sizeof(uint32_t), MSG_WAITALL);
 
-	//for(int cantidad_colas = size/sizeof(op_code); cantidad_colas >0; cantidad_colas--){
-	//	op_code cola_mensaje;
-	//	recv(socket, &cola_mensaje,sizeof(op_code), MSG_WAITALL);
+	char* m1 = string_from_format("La cola a suscribirse es es: %d.", cola_a_suscribirse);
+	completar_logger(m1, "BROKER", LOG_LEVEL_INFO);
+
+	uint32_t tiempo_de_suscripcion; // no se que hacer con esto
+	recv(socket, &tiempo_de_suscripcion, sizeof(uint32_t), MSG_WAITALL);
+
+	char* m = string_from_format("El tiempo de suscripcion es: %d.", tiempo_de_suscripcion);
+	completar_logger(m, "BROKER", LOG_LEVEL_INFO);
+
+	int size;
+	char* m5;
+	int elemento_agregado;
 
 	switch(cola_a_suscribirse){
 		case 0:
 			break; //OPCION SUSCRIBIRSE
 		case 1:
-			list_add(newPokemon.suscriptores, suscriptor);
+			completar_logger("Entre al switch", "BROKER", LOG_LEVEL_INFO);
+
+			list_add(suscriptores_new_pokemon, suscriptor);
+
+			size = list_size(suscriptores_new_pokemon);
+			m5 = string_from_format("El tamanio de la lista es: %d.", size);
+			completar_logger(m5, "BROKER", LOG_LEVEL_INFO);
+
 			break;
 		case 2:
-			list_add(appearedPokemon.suscriptores, suscriptor);
+			list_add(appearedPokemon->suscriptores, suscriptor);
 			break;
 		case 3:
-			list_add(catchPokemon.suscriptores, suscriptor);
+			list_add(catchPokemon->suscriptores, suscriptor);
 			break;
 		case 4:
-			list_add(caughtPokemon.suscriptores, suscriptor);
+			list_add(caughtPokemon->suscriptores, suscriptor);
 			break;
 		case 5:
-			list_add(getPokemon.suscriptores, suscriptor);
+			list_add(getPokemon->suscriptores, suscriptor);
 			break;
 		case 6:
-			list_add(localizedPokemon.suscriptores, suscriptor);
+			list_add(localizedPokemon->suscriptores, suscriptor);
 			break;
-		}
+	}
 
-	uint32_t tiempo_de_suscripcion; // no se que hacer con esto
-	recv(socket, &tiempo_de_suscripcion, sizeof(uint32_t), MSG_WAITALL);
+	char* log = string_from_format("Se suscribió el proceso con id %d a la cola de mensajes %d", suscriptor->id, cola_a_suscribirse);
+	completar_logger(log, "BROKER", LOG_LEVEL_INFO); //LOG OBLIGATORIO
+
 }
 
 void recibir_caught_pokemon_loggeo(int socket_cliente){

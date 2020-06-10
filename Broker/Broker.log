@@ -8,3 +8,11 @@
 [INFO] 23:13:55:601 BROKER/(7846:7853): La cantidad de pokemons es: 4.
 [INFO] 23:13:55:601 BROKER/(7846:7853): Retorno: 4.
 
+[INFO] 13:44:26:797 BROKER/(8458:8458): Se conectó proceso al Broker
+[INFO] 13:44:31:329 BROKER/(8458:8466): El codigo de operacion es: 0.
+[INFO] 13:44:31:329 BROKER/(8458:8466): El tamanio del buffer es: 12.
+[INFO] 13:44:31:330 BROKER/(8458:8466): El id del suscriptor es: 8465.
+[INFO] 13:44:31:330 BROKER/(8458:8466): El socket del suscriptor es: 5.
+[INFO] 13:44:31:330 BROKER/(8458:8466): La cola a suscribirse es es: 1.
+[INFO] 13:44:31:330 BROKER/(8458:8466): El tiempo de suscripcion es: 2.
+[INFO] 13:44:31:330 BROKER/(8458:8466): Entre al switch
