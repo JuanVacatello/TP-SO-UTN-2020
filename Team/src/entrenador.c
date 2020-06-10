@@ -2,6 +2,7 @@
 #include "entrenador.h"
 #include "movimiento.h"
 #include "utils.h"
+#include "conexiones.h"
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -11,6 +12,7 @@
 #include<commons/collections/list.h>
 #include<readline/readline.h>
 #include<stdbool.h>
+#include<string.h>
 
 
 
@@ -210,7 +212,7 @@ void ejecutar_entrenador(t_entrenador* entrenador){
 	}
 	entrenador->estado = BLOCKED;// Hay que ver si termina aca
 
-	enviar_mensaje_a_broker(socket_conexion_broker, 3 , entrenador); //HABRIA QUE VER SI ES VG EL SOCKET
+//	enviar_mensaje_a_broker(socket_conexion_broker, 3 , entrenador); //HABRIA QUE VER SI ES VG EL SOCKET
 }
 
 void atrapar_pokemon(t_entrenador* entrenador){
@@ -238,12 +240,76 @@ void puede_seguir_atrapando(t_entrenador* entrenador){
 
 bool termino_de_atrapar(t_entrenador* entrenador){
 
-	//LISTA DE OBJETIVOS MISMOS POKEMONES Y CANTIDADES QUE LISTA ATRAPADOS
-	return true;
+	int tamanio_lista_objetivo = list_size(entrenador->objetivo);
+	int tamanio_lista_atrapados = list_size(entrenador->atrapados);
+	int contador_atrapados = 0;
+	t_pokemon* pokemon;
+
+	if(tamanio_lista_objetivo == tamanio_lista_atrapados){
+
+	for (int indice_pokemon=0; indice_pokemon<list_size(entrenador->objetivo); indice_pokemon++){
+		pokemon = list_get(entrenador->objetivo, indice_pokemon);
+		if (termino_con_pokemon(entrenador, pokemon)){
+			contador_atrapados++;
+		}
+
+	}
+
+		if(contador_atrapados == tamanio_lista_objetivo){
+			return true;
+		}
+		else{
+			return false;
+		}
+
+
+	}
+
+	else{
+		return false;
+	}
+
 }
 
 
+bool termino_con_pokemon(t_entrenador* entrenador, t_pokemon* pokemon){
 
+	t_pokemon* pokemon_auxiliar;
+	int cantidad_objetivo = 0;
+	int cantidad_atrapados = 0;
+
+	//Recorremos la lista de objetivos del entrenador para saber cuantos pokemon de
+	//determinada especie necesita en total
+
+	for (int indice_pokemon=0; indice_pokemon<list_size(entrenador->objetivo); indice_pokemon++){
+
+		pokemon_auxiliar = list_get(entrenador->objetivo, indice_pokemon);
+
+		if(strcmp(pokemon_auxiliar->especie, pokemon->especie)==0){
+			cantidad_objetivo++;
+		}
+
+	}
+
+	//Recorremos la lista de atrapados para saber si ya tiene a todos los que necesita
+
+	for (int indice_pokemon=0; indice_pokemon<list_size(entrenador->objetivo); indice_pokemon++){
+
+			pokemon_auxiliar = list_get(entrenador->atrapados, indice_pokemon);
+
+			if(strcmp(pokemon_auxiliar->especie, pokemon->especie)==0){
+				cantidad_atrapados++;
+			}
+
+		}
+
+	if(cantidad_atrapados >= cantidad_objetivo){
+		return true;
+	}
+	else{
+	return false;
+	}
+}
 
 
 

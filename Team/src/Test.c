@@ -20,8 +20,8 @@ int main(void) {
 		leer_config();
 		iniciar_logger();
 
-		char* puerto = obtener_puerto_broker();
-		char* ip = obtener_ip_broker();
+		puerto = obtener_puerto();
+		ip = obtener_ip();
 
 		socket_conexion_broker = crear_conexion(ip,puerto);
 

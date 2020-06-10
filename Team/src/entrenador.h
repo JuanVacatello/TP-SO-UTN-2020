@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <stdint.h>
 #include<commons/collections/list.h>
 #include<commons/collections/queue.h>
 #include<commons/config.h>
@@ -72,6 +73,7 @@ int sacar_distancia(t_posicion pokeposicion,t_posicion entreposicion);
 bool puede_atrapar(t_entrenador* entrenador);
 void ejecutar_entrenador(t_entrenador* entrenador);
 bool termino_de_atrapar(t_entrenador* entrenador);
+bool termino_con_pokemon(t_entrenador* entrenador, t_pokemon* pokemon);
 
 
 #endif /* ENTRENADOR_H_ */

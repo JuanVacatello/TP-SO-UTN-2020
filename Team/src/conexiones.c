@@ -186,7 +186,7 @@ void enviar_suscripcion_a_cola(int socket_cliente, int cola) //HAY QUE VER ESTE 
 	int tamanio_paquete = 0;
 	void* a_enviar;
 
-	void* a_enviar = suscribirse_a_cola(socket_cliente, cola);
+	a_enviar = suscribirse_a_cola(socket_cliente, cola);
 
 	send(socket_cliente,a_enviar,tamanio_paquete,0);
 	free(a_enviar);
@@ -264,7 +264,7 @@ void* iniciar_paquete_serializado_CatchPokemon(int* tamanio_paquete,t_entrenador
 						// TAMAÑO STREAM + OP CODE + VARIABLE SIZE
 	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
 
-	void* a_enviar = serializar_paquete(paquete,tamanio_paquete)
+	void* a_enviar = serializar_paquete(paquete,tamanio_paquete);
 
 	free(stream);
 	free(paquete->buffer);
