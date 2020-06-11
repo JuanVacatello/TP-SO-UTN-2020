@@ -94,7 +94,7 @@ void* suscribirse_a_cola(int* tamanio_paquete,char* argv[]){
 	paquete->codigo_operacion = SUSCRIPTOR;
 	paquete->buffer = malloc(sizeof(t_buffer));
 
-	uint32_t proccess_id = getpid();//obtener_id_propio();
+	uint32_t proccess_id = obtener_id_propio(); //getpid();
 	uint32_t cola;
 	sscanf(argv[2], "%d", &cola);
 	uint32_t tiempo_de_suscripcion;
@@ -183,38 +183,38 @@ void* iniciar_paquete_serializado_AppearedPokemon(int* tamanio_paquete,char* arg
 	paquete->buffer = malloc(sizeof(t_buffer));
 
 	char* pokemon = argv[3];
-	int caracteresPokemon = strlen(pokemon) + 1;
-	int posX;
+	uint32_t caracteresPokemon = strlen(pokemon) + 1;
+	uint32_t posX;
 	sscanf(argv[4], "%d",&posX);
-	int posY ;
+	uint32_t posY ;
 	sscanf(argv[5], "%d",&posY);
-	int id_mensaje_correlativo;
+	uint32_t id_mensaje_correlativo;
 	sscanf(argv[6], "%d",&id_mensaje_correlativo); //el id lo definimos nosotros y debe ser único
 
 						//INT CARACTERES + POKEMON + POSX + POSY + ID_MENSAJE_CORRELATIVO
-	paquete->buffer->size =sizeof(int) + caracteresPokemon +sizeof(int)+sizeof(int)+sizeof(int);
+	paquete->buffer->size =sizeof(uint32_t) + caracteresPokemon +sizeof(uint32_t)+sizeof(uint32_t)+sizeof(uint32_t);
 	void* stream = malloc(paquete->buffer->size);
 	int offset = 0;
 
-		memcpy(stream + offset, &caracteresPokemon, sizeof(int));
-		offset += sizeof(int);
+		memcpy(stream + offset, &caracteresPokemon, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
 
-		memcpy(stream + offset, &pokemon, caracteresPokemon);
-		offset +=caracteresPokemon;
+		memcpy(stream + offset, pokemon, caracteresPokemon);
+		offset += caracteresPokemon;
 
-		memcpy(stream + offset, &posX, sizeof(int));
-		offset += sizeof(int);
+		memcpy(stream + offset, &posX, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
 
-		memcpy(stream + offset, &posY, sizeof(int));
-		offset += sizeof(int);
+		memcpy(stream + offset, &posY, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
 
-		memcpy(stream + offset, &id_mensaje_correlativo, sizeof(int));
-		offset += sizeof(int);
+		memcpy(stream + offset, &id_mensaje_correlativo, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
 
 		paquete->buffer->stream = stream;
 
 						// TAMAÑO STREAM + OP CODE + VARIABLE SIZE
-	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(int);
+	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
 	void* a_enviar = serializar_paquete(paquete, tamanio_paquete);
 
 	free(stream);
@@ -236,33 +236,33 @@ void* iniciar_paquete_serializado_CatchPokemon(int* tamanio_paquete,char* argv[]
 	paquete->buffer = malloc(sizeof(t_buffer));
 
 	char* pokemon = argv[3];
-	int caracteresPokemon = strlen(pokemon) + 1;
-	int posX;
+	uint32_t caracteresPokemon = strlen(pokemon) + 1;
+	uint32_t posX;
 	sscanf(argv[4], "%d",&posX);
-	int posY ;
+	uint32_t posY ;
 	sscanf(argv[5], "%d",&posY);
 
 						//INT CARACTERES + POKEMON + POSX + POSY
-	paquete->buffer->size = sizeof(int) + caracteresPokemon + sizeof(int) + sizeof(int);
+	paquete->buffer->size = sizeof(uint32_t) + caracteresPokemon + sizeof(uint32_t) + sizeof(uint32_t);
 	void* stream = malloc(paquete->buffer->size);
 	int offset = 0;
 
-		memcpy(stream + offset, &caracteresPokemon, sizeof(int));
-		offset += sizeof(int);
+		memcpy(stream + offset, &caracteresPokemon, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
 
-		memcpy(stream + offset, &pokemon, caracteresPokemon);
-		offset +=caracteresPokemon;
+		memcpy(stream + offset, pokemon, caracteresPokemon);
+		offset += caracteresPokemon;
 
-		memcpy(stream + offset, &posX, sizeof(int));
-		offset += sizeof(int);
+		memcpy(stream + offset, &posX, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
 
-		memcpy(stream + offset, &posY, sizeof(int));
-		offset += sizeof(int);
+		memcpy(stream + offset, &posY, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
 
 		paquete->buffer->stream = stream;
 
 						// TAMAÑO STREAM + OP CODE + VARIABLE SIZE
-	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(int);
+	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
 	void* a_enviar = serializar_paquete(paquete, tamanio_paquete);
 
 	free(stream);
@@ -320,23 +320,23 @@ void* iniciar_paquete_serializado_GetPokemon(int* tamanio_paquete,char* argv[]){
 	paquete->buffer = malloc(sizeof(t_buffer));
 
 	char* pokemon = argv[3];
-	int caracteresPokemon = strlen(pokemon) + 1;
+	uint32_t caracteresPokemon = strlen(pokemon) + 1;
 
 						//INT CARACTERES + POKEMON
-	paquete->buffer->size = sizeof(int) + caracteresPokemon;
+	paquete->buffer->size = sizeof(uint32_t) + caracteresPokemon;
 	void* stream = malloc(paquete->buffer->size);
 	int offset = 0;
 
-		memcpy(stream + offset, &caracteresPokemon, sizeof(int));
-		offset += sizeof(int);
+		memcpy(stream + offset, &caracteresPokemon, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
 
-		memcpy(stream + offset, &pokemon, caracteresPokemon);
-		offset +=caracteresPokemon;
+		memcpy(stream + offset, pokemon, caracteresPokemon);
+		offset += caracteresPokemon;
 
 		paquete->buffer->stream = stream;
 
 						// TAMAÑO STREAM + OP CODE + VARIABLE SIZE
-	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(int);
+	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
 	void* a_enviar = serializar_paquete(paquete, tamanio_paquete);
 
 	free(stream);
@@ -373,33 +373,33 @@ void* iniciar_paquete_serializado_AppearedPokemonTeam(int* tamanio_paquete,char*
 	paquete->buffer = malloc(sizeof(t_buffer));
 
 	char* pokemon = argv[3];
-	int caracteresPokemon = strlen(pokemon) + 1;
-	int posX;
+	uint32_t caracteresPokemon = strlen(pokemon) + 1;
+	uint32_t posX;
 	sscanf(argv[4], "%d",&posX);
-	int posY ;
+	uint32_t posY ;
 	sscanf(argv[5], "%d",&posY);
 
 							//INT CARACTERES + POKEMON + POSX + POSY
-	paquete->buffer->size = sizeof(int) + caracteresPokemon +sizeof(int)+sizeof(int);
+	paquete->buffer->size = sizeof(uint32_t) + caracteresPokemon +sizeof(uint32_t)+sizeof(uint32_t);
 	void* stream = malloc(paquete->buffer->size);
 	int offset = 0;
 
 		memcpy(stream + offset, &caracteresPokemon, sizeof(int));
-		offset += sizeof(int);
+		offset += sizeof(uint32_t);
 
-		memcpy(stream + offset, &pokemon, caracteresPokemon);
+		memcpy(stream + offset, pokemon, caracteresPokemon);
 		offset +=caracteresPokemon;
 
-		memcpy(stream + offset, &posX, sizeof(int));
-		offset += sizeof(int);
+		memcpy(stream + offset, &posX, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
 
-		memcpy(stream + offset, &posY, sizeof(int));
-		offset += sizeof(int);
+		memcpy(stream + offset, &posY, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
 
 		paquete->buffer->stream = stream;
 
 						// TAMAÑO STREAM + OP CODE + VARIABLE SIZE
-	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(int);
+	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
 	void* a_enviar = serializar_paquete(paquete, tamanio_paquete);
 
 	free(stream);
@@ -451,43 +451,43 @@ void* iniciar_paquete_serializado_NewPokemonGC(int* tamanio_paquete,char* argv[]
 	paquete->buffer = malloc(sizeof(t_buffer));
 
 	char* pokemon = argv[3];
-	int caracteresPokemon = strlen(pokemon) + 1;
-	int posX;
+	uint32_t caracteresPokemon = strlen(pokemon) + 1;
+	uint32_t posX;
 	sscanf(argv[4], "%d",&posX);
-	int posY;
+	uint32_t posY;
 	sscanf(argv[5], "%d",&posY);
-	int cantidad_pokemon;
+	uint32_t cantidad_pokemon;
 	sscanf(argv[6], "%d",&cantidad_pokemon);
-	int id_mensaje;
+	uint32_t id_mensaje;
 	sscanf(argv[7], "%d",&id_mensaje);
 
 						//INT CARACTERES + POKEMON + POSX + POSY + CANTIDAD + ID MENSAJE
-	paquete->buffer->size =sizeof(int) + caracteresPokemon +sizeof(int)+sizeof(int)+sizeof(int)+sizeof(int);
+	paquete->buffer->size =sizeof(uint32_t) + caracteresPokemon +sizeof(uint32_t)+sizeof(uint32_t)+sizeof(uint32_t)+sizeof(uint32_t);
 	void* stream = malloc(paquete->buffer->size);
 	int offset = 0;
 
-		memcpy(stream + offset, &caracteresPokemon, sizeof(int));
-		offset += sizeof(int);
+		memcpy(stream + offset, &caracteresPokemon, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
 
-		memcpy(stream + offset, &pokemon, caracteresPokemon);
-		offset +=caracteresPokemon;
+		memcpy(stream + offset, pokemon, caracteresPokemon);
+		offset += caracteresPokemon;
 
-		memcpy(stream + offset, &posX, sizeof(int));
-		offset += sizeof(int);
+		memcpy(stream + offset, &posX, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
 
-		memcpy(stream + offset, &posY, sizeof(int));
-		offset += sizeof(int);
+		memcpy(stream + offset, &posY, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
 
-		memcpy(stream + offset, &cantidad_pokemon, sizeof(int));
-		offset += sizeof(int);
+		memcpy(stream + offset, &cantidad_pokemon, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
 
-		memcpy(stream + offset, &id_mensaje, sizeof(int));
-		offset += sizeof(int);
+		memcpy(stream + offset, &id_mensaje, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
 
 		paquete->buffer->stream = stream;
 
 							// TAMAÑO STREAM + OP CODE + VARIABLE SIZE
-	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(int);
+	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
 	void* a_enviar = serializar_paquete(paquete, tamanio_paquete);
 
 	free(stream);
@@ -502,44 +502,42 @@ void* iniciar_paquete_serializado_NewPokemonGC(int* tamanio_paquete,char* argv[]
 void* iniciar_paquete_serializado_CatchPokemonGC(int* tamanio_paquete,char* argv[]){
 
 	t_paquete* paquete = malloc(sizeof(t_paquete));
-
 	paquete->codigo_operacion = CATCH_POKEMON;
-
 	paquete->buffer = malloc(sizeof(t_buffer));
 
 	char* pokemon = argv[3];
-	int caracteresPokemon = strlen(pokemon) + 1;
-	int posX;
+	uint32_t caracteresPokemon = strlen(pokemon) + 1;
+	uint32_t posX;
 	sscanf(argv[4], "%d",&posX);
-	int posY ;
+	uint32_t posY ;
 	sscanf(argv[5], "%d",&posY);
-	int id_mensaje;
+	uint32_t id_mensaje;
 	sscanf(argv[6], "%d",&id_mensaje);
 
 						//INT CARACTERES + POKEMON + POSX + POSY + ID MENSAJE
-	paquete->buffer->size = sizeof(int) + caracteresPokemon + sizeof(int) + sizeof(int) + sizeof(int);
+	paquete->buffer->size = sizeof(uint32_t) + caracteresPokemon + sizeof(uint32_t) + sizeof(uint32_t) + sizeof(uint32_t);
 	void* stream = malloc(paquete->buffer->size);
 	int offset = 0;
 
-		memcpy(stream + offset, &caracteresPokemon, sizeof(int));
-		offset += sizeof(int);
+		memcpy(stream + offset, &caracteresPokemon, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
 
-		memcpy(stream + offset, &pokemon, caracteresPokemon);
+		memcpy(stream + offset, pokemon, caracteresPokemon);
 		offset +=caracteresPokemon;
 
-		memcpy(stream + offset, &posX, sizeof(int));
-		offset += sizeof(int);
+		memcpy(stream + offset, &posX, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
 
-		memcpy(stream + offset, &posY, sizeof(int));
-		offset += sizeof(int);
+		memcpy(stream + offset, &posY, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
 
-		memcpy(stream + offset, &id_mensaje, sizeof(int));
-		offset += sizeof(int);
+		memcpy(stream + offset, &id_mensaje, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
 
 		paquete->buffer->stream = stream;
 
 						// TAMAÑO STREAM + OP CODE + VARIABLE SIZE
-	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(int);
+	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
 	void* a_enviar = serializar_paquete(paquete, tamanio_paquete);
 
 	free(stream);
@@ -555,34 +553,32 @@ void* iniciar_paquete_serializado_CatchPokemonGC(int* tamanio_paquete,char* argv
 void* iniciar_paquete_serializado_GetPokemonGC(int* tamanio_paquete,char* argv[]){
 
 	t_paquete* paquete = malloc(sizeof(t_paquete));
-
 	paquete->codigo_operacion = GET_POKEMON;
-
 	paquete->buffer = malloc(sizeof(t_buffer));
 
 	char* pokemon = argv[3];
-	int caracteresPokemon = strlen(pokemon) + 1;
-	int id_mensaje;
+	uint32_t caracteresPokemon = strlen(pokemon) + 1;
+	uint32_t id_mensaje;
 	sscanf(argv[4], "%d",&id_mensaje);
 
 						//INT CARACTERES + POKEMON + ID MENSAJE
-	paquete->buffer->size = sizeof(int) + caracteresPokemon + sizeof(int);
+	paquete->buffer->size = sizeof(uint32_t) + caracteresPokemon + sizeof(uint32_t);
 	void* stream = malloc(paquete->buffer->size);
 	int offset = 0;
 
-		memcpy(stream + offset, &caracteresPokemon, sizeof(int));
-		offset += sizeof(int);
+		memcpy(stream + offset, &caracteresPokemon, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
 
-		memcpy(stream + offset, &pokemon, caracteresPokemon);
-		offset +=caracteresPokemon;
+		memcpy(stream + offset, pokemon, caracteresPokemon);
+		offset += caracteresPokemon;
 
-		memcpy(stream + offset, &id_mensaje, sizeof(int));
-		offset += sizeof(int);
+		memcpy(stream + offset, &id_mensaje, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
 
 		paquete->buffer->stream = stream;
 
 						// TAMAÑO STREAM + OP CODE + VARIABLE SIZE
-	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(int);
+	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
 	void* a_enviar = serializar_paquete(paquete, tamanio_paquete);
 
 	free(stream);
@@ -597,25 +593,3 @@ void liberar_conexion(int socket_cliente)
 {
 	close(socket_cliente);
 }
-
-// El proceso GameBoy no recibe mensajes
-
-void recibir_mensaje(int socket_cliente)
-{
-	int caracteresPokemon, posX, posY, cantidad;
-	char* pokemon;
-
-	recv(socket_cliente,&caracteresPokemon ,sizeof(int),0);
-	recv(socket_cliente,&pokemon ,caracteresPokemon,0);
-	recv(socket_cliente,&posX ,sizeof(int),0);
-	recv(socket_cliente,&posY ,sizeof(int),0);
-	recv(socket_cliente,&cantidad ,sizeof(int),0);
-
-	printf("%d /n",caracteresPokemon);
-	printf("%d /n",posX);
-	printf("%d /n",posY);
-	printf("%d /n",cantidad);
-	puts(pokemon);
-
-}
-

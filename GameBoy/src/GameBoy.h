@@ -16,6 +16,7 @@
 #include<readline/readline.h>
 #include<commons/string.h>
 #include<commons/error.h>
+#include<commons/process.h>
 #include<stdint.h>
 #include "Utils/messageQueue.h"
 #include "Utils/configGameBoy.h"

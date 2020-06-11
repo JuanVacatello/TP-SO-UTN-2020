@@ -9,14 +9,17 @@
  */
 
 #include "GameBoy.h"
-#include<commons/string.h>
 
 int main(int argc, char* argv[]) {
 
 	controlar_cant_argumentos(argc);
 	iniciar_logger();
-	completar_logger("Nuevo mensaje", "GAMEBOY", LOG_LEVEL_INFO); // LOG OBLIGATORIO
+
 	leer_config();
+	uint32_t process_id = process_getpid();
+	char* process_id_string = string_itoa(process_id);
+	config_set_value(configGameBoy, "PROCESS_ID", process_id_string); // aunque haga esto me sigue dando pids distintos -> arreglar
+
 	const char* proceso = argv[1];
 
 	if(!(strcmp(proceso, "BROKER"))){
@@ -32,7 +35,7 @@ int main(int argc, char* argv[]) {
 	}
 
 	if(!(strcmp(proceso, "SUSCRIPTOR"))){ // no es proceso sino "codigo de operacion" pero bueno
-		cumple_cant_parametros(argc, 4); // se tiene que conectar a 1 cola a la vez, no todas al mismo tiempo
+		cumple_cant_parametros(argc, 4);
 
 		char* puerto = obtener_puerto_broker();
 		char* ip = obtener_ip_broker();
@@ -58,7 +61,7 @@ void enviarMensajeBroker(int argc, char *argv[]){
 		enviar_mensaje_a_broker(socket_conexion, 1, argv); // 1 es el op_code de NEW_POKEMON
 	}
 
-	if(!(strcmp(codigo_mensaje, "APPEARED_POKEMON"))){ // HAY QUE VER COMO HACEMOS LO DEL ID PARA QUE NO SE REPITA
+	if(!(strcmp(codigo_mensaje, "APPEARED_POKEMON"))){
 		cumple_cant_parametros(argc, 7);
 		enviar_mensaje_a_broker(socket_conexion, 2, argv); // 2 es el op_code de APPEARED_POKEMON
 	}
@@ -149,32 +152,4 @@ void terminar_programa(int conexion){
 	config_destroy(configGameBoy);
 }
 
-
-/*MENSAJE PRUEBA
-int main(){
-	iniciar_logger();
-	leer_config();
-
-
-		completar_logger("estoy vivo" ,"GAMEBOY",LOG_LEVEL_INFO);
-
-		char* ip = obtener_ip_broker();
-		char* puerto = obtener_puerto_broker();
-
-		int socket_conexion = crear_conexion(ip,puerto);
-		completar_logger("Me conecte","GAMEBOY",LOG_LEVEL_INFO);
-
-		int tamanio_paquete=0;
-
-		void* a_enviar = iniciar_paquete_prueba(&tamanio_paquete);
-		completar_logger("Cree un paquete","GAMEBOY",LOG_LEVEL_INFO);
-
-		if(send(socket_conexion,a_enviar,tamanio_paquete,0) == -1){
-			printf("error en enviar por el socket");
-			exit(3);
-		}
-		completar_logger("Envie un paquete","GAMEBOY",LOG_LEVEL_INFO);
-		free(a_enviar);
-}
-*/
 

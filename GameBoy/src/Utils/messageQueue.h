@@ -38,9 +38,6 @@ typedef struct
 } t_paquete;
 
 int crear_conexion(char* ip, char* puerto);
-void recibir_mensaje(int socket_cliente);
-void eliminar_paquete(t_paquete* paquete);
-t_paquete* inicializar_paquete(op_code codigo_operacion, t_list* argumentos);
 void* serializar_paquete(t_paquete* paquete , int *bytes);
 
 void enviar_mensaje_a_broker(int socket_cliente, op_code codigo_operacion, char* argv[]);
