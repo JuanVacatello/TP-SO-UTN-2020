@@ -49,7 +49,7 @@ typedef struct
 	pthread_t hilo_entrenador;
 	t_queue* cola_de_acciones;
 	uint32_t ID_catch_pokemon;
-	//Armar estructura de acciones
+	int estado_deadlock;  // SI ES 1 ESTA EN DEADLOCK
 
 } t_entrenador;
 
@@ -74,6 +74,7 @@ bool puede_atrapar(t_entrenador* entrenador);
 void ejecutar_entrenador(t_entrenador* entrenador);
 bool termino_de_atrapar(t_entrenador* entrenador);
 bool termino_con_pokemon(t_entrenador* entrenador, t_pokemon* pokemon);
+bool comprobar_deadlock(t_entrenador* entrenador, t_pokemon* pokemon);
 
 
 #endif /* ENTRENADOR_H_ */

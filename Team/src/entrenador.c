@@ -219,6 +219,8 @@ void atrapar_pokemon(t_entrenador* entrenador){
 
 	list_add(entrenador->atrapados, entrenador->pokemon_a_atrapar);
 	entrenador->pokemon_a_atrapar = NULL;
+	void puede_seguir_atrapando(entrenador);
+
 
 	free(entrenador->pokemon_a_atrapar);
 
@@ -227,14 +229,29 @@ void atrapar_pokemon(t_entrenador* entrenador){
 
 void puede_seguir_atrapando(t_entrenador* entrenador){
 
-	if(list_size(entrenador->objetivo) == list_size(entrenador->atrapados)){
+	t_pokemon* pokemon;
+
+	if(termino_de_atrapar(entrenador)){
 
 		if(termino_de_atrapar(entrenador)){
-			//LO PASAMOS A EXIT
+			entrenador->estado = EXIT;
 		}
 		else{
-			entrenador->estado = BLOCKED;
+
+			for (int indice_pokemon=0; indice_pokemon<list_size(entrenador->objetivo); indice_pokemon++){
+				pokemon=list_get(entrenador->objetivo, indice_pokemon);
+				if(comprobar_deadlock(entrenador, pokemon)){
+
+					entrenador->estado_deadlock = 1;
+
+					//PASARLO A DEADLOCK
+				}
+				entrenador->estado = BLOCKED;
 			}
+
+
+
+		}
 	}
 }
 
@@ -311,7 +328,45 @@ bool termino_con_pokemon(t_entrenador* entrenador, t_pokemon* pokemon){
 	}
 }
 
+bool comprobar_deadlock(t_entrenador* entrenador, t_pokemon* pokemon){
 
+	t_pokemon* pokemon_auxiliar;
+		int cantidad_objetivo = 0;
+		int cantidad_atrapados = 0;
+
+		//Recorremos la lista de objetivos del entrenador para saber cuantos pokemon de
+		//determinada especie necesita en total
+
+		for (int indice_pokemon=0; indice_pokemon<list_size(entrenador->objetivo); indice_pokemon++){
+
+			pokemon_auxiliar = list_get(entrenador->objetivo, indice_pokemon);
+
+			if(strcmp(pokemon_auxiliar->especie, pokemon->especie)==0){
+				cantidad_objetivo++;
+			}
+
+		}
+
+		//Recorremos la lista de atrapados para saber si supero la cantidad necesaria
+
+		for (int indice_pokemon=0; indice_pokemon<list_size(entrenador->objetivo); indice_pokemon++){
+
+				pokemon_auxiliar = list_get(entrenador->atrapados, indice_pokemon);
+
+				if(strcmp(pokemon_auxiliar->especie, pokemon->especie)==0){
+					cantidad_atrapados++;
+				}
+
+			}
+
+		if(cantidad_atrapados > cantidad_objetivo){
+			return true;
+		}
+		else{
+		return false;
+		}
+
+}
 
 
 
