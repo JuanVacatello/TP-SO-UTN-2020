@@ -11,8 +11,8 @@
 int main(void) {
 
 		//int conexion;
-		char* ip;
-		char* puerto;
+		char* ip_broker;
+		char* puerto_broker;
 		int algoritmo;
 		char* logFile;
 		int retardo, tiempoReconexion, estimacion, quantum;// alpha;
@@ -20,19 +20,21 @@ int main(void) {
 		leer_config();
 		iniciar_logger();
 
-		puerto = obtener_puerto();
-		ip = obtener_ip();
+		puerto_broker = obtener_puerto();
+		ip_broker = obtener_ip();
 
-		socket_conexion_broker = crear_conexion(ip,puerto);
+		socket_conexion_broker = crear_conexion(ip_broker,puerto_broker);
 		puts("aca entra1");
-
 		enviar_suscripcion_a_cola(socket_conexion_broker, 2);
-		sleep(10);
+		//sleep(10);
+
+		iniciar_servidor();
+
 		puts("aca entra2");
 		//enviar_suscripcion_a_cola(socket_conexion_broker, 4);
 		//sleep(10);
-		enviar_suscripcion_a_cola(socket_conexion_broker, 6);
-		sleep(10);
+		//enviar_suscripcion_a_cola(socket_conexion_broker, 6);
+		//sleep(10);
 		puts("aca entra3");
 		armar_entrenadores();
 		generar_objetivo_global();
@@ -123,7 +125,7 @@ int main(void) {
 		*/
 
 
-		puts("aca entra");
+		//puts("aca entra");
 /*
 		t_pokemon* pokemonPikachu = malloc(sizeof(t_pokemon));
 		pokemonPikachu->especie = "Pikachu";

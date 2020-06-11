@@ -15,6 +15,8 @@
 #include "Team.h"
 #include "utils.h"
 
+#define IP "127.0.0.2"
+#define PUERTO "5555"
 
 typedef struct
 {
@@ -37,7 +39,7 @@ void iniciar_servidor(void);
 void esperar_cliente(int);
 void* recibir_mensaje(int socket_cliente, int* size);
 int recibir_operacion(int);
-void process_request(int cod_op, int cliente_fd);
+void process_request(op_code cod_op, int cliente_fd);
 void serve_client(int *socket);
 void* serializar_paquete(t_paquete* paquete, int* bytes);
 void devolver_mensaje(void* payload, int size, int socket_cliente);
@@ -48,11 +50,19 @@ void enviar_suscripcion_a_cola(int socket_cliente, uint32_t cola);
 void enviar_CatchPokemon_a_broker(int socket_cliente, op_code codigo_operacion, t_entrenador* entrenador);
 void enviar_GetPokemon_a_broker(int socket_cliente, op_code codigo_operacion, t_pokemon* pokemon);
 
+//ENVIAR MENSAJE A BROKER
 void* iniciar_paquete_serializado_CatchPokemon(int* tamanio_paquete,t_entrenador* entrenador);
 void* iniciar_paquete_serializado_GetPokemon(int* tamanio_paquete,t_pokemon* pokemon_pedido);
 void recibir_mensaje2(int socket_cliente);
 
+//RECIBIR MENSAJES GAMEBOY
+void recibir_mensaje_GameBoy(int socket_cliente);
+void recibir_appeared_pokemon_loggeo(int socket_cliente);
 
+//RECIBIR MENSAJES BROKER
+
+void recibir_mensaje_Broker(int socket_cliente);
+//void recibir_appeared_pokemon_loggeo(int socket_cliente);
 
 
 #endif
