@@ -59,13 +59,21 @@ t_list* suscriptores_caught_pokemon;
 t_list* suscriptores_get_pokemon;
 t_list* suscriptores_localized_pokemon;
 
+t_list* mensajes_de_cola_new_pokemon;
+t_list* mensajes_de_cola_appeared_pokemon;
+t_list* mensajes_de_cola_catch_pokemon;
+t_list* mensajes_de_cola_caught_pokemon;
+t_list* mensajes_de_cola_get_pokemon;
+t_list* mensajes_de_cola_localized_pokemon;
+
 t_buffer* buffer;
 
 pthread_t thread;
 
+void iniciar_servidor(void);
+void esperar_cliente(int);
 void serve_client(int *socket);
 void process_request(op_code cod_op, int socket_cliente);
-void* recibir_caught_pokemon(int socket_cliente, int* tamanio_paquete);
 
 void atender_suscripcion(int socket_cliente);
 proceso* modelar_proceso(int socket);
@@ -73,20 +81,26 @@ int recibir_tamanio_buffer(int socket);
 void suscribirse_a_cola(proceso* suscriptor, int socket, uint32_t tamanio_buffer);
 
 void recibir_new_pokemon(int socket_cliente);
+void recibir_appeared_pokemon(int socket_cliente);
+void recibir_catch_pokemon_(int socket_cliente);
+void recibir_caught_pokemon(int socket_cliente);
+void recibir_get_pokemon(int socket_cliente);
+void* recibir_y_reenviar(int socket_cliente, int* tamanio_paquete);
+void enviar_mensaje_a_suscriptores(int cola_mensaje, void* a_enviar, int tamanio_paquete);
 
-void* recibir_buffer(int*, int);
 
-
-void iniciar_servidor(void);
-void esperar_cliente(int);
 void* recibir_mensaje(int socket_cliente, int* size);
 int recibir_operacion(int);
 void* serializar_paquete(t_paquete* paquete, int bytes);
 void devolver_mensaje(void* payload, int size, int socket_cliente);
 
-/* Para probar:
+/* Para probar mensajes que recibe del GameBoy:
 
+void recibir_new_pokemon_loggeo(int socket_cliente);
+void recibir_appeared_pokemon_loggeo(int socket_cliente);
+void recibir_catch_pokemon_loggeo(int socket_cliente);
 void recibir_caught_pokemon_loggeo(int socket_cliente);
+void recibir_get_pokemon_loggeo(int socket_cliente);
 
  */
 

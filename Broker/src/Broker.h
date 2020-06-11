@@ -11,6 +11,7 @@
 #include "Utils/logBroker.h"
 
 void terminar_programa(void);
+void creacion_colas_de_mensajes(void);
 
 #endif /* BROKER_H_ */
 
