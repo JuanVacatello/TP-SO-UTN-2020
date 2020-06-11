@@ -33,7 +33,7 @@ void inicializar_file_system(char* punto_montaje){
 	string_append(&path_tall_grass, "/TALL_GRASS");
 	mkdir(path_tall_grass, 0777);
 
-	//CREA METADATA
+	//CREA METADATA//FALT
 	char* path_metadata = string_new();
 	string_append(&path_metadata, path_tall_grass);
 	string_append(&path_metadata, "/Metadata");
