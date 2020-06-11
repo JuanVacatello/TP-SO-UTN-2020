@@ -85,15 +85,15 @@ void recibir_appeared_pokemon(int socket_cliente);
 void recibir_catch_pokemon_(int socket_cliente);
 void recibir_caught_pokemon(int socket_cliente);
 void recibir_get_pokemon(int socket_cliente);
-void* recibir_y_reenviar(int socket_cliente, int* tamanio_paquete);
-void enviar_mensaje_a_suscriptores(int cola_mensaje, void* a_enviar, int tamanio_paquete);
+void enviar_mensaje_a_suscriptores(int cola_mensaje,int socket_cliente);
 
 
 void* recibir_mensaje(int socket_cliente, int* size);
 int recibir_operacion(int);
-void* serializar_paquete(t_paquete* paquete, int bytes);
+void* serializar_paquete(t_paquete* paquete, int *bytes);
 void devolver_mensaje(void* payload, int size, int socket_cliente);
 
+void recibir_appeared_pokemon_loggeo(int socket_cliente);
 /* Para probar mensajes que recibe del GameBoy:
 
 void recibir_new_pokemon_loggeo(int socket_cliente);

@@ -2,7 +2,7 @@
 
 #include <pthread.h>
 
-void* serializar_paquete(t_paquete* paquete, int *bytes)
+void* serializar_paquete(t_paquete* paquete, int* bytes)
 {
 	*bytes = (paquete->buffer->size)+sizeof(op_code)+sizeof(int);
 	void* a_enviar = malloc((*bytes));
@@ -89,12 +89,6 @@ void serve_client(int* socket)
 // ATENDER AL CLIENTE
 
 void process_request(op_code cod_op, int socket_cliente) {
-	void* a_enviar;
-	int tamanio_paquete = 0;
-
-	if(cod_op!=0){ // entiendo que al ser pasamanos, hace lo mismo en todos los pasos
-		a_enviar = recibir_y_reenviar(socket_cliente, &tamanio_paquete);
-	}
 
 	switch (cod_op) {
 		case 0:
@@ -103,27 +97,27 @@ void process_request(op_code cod_op, int socket_cliente) {
 		case 1:
 			//recibir_new_pokemon_loggeo(socket_cliente);
 			//a_enviar = recibir_new_pokemon(socket_cliente,&tamanio_paquete);
-			enviar_mensaje_a_suscriptores(1, a_enviar, tamanio_paquete);
+			enviar_mensaje_a_suscriptores(1, socket_cliente);
 			break;
 		case 2:
 			//recibir_appeared_pokemon_loggeo(socket_cliente);
 			//a_enviar = recibir_appeared_pokemon(socket_cliente,&tamanio_paquete);
-			enviar_mensaje_a_suscriptores(2, a_enviar, tamanio_paquete);
+			enviar_mensaje_a_suscriptores(2, socket_cliente);
 			break;
 		case 3:
 			//recibir_catch_pokemon_loggeo(socket_cliente);
 			//a_enviar = recibir_catch_pokemon_(socket_cliente,&tamanio_paquete);
-			enviar_mensaje_a_suscriptores(3, a_enviar, tamanio_paquete);
+			enviar_mensaje_a_suscriptores(3, socket_cliente);
 			break;
 		case 4:
 			//recibir_caught_pokemon_loggeo(socket_cliente);
 			//a_enviar = recibir_caught_pokemon(socket_cliente,&tamanio_paquete);
-			enviar_mensaje_a_suscriptores(4, a_enviar, tamanio_paquete);
+			enviar_mensaje_a_suscriptores(4, socket_cliente);
 			break;
 		case 5:
 			//recibir_get_pokemon_loggeo(socket_cliente);
 			//a_enviar = recibir_get_pokemon(socket_cliente,&tamanio_paquete);
-			enviar_mensaje_a_suscriptores(5, a_enviar, tamanio_paquete);
+			enviar_mensaje_a_suscriptores(5, socket_cliente);
 			break;
 		case 6:
 			// a_enviar = Mensaje que recibe del GameCard
@@ -349,33 +343,80 @@ void recibir_get_pokemon_loggeo(int socket_cliente){
 
 }
 
-void enviar_mensaje_a_suscriptores(int cola_mensaje, void* a_enviar, int tamanio_paquete){
+void enviar_mensaje_a_suscriptores(int cola_mensaje,int socket_cliente){
+	int tamanio_paquete = 0;
 
-	t_list* suscriptores_cola_mensaje;
+	t_paquete* paquete = malloc(sizeof(t_paquete));
+	//t_list* suscriptores_cola_mensaje;
 
 	switch(cola_mensaje){
 	case 1:
-		suscriptores_cola_mensaje = suscriptores_new_pokemon;
+		paquete->codigo_operacion = NEW_POKEMON;
+		//suscriptores_cola_mensaje = suscriptores_new_pokemon;
 		break;
 	case 2:
-		suscriptores_cola_mensaje = suscriptores_appeared_pokemon;
+		paquete->codigo_operacion = APPEARED_POKEMON;
+		//suscriptores_cola_mensaje = suscriptores_appeared_pokemon;
 		break;
 	case 3:
-		suscriptores_cola_mensaje = suscriptores_catch_pokemon;
+		paquete->codigo_operacion = CATCH_POKEMON;
+		//suscriptores_cola_mensaje = suscriptores_catch_pokemon;
 		break;
 	case 4:
-		suscriptores_cola_mensaje = suscriptores_caught_pokemon;
+		paquete->codigo_operacion = CAUGHT_POKEMON;
+	//suscriptores_cola_mensaje = suscriptores_caught_pokemon;
 		break;
 	case 5:
-		suscriptores_cola_mensaje = suscriptores_get_pokemon;
+		paquete->codigo_operacion = GET_POKEMON;
+		//suscriptores_cola_mensaje = suscriptores_get_pokemon;
 		break;
 	case 6:
-		suscriptores_cola_mensaje = suscriptores_localized_pokemon;
+		paquete->codigo_operacion = LOCALIZED_POKEMON;
+		//suscriptores_cola_mensaje = suscriptores_localized_pokemon;
 		break;
 	}
+	paquete->buffer = malloc(sizeof(t_buffer));
 
-	for(int i = 0; i < list_size(suscriptores_cola_mensaje); i++){
-		proceso* suscriptor = list_get(suscriptores_cola_mensaje, i);
+	recv(socket_cliente, &(paquete->buffer->size), sizeof(uint32_t), MSG_WAITALL);
+//
+	void* stream = malloc(paquete->buffer->size);
+		int offset = 0;
+			uint32_t caracteresPokemon;
+			recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
+			memcpy(stream + offset, &caracteresPokemon, sizeof(uint32_t));
+			offset += sizeof(uint32_t);
+
+			char* pokemon = (char*)malloc(caracteresPokemon);
+			recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
+			memcpy(stream + offset, pokemon, caracteresPokemon);
+			offset += caracteresPokemon;
+
+			uint32_t posX;
+			recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
+			memcpy(stream + offset, &posX, sizeof(uint32_t));
+			offset += sizeof(uint32_t);
+
+			uint32_t posY;
+			recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
+			memcpy(stream + offset, &posY, sizeof(uint32_t));
+			offset += sizeof(uint32_t);
+
+			uint32_t id_mensaje_correlativo;
+			recv(socket_cliente, &id_mensaje_correlativo, sizeof(uint32_t), MSG_WAITALL);
+			memcpy(stream + offset, &id_mensaje_correlativo, sizeof(uint32_t));
+			offset += sizeof(uint32_t);
+
+	paquete->buffer->stream = stream;
+//
+	//paquete->buffer->stream = malloc(paquete->buffer->size);
+	//recv(socket_cliente, paquete->buffer->stream, paquete->buffer->size, MSG_WAITALL);
+
+	tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
+
+	void* a_enviar = serializar_paquete(paquete,&tamanio_paquete);
+
+	for(int i = 0; i < list_size(suscriptores_appeared_pokemon); i++){
+		proceso* suscriptor = list_get(suscriptores_appeared_pokemon, i);
 		int socket_suscriptor = suscriptor->socket_cliente;
 		send(socket_suscriptor,a_enviar,tamanio_paquete,0);
 	}
