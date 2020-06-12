@@ -1,102 +1,43 @@
-[INFO] 20:44:34:21 BROKER/(4100:4100): Se conectó proceso al Broker
-[INFO] 20:53:57:148 BROKER/(4546:4546): Se conectó proceso al Broker
-[INFO] 20:54:16:221 BROKER/(4546:4552): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 20:54:16:221 BROKER/(4546:4552): El codigo de operacion es: 2.
-[INFO] 20:55:11:419 BROKER/(4605:4605): Se conectó proceso al Broker
-[INFO] 20:55:14:308 BROKER/(4605:4611): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 20:55:14:308 BROKER/(4605:4611): El codigo de operacion es: 2.
-[INFO] 20:55:14:308 BROKER/(4605:4611): El tamanio del buffer es: 24.
-[INFO] 20:55:14:308 BROKER/(4605:4611): Los caracteres de pokemon son: 8.
-[INFO] 20:55:14:308 BROKER/(4605:4611): pikachu
-[INFO] 20:55:14:308 BROKER/(4605:4611): La posicion en X es: 2
-[INFO] 20:55:14:308 BROKER/(4605:4611): La posicion en Y es: 3
-[INFO] 20:55:14:308 BROKER/(4605:4611): id_mensaje_correlativo: 98.
-[INFO] 20:59:25:625 BROKER/(4807:4807): Se conectó proceso al Broker
-[INFO] 20:59:40:949 BROKER/(4807:4814): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 20:59:40:949 BROKER/(4807:4814): El codigo de operacion es: 3.
-[INFO] 20:59:40:949 BROKER/(4807:4814): El tamanio del buffer es: 20.
-[INFO] 20:59:40:949 BROKER/(4807:4814): Los caracteres de pokemon son: 8.
-[INFO] 20:59:40:949 BROKER/(4807:4814): pikachu
-[INFO] 20:59:40:949 BROKER/(4807:4814): La posicion en X es: 2
-[INFO] 20:59:40:949 BROKER/(4807:4814): La posicion en Y es: 3
-[INFO] 21:03:35:195 BROKER/(5003:5003): Se conectó proceso al Broker
-[INFO] 21:03:51:403 BROKER/(5003:5009): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 21:03:51:403 BROKER/(5003:5009): El codigo de operacion es: 5.
-[INFO] 21:03:51:403 BROKER/(5003:5009): El tamanio del buffer es: 13.
-[INFO] 21:03:51:403 BROKER/(5003:5009): Los caracteres de pokemon son: 9.
-[INFO] 21:03:51:403 BROKER/(5003:5009): ���	
-[INFO] 21:05:18:239 BROKER/(5067:5067): Se conectó proceso al Broker
-[INFO] 21:05:22:423 BROKER/(5067:5073): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 21:05:22:423 BROKER/(5067:5073): El codigo de operacion es: 5.
-[INFO] 21:05:22:423 BROKER/(5067:5073): El tamanio del buffer es: 13.
-[INFO] 21:05:22:423 BROKER/(5067:5073): Los caracteres de pokemon son: 9.
-[INFO] 21:05:22:423 BROKER/(5067:5073): squirtle
-[INFO] 21:29:53:636 BROKER/(6114:6114): Se conectó proceso al Broker
-[INFO] 21:30:15:899 BROKER/(6114:6128): El codigo de operacion es: 0.
-[INFO] 21:30:15:899 BROKER/(6114:6128): El id del suscriptor es: 6127.
-[INFO] 21:30:15:899 BROKER/(6114:6128): El socket del suscriptor es: 5.
-[INFO] 21:30:15:899 BROKER/(6114:6128): El tiempo de suscripcion es: 2.
-[INFO] 21:30:15:899 BROKER/(6114:6128): El tamanio de la lista es: 1.
-[INFO] 21:30:15:899 BROKER/(6114:6128): Se suscribió el proceso con id 6127 a la cola de mensajes 1
-[INFO] 21:30:38:534 BROKER/(6114:6134): El codigo de operacion es: 0.
-[INFO] 21:30:38:534 BROKER/(6114:6134): El id del suscriptor es: 6133.
-[INFO] 21:30:38:534 BROKER/(6114:6134): El socket del suscriptor es: 6.
-[INFO] 21:30:38:534 BROKER/(6114:6134): El tiempo de suscripcion es: 2.
-[INFO] 21:30:38:534 BROKER/(6114:6134): El tamanio de la lista es: 2.
-[INFO] 21:30:38:534 BROKER/(6114:6134): Se suscribió el proceso con id 6133 a la cola de mensajes 1
-[INFO] 17:24:07:813 BROKER/(16338:16338): Se conectó proceso al Broker
-[INFO] 17:24:27:391 BROKER/(16338:16362): El codigo de operacion es: 0.
-[INFO] 17:25:45:482 BROKER/(16338:16362): El id del suscriptor es: 16358.
-[INFO] 17:26:10:945 BROKER/(16338:16362): El socket del suscriptor es: 5.
-[INFO] 17:26:13:32 BROKER/(16338:16362): Se suscribió el proceso con id 16358 a la cola de mensajes 2
-[INFO] 18:07:06:344 BROKER/(16804:16804): Se conectó proceso al Broker
-[INFO] 18:07:09:787 BROKER/(16804:16811): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 18:07:09:787 BROKER/(16804:16811): El codigo de operacion es: 2.
-[INFO] 18:07:09:787 BROKER/(16804:16811): El tamanio del buffer es: 24.
-[INFO] 18:07:09:787 BROKER/(16804:16811): Los caracteres de pokemon son: 8.
-[INFO] 18:07:09:787 BROKER/(16804:16811): Pikachu
-[INFO] 18:07:09:787 BROKER/(16804:16811): La posicion en X es: 4
-[INFO] 18:07:09:787 BROKER/(16804:16811): La posicion en Y es: 3
-[INFO] 18:07:09:787 BROKER/(16804:16811): id_mensaje_correlativo: 30.
-[INFO] 18:28:49:535 BROKER/(17609:17609): Se conectó proceso al Broker
-[INFO] 18:30:21:971 BROKER/(17609:17632): El codigo de operacion es: 0.
-[INFO] 18:30:26:417 BROKER/(17609:17632): El id del suscriptor es: 17630.
-[INFO] 18:30:26:417 BROKER/(17609:17632): El socket del suscriptor es: 5.
-[INFO] 18:30:26:417 BROKER/(17609:17632): Se suscribió el proceso con id 17630 a la cola de mensajes 2
-[INFO] 18:33:22:772 BROKER/(17760:17760): Se conectó proceso al Broker
-[INFO] 18:33:34:351 BROKER/(17760:17781): El codigo de operacion es: 0.
-[INFO] 18:33:42:858 BROKER/(17760:17781): El id del suscriptor es: 17779.
-[INFO] 18:33:42:858 BROKER/(17760:17781): El socket del suscriptor es: 5.
-[INFO] 18:33:42:858 BROKER/(17760:17781): Se suscribió el proceso con id 17779 a la cola de mensajes 2
-[INFO] 18:36:22:104 BROKER/(17929:17929): Se conectó proceso al Broker
-[INFO] 18:36:30:940 BROKER/(17929:17951): El codigo de operacion es: 0.
-[INFO] 18:46:20:426 BROKER/(17929:17951): El id del suscriptor es: 17949.
-[INFO] 18:46:27:627 BROKER/(17929:17951): El socket del suscriptor es: 5.
-[INFO] 18:46:29:335 BROKER/(17929:17951): Se suscribió el proceso con id 17949 a la cola de mensajes 2
-[INFO] 18:49:53:599 BROKER/(17929:18148): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 18:49:53:601 BROKER/(17929:18148): El codigo de operacion es: 2.
-[INFO] 18:50:45:347 BROKER/(17929:18166): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 18:50:45:347 BROKER/(17929:18166): El codigo de operacion es: 2.
-[INFO] 18:51:19:361 BROKER/(17929:18184): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 18:51:19:361 BROKER/(17929:18184): El codigo de operacion es: 2.
-[INFO] 18:52:32:855 BROKER/(18230:18230): Se conectó proceso al Broker
-[INFO] 18:52:49:312 BROKER/(18230:18241): El codigo de operacion es: 0.
-[INFO] 18:52:49:312 BROKER/(18230:18241): El id del suscriptor es: 18240.
-[INFO] 18:52:49:312 BROKER/(18230:18241): El socket del suscriptor es: 5.
-[INFO] 18:52:49:312 BROKER/(18230:18241): Se suscribió el proceso con id 18240 a la cola de mensajes 2
-[INFO] 18:52:58:552 BROKER/(18230:18243): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 18:52:58:552 BROKER/(18230:18243): El codigo de operacion es: 2.
-[INFO] 18:56:41:398 BROKER/(18495:18495): Se conectó proceso al Broker
-[INFO] 18:56:51:286 BROKER/(18495:18515): El codigo de operacion es: 0.
-[INFO] 18:56:52:129 BROKER/(18495:18515): El id del suscriptor es: 18513.
-[INFO] 18:56:52:129 BROKER/(18495:18515): El socket del suscriptor es: 5.
-[INFO] 18:56:52:130 BROKER/(18495:18515): Se suscribió el proceso con id 18513 a la cola de mensajes 2
-[INFO] 18:57:30:854 BROKER/(18495:18533): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 18:57:30:857 BROKER/(18495:18533): El codigo de operacion es: 2.
-[INFO] 18:58:23:571 BROKER/(18598:18598): Se conectó proceso al Broker
-[INFO] 18:58:39:339 BROKER/(18598:18624): El codigo de operacion es: 0.
-[INFO] 18:58:41:733 BROKER/(18598:18624): El id del suscriptor es: 18622.
-[INFO] 18:58:41:733 BROKER/(18598:18624): El socket del suscriptor es: 5.
-[INFO] 18:58:41:733 BROKER/(18598:18624): Se suscribió el proceso con id 18622 a la cola de mensajes 2
-[INFO] 18:59:29:505 BROKER/(18598:18641): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 18:59:29:505 BROKER/(18598:18641): El codigo de operacion es: 2.
+[INFO] 13:16:32:706 BROKER/(6360:6360): Se conectó proceso al Broker
+[INFO] 13:16:35:548 BROKER/(6360:6366): El codigo de operacion es: 0.
+[INFO] 13:16:35:548 BROKER/(6360:6366): El id del suscriptor es: 6365.
+[INFO] 13:16:35:548 BROKER/(6360:6366): El socket del suscriptor es: 5.
+[INFO] 13:16:35:548 BROKER/(6360:6366): Se suscribió el proceso con id 6365 a la cola de mensajes 2
+[INFO] 13:16:42:980 BROKER/(6360:6368): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 13:16:42:980 BROKER/(6360:6368): El codigo de operacion es: 2.
+[INFO] 13:16:42:981 BROKER/(6360:6368): Enviando mensaje a suscriptor
+[INFO] 13:16:42:981 BROKER/(6360:6368): En el switch del op code
+[INFO] 13:16:42:981 BROKER/(6360:6368): El tamanio del buffer es: 24.
+[INFO] 13:19:19:871 BROKER/(6478:6478): Se conectó proceso al Broker
+[INFO] 13:19:20:933 BROKER/(6478:6486): El codigo de operacion es: 0.
+[INFO] 13:19:20:933 BROKER/(6478:6486): El id del suscriptor es: 6485.
+[INFO] 13:19:20:933 BROKER/(6478:6486): El socket del suscriptor es: 5.
+[INFO] 13:19:20:933 BROKER/(6478:6486): Se suscribió el proceso con id 6485 a la cola de mensajes 2
+[INFO] 13:19:26:638 BROKER/(6478:6489): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 13:19:26:638 BROKER/(6478:6489): El codigo de operacion es: 2.
+[INFO] 13:19:26:638 BROKER/(6478:6489): Enviando mensaje a suscriptor
+[INFO] 13:19:26:638 BROKER/(6478:6489): En el switch del op code
+[INFO] 13:19:26:638 BROKER/(6478:6489): El tamanio del buffer es: 24.
+[INFO] 13:19:26:638 BROKER/(6478:6489): paquete->buffer->size: 24.
+[INFO] 13:21:13:1 BROKER/(6516:6516): Se conectó proceso al Broker
+[INFO] 13:21:18:291 BROKER/(6516:6556): El codigo de operacion es: 0.
+[INFO] 13:21:18:291 BROKER/(6516:6556): El id del suscriptor es: 6555.
+[INFO] 13:21:18:291 BROKER/(6516:6556): El socket del suscriptor es: 5.
+[INFO] 13:21:18:291 BROKER/(6516:6556): Se suscribió el proceso con id 6555 a la cola de mensajes 2
+[INFO] 13:21:33:575 BROKER/(6516:6560): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 13:21:33:575 BROKER/(6516:6560): El codigo de operacion es: 2.
+[INFO] 13:21:33:575 BROKER/(6516:6560): Enviando mensaje a suscriptor
+[INFO] 13:21:33:575 BROKER/(6516:6560): En el switch del op code
+[INFO] 13:21:33:576 BROKER/(6516:6560): El tamanio del buffer es: 24.
+[INFO] 13:21:33:576 BROKER/(6516:6560): paquete->buffer->size: 24.
+[INFO] 13:23:05:775 BROKER/(6601:6601): Se conectó proceso al Broker
+[INFO] 13:23:08:969 BROKER/(6601:6607): El codigo de operacion es: 0.
+[INFO] 13:23:08:969 BROKER/(6601:6607): El id del suscriptor es: 6606.
+[INFO] 13:23:08:969 BROKER/(6601:6607): El socket del suscriptor es: 5.
+[INFO] 13:23:08:970 BROKER/(6601:6607): Se suscribió el proceso con id 6606 a la cola de mensajes 2
+[INFO] 13:23:18:270 BROKER/(6601:6609): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 13:23:18:270 BROKER/(6601:6609): El codigo de operacion es: 2.
+[INFO] 13:23:18:270 BROKER/(6601:6609): Enviando mensaje a suscriptor
+[INFO] 13:23:18:270 BROKER/(6601:6609): En el switch del op code
+[INFO] 13:23:18:270 BROKER/(6601:6609): El tamanio del buffer es: 24.
+[INFO] 13:23:18:270 BROKER/(6601:6609): paquete->buffer->size: 24.

@@ -90,7 +90,7 @@ void enviar_mensaje_a_suscriptores(int cola_mensaje,int socket_cliente);
 
 void* recibir_mensaje(int socket_cliente, int* size);
 int recibir_operacion(int);
-void* serializar_paquete(t_paquete* paquete, int *bytes);
+void* serializar_paquete(t_paquete* paquete, int bytes);
 void devolver_mensaje(void* payload, int size, int socket_cliente);
 
 void recibir_appeared_pokemon_loggeo(int socket_cliente);

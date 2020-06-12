@@ -2,10 +2,9 @@
 
 #include <pthread.h>
 
-void* serializar_paquete(t_paquete* paquete, int* bytes)
+void* serializar_paquete(t_paquete* paquete, int bytes)
 {
-	*bytes = (paquete->buffer->size)+sizeof(op_code)+sizeof(int);
-	void* a_enviar = malloc((*bytes));
+	void* a_enviar = malloc(bytes);
 	int offset = 0;
 
 	memcpy(a_enviar + offset, &(paquete->codigo_operacion), sizeof(op_code));
@@ -97,6 +96,7 @@ void process_request(op_code cod_op, int socket_cliente) {
 		case 1:
 			//recibir_new_pokemon_loggeo(socket_cliente);
 			//a_enviar = recibir_new_pokemon(socket_cliente,&tamanio_paquete);
+			completar_logger("En el switch de appeared pokemon", "Broker", LOG_LEVEL_INFO);
 			enviar_mensaje_a_suscriptores(1, socket_cliente);
 			break;
 		case 2:
@@ -128,20 +128,6 @@ void process_request(op_code cod_op, int socket_cliente) {
 			break;
 		}
 }
-
-/*void* recibir_mensaje(int socket_cliente, int* size)
-{
-	t_paquete* paquete = malloc(sizeof(t_paquete));
-
-	void* buffer;
-
-	recv(socket_cliente, size, sizeof(int), MSG_WAITALL);
-	buffer = malloc(*size);
-	recv(socket_cliente, buffer, *size, MSG_WAITALL);
-
-	return buffer;
-}
-*/
 
 void atender_suscripcion(int socket_cliente)
 {
@@ -232,8 +218,6 @@ void recibir_new_pokemon(int socket_cliente)
 	uint32_t tamanio_buffer;
 	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
-	void* buffer = malloc(tamanio_buffer);
-
 	uint32_t caracteresPokemon;
 	recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
 
@@ -300,23 +284,6 @@ void recibir_catch_pokemon_loggeo(int socket_cliente){
 		recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
 }
 
-void* recibir_y_reenviar(int socket_cliente, int* tamanio_paquete){
-
-	t_paquete* paquete = malloc(sizeof(t_paquete));
-	paquete->codigo_operacion = CAUGHT_POKEMON;
-	paquete->buffer = malloc(sizeof(t_buffer));
-
-	recv(socket_cliente, &(paquete->buffer->size), sizeof(uint32_t), MSG_WAITALL);
-
-	paquete->buffer->stream = malloc(paquete->buffer->size);
-	recv(socket_cliente, paquete->buffer->stream, paquete->buffer->size, MSG_WAITALL);
-
-	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
-
-	void* a_enviar = serializar_paquete(paquete,tamanio_paquete);
-
-	return a_enviar;
-}
 
 void recibir_caught_pokemon(int socket_cliente){
 
@@ -344,8 +311,8 @@ void recibir_get_pokemon_loggeo(int socket_cliente){
 }
 
 void enviar_mensaje_a_suscriptores(int cola_mensaje,int socket_cliente){
-	int tamanio_paquete = 0;
 
+	completar_logger("Enviando mensaje a suscriptor", "Broker", LOG_LEVEL_INFO);
 	t_paquete* paquete = malloc(sizeof(t_paquete));
 	//t_list* suscriptores_cola_mensaje;
 
@@ -355,6 +322,7 @@ void enviar_mensaje_a_suscriptores(int cola_mensaje,int socket_cliente){
 		//suscriptores_cola_mensaje = suscriptores_new_pokemon;
 		break;
 	case 2:
+		completar_logger("En el switch del op code", "Broker", LOG_LEVEL_INFO);
 		paquete->codigo_operacion = APPEARED_POKEMON;
 		//suscriptores_cola_mensaje = suscriptores_appeared_pokemon;
 		break;
@@ -375,77 +343,47 @@ void enviar_mensaje_a_suscriptores(int cola_mensaje,int socket_cliente){
 		//suscriptores_cola_mensaje = suscriptores_localized_pokemon;
 		break;
 	}
+
 	paquete->buffer = malloc(sizeof(t_buffer));
+	uint32_t size;
+	recv(socket_cliente, &size, sizeof(uint32_t), MSG_WAITALL);
 
-	recv(socket_cliente, &(paquete->buffer->size), sizeof(uint32_t), MSG_WAITALL);
-//
-	void* stream = malloc(paquete->buffer->size);
-		int offset = 0;
-			uint32_t caracteresPokemon;
-			recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
-			memcpy(stream + offset, &caracteresPokemon, sizeof(uint32_t));
-			offset += sizeof(uint32_t);
+		char* mensaje2 = string_from_format("El tamanio del buffer es: %d.", size);
+		completar_logger(mensaje2, "Broker", LOG_LEVEL_INFO);
 
-			char* pokemon = (char*)malloc(caracteresPokemon);
-			recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
-			memcpy(stream + offset, pokemon, caracteresPokemon);
-			offset += caracteresPokemon;
+	paquete->buffer->size = size;
 
-			uint32_t posX;
-			recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
-			memcpy(stream + offset, &posX, sizeof(uint32_t));
-			offset += sizeof(uint32_t);
+		char* mensaje3 = string_from_format("paquete->buffer->size: %d.", paquete->buffer->size);
+		completar_logger(mensaje3, "Broker", LOG_LEVEL_INFO);
 
-			uint32_t posY;
-			recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
-			memcpy(stream + offset, &posY, sizeof(uint32_t));
-			offset += sizeof(uint32_t);
+		//ERROR ACA:::::
+	paquete->buffer->stream = malloc(paquete->buffer->size);
+	void* playload;
+	recv(socket_cliente, &playload, paquete->buffer->size, MSG_WAITALL);
+	memcpy(paquete->buffer->stream, &playload, paquete->buffer->size);
 
-			uint32_t id_mensaje_correlativo;
-			recv(socket_cliente, &id_mensaje_correlativo, sizeof(uint32_t), MSG_WAITALL);
-			memcpy(stream + offset, &id_mensaje_correlativo, sizeof(uint32_t));
-			offset += sizeof(uint32_t);
+	int tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
 
-	paquete->buffer->stream = stream;
-//
-	//paquete->buffer->stream = malloc(paquete->buffer->size);
-	//recv(socket_cliente, paquete->buffer->stream, paquete->buffer->size, MSG_WAITALL);
+	void* a_enviar = serializar_paquete(paquete, tamanio_paquete);
 
-	tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
+		int sizelista = list_size(suscriptores_appeared_pokemon);
+		char* mensaje = string_from_format("El tamanio de la lista es: %d.", sizelista);
+		completar_logger(mensaje, "Broker", LOG_LEVEL_INFO);
 
-	void* a_enviar = serializar_paquete(paquete,&tamanio_paquete);
-
-	for(int i = 0; i < list_size(suscriptores_appeared_pokemon); i++){
+	for(int i = 0; i < sizelista; i++){
 		proceso* suscriptor = list_get(suscriptores_appeared_pokemon, i);
 		int socket_suscriptor = suscriptor->socket_cliente;
 		send(socket_suscriptor,a_enviar,tamanio_paquete,0);
 	}
-}
 
-
-
-
-void devolver_mensaje(void* payload, int size, int socket_cliente)
-{
-	t_paquete* paquete = malloc(sizeof(t_paquete));
-
-	paquete->codigo_operacion = NEW_POKEMON;
-	paquete->buffer = malloc(sizeof(t_buffer));
-	paquete->buffer->size = size;
-	paquete->buffer->stream = malloc(paquete->buffer->size);
-	memcpy(paquete->buffer->stream, payload, paquete->buffer->size);
-
-	int bytes = paquete->buffer->size + 2*sizeof(int);
-
-	void* a_enviar = serializar_paquete(paquete, bytes);
-
-	send(socket_cliente, a_enviar, bytes, 0);
+	completar_logger("Paquete enviado", "Broker", LOG_LEVEL_INFO);
 
 	free(a_enviar);
 	free(paquete->buffer->stream);
 	free(paquete->buffer);
 	free(paquete);
 }
+
 
 
 /* Para probar mensajes que recibe del GameBoy:
