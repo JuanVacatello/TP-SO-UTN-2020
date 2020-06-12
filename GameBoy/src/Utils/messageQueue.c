@@ -1,5 +1,7 @@
 #include "../Utils/messageQueue.h"
 
+// CONEXIONES
+
 int crear_conexion(char* ip, char* puerto)
 {
 	struct addrinfo hints;
@@ -27,9 +29,85 @@ int crear_conexion(char* ip, char* puerto)
 	return socket_cliente;
 }
 
+void iniciar_servidor(void){
+	int socket_servidor;
+
+    struct addrinfo hints, *servinfo, *p;
+
+    memset(&hints, 0, sizeof(hints));
+    hints.ai_family = AF_UNSPEC;
+    hints.ai_socktype = SOCK_STREAM;
+    hints.ai_flags = AI_PASSIVE;
+
+    getaddrinfo(IP, PUERTO, &hints, &servinfo);
+
+    for (p=servinfo; p != NULL; p = p->ai_next)
+    {
+        if ((socket_servidor = socket(p->ai_family, p->ai_socktype, p->ai_protocol)) == -1)
+            continue;
+
+        if (bind(socket_servidor, p->ai_addr, p->ai_addrlen) == -1) {
+            close(socket_servidor);
+            continue;
+        }
+        break;
+    }
+
+	listen(socket_servidor, SOMAXCONN);
+
+	completar_logger("Se inició proceso Team", "TEAM", LOG_LEVEL_INFO); // LOG OBLIGATORIO
+
+    freeaddrinfo(servinfo);
+
+    while(1)
+    	esperar_cliente(socket_servidor);
+}
+
+void esperar_cliente(int socket_servidor){
+	struct sockaddr_in dir_cliente;
+
+	int tam_direccion = sizeof(struct sockaddr_in);
+
+	int socket_cliente = accept(socket_servidor, (void*) &dir_cliente, &tam_direccion);
+
+	pthread_create(&thread,NULL,(void*)serve_client,&socket_cliente);
+	pthread_detach(thread);
+
+}
+
+void serve_client(int* socket_cliente)
+{
+	op_code cod_op;
+	if(recv(*socket_cliente, &cod_op, sizeof(op_code), MSG_WAITALL) == -1)
+		cod_op = -1;
+	process_request(cod_op, *socket_cliente);
+}
+
+void process_request(op_code cod_op, int socket_cliente) {
+
+		switch (cod_op) {
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		case -1:
+			pthread_exit(NULL);
+			break;
+		}
+}
+
+// SERIALIZAR PAQUETE
+
 void* serializar_paquete(t_paquete* paquete, int *bytes)
 {
-	*bytes = (paquete->buffer->size)+sizeof(op_code)+sizeof(int);
 	void* a_enviar = malloc((*bytes));
 	int offset = 0;
 

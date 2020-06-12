@@ -14,6 +14,11 @@
 #include"configGameBoy.h"
 #include"logGameBoy.h"
 
+#define IP "127.0.0.3"
+#define PUERTO "6666"
+
+pthread_t thread;
+
 typedef enum
 {
 	SUSCRIPTOR=0,
@@ -38,6 +43,10 @@ typedef struct
 } t_paquete;
 
 int crear_conexion(char* ip, char* puerto);
+void iniciar_servidor(void);
+void esperar_cliente(int socket_servidor);
+void serve_client(int* socket_cliente);
+void process_request(op_code cod_op, int socket_cliente);
 void* serializar_paquete(t_paquete* paquete , int *bytes);
 
 void enviar_mensaje_a_broker(int socket_cliente, op_code codigo_operacion, char* argv[]);
