@@ -23,12 +23,12 @@ int main(void) {
 		puerto_broker = obtener_puerto();
 		ip_broker = obtener_ip();
 
-		socket_conexion_broker = crear_conexion(ip_broker,puerto_broker);
+		//socket_conexion_broker = crear_conexion(ip_broker,puerto_broker);
 		puts("aca entra1");
-		enviar_suscripcion_a_cola(socket_conexion_broker, 2);
+		//enviar_suscripcion_a_cola(socket_conexion_broker, 2);
 		//sleep(10);
 
-		iniciar_servidor();
+		//iniciar_servidor();
 
 		puts("aca entra2");
 		//enviar_suscripcion_a_cola(socket_conexion_broker, 4);
@@ -36,18 +36,18 @@ int main(void) {
 		//enviar_suscripcion_a_cola(socket_conexion_broker, 6);
 		//sleep(10);
 		puts("aca entra3");
-		armar_entrenadores();
-		generar_objetivo_global();
-		generar_atrapados_global();
+		//armar_entrenadores();
+		//generar_objetivo_global();
+		//generar_atrapados_global();
 		puts("aca entra4");
 
 		//pedir_ubicacion_pokemones(socket_conexion_broker);
 
-/*
-		ip = obtener_ip();
-		puts(ip);
-		puerto = obtener_puerto();
-		puts(puerto);
+
+
+		puts(ip_broker);
+
+		puts(puerto_broker);
 		retardo = obtener_retardo_ciclo_cpu();
 		printf("%d\n",retardo);
 		tiempoReconexion = obtener_tiempo_reconexion();
@@ -64,6 +64,27 @@ int main(void) {
 		//printf("%d\n",alpha);
 
 		puts(" ");
+
+		//atrapadosPrueba = [Pikachu,,]
+
+		char** atrapadosPrueba = obtener_pokemon_entrenadores();
+
+		//printf("Pokemon: %s\n",atrapadosPrueba[0]);
+		//printf("Pokemon: %s\n",atrapadosPrueba[1]);
+		//printf("Pokemon: %s\n",atrapadosPrueba[2]);
+
+		for(int i =0; i<=3; i++){
+			//t_list* atrapado = obtener_atrapados(atrapadosPrueba[i]);
+			if((atrapadosPrueba[i])==NULL){
+				puts("No atrapó ninguno\n");
+			}
+			else
+				puts(atrapadosPrueba[i]);
+		}
+
+		armar_entrenadores();
+		generar_objetivo_global();
+		generar_atrapados_global();
 
 		char** posiciones = obtener_posiciones_entrenadores();
 		char** objetivos = obtener_objetivos_entrenadores();

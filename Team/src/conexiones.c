@@ -352,19 +352,6 @@ void recibir_AppearedPokemon(int socket_cliente){
 
 }*/
 
-/*
-void recibir_mensaje_GameBoy(int socket_cliente){
-	op_code cod_op;
-	recv(socket_cliente, &cod_op, sizeof(op_code), MSG_WAITALL);
-
-	switch(cod_op){
-	case 2:
-		recibir_appeared_pokemon_loggeo(socket_cliente);
-	}
-}*/
-
-
-
 void recibir_appeared_pokemon_loggeo(int socket_cliente){
 
 
@@ -413,6 +400,141 @@ void recibir_appeared_pokemon_loggeo(int socket_cliente){
 		//armar pokemon con los datos recibidos y mandar el pokemon armado a APARACION_POKEMON()
 }
 
+/*
+void recibir_CaughtPokemon(int socket_cliente){
+
+		uint32_t tamanio_buffer;
+		recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
+
+		uint32_t caracteresPokemon;
+		recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
+
+		char* pokemon = (char*)malloc(caracteresPokemon);
+		recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
+
+		uint32_t posX;
+		recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
+
+		uint32_t posY;
+		recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
+
+}*/
+
+
+void recibir_caught_pokemon_loggeo(int socket_cliente){
+
+		uint32_t tamanio_buffer;
+		recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
+
+		char* m1 = string_from_format("tamaño buffer: %d.", tamanio_buffer);
+					completar_logger(m1, "BROKER", LOG_LEVEL_INFO);
+
+		uint32_t tamanio_leido= 0;
+
+		uint32_t caracteresPokemon;
+		recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
+		tamanio_leido += sizeof(uint32_t);
+			//log
+			char* m2 = string_from_format("Los caracteres de pokemon son: %d.", caracteresPokemon);
+			completar_logger(m2, "BROKER", LOG_LEVEL_INFO);
+
+		char* pokemon = (char*)malloc(caracteresPokemon);
+		recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
+		tamanio_leido += caracteresPokemon;
+			//log
+			completar_logger(pokemon, "BROKER", LOG_LEVEL_INFO);
+
+		uint32_t posX;
+		recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
+		tamanio_leido += sizeof(uint32_t);
+			//log
+		char* m3 = string_from_format("La posicion en X es: %d", posX);
+		completar_logger(m3, "BROKER", LOG_LEVEL_INFO);
+
+		uint32_t posY;
+		recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
+		tamanio_leido += sizeof(uint32_t);
+			//log
+		char* m4 = string_from_format("La posicion en Y es: %d", posY);
+		completar_logger(m4, "BROKER", LOG_LEVEL_INFO);
+
+		if((tamanio_buffer - tamanio_leido) != 0){
+			uint32_t id_correlativo;
+			recv(socket_cliente, &id_correlativo, sizeof(uint32_t), MSG_WAITALL);
+						//log
+				char* m5 = string_from_format("El id correlativo es: %d", id_correlativo);
+				completar_logger(m5, "BROKER", LOG_LEVEL_INFO);
+		}
+		//armar pokemon con los datos recibidos y mandar el pokemon armado a APARACION_POKEMON()
+}
+/*
+void recibir_LocalizedPokemon(int socket_cliente){
+
+		uint32_t tamanio_buffer;
+		recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
+
+		uint32_t caracteresPokemon;
+		recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
+
+		char* pokemon = (char*)malloc(caracteresPokemon);
+		recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
+
+		uint32_t posX;
+		recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
+
+		uint32_t posY;
+		recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
+
+}*/
+
+
+void recibir_localized_pokemon_loggeo(int socket_cliente){
+
+
+		uint32_t tamanio_buffer;
+		recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
+
+		char* m1 = string_from_format("tamaño buffer: %d.", tamanio_buffer);
+					completar_logger(m1, "BROKER", LOG_LEVEL_INFO);
+
+		uint32_t tamanio_leido= 0;
+
+		uint32_t caracteresPokemon;
+		recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
+		tamanio_leido += sizeof(uint32_t);
+			//log
+			char* m2 = string_from_format("Los caracteres de pokemon son: %d.", caracteresPokemon);
+			completar_logger(m2, "BROKER", LOG_LEVEL_INFO);
+
+		char* pokemon = (char*)malloc(caracteresPokemon);
+		recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
+		tamanio_leido += caracteresPokemon;
+			//log
+			completar_logger(pokemon, "BROKER", LOG_LEVEL_INFO);
+
+		uint32_t posX;
+		recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
+		tamanio_leido += sizeof(uint32_t);
+			//log
+		char* m3 = string_from_format("La posicion en X es: %d", posX);
+		completar_logger(m3, "BROKER", LOG_LEVEL_INFO);
+
+		uint32_t posY;
+		recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
+		tamanio_leido += sizeof(uint32_t);
+			//log
+		char* m4 = string_from_format("La posicion en Y es: %d", posY);
+		completar_logger(m4, "BROKER", LOG_LEVEL_INFO);
+
+		if((tamanio_buffer - tamanio_leido) != 0){
+			uint32_t id_correlativo;
+			recv(socket_cliente, &id_correlativo, sizeof(uint32_t), MSG_WAITALL);
+						//log
+				char* m5 = string_from_format("El id correlativo es: %d", id_correlativo);
+				completar_logger(m5, "BROKER", LOG_LEVEL_INFO);
+		}
+		//armar pokemon con los datos recibidos y mandar el pokemon armado a APARACION_POKEMON()
+}
 
 //----------------------- RECEPCION DE MENSAJES DE GAMEBOY -----------------------
 

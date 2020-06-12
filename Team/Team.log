@@ -13,3 +13,16 @@
 [INFO] 18:21:07:254 TEAM/(17310:17310): Se conectó proceso al Team
 [INFO] 18:24:18:190 TEAM/(17450:17450): Se conectó proceso al Team
 [INFO] 18:54:43:494 TEAM/(18414:18414): Se inició proceso Team
+[INFO] 19:54:46:806 TEAM/(4811:4811): Se inició proceso Team
+[INFO] 19:55:30:525 TEAM/(4811:4835): tamaño buffer: 20.
+[INFO] 19:55:30:525 TEAM/(4811:4835): Los caracteres de pokemon son: 8.
+[INFO] 19:55:30:525 TEAM/(4811:4835): Pikachu
+[INFO] 19:55:30:525 TEAM/(4811:4835): La posicion en X es: 2
+[INFO] 19:55:30:525 TEAM/(4811:4835): La posicion en Y es: 4
+[INFO] 20:03:03:629 TEAM/(5212:5212): Se inició proceso Team
+[INFO] 20:03:16:537 TEAM/(4811:11262): tamaño buffer: 20.
+[INFO] 20:03:16:537 TEAM/(4811:11262): Los caracteres de pokemon son: 8.
+[INFO] 20:03:16:537 TEAM/(4811:11262): Pikachu
+[INFO] 20:03:16:537 TEAM/(4811:11262): La posicion en X es: 2
+[INFO] 20:03:16:537 TEAM/(4811:11262): La posicion en Y es: 4
+[INFO] 20:50:13:233 TEAM/(3043:3043): Se inició proceso Team
