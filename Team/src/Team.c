@@ -142,6 +142,7 @@ void planificacion(){
 	armar_entrenadores();
 	generar_objetivo_global();
 	generar_atrapados_global();
+	lista_de_entrenadores_deadlock=list_create();
 
 	switch(planificador){
 		case 1:
@@ -207,6 +208,16 @@ void aparicion_pokemon(t_pokemon* pokemon){
 	}
 	else{
 		//ESPERAMOS A LOG//
+	}
+}
+
+bool deteccion_de_deadlock(){
+
+	if(list_size(lista_de_entrenadores_deadlock)){
+		return true;
+	}
+	else{
+		return false;
 	}
 }
 

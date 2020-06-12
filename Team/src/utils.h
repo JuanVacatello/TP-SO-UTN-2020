@@ -34,7 +34,7 @@ pthread_mutex_t* mutex_planificador;
 
 int socket_conexion_broker;
 
-
+t_list* lista_de_entrenadores_deadlock;
 
 typedef enum
 {

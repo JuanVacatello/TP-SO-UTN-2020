@@ -18,6 +18,13 @@ void planificar_fifo(void){
 
 	while (1){
 
+		if(deteccion_de_deadlock()){
+
+			//hacer el intercambio
+
+		}
+
+		else{
 
 		puts("aca entra1");
 
@@ -38,6 +45,7 @@ void planificar_fifo(void){
 		puts("aca entra4");
 		ejecutar_entrenador(entrenador);
 
+		}
 
 		//Le decimos al entrenador que ejecute sus acciones
 
