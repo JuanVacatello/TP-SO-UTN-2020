@@ -98,24 +98,26 @@ t_list* obtener_atrapados(char* atrapados){
 
 	int cantidad_elementos = cantidad_de_elementos(atrapados);
 
-	char** vector_atrapados = string_n_split(atrapados, cantidad_elementos,"|");
-
 	t_list* atrapados_casteados = list_create();
 
-	for(int i=0; i<=cantidad_elementos; i++){
+	if(cantidad_elementos != 0){
+		char** vector_atrapados = string_n_split(atrapados, cantidad_elementos,"|");
 
-		list_add(atrapados_casteados, vector_atrapados[i]);
+		for(int i=0; i<=cantidad_elementos; i++){
+
+			list_add(atrapados_casteados, vector_atrapados[i]);
+
+		}
 
 	}
 
 	return atrapados_casteados;
-
 }
 
 
 int cantidad_de_elementos(char* pokemons){
-	int contador = 0;
-	if(!string_is_empty(pokemons)){
+	int contador = 1;
+	if(pokemons != NULL || pokemons != '\0'){
 		for(int i=0; i < string_length(pokemons); i++){
 			if(pokemons[i] =='|')
 				contador++;

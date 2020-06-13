@@ -11,8 +11,6 @@
 int main(void) {
 
 		//int conexion;
-		char* ip_broker;
-		char* puerto_broker;
 		int algoritmo;
 		char* logFile;
 		int retardo, tiempoReconexion, estimacion, quantum;// alpha;
@@ -20,34 +18,32 @@ int main(void) {
 		leer_config();
 		iniciar_logger();
 
-		puerto_broker = obtener_puerto();
-		ip_broker = obtener_ip();
 
-		//socket_conexion_broker = crear_conexion(ip_broker,puerto_broker);
-		puts("aca entra1");
-		//enviar_suscripcion_a_cola(socket_conexion_broker, 2);
-		//sleep(10);
 
+		//puts("aca entra1");
+		//enviar_suscripcion_a_cola(2);/*APPEARED POKEMON*/
+		//sleep(3);
+		//puts("Me suscribo a APPEARED POKEMON");
+		//enviar_suscripcion_a_cola(4);/*CAUGHT POKEMON*/
+		//sleep(3);
+		//puts("Me suscribo a CAUGHT POKEMON");
+		//enviar_suscripcion_a_cola(6);/*LOCALIZED POKEMON*/
+		//sleep(3);
+		//puts("Me suscribo a CAUGHT POKEMON");*/
 		//iniciar_servidor();
 
-		puts("aca entra2");
-		//enviar_suscripcion_a_cola(socket_conexion_broker, 4);
-		//sleep(10);
-		//enviar_suscripcion_a_cola(socket_conexion_broker, 6);
 		//sleep(10);
 		puts("aca entra3");
-		//armar_entrenadores();
-		//generar_objetivo_global();
-		//generar_atrapados_global();
+		armar_entrenadores();
+		generar_objetivo_global();
+		generar_atrapados_global();
 		puts("aca entra4");
 
 		//pedir_ubicacion_pokemones(socket_conexion_broker);
 
 
 
-		puts(ip_broker);
 
-		puts(puerto_broker);
 		retardo = obtener_retardo_ciclo_cpu();
 		printf("%d\n",retardo);
 		tiempoReconexion = obtener_tiempo_reconexion();
@@ -67,7 +63,7 @@ int main(void) {
 
 		//atrapadosPrueba = [Pikachu,,]
 
-		char** atrapadosPrueba = obtener_pokemon_entrenadores();
+		/*char** atrapadosPrueba = obtener_pokemon_entrenadores();
 
 		//printf("Pokemon: %s\n",atrapadosPrueba[0]);
 		//printf("Pokemon: %s\n",atrapadosPrueba[1]);
@@ -80,15 +76,25 @@ int main(void) {
 			}
 			else
 				puts(atrapadosPrueba[i]);
-		}
+		}*/
 
-		armar_entrenadores();
-		generar_objetivo_global();
-		generar_atrapados_global();
+		//armar_entrenadores();
+		//generar_objetivo_global();
+		//generar_atrapados_global();
 
 		char** posiciones = obtener_posiciones_entrenadores();
 		char** objetivos = obtener_objetivos_entrenadores();
 		char** atrapados = obtener_pokemon_entrenadores();
+
+		puts(atrapados[0]);
+		if(atrapados[1] == NULL)
+			puts("NULL");
+		else
+			puts(atrapados[1]);
+		if(atrapados[2] == NULL || atrapados[2] == '\0')
+			puts("NULL");
+		else
+			puts(atrapados[2]);
 
 		char* posicion;
 		char* objetivo_entrenador;
@@ -103,7 +109,10 @@ int main(void) {
 			printf("Objetivos entrenador = ");
 			puts(objetivo_entrenador);
 			printf("Atrapados entrenador = ");
-		    puts(atrapado);
+			if(atrapado ==NULL)
+				puts("NO ATRAPO POKEMON");
+				else
+					printf("%s\n", atrapado);
 		    puts(" ");
 
 		}
@@ -124,15 +133,11 @@ int main(void) {
 		puts(" ");
 		puts(list_get(entrenador->objetivo,0));
 		puts(list_get(entrenador->objetivo,1));
-		puts(list_get(entrenador->objetivo,2));
-		puts(list_get(entrenador->objetivo,3));
 		puts(" ");
 		puts(list_get(entrenador->atrapados,0));
-		puts(list_get(entrenador->atrapados,1));
-		puts(list_get(entrenador->atrapados,2));
 
 
-		/*printf("%d\n",entrenador->posicion->x);
+		/*printf(,entrenador->posicion->x);
 		printf("%d\n",entrenador->posicion->y);
 
 		moverse_derecha(entrenador);

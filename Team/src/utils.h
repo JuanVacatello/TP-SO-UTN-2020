@@ -32,7 +32,7 @@ t_list* lista_de_pokemones_sueltos;
 
 pthread_mutex_t* mutex_planificador;
 
-int socket_conexion_broker;
+//int socket_conexion_broker;
 
 
 

@@ -45,7 +45,7 @@ void* serializar_paquete(t_paquete* paquete, int* bytes);
 void devolver_mensaje(void* payload, int size, int socket_cliente);
 
 void* suscribirse_a_cola(int socket_cliente, uint32_t cola, int* tamanio_paquete);
-void enviar_suscripcion_a_cola(int socket_cliente, uint32_t cola);
+void enviar_suscripcion_a_cola(uint32_t cola);
 
 void enviar_CatchPokemon_a_broker(int socket_cliente, op_code codigo_operacion, t_entrenador* entrenador);
 void enviar_GetPokemon_a_broker(int socket_cliente, op_code codigo_operacion, t_pokemon* pokemon);

@@ -61,6 +61,9 @@ int crear_conexion(char* ip, char* puerto)
 	}
 
 	freeaddrinfo(server_info);
+
+	char* mensaje = string_from_format("el socket de conexion es: %d.", socket_cliente);
+		completar_logger(mensaje, "Broker", LOG_LEVEL_INFO);
 	return socket_cliente;
 }
 
@@ -82,12 +85,19 @@ void serve_client(int* socket_cliente)
 	op_code cod_op;
 	if(recv(*socket_cliente, &cod_op, sizeof(op_code), MSG_WAITALL) == -1)
 		cod_op = -1;
+
+	char* mensaje = string_from_format("El codigo de operacion es: %d.", cod_op);
+	completar_logger(mensaje, "Broker", LOG_LEVEL_INFO);
+
 	process_request(cod_op, *socket_cliente);
+
 }
 
 void process_request(op_code cod_op, int socket_cliente) {
 
 		switch (cod_op) {
+		completar_logger("Entro al switch", "Broker", LOG_LEVEL_INFO);
+
 		case 2:
 			recibir_appeared_pokemon_loggeo(socket_cliente);
 
@@ -188,8 +198,13 @@ void* suscribirse_a_cola(int socket_cliente, uint32_t cola, int* tamanio_paquete
 }
 
 
-void enviar_suscripcion_a_cola(int socket_cliente, uint32_t cola) //HAY QUE VER ESTE TEMA DEL PARAMETRO
+void enviar_suscripcion_a_cola(uint32_t cola) //HAY QUE VER ESTE TEMA DEL PARAMETRO
 {
+	char* puerto_broker = obtener_puerto();
+	char* ip_broker = obtener_ip();
+
+	int socket_cliente = crear_conexion(ip_broker,puerto_broker);
+
 	int tamanio_paquete = 0;
 	void* a_enviar;
 	puts("aca entra1.5");
@@ -354,12 +369,13 @@ void recibir_AppearedPokemon(int socket_cliente){
 
 void recibir_appeared_pokemon_loggeo(int socket_cliente){
 
+		completar_logger("recibo el pokemon", "TEAM", LOG_LEVEL_INFO);
 
 		uint32_t tamanio_buffer;
 		recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
 		char* m1 = string_from_format("tamaño buffer: %d.", tamanio_buffer);
-					completar_logger(m1, "BROKER", LOG_LEVEL_INFO);
+					completar_logger(m1, "TEAM", LOG_LEVEL_INFO);
 
 		uint32_t tamanio_leido= 0;
 
@@ -368,36 +384,52 @@ void recibir_appeared_pokemon_loggeo(int socket_cliente){
 		tamanio_leido += sizeof(uint32_t);
 			//log
 			char* m2 = string_from_format("Los caracteres de pokemon son: %d.", caracteresPokemon);
-			completar_logger(m2, "BROKER", LOG_LEVEL_INFO);
+			completar_logger(m2, "TEAM", LOG_LEVEL_INFO);
 
 		char* pokemon = (char*)malloc(caracteresPokemon);
 		recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
 		tamanio_leido += caracteresPokemon;
 			//log
-			completar_logger(pokemon, "BROKER", LOG_LEVEL_INFO);
+			completar_logger(pokemon, "TEAM", LOG_LEVEL_INFO);
 
 		uint32_t posX;
 		recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
 		tamanio_leido += sizeof(uint32_t);
 			//log
 		char* m3 = string_from_format("La posicion en X es: %d", posX);
-		completar_logger(m3, "BROKER", LOG_LEVEL_INFO);
+		completar_logger(m3, "TEAM", LOG_LEVEL_INFO);
 
 		uint32_t posY;
 		recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
 		tamanio_leido += sizeof(uint32_t);
 			//log
 		char* m4 = string_from_format("La posicion en Y es: %d", posY);
-		completar_logger(m4, "BROKER", LOG_LEVEL_INFO);
+		completar_logger(m4, "TEAM", LOG_LEVEL_INFO);
 
 		if((tamanio_buffer - tamanio_leido) != 0){
 			uint32_t id_correlativo;
 			recv(socket_cliente, &id_correlativo, sizeof(uint32_t), MSG_WAITALL);
 						//log
 				char* m5 = string_from_format("El id correlativo es: %d", id_correlativo);
-				completar_logger(m5, "BROKER", LOG_LEVEL_INFO);
+				completar_logger(m5, "TEAM", LOG_LEVEL_INFO);
 		}
+
+		armarPokemon(pokemon, posX, posY);
 		//armar pokemon con los datos recibidos y mandar el pokemon armado a APARACION_POKEMON()
+}
+
+void armarPokemon(char* pokemon, int posX, int posY){
+	t_pokemon* pokemonNuevo = malloc(sizeof(t_pokemon));
+	pokemonNuevo->especie = pokemon;
+	pokemonNuevo->posicion.x= posX;
+	pokemonNuevo->posicion.y= posY;
+
+	char* pokemonNombre = string_from_format("El nombre del pokemon es: %s", pokemonNuevo->especie);
+					completar_logger(pokemonNombre, "TEAM", LOG_LEVEL_INFO);
+	char* xx = string_from_format("posicion en x: %d",pokemonNuevo->posicion.x);
+					completar_logger(xx, "TEAM", LOG_LEVEL_INFO);
+	char* yy = string_from_format("posicion en y: %d", pokemonNuevo->posicion.y);
+					completar_logger(yy, "TEAM", LOG_LEVEL_INFO);
 }
 
 /*

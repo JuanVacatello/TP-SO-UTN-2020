@@ -107,25 +107,23 @@ void generar_atrapados_global(void){
 	entrenador = list_get(entrenadores, indice_entrenador);
 	lista_pokemons_entrenador = entrenador->atrapados;
 
+	if(!list_is_empty(lista_pokemons_entrenador)){
+		for(int indice_pokemon=0; indice_pokemon<list_size(lista_pokemons_entrenador); indice_pokemon++){
 
-			for(int indice_pokemon=0; indice_pokemon<list_size(lista_pokemons_entrenador); indice_pokemon++){
-
+			if(list_get(lista_pokemons_entrenador,indice_pokemon) != NULL){
 				if(dictionary_has_key(atrapados_global, list_get(lista_pokemons_entrenador,indice_pokemon))){
-
 					cantidad_pokemon = dictionary_get(atrapados_global, list_get(lista_pokemons_entrenador, indice_pokemon));
-
 					dictionary_put(atrapados_global, list_get(lista_pokemons_entrenador, indice_pokemon), cantidad_pokemon++);
-
-				}
-
+								}
 				else{
-
-				dictionary_put(atrapados_global, list_get(lista_pokemons_entrenador, indice_pokemon), 1);
-
+					char* key = list_get(lista_pokemons_entrenador, indice_pokemon);
+					puts(key);
+					dictionary_put(atrapados_global, list_get(lista_pokemons_entrenador, indice_pokemon), 1);
+					}
 				}
-
 			}
 		}
+	}
 
 }
 
