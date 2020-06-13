@@ -55,14 +55,17 @@ void* iniciar_paquete_serializado_CatchPokemon(int* tamanio_paquete,t_entrenador
 void* iniciar_paquete_serializado_GetPokemon(int* tamanio_paquete,t_pokemon* pokemon_pedido);
 void recibir_mensaje2(int socket_cliente);
 
-//RECIBIR MENSAJES GAMEBOY
-void recibir_mensaje_GameBoy(int socket_cliente);
+//RECIBIR MENSAJES GAMEBOY Y BROKER
+void recibir_AppearedPokemon(int socket_cliente);
+void recibir_CaughtPokemon(int socket_cliente);
+void recibir_LocalizedPokemon(int socket_cliente);
+
+//RECIBIR MENSAJES CON LOGS
 void recibir_appeared_pokemon_loggeo(int socket_cliente);
+void recibir_caught_pokemon_loggeo(int socket_cliente);
+void recibir_localized_pokemon_loggeo(int socket_cliente);
 
-//RECIBIR MENSAJES BROKER
 
-void recibir_mensaje_Broker(int socket_cliente);
-//void recibir_appeared_pokemon_loggeo(int socket_cliente);
-
+void armarPokemon(char* pokemon, int posX, int posY);
 
 #endif

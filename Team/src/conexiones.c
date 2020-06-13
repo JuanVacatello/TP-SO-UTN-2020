@@ -103,10 +103,10 @@ void process_request(op_code cod_op, int socket_cliente) {
 
 			break;
 		case 4:
-
+			recibir_caught_pokemon_loggeo(socket_cliente);
 			break;
 		case 6:
-
+			recibir_localized_pokemon_loggeo(socket_cliente);
 			break;
 		case -1:
 			pthread_exit(NULL);
@@ -432,25 +432,21 @@ void armarPokemon(char* pokemon, int posX, int posY){
 					completar_logger(yy, "TEAM", LOG_LEVEL_INFO);
 }
 
-/*
+
 void recibir_CaughtPokemon(int socket_cliente){
 
 		uint32_t tamanio_buffer;
 		recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
-		uint32_t caracteresPokemon;
-		recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
+		uint32_t id_correlativo;
+		recv(socket_cliente, &id_correlativo, sizeof(uint32_t), MSG_WAITALL);
 
-		char* pokemon = (char*)malloc(caracteresPokemon);
-		recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
+		uint32_t pudoAtraparlo;
+		recv(socket_cliente, &pudoAtraparlo, sizeof(uint32_t), MSG_WAITALL);
 
-		uint32_t posX;
-		recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
+		//Falta seguir a partir de aca
 
-		uint32_t posY;
-		recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
-
-}*/
+}
 
 
 void recibir_caught_pokemon_loggeo(int socket_cliente){
@@ -499,7 +495,9 @@ void recibir_caught_pokemon_loggeo(int socket_cliente){
 		}
 		//armar pokemon con los datos recibidos y mandar el pokemon armado a APARACION_POKEMON()
 }
-/*
+
+// "Pikachu" 3 4 5 6 3 5 7
+
 void recibir_LocalizedPokemon(int socket_cliente){
 
 		uint32_t tamanio_buffer;
@@ -511,13 +509,20 @@ void recibir_LocalizedPokemon(int socket_cliente){
 		char* pokemon = (char*)malloc(caracteresPokemon);
 		recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
 
-		uint32_t posX;
-		recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
+		uint32_t cantidadPokemones;
+		recv(socket_cliente, &cantidadPokemones, sizeof(uint32_t), MSG_WAITALL);
 
-		uint32_t posY;
-		recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
+		for(int i =0; i<cantidadPokemones; i++){
+			uint32_t posX;
+			recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
 
-}*/
+			uint32_t posY;
+			recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
+
+			armarPokemon(pokemon, posX, posY); //esto no funca todavia pero la logica seria asi
+		}
+
+}
 
 
 void recibir_localized_pokemon_loggeo(int socket_cliente){
@@ -570,17 +575,6 @@ void recibir_localized_pokemon_loggeo(int socket_cliente){
 
 //----------------------- RECEPCION DE MENSAJES DE GAMEBOY -----------------------
 
-void recibir_mensaje_Broker(int socket_cliente){
-	op_code cod_op;
-	recv(socket_cliente, &cod_op, sizeof(op_code), MSG_WAITALL);
-
-	switch(cod_op){
-	case 2:
-		recibir_appeared_pokemon_loggeo(socket_cliente);
-	}
-}
-
-
 
 /*
 void recibir_appeared_pokemon_loggeo(int socket_cliente){
@@ -621,12 +615,6 @@ void recibir_appeared_pokemon_loggeo(int socket_cliente){
 
 
 */
-
-
-
-
-
-
 
 
 void recibir_mensaje2(int socket_cliente)

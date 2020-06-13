@@ -18,8 +18,6 @@ int main(void) {
 		leer_config();
 		iniciar_logger();
 
-
-
 		//puts("aca entra1");
 		//enviar_suscripcion_a_cola(2);/*APPEARED POKEMON*/
 		//sleep(3);
@@ -40,7 +38,6 @@ int main(void) {
 		puts("aca entra4");
 
 		//pedir_ubicacion_pokemones(socket_conexion_broker);
-
 
 
 
