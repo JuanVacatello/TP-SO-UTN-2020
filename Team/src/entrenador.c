@@ -49,6 +49,8 @@ t_entrenador* armar_entrenador(int indice){
 	//ESTADO
 	entrenador->estado = NEW;
 
+
+
 	//CICLOS DE CPU
 	entrenador->ciclos_de_cpu_totales = 0;
 
@@ -216,8 +218,8 @@ void ejecutar_entrenador(t_entrenador* entrenador){
 		free(accion_a_ejecutar->ciclo_cpu);
 		free(accion_a_ejecutar);
 	}
-	entrenador->estado = BLOCKED;// Hay que ver si termina aca
 
+	void puede_seguir_atrapando(entrenador);	//Acá se fija si terminó, entró en deadlock o puede seguir atrapando
 //	enviar_mensaje_a_broker(socket_conexion_broker, 3 , entrenador); //HABRIA QUE VER SI ES VG EL SOCKET
 }
 
@@ -225,8 +227,6 @@ void atrapar_pokemon(t_entrenador* entrenador){
 
 	list_add(entrenador->atrapados, entrenador->pokemon_a_atrapar);
 	entrenador->pokemon_a_atrapar = NULL;
-	void puede_seguir_atrapando(entrenador);
-
 
 	free(entrenador->pokemon_a_atrapar);
 
@@ -237,18 +237,23 @@ void puede_seguir_atrapando(t_entrenador* entrenador){
 
 	t_pokemon* pokemon;
 
+	if(list_size(entrenador->objetivo) == list_size(entrenador->atrapados)){
+
 	if(termino_de_atrapar(entrenador)){
 
-		if(termino_de_atrapar(entrenador)){
-			entrenador->estado = EXIT;
-		}
-		else{
+		entrenador->estado = EXIT;
+
+	}
+
+	else{
 
 			for (int indice_pokemon=0; indice_pokemon<list_size(entrenador->objetivo); indice_pokemon++){
 				pokemon=list_get(entrenador->objetivo, indice_pokemon);
-				if(comprobar_deadlock(entrenador, pokemon)){
+				if(comprobar_deadlock_entrenador(entrenador, pokemon)){
 
-					entrenador->estado_deadlock = 1;
+					entrenador->estado_deadlock = 1;	//VER SI ESTO ES NECESARIO
+
+					list_add(lista_de_entrenadores_deadlock, entrenador);
 
 					//PASARLO A DEADLOCK
 				}
@@ -256,10 +261,15 @@ void puede_seguir_atrapando(t_entrenador* entrenador){
 			}
 
 
+			}
+	}
 
-		}
+	else{
+		entrenador->estado = BLOCKED;
 	}
 }
+
+
 
 bool termino_de_atrapar(t_entrenador* entrenador){
 
@@ -334,7 +344,7 @@ bool termino_con_pokemon(t_entrenador* entrenador, t_pokemon* pokemon){
 	}
 }
 
-bool comprobar_deadlock(t_entrenador* entrenador, t_pokemon* pokemon){
+bool comprobar_deadlock_entrenador(t_entrenador* entrenador, t_pokemon* pokemon){
 
 	t_pokemon* pokemon_auxiliar;
 		int cantidad_objetivo = 0;

@@ -74,7 +74,7 @@ bool puede_atrapar(t_entrenador* entrenador);
 void ejecutar_entrenador(t_entrenador* entrenador);
 bool termino_de_atrapar(t_entrenador* entrenador);
 bool termino_con_pokemon(t_entrenador* entrenador, t_pokemon* pokemon);
-bool comprobar_deadlock(t_entrenador* entrenador, t_pokemon* pokemon);
+bool comprobar_deadlock_entrenador(t_entrenador* entrenador, t_pokemon* pokemon);
 
 
 #endif /* ENTRENADOR_H_ */
