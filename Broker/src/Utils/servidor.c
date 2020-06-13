@@ -96,12 +96,13 @@ void process_request(op_code cod_op, int socket_cliente) {
 		case 1:
 			//recibir_new_pokemon_loggeo(socket_cliente);
 			//a_enviar = recibir_new_pokemon(socket_cliente,&tamanio_paquete);
-			completar_logger("En el switch de appeared pokemon", "Broker", LOG_LEVEL_INFO);
+
 			enviar_mensaje_a_suscriptores(1, socket_cliente);
 			break;
 		case 2:
 			//recibir_appeared_pokemon_loggeo(socket_cliente);
 			//a_enviar = recibir_appeared_pokemon(socket_cliente,&tamanio_paquete);
+			completar_logger("En el switch de appeared pokemon", "Broker", LOG_LEVEL_INFO);
 			enviar_mensaje_a_suscriptores(2, socket_cliente);
 			break;
 		case 3:
@@ -358,9 +359,10 @@ void enviar_mensaje_a_suscriptores(int cola_mensaje,int socket_cliente){
 
 		//ERROR ACA:::::
 	paquete->buffer->stream = malloc(paquete->buffer->size);
-	void* playload;
-	recv(socket_cliente, &playload, paquete->buffer->size, MSG_WAITALL);
-	memcpy(paquete->buffer->stream, &playload, paquete->buffer->size);
+	void* payload = malloc(paquete->buffer->size);
+
+	recv(socket_cliente, payload, paquete->buffer->size, MSG_WAITALL);
+	memcpy(paquete->buffer->stream, payload, paquete->buffer->size);
 
 	int tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
 
@@ -371,9 +373,15 @@ void enviar_mensaje_a_suscriptores(int cola_mensaje,int socket_cliente){
 		completar_logger(mensaje, "Broker", LOG_LEVEL_INFO);
 
 	for(int i = 0; i < sizelista; i++){
+		completar_logger("Entré al for", "BROKER", LOG_LEVEL_INFO);
 		proceso* suscriptor = list_get(suscriptores_appeared_pokemon, i);
 		int socket_suscriptor = suscriptor->socket_cliente;
-		send(socket_suscriptor,a_enviar,tamanio_paquete,0);
+		char* mensaj = string_from_format("el socket suscriptor: %d.", socket_suscriptor);
+		completar_logger(mensaj,"BROKER", LOG_LEVEL_INFO);
+		if(send(socket_cliente,a_enviar,tamanio_paquete,0) == -1){
+				completar_logger("Error en enviar por el socket","BROKER", LOG_LEVEL_INFO);
+				exit(3);
+		}
 	}
 
 	completar_logger("Paquete enviado", "Broker", LOG_LEVEL_INFO);
@@ -382,6 +390,7 @@ void enviar_mensaje_a_suscriptores(int cola_mensaje,int socket_cliente){
 	free(paquete->buffer->stream);
 	free(paquete->buffer);
 	free(paquete);
+	free(payload);
 }
 
 
