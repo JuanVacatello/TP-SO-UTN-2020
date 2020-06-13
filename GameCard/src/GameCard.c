@@ -1,14 +1,3 @@
-/*
- ============================================================================
- Name        : GameCard.c
- Author      : 
- Version     :
- Copyright   : Your copyright notice
- Description : Hello World in C, Ansi-style
- ============================================================================
- */
-
-
 #include "GameCard.h"
 
 
@@ -73,7 +62,7 @@ void inicializar_file_system(char* punto_montaje){
 
 	//obtener_bloque_pokemon("Charmander", path_files);
 
-	//agregar_pokemon("Charmander",1,1,2, path_files); //Funciona
+	agregar_pokemon("Charmander",1,1,2, path_files); //Funciona
 
 	//int a = existe_bloque(path_bloques,"1");
 	//printf("%d",a);
