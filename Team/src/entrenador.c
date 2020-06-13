@@ -49,8 +49,6 @@ t_entrenador* armar_entrenador(int indice){
 	//ESTADO
 	entrenador->estado = NEW;
 
-
-
 	//CICLOS DE CPU
 	entrenador->ciclos_de_cpu_totales = 0;
 
@@ -105,7 +103,7 @@ t_list* obtener_atrapados(char* atrapados){
 	if(cantidad_elementos != 0){
 		char** vector_atrapados = string_n_split(atrapados, cantidad_elementos,"|");
 
-		for(int i=0; i<=cantidad_elementos; i++){
+		for(int i=0; i<cantidad_elementos; i++){
 
 			list_add(atrapados_casteados, vector_atrapados[i]);
 
@@ -118,17 +116,17 @@ t_list* obtener_atrapados(char* atrapados){
 
 
 int cantidad_de_elementos(char* pokemons){
-	int contador = 1;
-	if(pokemons != NULL || pokemons != '\0'){
+	int contador = 0;
+	//if(pokemons != NULL || pokemons != '\0'){
 		for(int i=0; i < string_length(pokemons); i++){
 			if(pokemons[i] =='|')
 				contador++;
 		}
-	}
-	else{
-		return 0;
-	}
-	return contador;
+	//}
+	//else{
+	//	return 0;
+	//}
+	return contador+1;
 }
 
 
