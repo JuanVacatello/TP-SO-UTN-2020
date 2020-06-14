@@ -116,8 +116,6 @@ void generar_atrapados_global(void){
 					dictionary_put(atrapados_global, list_get(lista_pokemons_entrenador, indice_pokemon), cantidad_pokemon++);
 								}
 				else{
-					char* key = list_get(lista_pokemons_entrenador, indice_pokemon);
-					puts(key);
 					dictionary_put(atrapados_global, list_get(lista_pokemons_entrenador, indice_pokemon), 1);
 					}
 				}
@@ -129,12 +127,12 @@ void generar_atrapados_global(void){
 
 
 void planificacion(){
-	puts("aca entra3");
+	puts("aca entra2");
 	//Esta funcion se la mandamos al hilo principal para que la ejecute
 
 	int planificador = obtener_algoritmo_planificacion();
 
-	puts("aca entra0");
+	puts("aca entra3");
 	//HAY QUE CHEQUEAR ESTO
 
 	armar_entrenadores();
@@ -187,20 +185,20 @@ t_accion* armar_accion(void(*accion)(void*), int ciclos){
 
 
 void aparicion_pokemon(t_pokemon* pokemon){
-	puts("aca entra 9");
+	puts("aca entra 6");
 	if(es_pokemon_requerido(pokemon)){
-		puts("aca entra 18");
+		puts("aca entra 7");
 		t_entrenador* entrenador = entrenador_mas_cercano(pokemon);
-		puts("aca entra 19");
+		puts("aca entra 8");
 		entrenador->pokemon_a_atrapar = pokemon;
 
 		armar_movimiento(entrenador);
 		//AGREGAMOS ACCION A ENTRENADOR
-		puts("aca entra 20");
+		puts("aca entra 9");
 		list_add(lista_de_entrenadores_ready,entrenador);
-		list_add(pokemones_requeridos,pokemon);
+		list_add(pokemones_requeridos,pokemon);// no entiendo esto tampoco
 
-		pthread_mutex_unlock(hilo_planificador);
+		pthread_mutex_unlock(hilo_planificador); //este es el del entrenador??
 		//ejecutamos las acciones
 
 	}
@@ -211,7 +209,7 @@ void aparicion_pokemon(t_pokemon* pokemon){
 
 bool deteccion_de_deadlock(){
 
-	if(list_size(lista_de_entrenadores_deadlock)){
+	if(!list_is_empty(lista_de_entrenadores_deadlock)){
 		return true;
 	}
 	else{

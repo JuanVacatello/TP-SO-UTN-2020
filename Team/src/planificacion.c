@@ -5,49 +5,43 @@ void planificar_fifo(void){
 
 	pthread_mutex_init(&mutex_planificador, NULL);
 
-	//prueba
-	t_pokemon* pokemonPikachu = malloc(sizeof(t_pokemon));
-	pokemonPikachu->especie = "Pikachu";
-	pokemonPikachu->posicion.x = 6;
-	pokemonPikachu->posicion.y = 6;
+	/*PRUEBA
+	*	t_pokemon* pokemonPikachu = malloc(sizeof(t_pokemon));
+	*	pokemonPikachu->especie = "Pikachu";
+	*	pokemonPikachu->posicion.x = 6;
+	*	pokemonPikachu->posicion.y = 6;
+	*
+	*	lista_de_pokemones_sueltos = list_create();
+	*	list_add(lista_de_pokemones_sueltos, pokemonPikachu);
+	*/
 
-	lista_de_pokemones_sueltos = list_create();
-	list_add(lista_de_pokemones_sueltos, pokemonPikachu);
-	puts("aca entra8");
-	//
-
+		puts("aca entra4");
 	while (1){
 
-		if(deteccion_de_deadlock()){
+		/*if(deteccion_de_deadlock()){
 
-			//hacer el intercambio
+			hacer el intercambio
 
 		}
 
-		else{
+		else{ */
 
-		puts("aca entra1");
+		puts("aca entra5");
 
-		//prueba
-		//if(hay_pokemones_sueltos(lista_de_pokemones_sueltos)){
+		pthread_mutex_lock(&hilo_planificador);	//SE BLOQUEA BIEN
 
-			puts("aca entra11");
-			t_pokemon* pokeNuevo = list_remove(lista_de_pokemones_sueltos, 0);
-			aparicion_pokemon(pokeNuevo);
-		//}
-		//else
-		//
-		//	pthread_mutex_lock(hilo_planificador);
-		puts("aca entra2");
-		t_entrenador*  entrenador;
+		t_pokemon* pokemonNuevo = list_remove(lista_de_pokemones_sueltos, 0);
+		aparicion_pokemon(pokemonNuevo);
 
-		entrenador = list_remove(lista_de_entrenadores_ready,0);
-		puts("aca entra4");
+		puts("aca entra10");
+		t_entrenador* entrenador = list_remove(lista_de_entrenadores_ready,0);
+
+		puts("aca entra11");
 		ejecutar_entrenador(entrenador);
 
-		}
+		//}
 
-		//Le decimos al entrenador que ejecute sus acciones
+		//intentar atrapar pokemon --> mandar catch pokemon
 
 		pthread_mutex_lock(hilo_planificador);
 	}

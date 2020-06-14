@@ -48,7 +48,6 @@ int obtener_algoritmo_planificacion(void){
 	else if (string_equals_ignore_case(algoritmo_planificacion, "RR"))
 		algoritmo = 4;
 
-	puts("aca entra7");
 	return algoritmo;
 }
 int obtener_estimacion_inicial(void){

@@ -198,7 +198,7 @@ void* suscribirse_a_cola(int socket_cliente, uint32_t cola, int* tamanio_paquete
 }
 
 
-void enviar_suscripcion_a_cola(uint32_t cola) //HAY QUE VER ESTE TEMA DEL PARAMETRO
+void enviar_suscripcion_a_cola(op_code cola) //HAY QUE VER ESTE TEMA DEL PARAMETRO
 {
 	char* puerto_broker = obtener_puerto();
 	char* ip_broker = obtener_ip();
@@ -414,22 +414,29 @@ void recibir_appeared_pokemon_loggeo(int socket_cliente){
 				completar_logger(m5, "TEAM", LOG_LEVEL_INFO);
 		}
 
-		armarPokemon(pokemon, posX, posY);
+		t_pokemon* pokemonNuevo = armarPokemon(pokemon, posX, posY);
+		list_add(lista_de_pokemones_sueltos, pokemonNuevo);
+
+		free(pokemonNuevo);
+
+		pthread_mutex_unlock(hilo_planificador);
 		//armar pokemon con los datos recibidos y mandar el pokemon armado a APARACION_POKEMON()
 }
 
-void armarPokemon(char* pokemon, int posX, int posY){
-	t_pokemon* pokemonNuevo = malloc(sizeof(t_pokemon));
-	pokemonNuevo->especie = pokemon;
-	pokemonNuevo->posicion.x= posX;
-	pokemonNuevo->posicion.y= posY;
+t_pokemon* armarPokemon(char* pokemon, int posX, int posY){
+	t_pokemon* pokeNuevo = malloc(sizeof(t_pokemon));
+	pokeNuevo->especie = pokemon;
+	pokeNuevo->posicion.x= posX;
+	pokeNuevo->posicion.y= posY;
 
-	char* pokemonNombre = string_from_format("El nombre del pokemon es: %s", pokemonNuevo->especie);
+	char* pokemonNombre = string_from_format("El nombre del pokemon es: %s", pokeNuevo->especie);
 					completar_logger(pokemonNombre, "TEAM", LOG_LEVEL_INFO);
-	char* xx = string_from_format("posicion en x: %d",pokemonNuevo->posicion.x);
+	char* xx = string_from_format("posicion en x: %d",pokeNuevo->posicion.x);
 					completar_logger(xx, "TEAM", LOG_LEVEL_INFO);
-	char* yy = string_from_format("posicion en y: %d", pokemonNuevo->posicion.y);
+	char* yy = string_from_format("posicion en y: %d", pokeNuevo->posicion.y);
 					completar_logger(yy, "TEAM", LOG_LEVEL_INFO);
+
+	return pokeNuevo;
 }
 
 

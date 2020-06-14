@@ -124,7 +124,7 @@ int cantidad_de_elementos(char* pokemons){
 		}
 	//}
 	//else{
-	//	return 0;
+	//	return contador;
 	//}
 	return contador+1;
 }
