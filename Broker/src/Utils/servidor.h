@@ -24,7 +24,8 @@ typedef enum
 	CATCH_POKEMON=3,
 	CAUGHT_POKEMON=4,
 	GET_POKEMON=5,
-	LOCALIZED_POKEMON=6
+	LOCALIZED_POKEMON=6,
+	MENSAJE=7
 } op_code;
 
 typedef struct
@@ -44,13 +45,6 @@ typedef struct t_paquete
 	op_code codigo_operacion;
 	t_buffer* buffer;
 } t_paquete;
-
-/*typedef struct
-{
-	t_list* suscriptores;// = list_create(); // lista de procesos. t_list de las commons
-	t_paquete mensajes[]; // LOS MENSAJES LLEVAN ID E ID CORRELATIVO POR LO QUE NO SERAN UNA LISTA T_PAQUETE
-
-} colaDeMensajes;*/
 
 t_list* suscriptores_new_pokemon;
 t_list* suscriptores_appeared_pokemon;
@@ -80,6 +74,8 @@ proceso* modelar_proceso(int socket);
 int recibir_tamanio_buffer(int socket);
 void suscribirse_a_cola(proceso* suscriptor, int socket, uint32_t tamanio_buffer);
 
+void enviar_mensaje(int socket_cliente, char* mensaje);
+
 void recibir_new_pokemon(int socket_cliente);
 void recibir_appeared_pokemon(int socket_cliente);
 void recibir_catch_pokemon_(int socket_cliente);
@@ -87,21 +83,8 @@ void recibir_caught_pokemon(int socket_cliente);
 void recibir_get_pokemon(int socket_cliente);
 void enviar_mensaje_a_suscriptores(int cola_mensaje,int socket_cliente);
 
-
 void* recibir_mensaje(int socket_cliente, int* size);
 int recibir_operacion(int);
 void* serializar_paquete(t_paquete* paquete, int bytes);
 void devolver_mensaje(void* payload, int size, int socket_cliente);
 
-void recibir_appeared_pokemon_loggeo(int socket_cliente);
-/* Para probar mensajes que recibe del GameBoy:
-
-void recibir_new_pokemon_loggeo(int socket_cliente);
-void recibir_appeared_pokemon_loggeo(int socket_cliente);
-void recibir_catch_pokemon_loggeo(int socket_cliente);
-void recibir_caught_pokemon_loggeo(int socket_cliente);
-void recibir_get_pokemon_loggeo(int socket_cliente);
-
- */
-
-#endif /* CONEXIONES_H_ */
