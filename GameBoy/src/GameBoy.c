@@ -42,7 +42,12 @@ int main(int argc, char* argv[]) {
 		int socket_conexion = crear_conexion(ip,puerto);
 
 		enviar_mensaje_a_broker(socket_conexion, 0, argv); // 0 es el op_code de SUSCRIPTOR
+
+		recibir_mensaje(socket_conexion);
+
+		completar_logger("GameBoy se suscribió a la cola.", "GAMEBOY", LOG_LEVEL_INFO);
 	}
+
 }
 
 void enviarMensajeBroker(int argc, char *argv[]){
@@ -52,7 +57,7 @@ void enviarMensajeBroker(int argc, char *argv[]){
 
 	int socket_conexion = crear_conexion(ip,puerto);
 
-	completar_logger("GameBoy se conectó a Broker", "GAMEBOY", LOG_LEVEL_INFO); // LOG OBLIGATORIO
+	completar_logger("GameBoy se conectó a Broker.", "GAMEBOY", LOG_LEVEL_INFO); // LOG OBLIGATORIO
 
 	char* codigo_mensaje = argv[2];
 
@@ -81,6 +86,8 @@ void enviarMensajeBroker(int argc, char *argv[]){
 		enviar_mensaje_a_broker(socket_conexion, 5, argv); // 5 es el op_code de GET_POKEMON
 	}
 
+	recibir_mensaje(socket_conexion);
+
 }
 
 void enviarMensajeTeam(int argc, char *argv[]){
@@ -93,7 +100,7 @@ void enviarMensajeTeam(int argc, char *argv[]){
 
 	int socket_conexion = crear_conexion(ip,puerto);
 
-	completar_logger("GameBoy se conectó a Team", "GAMEBOY", LOG_LEVEL_INFO); // LOG OBLIGATORIO
+	completar_logger("GameBoy se conectó a Team.", "GAMEBOY", LOG_LEVEL_INFO); // LOG OBLIGATORIO
 
 	char* codigo_mensaje = argv[2];
 
@@ -106,6 +113,8 @@ void enviarMensajeTeam(int argc, char *argv[]){
 		error_show("El proceso Team no puede recibir ese mensaje");
 		exit(5);
 	}
+
+	recibir_mensaje(socket_conexion);
 }
 
 void enviarMensajeGameCard(int argc, char *argv[]){
@@ -114,7 +123,7 @@ void enviarMensajeGameCard(int argc, char *argv[]){
 
 	int socket_conexion = crear_conexion(ip,puerto);
 
-	completar_logger("GameBoy se conectó a GameCard", "GAMEBOY", LOG_LEVEL_INFO); // LOG OBLIGATORIO
+	completar_logger("GameBoy se conectó a GameCard.", "GAMEBOY", LOG_LEVEL_INFO); // LOG OBLIGATORIO
 
 	char* codigo_mensaje = argv[2];
 
@@ -133,6 +142,7 @@ void enviarMensajeGameCard(int argc, char *argv[]){
 		enviar_mensaje_a_gamecard(socket_conexion, 5, argv); // 5 es el op_code de GET_POKEMON
 	}
 
+	recibir_mensaje(socket_conexion);
 }
 
 void cumple_cant_parametros(int argc, int cantidad_necesaria){

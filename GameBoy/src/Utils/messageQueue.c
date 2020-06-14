@@ -29,81 +29,6 @@ int crear_conexion(char* ip, char* puerto)
 	return socket_cliente;
 }
 
-void iniciar_servidor(void){
-	int socket_servidor;
-
-    struct addrinfo hints, *servinfo, *p;
-
-    memset(&hints, 0, sizeof(hints));
-    hints.ai_family = AF_UNSPEC;
-    hints.ai_socktype = SOCK_STREAM;
-    hints.ai_flags = AI_PASSIVE;
-
-    getaddrinfo(IP, PUERTO, &hints, &servinfo);
-
-    for (p=servinfo; p != NULL; p = p->ai_next)
-    {
-        if ((socket_servidor = socket(p->ai_family, p->ai_socktype, p->ai_protocol)) == -1)
-            continue;
-
-        if (bind(socket_servidor, p->ai_addr, p->ai_addrlen) == -1) {
-            close(socket_servidor);
-            continue;
-        }
-        break;
-    }
-
-	listen(socket_servidor, SOMAXCONN);
-
-	completar_logger("Se inició proceso Team", "TEAM", LOG_LEVEL_INFO); // LOG OBLIGATORIO
-
-    freeaddrinfo(servinfo);
-
-    while(1)
-    	esperar_cliente(socket_servidor);
-}
-
-void esperar_cliente(int socket_servidor){
-	struct sockaddr_in dir_cliente;
-
-	int tam_direccion = sizeof(struct sockaddr_in);
-
-	int socket_cliente = accept(socket_servidor, (void*) &dir_cliente, &tam_direccion);
-
-	pthread_create(&thread,NULL,(void*)serve_client,&socket_cliente);
-	pthread_detach(thread);
-
-}
-
-void serve_client(int* socket_cliente)
-{
-	op_code cod_op;
-	if(recv(*socket_cliente, &cod_op, sizeof(op_code), MSG_WAITALL) == -1)
-		cod_op = -1;
-	process_request(cod_op, *socket_cliente);
-}
-
-void process_request(op_code cod_op, int socket_cliente) {
-
-		switch (cod_op) {
-		case 1:
-			break;
-		case 2:
-			break;
-		case 3:
-			break;
-		case 4:
-			break;
-		case 5:
-			break;
-		case 6:
-			break;
-		case -1:
-			pthread_exit(NULL);
-			break;
-		}
-}
-
 // SERIALIZAR PAQUETE
 
 void* serializar_paquete(t_paquete* paquete, int *bytes)
@@ -151,6 +76,8 @@ void enviar_mensaje_a_broker(int socket_cliente, op_code codigo_operacion, char*
 		a_enviar = iniciar_paquete_serializado_GetPokemon(&tamanio_paquete,argv);
 		break;
 	case 6:
+		break;
+	case 7:
 		break;
 	}
 
@@ -500,17 +427,19 @@ void enviar_mensaje_a_gamecard(int socket_cliente, op_code codigo_operacion, cha
 		case 1:
 			a_enviar = iniciar_paquete_serializado_NewPokemonGC(&tamanio_paquete,argv);
 			break;
+		case 2:
+			break;
 		case 3:
 			a_enviar = iniciar_paquete_serializado_CatchPokemonGC(&tamanio_paquete,argv);
+			break;
+		case 4:
 			break;
 		case 5:
 			a_enviar = iniciar_paquete_serializado_GetPokemonGC(&tamanio_paquete,argv);
 			break;
-		case 2:
-			break;
-		case 4:
-			break;
 		case 6:
+			break;
+		case 7:
 			break;
 		}
 
@@ -665,6 +594,185 @@ void* iniciar_paquete_serializado_GetPokemonGC(int* tamanio_paquete,char* argv[]
 
 	return a_enviar;
 
+}
+
+// RECIBIR MENSAJE
+
+void recibir_mensaje(int socket_cliente){
+
+	completar_logger("Llegada de un nuevo mensaje a la cola de mensajes.", "GAMEBOY", LOG_LEVEL_INFO);
+
+	op_code codigo_de_operacion;
+	recv(socket_cliente, &codigo_de_operacion, sizeof(op_code), MSG_WAITALL);
+
+		char* mensaje = string_from_format("El código de operación es: %d.", codigo_de_operacion);
+		puts(mensaje);
+
+	uint32_t buffer_size;
+	recv(socket_cliente, &buffer_size, sizeof(uint32_t), MSG_WAITALL);
+
+		char* mensaje2 = string_from_format("El tamanio del buffer es: %d.", buffer_size);
+		puts(mensaje2);
+
+	// recibe a partir del codigo de operacion
+
+	uint32_t caracteresPokemon;
+	char* pokemon;
+	char* mensaje_recibido;
+	uint32_t posX;
+	uint32_t posY;
+	uint32_t cantidad_pokemon;
+	uint32_t id_mensaje_correlativo;
+	uint32_t se_pudo_atrapar;
+
+	uint32_t tamanio_leido = 0;
+
+	char* mensaje3;
+	char* mensaje4;
+	char* mensaje5;
+	char* mensaje6;
+
+	switch(codigo_de_operacion){
+	case 0:
+
+		break;
+	case 1:
+
+		recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
+		tamanio_leido += sizeof(uint32_t);
+
+		mensaje3 = string_from_format("La cantidad de caracteres del pokemon es: %d.", caracteresPokemon);
+		puts(mensaje3);
+
+		pokemon = (char*)malloc(caracteresPokemon);
+
+		recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
+		tamanio_leido += caracteresPokemon;
+
+		puts(pokemon);
+
+		recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
+		tamanio_leido += sizeof(uint32_t);
+
+		mensaje4 = string_from_format("La posicion en X es: %d.", posX);
+		puts(mensaje4);
+
+		recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
+		tamanio_leido += sizeof(uint32_t);
+
+		mensaje5 = string_from_format("La posicion en Y es: %d.", posY);
+		puts(mensaje5);
+
+		recv(socket_cliente, &cantidad_pokemon, sizeof(uint32_t), MSG_WAITALL);
+		tamanio_leido += sizeof(uint32_t);
+
+		mensaje6 = string_from_format("La cantidad del pokemon es: %d.", cantidad_pokemon);
+		puts(mensaje6);
+
+		free(pokemon);
+
+		break;
+
+	case 2:
+
+		recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
+
+		mensaje3 = string_from_format("La cantidad de caracteres del pokemon es: %d.", caracteresPokemon);
+		puts(mensaje3);
+
+		pokemon = (char*)malloc(caracteresPokemon);
+
+		recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
+
+		puts(pokemon);
+
+		recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
+
+		mensaje4 = string_from_format("La posicion en X es: %d.", posX);
+		puts(mensaje4);
+
+		recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
+
+		mensaje5 = string_from_format("La posicion en Y es: %d.", posY);
+		puts(mensaje5);
+
+		recv(socket_cliente, &id_mensaje_correlativo, sizeof(uint32_t), MSG_WAITALL);
+
+		mensaje6 = string_from_format("EL id de mensaje correlativo es: %d.", id_mensaje_correlativo);
+		puts(mensaje6);
+
+		free(pokemon);
+
+		break;
+	case 3:
+
+		recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
+
+		mensaje3 = string_from_format("La cantidad de caracteres del pokemon es: %d.", caracteresPokemon);
+		puts(mensaje3);
+
+		pokemon = (char*)malloc(caracteresPokemon);
+
+		recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
+
+		puts(pokemon);
+
+		recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
+
+		mensaje4 = string_from_format("La posicion en X es: %d.", posX);
+		puts(mensaje4);
+
+		recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
+
+		mensaje5 = string_from_format("La posicion en Y es: %d.", posY);
+		puts(mensaje5);
+
+		free(pokemon);
+
+		break;
+	case 4:
+
+		recv(socket_cliente, &id_mensaje_correlativo, sizeof(uint32_t), MSG_WAITALL);
+
+		mensaje3 = string_from_format("El id de mensaje correlativo es es: %d.", id_mensaje_correlativo);
+		puts(mensaje3);
+
+		recv(socket_cliente, &se_pudo_atrapar, sizeof(uint32_t), MSG_WAITALL);
+
+		if(se_pudo_atrapar==0){
+			puts("No se pudo atrapar.");
+		}else if(se_pudo_atrapar==1){
+			puts("Se pudo atrapar.");
+		}
+
+		break;
+
+	case 5:
+
+		recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
+
+		mensaje3 = string_from_format("La cantidad de caracteres del pokemon es: %d.", caracteresPokemon);
+		puts(mensaje3);
+
+		pokemon = (char*)malloc(caracteresPokemon);
+
+		recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
+
+		puts(pokemon);
+		break;
+	case 6:
+		break;
+	case 7:
+
+		mensaje_recibido = (char*)malloc(buffer_size);
+
+		recv(socket_cliente, mensaje_recibido, buffer_size, MSG_WAITALL);
+		puts(mensaje_recibido);
+
+		free(mensaje_recibido);
+
+		break;
+	}
 }
 
 void liberar_conexion(int socket_cliente)
