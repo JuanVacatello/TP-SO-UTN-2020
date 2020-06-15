@@ -28,6 +28,9 @@ t_entrenador* armar_entrenador(int indice){
 
 	t_entrenador* entrenador = malloc(sizeof(t_entrenador));
 
+	//NOMBRE
+	entrenador->ID_entrenador = indice + 1;
+
 	//POSICION
 	char** posiciones = obtener_posiciones_entrenadores();
 	t_posicion posicion_entrenador = obtener_posicion(posiciones[indice]);
@@ -44,7 +47,8 @@ t_entrenador* armar_entrenador(int indice){
 	entrenador->atrapados = atrapado;
 
 	//COLA DE ACCIONES
-	t_queue* cola_de_acciones = queue_create();
+	t_queue* cola_de_acciones_entrenador = queue_create();
+	entrenador->cola_de_acciones  = cola_de_acciones_entrenador;
 
 	//ESTADO
 	entrenador->estado = NEW;
@@ -161,7 +165,6 @@ t_entrenador* entrenador_mas_cercano(t_pokemon* pokemon){
 
 		}
 	}
-	entrenador_cercano->ciclos_de_cpu_totales = entrenador_cercano->ciclos_de_cpu_totales + menor_distancia;
 	return entrenador_cercano;
 }
 
@@ -199,13 +202,27 @@ void ejecutar_entrenador(t_entrenador* entrenador){
 
 	entrenador->rafaga_anterior = 0;
 
-	int contador_cpu = entrenador->ciclos_de_cpu_totales;
+	t_queue* cola_aux = entrenador->cola_de_acciones;
+	t_accion* accion_aux;
+	t_accion* accion_a_ejecutar;
+	int contador_cpu = 0;
+
+	int size = queue_size(entrenador->cola_de_acciones);
+	printf("%d\n",size);
+
+	while(!queue_is_empty(cola_aux)){
+		accion_aux = queue_pop(cola_aux);
+		contador_cpu += accion_aux->ciclo_cpu;
+	}
 
 	pthread_t hilo_entrenador = entrenador->hilo_entrenador;
 
+	size = queue_size(entrenador->cola_de_acciones);
+	printf("%d\n",size);
+
 	entrenador->estado = EXEC;
 	while(contador_cpu > 0) {
-		t_accion* accion_a_ejecutar = queue_pop(entrenador->cola_de_acciones);
+		accion_a_ejecutar = queue_pop(entrenador->cola_de_acciones);
 		entrenador->rafaga_anterior += accion_a_ejecutar->ciclo_cpu;
 
 		pthread_create(&hilo_entrenador, NULL , accion_a_ejecutar->accion , entrenador);
@@ -217,7 +234,10 @@ void ejecutar_entrenador(t_entrenador* entrenador){
 		free(accion_a_ejecutar);
 	}
 
-	void puede_seguir_atrapando(entrenador);	//Acá se fija si terminó, entró en deadlock o puede seguir atrapando
+	free(cola_aux);
+	free(accion_aux);
+
+	puede_seguir_atrapando(entrenador);	//Acá se fija si terminó, entró en deadlock o puede seguir atrapando
 }
 
 void atrapar_pokemon(t_entrenador* entrenador){

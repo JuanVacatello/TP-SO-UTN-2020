@@ -31,7 +31,7 @@ int main(void) {
 	*/
 
 
-		puts("aca entra00");
+		/*puts("aca entra00");
 
 		//pedir_ubicacion_pokemones(socket_conexion_broker);
 
@@ -80,7 +80,7 @@ int main(void) {
 		    puts(" ");
 
 		}
-
+*/
 		//obtener_posiciones_entrenadores();
 		//obtener_pokemon_entrenadores();
 		//obtener_objetivos_entrenadores();
@@ -134,7 +134,20 @@ int main(void) {
 		//printf("%d\n",numero);
 
 
+		iniciar_vg();
 		//lista_de_pokemones_sueltos = list_create();
+
+		/*t_pokemon* pokemonPikachu = malloc(sizeof(t_pokemon));
+		pokemonPikachu->especie = "Pikachu";
+		pokemonPikachu->posicion.x = 6;
+		pokemonPikachu->posicion.y = 6;
+*/
+		//t_entrenador* entrenadorCercano = entrenador_mas_cercano(pokemonPikachu);
+		//printf("%d\n",entrenadorCercano->posicion.x);
+		//printf("%d\n",entrenadorCercano->posicion.y);
+
+		//aparicion_pokemon(pokemonPikachu);
+
 		//list_add(lista_de_pokemones_sueltos, pokemonPikachu);
 		puts("aca entra1");
 		//int pokemones = hay_pokemones_sueltos(lista_de_pokemones_sueltos);
@@ -147,6 +160,9 @@ int main(void) {
 		char* especie = pokemonLista->especie;
 		puts(especie)*/;
 		puts("hola");
+
+
+
 		pthread_create(&hilo_planificador, NULL , (void *) planificacion ,NULL);
 		pthread_join(hilo_planificador,NULL);
 		//aparicion_pokemon(pokemon);

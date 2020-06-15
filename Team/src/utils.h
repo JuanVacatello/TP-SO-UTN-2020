@@ -25,7 +25,7 @@ t_dictionary* atrapados_global;
 
 t_list* lista_de_entrenadores_ready; // CUANDO LLEGA UN CAUGHT EL ENTRENADOR CON ESE ID ENTRA A ESTA LISTA
 
-t_list* pokemones_requeridos;
+//t_list* pokemones_requeridos;
 
 pthread_t hilo_planificador;
 

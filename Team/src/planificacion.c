@@ -26,10 +26,18 @@ void planificar_fifo(void){
 
 		puts("aca entra5");
 
-		pthread_mutex_lock(&mutex_planificador);	//SE BLOQUEA BIEN
+		//pthread_mutex_lock(&mutex_planificador);	//SE BLOQUEA BIEN
 
-		t_pokemon* pokemonNuevo = list_remove(lista_de_pokemones_sueltos, 0);
-		aparicion_pokemon(pokemonNuevo);
+		//t_pokemon* pokemonNuevo = list_remove(lista_de_pokemones_sueltos, 0);
+
+		t_pokemon* pokemonPikachu = malloc(sizeof(t_pokemon));
+		pokemonPikachu->especie = "Pikachu";
+		pokemonPikachu->posicion.x = 6;
+		pokemonPikachu->posicion.y = 6;
+		//lista_de_pokemones_sueltos = list_create();
+		//list_add(lista_de_pokemones_sueltos, pokemonPikachu);
+
+		aparicion_pokemon(pokemonPikachu);
 
 		puts("aca entra10");
 		t_entrenador* entrenador = list_remove(lista_de_entrenadores_ready,0);
@@ -41,7 +49,7 @@ void planificar_fifo(void){
 
 		//intentar atrapar pokemon --> mandar catch pokemon
 
-		pthread_mutex_lock(hilo_planificador);
+		pthread_mutex_lock(&mutex_planificador);
 	}
 
 }

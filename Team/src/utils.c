@@ -10,7 +10,8 @@ void iniciar_vg(void){
 	armar_entrenadores();
 	generar_objetivo_global();
 	generar_atrapados_global();
-	lista_de_entrenadores_deadlock=list_create();
+	lista_de_entrenadores_deadlock = list_create();
+	lista_de_entrenadores_ready = list_create();
 
 	pthread_mutex_init(&mutex_planificador, NULL);
 	//PONEMOS EL SEMÁFORO EN 0

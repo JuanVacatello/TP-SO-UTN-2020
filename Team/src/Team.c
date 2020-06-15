@@ -14,24 +14,7 @@
 
 /*int main(void) {
 
-		int conexion;
-		char* ip;
-		char* puerto;
 
-		t_log* logger;
-
-
-		//logger = iniciar_logger();
-		//log_destroy(logger);
-		//Loggear "soy un log"
-
-		leer_config();
-		armar_entrenadores();
-		ip = config_get_string_value(config,"IP");
-		puerto = config_get_string_value(config,"PUERTO");
-		puts("/n");
-		puts(ip);
-		puts(puerto);
 
 }
 */
@@ -157,6 +140,35 @@ void planificacion(){
 
 }
 
+
+void aparicion_pokemon(t_pokemon* pokemon){
+	puts("aca entra 6");
+	if(es_pokemon_requerido(pokemon)){
+		puts("aca entra 7");
+		t_entrenador* entrenador = entrenador_mas_cercano(pokemon);
+		puts("aca entra 8");
+		entrenador->pokemon_a_atrapar = pokemon;
+
+		//AGREGAMOS LOS MOVIMIENTOS DEL ENTRENADOR
+		armar_movimiento(entrenador);
+		//AGREGAMOS ACCION ATRAPAR A ENTRENADOR
+		t_accion* accion = armar_accion(atrapar_pokemon, 1);
+		queue_push(entrenador->cola_de_acciones, accion);
+
+		puts("aca entra 9");
+		list_add(lista_de_entrenadores_ready,entrenador);
+		//list_add(pokemones_requeridos,pokemon);// no entiendo esto tampoco
+
+		//pthread_mutex_unlock(hilo_planificador); //este es el del entrenador??
+		//ejecutamos las acciones
+
+	}
+	else{
+		//ESPERAMOS A LOG//
+	}
+}
+
+
 bool es_pokemon_requerido(t_pokemon* pokemon){
 	if(dictionary_has_key(objetivo_global,pokemon->especie)){
 		if(dictionary_get(objetivo_global,pokemon->especie)==0){
@@ -172,7 +184,6 @@ bool es_pokemon_requerido(t_pokemon* pokemon){
 	}
 }
 
-
 t_accion* armar_accion(void(*accion)(void*), int ciclos){
 
 	t_accion* accionNueva = malloc(sizeof(t_accion));
@@ -180,34 +191,6 @@ t_accion* armar_accion(void(*accion)(void*), int ciclos){
 	accionNueva->ciclo_cpu = ciclos;
 
 	return accionNueva;
-}
-
-
-void aparicion_pokemon(t_pokemon* pokemon){
-	puts("aca entra 6");
-	if(es_pokemon_requerido(pokemon)){
-		puts("aca entra 7");
-		t_entrenador* entrenador = entrenador_mas_cercano(pokemon);
-		puts("aca entra 8");
-		entrenador->pokemon_a_atrapar = pokemon;
-
-		//AGREGAMOS LOS MOVIMIENTOS DEL ENTRENADOR
-		armar_movimiento(entrenador);
-		//AGREGAMOS ACCION ATARPAR A ENTRENADOR
-		t_accion* accion = armar_accion(atrapar_pokemon, 1);
-		queue_push(entrenador->cola_de_acciones, accion);
-
-		puts("aca entra 9");
-		list_add(lista_de_entrenadores_ready,entrenador);
-		list_add(pokemones_requeridos,pokemon);// no entiendo esto tampoco
-
-		//pthread_mutex_unlock(hilo_planificador); //este es el del entrenador??
-		//ejecutamos las acciones
-
-	}
-	else{
-		//ESPERAMOS A LOG//
-	}
 }
 
 bool deteccion_de_deadlock(){

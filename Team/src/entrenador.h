@@ -39,6 +39,7 @@ typedef struct
 
 typedef struct
 {
+	int ID_entrenador;
 	int ciclos_de_cpu_totales;
 	int rafaga_anterior;
 	op_estado estado;
