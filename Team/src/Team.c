@@ -198,7 +198,7 @@ void aparicion_pokemon(t_pokemon* pokemon){
 		list_add(lista_de_entrenadores_ready,entrenador);
 		list_add(pokemones_requeridos,pokemon);// no entiendo esto tampoco
 
-		pthread_mutex_unlock(hilo_planificador); //este es el del entrenador??
+		//pthread_mutex_unlock(hilo_planificador); //este es el del entrenador??
 		//ejecutamos las acciones
 
 	}

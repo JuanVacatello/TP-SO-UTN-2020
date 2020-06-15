@@ -218,29 +218,28 @@ void ejecutar_entrenador(t_entrenador* entrenador){
 	}
 
 	void puede_seguir_atrapando(entrenador);	//Acá se fija si terminó, entró en deadlock o puede seguir atrapando
-//	enviar_mensaje_a_broker(socket_conexion_broker, 3 , entrenador); //HABRIA QUE VER SI ES VG EL SOCKET
 }
 
 void atrapar_pokemon(t_entrenador* entrenador){
 
-	list_add(entrenador->atrapados, entrenador->pokemon_a_atrapar);
-	entrenador->pokemon_a_atrapar = NULL;
+	//pthread_mutex_lock(&hilo_planificador);
 
-	free(entrenador->pokemon_a_atrapar);
+	//if(pudo_atraparlo()){
+		list_add(entrenador->atrapados, entrenador->pokemon_a_atrapar);
+		entrenador->pokemon_a_atrapar = NULL;
 
+		free(entrenador->pokemon_a_atrapar);
+	//}
 
 }
 
 void puede_seguir_atrapando(t_entrenador* entrenador){
-
 	t_pokemon* pokemon;
 
 	if(list_size(entrenador->objetivo) == list_size(entrenador->atrapados)){
 
 	if(termino_de_atrapar(entrenador)){
-
 		entrenador->estado = EXIT;
-
 	}
 
 	else{

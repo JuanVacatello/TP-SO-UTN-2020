@@ -26,13 +26,11 @@ t_list* lista_de_entrenadores_ready; // CUANDO LLEGA UN CAUGHT EL ENTRENADOR CON
 
 t_list* pokemones_requeridos;
 
-pthread_t* hilo_planificador;
+pthread_t hilo_planificador;
 
 t_list* lista_de_pokemones_sueltos;
 
-pthread_mutex_t* mutex_planificador;
-
-//int socket_conexion_broker;
+//pthread_mutex_t mutex_planificador;
 
 t_list* lista_de_entrenadores_deadlock;
 

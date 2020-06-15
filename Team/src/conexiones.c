@@ -453,6 +453,10 @@ void recibir_CaughtPokemon(int socket_cliente){
 
 		//Falta seguir a partir de aca
 
+		//pudo_atraparlo(pudoAtraparlo);
+
+		//pthread_mutex_unlock(hilo_planificador);
+
 }
 
 
@@ -578,6 +582,8 @@ void recibir_localized_pokemon_loggeo(int socket_cliente){
 				completar_logger(m5, "BROKER", LOG_LEVEL_INFO);
 		}
 		//armar pokemon con los datos recibidos y mandar el pokemon armado a APARACION_POKEMON()
+
+		//pthread_mutex_unlock(hilo_planificador);
 }
 
 //----------------------- RECEPCION DE MENSAJES DE GAMEBOY -----------------------
