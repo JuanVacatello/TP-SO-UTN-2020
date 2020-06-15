@@ -12,6 +12,7 @@
 #include<string.h>
 #include<pthread.h>
 #include "entrenador.h"
+#include "Team.h"
 
 
 //DEFINO VARIABLES GLOBALES

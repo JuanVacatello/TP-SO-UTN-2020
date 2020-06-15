@@ -175,7 +175,7 @@ bool es_pokemon_requerido(t_pokemon* pokemon){
 
 t_accion* armar_accion(void(*accion)(void*), int ciclos){
 
-	t_accion* accionNueva;
+	t_accion* accionNueva = malloc(sizeof(t_accion));
 	accionNueva->accion = accion;
 	accionNueva->ciclo_cpu = ciclos;
 
@@ -191,8 +191,12 @@ void aparicion_pokemon(t_pokemon* pokemon){
 		puts("aca entra 8");
 		entrenador->pokemon_a_atrapar = pokemon;
 
+		//AGREGAMOS LOS MOVIMIENTOS DEL ENTRENADOR
 		armar_movimiento(entrenador);
-		//AGREGAMOS ACCION A ENTRENADOR
+		//AGREGAMOS ACCION ATARPAR A ENTRENADOR
+		t_accion* accion = armar_accion(atrapar_pokemon, 1);
+		queue_push(entrenador->cola_de_acciones, accion);
+
 		puts("aca entra 9");
 		list_add(lista_de_entrenadores_ready,entrenador);
 		list_add(pokemones_requeridos,pokemon);// no entiendo esto tampoco
