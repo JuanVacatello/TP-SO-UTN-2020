@@ -1,1 +1,25 @@
 
+[INFO] 14:03:24:531 BROKER/(8651:8651): Se conectó proceso al Broker
+[INFO] 14:03:35:743 BROKER/(8651:8658): El codigo de operacion es: 0.
+[INFO] 14:03:35:743 BROKER/(8651:8658): El tiempo de suscripcion es: 2.
+[INFO] 14:03:35:743 BROKER/(8651:8658): Se suscribió el proceso con id 8657 y con socket 5 a la cola de mensajes 1
+[INFO] 14:03:37:468 BROKER/(8651:8660): El codigo de operacion es: 1.
+[INFO] 14:03:37:468 BROKER/(8651:8660): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 14:03:37:468 BROKER/(8651:8660): Enviando mensaje a suscriptor
+[INFO] 14:03:37:468 BROKER/(8651:8660): El op code es: 1.
+[INFO] 14:03:37:468 BROKER/(8651:8660): El tamanio del buffer es: 24.
+[INFO] 14:03:37:468 BROKER/(8651:8660): paquete->buffer->size: 24.
+[INFO] 14:03:37:468 BROKER/(8651:8660): El tamanio de la list es: 1.
+[INFO] 14:03:37:471 BROKER/(8651:8660): Paquete enviado a los suscriptores de la cola.
+[INFO] 14:07:52:292 BROKER/(8753:8753): Se conectó proceso al Broker
+[INFO] 14:08:10:624 BROKER/(8753:8760): El codigo de operacion es: 0.
+[INFO] 14:08:10:624 BROKER/(8753:8760): El tiempo de suscripcion es: 2.
+[INFO] 14:08:10:624 BROKER/(8753:8760): Se suscribió el proceso con id 8759 y con socket 5 a la cola de mensajes 1
+[INFO] 14:08:14:454 BROKER/(8753:8762): El codigo de operacion es: 1.
+[INFO] 14:08:14:454 BROKER/(8753:8762): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 14:08:14:454 BROKER/(8753:8762): Enviando mensaje a suscriptor
+[INFO] 14:08:14:454 BROKER/(8753:8762): El op code es: 1.
+[INFO] 14:08:14:454 BROKER/(8753:8762): El tamanio del buffer es: 24.
+[INFO] 14:08:14:454 BROKER/(8753:8762): paquete->buffer->size: 24.
+[INFO] 14:08:14:454 BROKER/(8753:8762): El tamanio de la list es: 1.
+[INFO] 14:08:14:457 BROKER/(8753:8762): Paquete enviado a los suscriptores de la cola.

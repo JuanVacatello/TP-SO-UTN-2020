@@ -95,40 +95,30 @@ void process_request(op_code cod_op, int socket_cliente) {
 			enviar_mensaje(socket_cliente, "Suscripto.");
 			break;
 		case 1:
-			//recibir_new_pokemon_loggeo(socket_cliente);
-			//a_enviar = recibir_new_pokemon(socket_cliente,&tamanio_paquete);
-
 			enviar_mensaje_a_suscriptores(1, socket_cliente);
 			break;
 		case 2:
-			//recibir_appeared_pokemon_loggeo(socket_cliente);
-			//a_enviar = recibir_appeared_pokemon(socket_cliente,&tamanio_paquete);
-			completar_logger("En el switch de appeared pokemon", "Broker", LOG_LEVEL_INFO);
 			enviar_mensaje_a_suscriptores(2, socket_cliente);
 			break;
 		case 3:
-			//recibir_catch_pokemon_log(socket_cliente);
-			//a_enviar = recibir_catch_pokemon_(socket_cliente,&tamanio_paquete);
 			enviar_mensaje_a_suscriptores(3, socket_cliente);
 			break;
 		case 4:
-			//recibir_caught_pokemon_loggeo(socket_cliente);
-			//a_enviar = recibir_caught_pokemon(socket_cliente,&tamanio_paquete);
 			enviar_mensaje_a_suscriptores(4, socket_cliente);
 			break;
 		case 5:
-			//recibir_get_pokemon_loggeo(socket_cliente);
-			//a_enviar = recibir_get_pokemon(socket_cliente,&tamanio_paquete);
 			enviar_mensaje_a_suscriptores(5, socket_cliente);
 			break;
 		case 6:
-			// a_enviar = Mensaje que recibe del GameCard
-			//enviar_mensaje_a_suscriptores(6, a_enviar, tamanio_paquete);
+			enviar_mensaje_a_suscriptores(6, socket_cliente);
 			break;
-		case 7:
+		case 7: //ack
+			recibir_ack(socket_cliente);
 			break;
 	}
 }
+
+// Enviar mensaje
 
 void enviar_mensaje(int socket_cliente, char* mensaje){
 	t_paquete* paquete = malloc(sizeof(t_paquete));
@@ -145,6 +135,24 @@ void enviar_mensaje(int socket_cliente, char* mensaje){
 	free(paquete);
 	free(paquete->buffer);
 }
+
+void enviar_mensaje_id(int socket_cliente, uint32_t mensajeid){
+	t_paquete* paquete = malloc(sizeof(t_paquete));
+	paquete->codigo_operacion = MENSAJE;
+	paquete->buffer = malloc(sizeof(t_buffer));
+	paquete->buffer->stream = ("El id del mensaje es %d", mensajeid);
+	paquete->buffer->size = strlen(paquete->buffer->stream) + 1;
+
+	int tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
+	void* a_enviar = serializar_paquete(paquete,tamanio_paquete);
+
+	send(socket_cliente,a_enviar,tamanio_paquete,0);
+
+	free(paquete);
+	free(paquete->buffer);
+}
+
+// Atender suscripcion
 
 void atender_suscripcion(int socket_cliente)
 {
@@ -214,39 +222,45 @@ void suscribirse_a_cola(proceso* suscriptor, int socket, uint32_t tamanio_buffer
 
 }
 
-
+// Recibir mensaje y reenviarlo a suscriptores
 
 void enviar_mensaje_a_suscriptores(int cola_mensaje,int socket_cliente){
 
 	completar_logger("Enviando mensaje a suscriptor", "Broker", LOG_LEVEL_INFO);
 	t_paquete* paquete = malloc(sizeof(t_paquete));
 	t_list* suscriptores_cola_mensaje;
+	t_list* cola_de_mensajes;
 
 	switch(cola_mensaje){
 	case 1:
-		paquete->codigo_operacion = NEW_POKEMON;
+		paquete->codigo_operacion = 1;
 		suscriptores_cola_mensaje = suscriptores_new_pokemon;
+		cola_de_mensajes = mensajes_de_cola_new_pokemon;
 		break;
 	case 2:
-		completar_logger("En el switch del op code", "Broker", LOG_LEVEL_INFO);
-		paquete->codigo_operacion = APPEARED_POKEMON;
+		paquete->codigo_operacion = 2;
 		suscriptores_cola_mensaje = suscriptores_appeared_pokemon;
+		cola_de_mensajes = mensajes_de_cola_appeared_pokemon;
 		break;
 	case 3:
-		paquete->codigo_operacion = CATCH_POKEMON;
+		paquete->codigo_operacion = 3;
 		suscriptores_cola_mensaje = suscriptores_catch_pokemon;
+		cola_de_mensajes = mensajes_de_cola_catch_pokemon;
 		break;
 	case 4:
-		paquete->codigo_operacion = CAUGHT_POKEMON;
+		paquete->codigo_operacion = 4;
 		suscriptores_cola_mensaje = suscriptores_caught_pokemon;
+		cola_de_mensajes = mensajes_de_cola_caught_pokemon;
 		break;
 	case 5:
-		paquete->codigo_operacion = GET_POKEMON;
+		paquete->codigo_operacion = 5;
 		suscriptores_cola_mensaje = suscriptores_get_pokemon;
+		cola_de_mensajes = mensajes_de_cola_get_pokemon;
 		break;
 	case 6:
-		paquete->codigo_operacion = LOCALIZED_POKEMON;
+		paquete->codigo_operacion = 6;
 		suscriptores_cola_mensaje = suscriptores_localized_pokemon;
+		cola_de_mensajes = mensajes_de_cola_localized_pokemon;
 		break;
 	}
 
@@ -260,13 +274,21 @@ void enviar_mensaje_a_suscriptores(int cola_mensaje,int socket_cliente){
 	recv(socket_cliente, payload, paquete->buffer->size, MSG_WAITALL);
 	memcpy(paquete->buffer->stream, payload, paquete->buffer->size);
 
-	int tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
+/*	paquete->identificador = mensaje_id;
+	enviar_mensaje_id(socket_cliente, paquete->identificador);
+	mensaje_id ++; //semaforos
+*/
+							// TAMANIO PAYLOAD + OP_CODE + SIZE + IDENTIFICADOR DEL MENSAJE
+	int tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);//+sizeof(uint32_t);
 
 	void* a_enviar = serializar_paquete(paquete, tamanio_paquete);
 
 	int sizelista = list_size(suscriptores_cola_mensaje);
 
 		//logs para chequear
+		char* mensaje0 = string_from_format("El op code es: %d.", paquete->codigo_operacion);
+		completar_logger(mensaje0, "Broker", LOG_LEVEL_INFO);
+
 		char* mensaje2 = string_from_format("El tamanio del buffer es: %d.", size);
 		completar_logger(mensaje2, "Broker", LOG_LEVEL_INFO);
 
@@ -282,10 +304,12 @@ void enviar_mensaje_a_suscriptores(int cola_mensaje,int socket_cliente){
 		int socket_suscriptor = suscriptor->socket_cliente;
 
 		if(send(socket_cliente,a_enviar,tamanio_paquete,0) == -1){
-				completar_logger("Error en enviar por el socket","BROKER", LOG_LEVEL_INFO);
-				exit(3);
+			completar_logger("Error en enviar por el socket","BROKER", LOG_LEVEL_INFO);
+			exit(3);
 		}
 	}
+
+	guardar_mensaje(cola_de_mensajes, paquete->codigo_operacion, suscriptores_cola_mensaje);
 
 	completar_logger("Paquete enviado a los suscriptores de la cola.", "Broker", LOG_LEVEL_INFO); //LOG OBLIGATORIO
 
@@ -294,6 +318,72 @@ void enviar_mensaje_a_suscriptores(int cola_mensaje,int socket_cliente){
 	free(paquete->buffer);
 	free(paquete);
 	free(payload);
+}
+
+void guardar_mensaje(t_list* cola_de_mensajes, op_code codigo_operacion, t_list* suscriptores){
+
+	t_mensaje* mensaje = malloc(sizeof(t_mensaje));
+	mensaje->identificador = mensaje_id;
+	mensaje->codigo_operacion = codigo_operacion;
+	mensaje->suscriptores = suscriptores;
+
+	list_add(cola_de_mensajes, mensaje);
+
+	free(mensaje);
+}
+
+
+void recibir_ack(int socket_cliente){
+	uint32_t tamanio_buffer;
+	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
+
+	uint32_t largo_mensaje;
+	recv(socket_cliente, &largo_mensaje, sizeof(uint32_t), MSG_WAITALL);
+
+	char* ack = (char*)malloc(largo_mensaje);
+	recv(socket_cliente, ack, largo_mensaje, MSG_WAITALL);
+
+	completar_logger(ack,"BROKER", LOG_LEVEL_INFO);
+
+	op_code cod_op;
+	recv(socket_cliente, &cod_op, sizeof(op_code), MSG_WAITALL);
+
+	uint32_t id_mensaje;
+	recv(socket_cliente, &id_mensaje, sizeof(uint32_t), MSG_WAITALL);
+
+	/*
+	t_list* cola_de_mensajes;
+
+	switch(cod_op){
+		case 1:
+			cola_de_mensajes = mensajes_de_cola_new_pokemon;
+			break;
+		case 2:
+			cola_de_mensajes = mensajes_de_cola_appeared_pokemon;
+			break;
+		case 3:
+			cola_de_mensajes = mensajes_de_cola_catch_pokemon;
+			break;
+		case 4:
+			cola_de_mensajes = mensajes_de_cola_caught_pokemon;
+			break;
+		case 5:
+			cola_de_mensajes = mensajes_de_cola_get_pokemon;
+			break;
+		case 6:
+			cola_de_mensajes = mensajes_de_cola_localized_pokemon;
+			break;
+		case 7:
+			break;
+		}
+
+	int tamanio_lista = list_size(cola_de_mensajes);
+	for(int i = 0; i < tamanio_lista; i++){
+		if(list_get(cola_de_mensajes, i)->identificador == id_mensaje){
+			list_add(cola_de_mensajes->suscriptores_ack, socket_cliente);
+		}
+	}
+*/
 }
 
 // Por si necesita hacer algo además del pasamanos:
