@@ -5,7 +5,7 @@ void iniciar_logger(){
 	//char* file = obtener_log_file();
 	//if((logger = log_create(file,"GAMEBOY",0,LOG_LEVEL_INFO )) == NULL){
 
-	if((logger = log_create("GameBoy.log","GAMEBOY",0,LOG_LEVEL_INFO )) == NULL){
+	if((logger = log_create("GameBoy.log","GAMEBOY",1,LOG_LEVEL_INFO )) == NULL){
 		printf("No se pudo crear el log del Gameboy.");
 		exit(1);
 	}

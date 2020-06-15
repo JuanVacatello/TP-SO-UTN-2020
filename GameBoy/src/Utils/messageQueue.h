@@ -43,6 +43,13 @@ typedef struct
 	t_buffer* buffer;
 } t_paquete;
 
+typedef struct t_paquete_devuelto
+{
+	op_code codigo_operacion;
+	uint32_t identificador;
+	t_buffer* buffer;
+} t_paquete_devuelto;
+
 int crear_conexion(char* ip, char* puerto);
 void iniciar_servidor(void);
 void esperar_cliente(int socket_servidor);
@@ -67,6 +74,8 @@ void* iniciar_paquete_serializado_CatchPokemonGC(int* tamanio_paquete,char* argv
 void* iniciar_paquete_serializado_GetPokemonGC(int* tamanio_paquete,char* argv[]);
 
 void recibir_mensaje(int socket_cliente);
+
+void* enviar_ack(int socket, op_code codigo_op, uint32_t identificador,int* tamanio_paquete);
 
 void liberar_conexion(int socket_cliente);
 

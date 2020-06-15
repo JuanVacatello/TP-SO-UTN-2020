@@ -763,16 +763,52 @@ void recibir_mensaje(int socket_cliente){
 	case 6:
 		break;
 	case 7:
-
-		mensaje_recibido = (char*)malloc(buffer_size);
-
-		recv(socket_cliente, mensaje_recibido, buffer_size, MSG_WAITALL);
-		puts(mensaje_recibido);
-
-		free(mensaje_recibido);
-
 		break;
 	}
+
+	uint32_t identificador = 1;
+	int tamanio_paquete = 0;
+	void* a_enviar = enviar_ack(socket_cliente,codigo_de_operacion,identificador,&tamanio_paquete);
+
+	send(socket_cliente,a_enviar,tamanio_paquete,0);
+}
+
+void* enviar_ack(int socket, op_code codigo_op, uint32_t identificador,int* tamanio_paquete){
+	t_paquete* paquete = malloc(sizeof(t_paquete));
+	paquete->codigo_operacion = MENSAJE;
+	paquete->buffer = malloc(sizeof(t_buffer));
+
+	char* ack = "ACK!";
+	uint32_t largo_mensaje = strlen(ack) + 1;
+
+							//INT CARACTERES + ACK + COD OP + IDENTIFICADOR
+	paquete->buffer->size = sizeof(uint32_t) + largo_mensaje + sizeof(op_code) + sizeof(uint32_t);
+	void* stream = malloc(paquete->buffer->size);
+	int offset = 0;
+
+		memcpy(stream + offset, &largo_mensaje, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
+
+		memcpy(stream + offset, ack, largo_mensaje);
+		offset += largo_mensaje;
+
+		memcpy(stream + offset, &codigo_op, sizeof(op_code));
+		offset += sizeof(op_code);
+
+		memcpy(stream + offset, &identificador, sizeof(uint32_t));
+
+		paquete->buffer->stream = stream;
+
+							// TAMAÑO STREAM + OP CODE + VARIABLE SIZE
+	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
+	void* a_enviar = serializar_paquete(paquete, tamanio_paquete);
+
+	free(stream);
+	free(paquete->buffer);
+	free(paquete);
+
+	return a_enviar;
+
 }
 
 void liberar_conexion(int socket_cliente)
