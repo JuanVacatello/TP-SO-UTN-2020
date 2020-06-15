@@ -2,6 +2,25 @@
 #include"configTeam.h"
 
 
+
+//------------INICIAMOS VARIABLES GLOBALES-------------//
+
+void iniciar_vg(void){
+
+	armar_entrenadores();
+	generar_objetivo_global();
+	generar_atrapados_global();
+	lista_de_entrenadores_deadlock=list_create();
+
+	pthread_mutex_init(&mutex_planificador, NULL);
+	//PONEMOS EL SEMÁFORO EN 0
+	pthread_mutex_lock(&mutex_planificador);
+
+}
+
+
+
+
 //------------CICLOS DE CPU---------------
 
 void efectuar_ciclo_cpu(t_entrenador* entrenador, int ciclos){

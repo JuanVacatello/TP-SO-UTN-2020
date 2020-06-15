@@ -135,10 +135,9 @@ void planificacion(){
 	puts("aca entra3");
 	//HAY QUE CHEQUEAR ESTO
 
-	armar_entrenadores();
-	generar_objetivo_global();
-	generar_atrapados_global();
-	lista_de_entrenadores_deadlock=list_create();
+	iniciar_vg();
+
+	puts("inicia las variables globales");
 
 	switch(planificador){
 		case 1:

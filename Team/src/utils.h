@@ -30,9 +30,11 @@ pthread_t hilo_planificador;
 
 t_list* lista_de_pokemones_sueltos;
 
-//pthread_mutex_t mutex_planificador;
+pthread_mutex_t mutex_planificador;
 
 t_list* lista_de_entrenadores_deadlock;
+
+//PONGO EL MUTEX EN 0
 
 typedef enum
 {
@@ -54,5 +56,6 @@ void contabilizar_ciclos(t_entrenador* entrenador, int ciclos);
 int transformarCiclos(int ciclos);
 void ciclos_de_cpu(int ciclos);
 int cantidad_de_entrenadores(void);
+void iniciar_vg(void);
 
 #endif /* CONEXIONES_H_ */

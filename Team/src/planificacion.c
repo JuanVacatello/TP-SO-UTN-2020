@@ -3,8 +3,6 @@
 
 void planificar_fifo(void){
 
-	pthread_mutex_init(&mutex_planificador, NULL);
-
 	/*PRUEBA
 	*	t_pokemon* pokemonPikachu = malloc(sizeof(t_pokemon));
 	*	pokemonPikachu->especie = "Pikachu";
@@ -28,7 +26,7 @@ void planificar_fifo(void){
 
 		puts("aca entra5");
 
-		pthread_mutex_lock(&hilo_planificador);	//SE BLOQUEA BIEN
+		pthread_mutex_lock(&mutex_planificador);	//SE BLOQUEA BIEN
 
 		t_pokemon* pokemonNuevo = list_remove(lista_de_pokemones_sueltos, 0);
 		aparicion_pokemon(pokemonNuevo);
