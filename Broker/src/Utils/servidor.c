@@ -303,7 +303,10 @@ void enviar_mensaje_a_suscriptores(int cola_mensaje,int socket_cliente){
 		proceso* suscriptor = list_get(suscriptores_cola_mensaje, i);
 		int socket_suscriptor = suscriptor->socket_cliente;
 
-		if(send(socket_cliente,a_enviar,tamanio_paquete,0) == -1){
+			char* mensa = string_from_format("El socket al que le vamos a enviar es es: %d.", socket_suscriptor);
+			completar_logger(mensa, "Broker", LOG_LEVEL_INFO);
+
+		if(send(socket_suscriptor,a_enviar,tamanio_paquete,0) == -1){
 			completar_logger("Error en enviar por el socket","BROKER", LOG_LEVEL_INFO);
 			exit(3);
 		}
