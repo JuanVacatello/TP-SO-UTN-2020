@@ -10,6 +10,7 @@
 
 #include "GameBoy.h"
 
+
 int main(int argc, char* argv[]) {
 
 	controlar_cant_argumentos(argc);
