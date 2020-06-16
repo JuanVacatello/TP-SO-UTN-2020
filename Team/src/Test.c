@@ -6,6 +6,7 @@
 #include "utils.h"
 #include "configTeam.h"
 #include "logTeam.h"
+#include "conexiones.h"
 
 
 int main(void) {
@@ -17,17 +18,19 @@ int main(void) {
 		leer_config();
 		iniciar_logger();
 
-	/*suscripciones y conexion con BROKER
-	*	enviar_suscripcion_a_cola(2); //APPEARED POKEMON
-	*	//sleep(3);
-	*	puts("Me suscribo a APPEARED POKEMON");
-	*	enviar_suscripcion_a_cola(4); //CAUGHT POKEMON
-	*	//sleep(3);
-	*	puts("Me suscribo a CAUGHT POKEMON");
-	*	enviar_suscripcion_a_cola(6); //LOCALIZED POKEMON
-	*	//sleep(3);
-	*	puts("Me suscribo a CAUGHT POKEMON");
-	*	iniciar_servidor();
+/* Conexion con broker
+		enviar_suscripcion_a_cola(2); //APPEARED POKEMON
+		//sleep(3);
+		puts("Me suscribo a APPEARED POKEMON");
+		sleep(10);
+		recibir_appeared_pokemon_loggeo();
+		enviar_suscripcion_a_cola(4); //CAUGHT POKEMON
+		//sleep(3);
+		puts("Me suscribo a CAUGHT POKEMON");
+		enviar_suscripcion_a_cola(6); //LOCALIZED POKEMON
+		//sleep(3);
+		puts("Me suscribo a CAUGHT POKEMON");
+		iniciar_servidor();
 	*/
 
 
@@ -133,9 +136,8 @@ int main(void) {
 */
 		//printf("%d\n",numero);
 
-
 		iniciar_vg();
-		//lista_de_pokemones_sueltos = list_create();
+		lista_de_pokemones_sueltos = list_create();
 
 		/*t_pokemon* pokemonPikachu = malloc(sizeof(t_pokemon));
 		pokemonPikachu->especie = "Pikachu";
@@ -150,9 +152,9 @@ int main(void) {
 
 		//list_add(lista_de_pokemones_sueltos, pokemonPikachu);
 		puts("aca entra1");
-		//int pokemones = hay_pokemones_sueltos(lista_de_pokemones_sueltos);
+		int pokemones = hay_pokemones_sueltos(lista_de_pokemones_sueltos);
 
-		//printf("%d\n",pokemones);
+		printf("%d\n",pokemones);
 
 		/*t_pokemon* pokemonLista = malloc(sizeof(t_pokemon));
 

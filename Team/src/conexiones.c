@@ -1,42 +1,6 @@
 #include"conexiones.h"
 #include"configTeam.h"
 
-
-void iniciar_servidor(void)
-{
-	int socket_servidor;
-
-    struct addrinfo hints, *servinfo, *p;
-
-    memset(&hints, 0, sizeof(hints));
-    hints.ai_family = AF_UNSPEC;
-    hints.ai_socktype = SOCK_STREAM;
-    hints.ai_flags = AI_PASSIVE;
-
-    getaddrinfo(IP, PUERTO, &hints, &servinfo);
-
-    for (p=servinfo; p != NULL; p = p->ai_next)
-    {
-        if ((socket_servidor = socket(p->ai_family, p->ai_socktype, p->ai_protocol)) == -1)
-            continue;
-
-        if (bind(socket_servidor, p->ai_addr, p->ai_addrlen) == -1) {
-            close(socket_servidor);
-            continue;
-        }
-        break;
-    }
-
-	listen(socket_servidor, SOMAXCONN);
-
-	completar_logger("Se inició proceso Team", "TEAM", LOG_LEVEL_INFO); // LOG OBLIGATORIO
-
-    freeaddrinfo(servinfo);
-
-    while(1)
-    	esperar_cliente(socket_servidor);
-}
-
 int crear_conexion(char* ip, char* puerto)
 {
 	struct addrinfo hints;
@@ -67,53 +31,6 @@ int crear_conexion(char* ip, char* puerto)
 	return socket_cliente;
 }
 
-void esperar_cliente(int socket_servidor)
-{
-	struct sockaddr_in dir_cliente;
-
-	int tam_direccion = sizeof(struct sockaddr_in);
-
-	int socket_cliente = accept(socket_servidor, (void*) &dir_cliente, &tam_direccion);
-
-	pthread_create(&thread,NULL,(void*)serve_client,&socket_cliente);
-	pthread_detach(thread);
-
-}
-
-void serve_client(int* socket_cliente)
-{
-	op_code cod_op;
-	if(recv(*socket_cliente, &cod_op, sizeof(op_code), MSG_WAITALL) == -1)
-		cod_op = -1;
-
-	char* mensaje = string_from_format("El codigo de operacion es: %d.", cod_op);
-	completar_logger(mensaje, "Broker", LOG_LEVEL_INFO);
-
-	process_request(cod_op, *socket_cliente);
-
-}
-
-void process_request(op_code cod_op, int socket_cliente) {
-
-		switch (cod_op) {
-		completar_logger("Entro al switch", "Broker", LOG_LEVEL_INFO);
-
-		case 2:
-			recibir_appeared_pokemon_loggeo(socket_cliente);
-
-			break;
-		case 4:
-			recibir_caught_pokemon_loggeo(socket_cliente);
-			break;
-		case 6:
-			recibir_localized_pokemon_loggeo(socket_cliente);
-			break;
-		case -1:
-			pthread_exit(NULL);
-			break;
-		}
-}
-
 void* recibir_mensaje(int socket_cliente, int* size)
 {
 	void * buffer;
@@ -127,8 +44,7 @@ void* recibir_mensaje(int socket_cliente, int* size)
 
 void* serializar_paquete(t_paquete* paquete, int *bytes)
 {
-	*bytes = (paquete->buffer->size)+sizeof(op_code)+sizeof(int);
-	void* a_enviar = malloc((*bytes));
+	void* a_enviar = malloc(*bytes);
 	int offset = 0;
 
 	memcpy(a_enviar + offset, &(paquete->codigo_operacion), sizeof(op_code));
@@ -166,9 +82,25 @@ void devolver_mensaje(void* payload, int size, int socket_cliente)
 
 //---SUSCRIPCION
 
-void* suscribirse_a_cola(int socket_cliente, uint32_t cola, int* tamanio_paquete){
-	t_paquete* paquete = malloc(sizeof(t_paquete));
+void enviar_suscripcion_a_cola(op_code cola) //HAY QUE VER ESTE TEMA DEL PARAMETRO
+{
+	char* puerto_broker = obtener_puerto();
+	char* ip_broker = obtener_ip();
 
+	int socket_cliente = crear_conexion(ip_broker,puerto_broker);
+
+	int tamanio_paquete = 0;
+	void* a_enviar;
+	puts("aca entra1.5");
+	a_enviar = suscribirse_a_cola(socket_cliente, cola, &tamanio_paquete);
+
+	send(socket_cliente,a_enviar,tamanio_paquete,0);
+	free(a_enviar);
+}
+
+void* suscribirse_a_cola(int socket_cliente, uint32_t cola, int* tamanio_paquete){
+
+	t_paquete* paquete = malloc(sizeof(t_paquete));
 	paquete->codigo_operacion = SUSCRIPTOR;
 	paquete->buffer = malloc(sizeof(t_buffer));
 
@@ -188,7 +120,7 @@ void* suscribirse_a_cola(int socket_cliente, uint32_t cola, int* tamanio_paquete
 
 						// TAMAÑO STREAM + OP CODE + VARIABLE SIZE
 	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
-	void* a_enviar = serializar_paquete(paquete, tamanio_paquete);
+	void* a_enviar = serializar_paquete(paquete,tamanio_paquete);
 
 	free(paquete->buffer);
 	free(stream);
@@ -197,22 +129,6 @@ void* suscribirse_a_cola(int socket_cliente, uint32_t cola, int* tamanio_paquete
 	return a_enviar;
 }
 
-
-void enviar_suscripcion_a_cola(op_code cola) //HAY QUE VER ESTE TEMA DEL PARAMETRO
-{
-	char* puerto_broker = obtener_puerto();
-	char* ip_broker = obtener_ip();
-
-	int socket_cliente = crear_conexion(ip_broker,puerto_broker);
-
-	int tamanio_paquete = 0;
-	void* a_enviar;
-	puts("aca entra1.5");
-	a_enviar = suscribirse_a_cola(socket_cliente, cola, &tamanio_paquete);
-
-	send(socket_cliente,a_enviar,tamanio_paquete,0);
-	free(a_enviar);
-}
 //----------------------- COMUNICACION CON BROKER -----------------------
 
 void enviar_CatchPokemon_a_broker(int socket_cliente, op_code codigo_operacion, t_entrenador* entrenador )
@@ -367,60 +283,66 @@ void recibir_AppearedPokemon(int socket_cliente){
 
 }*/
 
-void recibir_appeared_pokemon_loggeo(int socket_cliente){
+void recibir_appeared_pokemon_loggeo(void){
 
-		completar_logger("recibo el pokemon", "TEAM", LOG_LEVEL_INFO);
+	char* puerto_broker = obtener_puerto();
+	char* ip_broker = obtener_ip();
 
-		uint32_t tamanio_buffer;
-		recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
+	int socket_cliente = crear_conexion(ip_broker,puerto_broker);
+
+	completar_logger("recibo el pokemon", "TEAM", LOG_LEVEL_INFO);
+
+	uint32_t tamanio_buffer;
+	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
 		char* m1 = string_from_format("tamaño buffer: %d.", tamanio_buffer);
-					completar_logger(m1, "TEAM", LOG_LEVEL_INFO);
+		completar_logger(m1, "TEAM", LOG_LEVEL_INFO);
 
-		uint32_t tamanio_leido= 0;
+	uint32_t tamanio_leido= 0;
 
-		uint32_t caracteresPokemon;
-		recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
-		tamanio_leido += sizeof(uint32_t);
+	uint32_t caracteresPokemon;
+	recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
+	tamanio_leido += sizeof(uint32_t);
 			//log
-			char* m2 = string_from_format("Los caracteres de pokemon son: %d.", caracteresPokemon);
-			completar_logger(m2, "TEAM", LOG_LEVEL_INFO);
+		char* m2 = string_from_format("Los caracteres de pokemon son: %d.", caracteresPokemon);
+		completar_logger(m2, "TEAM", LOG_LEVEL_INFO);
 
-		char* pokemon = (char*)malloc(caracteresPokemon);
-		recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
-		tamanio_leido += caracteresPokemon;
+	char* pokemon = (char*)malloc(caracteresPokemon);
+	recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
+	tamanio_leido += caracteresPokemon;
 			//log
-			completar_logger(pokemon, "TEAM", LOG_LEVEL_INFO);
+		completar_logger(pokemon, "TEAM", LOG_LEVEL_INFO);
 
-		uint32_t posX;
-		recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
-		tamanio_leido += sizeof(uint32_t);
-			//log
+	uint32_t posX;
+	recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
+	tamanio_leido += sizeof(uint32_t);
+		//log
 		char* m3 = string_from_format("La posicion en X es: %d", posX);
 		completar_logger(m3, "TEAM", LOG_LEVEL_INFO);
 
-		uint32_t posY;
-		recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
-		tamanio_leido += sizeof(uint32_t);
-			//log
+	uint32_t posY;
+	recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
+	tamanio_leido += sizeof(uint32_t);
+		//log
 		char* m4 = string_from_format("La posicion en Y es: %d", posY);
 		completar_logger(m4, "TEAM", LOG_LEVEL_INFO);
 
-		if((tamanio_buffer - tamanio_leido) != 0){
-			uint32_t id_correlativo;
-			recv(socket_cliente, &id_correlativo, sizeof(uint32_t), MSG_WAITALL);
-						//log
-				char* m5 = string_from_format("El id correlativo es: %d", id_correlativo);
-				completar_logger(m5, "TEAM", LOG_LEVEL_INFO);
-		}
-
-		t_pokemon* pokemonNuevo = armarPokemon(pokemon, posX, posY);
+	if((tamanio_buffer - tamanio_leido) != 0){
+		uint32_t id_correlativo;
+		recv(socket_cliente, &id_correlativo, sizeof(uint32_t), MSG_WAITALL);
+			//log
+			char* m5 = string_from_format("El id correlativo es: %d", id_correlativo);
+			completar_logger(m5, "TEAM", LOG_LEVEL_INFO);
+	}
+		/*t_pokemon* pokemonNuevo = armarPokemon(pokemon, posX, posY);
 		list_add(lista_de_pokemones_sueltos, pokemonNuevo);
 
 		free(pokemonNuevo);
 
 		pthread_mutex_unlock(hilo_planificador);
 		//armar pokemon con los datos recibidos y mandar el pokemon armado a APARACION_POKEMON()
+
+		 */
 }
 
 t_pokemon* armarPokemon(char* pokemon, int posX, int posY){
