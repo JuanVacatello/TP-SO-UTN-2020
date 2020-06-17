@@ -17,7 +17,6 @@
 #include<string.h>
 #include"Utils/configGameCard.h"
 #include<stdlib.h>
-#include<sys/stat.h>
 #include"Utils/metadata.h"
 
 void inicializar_file_system(char* punto_montaje);

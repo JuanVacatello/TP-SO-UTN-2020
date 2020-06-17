@@ -25,5 +25,9 @@ char* obtener_puerto_gamecard(void);
 char* obtener_ip_gamecard(void);
 char* obtener_log_file(void);
 char* obtener_punto_montaje(void);
+int tiempo_de_reintento_conexion(void);
+int tiempo_de_reintento_operacion(void);
+int tiempo_retardo_operacion(void);
+int obtener_id_propio(void);
 
 #endif /* CONFIGGAMEBOY_H_ */
