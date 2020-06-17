@@ -55,6 +55,20 @@ int cantidad_entrenadores(void){
 	return cantidad + 1;
 }
 
+int cantidad_de_elementos(char* pokemons){
+	int contador = 0;
+	//if(pokemons != NULL || pokemons != '\0'){
+		for(int i=0; i < string_length(pokemons); i++){
+			if(pokemons[i] =='|')
+				contador++;
+		}
+	//}
+	//else{
+	//	return contador;
+	//}
+	return contador+1;
+}
+
 
 
 

@@ -89,10 +89,7 @@ int main(void) {
 		//obtener_objetivos_entrenadores();
 
 
-
-
-
-		/*t_entrenador* entrenador = armar_entrenador(0);
+		t_entrenador* entrenador = armar_entrenador(2);
 
 
 		printf("%d\n",entrenador->posicion.x);
@@ -104,20 +101,7 @@ int main(void) {
 		puts(list_get(entrenador->atrapados,0));
 
 
-		/*printf(,entrenador->posicion->x);
-		printf("%d\n",entrenador->posicion->y);
-
-		moverse_derecha(entrenador);
-		moverse_derecha(entrenador);
-		moverse_derecha(entrenador);
-		moverse_izquierda(entrenador);
-		moverse_arriba(entrenador);
-		moverse_arriba(entrenador);
-		moverse_arriba(entrenador);
-		moverse_arriba(entrenador);
-		*/
-
-
+		//exit(1);
 		//puts("aca entra");
 /*
 		t_pokemon* pokemonPikachu = malloc(sizeof(t_pokemon));
@@ -152,9 +136,9 @@ int main(void) {
 
 		//list_add(lista_de_pokemones_sueltos, pokemonPikachu);
 		puts("aca entra1");
-		int pokemones = hay_pokemones_sueltos(lista_de_pokemones_sueltos);
+		//int pokemones = hay_pokemones_sueltos(lista_de_pokemones_sueltos);
 
-		printf("%d\n",pokemones);
+		//printf("%d\n",pokemones);
 
 		/*t_pokemon* pokemonLista = malloc(sizeof(t_pokemon));
 

@@ -35,9 +35,10 @@ void moverse_abajo(t_entrenador* entrenador){
 
 void armar_movimiento(t_entrenador* entrenador){
 
-	t_accion* accionNueva = malloc(sizeof(t_accion));
-		//accionNueva->accion = accion;
-		accionNueva->ciclo_cpu = 1;
+	t_accion* accionNuevaX = malloc(sizeof(t_accion));
+	accionNuevaX->ciclo_cpu = 1;
+	t_accion* accionNuevaY = malloc(sizeof(t_accion));
+	accionNuevaY->ciclo_cpu = 1;
 
 	int x_a_moverse = entrenador->pokemon_a_atrapar->posicion.x;
 	int y_a_moverse = entrenador->pokemon_a_atrapar->posicion.y;
@@ -48,15 +49,15 @@ void armar_movimiento(t_entrenador* entrenador){
 	while(posicion_ficticia_entrenador_x != x_a_moverse) {
 			if(posicion_ficticia_entrenador_x < x_a_moverse){
 				//moverse derecha
-		 		accionNueva->accion = moverse_derecha;
-				queue_push(entrenador->cola_de_acciones,accionNueva);
+				accionNuevaX->accion = moverse_derecha;
+				list_add(entrenador->cola_de_acciones,accionNuevaX);
 				posicion_ficticia_entrenador_x ++;
 
 			}
 			else if(posicion_ficticia_entrenador_x > x_a_moverse){
 				//moverse izquierda
-				accionNueva->accion = moverse_izquierda;
-				queue_push(entrenador->cola_de_acciones,accionNueva);
+				accionNuevaX->accion = moverse_izquierda;
+				list_add(entrenador->cola_de_acciones,accionNuevaX);
 				posicion_ficticia_entrenador_x --;
 
 			}
@@ -65,14 +66,14 @@ void armar_movimiento(t_entrenador* entrenador){
 	while(posicion_ficticia_entrenador_y != y_a_moverse){
 
 			if(posicion_ficticia_entrenador_y < y_a_moverse){
-				accionNueva->accion = moverse_abajo;
-				queue_push(entrenador->cola_de_acciones,accionNueva);
+				accionNuevaY->accion = moverse_abajo;
+				list_add(entrenador->cola_de_acciones,accionNuevaY);
 				posicion_ficticia_entrenador_y ++;
 				//moverse abajo
 			}
 			else if(posicion_ficticia_entrenador_y > y_a_moverse){
-				accionNueva->accion = moverse_arriba;
-				queue_push(entrenador->cola_de_acciones,accionNueva);
+				accionNuevaY->accion = moverse_arriba;
+				list_add(entrenador->cola_de_acciones,accionNuevaY);
 				posicion_ficticia_entrenador_y --;
 			}
 

@@ -49,14 +49,39 @@ void completar_logger(char* mensaje, char* programa, t_log_level log_level)
 
 void log_movimiento_entrenador(t_entrenador* entrenador){
 	//entrenador ya movido
+	char idEntrenador = entrenador->ID_entrenador;
 	int xPosicion = entrenador->posicion.x;
 	int yPosicion = entrenador->posicion.y;
 
-	char* mensaje = string_from_format("El entrenador se movió a la posicion %d|%d.", xPosicion, yPosicion);
+	char* mensaje = string_from_format("El entrenador %c se movió a la posicion %d|%d.",idEntrenador , xPosicion, yPosicion);
 
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
 }
 
+//3. Operación de atrapar (indicando la ubicación y el pokemon a atrapar).
+void log_operacion_de_atrapar_exitosa(t_entrenador* entrenador){
+	//Si atrapó al pokemon
+	char idEntrenador = entrenador->ID_entrenador;
+	char* pokemonAtrapado = entrenador->pokemon_a_atrapar->especie;
+	int xPosicion = entrenador->pokemon_a_atrapar->posicion.x;
+	int yPosicion = entrenador->pokemon_a_atrapar->posicion.y;
+
+	char* mensaje = string_from_format("El entrenador %c atrapó un %s en la posicion %d|%d.", idEntrenador, pokemonAtrapado, xPosicion, yPosicion);
+
+	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+}
+
+void log_operacion_de_atrapar_fallida(t_entrenador* entrenador){
+	//No atrapó al pokemon
+	char idEntrenador = entrenador->ID_entrenador;
+	char* pokemonAtrapado = entrenador->pokemon_a_atrapar->especie;
+	int xPosicion = entrenador->pokemon_a_atrapar->posicion.x;
+	int yPosicion = entrenador->pokemon_a_atrapar->posicion.y;
+
+	char* mensaje = string_from_format("El entrenador %c no pudo atrapar un %s en la posicion %d|%d.", idEntrenador, pokemonAtrapado, xPosicion, yPosicion);
+
+	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+}
 
 
 

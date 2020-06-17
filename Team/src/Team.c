@@ -153,7 +153,7 @@ void aparicion_pokemon(t_pokemon* pokemon){
 		armar_movimiento(entrenador);
 		//AGREGAMOS ACCION ATRAPAR A ENTRENADOR
 		t_accion* accion = armar_accion(atrapar_pokemon, 1);
-		queue_push(entrenador->cola_de_acciones, accion);
+		list_add(entrenador->cola_de_acciones, accion);
 
 		puts("aca entra 9");
 		list_add(lista_de_entrenadores_ready,entrenador);
@@ -167,7 +167,6 @@ void aparicion_pokemon(t_pokemon* pokemon){
 		//ESPERAMOS A LOG//
 	}
 }
-
 
 bool es_pokemon_requerido(t_pokemon* pokemon){
 	if(dictionary_has_key(objetivo_global,pokemon->especie)){

@@ -48,7 +48,7 @@ void planificar_fifo(void){
 		//}
 
 		//intentar atrapar pokemon --> mandar catch pokemon
-
+		puts("SE BLOQUEA DESPUES DE EJECUTAR");
 		pthread_mutex_lock(&mutex_planificador);
 	}
 

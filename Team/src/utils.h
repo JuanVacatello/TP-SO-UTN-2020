@@ -59,4 +59,6 @@ void ciclos_de_cpu(int ciclos);
 int cantidad_de_entrenadores(void);
 void iniciar_vg(void);
 
+int cantidad_de_elementos(char* pokemons);
+
 #endif /* CONEXIONES_H_ */
