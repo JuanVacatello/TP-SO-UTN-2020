@@ -16,13 +16,13 @@ void planificar_fifo(void){
 		puts("aca entra4");
 	while (1){
 
-		/*if(deteccion_de_deadlock()){
+		if(deteccion_de_deadlock()){
 
-			hacer el intercambio
+			//hacer el intercambio
 
 		}
 
-		else{ */
+		else{
 
 		puts("aca entra5");
 
@@ -45,7 +45,7 @@ void planificar_fifo(void){
 		puts("aca entra11");
 		ejecutar_entrenador(entrenador);
 
-		//}
+		}
 
 		//intentar atrapar pokemon --> mandar catch pokemon
 		puts("SE BLOQUEA DESPUES DE EJECUTAR");
