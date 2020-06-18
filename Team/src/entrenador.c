@@ -62,6 +62,9 @@ t_entrenador* armar_entrenador(int indice){
 	//ID_CATCH_POKEMON
 	entrenador->ID_catch_pokemon = 0;
 
+	//POKEMON_A_ATRAPAR
+	entrenador->pokemon_a_atrapar = NULL;
+
 	return entrenador;
 }
 
@@ -140,7 +143,6 @@ t_entrenador* entrenador_mas_cercano(t_pokemon* pokemon){
 
 		entrenador = list_get(entrenadores, indice_entrenador);
 
-		if (!termino_con_pokemon(entrenador, pokemon)){
 
 			posicion_entrenador = entrenador->posicion;
 			distancia_actual=sacar_distancia(posicion_pokemon,posicion_entrenador);
@@ -149,8 +151,7 @@ t_entrenador* entrenador_mas_cercano(t_pokemon* pokemon){
 				menor_distancia=distancia_actual;
 				entrenador_cercano = entrenador;
 
-		}
-	}
+			}
 
 	}
 
@@ -191,7 +192,6 @@ void ejecutar_entrenador(t_entrenador* entrenador){
 
 	entrenador->rafaga_anterior = 0;
 
-	//t_list* cola_aux = entrenador->cola_de_acciones;
 	t_accion* accion_aux;
 	t_accion* accion_a_ejecutar;
 	int contador_cpu = 0;
@@ -203,6 +203,7 @@ void ejecutar_entrenador(t_entrenador* entrenador){
 		accion_aux = list_get(entrenador->cola_de_acciones,i);
 		contador_cpu += accion_aux->ciclo_cpu;
 	}
+
 
 	pthread_t hilo_entrenador = entrenador->hilo_entrenador;
 
@@ -219,10 +220,11 @@ void ejecutar_entrenador(t_entrenador* entrenador){
 		pthread_create(&hilo_entrenador, NULL , (accion_a_ejecutar->accion) , entrenador);
 		pthread_join(hilo_entrenador,NULL);
 
+
 	}
 	//free(accion_a_ejecutar->accion);
 	//free(accion_a_ejecutar->ciclo_cpu);
-	//free(accion_a_ejecutar);
+	free(accion_a_ejecutar);
 	//free(accion_aux);
 
 }
@@ -250,7 +252,6 @@ void atrapar_pokemon(t_entrenador* entrenador){
 
 		verificar_estado_entrenador(entrenador);
 
-		free(entrenador->pokemon_a_atrapar);
 
 /*		t_pokemon* atrapado1 = list_get(entrenador->atrapados,0);
 		t_pokemon* atrapado2 = list_get(entrenador->atrapados,1);
@@ -278,7 +279,8 @@ void verificar_estado_entrenador(t_entrenador* entrenador){
 	if(tamanio_lista_objetivo == tamanio_lista_atrapados){
 
 	for (int indice_pokemon=0; indice_pokemon<list_size(entrenador->objetivo); indice_pokemon++){
-		pokemon = list_get(entrenador->objetivo, indice_pokemon);
+		pokemon->especie = list_get(entrenador->objetivo, indice_pokemon);
+
 		if (termino_con_pokemon(entrenador, pokemon)){
 			contador_atrapados++;
 		}
@@ -301,7 +303,7 @@ void verificar_estado_entrenador(t_entrenador* entrenador){
 
 bool termino_con_pokemon(t_entrenador* entrenador, t_pokemon* pokemon){
 
-	t_pokemon* pokemon_auxiliar;
+	t_pokemon* pokemon_auxiliar = malloc(sizeof(t_pokemon));
 	int cantidad_objetivo = 0;
 	int cantidad_atrapados = 0;
 
@@ -309,7 +311,7 @@ bool termino_con_pokemon(t_entrenador* entrenador, t_pokemon* pokemon){
 	//determinada especie necesita en total
 
 	for (int indice_pokemon=0; indice_pokemon<list_size(entrenador->objetivo); indice_pokemon++){
-		pokemon_auxiliar = list_get(entrenador->objetivo, indice_pokemon);
+		pokemon_auxiliar->especie = list_get(entrenador->objetivo, indice_pokemon);
 
 		if(strcmp(pokemon_auxiliar->especie, pokemon->especie)==0){
 			cantidad_objetivo++;
@@ -318,8 +320,7 @@ bool termino_con_pokemon(t_entrenador* entrenador, t_pokemon* pokemon){
 	//Recorremos la lista de atrapados para saber si ya tiene a todos los que necesita
 
 	for (int indice_pokemon=0; indice_pokemon<list_size(entrenador->objetivo); indice_pokemon++){
-
-			pokemon_auxiliar = list_get(entrenador->atrapados, indice_pokemon);
+			pokemon_auxiliar->especie = list_get(entrenador->atrapados, indice_pokemon);
 
 			if(strcmp(pokemon_auxiliar->especie, pokemon->especie)==0){
 				cantidad_atrapados++;
@@ -329,7 +330,7 @@ bool termino_con_pokemon(t_entrenador* entrenador, t_pokemon* pokemon){
 		return true;
 	}
 	else{
-	return false;
+		return false;
 	}
 }
 
