@@ -2,8 +2,27 @@
 
 int main(void)
 {
-	creacion_colas_de_mensajes();
+	leer_config();
+	iniciar_logger();
+
+	int tamanio_de_memoria = obtener_tamanio_memoria();
+	void* memoria_principal = malloc(tamanio_de_memoria);
+	memset(memoria_principal,0,64);
+
+	int numero = 4;
+	memcpy(memoria_principal,&numero, sizeof(int));
+
+	int numero2=0;
+
+	memcpy(&numero2, memoria_principal, sizeof(int));
+
+	printf("%d", numero2);
+	free(memoria_principal);
+	/*
+	 creacion_colas_de_mensajes();
 	iniciar_servidor();
+
+	 */
 
 	return 0;
 }

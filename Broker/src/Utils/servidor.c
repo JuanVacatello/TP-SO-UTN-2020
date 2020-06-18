@@ -22,7 +22,6 @@ void* serializar_paquete(t_paquete* paquete, int bytes)
 
 void iniciar_servidor(void)
 {
-	iniciar_logger();
 	int socket_servidor;
     struct addrinfo hints, *servinfo, *p;
 
@@ -278,7 +277,7 @@ void enviar_mensaje_a_suscriptores(int cola_mensaje,int socket_cliente){
 	enviar_mensaje_id(socket_cliente, paquete->identificador);
 	mensaje_id ++; //semaforos
 */
-							// TAMANIO PAYLOAD + OP_CODE + SIZE + IDENTIFICADOR DEL MENSAJE
+						// TAMANIO PAYLOAD + OP_CODE + SIZE + IDENTIFICADOR DEL MENSAJE
 	int tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);//+sizeof(uint32_t);
 
 	void* a_enviar = serializar_paquete(paquete, tamanio_paquete);
