@@ -139,6 +139,9 @@ t_entrenador* entrenador_mas_cercano(t_pokemon* pokemon){
 	for (int indice_entrenador=0; indice_entrenador<cantidad_entrenadores(); indice_entrenador++){
 
 		entrenador = list_get(entrenadores, indice_entrenador);
+
+		if (!termino_con_pokemon(entrenador, pokemon)){
+
 			posicion_entrenador = entrenador->posicion;
 			distancia_actual=sacar_distancia(posicion_pokemon,posicion_entrenador);
 
@@ -147,6 +150,8 @@ t_entrenador* entrenador_mas_cercano(t_pokemon* pokemon){
 				entrenador_cercano = entrenador;
 
 		}
+	}
+
 	}
 
 	return entrenador_cercano;
@@ -220,7 +225,6 @@ void ejecutar_entrenador(t_entrenador* entrenador){
 	//free(accion_a_ejecutar);
 	//free(accion_aux);
 
-	puede_seguir_atrapando(entrenador);	//Acá se fija si terminó, entró en deadlock o puede seguir atrapando
 }
 
 void atrapar_pokemon(t_entrenador* entrenador){
@@ -230,11 +234,21 @@ void atrapar_pokemon(t_entrenador* entrenador){
 	//if(pudo_atraparlo()){
 		list_add(entrenador->atrapados, entrenador->pokemon_a_atrapar);
 		log_operacion_de_atrapar_exitosa(entrenador);	//ATRAPÓ AL POKEMON
+
 	//}
 	//else
 	//	log_operacion_de_atrapar_fallida(entrenador);	//NO ATRAPÓ AL POKEMON
 
+		//Actualizamos diccionarios
+		int cantidad_pokemon = dictionary_get(objetivo_global, entrenador->pokemon_a_atrapar->especie);
+
+		dictionary_put(objetivo_global, entrenador->pokemon_a_atrapar->especie, cantidad_pokemon - 1);
+		dictionary_put(atrapados_global, entrenador->pokemon_a_atrapar->especie, cantidad_pokemon + 1);
+
+
 		entrenador->pokemon_a_atrapar = NULL;
+
+		verificar_estado_entrenador(entrenador);
 
 		free(entrenador->pokemon_a_atrapar);
 
@@ -253,42 +267,8 @@ void atrapar_pokemon(t_entrenador* entrenador){
 
 }
 
-void puede_seguir_atrapando(t_entrenador* entrenador){
-	t_pokemon* pokemon;
 
-	if(list_size(entrenador->objetivo) == list_size(entrenador->atrapados)){
-
-	if(termino_de_atrapar(entrenador)){
-		entrenador->estado = EXIT;
-	}
-
-	else{
-
-			for (int indice_pokemon=0; indice_pokemon<list_size(entrenador->objetivo); indice_pokemon++){
-				pokemon=list_get(entrenador->objetivo, indice_pokemon);
-				if(comprobar_deadlock_entrenador(entrenador, pokemon)){
-
-					entrenador->estado_deadlock = 1;	//VER SI ESTO ES NECESARIO
-
-					list_add(lista_de_entrenadores_deadlock, entrenador);
-
-					//PASARLO A DEADLOCK
-				}
-				entrenador->estado = BLOCKED;
-			}
-
-
-			}
-	}
-
-	else{
-		entrenador->estado = BLOCKED;
-	}
-}
-
-
-
-bool termino_de_atrapar(t_entrenador* entrenador){
+void verificar_estado_entrenador(t_entrenador* entrenador){
 
 	int tamanio_lista_objetivo = list_size(entrenador->objetivo);
 	int tamanio_lista_atrapados = list_size(entrenador->atrapados);
@@ -304,14 +284,16 @@ bool termino_de_atrapar(t_entrenador* entrenador){
 		}
 	}
 		if(contador_atrapados == tamanio_lista_objetivo){
-			return true;
+			entrenador->estado = EXIT;
 		}
 		else{
-			return false;
+			//PONEMOS ENTRENADOR EN DEADLOCK
+			entrenador->estado = BLOCKED;
+			list_add(lista_de_entrenadores_deadlock, entrenador);
 		}
 	}
 	else{
-		return false;
+		entrenador->estado = BLOCKED;
 	}
 
 }
@@ -343,52 +325,12 @@ bool termino_con_pokemon(t_entrenador* entrenador, t_pokemon* pokemon){
 				cantidad_atrapados++;
 			}
 		}
-	if(cantidad_atrapados >= cantidad_objetivo){
+	if(cantidad_atrapados == cantidad_objetivo){
 		return true;
 	}
 	else{
 	return false;
 	}
-}
-
-bool comprobar_deadlock_entrenador(t_entrenador* entrenador, t_pokemon* pokemon){
-
-	t_pokemon* pokemon_auxiliar;
-		int cantidad_objetivo = 0;
-		int cantidad_atrapados = 0;
-
-		//Recorremos la lista de objetivos del entrenador para saber cuantos pokemon de
-		//determinada especie necesita en total
-
-		for (int indice_pokemon=0; indice_pokemon<list_size(entrenador->objetivo); indice_pokemon++){
-
-			pokemon_auxiliar = list_get(entrenador->objetivo, indice_pokemon);
-
-			if(strcmp(pokemon_auxiliar->especie, pokemon->especie)==0){
-				cantidad_objetivo++;
-			}
-
-		}
-
-		//Recorremos la lista de atrapados para saber si supero la cantidad necesaria
-
-		for (int indice_pokemon=0; indice_pokemon<list_size(entrenador->objetivo); indice_pokemon++){
-
-				pokemon_auxiliar = list_get(entrenador->atrapados, indice_pokemon);
-
-				if(strcmp(pokemon_auxiliar->especie, pokemon->especie)==0){
-					cantidad_atrapados++;
-				}
-
-			}
-
-		if(cantidad_atrapados > cantidad_objetivo){
-			return true;
-		}
-		else{
-		return false;
-		}
-
 }
 
 

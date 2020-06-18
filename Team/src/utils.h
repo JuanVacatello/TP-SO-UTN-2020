@@ -35,7 +35,6 @@ pthread_mutex_t mutex_planificador;
 
 t_list* lista_de_entrenadores_deadlock;
 
-//PONGO EL MUTEX EN 0
 
 typedef enum
 {
