@@ -618,7 +618,7 @@ void recibir_mensaje(int socket_cliente){
 
 	uint32_t caracteresPokemon;
 	char* pokemon;
-	char* mensaje_recibido;
+	uint32_t mensajeid;
 	uint32_t posX;
 	uint32_t posY;
 	uint32_t cantidad_pokemon;
@@ -634,7 +634,6 @@ void recibir_mensaje(int socket_cliente){
 
 	switch(codigo_de_operacion){
 	case 0:
-
 		break;
 	case 1:
 
@@ -763,14 +762,20 @@ void recibir_mensaje(int socket_cliente){
 	case 6:
 		break;
 	case 7:
+
+		recv(socket_cliente, &mensajeid, sizeof(uint32_t), MSG_WAITALL); //no recibe pokemon, recibe el mensaje id
+
+		mensaje4 = string_from_format("El id de mensaje es: %d.", mensajeid);
+		puts(mensaje4);
+
 		break;
 	}
 
 	uint32_t identificador = 1;
 	int tamanio_paquete = 0;
 	void* a_enviar = enviar_ack(socket_cliente,codigo_de_operacion,identificador,&tamanio_paquete);
+	send(socket_cliente,a_enviar,tamanio_paquete,0); //no llega el ack
 
-	send(socket_cliente,a_enviar,tamanio_paquete,0);
 }
 
 void* enviar_ack(int socket, op_code codigo_op, uint32_t identificador,int* tamanio_paquete){

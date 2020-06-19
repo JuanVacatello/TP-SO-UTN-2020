@@ -1,15 +1,4 @@
-/*
- ============================================================================
- Name        : GameBoy.c
- Author      : 
- Version     :
- Copyright   : Your copyright notice
- Description : Hello World in C, Ansi-style
- ============================================================================
- */
-
 #include "GameBoy.h"
-
 
 int main(int argc, char* argv[]) {
 
@@ -43,25 +32,6 @@ int main(int argc, char* argv[]) {
 		int socket_conexion = crear_conexion(ip,puerto);
 
 		enviar_mensaje_a_broker(socket_conexion, 0, argv); // 0 es el op_code de SUSCRIPTOR
-
-		op_code codigo_de_operacion;
-		recv(socket_conexion, &codigo_de_operacion, sizeof(op_code), MSG_WAITALL);
-
-			char* mensaje = string_from_format("El código de operación es: %d.", codigo_de_operacion);
-			puts(mensaje);
-
-		uint32_t buffer_size;
-		recv(socket_conexion, &buffer_size, sizeof(uint32_t), MSG_WAITALL);
-
-			char* mensaje2 = string_from_format("El tamanio del buffer es: %d.", buffer_size);
-			puts(mensaje2);
-
-		char* mensaje_recibido = (char*)malloc(buffer_size);
-
-		recv(socket_conexion, mensaje_recibido, buffer_size, MSG_WAITALL);
-		puts(mensaje_recibido);
-
-		free(mensaje_recibido);
 
 		completar_logger("GameBoy se suscribió a la cola.", "GAMEBOY", LOG_LEVEL_INFO);
 	}
