@@ -1,22 +1,5 @@
 #include "servidor.h"
-
 #include <pthread.h>
-
-void* serializar_paquete(t_paquete* paquete, int bytes)
-{
-	void* a_enviar = malloc(bytes);
-	int offset = 0;
-
-	memcpy(a_enviar + offset, &(paquete->codigo_operacion), sizeof(op_code));
-	offset += sizeof(op_code);
-
-	memcpy(a_enviar + offset, &(paquete->buffer->size), sizeof(int));
-	offset +=sizeof(int);
-
-	memcpy(a_enviar + offset, paquete->buffer->stream, paquete->buffer->size);
-
-	return a_enviar;
-}
 
 // CONEXION CON CLIENTE
 
@@ -91,10 +74,11 @@ void process_request(op_code cod_op, int socket_cliente) {
 	switch (cod_op) {
 		case 0:
 			atender_suscripcion(socket_cliente);
-			enviar_mensaje(socket_cliente, "Suscripto.");
 			break;
 		case 1:
-			enviar_mensaje_a_suscriptores(1, socket_cliente);
+			//enviar_mensaje_a_suscriptores(1, socket_cliente); -> no sirve mucho esta funcion
+			enviar_mensaje_id(socket_cliente); //tecnicamente a los suscriptores tiene q mandarle esto y no se q mas
+			mensaje_id ++;
 			break;
 		case 2:
 			enviar_mensaje_a_suscriptores(2, socket_cliente);
@@ -135,12 +119,18 @@ void enviar_mensaje(int socket_cliente, char* mensaje){
 	free(paquete->buffer);
 }
 
-void enviar_mensaje_id(int socket_cliente, uint32_t mensajeid){
+void enviar_mensaje_id(int socket_cliente){
 	t_paquete* paquete = malloc(sizeof(t_paquete));
 	paquete->codigo_operacion = MENSAJE;
 	paquete->buffer = malloc(sizeof(t_buffer));
-	paquete->buffer->stream = ("El id del mensaje es %d", mensajeid);
-	paquete->buffer->size = strlen(paquete->buffer->stream) + 1;
+	paquete->buffer->size = sizeof(uint32_t);
+
+	void* stream = malloc(paquete->buffer->size);
+	int offset = 0;
+
+		memcpy(stream + offset, &mensaje_id, sizeof(uint32_t));
+
+	paquete->buffer->stream = stream;
 
 	int tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
 	void* a_enviar = serializar_paquete(paquete,tamanio_paquete);
@@ -149,6 +139,7 @@ void enviar_mensaje_id(int socket_cliente, uint32_t mensajeid){
 
 	free(paquete);
 	free(paquete->buffer);
+	free(stream);
 }
 
 // Atender suscripcion
@@ -156,7 +147,6 @@ void enviar_mensaje_id(int socket_cliente, uint32_t mensajeid){
 void atender_suscripcion(int socket_cliente)
 {
 	uint32_t tamanio_buffer;
-
 	tamanio_buffer = recibir_tamanio_buffer(socket_cliente);
 
 	proceso* suscriptor = modelar_proceso(socket_cliente);
@@ -185,14 +175,6 @@ void suscribirse_a_cola(proceso* suscriptor, int socket, uint32_t tamanio_buffer
 	uint32_t cola_a_suscribirse;
 	recv(socket, &cola_a_suscribirse, sizeof(uint32_t), MSG_WAITALL);
 
-	if(tamanio_buffer == 12){ // Entonces la suscripción es del GameBoy
-		uint32_t tiempo_de_suscripcion; // no se que hacer con esto
-		recv(socket, &tiempo_de_suscripcion, sizeof(uint32_t), MSG_WAITALL);
-
-		char* m = string_from_format("El tiempo de suscripcion es: %d.", tiempo_de_suscripcion);
-		completar_logger(m, "BROKER", LOG_LEVEL_INFO);
-	}
-
 	switch(cola_a_suscribirse){
 		case 0:
 			break;
@@ -216,6 +198,11 @@ void suscribirse_a_cola(proceso* suscriptor, int socket, uint32_t tamanio_buffer
 			break;
 	}
 
+	if(tamanio_buffer == 12){ // Entonces la suscripción es del GameBoy
+		uint32_t tiempo_de_suscripcion;
+		recv(socket, &tiempo_de_suscripcion, sizeof(uint32_t), MSG_WAITALL);
+	}
+
 	char* log = string_from_format("Se suscribió el proceso con id %d y con socket %d a la cola de mensajes %d", suscriptor->id, suscriptor->socket_cliente, cola_a_suscribirse);
 	completar_logger(log, "BROKER", LOG_LEVEL_INFO); //LOG OBLIGATORIO
 
@@ -225,7 +212,6 @@ void suscribirse_a_cola(proceso* suscriptor, int socket, uint32_t tamanio_buffer
 
 void enviar_mensaje_a_suscriptores(int cola_mensaje,int socket_cliente){
 
-	completar_logger("Enviando mensaje a suscriptor", "Broker", LOG_LEVEL_INFO);
 	t_paquete* paquete = malloc(sizeof(t_paquete));
 	t_list* suscriptores_cola_mensaje;
 	t_list* cola_de_mensajes;
@@ -294,8 +280,11 @@ void enviar_mensaje_a_suscriptores(int cola_mensaje,int socket_cliente){
 		char* mensaje3 = string_from_format("paquete->buffer->size: %d.", paquete->buffer->size);
 		completar_logger(mensaje3, "Broker", LOG_LEVEL_INFO);
 
-		char* mensaje = string_from_format("El tamanio de la list es: %d.", sizelista);
-		completar_logger(mensaje, "Broker", LOG_LEVEL_INFO);
+		char* mensaje4 = string_from_format("El tamanio de la list es: %d.", sizelista);
+		completar_logger(mensaje4, "Broker", LOG_LEVEL_INFO);
+
+		char* mensaje5 = string_from_format("El socket del GameBoy ahora es: %d.", socket_cliente);
+		completar_logger(mensaje5, "Broker", LOG_LEVEL_INFO);
 
 	for(int i = 0; i < sizelista; i++){
 
@@ -305,7 +294,7 @@ void enviar_mensaje_a_suscriptores(int cola_mensaje,int socket_cliente){
 			char* mensa = string_from_format("El socket al que le vamos a enviar es es: %d.", socket_suscriptor);
 			completar_logger(mensa, "Broker", LOG_LEVEL_INFO);
 
-		if(send(socket_suscriptor,a_enviar,tamanio_paquete,0) == -1){
+		if(send(socket_cliente,a_enviar,tamanio_paquete,0) == -1){ //socket_suscriptor
 			completar_logger("Error en enviar por el socket","BROKER", LOG_LEVEL_INFO);
 			exit(3);
 		}
@@ -386,6 +375,22 @@ void recibir_ack(int socket_cliente){
 		}
 	}
 */
+}
+
+void* serializar_paquete(t_paquete* paquete, int bytes)
+{
+	void* a_enviar = malloc(bytes);
+	int offset = 0;
+
+	memcpy(a_enviar + offset, &(paquete->codigo_operacion), sizeof(op_code));
+	offset += sizeof(op_code);
+
+	memcpy(a_enviar + offset, &(paquete->buffer->size), sizeof(int));
+	offset +=sizeof(int);
+
+	memcpy(a_enviar + offset, paquete->buffer->stream, paquete->buffer->size);
+
+	return a_enviar;
 }
 
 // Por si necesita hacer algo además del pasamanos:

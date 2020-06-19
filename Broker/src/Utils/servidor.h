@@ -90,7 +90,7 @@ int recibir_tamanio_buffer(int socket);
 void suscribirse_a_cola(proceso* suscriptor, int socket, uint32_t tamanio_buffer);
 
 void enviar_mensaje(int socket_cliente, char* mensaje);
-void enviar_mensaje_id(int socket_cliente, uint32_t idmensaje);
+void enviar_mensaje_id(int socket_cliente);
 
 void recibir_new_pokemon(int socket_cliente);
 void recibir_appeared_pokemon(int socket_cliente);
