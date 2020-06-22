@@ -1,0 +1,7 @@
+[INFO] 12:59:03:14 BROKER/(7167:7167): Se conectó proceso al Broker
+[INFO] 12:59:05:886 BROKER/(7167:7173): El codigo de operacion es: 0.
+[INFO] 12:59:05:888 BROKER/(7167:7173): Se suscribió el proceso con id 7172 y con socket 5 a la cola de mensajes 1
+[INFO] 12:59:06:888 BROKER/(7167:7174): El codigo de operacion es: 0.
+[INFO] 12:59:06:891 BROKER/(7167:7174): Se suscribió el proceso con id 7172 y con socket 6 a la cola de mensajes 3
+[INFO] 12:59:07:893 BROKER/(7167:7175): El codigo de operacion es: 0.
+[INFO] 12:59:07:894 BROKER/(7167:7175): Se suscribió el proceso con id 7172 y con socket 7 a la cola de mensajes 5

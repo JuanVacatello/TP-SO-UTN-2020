@@ -392,7 +392,7 @@ void* serializar_paquete(t_paquete* paquete, int bytes)
 
 	return a_enviar;
 }
-
+/*
 // Por si necesita hacer algo además del pasamanos:
 
 void recibir_new_pokemon(int socket_cliente)
@@ -482,3 +482,5 @@ void recibir_get_pokemon(int socket_cliente){
 	recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
 
 }
+*/
+
