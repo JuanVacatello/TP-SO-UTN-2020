@@ -1,10 +1,3 @@
-/*
- * GameBoy.h
- *
- *  Created on: 3 may. 2020
- *      Author: utnso
- */
-
 #ifndef GAMEBOY_H_
 #define GAMEBOY_H_
 

@@ -101,7 +101,6 @@ void enviarMensajeTeam(int argc, char *argv[]){
 		exit(5);
 	}
 
-	recibir_mensaje(socket_conexion);
 }
 
 void enviarMensajeGameCard(int argc, char *argv[]){
@@ -128,8 +127,6 @@ void enviarMensajeGameCard(int argc, char *argv[]){
 		cumple_cant_parametros(argc, 5);
 		enviar_mensaje_a_gamecard(socket_conexion, 5, argv); // 5 es el op_code de GET_POKEMON
 	}
-
-	recibir_mensaje(socket_conexion);
 }
 
 void cumple_cant_parametros(int argc, int cantidad_necesaria){

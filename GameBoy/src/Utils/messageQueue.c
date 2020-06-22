@@ -539,7 +539,6 @@ void* iniciar_paquete_serializado_CatchPokemonGC(int* tamanio_paquete,char* argv
 		offset += sizeof(uint32_t);
 
 		memcpy(stream + offset, &id_mensaje, sizeof(uint32_t));
-		offset += sizeof(uint32_t);
 
 		paquete->buffer->stream = stream;
 
