@@ -231,40 +231,28 @@ void ejecutar_entrenador(t_entrenador* entrenador){
 
 void atrapar_pokemon(t_entrenador* entrenador){
 
-	//pthread_mutex_lock(&hilo_planificador);
+	enviar_CatchPokemon_a_broker(3, entrenador);
+	pthread_mutex_lock(&mutex_entrenador);
 
-	//if(pudo_atraparlo()){
+	if(entrenador->pudo_atrapar_pokemon == 0){
+		log_operacion_de_atrapar_fallida(entrenador);	//NO ATRAPÓ AL POKEMON
+	}
+	else if(entrenador->pudo_atrapar_pokemon == 1){
 		list_add(entrenador->atrapados, entrenador->pokemon_a_atrapar->especie);
 		log_operacion_de_atrapar_exitosa(entrenador);	//ATRAPÓ AL POKEMON
 
-	//}
-	//else
-	//	log_operacion_de_atrapar_fallida(entrenador);	//NO ATRAPÓ AL POKEMON
-
-		//Actualizamos diccionarios
 		int cantidad_pokemon = dictionary_get(objetivo_global, entrenador->pokemon_a_atrapar->especie);
 
 		dictionary_put(objetivo_global, entrenador->pokemon_a_atrapar->especie, cantidad_pokemon - 1);
 		dictionary_put(atrapados_global, entrenador->pokemon_a_atrapar->especie, cantidad_pokemon + 1);
 
-
-		entrenador->pokemon_a_atrapar = NULL;
+		//Actualizamos diccionarios
 
 		verificar_estado_entrenador(entrenador);
 
+	}
 
-/*		t_pokemon* atrapado1 = list_get(entrenador->atrapados,0);
-		t_pokemon* atrapado2 = list_get(entrenador->atrapados,1);
-		char* pokemon1 = malloc(sizeof(char*));
-		pokemon1 = atrapado1->especie;
-		char* pokemon2 = malloc(sizeof(char*));
-		pokemon2 = atrapado2->especie;
-		puts(pokemon1);
-		puts(pokemon2);
-		completar_logger(pokemon1, "TEAM", LOG_LEVEL_INFO);
-		completar_logger(pokemon2, "TEAM", LOG_LEVEL_INFO);
-*/
-
+	entrenador->pokemon_a_atrapar = NULL;
 
 }
 

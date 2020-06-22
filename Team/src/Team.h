@@ -34,6 +34,7 @@ void terminar_programa(int conexion, t_log* logger);
 bool deteccion_de_deadlock();
 t_accion* armar_accion(void(*accion)(void*), int ciclos);
 
+
 bool hay_pokemones_sueltos(t_list*);
 
 #endif /* TEAM_H_ */

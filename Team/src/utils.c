@@ -17,6 +17,10 @@ void iniciar_vg(void){
 	//PONEMOS EL SEMÁFORO EN 0
 	pthread_mutex_lock(&mutex_planificador);
 
+	pthread_mutex_init(&mutex_entrenador, NULL);
+		//PONEMOS EL SEMÁFORO EN 0
+	pthread_mutex_lock(&mutex_entrenador);
+
 }
 
 
@@ -69,6 +73,18 @@ int cantidad_de_elementos(char* pokemons){
 	return contador+1;
 }
 
+bool esta_en_lista(t_list* lista_pokemones, char* especie){
+   char* especie_pokemon;
+   for (int i=0; i<list_size(lista_pokemones); i++){
+      especie_pokemon = list_get(lista_pokemones, i);
+		  if (strcmp(especie_pokemon, especie) == 0){
+		  return true;
+		}
+		   else{
+		return false;
+		}
+	}
+}
 
 
 

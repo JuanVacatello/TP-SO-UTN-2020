@@ -21,7 +21,7 @@ int crear_conexion(char* ip, char* puerto)
 
 	if(connect(socket_cliente, server_info->ai_addr, server_info->ai_addrlen) == -1){
 		printf("Error en conectar socket.");
-		exit(2);
+		return -1;
 	}
 
 	freeaddrinfo(server_info);
@@ -130,37 +130,57 @@ void* suscribirse_a_cola(int socket_cliente, uint32_t cola, int* tamanio_paquete
 }
 
 //----------------------- COMUNICACION CON BROKER -----------------------
-
-void enviar_CatchPokemon_a_broker(int socket_cliente, op_code codigo_operacion, t_entrenador* entrenador )
+void enviar_CatchPokemon_a_broker(op_code codigo_operacion, t_entrenador* entrenador )
 {
-	int tamanio_paquete = 0;
-	void* a_enviar;
+	char* puerto_broker = obtener_puerto();
+	char* ip_broker = obtener_ip();
 
-	a_enviar = iniciar_paquete_serializado_CatchPokemon(&tamanio_paquete, entrenador);
+	int socket_broker = crear_conexion(ip_broker,puerto_broker);
 
-	if(send(socket_cliente,a_enviar,tamanio_paquete,0) == -1){
-		printf("Error en enviar por el socket");
-		exit(3);
+	if(socket_broker == -1){
+		entrenador->pudo_atrapar_pokemon = 1;
+		pthread_mutex_unlock(&mutex_entrenador);
 	}
 
-	free(a_enviar);
+	else{
+
+		int tamanio_paquete = 0;
+		void* a_enviar;
+
+		a_enviar = iniciar_paquete_serializado_CatchPokemon(&tamanio_paquete, entrenador);
+
+		if(send(socket_broker,a_enviar,tamanio_paquete,0) == -1){
+			printf("Error en enviar por el socket");
+			exit(3);
+		}
+		free(a_enviar);
+	}
 
 }
 
-void enviar_GetPokemon_a_broker(int socket_cliente, op_code codigo_operacion, t_pokemon* pokemon)
+void enviar_GetPokemon_a_broker(op_code codigo_operacion, char* pokemon)
 {
-	int tamanio_paquete = 0;
-	void* a_enviar;
+	char* puerto_broker = obtener_puerto();
+	char* ip_broker = obtener_ip();
 
-	a_enviar = iniciar_paquete_serializado_GetPokemon(&tamanio_paquete, pokemon);
+	int socket_broker = crear_conexion(ip_broker,puerto_broker);
 
-	if(send(socket_cliente,a_enviar,tamanio_paquete,0) == -1){
-		printf("Error en enviar por el socket");
-		exit(3);
+	if(socket_broker == -1){
+		//comportamiento default (NO HAY POKEMONES EN EL MAPAs)
 	}
+	else{
+		int tamanio_paquete = 0;
+		void* a_enviar;
 
-	free(a_enviar);
+		a_enviar = iniciar_paquete_serializado_GetPokemon(&tamanio_paquete, pokemon);
 
+		if(send(socket_broker,a_enviar,tamanio_paquete,0) == -1){
+			printf("Error en enviar por el socket");
+			exit(3);
+		}
+
+		free(a_enviar);
+	}
 }
 
 
@@ -214,7 +234,7 @@ void* iniciar_paquete_serializado_CatchPokemon(int* tamanio_paquete,t_entrenador
 
 //////////////// GET POKEMON ////////////////
 
-void* iniciar_paquete_serializado_GetPokemon(int* tamanio_paquete,t_pokemon* pokemon_pedido){
+void* iniciar_paquete_serializado_GetPokemon(int* tamanio_paquete,char* pokemon_pedido){
 
 	t_paquete* paquete = malloc(sizeof(t_paquete));
 
@@ -222,7 +242,7 @@ void* iniciar_paquete_serializado_GetPokemon(int* tamanio_paquete,t_pokemon* pok
 
 	paquete->buffer = malloc(sizeof(t_buffer));
 
-	char* pokemon = pokemon_pedido->especie;
+	char* pokemon = pokemon_pedido;
 	uint32_t caracteresPokemon = strlen(pokemon) + 1;
 
 						//INT CARACTERES + POKEMON
@@ -281,6 +301,17 @@ void recibir_AppearedPokemon(int socket_cliente){
 		uint32_t posY;
 		recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
 
+		t_pokemon* pokemonNuevo = armarPokemon(pokemon, posX, posY);
+
+		if(es_pokemon_requerido(pokemonNuevo)){
+			list_add(lista_de_pokemones_sueltos, pokemonNuevo);
+
+
+			pthread_mutex_unlock(&mutex_planificador);
+		}
+
+		free(pokemonNuevo);
+
 }*/
 
 void recibir_appeared_pokemon_loggeo(void){
@@ -334,15 +365,18 @@ void recibir_appeared_pokemon_loggeo(void){
 			char* m5 = string_from_format("El id correlativo es: %d", id_correlativo);
 			completar_logger(m5, "TEAM", LOG_LEVEL_INFO);
 	}
-		/*t_pokemon* pokemonNuevo = armarPokemon(pokemon, posX, posY);
-		list_add(lista_de_pokemones_sueltos, pokemonNuevo);
+		t_pokemon* pokemonNuevo = armarPokemon(pokemon, posX, posY);
+
+		if(es_pokemon_requerido(pokemonNuevo)){
+			list_add(lista_de_pokemones_sueltos, pokemonNuevo);
+
+
+			pthread_mutex_unlock(&mutex_planificador);
+		}
 
 		free(pokemonNuevo);
-
-		pthread_mutex_unlock(hilo_planificador);
 		//armar pokemon con los datos recibidos y mandar el pokemon armado a APARACION_POKEMON()
 
-		 */
 }
 
 t_pokemon* armarPokemon(char* pokemon, int posX, int posY){
@@ -375,9 +409,11 @@ void recibir_CaughtPokemon(int socket_cliente){
 
 		//Falta seguir a partir de aca
 
-		//pudo_atraparlo(pudoAtraparlo);
+		t_entrenador* entrenador = buscar_entrenador_por_id_catch(id_correlativo)
 
-		//pthread_mutex_unlock(hilo_planificador);
+		entrenador->pudo_atrapar_pokemon = pudoAtraparlo;
+
+		pthread_mutex_unlock(&mutex_entrenador);
 
 }
 
@@ -433,6 +469,8 @@ void recibir_caught_pokemon_loggeo(int socket_cliente){
 
 void recibir_LocalizedPokemon(int socket_cliente){
 
+		t_pokemon* pokemon_nuevo = malloc(sizeof(t_pokemon));
+
 		uint32_t tamanio_buffer;
 		recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
@@ -452,9 +490,11 @@ void recibir_LocalizedPokemon(int socket_cliente){
 			uint32_t posY;
 			recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
 
-			armarPokemon(pokemon, posX, posY); //esto no funca todavia pero la logica seria asi
+			pokemon_nuevo = armarPokemon(pokemon, posX, posY);//esto no funca todavia pero la logica seria asi
+			list_add(lista_de_pokemones_sueltos,pokemon_nuevo);
 		}
 
+		pthread_mutex_unlock(&mutex_planificador);
 }
 
 
@@ -552,21 +592,12 @@ void recibir_appeared_pokemon_loggeo(int socket_cliente){
 */
 
 
-void recibir_mensaje2(int socket_cliente)
-{
-	int caracteresPokemon, posX, posY, cantidad;
-	char* pokemon;
-
-	recv(socket_cliente,&caracteresPokemon ,sizeof(int),0);
-	recv(socket_cliente,&pokemon ,caracteresPokemon,0);
-	recv(socket_cliente,&posX ,sizeof(int),0);
-	recv(socket_cliente,&posY ,sizeof(int),0);
-	recv(socket_cliente,&cantidad ,sizeof(int),0);
-
-	printf("%d /n",caracteresPokemon);
-	printf("%d /n",posX);
-	printf("%d /n",posY);
-	printf("%d /n",cantidad);
-	puts(pokemon);
-
+t_entrenador* buscar_entrenador_por_id_catch(uint32_t id){
+	t_entrenador* entrenador;
+	for(int i = 0; i < cantidad_entrenadores(); i++){
+		entrenador = list_get(lista_de_entrenadores, i);
+		if(entrenador->ID_catch_pokemon == id){
+			return entrenador;
+		}
+	}
 }

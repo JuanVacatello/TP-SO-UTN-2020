@@ -224,6 +224,42 @@ bool hay_pokemones_sueltos(t_list* listaTest){
 		return true;
 }
 
+//pokemonesAAtrapar = [Pikachu,Squirtle,Pikachu,Gengar,Squirtle,Onix]
+
+void informar_pokemones_a_atrapar(){
+	t_list* pokemones_aux = list_create();
+	t_list* pokemones_a_atrapar = list_create();
+	t_entrenador* entrenador_aux;
+	char* pokemon;
+
+	for(int indice; indice < cantidad_entrenadores(); indice++){
+		entrenador_aux = list_get(lista_de_entrenadores, indice);
+		list_add_all(pokemones_aux, entrenador_aux->objetivo);
+	}
+
+	for(int indice; indice < list_size(pokemones_aux); indice++){
+		pokemon = list_get(pokemones_aux, indice);
+
+		if(dictionary_get(atrapados_global, pokemon)>0){
+			if(!esta_en_lista(pokemones_a_atrapar, pokemon)){
+				list_add(pokemones_a_atrapar, pokemon);
+			}
+		}
+	}
+
+	for(int indice; indice < list_size(pokemones_a_atrapar); indice++){
+		pokemon = list_get(pokemones_a_atrapar, indice);
+		enviar_GetPokemon_a_broker(5 /*GET_POKEMON*/, pokemon);
+	}
+
+	free(pokemones_aux);
+	free(pokemones_a_atrapar);
+	free(entrenador_aux);
+}
+
+
+
+
 
 
 

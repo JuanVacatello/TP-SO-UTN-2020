@@ -83,16 +83,64 @@ void log_operacion_de_atrapar_fallida(t_entrenador* entrenador){
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
 }
 
+//4. Operación de intercambio (indicando entrenadores involucrados).
+void log_operacion_de_intercambio(t_entrenador* entrenador1, t_entrenador* entrenador2){
+	char idEntrenador1 = entrenador1->ID_entrenador;
+	char idEntrenador2 = entrenador2->ID_entrenador;
+
+	char* mensaje = string_from_format("El entrenador %c intercambio un pokemon con el entrenador %c", idEntrenador1, idEntrenador2);
+
+	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+}
 
 
+//5. Inicio de algoritmo de detección de deadlock.
+void log_inicio_deteccion_deadlock(){
 
+	char* mensaje = string_from_format("Inicio de algoritmo de deteccion de Deadlock");
 
+	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+}
 
+//6. Resultado de algoritmo de detección de deadlock.
+void log_deadlock_detectado(){
 
+	char* mensaje = string_from_format("Se detecto que hay situacion de deadlock");
 
+	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+}
 
+void log_deadlock_no_detectado(){
 
+	char* mensaje = string_from_format("Se detecto que NO hay situacion de deadlock");
 
+	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+}
+
+//7. Llegada de un mensaje (indicando el tipo del mismo y sus datos). FALTA VER
+//APPEARED POKEMON
+void log_llego_mensaje_nuevo_appeared_pokemon(char* pokemon, int posX, int posY){
+
+	char* mensaje = string_from_format("Se detecto que NO hay situacion de deadlock");
+
+	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+}
+
+//CAUGHT POKEMON
+void log_llego_mensaje_nuevo_caught_pokemon(char* pokemon, int posX, int posY){
+
+	char* mensaje = string_from_format("Se detecto que NO hay situacion de deadlock");
+
+	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+}
+
+//LOCALIZED POKEMON
+void log_llego_mensaje_nuevo_localized_pokemon(char* pokemon, int posX, int posY){
+
+	char* mensaje = string_from_format("Se detecto que NO hay situacion de deadlock");
+
+	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+}
 
 
 

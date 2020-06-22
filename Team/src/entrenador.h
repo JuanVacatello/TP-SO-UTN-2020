@@ -50,6 +50,7 @@ typedef struct
 	pthread_t hilo_entrenador;
 	t_list* cola_de_acciones;
 	uint32_t ID_catch_pokemon;
+	uint32_t pudo_atrapar_pokemon;
 	int estado_deadlock;  // SI ES 1 ESTA EN DEADLOCK
 
 } t_entrenador;
