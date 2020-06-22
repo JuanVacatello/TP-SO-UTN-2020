@@ -1,12 +1,3 @@
-/*
- * conexion.h
- *
- *  Created on: 17 jun. 2020
- *      Author: utnso
- */
-
-
-
 
 #ifndef UTILS_CONEXION_H_
 #define UTILS_CONEXION_H_
@@ -21,9 +12,12 @@
 #include<string.h>
 #include<commons/collections/list.h>
 #include<stdint.h>
+#include"configGameCard.h"
 
-typedef enum
-{
+#define IP "127.0.0.4"
+#define PUERTO "7777"
+
+typedef enum{
 	SUSCRIPTOR=0,
 	NEW_POKEMON=1,
 	APPEARED_POKEMON=2,
@@ -34,15 +28,12 @@ typedef enum
 	MENSAJE=7
 }op_code;
 
-typedef struct
-{
+typedef struct{
 	uint32_t size;
 	void* stream;
 } t_buffer;
 
-
-typedef struct
-{
+typedef struct{
 	op_code codigo_operacion;
 	t_buffer* buffer;
 } t_paquete;
@@ -50,9 +41,16 @@ typedef struct
 int crear_conexion(char* ip, char* puerto);
 void* serializar_paquete(t_paquete* paquete, int *bytes);
 void enviar_mensaje_a_broker(int socket_cliente, op_code codigo_operacion, char* argv[]);
-void* suscribirse_a_cola(int* tamanio_paquete,char* argv[]);
+void suscribirse_globalmente(uint32_t cola_a_suscribirse);
+void* suscribirse_a_cola(int* tamanio_paquete, uint32_t cola_a_suscribirse);
 
-
-
+pthread_t thread;
+void iniciar_espera_mensajes(void);
+void esperar_cliente(int socket_servidor);
+void serve_client(int* socket_cliente);
+void process_request(op_code cod_op, int socket_cliente);
+void recibir_new_pokemon(int socket_cliente);
+void recibir_catch_pokemon(int socket_cliente);
+void recibir_get_pokemon(int socket_cliente);
 
 #endif /* UTILS_CONEXION_H_ */

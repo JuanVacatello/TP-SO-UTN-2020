@@ -1,13 +1,5 @@
-/*
- * bitmap.c
- *
- *  Created on: 21 jun. 2020
- *      Author: utnso
- */
-
 #include "pthread.h"
 #include "bitmap.h"
-
 
 
 void crear_bitmap(){

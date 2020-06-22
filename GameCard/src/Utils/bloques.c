@@ -1,10 +1,3 @@
-/*
- * bloques.c
- *
- *  Created on: 21 jun. 2020
- *      Author: utnso
- */
-
 #include "bloques.h"
 
 int bloque_esta_vacio(int bloque){

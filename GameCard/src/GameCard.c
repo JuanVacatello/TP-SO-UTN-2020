@@ -1,31 +1,25 @@
-/*
- ============================================================================
- Name        : GameCard.c
- Author      : 
- Version     :
- Copyright   : Your copyright notice
- Description : Hello World in C, Ansi-style
- ============================================================================
- */
-
-
 #include "GameCard.h"
 
 
 int main(void) {
 	leer_config();
+
+	/* Funciona la suscripcion y la recepcion de los mensajes del GameBoy, otro dia hago lo del envio a Broker
+	suscribirse_globalmente(1);
+	suscribirse_globalmente(3);
+	suscribirse_globalmente(5);
+	iniciar_espera_mensajes();
+	// Hay que hacerlo con hilos para que pueda recibir mensajes mientras hace otras cosas
+	*/
+
 	char* punto_montaje = obtener_punto_montaje();
-
 	inicializar_file_system(punto_montaje);
-
-
 
 	return 0;
 }
 
 
 void inicializar_file_system(char* punto_montaje){
-
 
 	char* path_tall_grass = string_new();
 	puts(path_tall_grass);

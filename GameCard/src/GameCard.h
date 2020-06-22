@@ -18,6 +18,7 @@
 #include"Utils/configGameCard.h"
 #include<stdlib.h>
 #include"Utils/metadata.h"
+#include"Utils/conexion.h"
 
 void inicializar_file_system(char* punto_montaje);
 char* concat(char* string1,char* string2);
