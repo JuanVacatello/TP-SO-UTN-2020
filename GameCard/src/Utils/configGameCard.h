@@ -29,5 +29,8 @@ int tiempo_de_reintento_conexion(void);
 int tiempo_de_reintento_operacion(void);
 int tiempo_retardo_operacion(void);
 int obtener_id_propio(void);
+void actualizar_paths_config(char* path_files,char* path_bloques,char* path_metadata );
+
+
 
 #endif /* CONFIGGAMEBOY_H_ */

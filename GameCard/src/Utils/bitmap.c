@@ -12,7 +12,8 @@ void crear_bitmap(){
 		return;
 	}
 
-	char* path_bitmap = obtener_path_bitmap();
+	char* path_bitmap = obtener_path_metadata();
+	string_append(&path_bitmap, "/bitmap.bin");
 
 	int bitmap_fd = open(path_bitmap,O_CREAT |O_RDWR, S_IRUSR | S_IWUSR);
 	ftruncate(bitmap_fd, bloques/8 + 1);

@@ -231,6 +231,7 @@ void recibir_new_pokemon(int socket_cliente){
 	uint32_t mensaje_id;
 	recv(socket_cliente, &mensaje_id, sizeof(uint32_t), MSG_WAITALL);
 
+	agregar_pokemon(pokemon, posX, posY, -1);
 }
 
 void recibir_catch_pokemon(int socket_cliente){

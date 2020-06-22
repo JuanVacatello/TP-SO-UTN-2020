@@ -23,9 +23,8 @@
 void inicializar_file_system(char* punto_montaje);
 char* concat(char* string1,char* string2);
 void inicializar_metadata(char* path_metadata, int block_size, int cant_bloques);
-void obtener_bloque_pokemon(char* pokemon,char* path_files);
 void completar_metadata_directorio(char* path_directorio);
-int existe_file(char* path);
+
 
 
 #endif /* GAMECARD_H_ */

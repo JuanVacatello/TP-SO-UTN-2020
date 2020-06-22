@@ -20,6 +20,10 @@
 #include<commons/string.h>
 
 #include"bloques.h"
+#include"metadata.h"
+#include"configGameCard.h"
+
+
 
 pthread_mutex_t MUTEX_BITMAP;
 

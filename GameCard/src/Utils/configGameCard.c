@@ -62,3 +62,53 @@ int obtener_id_propio(void){
 	return process_id;
 }
 
+void actualizar_paths_config(char* path_files,char* path_bloques,char* path_metadata){
+	FILE* config = txt_open_for_append("/home/utnso/Documentos/Delibird/GameCard/tp-2020-1c-wRAPPERS/GameCard/GameCard.config");
+
+	char* sentencia_files = string_new();
+	string_append(&sentencia_files, "PATH_FILES=");
+	string_append(&sentencia_files, path_files);
+	string_append(&sentencia_files, "\n");
+
+	char* sentencia_bloques = string_new();
+	string_append(&sentencia_bloques, "PATH_BLOQUES=");
+	string_append(&sentencia_bloques, path_bloques);
+	string_append(&sentencia_bloques, "\n");
+
+	char* sentencia_metadata = string_new();
+	string_append(&sentencia_metadata, "PATH_METADATA=");
+	string_append(&sentencia_metadata, path_metadata);
+	string_append(&sentencia_metadata, "\n");
+
+	txt_write_in_file(config,sentencia_files);
+	txt_write_in_file(config,sentencia_bloques);
+	txt_write_in_file(config,sentencia_metadata);
+
+	txt_close_file(config);
+
+	free(sentencia_files);
+	free(sentencia_bloques);
+	free(sentencia_metadata);
+
+	leer_config();
+
+}
+
+char* obtener_path_files(){
+	char* path_files;
+	path_files = config_get_string_value(configGameCard, "PATH_FILES");
+	return path_files;
+}
+
+char* obtener_path_bloques(){
+	char* path_bloques;
+	path_bloques = config_get_string_value(configGameCard, "PATH_BLOQUES");
+	return path_bloques;
+}
+
+char* obtener_path_metadata(){
+	char* path_metadata;
+	path_metadata = config_get_string_value(configGameCard, "PATH_METADATA");
+	return path_metadata;
+}
+
