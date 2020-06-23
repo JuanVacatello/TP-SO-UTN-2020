@@ -118,7 +118,7 @@ void planificacion(){
 	puts("aca entra3");
 	//HAY QUE CHEQUEAR ESTO
 
-	iniciar_vg();
+	//iniciar_vg();
 
 
 	puts("inicia las variables globales");

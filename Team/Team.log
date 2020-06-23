@@ -53,3 +53,93 @@
 [INFO] 16:39:33:354 TEAM/(8605:8620): El entrenador B se movió a la posicion 2|4.
 [INFO] 16:39:35:356 TEAM/(8605:8621): El entrenador B se movió a la posicion 2|3.
 [INFO] 16:39:37:359 TEAM/(8605:8622): El entrenador B atrapó un Pidgey en la posicion 2|3.
+[INFO] 18:05:15:352 TEAM/(12448:12448): el socket de conexion es: 4.
+[INFO] 18:05:15:356 TEAM/(12448:12448): el socket de conexion es: 5.
+[INFO] 18:05:15:356 TEAM/(12448:12448): el socket de conexion es: 6.
+[INFO] 18:06:58:4 TEAM/(12537:12537): el socket de conexion es: 4.
+[INFO] 18:06:59:6 TEAM/(12537:12537): el socket de conexion es: 5.
+[INFO] 18:07:00:8 TEAM/(12537:12537): el socket de conexion es: 6.
+[INFO] 18:15:49:41 TEAM/(12820:12820): el socket de conexion es: 4.
+[INFO] 18:15:50:46 TEAM/(12820:12820): el socket de conexion es: 5.
+[INFO] 18:15:51:46 TEAM/(12820:12820): el socket de conexion es: 6.
+[INFO] 18:16:27:225 TEAM/(12867:12867): el socket de conexion es: 4.
+[INFO] 18:16:27:230 TEAM/(12867:12867): el socket de conexion es: 5.
+[INFO] 18:16:27:237 TEAM/(12867:12867): el socket de conexion es: 6.
+[INFO] 18:16:34:670 TEAM/(12886:12886): el socket de conexion es: 4.
+[INFO] 18:16:34:671 TEAM/(12886:12886): el socket de conexion es: 5.
+[INFO] 18:16:34:672 TEAM/(12886:12886): el socket de conexion es: 6.
+[INFO] 18:18:39:131 TEAM/(13124:13124): el socket de conexion es: 4.
+[INFO] 18:18:39:136 TEAM/(13124:13124): el socket de conexion es: 5.
+[INFO] 18:18:39:137 TEAM/(13124:13124): el socket de conexion es: 6.
+[INFO] 18:32:14:648 TEAM/(13708:13713): el socket de conexion es: 4.
+[INFO] 18:32:14:648 TEAM/(13708:13714): el socket de conexion es: 5.
+[INFO] 18:32:14:650 TEAM/(13708:13715): el socket de conexion es: 6.
+[INFO] 18:38:15:980 TEAM/(13988:13988): el socket de conexion es: 4.
+[INFO] 18:40:48:921 TEAM/(14140:14140): el socket de conexion es: 4.
+[INFO] 18:40:48:928 TEAM/(14140:14140): el socket de conexion es: 5.
+[INFO] 18:40:48:929 TEAM/(14140:14140): el socket de conexion es: 6.
+[INFO] 18:44:24:438 TEAM/(14309:14309): el socket de conexion es: 4.
+[INFO] 18:44:24:439 TEAM/(14309:14309): el socket de conexion es: 5.
+[INFO] 18:44:24:440 TEAM/(14309:14309): el socket de conexion es: 6.
+[INFO] 18:46:51:979 TEAM/(14365:14365): el socket de conexion es: 4.
+[INFO] 18:46:51:980 TEAM/(14365:14365): el socket de conexion es: 5.
+[INFO] 18:46:51:980 TEAM/(14365:14365): el socket de conexion es: 6.
+[INFO] 18:50:59:593 TEAM/(14536:14536): el socket de conexion es: 4.
+[INFO] 18:50:59:598 TEAM/(14536:14536): el socket de conexion es: 5.
+[INFO] 18:50:59:598 TEAM/(14536:14536): el socket de conexion es: 6.
+[INFO] 18:52:52:813 TEAM/(14748:14748): el socket de conexion es: 4.
+[INFO] 18:52:52:816 TEAM/(14748:14748): el socket de conexion es: 5.
+[INFO] 18:52:52:817 TEAM/(14748:14748): el socket de conexion es: 6.
+[INFO] 18:54:37:212 TEAM/(14787:14787): el socket de conexion es: 4.
+[INFO] 18:55:09:115 TEAM/(14787:14787): el socket de conexion es: 5.
+[INFO] 18:55:22:75 TEAM/(14787:14787): el socket de conexion es: 6.
+[INFO] 18:59:12:225 TEAM/(14927:14927): el socket de conexion es: 4.
+[INFO] 18:59:12:229 TEAM/(14927:14927): el socket de conexion es: 5.
+[INFO] 18:59:12:230 TEAM/(14927:14927): el socket de conexion es: 6.
+[INFO] 18:59:12:232 TEAM/(14927:14936): El entrenador C se movió a la posicion 6|5.
+[INFO] 18:59:14:240 TEAM/(14927:14938): El entrenador C se movió a la posicion 6|6.
+[INFO] 18:59:16:242 TEAM/(14927:14939): el socket de conexion es: 7.
+[INFO] 19:35:12:260 TEAM/(16032:16032): el socket de conexion es: 4.
+[INFO] 19:35:12:263 TEAM/(16032:16032): el socket de conexion es: 5.
+[INFO] 19:35:12:264 TEAM/(16032:16032): el socket de conexion es: 6.
+[INFO] 19:35:12:281 TEAM/(16032:16041): El entrenador C se movió a la posicion 6|5.
+[INFO] 19:35:14:288 TEAM/(16032:16043): El entrenador C se movió a la posicion 6|6.
+[INFO] 19:35:16:289 TEAM/(16032:16044): el socket de conexion es: 7.
+[INFO] 19:36:14:380 TEAM/(16091:16091): el socket de conexion es: 4.
+[INFO] 19:36:15:384 TEAM/(16091:16091): el socket de conexion es: 5.
+[INFO] 19:36:16:387 TEAM/(16091:16091): el socket de conexion es: 6.
+[INFO] 19:36:17:399 TEAM/(16091:16101): El entrenador C se movió a la posicion 6|5.
+[INFO] 19:36:19:399 TEAM/(16091:16102): El entrenador C se movió a la posicion 6|6.
+[INFO] 19:36:21:402 TEAM/(16091:16103): el socket de conexion es: 7.
+[INFO] 19:43:50:305 TEAM/(16444:16444): el socket de conexion es: 4.
+[INFO] 19:43:50:309 TEAM/(16444:16444): el socket de conexion es: 5.
+[INFO] 19:43:50:309 TEAM/(16444:16444): el socket de conexion es: 6.
+[INFO] 19:43:50:320 TEAM/(16444:16455): El entrenador C se movió a la posicion 6|5.
+[INFO] 19:43:52:321 TEAM/(16444:16456): El entrenador C se movió a la posicion 6|6.
+[INFO] 19:43:54:335 TEAM/(16444:16457): el socket de conexion es: 7.
+[INFO] 19:45:24:497 TEAM/(16501:16507): El entrenador C se movió a la posicion 6|5.
+[INFO] 19:45:26:500 TEAM/(16501:16510): El entrenador C se movió a la posicion 6|6.
+[INFO] 19:45:28:501 TEAM/(16501:16512): el socket de conexion es: 4.
+[INFO] 19:46:01:601 TEAM/(16545:16545): el socket de conexion es: 4.
+[INFO] 19:46:01:602 TEAM/(16545:16545): el socket de conexion es: 5.
+[INFO] 19:46:01:603 TEAM/(16545:16545): el socket de conexion es: 6.
+[INFO] 19:46:01:613 TEAM/(16545:16554): El entrenador C se movió a la posicion 6|5.
+[INFO] 19:46:03:618 TEAM/(16545:16556): El entrenador C se movió a la posicion 6|6.
+[INFO] 19:46:05:618 TEAM/(16545:16557): el socket de conexion es: 7.
+[INFO] 19:48:14:746 TEAM/(16644:16644): el socket de conexion es: 4.
+[INFO] 19:48:14:753 TEAM/(16644:16644): el socket de conexion es: 5.
+[INFO] 19:48:14:754 TEAM/(16644:16644): el socket de conexion es: 6.
+[INFO] 19:48:14:760 TEAM/(16644:16653): El entrenador C se movió a la posicion 6|5.
+[INFO] 19:48:16:767 TEAM/(16644:16656): El entrenador C se movió a la posicion 6|6.
+[INFO] 19:48:18:768 TEAM/(16644:16657): el socket de conexion es: 7.
+[INFO] 19:48:42:376 TEAM/(16686:16686): el socket de conexion es: 4.
+[INFO] 19:48:43:380 TEAM/(16686:16686): el socket de conexion es: 5.
+[INFO] 19:48:44:381 TEAM/(16686:16686): el socket de conexion es: 6.
+[INFO] 19:48:45:382 TEAM/(16686:16697): El entrenador C se movió a la posicion 6|5.
+[INFO] 19:48:47:383 TEAM/(16686:16698): El entrenador C se movió a la posicion 6|6.
+[INFO] 19:48:49:384 TEAM/(16686:16699): el socket de conexion es: 7.
+[INFO] 20:00:13:533 TEAM/(17272:17272): Se conectó proceso al Team
+[INFO] 20:03:30:288 TEAM/(9457:27277): Se conectó proceso al Team
+[INFO] 20:03:34:55 TEAM/(17544:20538): Se conectó proceso al Team
+[INFO] 20:05:54:752 TEAM/(17566:5927): Se conectó proceso al Team
+[INFO] 20:10:05:597 TEAM/(28385:26962): Se conectó proceso al Team

@@ -18,21 +18,9 @@ int main(void) {
 		leer_config();
 		iniciar_logger();
 
-/* Conexion con broker
-*		enviar_suscripcion_a_cola(2); //APPEARED POKEMON
-*		//sleep(3);
-*		puts("Me suscribo a APPEARED POKEMON");
-*		sleep(10);
-*		recibir_appeared_pokemon_loggeo();
-*		enviar_suscripcion_a_cola(4); //CAUGHT POKEMON
-*		//sleep(3);
-*		puts("Me suscribo a CAUGHT POKEMON");
-*		enviar_suscripcion_a_cola(6); //LOCALIZED POKEMON
-*		//sleep(3);
-*		puts("Me suscribo a CAUGHT POKEMON");
-*		iniciar_servidor();
-*/
+// Conexion con broker
 
+		suscribirse_a_colas();
 
 		/*puts("aca entra00");
 
@@ -58,8 +46,8 @@ int main(void) {
 
 		puts(" ");
 */
-		t_entrenador* entrenador = armar_entrenador(2);
-
+		//t_entrenador* entrenador = armar_entrenador(2);
+		iniciar_vg();
 /*
 		printf("%d\n",entrenador->posicion.x);
 		printf("%d\n",entrenador->posicion.y);
@@ -73,15 +61,17 @@ int main(void) {
 
 		puts("hola");
 
+		//iniciar_servidor();
+
+		pthread_create(&hilo_servidor, NULL , (void *) iniciar_servidor ,NULL);
+		pthread_join(hilo_servidor,NULL);
+
 		pthread_create(&hilo_planificador, NULL , (void *) planificacion ,NULL);
 		pthread_join(hilo_planificador,NULL);
 		//aparicion_pokemon(pokemon);
 		puts("chau");
 
-
-
 		return 0;
 }
-
 
 

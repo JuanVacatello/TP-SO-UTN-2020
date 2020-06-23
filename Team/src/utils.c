@@ -13,10 +13,15 @@ void iniciar_vg(void){
 	lista_de_entrenadores_deadlock = list_create();
 	lista_de_entrenadores_ready = list_create();
 	lista_de_pokemones_sueltos = list_create();
+	//informar_pokemones_a_atrapar();
 
 	pthread_mutex_init(&mutex_planificador, NULL);
 	//PONEMOS EL SEMÁFORO EN 0
 	pthread_mutex_lock(&mutex_planificador);
+
+	//pthread_mutex_init(&mutex_conexion, NULL);
+	//PONEMOS EL SEMÁFORO EN 1
+	//pthread_mutex_lock(&mutex_conexion);
 
 	pthread_mutex_init(&mutex_entrenador, NULL);
 	//PONEMOS EL SEMÁFORO EN 0
@@ -24,7 +29,7 @@ void iniciar_vg(void){
 
 	//pokemones nuevos de prueba
 
-	t_pokemon* pokemonPikachu = malloc(sizeof(t_pokemon));
+	/*t_pokemon* pokemonPikachu = malloc(sizeof(t_pokemon));
 	pokemonPikachu->especie = "Pikachu";
 	pokemonPikachu->posicion.x = 6;
 	pokemonPikachu->posicion.y = 6;
@@ -44,10 +49,9 @@ void iniciar_vg(void){
 	pokemonPidgey->posicion.y = 3;
 	//lista_de_pokemones_sueltos = list_create();
 	list_add(lista_de_pokemones_sueltos, pokemonPidgey);
-
+	*/
 
 }
-
 
 
 
@@ -111,5 +115,16 @@ bool esta_en_lista(t_list* lista_pokemones, char* especie){
 	}
 }
 
-
+void suscribirse_a_colas(){
+		//int sem = 1;
+		op_code cola = 2;
+		while(cola <= 2){
+			enviar_suscripcion_a_cola(cola); //APPEARED POKEMON
+			cola += 2;
+			sleep(1);
+		}
+		puts("Me suscribo a APPEARED POKEMON");
+		puts("Me suscribo a CAUGHT POKEMON");
+		puts("Me suscribo a LOCALIZED POKEMON");
+}
 

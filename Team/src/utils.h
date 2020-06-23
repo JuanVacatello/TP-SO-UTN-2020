@@ -27,11 +27,16 @@ t_list* lista_de_entrenadores_ready; // CUANDO LLEGA UN CAUGHT EL ENTRENADOR CON
 
 //t_list* pokemones_requeridos;
 
+
 pthread_t hilo_planificador;
 
 t_list* lista_de_pokemones_sueltos;
 
 pthread_mutex_t mutex_planificador;
+
+//pthread_mutex_t mutex_conexion;
+
+pthread_t hilo_servidor;
 
 pthread_mutex_t mutex_entrenador;
 
@@ -64,5 +69,8 @@ void iniciar_vg(void);
 
 int cantidad_de_elementos(char* pokemons);
 bool esta_en_lista(t_list* lista_pokemones, char* especie);
+
+void suscribirse_a_colas();
+
 
 #endif /* CONEXIONES_H_ */
