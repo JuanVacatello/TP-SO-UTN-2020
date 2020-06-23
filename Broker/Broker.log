@@ -1,7 +1,18 @@
-[INFO] 12:59:03:14 BROKER/(7167:7167): Se conectó proceso al Broker
-[INFO] 12:59:05:886 BROKER/(7167:7173): El codigo de operacion es: 0.
-[INFO] 12:59:05:888 BROKER/(7167:7173): Se suscribió el proceso con id 7172 y con socket 5 a la cola de mensajes 1
-[INFO] 12:59:06:888 BROKER/(7167:7174): El codigo de operacion es: 0.
-[INFO] 12:59:06:891 BROKER/(7167:7174): Se suscribió el proceso con id 7172 y con socket 6 a la cola de mensajes 3
-[INFO] 12:59:07:893 BROKER/(7167:7175): El codigo de operacion es: 0.
-[INFO] 12:59:07:894 BROKER/(7167:7175): Se suscribió el proceso con id 7172 y con socket 7 a la cola de mensajes 5
+
+[INFO] 16:53:43:393 BROKER/(6504:6504): Se conectó proceso al Broker
+[INFO] 16:53:46:933 BROKER/(6504:6510): El codigo de operacion es: 1.
+[INFO] 16:53:46:938 BROKER/(6504:6510): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 16:56:00:371 BROKER/(6587:6587): Se conectó proceso al Broker
+[INFO] 16:56:04:597 BROKER/(6587:6593): El codigo de operacion es: 1.
+[INFO] 16:56:04:599 BROKER/(6587:6593): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 16:58:58:453 BROKER/(6705:6705): Se conectó proceso al Broker
+[INFO] 16:59:11:916 BROKER/(6705:6711): El codigo de operacion es: -1216892912.
+[INFO] 16:59:11:917 BROKER/(6705:6711): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 16:59:21:134 BROKER/(6705:6720): El codigo de operacion es: 2.
+[INFO] 16:59:21:135 BROKER/(6705:6720): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:01:19:843 BROKER/(6777:6777): Se conectó proceso al Broker
+[INFO] 17:01:34:169 BROKER/(6777:6790): El codigo de operacion es: 1.
+[INFO] 17:01:34:169 BROKER/(6777:6790): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:04:44:103 BROKER/(6939:6939): Se conectó proceso al Broker
+[INFO] 17:04:55:197 BROKER/(6939:6945): El codigo de operacion es: 1.
+[INFO] 17:04:55:205 BROKER/(6939:6945): Llegó un nuevo mensaje a la cola de mensajes

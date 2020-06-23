@@ -76,24 +76,30 @@ void process_request(op_code cod_op, int socket_cliente) {
 			atender_suscripcion(socket_cliente);
 			break;
 		case 1:
+			recibir_new_pokemon(socket_cliente);
 			//enviar_mensaje_a_suscriptores(1, socket_cliente); -> no sirve mucho esta funcion
-			enviar_mensaje_id(socket_cliente); //tecnicamente a los suscriptores tiene q mandarle esto y no se q mas
-			mensaje_id ++;
+			//enviar_mensaje_id(socket_cliente); //tecnicamente a los suscriptores tiene q mandarle esto y no se q mas
+			//mensaje_id ++;
 			break;
 		case 2:
-			enviar_mensaje_a_suscriptores(2, socket_cliente);
+			recibir_appeared_pokemon(socket_cliente);
+			//enviar_mensaje_a_suscriptores(2, socket_cliente);
 			break;
 		case 3:
-			enviar_mensaje_a_suscriptores(3, socket_cliente);
+			recibir_catch_pokemon(socket_cliente);
+			//enviar_mensaje_a_suscriptores(3, socket_cliente);
 			break;
 		case 4:
-			enviar_mensaje_a_suscriptores(4, socket_cliente);
+			recibir_caught_pokemon(socket_cliente);
+			//enviar_mensaje_a_suscriptores(4, socket_cliente);
 			break;
 		case 5:
-			enviar_mensaje_a_suscriptores(5, socket_cliente);
+			recibir_get_pokemon(socket_cliente);
+			//enviar_mensaje_a_suscriptores(5, socket_cliente);
 			break;
 		case 6:
-			enviar_mensaje_a_suscriptores(6, socket_cliente);
+			recibir_localized_pokemon(socket_cliente);
+			//enviar_mensaje_a_suscriptores(6, socket_cliente);
 			break;
 		case 7: //ack
 			recibir_ack(socket_cliente);
@@ -208,6 +214,243 @@ void suscribirse_a_cola(proceso* suscriptor, int socket, uint32_t tamanio_buffer
 
 }
 
+// Recepcion de mensajes y almacenamiento de mensajes en memoria
+
+void recibir_new_pokemon(int socket_cliente)
+{
+	uint32_t tamanio_buffer;
+	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
+
+		printf("tam bufer %d \n", tamanio_buffer);
+
+	uint32_t caracteresPokemon;
+	recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
+
+		printf("caracteres %d \n", caracteresPokemon);
+
+	char* pokemon = (char*)malloc(caracteresPokemon);
+	recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
+
+		puts(pokemon);
+
+	uint32_t posX;
+	recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
+
+		printf("posx %d \n", posX);
+
+	uint32_t posY;
+	recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
+
+		printf("posy %d \n", posY);
+
+	uint32_t cantidad;
+	recv(socket_cliente, &cantidad, sizeof(uint32_t), MSG_WAITALL);
+
+		printf("cant %d \n", cantidad);
+
+	// Creacion de bloque a guardar en memoria
+
+	void* bloque_a_agregar_en_memoria = malloc(tamanio_buffer); // no cuenta el \n del nombre del Pokemon
+	int desplazamiento = 0;
+
+	memcpy(bloque_a_agregar_en_memoria + desplazamiento, &caracteresPokemon, sizeof(uint32_t));
+	desplazamiento += sizeof(uint32_t);
+
+	memcpy(bloque_a_agregar_en_memoria, pokemon, caracteresPokemon);
+	desplazamiento += caracteresPokemon;
+
+	memcpy(bloque_a_agregar_en_memoria, &posX, sizeof(uint32_t));
+	desplazamiento += sizeof(uint32_t);
+
+	memcpy(bloque_a_agregar_en_memoria, &posY, sizeof(uint32_t));
+	desplazamiento += sizeof(uint32_t);
+
+	memcpy(bloque_a_agregar_en_memoria, &cantidad, sizeof(uint32_t));
+
+	guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, (tamanio_buffer-1));
+
+	free(bloque_a_agregar_en_memoria);
+}
+
+void recibir_appeared_pokemon(int socket_cliente){
+
+	uint32_t tamanio_buffer;
+	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
+
+	printf("tam bufer %d", tamanio_buffer);
+
+	void* bloque_a_agregar_en_memoria = malloc((tamanio_buffer-1));
+	int desplazamiento = 0;
+
+	uint32_t caracteresPokemon;
+	recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
+
+		memcpy(bloque_a_agregar_en_memoria, &caracteresPokemon, sizeof(uint32_t));
+		desplazamiento += sizeof(uint32_t);
+
+		printf("caracteres %d", caracteresPokemon);
+
+	char* pokemon = (char*)malloc(caracteresPokemon);
+	recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
+
+		memcpy(bloque_a_agregar_en_memoria, pokemon, (caracteresPokemon-1));
+		desplazamiento += (caracteresPokemon-1);
+
+		puts(pokemon);
+
+	uint32_t posX;
+	recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
+
+		memcpy(bloque_a_agregar_en_memoria, &posX, sizeof(uint32_t));
+		desplazamiento += sizeof(uint32_t);
+
+		printf("posx %d", posX);
+
+	uint32_t posY;
+	recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
+
+		memcpy(bloque_a_agregar_en_memoria, &posY, sizeof(uint32_t));
+
+		printf("posy %d", posY);
+
+	uint32_t id_mensaje_correlativo;
+	recv(socket_cliente, &id_mensaje_correlativo, sizeof(uint32_t), MSG_WAITALL);
+
+	printf("id %d", id_mensaje_correlativo);
+
+	guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, (tamanio_buffer-1));
+
+	free(bloque_a_agregar_en_memoria);
+}
+
+void recibir_catch_pokemon(int socket_cliente){
+
+	uint32_t tamanio_buffer;
+	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
+
+	void* bloque_a_agregar_en_memoria = malloc((tamanio_buffer-1));
+	int desplazamiento = 0;
+
+	uint32_t caracteresPokemon;
+	recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
+
+		memcpy(bloque_a_agregar_en_memoria, &caracteresPokemon, sizeof(uint32_t));
+		desplazamiento += sizeof(uint32_t);
+
+	char* pokemon = (char*)malloc(caracteresPokemon);
+	recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
+
+		memcpy(bloque_a_agregar_en_memoria, pokemon, (caracteresPokemon-1));
+		desplazamiento += (caracteresPokemon-1);
+
+	uint32_t posX;
+	recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
+
+		memcpy(bloque_a_agregar_en_memoria, &posX, sizeof(uint32_t));
+		desplazamiento += sizeof(uint32_t);
+
+	uint32_t posY;
+	recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
+
+		memcpy(bloque_a_agregar_en_memoria, &posY, sizeof(uint32_t));
+
+	guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, (tamanio_buffer-1));
+
+	free(bloque_a_agregar_en_memoria);
+}
+
+void recibir_caught_pokemon(int socket_cliente){
+
+	uint32_t tamanio_buffer;
+	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
+
+	void* bloque_a_agregar_en_memoria = malloc(sizeof(uint32_t));
+	int desplazamiento = 0;
+
+	uint32_t id_mensaje_correlativo;
+	recv(socket_cliente, &id_mensaje_correlativo, sizeof(uint32_t), MSG_WAITALL);
+
+	uint32_t se_pudo_atrapar;
+	recv(socket_cliente, &se_pudo_atrapar, sizeof(uint32_t), MSG_WAITALL);
+
+		memcpy(bloque_a_agregar_en_memoria, &se_pudo_atrapar, sizeof(uint32_t));
+
+	guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, sizeof(uint32_t));
+
+	free(bloque_a_agregar_en_memoria);
+}
+
+void recibir_get_pokemon(int socket_cliente){
+
+	uint32_t tamanio_buffer;
+	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
+
+	void* bloque_a_agregar_en_memoria = malloc((tamanio_buffer-1));
+	int desplazamiento = 0;
+
+	uint32_t caracteresPokemon;
+	recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
+
+		memcpy(bloque_a_agregar_en_memoria, &caracteresPokemon, sizeof(uint32_t));
+		desplazamiento += sizeof(uint32_t);
+
+	char* pokemon = (char*)malloc(caracteresPokemon);
+	recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
+
+		memcpy(bloque_a_agregar_en_memoria, pokemon, (caracteresPokemon-1));
+
+	guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, (tamanio_buffer-1));
+
+	free(bloque_a_agregar_en_memoria);
+}
+
+void recibir_localized_pokemon(int socket_cliente){
+
+	uint32_t tamanio_buffer;
+	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
+
+	void* bloque_a_agregar_en_memoria = malloc((tamanio_buffer-1));
+	int desplazamiento = 0;
+
+	uint32_t caracteresPokemon;
+	recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
+
+		memcpy(bloque_a_agregar_en_memoria, &caracteresPokemon, sizeof(uint32_t));
+		desplazamiento += sizeof(uint32_t);
+
+	char* pokemon = (char*)malloc(caracteresPokemon);
+	recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
+
+		memcpy(bloque_a_agregar_en_memoria, pokemon, (caracteresPokemon-1));
+
+	uint32_t cantidad_de_posiciones;
+	recv(socket_cliente, &cantidad_de_posiciones, sizeof(uint32_t), MSG_WAITALL);
+
+	for(int i=0; i<cantidad_de_posiciones; i++){
+
+		uint32_t posX;
+		recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
+
+			memcpy(bloque_a_agregar_en_memoria, &caracteresPokemon, sizeof(uint32_t));
+			desplazamiento += sizeof(uint32_t);
+
+		uint32_t posY;
+		recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
+
+			memcpy(bloque_a_agregar_en_memoria, &caracteresPokemon, sizeof(uint32_t));
+			desplazamiento += sizeof(uint32_t);
+	}
+
+	guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, (tamanio_buffer-1));
+
+	free(bloque_a_agregar_en_memoria);
+}
+
+
+
+/*
+/////////////////////////// bardo //////////////////////////////////////////////////
+
 // Recibir mensaje y reenviarlo a suscriptores
 
 void enviar_mensaje_a_suscriptores(int cola_mensaje,int socket_cliente){
@@ -259,10 +502,10 @@ void enviar_mensaje_a_suscriptores(int cola_mensaje,int socket_cliente){
 	recv(socket_cliente, payload, paquete->buffer->size, MSG_WAITALL);
 	memcpy(paquete->buffer->stream, payload, paquete->buffer->size);
 
-/*	paquete->identificador = mensaje_id;
+	paquete->identificador = mensaje_id;
 	enviar_mensaje_id(socket_cliente, paquete->identificador);
 	mensaje_id ++; //semaforos
-*/
+
 						// TAMANIO PAYLOAD + OP_CODE + SIZE + IDENTIFICADOR DEL MENSAJE
 	int tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);//+sizeof(uint32_t);
 
@@ -310,7 +553,7 @@ void enviar_mensaje_a_suscriptores(int cola_mensaje,int socket_cliente){
 	free(paquete);
 	free(payload);
 }
-
+/*
 void guardar_mensaje(t_list* cola_de_mensajes, op_code codigo_operacion, t_list* suscriptores){
 
 	t_mensaje* mensaje = malloc(sizeof(t_mensaje));
@@ -322,7 +565,7 @@ void guardar_mensaje(t_list* cola_de_mensajes, op_code codigo_operacion, t_list*
 
 	free(mensaje);
 }
-
+*/
 
 void recibir_ack(int socket_cliente){
 	uint32_t tamanio_buffer;
@@ -392,95 +635,5 @@ void* serializar_paquete(t_paquete* paquete, int bytes)
 
 	return a_enviar;
 }
-/*
-// Por si necesita hacer algo además del pasamanos:
 
-void recibir_new_pokemon(int socket_cliente)
-{
-	uint32_t tamanio_buffer;
-	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
-
-	uint32_t caracteresPokemon;
-	recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
-
-	char* pokemon = (char*)malloc(caracteresPokemon);
-	recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
-
-	uint32_t posX;
-	recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
-
-	uint32_t posY;
-	recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
-
-	uint32_t cantidad;
-	recv(socket_cliente, &cantidad, sizeof(uint32_t), MSG_WAITALL);
-
-}
-
-void recibir_appeared_pokemon(int socket_cliente){
-
-		uint32_t tamanio_buffer;
-		recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
-
-		uint32_t caracteresPokemon;
-		recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
-
-		char* pokemon = (char*)malloc(caracteresPokemon);
-		recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
-
-		uint32_t posX;
-		recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
-
-		uint32_t posY;
-		recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
-
-		uint32_t id_mensaje_correlativo;
-		recv(socket_cliente, &id_mensaje_correlativo, sizeof(uint32_t), MSG_WAITALL);
-
-}
-
-void recibir_catch_pokemon_loggeo(int socket_cliente){
-
-		uint32_t tamanio_buffer;
-		recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
-
-		uint32_t caracteresPokemon;
-		recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
-
-		char* pokemon = (char*)malloc(caracteresPokemon);
-		recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
-
-		uint32_t posX;
-		recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
-
-		uint32_t posY;
-		recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
-}
-
-
-void recibir_caught_pokemon(int socket_cliente){
-
-	uint32_t tamanio_buffer;
-	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
-
-	uint32_t id_mensaje_correlativo;
-	recv(socket_cliente, &id_mensaje_correlativo, sizeof(uint32_t), MSG_WAITALL);
-
-	uint32_t se_pudo_atrapar;
-	recv(socket_cliente, &se_pudo_atrapar, sizeof(uint32_t), MSG_WAITALL);
-}
-
-void recibir_get_pokemon(int socket_cliente){
-
-	uint32_t tamanio_buffer;
-	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
-
-	uint32_t caracteresPokemon;
-	recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
-
-	char* pokemon = (char*)malloc(caracteresPokemon);
-	recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
-
-}
-*/
 

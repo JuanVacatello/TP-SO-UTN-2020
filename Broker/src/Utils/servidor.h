@@ -11,6 +11,7 @@
 #include<commons/string.h>
 #include<string.h>
 #include<pthread.h>
+#include"memoria.h"
 #include"logBroker.h"
 
 #define IP "127.0.0.1"
@@ -46,6 +47,7 @@ typedef struct t_paquete
 	t_buffer* buffer;
 } t_paquete;
 
+/*
 typedef struct t_paquete_devuelto
 {
 	op_code codigo_operacion;
@@ -60,6 +62,7 @@ typedef struct t_mensaje
 	op_code codigo_operacion;
 	t_list* suscriptores_ack;
 } t_mensaje;
+*/
 
 t_list* suscriptores_new_pokemon;
 t_list* suscriptores_appeared_pokemon;
@@ -94,9 +97,10 @@ void enviar_mensaje_id(int socket_cliente);
 
 void recibir_new_pokemon(int socket_cliente);
 void recibir_appeared_pokemon(int socket_cliente);
-void recibir_catch_pokemon_(int socket_cliente);
+void recibir_catch_pokemon(int socket_cliente);
 void recibir_caught_pokemon(int socket_cliente);
 void recibir_get_pokemon(int socket_cliente);
+void recibir_localized_pokemon(int socket_cliente);
 void enviar_mensaje_a_suscriptores(int cola_mensaje,int socket_cliente);
 
 void* recibir_mensaje(int socket_cliente, int* size);
