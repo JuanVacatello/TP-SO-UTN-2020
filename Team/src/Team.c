@@ -120,6 +120,7 @@ void planificacion(){
 
 	iniciar_vg();
 
+
 	puts("inicia las variables globales");
 
 	switch(planificador){
@@ -148,6 +149,7 @@ void aparicion_pokemon(t_pokemon* pokemon){
 		t_entrenador* entrenador = entrenador_mas_cercano(pokemon);
 		puts("aca entra 8");
 		entrenador->pokemon_a_atrapar = pokemon;
+		entrenador->estado = READY;
 
 		//AGREGAMOS LOS MOVIMIENTOS DEL ENTRENADOR
 		armar_movimiento(entrenador);

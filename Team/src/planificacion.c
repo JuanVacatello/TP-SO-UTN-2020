@@ -26,14 +26,8 @@ void planificar_fifo(void){
 
 		puts("aca entra5");
 
-		//pthread_mutex_lock(&mutex_planificador);	//SE BLOQUEA BIEN
+		pthread_mutex_lock(&mutex_planificador);	//SE BLOQUEA BIEN
 
-		t_pokemon* pokemonPikachu = malloc(sizeof(t_pokemon));
-		pokemonPikachu->especie = "Pikachu";
-		pokemonPikachu->posicion.x = 6;
-		pokemonPikachu->posicion.y = 6;
-		//lista_de_pokemones_sueltos = list_create();
-		list_add(lista_de_pokemones_sueltos, pokemonPikachu);
 
 		t_pokemon* pokemon_nuevo = list_remove(lista_de_pokemones_sueltos,0);
 
@@ -56,16 +50,32 @@ void planificar_fifo(void){
 
 void planificar_sjf_sd(void){
 
+	t_entrenador* entrenador_aux;
+	t_entrenador* entrenador;
 
 	while(1){
 
-		pthread_mutex_lock(&mutex_planificador);
+		//pthread_mutex_lock(&mutex_planificador);
 
-		t_entrenador* entrenador;
+		while(!list_is_empty(lista_de_pokemones_sueltos)){
+			t_pokemon* pokemon_nuevo = list_remove(lista_de_pokemones_sueltos,0);
 
-		entrenador = entrenador_con_menor_cpu();
+			aparicion_pokemon(pokemon_nuevo);
+		}
 
-		ejecutar_entrenador(entrenador);
+		while(!list_is_empty(lista_de_entrenadores_ready)){
+
+			entrenador_aux = entrenador_con_menor_cpu();
+
+			for(int i =0 ; i<list_size(lista_de_entrenadores_ready); i++){
+				entrenador = list_get(lista_de_entrenadores_ready,i);
+				if(entrenador->ID_entrenador == entrenador_aux->ID_entrenador){
+					entrenador = list_remove(lista_de_entrenadores_ready,i);
+				}
+			}
+
+			ejecutar_entrenador(entrenador);
+		}
 
 		pthread_mutex_lock(&mutex_planificador);
 	}
@@ -79,8 +89,9 @@ t_entrenador* entrenador_con_menor_cpu(){
 	t_entrenador* entrenador_aux;
 	t_entrenador* entrenador_menor_cpu;
 
-	int estimacion_anterior, alpha, estimado_cpu, real_cpu;
-	int menor_cpu = -1;
+	double estimacion_anterior, estimado_cpu, real_cpu;
+	double alpha;
+	double menor_cpu = -1;
 	alpha = obtener_alpha();
 
 	for (int indice_entrenador=0; indice_entrenador<list_size(lista_de_entrenadores_ready); indice_entrenador++){
@@ -110,13 +121,13 @@ int ciclos_rafaga_a_ejecutar(t_entrenador* entrenador){
 
 	int ciclos = 0;
 	t_list* cola_acciones = entrenador->cola_de_acciones;
-	t_accion* accion;
+	t_accion* accion_aux;
 
-	for(int i=0; i<list_size(cola_acciones); i++){
-		 accion = list_remove(cola_acciones, 0);
-		 ciclos += accion->ciclo_cpu;
-
+	for(int i = 0; i<list_size(entrenador->cola_de_acciones); i++){
+		accion_aux = list_get(entrenador->cola_de_acciones,i);
+		ciclos += accion_aux->ciclo_cpu;
 	}
+
 	return ciclos;
 }
 

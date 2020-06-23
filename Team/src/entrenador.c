@@ -139,7 +139,7 @@ t_entrenador* entrenador_mas_cercano(t_pokemon* pokemon){
 	int menor_distancia=-1;
 	int distancia_actual = 0;
 
-	for (int indice_entrenador=0; indice_entrenador<cantidad_entrenadores(); indice_entrenador++){
+	for (int indice_entrenador=0; indice_entrenador<list_size(entrenadores); indice_entrenador++){
 
 		entrenador = list_get(entrenadores, indice_entrenador);
 

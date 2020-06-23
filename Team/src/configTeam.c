@@ -85,9 +85,9 @@ char** obtener_objetivos_entrenadores(void){
 	return objetivos_entrenadores;
 }
 
-int obtener_alpha(void){
-	int alpha;
-	alpha = config_get_int_value(config, "ALPHA");
+double obtener_alpha(void){
+	double alpha;
+	alpha = config_get_double_value(config, "ALPHA");
 	return alpha;
 }
 

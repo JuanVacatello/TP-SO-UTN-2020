@@ -18,4 +18,4 @@ char* obtener_log_file(void);
 char** obtener_posiciones_entrenadores(void);
 char** obtener_pokemon_entrenadores(void);
 char** obtener_objetivos_entrenadores(void);
-int obtener_alpha(void);
+double obtener_alpha(void);
