@@ -250,14 +250,14 @@ void recibir_new_pokemon(int socket_cliente)
 
 	// Creacion de bloque a guardar en memoria
 
-	void* bloque_a_agregar_en_memoria = malloc(tamanio_buffer); // no cuenta el \n del nombre del Pokemon
+	void* bloque_a_agregar_en_memoria = malloc(tamanio_buffer-1); // no cuenta el \n del nombre del Pokemon
 	int desplazamiento = 0;
 
 	memcpy(bloque_a_agregar_en_memoria + desplazamiento, &caracteresPokemon, sizeof(uint32_t));
 	desplazamiento += sizeof(uint32_t);
 
-	memcpy(bloque_a_agregar_en_memoria, pokemon, caracteresPokemon);
-	desplazamiento += caracteresPokemon;
+	memcpy(bloque_a_agregar_en_memoria, pokemon, caracteresPokemon-1);
+	desplazamiento += caracteresPokemon-1;
 
 	memcpy(bloque_a_agregar_en_memoria, &posX, sizeof(uint32_t));
 	desplazamiento += sizeof(uint32_t);
