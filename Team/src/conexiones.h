@@ -67,5 +67,5 @@ void recibir_localized_pokemon_loggeo(int socket_cliente);
 
 
 t_pokemon* armarPokemon(char* pokemon, int posX, int posY);
-t_entrenador* buscar_entrenador_por_id_catch;
+t_entrenador* buscar_entrenador_por_id_catch(uint32_t id);
 #endif

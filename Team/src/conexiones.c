@@ -409,11 +409,13 @@ void recibir_CaughtPokemon(int socket_cliente){
 
 		//Falta seguir a partir de aca
 
-		t_entrenador* entrenador = buscar_entrenador_por_id_catch(id_correlativo)
+		t_entrenador* entrenador = buscar_entrenador_por_id_catch(id_correlativo);
 
-		entrenador->pudo_atrapar_pokemon = pudoAtraparlo;
+		if(entrenador != NULL){
+			entrenador->pudo_atrapar_pokemon = pudoAtraparlo;
+			pthread_mutex_unlock(&mutex_entrenador);
+		}
 
-		pthread_mutex_unlock(&mutex_entrenador);
 
 }
 
@@ -593,11 +595,15 @@ void recibir_appeared_pokemon_loggeo(int socket_cliente){
 
 
 t_entrenador* buscar_entrenador_por_id_catch(uint32_t id){
-	t_entrenador* entrenador;
+	t_entrenador* entrenador = NULL;
+	t_entrenador* entrenador_aux;
 	for(int i = 0; i < cantidad_entrenadores(); i++){
-		entrenador = list_get(lista_de_entrenadores, i);
+		entrenador_aux = list_get(lista_de_entrenadores, i);
 		if(entrenador->ID_catch_pokemon == id){
-			return entrenador;
+			entrenador = entrenador_aux;
 		}
 	}
+
+	return entrenador;
+
 }

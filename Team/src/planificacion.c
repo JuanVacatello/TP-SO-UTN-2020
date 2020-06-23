@@ -56,7 +56,6 @@ void planificar_fifo(void){
 
 void planificar_sjf_sd(void){
 
-	pthread_mutex_init(&mutex_planificador, NULL);
 
 	while(1){
 
@@ -109,12 +108,12 @@ t_entrenador* entrenador_con_menor_cpu(){
 
 int ciclos_rafaga_a_ejecutar(t_entrenador* entrenador){
 
-	int ciclos;
-	t_queue* cola_acciones = entrenador->cola_de_acciones;
+	int ciclos = 0;
+	t_list* cola_acciones = entrenador->cola_de_acciones;
 	t_accion* accion;
 
-	for(int i=0; i<queue_size(cola_acciones); i++){
-		 accion = queue_pop(cola_acciones);
+	for(int i=0; i<list_size(cola_acciones); i++){
+		 accion = list_remove(cola_acciones, 0);
 		 ciclos += accion->ciclo_cpu;
 
 	}
