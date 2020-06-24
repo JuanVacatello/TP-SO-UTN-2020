@@ -13,8 +13,18 @@
 #include<pthread.h>
 #include"configBroker.h"
 
+typedef struct t_mensaje_guardado
+{
+	uint32_t tamanio_ocupado;
+	uint32_t byte_comienzo_ocupado;
+
+} t_mensaje_guardado;
+
 void* memoria_principal;
-int desplazamiento;
+int tamanio_de_memoria;
+int desplazamiento_memoria_principal;
+t_list* elementos_en_memoria;
+
 char* algoritmo_reemplazo;
 int tamanio_minimo_particion;
 int frecuencia_compactacion;
@@ -22,5 +32,8 @@ int frecuencia_compactacion;
 void guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
 
 void administracion_de_memoria_particiones(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
+void agregar_segun_first_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
+void agregar_segun_best_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
+
 
 #endif /* UTILS_MEMORIA_H_ */

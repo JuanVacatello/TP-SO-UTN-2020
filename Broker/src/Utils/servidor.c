@@ -221,53 +221,41 @@ void recibir_new_pokemon(int socket_cliente)
 	uint32_t tamanio_buffer;
 	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
-		printf("tam bufer %d \n", tamanio_buffer);
-
 	uint32_t caracteresPokemon;
 	recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
-
-		printf("caracteres %d \n", caracteresPokemon);
 
 	char* pokemon = (char*)malloc(caracteresPokemon);
 	recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
 
-		puts(pokemon);
-
 	uint32_t posX;
 	recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
-
-		printf("posx %d \n", posX);
 
 	uint32_t posY;
 	recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
 
-		printf("posy %d \n", posY);
-
 	uint32_t cantidad;
 	recv(socket_cliente, &cantidad, sizeof(uint32_t), MSG_WAITALL);
 
-		printf("cant %d \n", cantidad);
-
 	// Creacion de bloque a guardar en memoria
 
-	void* bloque_a_agregar_en_memoria = malloc(tamanio_buffer-1); // no cuenta el \n del nombre del Pokemon
+	void* bloque_a_agregar_en_memoria = malloc(tamanio_buffer); // no cuenta el \n del nombre del Pokemon
 	int desplazamiento = 0;
 
 	memcpy(bloque_a_agregar_en_memoria + desplazamiento, &caracteresPokemon, sizeof(uint32_t));
 	desplazamiento += sizeof(uint32_t);
 
-	memcpy(bloque_a_agregar_en_memoria, pokemon, caracteresPokemon-1);
-	desplazamiento += caracteresPokemon-1;
+	memcpy(bloque_a_agregar_en_memoria + desplazamiento, pokemon, caracteresPokemon);
+	desplazamiento += caracteresPokemon;
 
-	memcpy(bloque_a_agregar_en_memoria, &posX, sizeof(uint32_t));
+	memcpy(bloque_a_agregar_en_memoria + desplazamiento, &posX, sizeof(uint32_t));
 	desplazamiento += sizeof(uint32_t);
 
-	memcpy(bloque_a_agregar_en_memoria, &posY, sizeof(uint32_t));
+	memcpy(bloque_a_agregar_en_memoria + desplazamiento, &posY, sizeof(uint32_t));
 	desplazamiento += sizeof(uint32_t);
 
-	memcpy(bloque_a_agregar_en_memoria, &cantidad, sizeof(uint32_t));
+	memcpy(bloque_a_agregar_en_memoria + desplazamiento, &cantidad, sizeof(uint32_t));
 
-	guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, (tamanio_buffer-1));
+	guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, tamanio_buffer);
 
 	free(bloque_a_agregar_en_memoria);
 }
@@ -277,48 +265,39 @@ void recibir_appeared_pokemon(int socket_cliente){
 	uint32_t tamanio_buffer;
 	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
-	printf("tam bufer %d", tamanio_buffer);
-
-	void* bloque_a_agregar_en_memoria = malloc((tamanio_buffer-1));
-	int desplazamiento = 0;
-
 	uint32_t caracteresPokemon;
 	recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
-
-		memcpy(bloque_a_agregar_en_memoria, &caracteresPokemon, sizeof(uint32_t));
-		desplazamiento += sizeof(uint32_t);
-
-		printf("caracteres %d", caracteresPokemon);
 
 	char* pokemon = (char*)malloc(caracteresPokemon);
 	recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
 
-		memcpy(bloque_a_agregar_en_memoria, pokemon, (caracteresPokemon-1));
-		desplazamiento += (caracteresPokemon-1);
-
-		puts(pokemon);
-
 	uint32_t posX;
 	recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
-
-		memcpy(bloque_a_agregar_en_memoria, &posX, sizeof(uint32_t));
-		desplazamiento += sizeof(uint32_t);
-
-		printf("posx %d", posX);
 
 	uint32_t posY;
 	recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
 
-		memcpy(bloque_a_agregar_en_memoria, &posY, sizeof(uint32_t));
-
-		printf("posy %d", posY);
-
 	uint32_t id_mensaje_correlativo;
 	recv(socket_cliente, &id_mensaje_correlativo, sizeof(uint32_t), MSG_WAITALL);
 
-	printf("id %d", id_mensaje_correlativo);
+	// Creacion de bloque a guardar en memoria
 
-	guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, (tamanio_buffer-1));
+	uint32_t tamanio_buffer_sin_id_mensaje = tamanio_buffer-sizeof(uint32_t);
+	void* bloque_a_agregar_en_memoria = malloc(tamanio_buffer_sin_id_mensaje); // no cuenta el \n del nombre del Pokemon
+	int desplazamiento = 0;
+
+	memcpy(bloque_a_agregar_en_memoria + desplazamiento, &caracteresPokemon, sizeof(uint32_t));
+	desplazamiento += sizeof(uint32_t);
+
+	memcpy(bloque_a_agregar_en_memoria + desplazamiento, pokemon, caracteresPokemon);
+	desplazamiento += caracteresPokemon;
+
+	memcpy(bloque_a_agregar_en_memoria + desplazamiento, &posX, sizeof(uint32_t));
+	desplazamiento += sizeof(uint32_t);
+
+	memcpy(bloque_a_agregar_en_memoria + desplazamiento, &posY, sizeof(uint32_t));
+
+	guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, tamanio_buffer_sin_id_mensaje);
 
 	free(bloque_a_agregar_en_memoria);
 }
@@ -328,33 +307,37 @@ void recibir_catch_pokemon(int socket_cliente){
 	uint32_t tamanio_buffer;
 	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
-	void* bloque_a_agregar_en_memoria = malloc((tamanio_buffer-1));
-	int desplazamiento = 0;
-
 	uint32_t caracteresPokemon;
 	recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
-
-		memcpy(bloque_a_agregar_en_memoria, &caracteresPokemon, sizeof(uint32_t));
-		desplazamiento += sizeof(uint32_t);
 
 	char* pokemon = (char*)malloc(caracteresPokemon);
 	recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
 
-		memcpy(bloque_a_agregar_en_memoria, pokemon, (caracteresPokemon-1));
-		desplazamiento += (caracteresPokemon-1);
-
 	uint32_t posX;
 	recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
-
-		memcpy(bloque_a_agregar_en_memoria, &posX, sizeof(uint32_t));
-		desplazamiento += sizeof(uint32_t);
 
 	uint32_t posY;
 	recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
 
-		memcpy(bloque_a_agregar_en_memoria, &posY, sizeof(uint32_t));
+	printf("Tamanio pokemon %d, posx %d, posy %d", caracteresPokemon, posX, posY);
 
-	guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, (tamanio_buffer-1));
+	// Creacion de bloque a guardar en memoria
+
+	void* bloque_a_agregar_en_memoria = malloc(tamanio_buffer); // no cuenta el \n del nombre del Pokemon
+	int desplazamiento = 0;
+
+	memcpy(bloque_a_agregar_en_memoria + desplazamiento, &caracteresPokemon, sizeof(uint32_t));
+	desplazamiento += sizeof(uint32_t);
+
+	memcpy(bloque_a_agregar_en_memoria + desplazamiento, pokemon, caracteresPokemon);
+	desplazamiento += caracteresPokemon;
+
+	memcpy(bloque_a_agregar_en_memoria + desplazamiento, &posX, sizeof(uint32_t));
+	desplazamiento += sizeof(uint32_t);
+
+	memcpy(bloque_a_agregar_en_memoria + desplazamiento, &posY, sizeof(uint32_t));
+
+	guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, tamanio_buffer);
 
 	free(bloque_a_agregar_en_memoria);
 }
@@ -364,18 +347,21 @@ void recibir_caught_pokemon(int socket_cliente){
 	uint32_t tamanio_buffer;
 	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
-	void* bloque_a_agregar_en_memoria = malloc(sizeof(uint32_t));
-	int desplazamiento = 0;
-
 	uint32_t id_mensaje_correlativo;
 	recv(socket_cliente, &id_mensaje_correlativo, sizeof(uint32_t), MSG_WAITALL);
 
 	uint32_t se_pudo_atrapar;
 	recv(socket_cliente, &se_pudo_atrapar, sizeof(uint32_t), MSG_WAITALL);
 
-		memcpy(bloque_a_agregar_en_memoria, &se_pudo_atrapar, sizeof(uint32_t));
+	// Creacion de bloque a guardar en memoria
 
-	guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, sizeof(uint32_t));
+	uint32_t tamanio_buffer_sin_id_mensaje = tamanio_buffer-sizeof(uint32_t);
+	void* bloque_a_agregar_en_memoria = malloc(tamanio_buffer_sin_id_mensaje); // no cuenta el \n del nombre del Pokemon
+	int desplazamiento = 0;
+
+	memcpy(bloque_a_agregar_en_memoria, &se_pudo_atrapar, sizeof(uint32_t));
+
+	guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, tamanio_buffer_sin_id_mensaje);
 
 	free(bloque_a_agregar_en_memoria);
 }
@@ -385,21 +371,23 @@ void recibir_get_pokemon(int socket_cliente){
 	uint32_t tamanio_buffer;
 	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
-	void* bloque_a_agregar_en_memoria = malloc((tamanio_buffer-1));
-	int desplazamiento = 0;
-
 	uint32_t caracteresPokemon;
 	recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
-
-		memcpy(bloque_a_agregar_en_memoria, &caracteresPokemon, sizeof(uint32_t));
-		desplazamiento += sizeof(uint32_t);
 
 	char* pokemon = (char*)malloc(caracteresPokemon);
 	recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
 
-		memcpy(bloque_a_agregar_en_memoria, pokemon, (caracteresPokemon-1));
+	// Creacion de bloque a guardar en memoria
 
-	guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, (tamanio_buffer-1));
+	void* bloque_a_agregar_en_memoria = malloc(tamanio_buffer); // no cuenta el \n del nombre del Pokemon
+	int desplazamiento = 0;
+
+	memcpy(bloque_a_agregar_en_memoria + desplazamiento, &caracteresPokemon, sizeof(uint32_t));
+	desplazamiento += sizeof(uint32_t);
+
+	memcpy(bloque_a_agregar_en_memoria + desplazamiento, pokemon, caracteresPokemon);
+
+	guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, tamanio_buffer);
 
 	free(bloque_a_agregar_en_memoria);
 }
@@ -409,39 +397,45 @@ void recibir_localized_pokemon(int socket_cliente){
 	uint32_t tamanio_buffer;
 	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
-	void* bloque_a_agregar_en_memoria = malloc((tamanio_buffer-1));
-	int desplazamiento = 0;
-
 	uint32_t caracteresPokemon;
 	recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
-
-		memcpy(bloque_a_agregar_en_memoria, &caracteresPokemon, sizeof(uint32_t));
-		desplazamiento += sizeof(uint32_t);
 
 	char* pokemon = (char*)malloc(caracteresPokemon);
 	recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
 
-		memcpy(bloque_a_agregar_en_memoria, pokemon, (caracteresPokemon-1));
-
 	uint32_t cantidad_de_posiciones;
 	recv(socket_cliente, &cantidad_de_posiciones, sizeof(uint32_t), MSG_WAITALL);
+
+	// Creacion de bloque a guardar en memoria
+
+	void* bloque_a_agregar_en_memoria = malloc(tamanio_buffer); // no cuenta el \n del nombre del Pokemon
+	int desplazamiento = 0;
+
+	memcpy(bloque_a_agregar_en_memoria + desplazamiento, &caracteresPokemon, sizeof(uint32_t));
+	desplazamiento += sizeof(uint32_t);
+
+	memcpy(bloque_a_agregar_en_memoria + desplazamiento, pokemon, caracteresPokemon);
+	desplazamiento += caracteresPokemon;
+
+	memcpy(bloque_a_agregar_en_memoria + desplazamiento, &cantidad_de_posiciones, sizeof(uint32_t));
+	desplazamiento += sizeof(uint32_t);
 
 	for(int i=0; i<cantidad_de_posiciones; i++){
 
 		uint32_t posX;
 		recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
 
-			memcpy(bloque_a_agregar_en_memoria, &caracteresPokemon, sizeof(uint32_t));
+			memcpy(bloque_a_agregar_en_memoria, &posX, sizeof(uint32_t));
 			desplazamiento += sizeof(uint32_t);
 
 		uint32_t posY;
 		recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
 
-			memcpy(bloque_a_agregar_en_memoria, &caracteresPokemon, sizeof(uint32_t));
+			memcpy(bloque_a_agregar_en_memoria, &posY, sizeof(uint32_t));
 			desplazamiento += sizeof(uint32_t);
 	}
 
-	guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, (tamanio_buffer-1));
+	guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, tamanio_buffer);
 
 	free(bloque_a_agregar_en_memoria);
 }
