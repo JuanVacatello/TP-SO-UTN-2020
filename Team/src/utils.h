@@ -15,6 +15,7 @@
 #include "Team.h"
 
 
+
 //DEFINO VARIABLES GLOBALES
 
 t_list* lista_de_entrenadores;
@@ -42,7 +43,9 @@ pthread_mutex_t mutex_entrenador;
 
 t_list* lista_de_entrenadores_deadlock;
 
-int pudo_atraparlo;
+sem_t MUTEX_SUB;
+
+
 
 
 typedef enum

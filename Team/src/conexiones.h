@@ -37,7 +37,7 @@ void* recibir_buffer(int*, int);
 int crear_conexion(char* ip, char* puerto);
 void iniciar_servidor(void);
 void esperar_cliente(int);
-void* recibir_mensaje(int socket_cliente, int* size);
+char* recibir_mensaje(int socket_cliente);
 int recibir_operacion(int);
 void process_request(op_code cod_op, int cliente_fd);
 void serve_client(int *socket);

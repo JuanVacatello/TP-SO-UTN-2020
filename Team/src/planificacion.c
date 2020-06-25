@@ -4,15 +4,6 @@
 void planificar_fifo(void){
 
 	t_entrenador* entrenador;
-	/*PRUEBA
-	*	t_pokemon* pokemonPikachu = malloc(sizeof(t_pokemon));
-	*	pokemonPikachu->especie = "Pikachu";
-	*	pokemonPikachu->posicion.x = 6;
-	*	pokemonPikachu->posicion.y = 6;
-	*
-	*	lista_de_pokemones_sueltos = list_create();
-	*	list_add(lista_de_pokemones_sueltos, pokemonPikachu);
-	*/
 
 		puts("aca entra4");
 	while (1){
@@ -39,7 +30,7 @@ void planificar_fifo(void){
 
 		while(!list_is_empty(lista_de_entrenadores_ready)){
 
-			t_entrenador* entrenador = list_remove(lista_de_entrenadores_ready,0);
+			entrenador = list_remove(lista_de_entrenadores_ready,0);
 			entrenador->estado = EXEC;
 
 			while(list_size(entrenador->cola_de_acciones) > 0){

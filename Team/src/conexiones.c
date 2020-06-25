@@ -141,8 +141,6 @@ void* serializar_paquete(t_paquete* paquete, int *bytes)
 	return a_enviar;
 }
 
-//---SUSCRIPCION
-
 void enviar_suscripcion_a_cola(op_code cola) //HAY QUE VER ESTE TEMA DEL PARAMETRO
 {
 
@@ -154,14 +152,35 @@ void enviar_suscripcion_a_cola(op_code cola) //HAY QUE VER ESTE TEMA DEL PARAMET
 	int tamanio_paquete = 0;
 	void* a_enviar;
 	puts("aca entra1.5");
-	//pthread_mutex_lock(&mutex_conexion);
+
 	a_enviar = suscribirse_a_cola(socket_cliente, cola, &tamanio_paquete);
 
 	send(socket_cliente,a_enviar,tamanio_paquete,0);
 
 	free(a_enviar);
 
+	char* mensaje_subscripcion = recibir_mensaje(socket_cliente);
+
+	puts(mensaje_subscripcion);
+
 	//pthread_mutex_unlock(&mutex_conexion);
+
+}
+
+char* recibir_mensaje(int socket_cliente){
+
+	op_code code_op;
+	recv(socket_cliente, &code_op, sizeof(op_code), MSG_WAITALL);
+
+	uint32_t tamanio_buffer;
+	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
+
+	char* mensaje = malloc(tamanio_buffer);
+	recv(socket_cliente, mensaje, tamanio_buffer, MSG_WAITALL);
+
+	sem_post(&MUTEX_SUB);
+
+	return mensaje;
 }
 
 void* suscribirse_a_cola(int socket_cliente, uint32_t cola, int* tamanio_paquete){

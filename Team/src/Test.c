@@ -19,14 +19,12 @@ int main(void) {
 		iniciar_logger();
 
 // Conexion con broker
+		iniciar_vg();
+		suscribirse_a_colas();
 
-		//suscribirse_a_colas();
+
 
 		/*puts("aca entra00");
-
-		//pedir_ubicacion_pokemones(socket_conexion_broker);
-
-
 
 		retardo = obtener_retardo_ciclo_cpu();
 		printf("Retardo: %d\n",retardo);
@@ -47,7 +45,7 @@ int main(void) {
 		puts(" ");
 */
 		//t_entrenador* entrenador = armar_entrenador(2);
-		iniciar_vg();
+
 /*
 		printf("%d\n",entrenador->posicion.x);
 		printf("%d\n",entrenador->posicion.y);
@@ -61,12 +59,10 @@ int main(void) {
 
 		puts("hola");
 
-		//iniciar_servidor();
+		//pthread_create(&hilo_servidor, NULL , iniciar_servidor ,NULL);
+		//pthread_detach(hilo_servidor);
 
-		//pthread_create(&hilo_servidor, NULL , (void *) iniciar_servidor ,NULL);
-		//pthread_join(hilo_servidor,NULL);
-
-		pthread_create(&hilo_planificador, NULL , (void *) planificacion ,NULL);
+		pthread_create(&hilo_planificador, NULL , planificacion ,NULL);
 		pthread_join(hilo_planificador,NULL);
 		//aparicion_pokemon(pokemon);
 		puts("chau");

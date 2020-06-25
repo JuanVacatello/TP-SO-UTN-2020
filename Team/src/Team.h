@@ -13,6 +13,7 @@
 #include<commons/config.h>
 #include<readline/readline.h>
 #include "configTeam.h"
+#include<semaphore.h>
 
 typedef enum{
 	FIFO = 1,

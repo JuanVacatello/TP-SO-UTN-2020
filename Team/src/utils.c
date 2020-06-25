@@ -1,5 +1,6 @@
 #include"utils.h"
 #include"configTeam.h"
+#include<semaphore.h>
 
 
 
@@ -26,6 +27,8 @@ void iniciar_vg(void){
 	pthread_mutex_init(&mutex_entrenador, NULL);
 	//PONEMOS EL SEMÁFORO EN 0
 	pthread_mutex_lock(&mutex_entrenador);
+
+	sem_init(&MUTEX_SUB,0,1);
 
 	//pokemones nuevos de prueba
 
@@ -120,13 +123,17 @@ bool esta_en_lista(t_list* lista_pokemones, char* especie){
 }
 
 void suscribirse_a_colas(){
-		//int sem = 1;
-		op_code cola = 2;
-		while(cola <= 2){
-			enviar_suscripcion_a_cola(cola); //APPEARED POKEMON
-			cola += 2;
-			sleep(1);
-		}
+		sem_wait(&MUTEX_SUB);
+		enviar_suscripcion_a_cola(2);
+		//sleep(1);
+		//sem_post(&MUTEX_SUB);
+		sem_wait(&MUTEX_SUB);
+		enviar_suscripcion_a_cola(4);
+		//sleep(1);
+		sem_wait(&MUTEX_SUB);
+		enviar_suscripcion_a_cola(6);
+		//sleep(1);
+
 		puts("Me suscribo a APPEARED POKEMON");
 		puts("Me suscribo a CAUGHT POKEMON");
 		puts("Me suscribo a LOCALIZED POKEMON");
