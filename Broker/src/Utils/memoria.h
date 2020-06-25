@@ -35,5 +35,7 @@ void administracion_de_memoria_particiones(void* bloque_a_agregar_en_memoria, ui
 void agregar_segun_first_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
 void agregar_segun_best_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
 
+bool comparar_bytes_mensajes(t_mensaje_guardado mensaje1, t_mensaje_guardado mensaje2);
+
 
 #endif /* UTILS_MEMORIA_H_ */

@@ -42,16 +42,15 @@ void administracion_de_memoria_particiones(void* bloque_a_agregar_en_memoria, ui
 
 void agregar_segun_first_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
 
-	t_mensaje_guardado* mensaje_nuevo = malloc(sizeof(t_mensaje_guardado));
+	t_mensaje_guardado mensaje_nuevo;
 
 	if(!(list_is_empty(elementos_en_memoria))){ // Si está vacía, agregar al principio de la memoria
 
 		t_list* lista_ordenada = list_create();
 		t_list* lista_de_comienzos = list_create();
-		lista_de_comienzos = t_list* list_map(t_list*, void*(*transformer)(void*));
-		lista_ordenada = list_sorted(elementos_en_memoria, bool (<)(void *, void *));
-/*
-		int tamanio_lista_mensajes = list_size(elementos_en_memoria);
+		lista_ordenada = list_sorted(elementos_en_memoria, comparar_bytes_mensajes);
+
+/*		int tamanio_lista_mensajes = list_size(elementos_en_memoria);
 		t_mensaje_guardado* mensaje_comparar = malloc(sizeof(t_mensaje_guardado));
 		t_mensaje_guardado* mensaje_comparar_siguiente = malloc(sizeof(t_mensaje_guardado));
 		t_mensaje_guardado* mensaje_elegido = malloc(sizeof(t_mensaje_guardado));
@@ -79,12 +78,16 @@ void agregar_segun_first_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio
 		free(mensaje_comparar_siguiente);
 		free(mensaje_elegido);
 	}
-
-	memcpy(memoria_principal + desplazamiento_memoria_principal, bloque_a_agregar_en_memoria, tamanio_a_agregar); //usar semaforos xq es variable global
-	mensaje_nuevo->byte_comienzo_ocupado = desplazamiento_memoria_principal;
-	mensaje_nuevo->tamanio_ocupado = tamanio_a_agregar;
 */
+	memcpy(memoria_principal + desplazamiento_memoria_principal, bloque_a_agregar_en_memoria, tamanio_a_agregar); //usar semaforos xq es variable global
+	mensaje_nuevo.byte_comienzo_ocupado = desplazamiento_memoria_principal;
+	mensaje_nuevo.tamanio_ocupado = tamanio_a_agregar;
+
 }
+
+
+
+
 
 /*
 	int cantidad_a_leer = sizeof(uint32_t);
@@ -119,8 +122,12 @@ void agregar_segun_first_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio
 
 }
 */
-void agregar_segun_best_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
-
 }
 
+void agregar_segun_best_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
+//hola
+}
 
+bool comparar_bytes_mensajes(t_mensaje_guardado mensaje1, t_mensaje_guardado mensaje2){
+	return mensaje1.byte_comienzo_ocupado < mensaje2.byte_comienzo_ocupado;
+}

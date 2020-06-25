@@ -74,6 +74,7 @@ void process_request(op_code cod_op, int socket_cliente) {
 	switch (cod_op) {
 		case 0:
 			atender_suscripcion(socket_cliente);
+			enviar_mensaje(socket_cliente, "Suscripto");
 			break;
 		case 1:
 			recibir_new_pokemon(socket_cliente);
