@@ -29,27 +29,24 @@ void iniciar_vg(void){
 
 	//pokemones nuevos de prueba
 
-	/*t_pokemon* pokemonPikachu = malloc(sizeof(t_pokemon));
+	t_pokemon* pokemonPikachu = malloc(sizeof(t_pokemon));
 	pokemonPikachu->especie = "Pikachu";
 	pokemonPikachu->posicion.x = 6;
 	pokemonPikachu->posicion.y = 6;
-	//lista_de_pokemones_sueltos = list_create();
 	list_add(lista_de_pokemones_sueltos, pokemonPikachu);
 
 	t_pokemon* pokemonCharmander = malloc(sizeof(t_pokemon));
 	pokemonCharmander->especie = "Charmander";
 	pokemonCharmander->posicion.x = 1;
 	pokemonCharmander->posicion.y = 1;
-	//lista_de_pokemones_sueltos = list_create();
 	list_add(lista_de_pokemones_sueltos, pokemonCharmander);
 
 	t_pokemon* pokemonPidgey = malloc(sizeof(t_pokemon));
 	pokemonPidgey->especie = "Pidgey";
 	pokemonPidgey->posicion.x = 2;
-	pokemonPidgey->posicion.y = 3;
-	//lista_de_pokemones_sueltos = list_create();
+	pokemonPidgey->posicion.y = 6;
 	list_add(lista_de_pokemones_sueltos, pokemonPidgey);
-	*/
+
 
 }
 

@@ -63,8 +63,8 @@ int main(void) {
 
 		//iniciar_servidor();
 
-		pthread_create(&hilo_servidor, NULL , (void *) iniciar_servidor ,NULL);
-		pthread_join(hilo_servidor,NULL);
+		//pthread_create(&hilo_servidor, NULL , (void *) iniciar_servidor ,NULL);
+		//pthread_join(hilo_servidor,NULL);
 
 		pthread_create(&hilo_planificador, NULL , (void *) planificacion ,NULL);
 		pthread_join(hilo_planificador,NULL);

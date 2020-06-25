@@ -190,6 +190,27 @@ bool puede_atrapar(t_entrenador* entrenador){
 
 void ejecutar_entrenador(t_entrenador* entrenador){
 
+	t_accion* accion_a_ejecutar;
+	pthread_t hilo_entrenador = entrenador->hilo_entrenador;
+
+	accion_a_ejecutar = list_remove(entrenador->cola_de_acciones,0);
+	entrenador->rafaga_anterior += accion_a_ejecutar->ciclo_cpu;
+	entrenador->ciclos_de_cpu_totales += accion_a_ejecutar->ciclo_cpu;
+
+		pthread_create(&hilo_entrenador, NULL , (accion_a_ejecutar->accion) , entrenador);
+		pthread_join(hilo_entrenador,NULL);
+
+	//free(accion_a_ejecutar->accion);
+	//free(accion_a_ejecutar->ciclo_cpu);
+	free(accion_a_ejecutar);
+	//free(accion_aux);
+
+}
+
+
+
+/*void ejecutar_entrenador(t_entrenador* entrenador){
+
 	entrenador->rafaga_anterior = 0;
 
 	t_accion* accion_aux;
@@ -228,6 +249,7 @@ void ejecutar_entrenador(t_entrenador* entrenador){
 	//free(accion_aux);
 
 }
+*/
 
 void atrapar_pokemon(t_entrenador* entrenador){
 

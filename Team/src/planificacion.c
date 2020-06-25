@@ -3,6 +3,7 @@
 
 void planificar_fifo(void){
 
+	t_entrenador* entrenador;
 	/*PRUEBA
 	*	t_pokemon* pokemonPikachu = malloc(sizeof(t_pokemon));
 	*	pokemonPikachu->especie = "Pikachu";
@@ -26,26 +27,34 @@ void planificar_fifo(void){
 
 		puts("aca entra5");
 
-		pthread_mutex_lock(&mutex_planificador);	//SE BLOQUEA BIEN
+		//pthread_mutex_lock(&mutex_planificador);	//SE BLOQUEA BIEN
 
 
-		t_pokemon* pokemon_nuevo = list_remove(lista_de_pokemones_sueltos,0);
-
-		aparicion_pokemon(pokemon_nuevo);
+		while(!list_is_empty(lista_de_pokemones_sueltos)){
+				t_pokemon* pokemon_nuevo = list_remove(lista_de_pokemones_sueltos,0);
+				aparicion_pokemon(pokemon_nuevo);
+		}
 
 		puts("aca entra10");
-		t_entrenador* entrenador = list_remove(lista_de_entrenadores_ready,0);
 
-		puts("aca entra11");
-		ejecutar_entrenador(entrenador);
+		while(!list_is_empty(lista_de_entrenadores_ready)){
+
+		t_entrenador* entrenador = list_remove(lista_de_entrenadores_ready,0);
+		entrenador->estado = EXEC;
+
+		while(list_size(entrenador->cola_de_acciones) > 0){
+			ejecutar_entrenador(entrenador);
+		}
 
 		}
+
 
 		//intentar atrapar pokemon --> mandar catch pokemon
 		puts("SE BLOQUEA DESPUES DE EJECUTAR");
 		pthread_mutex_lock(&mutex_planificador);
 	}
 
+}
 }
 
 void planificar_sjf_sd(void){
@@ -74,13 +83,18 @@ void planificar_sjf_sd(void){
 				}
 			}
 
-			ejecutar_entrenador(entrenador);
+			entrenador->rafaga_anterior = 0;
+			entrenador->estado = EXEC;
+			while(list_size(entrenador->cola_de_acciones) > 0){
+				ejecutar_entrenador(entrenador);
+				}
+			}
 		}
 
 		pthread_mutex_lock(&mutex_planificador);
-	}
-
 }
+
+
 
 // Ti = T(i­-1) * a + R(i­-1) * (1 -­ a) , donde a = obtener_alpha()
 

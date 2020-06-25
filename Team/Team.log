@@ -143,3 +143,78 @@
 [INFO] 20:03:34:55 TEAM/(17544:20538): Se conectó proceso al Team
 [INFO] 20:05:54:752 TEAM/(17566:5927): Se conectó proceso al Team
 [INFO] 20:10:05:597 TEAM/(28385:26962): Se conectó proceso al Team
+[INFO] 03:22:44:486 TEAM/(7395:7401): Se conectó proceso al Team
+[INFO] 03:24:38:627 TEAM/(11509:11514): Se conectó proceso al Team
+[INFO] 03:29:21:295 TEAM/(14574:14580): El entrenador A se movió a la posicion 1|1.
+[INFO] 03:29:23:321 TEAM/(14574:14581): El entrenador A atrapó un Charmander en la posicion 1|1.
+[INFO] 03:29:23:355 TEAM/(14574:14582): El entrenador C se movió a la posicion 6|5.
+[INFO] 03:29:25:374 TEAM/(14574:14583): El entrenador C se movió a la posicion 6|6.
+[INFO] 03:29:27:414 TEAM/(14574:14584): El entrenador C atrapó un Pikachu en la posicion 6|6.
+[INFO] 03:29:27:439 TEAM/(14574:14585): El entrenador B se movió a la posicion 2|7.
+[INFO] 03:29:29:453 TEAM/(14574:14591): El entrenador B se movió a la posicion 2|6.
+[INFO] 03:32:59:162 TEAM/(14640:14646): El entrenador A se movió a la posicion 1|1.
+[INFO] 03:33:01:198 TEAM/(14640:14647): El entrenador A atrapó un Charmander en la posicion 1|1.
+[INFO] 03:33:01:213 TEAM/(14640:14648): El entrenador C se movió a la posicion 6|5.
+[INFO] 03:33:03:221 TEAM/(14640:14649): El entrenador C se movió a la posicion 6|6.
+[INFO] 03:33:05:235 TEAM/(14640:14650): El entrenador C atrapó un Pikachu en la posicion 6|6.
+[INFO] 03:33:05:241 TEAM/(14640:14651): El entrenador B se movió a la posicion 2|7.
+[INFO] 03:33:07:245 TEAM/(14640:14652): El entrenador B se movió a la posicion 2|6.
+[INFO] 03:48:32:868 TEAM/(4886:4897): El entrenador A se movió a la posicion 1|1.
+[INFO] 03:48:34:890 TEAM/(4886:4898): El entrenador A atrapó un Charmander en la posicion 1|1.
+[INFO] 03:48:34:893 TEAM/(4886:4899): El entrenador C se movió a la posicion 6|5.
+[INFO] 03:48:36:899 TEAM/(4886:4900): El entrenador C se movió a la posicion 6|6.
+[INFO] 03:48:38:924 TEAM/(4886:4901): El entrenador C atrapó un Pikachu en la posicion 6|6.
+[INFO] 03:48:38:932 TEAM/(4886:4902): El entrenador B se movió a la posicion 2|7.
+[INFO] 03:48:40:938 TEAM/(4886:4903): El entrenador B se movió a la posicion 2|6.
+[INFO] 03:53:24:46 TEAM/(5087:5095): El entrenador C se movió a la posicion 6|5.
+[INFO] 03:53:26:57 TEAM/(5087:5096): El entrenador C se movió a la posicion 6|6.
+[INFO] 03:53:28:72 TEAM/(5087:5097): El entrenador C atrapó un Pikachu en la posicion 6|6.
+[INFO] 03:53:28:86 TEAM/(5087:5098): El entrenador A se movió a la posicion 1|1.
+[INFO] 03:53:30:98 TEAM/(5087:5104): El entrenador A atrapó un Charmander en la posicion 1|1.
+[INFO] 03:53:30:128 TEAM/(5087:5105): El entrenador B se movió a la posicion 2|7.
+[INFO] 03:53:32:134 TEAM/(5087:5106): El entrenador B se movió a la posicion 2|6.
+[INFO] 03:59:20:296 TEAM/(5290:5298): El entrenador C se movió a la posicion 6|5.
+[INFO] 03:59:22:325 TEAM/(5290:5299): El entrenador C se movió a la posicion 6|6.
+[INFO] 03:59:24:346 TEAM/(5290:5306): El entrenador C atrapó un Pikachu en la posicion 6|6.
+[INFO] 03:59:24:359 TEAM/(5290:5307): El entrenador A se movió a la posicion 1|1.
+[INFO] 03:59:26:375 TEAM/(5290:5308): El entrenador A atrapó un Charmander en la posicion 1|1.
+[INFO] 03:59:26:390 TEAM/(5290:5309): El entrenador B se movió a la posicion 2|7.
+[INFO] 03:59:28:404 TEAM/(5290:5310): El entrenador B se movió a la posicion 2|6.
+[INFO] 04:02:04:599 TEAM/(5394:5400): El entrenador C se movió a la posicion 6|5.
+[INFO] 04:02:06:615 TEAM/(5394:5401): El entrenador C se movió a la posicion 6|6.
+[INFO] 04:02:08:646 TEAM/(5394:5402): El entrenador C atrapó un Pikachu en la posicion 6|6.
+[INFO] 04:02:08:652 TEAM/(5394:5403): El entrenador A se movió a la posicion 1|1.
+[INFO] 04:02:10:659 TEAM/(5394:5404): El entrenador A atrapó un Charmander en la posicion 1|1.
+[INFO] 04:02:10:672 TEAM/(5394:5405): El entrenador B se movió a la posicion 2|7.
+[INFO] 04:02:12:680 TEAM/(5394:5406): El entrenador B se movió a la posicion 2|6.
+[INFO] 04:02:14:692 TEAM/(5394:5407): El entrenador B atrapó un Pidgey en la posicion 2|6.
+[INFO] 04:04:24:421 TEAM/(5499:5507): El entrenador A se movió a la posicion 1|1.
+[INFO] 04:04:26:432 TEAM/(5499:5508): El entrenador A atrapó un Charmander en la posicion 1|1.
+[INFO] 04:04:26:459 TEAM/(5499:5509): El entrenador C se movió a la posicion 6|5.
+[INFO] 04:04:28:466 TEAM/(5499:5510): El entrenador C se movió a la posicion 6|6.
+[INFO] 04:04:30:482 TEAM/(5499:5511): El entrenador C atrapó un Pikachu en la posicion 6|6.
+[INFO] 04:04:30:498 TEAM/(5499:5512): El entrenador B se movió a la posicion 2|7.
+[INFO] 04:04:32:507 TEAM/(5499:5513): El entrenador B se movió a la posicion 2|6.
+[INFO] 04:05:06:396 TEAM/(5552:5570): El entrenador A se movió a la posicion 1|1.
+[INFO] 04:05:08:407 TEAM/(5552:5571): El entrenador A atrapó un Charmander en la posicion 1|1.
+[INFO] 04:05:08:423 TEAM/(5552:5572): El entrenador C se movió a la posicion 6|5.
+[INFO] 04:05:10:431 TEAM/(5552:5578): El entrenador C se movió a la posicion 6|6.
+[INFO] 04:05:12:448 TEAM/(5552:5579): El entrenador C atrapó un Pikachu en la posicion 6|6.
+[INFO] 04:05:12:467 TEAM/(5552:5580): El entrenador B se movió a la posicion 2|7.
+[INFO] 04:05:14:475 TEAM/(5552:5581): El entrenador B se movió a la posicion 2|6.
+[INFO] 04:05:16:499 TEAM/(5552:5582): El entrenador B atrapó un Pidgey en la posicion 2|6.
+[INFO] 04:06:48:987 TEAM/(5624:5635): El entrenador A se movió a la posicion 1|1.
+[INFO] 04:06:51:53 TEAM/(5624:5636): El entrenador A atrapó un Charmander en la posicion 1|1.
+[INFO] 04:06:51:86 TEAM/(5624:5637): El entrenador C se movió a la posicion 6|5.
+[INFO] 04:06:53:98 TEAM/(5624:5638): El entrenador C se movió a la posicion 6|6.
+[INFO] 04:06:55:128 TEAM/(5624:5639): El entrenador C atrapó un Pikachu en la posicion 6|6.
+[INFO] 04:06:55:141 TEAM/(5624:5640): El entrenador B se movió a la posicion 2|7.
+[INFO] 04:06:57:150 TEAM/(5624:5641): El entrenador B se movió a la posicion 2|6.
+[INFO] 04:08:09:360 TEAM/(5684:5695): El entrenador A se movió a la posicion 1|1.
+[INFO] 04:08:11:395 TEAM/(5684:5696): El entrenador A atrapó un Charmander en la posicion 1|1.
+[INFO] 04:08:11:414 TEAM/(5684:5697): El entrenador C se movió a la posicion 6|5.
+[INFO] 04:08:13:427 TEAM/(5684:5698): El entrenador C se movió a la posicion 6|6.
+[INFO] 04:08:15:462 TEAM/(5684:5699): El entrenador C atrapó un Pikachu en la posicion 6|6.
+[INFO] 04:08:15:469 TEAM/(5684:5700): El entrenador B se movió a la posicion 2|7.
+[INFO] 04:08:17:479 TEAM/(5684:5701): El entrenador B se movió a la posicion 2|6.
+[INFO] 04:08:19:490 TEAM/(5684:5704): El entrenador B atrapó un Pidgey en la posicion 2|6.
