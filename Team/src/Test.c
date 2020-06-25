@@ -20,7 +20,7 @@ int main(void) {
 
 // Conexion con broker
 
-		suscribirse_a_colas();
+		//suscribirse_a_colas();
 
 		/*puts("aca entra00");
 

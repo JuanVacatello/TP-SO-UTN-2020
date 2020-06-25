@@ -39,12 +39,12 @@ void planificar_fifo(void){
 
 		while(!list_is_empty(lista_de_entrenadores_ready)){
 
-		t_entrenador* entrenador = list_remove(lista_de_entrenadores_ready,0);
-		entrenador->estado = EXEC;
+			t_entrenador* entrenador = list_remove(lista_de_entrenadores_ready,0);
+			entrenador->estado = EXEC;
 
-		while(list_size(entrenador->cola_de_acciones) > 0){
-			ejecutar_entrenador(entrenador);
-		}
+			while(list_size(entrenador->cola_de_acciones) > 0){
+				ejecutar_entrenador(entrenador);
+			}
 
 		}
 

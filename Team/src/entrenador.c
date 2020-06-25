@@ -27,7 +27,7 @@
 t_entrenador* armar_entrenador(int indice){
 
 	t_entrenador* entrenador = malloc(sizeof(t_entrenador));
-
+	int contador_atrapados = 0;
 	//NOMBRE
 	entrenador->ID_entrenador = indice + 65;
 
@@ -43,7 +43,13 @@ t_entrenador* armar_entrenador(int indice){
 
 	//LISTA ATRAPADOS
 	char** atrapados = obtener_pokemon_entrenadores();
-	t_list* atrapado = obtener_atrapados(atrapados[indice]);
+	for(int i = 0; atrapados[i] != NULL ;i++){
+		contador_atrapados = i;
+	}
+	t_list* atrapado = list_create();
+	if(indice <= contador_atrapados){
+		atrapado = obtener_atrapados(atrapados[indice]);
+	}
 	entrenador->atrapados = atrapado;
 
 	//COLA DE ACCIONES
@@ -202,8 +208,7 @@ void ejecutar_entrenador(t_entrenador* entrenador){
 
 	//free(accion_a_ejecutar->accion);
 	//free(accion_a_ejecutar->ciclo_cpu);
-	free(accion_a_ejecutar);
-	//free(accion_aux);
+	//free(accion_a_ejecutar);
 
 }
 
@@ -408,9 +413,6 @@ void intercambiar_pokemones(t_entrenador* entrenador1, t_entrenador* entrenador2
 	// POKEMONES INTERCAMBIADOS
 
 }
-
-
-
 
 
 bool es_intercambiable_pokemon(t_entrenador* entrenador, t_pokemon* pokemon){

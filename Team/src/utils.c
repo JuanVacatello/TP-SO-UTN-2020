@@ -31,23 +31,35 @@ void iniciar_vg(void){
 
 	t_pokemon* pokemonPikachu = malloc(sizeof(t_pokemon));
 	pokemonPikachu->especie = "Pikachu";
-	pokemonPikachu->posicion.x = 6;
-	pokemonPikachu->posicion.y = 6;
+	pokemonPikachu->posicion.x = 1;
+	pokemonPikachu->posicion.y = 1;
 	list_add(lista_de_pokemones_sueltos, pokemonPikachu);
 
-	t_pokemon* pokemonCharmander = malloc(sizeof(t_pokemon));
-	pokemonCharmander->especie = "Charmander";
-	pokemonCharmander->posicion.x = 1;
-	pokemonCharmander->posicion.y = 1;
-	list_add(lista_de_pokemones_sueltos, pokemonCharmander);
+	t_pokemon* pokemonSquirtle = malloc(sizeof(t_pokemon));
+	pokemonSquirtle->especie = "Squirtle";
+	pokemonSquirtle->posicion.x = 9;
+	pokemonSquirtle->posicion.y = 7;
+	list_add(lista_de_pokemones_sueltos, pokemonSquirtle);
 
-	t_pokemon* pokemonPidgey = malloc(sizeof(t_pokemon));
-	pokemonPidgey->especie = "Pidgey";
-	pokemonPidgey->posicion.x = 2;
-	pokemonPidgey->posicion.y = 6;
-	list_add(lista_de_pokemones_sueltos, pokemonPidgey);
+	t_pokemon* pokemonOnix = malloc(sizeof(t_pokemon));
+	pokemonOnix->especie = "Onix";
+	pokemonOnix->posicion.x = 2;
+	pokemonOnix->posicion.y = 2;
+	list_add(lista_de_pokemones_sueltos, pokemonOnix);
 
+/*
+	t_pokemon* pokemonSquirtle1 = malloc(sizeof(t_pokemon));
+	pokemonSquirtle1->especie = "Squirtle";
+	pokemonSquirtle1->posicion.x = 3;
+	pokemonSquirtle1->posicion.y = 5;
+	list_add(lista_de_pokemones_sueltos, pokemonSquirtle1);
 
+	t_pokemon* pokemonGengar = malloc(sizeof(t_pokemon));
+	pokemonGengar->especie = "Gengar";
+	pokemonGengar->posicion.x = 7;
+	pokemonGengar->posicion.y = 5;
+	list_add(lista_de_pokemones_sueltos, pokemonGengar);
+*/
 }
 
 
@@ -87,15 +99,10 @@ int cantidad_entrenadores(void){
 
 int cantidad_de_elementos(char* pokemons){
 	int contador = 0;
-	//if(pokemons != NULL || pokemons != '\0'){
 		for(int i=0; i < string_length(pokemons); i++){
 			if(pokemons[i] =='|')
 				contador++;
 		}
-	//}
-	//else{
-	//	return contador;
-	//}
 	return contador+1;
 }
 
