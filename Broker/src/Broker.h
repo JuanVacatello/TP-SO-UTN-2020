@@ -9,6 +9,7 @@
 #include "Utils/configBroker.h"
 #include "Utils/servidor.h"
 #include "Utils/logBroker.h"
+#include "Utils/memoria.h"
 
 void terminar_programa(void);
 void creacion_colas_de_mensajes(void);

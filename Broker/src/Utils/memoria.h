@@ -15,8 +15,8 @@
 
 typedef struct t_mensaje_guardado
 {
-	uint32_t tamanio_ocupado;
-	uint32_t byte_comienzo_ocupado;
+	int tamanio_ocupado;
+	int byte_comienzo_ocupado;
 
 } t_mensaje_guardado;
 

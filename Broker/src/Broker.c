@@ -16,16 +16,25 @@ int main(void)
 	memoria_principal = malloc(tamanio_de_memoria);
 	memset(memoria_principal,0,tamanio_de_memoria);
 
-	creacion_colas_de_mensajes();
-	iniciar_servidor();
+	for(int i=0; i<tamanio_de_memoria; i++){
+		char valor;
+		memcpy(&valor, memoria_principal, sizeof(char));
+		printf("%d- ", i);
+		puts(valor);
+	}
 
-	free(memoria_principal);
+	//creacion_colas_de_mensajes();
+	//iniciar_servidor();
+
+	terminar_programa();
+
 	return 0;
 }
 
 void terminar_programa(void)
 {
 	config_destroy(configBroker);
+	free(memoria_principal);
 }
 
 void creacion_colas_de_mensajes(void){

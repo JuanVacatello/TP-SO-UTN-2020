@@ -49,6 +49,36 @@ void agregar_segun_first_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio
 		t_list* lista_ordenada = list_create();
 		t_list* lista_de_comienzos = list_create();
 		lista_ordenada = list_sorted(elementos_en_memoria, comparar_bytes_mensajes);
+		int tamanio_lista = list_size(elementos_en_memoria);
+
+		for(int i=0; i<tamanio_lista; i++){
+
+			t_mensaje_guardado mensaje_a_leer = list_get(elementos_en_memoria, i);
+
+			int desplazamiento = mensaje_a_leer.byte_comienzo_ocupado+mensaje_a_leer.tamanio_ocupado;
+			int contador = 0; // si está vacío, leerá ceros
+
+			uint32_t cero;
+			memcpy(&cero, memoria_principal+desplazamiento, sizeof(int)); // me posiciono donde está cuardado el mensaje leido
+			desplazamiento += sizeof(int);
+
+			while(cero == 0 && contador < tamanio_a_agregar){
+				uint32_t cero;
+				memcpy(&cero, memoria_principal+desplazamiento, sizeof(int));
+				desplazamiento += sizeof(int);
+				contador++;
+			}
+
+			if(contador == tamanio_a_agregar){
+				memcpy(memoria_principal + mensaje_a_leer.byte_comienzo_ocupado+mensaje_a_leer.tamanio_ocupado, bloque_a_agregar_en_memoria, tamanio_a_agregar); //usar semaforos xq es variable global
+				mensaje_nuevo.byte_comienzo_ocupado = desplazamiento_memoria_principal;
+				mensaje_nuevo.tamanio_ocupado = tamanio_a_agregar;
+
+				break; // chequear
+			}
+
+		}
+	}
 
 /*		int tamanio_lista_mensajes = list_size(elementos_en_memoria);
 		t_mensaje_guardado* mensaje_comparar = malloc(sizeof(t_mensaje_guardado));
@@ -78,15 +108,12 @@ void agregar_segun_first_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio
 		free(mensaje_comparar_siguiente);
 		free(mensaje_elegido);
 	}
-*/
-	memcpy(memoria_principal + desplazamiento_memoria_principal, bloque_a_agregar_en_memoria, tamanio_a_agregar); //usar semaforos xq es variable global
-	mensaje_nuevo.byte_comienzo_ocupado = desplazamiento_memoria_principal;
-	mensaje_nuevo.tamanio_ocupado = tamanio_a_agregar;
-
+*/	else {
+		memcpy(memoria_principal + desplazamiento_memoria_principal, bloque_a_agregar_en_memoria, tamanio_a_agregar); //usar semaforos xq es variable global
+		mensaje_nuevo.byte_comienzo_ocupado = desplazamiento_memoria_principal;
+		mensaje_nuevo.tamanio_ocupado = tamanio_a_agregar;
+	}
 }
-
-
-
 
 
 /*
