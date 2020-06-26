@@ -1,4 +1,3 @@
-
 #ifndef UTILS_MEMORIA_H_
 #define UTILS_MEMORIA_H_
 
@@ -13,12 +12,11 @@
 #include<pthread.h>
 #include"configBroker.h"
 
-typedef struct t_mensaje_guardado
+typedef struct
 {
 	int tamanio_ocupado;
 	int byte_comienzo_ocupado;
-
-} t_mensaje_guardado;
+}t_mensaje_guardado;
 
 void* memoria_principal;
 int tamanio_de_memoria;

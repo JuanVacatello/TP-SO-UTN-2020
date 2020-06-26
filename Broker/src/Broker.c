@@ -16,13 +16,17 @@ int main(void)
 	memoria_principal = malloc(tamanio_de_memoria);
 	memset(memoria_principal,0,tamanio_de_memoria);
 
-	for(int i=0; i<tamanio_de_memoria; i++){
-		char valor;
-		memcpy(&valor, memoria_principal, sizeof(char));
-		printf("%d- ", i);
-		puts(valor);
+	int desplazamiento = 0, contador= 0;
+	for(int i=0; i<tamanio_de_memoria; i+= sizeof(int)){
+		int valor;
+		memcpy(&valor, memoria_principal + desplazamiento, sizeof(int));
+		printf("%d-", i);
+		printf("%d ", valor);
+		puts("");
+		desplazamiento += sizeof(int);
+		contador++;
 	}
-
+	printf("%d", contador);
 	//creacion_colas_de_mensajes();
 	//iniciar_servidor();
 

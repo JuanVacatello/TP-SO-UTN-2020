@@ -53,7 +53,8 @@ void agregar_segun_first_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio
 
 		for(int i=0; i<tamanio_lista; i++){
 
-			t_mensaje_guardado mensaje_a_leer = list_get(elementos_en_memoria, i);
+/*			t_mensaje_guardado mensaje_a_leer;
+			mensaje_a_leer = list_get(elementos_en_memoria, i);
 
 			int desplazamiento = mensaje_a_leer.byte_comienzo_ocupado+mensaje_a_leer.tamanio_ocupado;
 			int contador = 0; // si está vacío, leerá ceros
@@ -108,7 +109,7 @@ void agregar_segun_first_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio
 		free(mensaje_comparar_siguiente);
 		free(mensaje_elegido);
 	}
-*/	else {
+*/	//else {
 		memcpy(memoria_principal + desplazamiento_memoria_principal, bloque_a_agregar_en_memoria, tamanio_a_agregar); //usar semaforos xq es variable global
 		mensaje_nuevo.byte_comienzo_ocupado = desplazamiento_memoria_principal;
 		mensaje_nuevo.tamanio_ocupado = tamanio_a_agregar;
@@ -146,10 +147,9 @@ void agregar_segun_first_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio
 		cantidad_a_leer_encontrado += sizeof(uint32_t);
 
 	}
-
-}
 */
 }
+
 
 void agregar_segun_best_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
 //hola
