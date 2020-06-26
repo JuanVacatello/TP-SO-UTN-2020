@@ -64,7 +64,6 @@ typedef enum
 //////////////////////////////////////////////SOCKETS//////////////////////////////////////////////////////
 
 void efectuar_ciclo_cpu(t_entrenador* entrenador, int ciclos);
-void contabilizar_ciclos(t_entrenador* entrenador, int ciclos);
 int transformarCiclos(int ciclos);
 void ciclos_de_cpu(int ciclos);
 int cantidad_entrenadores(void);

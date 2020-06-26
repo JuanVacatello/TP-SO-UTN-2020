@@ -10,7 +10,6 @@
 #include<commons/collections/queue.h>
 #include<commons/config.h>
 
-
 typedef enum{
 
 	NEW = 0,

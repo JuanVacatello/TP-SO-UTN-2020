@@ -112,16 +112,11 @@ void generar_atrapados_global(void){
 void planificacion(){
 	puts("aca entra2");
 	//Esta funcion se la mandamos al hilo principal para que la ejecute
-
 	int planificador = obtener_algoritmo_planificacion();
 
 	puts("aca entra3");
-	//HAY QUE CHEQUEAR ESTO
 
-	//iniciar_vg();
-
-
-	puts("inicia las variables globales");
+	//puts("inicia las variables globales");
 
 	switch(planificador){
 		case 1:
@@ -131,11 +126,11 @@ void planificacion(){
 		planificar_sjf_sd();
 		break;
 		//case 3:
-		//planificar_fifo();
+		//planificar_sjf_cd();
 		//break;
-		//case 4:
-		//planificar_fifo();
-		//break;
+		case 4:
+		planificar_rr();
+		break;
 
 	}
 
@@ -154,7 +149,7 @@ void aparicion_pokemon(t_pokemon* pokemon){
 		//AGREGAMOS LOS MOVIMIENTOS DEL ENTRENADOR
 		armar_movimiento(entrenador);
 		//AGREGAMOS ACCION ATRAPAR A ENTRENADOR
-		t_accion* accion = armar_accion(atrapar_pokemon, 1);
+		t_accion* accion = armar_accion(atrapar_pokemon, 4);
 		list_add(entrenador->cola_de_acciones, accion);
 
 		puts("aca entra 9");

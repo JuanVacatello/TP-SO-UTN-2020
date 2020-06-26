@@ -70,12 +70,7 @@ void iniciar_vg(void){
 //------------CICLOS DE CPU---------------
 
 void efectuar_ciclo_cpu(t_entrenador* entrenador, int ciclos){
-	//contabilizar_ciclos( entrenador,ciclos);
 	ciclos_de_cpu(ciclos);
-}
-
-void contabilizar_ciclos(t_entrenador* entrenador, int ciclos){
-	entrenador->ciclos_de_cpu_totales += ciclos;
 }
 
 int transformarCiclos(int ciclos){

@@ -167,6 +167,8 @@ void enviar_suscripcion_a_cola(op_code cola) //HAY QUE VER ESTE TEMA DEL PARAMET
 
 }
 
+//recibir id de catch
+
 char* recibir_mensaje(int socket_cliente){
 
 	op_code code_op;

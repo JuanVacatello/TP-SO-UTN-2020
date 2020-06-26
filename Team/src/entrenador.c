@@ -28,6 +28,7 @@ t_entrenador* armar_entrenador(int indice){
 
 	t_entrenador* entrenador = malloc(sizeof(t_entrenador));
 	int contador_atrapados = 0;
+
 	//NOMBRE
 	entrenador->ID_entrenador = indice + 65;
 
@@ -259,6 +260,7 @@ void ejecutar_entrenador(t_entrenador* entrenador){
 void atrapar_pokemon(t_entrenador* entrenador){
 
 	enviar_CatchPokemon_a_broker(3, entrenador);
+	efectuar_ciclo_cpu(entrenador, 1);
 	pthread_mutex_lock(&mutex_entrenador);
 
 	if(entrenador->pudo_atrapar_pokemon == 0){

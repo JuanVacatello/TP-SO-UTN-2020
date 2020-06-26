@@ -137,7 +137,67 @@ int ciclos_rafaga_a_ejecutar(t_entrenador* entrenador){
 }
 
 
+void planificar_rr(void){
 
+	t_entrenador* entrenador;
+	int quantum_remanente = obtener_quantum();
+	t_accion* accion_aux;
+	puts("aca entra4");
+	while (1){
+
+		if(deteccion_de_deadlock()){
+
+			//hacer el intercambio
+
+		}
+
+		else{
+
+		puts("aca entra5");
+
+		//pthread_mutex_lock(&mutex_planificador);	//SE BLOQUEA BIEN
+
+		while(!list_is_empty(lista_de_pokemones_sueltos)){
+				t_pokemon* pokemon_nuevo = list_remove(lista_de_pokemones_sueltos,0);
+				aparicion_pokemon(pokemon_nuevo);
+		}
+
+		puts("aca entra10");
+															//quantum = 0
+		while(!list_is_empty(lista_de_entrenadores_ready)){//, entrenador2= 2 acciones  entrenador 1 = 1 acciones
+			if(quantum_remanente == 0){
+				quantum_remanente = obtener_quantum();
+			}
+			entrenador = list_remove(lista_de_entrenadores_ready,0);
+			entrenador->estado = EXEC;
+
+			while(list_size(entrenador->cola_de_acciones) > 0 && quantum_remanente > 0){
+				accion_aux = list_get(entrenador->cola_de_acciones,0);
+				if(accion_aux->ciclo_cpu <= quantum_remanente){
+						ejecutar_entrenador(entrenador);
+						quantum_remanente-= accion_aux->ciclo_cpu;
+				}
+				else{
+					accion_aux->ciclo_cpu -= quantum_remanente;
+					list_add_in_index(entrenador->cola_de_acciones,0,accion_aux);
+					quantum_remanente = 0;
+					printf("%d", accion_aux->ciclo_cpu); //termina en -1 cuando tenemos acciones grandes
+				}
+
+			}
+			if(list_size(entrenador->cola_de_acciones) > 0 && quantum_remanente == 0){
+				list_add(lista_de_entrenadores_ready, entrenador);
+			}
+		}
+
+
+		//intentar atrapar pokemon --> mandar catch pokemon
+		puts("SE BLOQUEA DESPUES DE EJECUTAR");
+		pthread_mutex_lock(&mutex_planificador);
+		}
+
+	}
+}
 
 
 
