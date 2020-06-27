@@ -31,8 +31,6 @@ void iniciar_servidor(void)
 		exit(6);
 	}
 
-	completar_logger("Se conectó proceso al Broker", "BROKER", LOG_LEVEL_INFO); // LOG OBLIGATORIO
-
     freeaddrinfo(servinfo);
 
     while(1)
@@ -53,6 +51,8 @@ void esperar_cliente(int socket_servidor)
 
 void serve_client(int* socket)
 {
+	completar_logger("Se conectó proceso al Broker", "BROKER", LOG_LEVEL_INFO); // LOG OBLIGATORIO
+
 	op_code cod_op;
 	if(recv(*socket, &cod_op, sizeof(op_code), MSG_WAITALL) == -1)
 		pthread_exit(NULL);

@@ -8,16 +8,14 @@ int main(void)
 	tamanio_de_memoria = obtener_tamanio_memoria();
 	elementos_en_memoria = list_create();
 
-	algoritmo_reemplazo = obtener_algoritmo_reemplazo();
 	tamanio_minimo_particion = obtener_tamanio_minimo_particion();
-
 	frecuencia_compactacion = obtener_frecuencia_compactacion();
 
 	memoria_principal = malloc(tamanio_de_memoria);
-	memset(memoria_principal,0,tamanio_de_memoria);
+	memset(memoria_principal,0,tamanio_de_memoria); // Va a traer quilombo con el caught, mejor cambiarlo a numero negativo
 
-	//creacion_colas_de_mensajes();
-	//iniciar_servidor();
+	creacion_colas_de_mensajes();
+	iniciar_servidor();
 
 	terminar_programa();
 
