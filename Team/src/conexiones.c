@@ -141,25 +141,32 @@ void* serializar_paquete(t_paquete* paquete, int *bytes)
 	return a_enviar;
 }
 
-void enviar_suscripcion_a_cola(op_code cola) //HAY QUE VER ESTE TEMA DEL PARAMETRO
+void enviar_suscripcion_a_cola(op_code cola)
 {
 
 	char* puerto_broker = obtener_puerto();
 	char* ip_broker = obtener_ip();
+	int socket_broker;
+	int tiempo_reconexion = obtener_tiempo_reconexion();
 
-	int socket_cliente = crear_conexion(ip_broker,puerto_broker);
+	socket_broker = crear_conexion(ip_broker,puerto_broker);
+
+	/*while(socket_broker == -1){
+		sleep(tiempo_reconexion);
+		socket_broker = crear_conexion(ip_broker,puerto_broker);
+	}*/
 
 	int tamanio_paquete = 0;
 	void* a_enviar;
 	puts("aca entra1.5");
 
-	a_enviar = suscribirse_a_cola(socket_cliente, cola, &tamanio_paquete);
+	a_enviar = suscribirse_a_cola(socket_broker, cola, &tamanio_paquete);
 
-	send(socket_cliente,a_enviar,tamanio_paquete,0);
+	send(socket_broker,a_enviar,tamanio_paquete,0);
 
 	free(a_enviar);
 
-	char* mensaje_subscripcion = recibir_mensaje(socket_cliente);
+	char* mensaje_subscripcion = recibir_mensaje(socket_broker);
 
 	puts(mensaje_subscripcion);
 

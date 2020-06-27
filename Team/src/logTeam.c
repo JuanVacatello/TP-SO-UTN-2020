@@ -143,7 +143,16 @@ void log_llego_mensaje_nuevo_localized_pokemon(char* pokemon, int posX, int posY
 }
 
 
+// 10. Inicio de proceso de reintento de comunicación con el Broker
+void log_intento_reintento_comunicacion_broker(char* pokemon, int posX, int posY){
 
+	char* mensaje = string_from_format("Se detecto que NO hay situacion de deadlock");
+
+	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+}
+
+
+// 11. Resultado de proceso de reintento de comunicación con el Broker.
 
 
 

@@ -22,8 +22,6 @@ int main(void) {
 		iniciar_vg();
 		suscribirse_a_colas();
 
-
-
 		/*puts("aca entra00");
 
 		retardo = obtener_retardo_ciclo_cpu();
@@ -42,18 +40,6 @@ int main(void) {
 		//alpha = obtener_alpha();
 		//printf("%d\n",alpha);
 
-		puts(" ");
-*/
-		//t_entrenador* entrenador = armar_entrenador(2);
-
-/*
-		printf("%d\n",entrenador->posicion.x);
-		printf("%d\n",entrenador->posicion.y);
-		puts(" ");
-		puts(list_get(entrenador->objetivo,0));
-		puts(list_get(entrenador->objetivo,1));
-		puts(" ");
-		puts(list_get(entrenador->atrapados,0));
 */
 		puts("aca entra1");
 

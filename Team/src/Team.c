@@ -149,7 +149,7 @@ void aparicion_pokemon(t_pokemon* pokemon){
 		//AGREGAMOS LOS MOVIMIENTOS DEL ENTRENADOR
 		armar_movimiento(entrenador);
 		//AGREGAMOS ACCION ATRAPAR A ENTRENADOR
-		t_accion* accion = armar_accion(atrapar_pokemon, 4);
+		t_accion* accion = armar_accion(atrapar_pokemon, 3);
 		list_add(entrenador->cola_de_acciones, accion);
 
 		puts("aca entra 9");

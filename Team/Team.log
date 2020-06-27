@@ -1,182 +1,37 @@
-[INFO] 17:00:54:422 TEAM/(8121:8127): El entrenador A se movió a la posicion 1|3.
-[INFO] 17:00:59:429 TEAM/(8121:8129): El entrenador A se movió a la posicion 1|2.
-[INFO] 17:01:04:431 TEAM/(8121:8130): El entrenador A se movió a la posicion 1|1.
-[INFO] 17:01:09:433 TEAM/(8121:8131): El entrenador A atrapó un Pikachu en la posicion 1|1.
-[INFO] 17:01:09:433 TEAM/(8121:8132): El entrenador C se movió a la posicion 9|8.
-[INFO] 17:01:14:434 TEAM/(8121:8133): El entrenador C se movió a la posicion 9|7.
-[INFO] 17:01:19:435 TEAM/(8121:8134): El entrenador C atrapó un Squirtle en la posicion 9|7.
-[INFO] 17:01:19:436 TEAM/(8121:8135): El entrenador B se movió a la posicion 5|5.
-[INFO] 17:01:24:438 TEAM/(8121:8136): El entrenador B se movió a la posicion 4|5.
-[INFO] 17:01:29:440 TEAM/(8121:8137): El entrenador B se movió a la posicion 3|5.
-[INFO] 17:01:34:441 TEAM/(8121:8138): El entrenador B se movió a la posicion 2|5.
-[INFO] 17:01:39:443 TEAM/(8121:8141): El entrenador B se movió a la posicion 2|4.
-[INFO] 17:01:44:445 TEAM/(8121:8142): El entrenador B se movió a la posicion 2|3.
-[INFO] 17:01:49:446 TEAM/(8121:8143): El entrenador B se movió a la posicion 2|2.
-[INFO] 17:01:54:447 TEAM/(8121:8144): El entrenador B atrapó un Onix en la posicion 2|2.
-[INFO] 17:06:16:405 TEAM/(8285:8291): El entrenador A se movió a la posicion 1|3.
-[INFO] 17:06:21:408 TEAM/(8285:8293): El entrenador A se movió a la posicion 1|2.
-[INFO] 17:06:26:409 TEAM/(8285:8294): El entrenador A se movió a la posicion 1|1.
-[INFO] 17:06:31:412 TEAM/(8285:8295): El entrenador A atrapó un Pikachu en la posicion 1|1.
-[INFO] 17:06:31:413 TEAM/(8285:8296): El entrenador C se movió a la posicion 9|8.
-[INFO] 17:06:36:413 TEAM/(8285:8297): El entrenador C se movió a la posicion 9|7.
-[INFO] 17:06:41:414 TEAM/(8285:8300): El entrenador C atrapó un Squirtle en la posicion 9|7.
-[INFO] 17:06:41:415 TEAM/(8285:8301): El entrenador B se movió a la posicion 5|5.
-[INFO] 17:06:46:415 TEAM/(8285:8302): El entrenador B se movió a la posicion 4|5.
-[INFO] 17:06:51:418 TEAM/(8285:8303): El entrenador B se movió a la posicion 3|5.
-[INFO] 17:06:56:422 TEAM/(8285:8304): El entrenador B se movió a la posicion 2|5.
-[INFO] 17:07:01:427 TEAM/(8285:8305): El entrenador B se movió a la posicion 2|4.
-[INFO] 17:07:06:429 TEAM/(8285:8306): El entrenador B se movió a la posicion 2|3.
-[INFO] 17:07:11:434 TEAM/(8285:8308): El entrenador B se movió a la posicion 2|2.
-[INFO] 17:07:16:440 TEAM/(8285:8312): El entrenador B atrapó un Onix en la posicion 2|2.
-[INFO] 17:48:15:722 TEAM/(10243:10243): el socket de conexion es: 4.
-[INFO] 17:48:16:742 TEAM/(10243:10250): El entrenador A se movió a la posicion 1|3.
-[INFO] 17:48:21:746 TEAM/(10243:10251): El entrenador A se movió a la posicion 1|2.
-[INFO] 17:48:26:750 TEAM/(10243:10252): El entrenador A se movió a la posicion 1|1.
-[INFO] 17:48:31:752 TEAM/(10243:10253): el socket de conexion es: 5.
-[INFO] 17:50:02:724 TEAM/(10315:10315): el socket de conexion es: 4.
-[INFO] 17:50:04:726 TEAM/(10315:10322): El entrenador A se movió a la posicion 1|3.
-[INFO] 17:50:09:727 TEAM/(10315:10323): El entrenador A se movió a la posicion 1|2.
-[INFO] 17:50:14:728 TEAM/(10315:10324): El entrenador A se movió a la posicion 1|1.
-[INFO] 17:50:19:729 TEAM/(10315:10326): el socket de conexion es: 5.
-[INFO] 17:52:47:554 TEAM/(10399:10399): el socket de conexion es: 4.
-[INFO] 17:52:48:557 TEAM/(10399:10399): el socket de conexion es: 5.
-[INFO] 17:52:49:558 TEAM/(10399:10399): el socket de conexion es: 6.
-[INFO] 17:52:50:566 TEAM/(10399:10408): El entrenador A se movió a la posicion 1|3.
-[INFO] 17:52:55:574 TEAM/(10399:10409): El entrenador A se movió a la posicion 1|2.
-[INFO] 17:53:00:577 TEAM/(10399:10410): El entrenador A se movió a la posicion 1|1.
-[INFO] 17:53:05:579 TEAM/(10399:10411): el socket de conexion es: 7.
-[INFO] 18:06:38:113 TEAM/(11815:11847): El entrenador A se movió a la posicion 1|3.
-[INFO] 18:06:43:113 TEAM/(11815:11884): El entrenador A se movió a la posicion 1|2.
-[INFO] 18:06:52:880 TEAM/(11893:11893): el socket de conexion es: 4.
-[INFO] 18:06:52:890 TEAM/(11893:11893): el socket de conexion es: 5.
-[INFO] 18:06:52:890 TEAM/(11893:11893): el socket de conexion es: 6.
-[INFO] 18:06:52:900 TEAM/(11893:11902): El entrenador A se movió a la posicion 1|3.
-[INFO] 18:06:57:900 TEAM/(11893:11908): El entrenador A se movió a la posicion 1|2.
-[INFO] 18:07:02:902 TEAM/(11893:11909): El entrenador A se movió a la posicion 1|1.
-[INFO] 18:07:07:904 TEAM/(11893:11910): el socket de conexion es: 7.
-[INFO] 18:09:16:952 TEAM/(11978:11978): el socket de conexion es: 4.
-[INFO] 18:25:47:606 TEAM/(12702:12702): el socket de conexion es: 4.
-[INFO] 18:26:43:192 TEAM/(12731:12731): el socket de conexion es: 4.
-[INFO] 18:29:50:281 TEAM/(13006:13006): el socket de conexion es: 4.
-[INFO] 18:30:58:171 TEAM/(13091:13091): el socket de conexion es: 4.
-[INFO] 18:31:01:408 TEAM/(13091:13091): el socket de conexion es: 5.
-[INFO] 18:31:03:250 TEAM/(13091:13091): el socket de conexion es: 6.
-[INFO] 18:31:22:13 TEAM/(13134:13134): el socket de conexion es: 4.
-[INFO] 18:31:22:16 TEAM/(13134:13134): el socket de conexion es: 5.
-[INFO] 18:31:22:21 TEAM/(13134:13134): el socket de conexion es: 6.
-[INFO] 18:31:22:40 TEAM/(13134:13143): El entrenador A se movió a la posicion 1|3.
-[INFO] 18:31:27:41 TEAM/(13134:13150): El entrenador A se movió a la posicion 1|2.
-[INFO] 18:31:32:46 TEAM/(13134:13152): El entrenador A se movió a la posicion 1|1.
-[INFO] 18:31:37:47 TEAM/(13134:13153): el socket de conexion es: 7.
-[INFO] 18:32:04:756 TEAM/(13166:13166): el socket de conexion es: 4.
-[INFO] 18:32:04:765 TEAM/(13166:13166): el socket de conexion es: 5.
-[INFO] 18:32:04:769 TEAM/(13166:13166): el socket de conexion es: 6.
-[INFO] 18:32:04:787 TEAM/(13166:13175): El entrenador A se movió a la posicion 1|3.
-[INFO] 18:32:09:788 TEAM/(13166:13177): El entrenador A se movió a la posicion 1|2.
-[INFO] 18:32:14:794 TEAM/(13166:13178): El entrenador A se movió a la posicion 1|1.
-[INFO] 18:32:19:796 TEAM/(13166:13184): el socket de conexion es: 7.
-[INFO] 18:32:52:850 TEAM/(13240:13240): el socket de conexion es: 4.
-[INFO] 18:32:52:851 TEAM/(13240:13240): el socket de conexion es: 5.
-[INFO] 18:32:52:851 TEAM/(13240:13240): el socket de conexion es: 6.
-[INFO] 18:32:52:860 TEAM/(13240:13249): El entrenador A se movió a la posicion 1|3.
-[INFO] 18:32:57:863 TEAM/(13240:13251): El entrenador A se movió a la posicion 1|2.
-[INFO] 18:33:02:865 TEAM/(13240:13252): El entrenador A se movió a la posicion 1|1.
-[INFO] 18:33:07:866 TEAM/(13240:13253): el socket de conexion es: 7.
-[INFO] 18:33:57:168 TEAM/(13322:13322): el socket de conexion es: 4.
-[INFO] 18:33:57:176 TEAM/(13322:13322): el socket de conexion es: 5.
-[INFO] 18:33:57:177 TEAM/(13322:13322): el socket de conexion es: 6.
-[INFO] 18:33:57:194 TEAM/(13322:13331): El entrenador A se movió a la posicion 1|3.
-[INFO] 18:34:02:196 TEAM/(13322:13333): El entrenador A se movió a la posicion 1|2.
-[INFO] 18:34:07:197 TEAM/(13322:13334): El entrenador A se movió a la posicion 1|1.
-[INFO] 18:34:12:200 TEAM/(13322:13335): el socket de conexion es: 7.
-[INFO] 18:50:44:578 TEAM/(13996:14001): Se conectó proceso al Team
-[INFO] 18:52:05:618 TEAM/(12434:17498): Se conectó proceso al Team
-[INFO] 18:56:21:681 TEAM/(18089:18095): El entrenador A se movió a la posicion 1|3.
-[INFO] 18:56:26:682 TEAM/(18089:18097): El entrenador A se movió a la posicion 1|2.
-[INFO] 18:56:31:684 TEAM/(18089:18098): El entrenador A se movió a la posicion 1|1.
-[INFO] 17:45:29:493 TEAM/(8977:8988): El entrenador A se movió a la posicion 1|3.
-[INFO] 17:45:34:497 TEAM/(8977:8990): El entrenador A se movió a la posicion 1|2.
-[INFO] 17:45:39:498 TEAM/(8977:8991): El entrenador C se movió a la posicion 9|8.
-[INFO] 17:45:44:501 TEAM/(8977:8992): El entrenador C se movió a la posicion 9|7.
-[INFO] 17:45:49:514 TEAM/(8977:8993): El entrenador B se movió a la posicion 5|5.
-[INFO] 17:45:54:515 TEAM/(8977:8994): El entrenador B se movió a la posicion 4|5.
-[INFO] 17:45:59:516 TEAM/(8977:8995): El entrenador A se movió a la posicion 1|1.
-[INFO] 17:46:04:518 TEAM/(8977:8996): El entrenador A atrapó un Pikachu en la posicion 1|1.
-[INFO] 17:46:04:519 TEAM/(8977:8997): El entrenador C atrapó un Squirtle en la posicion 9|7.
-[INFO] 17:46:04:519 TEAM/(8977:8998): El entrenador B se movió a la posicion 3|5.
-[INFO] 17:46:09:520 TEAM/(8977:8999): El entrenador B se movió a la posicion 2|5.
-[INFO] 17:46:14:523 TEAM/(8977:9000): El entrenador B se movió a la posicion 2|4.
-[INFO] 17:46:19:526 TEAM/(8977:9003): El entrenador B se movió a la posicion 2|3.
-[INFO] 17:46:24:527 TEAM/(8977:9004): El entrenador B se movió a la posicion 2|2.
-[INFO] 17:46:29:532 TEAM/(8977:9005): El entrenador B atrapó un Onix en la posicion 2|2.
-[INFO] 17:53:10:715 TEAM/(9193:9199): El entrenador A se movió a la posicion 1|3.
-[INFO] 17:53:15:725 TEAM/(9193:9263): El entrenador A se movió a la posicion 1|2.
-[INFO] 17:53:20:727 TEAM/(9193:9268): El entrenador C se movió a la posicion 9|8.
-[INFO] 17:53:25:729 TEAM/(9193:9269): El entrenador C se movió a la posicion 9|7.
-[INFO] 17:53:30:730 TEAM/(9193:9332): El entrenador B se movió a la posicion 5|5.
-[INFO] 17:53:35:733 TEAM/(9193:9333): El entrenador B se movió a la posicion 4|5.
-[INFO] 17:53:40:741 TEAM/(9193:9334): El entrenador A se movió a la posicion 1|1.
-[INFO] 17:53:50:747 TEAM/(9193:9340): El entrenador A atrapó un Pikachu en la posicion 1|1.
-[INFO] 17:53:55:748 TEAM/(9193:9346): El entrenador C atrapó un Squirtle en la posicion 9|7.
-[INFO] 17:53:55:749 TEAM/(9193:9347): El entrenador B se movió a la posicion 3|5.
-[INFO] 17:54:00:755 TEAM/(9193:9348): El entrenador B se movió a la posicion 2|5.
-[INFO] 17:54:05:757 TEAM/(9193:9349): El entrenador B se movió a la posicion 2|4.
-[INFO] 17:54:10:758 TEAM/(9193:9350): El entrenador B se movió a la posicion 2|3.
-[INFO] 17:54:15:759 TEAM/(9193:9351): El entrenador B se movió a la posicion 2|2.
-[INFO] 17:54:25:762 TEAM/(9193:9354): El entrenador B atrapó un Onix en la posicion 2|2.
-[INFO] 18:22:39:131 TEAM/(10494:10501): El entrenador A se movió a la posicion 1|3.
-[INFO] 18:22:44:133 TEAM/(10494:10503): El entrenador A se movió a la posicion 1|2.
-[INFO] 18:22:49:134 TEAM/(10494:10509): El entrenador C se movió a la posicion 9|8.
-[INFO] 18:22:54:137 TEAM/(10494:10510): El entrenador C se movió a la posicion 9|7.
-[INFO] 18:22:59:140 TEAM/(10494:10516): El entrenador B se movió a la posicion 5|5.
-[INFO] 18:23:04:141 TEAM/(10494:10517): El entrenador B se movió a la posicion 4|5.
-[INFO] 18:23:09:144 TEAM/(10494:10518): El entrenador A se movió a la posicion 1|1.
-[INFO] 18:23:14:146 TEAM/(10494:10519): El entrenador B se movió a la posicion 3|5.
-[INFO] 18:23:19:148 TEAM/(10494:10526): El entrenador B se movió a la posicion 2|5.
-[INFO] 18:23:44:150 TEAM/(10494:10529): El entrenador C atrapó un Squirtle en la posicion 9|7.
-[INFO] 18:23:44:150 TEAM/(10494:10530): El entrenador B se movió a la posicion 2|4.
-[INFO] 18:23:49:154 TEAM/(10494:10531): El entrenador B se movió a la posicion 2|3.
-[INFO] 18:24:14:160 TEAM/(10494:10532): El entrenador A atrapó un Pikachu en la posicion 1|1.
-[INFO] 18:26:53:724 TEAM/(10689:10735): El entrenador A se movió a la posicion 1|3.
-[INFO] 18:27:08:663 TEAM/(10689:10744): El entrenador A se movió a la posicion 1|2.
-[INFO] 18:27:35:604 TEAM/(10779:10815): El entrenador A se movió a la posicion 1|3.
-[INFO] 18:27:37:610 TEAM/(10779:10820): El entrenador A se movió a la posicion 1|2.
-[INFO] 18:27:39:621 TEAM/(10779:10821): El entrenador C se movió a la posicion 9|8.
-[INFO] 18:27:41:633 TEAM/(10779:10827): El entrenador C se movió a la posicion 9|7.
-[INFO] 18:27:43:640 TEAM/(10779:10828): El entrenador B se movió a la posicion 5|5.
-[INFO] 18:27:45:655 TEAM/(10779:10830): El entrenador B se movió a la posicion 4|5.
-[INFO] 18:27:47:671 TEAM/(10779:10831): El entrenador A se movió a la posicion 1|1.
-[INFO] 18:27:51:684 TEAM/(10779:10837): El entrenador A atrapó un Pikachu en la posicion 1|1.
-[INFO] 18:27:53:691 TEAM/(10779:10838): El entrenador C atrapó un Squirtle en la posicion 9|7.
-[INFO] 18:27:53:695 TEAM/(10779:10839): El entrenador B se movió a la posicion 3|5.
-[INFO] 18:27:55:700 TEAM/(10779:10840): El entrenador B se movió a la posicion 2|5.
-[INFO] 18:27:57:710 TEAM/(10779:10841): El entrenador B se movió a la posicion 2|4.
-[INFO] 18:27:59:719 TEAM/(10779:10842): El entrenador B se movió a la posicion 2|3.
-[INFO] 18:28:01:725 TEAM/(10779:10843): El entrenador B se movió a la posicion 2|2.
-[INFO] 18:28:05:731 TEAM/(10779:10844): El entrenador B atrapó un Onix en la posicion 2|2.
-[INFO] 18:28:37:199 TEAM/(10895:10901): El entrenador A se movió a la posicion 1|3.
-[INFO] 18:28:39:200 TEAM/(10895:10903): El entrenador A se movió a la posicion 1|2.
-[INFO] 18:28:41:201 TEAM/(10895:10904): El entrenador C se movió a la posicion 9|8.
-[INFO] 18:28:43:202 TEAM/(10895:10910): El entrenador C se movió a la posicion 9|7.
-[INFO] 18:28:45:203 TEAM/(10895:10911): El entrenador B se movió a la posicion 5|5.
-[INFO] 18:28:47:205 TEAM/(10895:10912): El entrenador B se movió a la posicion 4|5.
-[INFO] 18:28:49:206 TEAM/(10895:10913): El entrenador A se movió a la posicion 1|1.
-[INFO] 18:28:51:207 TEAM/(10895:10914): El entrenador B se movió a la posicion 3|5.
-[INFO] 18:28:53:208 TEAM/(10895:10915): El entrenador B se movió a la posicion 2|5.
-[INFO] 18:28:57:209 TEAM/(10895:10916): El entrenador C atrapó un Squirtle en la posicion 9|7.
-[INFO] 18:28:57:210 TEAM/(10895:10917): El entrenador B se movió a la posicion 2|4.
-[INFO] 18:28:59:210 TEAM/(10895:10918): El entrenador B se movió a la posicion 2|3.
-[INFO] 18:29:03:211 TEAM/(10895:10919): El entrenador A atrapó un Pikachu en la posicion 1|1.
-[INFO] 18:31:01:396 TEAM/(11022:11028): El entrenador A se movió a la posicion 1|3.
-[INFO] 18:31:03:397 TEAM/(11022:11030): El entrenador A se movió a la posicion 1|2.
-[INFO] 18:31:05:397 TEAM/(11022:11031): El entrenador C se movió a la posicion 9|8.
-[INFO] 18:31:07:398 TEAM/(11022:11032): El entrenador C se movió a la posicion 9|7.
-[INFO] 18:31:09:400 TEAM/(11022:11033): El entrenador B se movió a la posicion 5|5.
-[INFO] 18:31:11:401 TEAM/(11022:11034): El entrenador B se movió a la posicion 4|5.
-[INFO] 18:31:13:403 TEAM/(11022:11035): El entrenador A se movió a la posicion 1|1.
-[INFO] 18:31:15:404 TEAM/(11022:11036): El entrenador B se movió a la posicion 3|5.
-[INFO] 18:31:17:405 TEAM/(11022:11037): El entrenador B se movió a la posicion 2|5.
-[INFO] 18:31:21:407 TEAM/(11022:11038): El entrenador C atrapó un Squirtle en la posicion 9|7.
-[INFO] 18:31:21:408 TEAM/(11022:11041): El entrenador B se movió a la posicion 2|4.
-[INFO] 18:31:23:410 TEAM/(11022:11042): El entrenador B se movió a la posicion 2|3.
-[INFO] 18:31:27:412 TEAM/(11022:11043): El entrenador A atrapó un Pikachu en la posicion 1|1.
+[INFO] 16:13:01:264 TEAM/(6844:6850): El entrenador A se movió a la posicion 1|3.
+[INFO] 16:13:03:265 TEAM/(6844:6852): El entrenador A se movió a la posicion 1|2.
+[INFO] 16:13:05:267 TEAM/(6844:6855): El entrenador C se movió a la posicion 9|8.
+[INFO] 16:13:07:267 TEAM/(6844:6856): El entrenador C se movió a la posicion 9|7.
+[INFO] 16:13:09:268 TEAM/(6844:6857): El entrenador B se movió a la posicion 5|5.
+[INFO] 16:13:11:276 TEAM/(6844:6858): El entrenador B se movió a la posicion 4|5.
+[INFO] 16:13:13:277 TEAM/(6844:6859): El entrenador A se movió a la posicion 1|1.
+[INFO] 16:14:55:719 TEAM/(6904:6911): El entrenador A se movió a la posicion 1|3.
+[INFO] 16:14:57:719 TEAM/(6904:6912): El entrenador A se movió a la posicion 1|2.
+[INFO] 16:14:59:728 TEAM/(6904:6913): El entrenador C se movió a la posicion 9|8.
+[INFO] 16:15:01:730 TEAM/(6904:6914): El entrenador C se movió a la posicion 9|7.
+[INFO] 16:15:03:731 TEAM/(6904:6916): El entrenador B se movió a la posicion 5|5.
+[INFO] 16:15:05:733 TEAM/(6904:6919): El entrenador B se movió a la posicion 4|5.
+[INFO] 16:15:07:734 TEAM/(6904:6920): El entrenador A se movió a la posicion 1|1.
+[INFO] 16:15:09:737 TEAM/(6904:6926): El entrenador B se movió a la posicion 3|5.
+[INFO] 16:15:11:738 TEAM/(6904:6927): El entrenador B se movió a la posicion 2|5.
+[INFO] 16:15:15:740 TEAM/(6904:6928): El entrenador A atrapó un Pikachu en la posicion 1|1.
+[INFO] 16:15:17:741 TEAM/(6904:6929): El entrenador C atrapó un Squirtle en la posicion 9|7.
+[INFO] 16:15:17:741 TEAM/(6904:6930): El entrenador B se movió a la posicion 2|4.
+[INFO] 16:15:19:742 TEAM/(6904:6931): El entrenador B se movió a la posicion 2|3.
+[INFO] 16:15:21:743 TEAM/(6904:6932): El entrenador B se movió a la posicion 2|2.
+[INFO] 16:15:25:746 TEAM/(6904:6933): El entrenador B atrapó un Onix en la posicion 2|2.
+[INFO] 16:16:32:255 TEAM/(6975:6981): El entrenador A se movió a la posicion 1|3.
+[INFO] 16:16:34:256 TEAM/(6975:6983): El entrenador A se movió a la posicion 1|2.
+[INFO] 16:16:36:260 TEAM/(6975:6984): El entrenador C se movió a la posicion 9|8.
+[INFO] 16:16:38:262 TEAM/(6975:6985): El entrenador C se movió a la posicion 9|7.
+[INFO] 16:16:40:263 TEAM/(6975:6986): El entrenador B se movió a la posicion 5|5.
+[INFO] 16:16:42:264 TEAM/(6975:6987): El entrenador B se movió a la posicion 4|5.
+[INFO] 16:16:44:265 TEAM/(6975:6989): El entrenador A se movió a la posicion 1|1.
+[INFO] 16:16:46:266 TEAM/(6975:6990): El entrenador B se movió a la posicion 3|5.
+[INFO] 16:16:48:267 TEAM/(6975:6991): El entrenador B se movió a la posicion 2|5.
+[INFO] 16:16:52:269 TEAM/(6975:6992): El entrenador A atrapó un Pikachu en la posicion 1|1.
+[INFO] 16:16:54:270 TEAM/(6975:6993): El entrenador C atrapó un Squirtle en la posicion 9|7.
+[INFO] 16:16:54:270 TEAM/(6975:6994): El entrenador B se movió a la posicion 2|4.
+[INFO] 16:16:56:271 TEAM/(6975:6995): El entrenador B se movió a la posicion 2|3.
+[INFO] 16:16:58:272 TEAM/(6975:6996): El entrenador B se movió a la posicion 2|2.
+[INFO] 16:17:02:273 TEAM/(6975:6997): El entrenador B atrapó un Onix en la posicion 2|2.

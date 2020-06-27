@@ -143,6 +143,7 @@ void planificar_rr(void){
 	int quantum_remanente = obtener_quantum();
 	t_accion* accion_aux;
 	puts("aca entra4");
+
 	while (1){
 
 		if(deteccion_de_deadlock()){
@@ -179,13 +180,15 @@ void planificar_rr(void){
 				}
 				else{
 					accion_aux->ciclo_cpu -= quantum_remanente;
-					list_add_in_index(entrenador->cola_de_acciones,0,accion_aux);
+					list_replace_and_destroy_element(entrenador->cola_de_acciones, 0, accion_aux, destruir_accion);
+					//list_add_in_index(entrenador->cola_de_acciones,0,accion_aux);
 					quantum_remanente = 0;
-					printf("%d", accion_aux->ciclo_cpu); //termina en -1 cuando tenemos acciones grandes
+					//puts("le resto el quantum a la accion"); //termina en -1 cuando tenemos acciones grandes
 				}
 
 			}
 			if(list_size(entrenador->cola_de_acciones) > 0 && quantum_remanente == 0){
+				entrenador->estado = READY;
 				list_add(lista_de_entrenadores_ready, entrenador);
 			}
 		}
@@ -201,7 +204,10 @@ void planificar_rr(void){
 
 
 
+void destruir_accion(t_accion* accion){
 
+
+}
 
 
 
