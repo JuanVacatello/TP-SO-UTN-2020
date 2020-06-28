@@ -6,20 +6,23 @@ void guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria, uint32_t tama
 	char* algoritmo_de_reemplazo = obtener_algoritmo_reemplazo();
 
 	if(toda_la_memoria_esta_ocupada()){  // logica de implementacion de algoritmo de reemplazo
-		if(!(strcmp(algoritmo_de_reemplazo, "FIFO"))){}
-		if(!(strcmp(algoritmo_de_reemplazo, "LRU"))){}
+
+		if(!(strcmp(algoritmo_de_reemplazo, "FIFO"))){
+			reemplazar_segun_FIFO(bloque_a_agregar_en_memoria, tamanio_a_agregar);
+		}
+
+		if(!(strcmp(algoritmo_de_reemplazo, "LRU"))){
+
+		}
 
 	} else { // logica de implementacion de algoritmo de no reemplazo we
 
 		if(!(strcmp(esquema_de_administracion, "PARTICIONES"))){
-
-			printf("El esquema de administracion de memoria es %s", esquema_de_administracion);
-
 			administracion_de_memoria_particiones(bloque_a_agregar_en_memoria,tamanio_a_agregar);
 		}
 
 		if(!(strcmp(esquema_de_administracion, "BS"))){
-				administracion_de_memoria_particiones(bloque_a_agregar_en_memoria,tamanio_a_agregar);
+			administracion_de_memoria_particiones(bloque_a_agregar_en_memoria,tamanio_a_agregar);
 		}
 	}
 }
@@ -88,13 +91,14 @@ void agregar_segun_first_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio
 	} else {
 
 		completar_logger("Estoy en if no esta vacia", "BROKER", LOG_LEVEL_INFO);
-		list_sort(elementos_en_memoria, comparar_inicios_mensajes); // Ordena la lista de menor a mayor a partir de la posición de inicio donde están guardados los mensajes en memoria
-		int tamanio_lista = list_size(elementos_en_memoria);
+		t_list* lista_ordenada = list_duplicate(elementos_en_memoria);
+		list_sort(lista_ordenada, comparar_inicios_mensajes); // Ordena la lista de menor a mayor a partir de la posición de inicio donde están guardados los mensajes en memoria
+		int tamanio_lista = list_size(lista_ordenada);
 
 		for(int i=0; i<tamanio_lista; i++){ // Recorre para ver todos los mensajes guardados en la memoria principal
 
 			t_mensaje_guardado* mensaje_a_leer = malloc(sizeof(t_mensaje_guardado));
-			mensaje_a_leer = list_get(elementos_en_memoria, i);
+			mensaje_a_leer = list_get(lista_ordenada, i);
 
 			int desplazamiento = mensaje_a_leer->byte_comienzo_ocupado + mensaje_a_leer->tamanio_ocupado; // Me paro al final del primer mensaje guardado
 
@@ -148,65 +152,35 @@ void agregar_segun_best_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio_
 
 		completar_logger("Estoy en if no esta vacia", "BROKER", LOG_LEVEL_INFO);
 
-		t_list* lista_de_pos_libres = list_create();
 		int tamanio_lista = list_size(elementos_en_memoria);
-
-		for(int i=0; i<tamanio_lista; i++){ // Recorre para ver todos los mensajes guardados en la memoria principal
-
-			t_mensaje_guardado* mensaje_a_leer = malloc(sizeof(t_mensaje_guardado));
-			mensaje_a_leer = list_get(elementos_en_memoria, i);
-
-			int tamanio_libre;
-			int comienzo_libre;
-			int desplazamiento = mensaje_a_leer->byte_comienzo_ocupado + mensaje_a_leer->tamanio_ocupado; // Me paro al final del primer mensaje guardado
-
-			char* alogea = string_from_format("El desplazamient deberia ser %d y es: %d.", 24, desplazamiento);
-			completar_logger(alogea, "Broker", LOG_LEVEL_INFO);
-
-			int contador = 0; // Si está vacío el espacio siguiente, leerá ceros
-			int cero;
-			memcpy(&cero, memoria_principal + desplazamiento, sizeof(int));
-
-			if(cero == 0){ // Quiere decir que el byte siguiente esta libre
-				comienzo_libre = desplazamiento;
-			}
-
-			while(cero == 0){
-				desplazamiento += sizeof(int);
-				memcpy(&cero, memoria_principal + desplazamiento, sizeof(int));
-				contador++;
-			}
-
-			char* alogear = string_from_format("Leyo %d ceros.", contador);
-			completar_logger(alogear, "Broker", LOG_LEVEL_INFO);
-
-			tamanio_libre = contador; // Igualo el tamaño libre a la cantidad de ceros leidos
-
-			t_posiciones_libres* nueva_pos_libre = malloc(sizeof(t_posiciones_libres));
-			nueva_pos_libre->byte_comienzo_libre = comienzo_libre;
-			nueva_pos_libre->tamanio_libre = tamanio_libre;
-			list_add(lista_de_pos_libres, nueva_pos_libre);
-
-			free(mensaje_a_leer);
-
-		}
-
-		// Una vez que termine de recorrer todos los mensajes
-
-		list_sort(lista_de_pos_libres, comparar_tamanios_libres); // Ordena la lista de menor a mayor a partir de la posición de inicio donde están guardados los mensajes en memoria
-		int tamanio = list_size(lista_de_pos_libres);
 		int encontrado = 0;
 		int tamanio_aceptable = tamanio_a_agregar; // Empieza buscando un tamaño igual al necesario, si no lo encuentra, busca uno mas grande por 1 byte, y asi
 
 		while(encontrado == 0){
-			t_posiciones_libres* posicion_a_leer = malloc(sizeof(t_posiciones_libres));
 
-			for(int i=0; i<tamanio; i++){
-				posicion_a_leer = list_get(lista_de_pos_libres, i);
+			for(int i=0; i<tamanio_lista; i++){ // Recorre para ver todos los mensajes guardados en la memoria principal
 
-				if(posicion_a_leer->tamanio_libre == tamanio_aceptable){
+				t_mensaje_guardado* mensaje_a_leer = malloc(sizeof(t_mensaje_guardado));
+				mensaje_a_leer = list_get(elementos_en_memoria, i);
 
-					int posicion_inicial_nuevo_mensaje = posicion_a_leer->byte_comienzo_libre;
+				int desplazamiento = mensaje_a_leer->byte_comienzo_ocupado + mensaje_a_leer->tamanio_ocupado; // Me paro al final del primer mensaje guardado
+
+				char* alogea = string_from_format("El desplazamient deberia ser %d y es: %d.", 24, desplazamiento);
+				completar_logger(alogea, "Broker", LOG_LEVEL_INFO);
+
+				int contador = 0; // Si está vacío el espacio siguiente, leerá ceros
+				int cero;
+				memcpy(&cero, memoria_principal + desplazamiento, sizeof(int));
+
+				while(cero == 0 && contador < tamanio_aceptable){
+					desplazamiento += sizeof(int);
+					memcpy(&cero, memoria_principal + desplazamiento, sizeof(int));
+					contador++;
+				}
+
+				if(contador == tamanio_aceptable){
+
+					int posicion_inicial_nuevo_mensaje = mensaje_a_leer->byte_comienzo_ocupado + mensaje_a_leer->tamanio_ocupado;
 					memcpy(memoria_principal + posicion_inicial_nuevo_mensaje, bloque_a_agregar_en_memoria, tamanio_a_agregar); //usar semaforos xq es variable global
 					mensaje_nuevo->byte_comienzo_ocupado = posicion_inicial_nuevo_mensaje;
 					mensaje_nuevo->tamanio_ocupado = tamanio_a_agregar;
@@ -220,16 +194,41 @@ void agregar_segun_best_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio_
 					break; // chequear
 				}
 
-			tamanio_aceptable++;
-
+				free(mensaje_a_leer);
 			}
 
-		free(posicion_a_leer);
-
+			tamanio_aceptable++;
 		}
 	}
 }
 
+void reemplazar_segun_FIFO(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
+
+	// QUE PASA SI NO ME ALCANZA CON EL QUE ELIMINO??
+
+	t_mensaje_guardado* mensaje_a_eliminar = malloc(sizeof(t_mensaje_guardado));
+	mensaje_a_eliminar = list_remove(elementos_en_memoria, 0); // Eliminamos el primer mensaje que entró
+	int posicion_inicial_nuevo_mensaje = mensaje_a_eliminar->byte_comienzo_ocupado;
+	int cantidad_a_eliminar = mensaje_a_eliminar->tamanio_ocupado;
+
+	memset(memoria_principal + posicion_inicial_nuevo_mensaje, 0, cantidad_a_eliminar);
+
+	t_mensaje_guardado* mensaje_nuevo = malloc(sizeof(t_mensaje_guardado));
+	memcpy(memoria_principal + posicion_inicial_nuevo_mensaje, bloque_a_agregar_en_memoria, tamanio_a_agregar); //usar semaforos xq es variable global
+	mensaje_nuevo->byte_comienzo_ocupado = posicion_inicial_nuevo_mensaje;
+	mensaje_nuevo->tamanio_ocupado = tamanio_a_agregar;
+	list_add(elementos_en_memoria, mensaje_nuevo);
+
+	char* log = string_from_format("Se almacenó un mensaje en la posición %d de la memoria principal y ocupa %d bytes", mensaje_nuevo->byte_comienzo_ocupado, mensaje_nuevo->tamanio_ocupado);
+	completar_logger(log, "BROKER", LOG_LEVEL_INFO); // LOG OBLIGATORIO
+
+	free(mensaje_a_eliminar);
+}
+
+void administracion_de_memoria_buddy_system(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
+
+	// Necesito pensar
+}
 
 int primera_posicion_vacia_y_entra(uint32_t tamanio_a_agregar){
 
@@ -262,11 +261,6 @@ bool comparar_inicios_mensajes(t_mensaje_guardado* mensaje1, t_mensaje_guardado*
 	return mensaje1->byte_comienzo_ocupado < mensaje2->byte_comienzo_ocupado;
 }
 
-bool comparar_tamanios_libres(t_posiciones_libres* pos1, t_posiciones_libres* pos2){
-	return pos1->tamanio_libre < pos2->tamanio_libre;
-}
-
-
 void mostrar_memoria_principal(void){
 
 	int desplazamiento = 0;
@@ -280,9 +274,7 @@ void mostrar_memoria_principal(void){
 
 }
 
-void administracion_de_memoria_buddy_system(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
-	//hola
-}
+
 
 /*		int tamanio_lista_mensajes = list_size(elementos_en_memoria);
 		t_mensaje_guardado* mensaje_comparar = malloc(sizeof(t_mensaje_guardado));

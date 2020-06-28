@@ -12,18 +12,13 @@
 #include<pthread.h>
 #include"configBroker.h"
 #include"logBroker.h"
+#include<time.h>
 
 typedef struct
 {
 	int tamanio_ocupado;
 	int byte_comienzo_ocupado;
 }t_mensaje_guardado;
-
-typedef struct
-{
-	int tamanio_libre;
-	int byte_comienzo_libre;
-}t_posiciones_libres;
 
 void* memoria_principal;
 int tamanio_de_memoria;
@@ -41,10 +36,11 @@ void agregar_segun_best_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio_
 
 void administracion_de_memoria_buddy_system(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
 
+void reemplazar_segun_FIFO(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
+
 bool comparar_inicios_mensajes(t_mensaje_guardado* mensaje1, t_mensaje_guardado* mensaje2);
 int primera_posicion_vacia_y_entra(uint32_t tamanio_a_agregar);
 void guardar_en_primera_posicion(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar, t_mensaje_guardado* mensaje_nuevo);
-bool comparar_tamanios_libres(t_posiciones_libres* pos1, t_posiciones_libres* pos2);
 
 int toda_la_memoria_esta_ocupada(void);
 void mostrar_memoria_principal(void);

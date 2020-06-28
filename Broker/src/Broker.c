@@ -12,7 +12,7 @@ int main(void)
 	frecuencia_compactacion = obtener_frecuencia_compactacion();
 
 	memoria_principal = malloc(tamanio_de_memoria);
-	memset(memoria_principal,0,tamanio_de_memoria); // Va a traer quilombo con el caught, mejor cambiarlo a numero negativo
+	memset(memoria_principal,0,tamanio_de_memoria);
 
 	creacion_colas_de_mensajes();
 	iniciar_servidor();

@@ -74,7 +74,7 @@ void process_request(op_code cod_op, int socket_cliente) {
 	switch (cod_op) {
 		case 0:
 			atender_suscripcion(socket_cliente);
-			enviar_mensaje(socket_cliente, "Suscripto");
+			//enviar_mensaje(socket_cliente, "Suscripto");
 			break;
 		case 1:
 			recibir_new_pokemon(socket_cliente);
@@ -258,7 +258,36 @@ void recibir_new_pokemon(int socket_cliente)
 
 	guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, tamanio_buffer);
 
+	// Prepararacion y envio de mensaje a suscriptores --> HACERLO CON TODOS
+
+	t_paquete* paquete = malloc(sizeof(t_paquete));
+	paquete->codigo_operacion = 1;
+	paquete->buffer = malloc(sizeof(t_buffer));
+	paquete->buffer->size = tamanio_buffer;
+	paquete->buffer->stream = bloque_a_agregar_en_memoria;
+
+	int tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
+	void* a_enviar = serializar_paquete(paquete, tamanio_paquete);
+	reenviar_mensaje_a_suscriptores(a_enviar, tamanio_paquete, suscriptores_new_pokemon);
+
+	// Guardo información del mensaje
+
+	guardar_mensaje_en_cola(1, bloque_a_agregar_en_memoria, mensajes_de_cola_new_pokemon);
+
 	free(bloque_a_agregar_en_memoria);
+}
+
+void guardar_mensaje_en_cola(op_code cod_op, void* contenido, t_list* lista_mensajes){
+
+	t_mensaje_a_guardar* nuevo_mensaje = malloc(sizeof(t_mensaje_a_guardar));
+	nuevo_mensaje->codigo_operacion = cod_op;
+	nuevo_mensaje->identificador = 1; // tengo q ver como hago esto
+	nuevo_mensaje->suscriptores = suscriptores_new_pokemon;
+	nuevo_mensaje->suscriptores_ack = suscriptores_new_pokemon; // tengo q ver como hago esto
+	nuevo_mensaje->contenido_mensaje = contenido;
+
+	list_add(lista_mensajes, nuevo_mensaje);
+	//free?
 }
 
 void recibir_appeared_pokemon(int socket_cliente){
@@ -320,8 +349,6 @@ void recibir_catch_pokemon(int socket_cliente){
 	uint32_t posY;
 	recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
 
-	printf("Tamanio pokemon %d, posx %d, posy %d", caracteresPokemon, posX, posY);
-
 	// Creacion de bloque a guardar en memoria
 
 	void* bloque_a_agregar_en_memoria = malloc(tamanio_buffer); // no cuenta el \n del nombre del Pokemon
@@ -354,11 +381,14 @@ void recibir_caught_pokemon(int socket_cliente){
 	uint32_t se_pudo_atrapar;
 	recv(socket_cliente, &se_pudo_atrapar, sizeof(uint32_t), MSG_WAITALL);
 
+	if(se_pudo_atrapar == 0){
+		se_pudo_atrapar = -1; // Para que no haya quilombo al momento de leer la memoria
+	}
+
 	// Creacion de bloque a guardar en memoria
 
 	uint32_t tamanio_buffer_sin_id_mensaje = tamanio_buffer-sizeof(uint32_t);
 	void* bloque_a_agregar_en_memoria = malloc(tamanio_buffer_sin_id_mensaje); // no cuenta el \n del nombre del Pokemon
-	int desplazamiento = 0;
 
 	memcpy(bloque_a_agregar_en_memoria, &se_pudo_atrapar, sizeof(uint32_t));
 
@@ -380,7 +410,7 @@ void recibir_get_pokemon(int socket_cliente){
 
 	// Creacion de bloque a guardar en memoria
 
-	void* bloque_a_agregar_en_memoria = malloc(tamanio_buffer); // no cuenta el \n del nombre del Pokemon
+	void* bloque_a_agregar_en_memoria = malloc(tamanio_buffer);
 	int desplazamiento = 0;
 
 	memcpy(bloque_a_agregar_en_memoria + desplazamiento, &caracteresPokemon, sizeof(uint32_t));
@@ -441,7 +471,24 @@ void recibir_localized_pokemon(int socket_cliente){
 	free(bloque_a_agregar_en_memoria);
 }
 
+void reenviar_mensaje_a_suscriptores(void* a_enviar, int tamanio_paquete, t_list* suscriptores){
 
+	int tamanio_lista_de_suscriptores = list_size(suscriptores);
+
+	for(int i = 0; i < tamanio_lista_de_suscriptores; i++){
+
+		proceso* suscriptor = list_get(suscriptores, i);
+		int socket_suscriptor = suscriptor->socket_cliente;
+
+		char* mensa = string_from_format("El socket al que le vamos a enviar es es: %d.", socket_suscriptor);
+		completar_logger(mensa, "Broker", LOG_LEVEL_INFO);
+
+		if(send(socket_suscriptor,a_enviar,tamanio_paquete,0) == -1){
+			completar_logger("Error en enviar por el socket","BROKER", LOG_LEVEL_INFO);
+			exit(3);
+		}
+	}
+}
 
 /*
 /////////////////////////// bardo //////////////////////////////////////////////////
@@ -572,7 +619,8 @@ void recibir_ack(int socket_cliente){
 	char* ack = (char*)malloc(largo_mensaje);
 	recv(socket_cliente, ack, largo_mensaje, MSG_WAITALL);
 
-	completar_logger(ack,"BROKER", LOG_LEVEL_INFO);
+	char* loggear = string_from_format("El suscriptor de socket %d recibió el mensaje.", socket_cliente);
+	completar_logger(loggear,"BROKER", LOG_LEVEL_INFO); // LOG OBLIGATORIO
 
 	op_code cod_op;
 	recv(socket_cliente, &cod_op, sizeof(op_code), MSG_WAITALL);
