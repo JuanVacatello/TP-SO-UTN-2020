@@ -1,14 +1,15 @@
 #include "memoria.h"
 
-void guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
+t_mensaje_guardado* guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
 
+	t_mensaje_guardado* mensaje_nuevo = malloc(sizeof(t_mensaje_guardado));
 	char* esquema_de_administracion = obtener_algoritmo_memoria();
 	char* algoritmo_de_reemplazo = obtener_algoritmo_reemplazo();
 
 	if(toda_la_memoria_esta_ocupada()){  // logica de implementacion de algoritmo de reemplazo
 
 		if(!(strcmp(algoritmo_de_reemplazo, "FIFO"))){
-			reemplazar_segun_FIFO(bloque_a_agregar_en_memoria, tamanio_a_agregar);
+			mensaje_nuevo = reemplazar_segun_FIFO(bloque_a_agregar_en_memoria, tamanio_a_agregar);
 		}
 
 		if(!(strcmp(algoritmo_de_reemplazo, "LRU"))){
@@ -18,13 +19,15 @@ void guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria, uint32_t tama
 	} else { // logica de implementacion de algoritmo de no reemplazo we
 
 		if(!(strcmp(esquema_de_administracion, "PARTICIONES"))){
-			administracion_de_memoria_particiones(bloque_a_agregar_en_memoria,tamanio_a_agregar);
+			mensaje_nuevo = administracion_de_memoria_particiones(bloque_a_agregar_en_memoria,tamanio_a_agregar);
 		}
 
 		if(!(strcmp(esquema_de_administracion, "BS"))){
-			administracion_de_memoria_particiones(bloque_a_agregar_en_memoria,tamanio_a_agregar);
+			mensaje_nuevo = administracion_de_memoria_particiones(bloque_a_agregar_en_memoria,tamanio_a_agregar);
 		}
 	}
+
+	return mensaje_nuevo;
 }
 
 int toda_la_memoria_esta_ocupada(void){
@@ -47,27 +50,29 @@ int toda_la_memoria_esta_ocupada(void){
 	return booleano;
 }
 
-void administracion_de_memoria_particiones(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
+t_mensaje_guardado* administracion_de_memoria_particiones(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
 
+	t_mensaje_guardado* mensaje_nuevo = malloc(sizeof(t_mensaje_guardado));
 	char* algoritmo_particion_libre = obtener_algoritmo_particion_libre();
 
 	if(!(strcmp(algoritmo_particion_libre, "FF"))){
 
 		printf("El algoritmo de particion libre es %s", algoritmo_particion_libre);
 
-		agregar_segun_first_fit(bloque_a_agregar_en_memoria, tamanio_a_agregar);
+		mensaje_nuevo = agregar_segun_first_fit(bloque_a_agregar_en_memoria, tamanio_a_agregar);
 	}
 
 	if(!(strcmp(algoritmo_particion_libre, "BF"))){
 
 		printf("El algoritmo de particion libre es %s", algoritmo_particion_libre);
 
-		agregar_segun_best_fit(bloque_a_agregar_en_memoria, tamanio_a_agregar);
+		mensaje_nuevo = agregar_segun_best_fit(bloque_a_agregar_en_memoria, tamanio_a_agregar);
 	}
 
+	return mensaje_nuevo;
 }
 
-void guardar_en_primera_posicion(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar, t_mensaje_guardado* mensaje_nuevo){
+t_mensaje_guardado* guardar_en_primera_posicion(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar, t_mensaje_guardado* mensaje_nuevo){
 	memcpy(memoria_principal, bloque_a_agregar_en_memoria, tamanio_a_agregar); //usar semaforos xq es variable global
 	mensaje_nuevo->byte_comienzo_ocupado = 0;
 	mensaje_nuevo->tamanio_ocupado = tamanio_a_agregar;
@@ -75,9 +80,11 @@ void guardar_en_primera_posicion(void* bloque_a_agregar_en_memoria, uint32_t tam
 
 	char* log = string_from_format("Se almacenó un mensaje en la posición %d de la memoria principal", mensaje_nuevo->byte_comienzo_ocupado);
 	completar_logger(log, "BROKER", LOG_LEVEL_INFO); // LOG OBLIGATORIO
+
+	return mensaje_nuevo;
 }
 
-void agregar_segun_first_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
+t_mensaje_guardado* agregar_segun_first_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
 
 	t_mensaje_guardado* mensaje_nuevo = malloc(sizeof(t_mensaje_guardado));
 	int listsize = list_size(elementos_en_memoria);
@@ -86,7 +93,7 @@ void agregar_segun_first_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio
 	if(list_is_empty(elementos_en_memoria) || primera_posicion_vacia_y_entra(tamanio_a_agregar)){ // Si está vacía o la primera posición, agregar al principio de la memoria
 
 		completar_logger("Estoy en if esta vacia", "BROKER", LOG_LEVEL_INFO);
-		guardar_en_primera_posicion(bloque_a_agregar_en_memoria,tamanio_a_agregar,mensaje_nuevo);
+		mensaje_nuevo = guardar_en_primera_posicion(bloque_a_agregar_en_memoria,tamanio_a_agregar,mensaje_nuevo);
 
 	} else {
 
@@ -137,16 +144,17 @@ void agregar_segun_first_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio
 		}
 	}
 
+	return mensaje_nuevo;
 }
 
-void agregar_segun_best_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
+t_mensaje_guardado* agregar_segun_best_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
 
 	t_mensaje_guardado* mensaje_nuevo = malloc(sizeof(t_mensaje_guardado));
 
 	if(list_is_empty(elementos_en_memoria) || primera_posicion_vacia_y_entra(tamanio_a_agregar)){ // Si está vacía o la primera posición, agregar al principio de la memoria
 
 		completar_logger("Estoy en if esta vacia", "BROKER", LOG_LEVEL_INFO);
-		guardar_en_primera_posicion(bloque_a_agregar_en_memoria,tamanio_a_agregar,mensaje_nuevo);
+		mensaje_nuevo = guardar_en_primera_posicion(bloque_a_agregar_en_memoria,tamanio_a_agregar,mensaje_nuevo);
 
 	} else {
 
@@ -200,9 +208,11 @@ void agregar_segun_best_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio_
 			tamanio_aceptable++;
 		}
 	}
+
+	return mensaje_nuevo;
 }
 
-void reemplazar_segun_FIFO(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
+t_mensaje_guardado* reemplazar_segun_FIFO(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
 
 	// QUE PASA SI NO ME ALCANZA CON EL QUE ELIMINO??
 
@@ -223,6 +233,8 @@ void reemplazar_segun_FIFO(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a
 	completar_logger(log, "BROKER", LOG_LEVEL_INFO); // LOG OBLIGATORIO
 
 	free(mensaje_a_eliminar);
+
+	return mensaje_nuevo;
 }
 
 void administracion_de_memoria_buddy_system(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){

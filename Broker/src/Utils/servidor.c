@@ -187,6 +187,7 @@ void suscribirse_a_cola(proceso* suscriptor, int socket, uint32_t tamanio_buffer
 			break;
 		case 1:
 			list_add(suscriptores_new_pokemon, suscriptor);
+			// Enviar mensajes de new pokemon que esten en memoria
 			break;
 		case 2:
 			list_add(suscriptores_appeared_pokemon, suscriptor);
@@ -256,9 +257,10 @@ void recibir_new_pokemon(int socket_cliente)
 
 	memcpy(bloque_a_agregar_en_memoria + desplazamiento, &cantidad, sizeof(uint32_t));
 
-	guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, tamanio_buffer);
+	t_mensaje_guardado* mensaje_nuevo = malloc(sizeof(t_mensaje_guardado));
+	mensaje_nuevo = guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, tamanio_buffer);
 
-	// Prepararacion y envio de mensaje a suscriptores --> HACERLO CON TODOS
+	// Prepararacion y envio de mensaje a suscriptores ---> Una vez que chequeo que se manda, hacerlo con todos
 
 	t_paquete* paquete = malloc(sizeof(t_paquete));
 	paquete->codigo_operacion = 1;
@@ -272,22 +274,9 @@ void recibir_new_pokemon(int socket_cliente)
 
 	// Guardo información del mensaje
 
-	guardar_mensaje_en_cola(1, bloque_a_agregar_en_memoria, mensajes_de_cola_new_pokemon);
+	guardar_mensaje_en_cola(1, bloque_a_agregar_en_memoria, mensajes_de_cola_new_pokemon, mensaje_nuevo);
 
 	free(bloque_a_agregar_en_memoria);
-}
-
-void guardar_mensaje_en_cola(op_code cod_op, void* contenido, t_list* lista_mensajes){
-
-	t_mensaje_a_guardar* nuevo_mensaje = malloc(sizeof(t_mensaje_a_guardar));
-	nuevo_mensaje->codigo_operacion = cod_op;
-	nuevo_mensaje->identificador = 1; // tengo q ver como hago esto
-	nuevo_mensaje->suscriptores = suscriptores_new_pokemon;
-	nuevo_mensaje->suscriptores_ack = suscriptores_new_pokemon; // tengo q ver como hago esto
-	nuevo_mensaje->contenido_mensaje = contenido;
-
-	list_add(lista_mensajes, nuevo_mensaje);
-	//free?
 }
 
 void recibir_appeared_pokemon(int socket_cliente){
@@ -469,6 +458,19 @@ void recibir_localized_pokemon(int socket_cliente){
 	guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, tamanio_buffer);
 
 	free(bloque_a_agregar_en_memoria);
+}
+
+void guardar_mensaje_en_cola(op_code cod_op, void* contenido, t_list* lista_mensajes, t_mensaje_guardado* mensaje_nuevo){
+
+	t_mensaje_a_guardar* nuevo_mensaje = malloc(sizeof(t_mensaje_a_guardar));
+	nuevo_mensaje->codigo_operacion = cod_op;
+	nuevo_mensaje->identificador = 1; // tengo q ver como hago esto
+	nuevo_mensaje->suscriptores = suscriptores_new_pokemon;
+	nuevo_mensaje->suscriptores_ack = suscriptores_new_pokemon; // tengo q ver como hago esto
+	nuevo_mensaje->contenido_mensaje = mensaje_nuevo; // Guardo su posicion en memoria y el tamaño que ocupa, si lo quiero lo busco ahi
+
+	list_add(lista_mensajes, nuevo_mensaje);
+	//free?
 }
 
 void reenviar_mensaje_a_suscriptores(void* a_enviar, int tamanio_paquete, t_list* suscriptores){

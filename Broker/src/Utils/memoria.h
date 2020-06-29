@@ -28,19 +28,19 @@ t_list* elementos_en_memoria; // Lista de t_mensaje_guardado
 int tamanio_minimo_particion;
 int frecuencia_compactacion;
 
-void guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
+t_mensaje_guardado* guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
 
-void administracion_de_memoria_particiones(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
-void agregar_segun_first_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
-void agregar_segun_best_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
+t_mensaje_guardado* administracion_de_memoria_particiones(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
+t_mensaje_guardado* agregar_segun_first_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
+t_mensaje_guardado* agregar_segun_best_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
 
 void administracion_de_memoria_buddy_system(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
 
-void reemplazar_segun_FIFO(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
+t_mensaje_guardado* reemplazar_segun_FIFO(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
 
 bool comparar_inicios_mensajes(t_mensaje_guardado* mensaje1, t_mensaje_guardado* mensaje2);
 int primera_posicion_vacia_y_entra(uint32_t tamanio_a_agregar);
-void guardar_en_primera_posicion(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar, t_mensaje_guardado* mensaje_nuevo);
+t_mensaje_guardado* guardar_en_primera_posicion(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar, t_mensaje_guardado* mensaje_nuevo);
 
 int toda_la_memoria_esta_ocupada(void);
 void mostrar_memoria_principal(void);

@@ -61,7 +61,7 @@ typedef struct {
 	op_code codigo_operacion;
 	t_list* suscriptores;
 	t_list* suscriptores_ack;
-	void* contenido_mensaje;
+	t_mensaje_guardado* contenido_mensaje;
 } t_mensaje_a_guardar;
 
 t_list* suscriptores_new_pokemon;
@@ -102,7 +102,7 @@ void recibir_caught_pokemon(int socket_cliente);
 void recibir_get_pokemon(int socket_cliente);
 void recibir_localized_pokemon(int socket_cliente);
 void reenviar_mensaje_a_suscriptores(void* a_enviar, int tamanio_paquete, t_list* suscriptores);
-void guardar_mensaje_en_cola(op_code cod_op, void* contenido, t_list* lista_mensajes);
+void guardar_mensaje_en_cola(op_code cod_op, void* contenido, t_list* lista_mensajes, t_mensaje_guardado* mensaje_nuevo);
 //void enviar_mensaje_a_suscriptores(int cola_mensaje,int socket_cliente);
 
 void* recibir_mensaje(int socket_cliente, int* size);
