@@ -82,9 +82,6 @@ void enviarMensajeTeam(int argc, char *argv[]){
 	char* puerto = obtener_puerto_team();
 	char* ip = obtener_ip_team();
 
-	puts(puerto);
-	puts(ip);
-
 	int socket_conexion = crear_conexion(ip,puerto);
 
 	completar_logger("GameBoy se conectó a Team.", "GAMEBOY", LOG_LEVEL_INFO); // LOG OBLIGATORIO
