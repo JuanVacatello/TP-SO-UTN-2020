@@ -8,17 +8,12 @@ void planificar_fifo(void){
 		puts("aca entra4");
 	while (1){
 
-		if(deteccion_de_deadlock()){
+		pthread_mutex_lock(&mutex_planificador);
 
-			//hacer el intercambio
-
-		}
-
-		else{
 
 		puts("aca entra5");
 
-		//pthread_mutex_lock(&mutex_planificador);	//SE BLOQUEA BIEN
+			//SE BLOQUEA BIEN
 
 
 		while(!list_is_empty(lista_de_pokemones_sueltos)){
@@ -40,13 +35,14 @@ void planificar_fifo(void){
 		}
 
 
-		//intentar atrapar pokemon --> mandar catch pokemon
-		puts("SE BLOQUEA DESPUES DE EJECUTAR");
-		pthread_mutex_lock(&mutex_planificador);
-	}
+		while(deteccion_de_deadlock()){
+			intercambiar_pokemones();
 
+		}
+	}
 }
-}
+
+
 
 void planificar_sjf_sd(void){
 
@@ -203,12 +199,7 @@ void planificar_rr(void){
 }
 
 
-
-void destruir_accion(t_accion* accion){
-
-
-}
-
+void destruir_accion(t_accion* accion){}	//NO BORRAR
 
 
 

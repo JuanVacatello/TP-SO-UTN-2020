@@ -32,7 +32,7 @@ void iniciar_vg(void){
 
 	//pokemones nuevos de prueba
 
-	t_pokemon* pokemonPikachu = malloc(sizeof(t_pokemon));
+/*	t_pokemon* pokemonPikachu = malloc(sizeof(t_pokemon));
 	pokemonPikachu->especie = "Pikachu";
 	pokemonPikachu->posicion.x = 1;
 	pokemonPikachu->posicion.y = 1;
@@ -49,7 +49,7 @@ void iniciar_vg(void){
 	pokemonOnix->posicion.x = 2;
 	pokemonOnix->posicion.y = 2;
 	list_add(lista_de_pokemones_sueltos, pokemonOnix);
-
+*/
 /*
 	t_pokemon* pokemonSquirtle1 = malloc(sizeof(t_pokemon));
 	pokemonSquirtle1->especie = "Squirtle";
@@ -120,17 +120,20 @@ bool esta_en_lista(t_list* lista_pokemones, char* especie){
 void suscribirse_a_colas(){
 		sem_wait(&MUTEX_SUB);
 		enviar_suscripcion_a_cola(2);
+		puts("Me suscribo a APPEARED POKEMON");
 		//sleep(1);
 		//sem_post(&MUTEX_SUB);
 		sem_wait(&MUTEX_SUB);
+		puts("Me suscribo a CAUGHT POKEMON");
 		enviar_suscripcion_a_cola(4);
 		//sleep(1);
 		sem_wait(&MUTEX_SUB);
 		enviar_suscripcion_a_cola(6);
+		puts("Me suscribo a LOCALIZED POKEMON");
 		//sleep(1);
 
-		puts("Me suscribo a APPEARED POKEMON");
-		puts("Me suscribo a CAUGHT POKEMON");
-		puts("Me suscribo a LOCALIZED POKEMON");
+
+
+
 }
 

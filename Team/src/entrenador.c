@@ -259,6 +259,8 @@ void ejecutar_entrenador(t_entrenador* entrenador){
 
 void atrapar_pokemon(t_entrenador* entrenador){
 
+	int cantidad_pokemon = 0;
+
 	enviar_CatchPokemon_a_broker(3, entrenador);
 	efectuar_ciclo_cpu(entrenador, 1);
 	pthread_mutex_lock(&mutex_entrenador);
@@ -270,9 +272,10 @@ void atrapar_pokemon(t_entrenador* entrenador){
 		list_add(entrenador->atrapados, entrenador->pokemon_a_atrapar->especie);
 		log_operacion_de_atrapar_exitosa(entrenador);	//ATRAPÓ AL POKEMON
 
-		int cantidad_pokemon = dictionary_get(objetivo_global, entrenador->pokemon_a_atrapar->especie);
-
-		dictionary_put(objetivo_global, entrenador->pokemon_a_atrapar->especie, cantidad_pokemon - 1);
+		if(dictionary_has_key(atrapados_global, entrenador->pokemon_a_atrapar->especie)){
+			int cantidad_pokemon = dictionary_get(atrapados_global, entrenador->pokemon_a_atrapar->especie);
+		}
+		dictionary_remove_and_destroy(atrapados_global, entrenador->pokemon_a_atrapar->especie,eliminar_pokemon);
 		dictionary_put(atrapados_global, entrenador->pokemon_a_atrapar->especie, cantidad_pokemon + 1);
 
 		//Actualizamos diccionarios
@@ -350,12 +353,16 @@ bool termino_con_pokemon(t_entrenador* entrenador, t_pokemon* pokemon){
 	}
 }
 
-void intercambiar_pokemones(t_entrenador* entrenador1, t_entrenador* entrenador2){
+void intercambiar_pokemones(){
 
-	t_pokemon* pokemon_sobra_entrenador1;
-	t_pokemon* pokemon_sobra_entrenador2;
-	t_pokemon* pokemon_aux_1;
-	t_pokemon* pokemon_aux_2;
+	t_entrenador* entrenador1 = list_get(lista_de_entrenadores_deadlock,0);
+	t_entrenador* entrenador2 = list_get(lista_de_entrenadores_deadlock,1);
+
+
+	t_pokemon* pokemon_sobra_entrenador1 = malloc(sizeof(t_pokemon));
+	t_pokemon* pokemon_sobra_entrenador2 = malloc(sizeof(t_pokemon));
+	t_pokemon* pokemon_aux_1 = malloc(sizeof(t_pokemon));
+	t_pokemon* pokemon_aux_2 = malloc(sizeof(t_pokemon));
 
 	t_list* intercambiables_entrenador1 = list_create();
 	t_list* intercambiables_entrenador2 = list_create();
@@ -413,7 +420,7 @@ void intercambiar_pokemones(t_entrenador* entrenador1, t_entrenador* entrenador2
 	}
 
 	// POKEMONES INTERCAMBIADOS
-
+	log_operacion_de_intercambio(entrenador1,entrenador2);
 }
 
 
@@ -475,7 +482,6 @@ bool necesita_pokemon(t_entrenador* entrenador, t_pokemon* pokemon){
 		return false;
 	}
 }
-
 
 
 

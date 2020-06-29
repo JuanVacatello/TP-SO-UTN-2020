@@ -54,13 +54,15 @@ void iniciar_servidor(void)
         break;
     }
 
-
-	completar_logger("Se conectó proceso al Team", "TEAM", LOG_LEVEL_INFO); // LOG OBLIGATORIO
+	if(listen(socket_servidor, SOMAXCONN) == -1){
+		close(socket_servidor);
+		exit(6);
+	}
 
     freeaddrinfo(servinfo);
 
     while(1)
-    	esperar_cliente(socket_servidor);
+    	esperar_cliente(socket_servidor); // hacerlo con select, NUNCA ESPERA ACTIVA
 }
 
 void esperar_cliente(int socket_servidor)
@@ -146,6 +148,7 @@ void enviar_suscripcion_a_cola(op_code cola)
 
 	char* puerto_broker = obtener_puerto();
 	char* ip_broker = obtener_ip();
+
 	int socket_broker;
 	int tiempo_reconexion = obtener_tiempo_reconexion();
 
@@ -400,11 +403,10 @@ void recibir_AppearedPokemon(int socket_cliente){
 		if(es_pokemon_requerido(pokemonNuevo)){
 			list_add(lista_de_pokemones_sueltos, pokemonNuevo);
 
-
 			pthread_mutex_unlock(&mutex_planificador);
 		}
 
-		free(pokemonNuevo);
+		//free(pokemonNuevo);
 
 }
 /*

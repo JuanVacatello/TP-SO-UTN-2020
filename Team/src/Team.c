@@ -44,7 +44,7 @@ void generar_objetivo_global(void){
 
 	t_list* entrenadores = lista_de_entrenadores;
 	t_entrenador* entrenador;
-	t_list* lista_pokemons_entrenador;
+	t_list* lista_pokemons_entrenador = list_create();
 	int cantidad_pokemon;
 
 	//DE CADA ENTRENADOR OBTENEMOS SU LISTA DE OBJETIVOS Y LA PASAMOS A UN DICCIONARIO
@@ -59,9 +59,11 @@ void generar_objetivo_global(void){
 				if(dictionary_has_key(objetivo_global, list_get(lista_pokemons_entrenador,indice_pokemon))){
 
 					cantidad_pokemon = dictionary_get(objetivo_global, list_get(lista_pokemons_entrenador, indice_pokemon));
+					dictionary_remove_and_destroy(objetivo_global,list_get(lista_pokemons_entrenador, indice_pokemon),eliminar_pokemon);
+					dictionary_put(objetivo_global, list_get(lista_pokemons_entrenador, indice_pokemon), cantidad_pokemon+1);
 
-					dictionary_put(objetivo_global, list_get(lista_pokemons_entrenador, indice_pokemon), cantidad_pokemon++);
-
+					int asd = dictionary_get(objetivo_global, list_get(lista_pokemons_entrenador, indice_pokemon));
+					printf(" %d", asd);
 				}
 
 				else{
@@ -96,8 +98,10 @@ void generar_atrapados_global(void){
 			if(list_get(lista_pokemons_entrenador,indice_pokemon) != NULL){
 				if(dictionary_has_key(atrapados_global, list_get(lista_pokemons_entrenador,indice_pokemon))){
 					cantidad_pokemon = dictionary_get(atrapados_global, list_get(lista_pokemons_entrenador, indice_pokemon));
+					dictionary_remove_and_destroy(atrapados_global,list_get(lista_pokemons_entrenador, indice_pokemon),eliminar_pokemon);
 					dictionary_put(atrapados_global, list_get(lista_pokemons_entrenador, indice_pokemon), cantidad_pokemon++);
-								}
+
+					}
 				else{
 					dictionary_put(atrapados_global, list_get(lista_pokemons_entrenador, indice_pokemon), 1);
 					}
@@ -108,6 +112,7 @@ void generar_atrapados_global(void){
 
 }
 
+void eliminar_pokemon(char* pokemon){}
 
 void planificacion(){
 	puts("aca entra2");
@@ -166,8 +171,12 @@ void aparicion_pokemon(t_pokemon* pokemon){
 }
 
 bool es_pokemon_requerido(t_pokemon* pokemon){
+
+
 	if(dictionary_has_key(objetivo_global,pokemon->especie)){
-		if(dictionary_get(objetivo_global,pokemon->especie)==0){
+		int cantidad_objetivos = dictionary_get(objetivo_global,pokemon->especie);
+		int cantidad_atrapados = dictionary_get(atrapados_global,pokemon->especie);
+		if(cantidad_objetivos == cantidad_atrapados){
 			return false;
 		}
 		else{
@@ -191,12 +200,39 @@ t_accion* armar_accion(void(*accion)(void*), int ciclos){
 
 bool deteccion_de_deadlock(){
 
-	if(!list_is_empty(lista_de_entrenadores_deadlock)){
-		return true;
+	t_entrenador* entrenador;
+	t_list* total_atrapados = list_create();
+	t_list* atrapados_aux;
+	t_list* total_objetivos = list_create();
+	t_list* objetivos_aux;
+
+	for(int indice = 0; indice < cantidad_entrenadores(); indice++){
+		entrenador = list_get(lista_de_entrenadores,indice);
+		atrapados_aux = entrenador->atrapados;
+		list_add_all(total_atrapados, atrapados_aux);
+		objetivos_aux = entrenador->objetivo;
+		list_add_all(total_objetivos, objetivos_aux);
 	}
-	else{
-		return false;
+
+	if(list_size(total_atrapados) == list_size(total_objetivos)){
+
+		log_inicio_deteccion_deadlock();
+
+		if(!list_is_empty(lista_de_entrenadores_deadlock)){
+			log_deadlock_detectado();
+			return true;
+		}
+		else{
+			log_deadlock_no_detectado();
+			return false;
+		}
+
 	}
+
+	//free(atrapados_aux);
+	//free(objetivos_aux);
+
+	return false;
 }
 
 

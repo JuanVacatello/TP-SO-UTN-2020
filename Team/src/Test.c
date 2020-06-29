@@ -45,8 +45,8 @@ int main(void) {
 
 		puts("hola");
 
-		//pthread_create(&hilo_servidor, NULL , iniciar_servidor ,NULL);
-		//pthread_detach(hilo_servidor);
+		pthread_create(&hilo_servidor, NULL , iniciar_servidor ,NULL);
+		pthread_detach(hilo_servidor);
 
 		pthread_create(&hilo_planificador, NULL , planificacion ,NULL);
 		pthread_join(hilo_planificador,NULL);

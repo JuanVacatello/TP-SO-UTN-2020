@@ -112,7 +112,7 @@ void log_deadlock_detectado(){
 
 void log_deadlock_no_detectado(){
 
-	char* mensaje = string_from_format("Se detecto que NO hay situacion de deadlock");
+	char* mensaje = string_from_format("No se detecto situacion de deadlock");
 
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
 }
