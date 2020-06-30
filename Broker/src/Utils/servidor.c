@@ -315,8 +315,28 @@ void recibir_appeared_pokemon(int socket_cliente){
 	desplazamiento += sizeof(uint32_t);
 
 	memcpy(bloque_a_agregar_en_memoria + desplazamiento, &posY, sizeof(uint32_t));
+	desplazamiento += sizeof(uint32_t);
 
-	guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, tamanio_buffer_sin_id_mensaje);
+	t_mensaje_guardado* mensaje_nuevo = malloc(sizeof(t_mensaje_guardado));
+	mensaje_nuevo = guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, tamanio_buffer_sin_id_mensaje);
+
+	// Prepararacion y envio de mensaje a suscriptores
+
+	memcpy(bloque_a_agregar_en_memoria + desplazamiento, &id_mensaje_correlativo, sizeof(uint32_t));
+
+	t_paquete* paquete = malloc(sizeof(t_paquete));
+	paquete->codigo_operacion = 2;
+	paquete->buffer = malloc(sizeof(t_buffer));
+	paquete->buffer->size = tamanio_buffer;
+	paquete->buffer->stream = bloque_a_agregar_en_memoria;
+
+	int tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
+	void* a_enviar = serializar_paquete(paquete, tamanio_paquete);
+	reenviar_mensaje_a_suscriptores(a_enviar, tamanio_paquete, suscriptores_appeared_pokemon);
+
+	// Guardo información del mensaje
+
+	guardar_mensaje_en_cola(2, bloque_a_agregar_en_memoria, mensajes_de_cola_appeared_pokemon, mensaje_nuevo);
 
 	free(bloque_a_agregar_en_memoria);
 }
@@ -354,7 +374,24 @@ void recibir_catch_pokemon(int socket_cliente){
 
 	memcpy(bloque_a_agregar_en_memoria + desplazamiento, &posY, sizeof(uint32_t));
 
-	guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, tamanio_buffer);
+	t_mensaje_guardado* mensaje_nuevo = malloc(sizeof(t_mensaje_guardado));
+	mensaje_nuevo = guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, tamanio_buffer);
+
+	// Prepararacion y envio de mensaje a suscriptores ---> Una vez que chequeo que se manda, hacerlo con todos
+
+	t_paquete* paquete = malloc(sizeof(t_paquete));
+	paquete->codigo_operacion = 3;
+	paquete->buffer = malloc(sizeof(t_buffer));
+	paquete->buffer->size = tamanio_buffer;
+	paquete->buffer->stream = bloque_a_agregar_en_memoria;
+
+	int tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
+	void* a_enviar = serializar_paquete(paquete, tamanio_paquete);
+	reenviar_mensaje_a_suscriptores(a_enviar, tamanio_paquete, suscriptores_catch_pokemon);
+
+	// Guardo información del mensaje
+
+	guardar_mensaje_en_cola(3, bloque_a_agregar_en_memoria, mensajes_de_cola_catch_pokemon, mensaje_nuevo);
 
 	free(bloque_a_agregar_en_memoria);
 }
@@ -376,12 +413,34 @@ void recibir_caught_pokemon(int socket_cliente){
 
 	// Creacion de bloque a guardar en memoria
 
+	int desplazamiento = 0;
+
 	uint32_t tamanio_buffer_sin_id_mensaje = tamanio_buffer-sizeof(uint32_t);
 	void* bloque_a_agregar_en_memoria = malloc(tamanio_buffer_sin_id_mensaje); // no cuenta el \n del nombre del Pokemon
 
 	memcpy(bloque_a_agregar_en_memoria, &se_pudo_atrapar, sizeof(uint32_t));
+	desplazamiento += sizeof(uint32_t);
 
-	guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, tamanio_buffer_sin_id_mensaje);
+	t_mensaje_guardado* mensaje_nuevo = malloc(sizeof(t_mensaje_guardado));
+	mensaje_nuevo = guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, tamanio_buffer_sin_id_mensaje);
+
+	// Prepararacion y envio de mensaje a suscriptores
+
+	memcpy(bloque_a_agregar_en_memoria, &id_mensaje_correlativo, sizeof(uint32_t));
+
+	t_paquete* paquete = malloc(sizeof(t_paquete));
+	paquete->codigo_operacion = 4;
+	paquete->buffer = malloc(sizeof(t_buffer));
+	paquete->buffer->size = tamanio_buffer;
+	paquete->buffer->stream = bloque_a_agregar_en_memoria;
+
+	int tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
+	void* a_enviar = serializar_paquete(paquete, tamanio_paquete);
+	reenviar_mensaje_a_suscriptores(a_enviar, tamanio_paquete, suscriptores_caught_pokemon);
+
+	// Guardo información del mensaje
+
+	guardar_mensaje_en_cola(4, bloque_a_agregar_en_memoria, mensajes_de_cola_caught_pokemon, mensaje_nuevo);
 
 	free(bloque_a_agregar_en_memoria);
 }
@@ -407,7 +466,24 @@ void recibir_get_pokemon(int socket_cliente){
 
 	memcpy(bloque_a_agregar_en_memoria + desplazamiento, pokemon, caracteresPokemon);
 
-	guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, tamanio_buffer);
+	t_mensaje_guardado* mensaje_nuevo = malloc(sizeof(t_mensaje_guardado));
+	mensaje_nuevo = guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, tamanio_buffer);
+
+	// Prepararacion y envio de mensaje a suscriptores
+
+	t_paquete* paquete = malloc(sizeof(t_paquete));
+	paquete->codigo_operacion = 5;
+	paquete->buffer = malloc(sizeof(t_buffer));
+	paquete->buffer->size = tamanio_buffer;
+	paquete->buffer->stream = bloque_a_agregar_en_memoria;
+
+	int tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
+	void* a_enviar = serializar_paquete(paquete, tamanio_paquete);
+	reenviar_mensaje_a_suscriptores(a_enviar, tamanio_paquete, suscriptores_get_pokemon);
+
+	// Guardo información del mensaje
+
+	guardar_mensaje_en_cola(5, bloque_a_agregar_en_memoria, mensajes_de_cola_get_pokemon, mensaje_nuevo);
 
 	free(bloque_a_agregar_en_memoria);
 }
