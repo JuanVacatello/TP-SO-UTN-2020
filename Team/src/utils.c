@@ -66,7 +66,6 @@ void iniciar_vg(void){
 }
 
 
-
 //------------CICLOS DE CPU---------------
 
 void efectuar_ciclo_cpu(t_entrenador* entrenador, int ciclos){
@@ -118,22 +117,18 @@ bool esta_en_lista(t_list* lista_pokemones, char* especie){
 }
 
 void suscribirse_a_colas(){
+
 		sem_wait(&MUTEX_SUB);
 		enviar_suscripcion_a_cola(2);
 		puts("Me suscribo a APPEARED POKEMON");
-		//sleep(1);
-		//sem_post(&MUTEX_SUB);
+
 		sem_wait(&MUTEX_SUB);
 		puts("Me suscribo a CAUGHT POKEMON");
 		enviar_suscripcion_a_cola(4);
-		//sleep(1);
+
 		sem_wait(&MUTEX_SUB);
 		enviar_suscripcion_a_cola(6);
 		puts("Me suscribo a LOCALIZED POKEMON");
-		//sleep(1);
-
-
-
 
 }
 

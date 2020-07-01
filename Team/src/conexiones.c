@@ -62,7 +62,8 @@ void iniciar_servidor(void)
     freeaddrinfo(servinfo);
 
     while(1)
-    	esperar_cliente(socket_servidor); // hacerlo con select, NUNCA ESPERA ACTIVA
+
+    	esperar_cliente(socket_servidor);
 }
 
 void esperar_cliente(int socket_servidor)
@@ -72,6 +73,28 @@ void esperar_cliente(int socket_servidor)
 	int tam_direccion = sizeof(struct sockaddr_in);
 
 	int socket_cliente = accept(socket_servidor, (void*) &dir_cliente, &tam_direccion);
+
+	/*op_code cod_op;
+	if(recv(socket_cliente, &cod_op, sizeof(op_code), MSG_WAITALL) == -1)
+		pthread_exit(NULL);
+
+	char* mensaje = string_from_format("El codigo de operacion es: %d.", cod_op);
+	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+
+	switch(cod_op){
+		case 2:
+			pthread_create(&hilo_appeared_pokemon, NULL , recibir_AppearedPokemon, socket_cliente);
+			pthread_detach(hilo_appeared_pokemon);
+			break;
+		case 4:
+			pthread_create(&hilo_caught_pokemon, NULL , recibir_CaughtPokemon, socket_cliente);
+			pthread_detach(hilo_caught_pokemon);
+			break;
+		case 6:
+			pthread_create(&hilo_localized_pokemon, NULL , recibir_LocalizedPokemon, socket_cliente);
+			pthread_detach(hilo_localized_pokemon);
+			break;
+	}*/
 
 	pthread_create(&thread,NULL,(void*)serve_client,&socket_cliente);
 	pthread_detach(thread);
@@ -100,17 +123,13 @@ void process_request(op_code cod_op, int socket_cliente) {
 	switch(cod_op) {
 		case 2:
 			recibir_AppearedPokemon(socket_cliente);
-			//enviar_mensaje_a_suscriptores(2, socket_cliente);
 			break;
-
 		case 4:
 			recibir_CaughtPokemon(socket_cliente);
-			//enviar_mensaje_a_suscriptores(4, socket_cliente);
 			break;
-
 		case 6:
 			recibir_LocalizedPokemon(socket_cliente);
-			//enviar_mensaje_a_suscriptores(6, socket_cliente);
+
 			break;
 	}
 }
@@ -167,14 +186,12 @@ void enviar_suscripcion_a_cola(op_code cola)
 
 	send(socket_broker,a_enviar,tamanio_paquete,0);
 
-	free(a_enviar);
-
 	char* mensaje_subscripcion = recibir_mensaje(socket_broker);
 
 	puts(mensaje_subscripcion);
 
 	//pthread_mutex_unlock(&mutex_conexion);
-
+	free(a_enviar);
 }
 
 //recibir id de catch

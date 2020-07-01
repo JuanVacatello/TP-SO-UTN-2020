@@ -38,6 +38,9 @@ pthread_mutex_t mutex_planificador;
 //pthread_mutex_t mutex_conexion;
 
 pthread_t hilo_servidor;
+pthread_t hilo_appeared_pokemon;
+pthread_t hilo_caught_pokemon;
+pthread_t hilo_localized_pokemon;
 
 pthread_mutex_t mutex_entrenador;
 

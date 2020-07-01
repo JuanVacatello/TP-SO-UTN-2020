@@ -22,8 +22,7 @@ int main(void) {
 		iniciar_vg();
 		suscribirse_a_colas();
 
-		/*puts("aca entra00");
-
+/*
 		retardo = obtener_retardo_ciclo_cpu();
 		printf("Retardo: %d\n",retardo);
 		tiempoReconexion = obtener_tiempo_reconexion();
@@ -37,20 +36,27 @@ int main(void) {
 		puts(logFile);
 		algoritmo = obtener_algoritmo_planificacion();
 		printf("Algoritmo de planificacion: %d\n",algoritmo);
-		//alpha = obtener_alpha();
-		//printf("%d\n",alpha);
-
+		alpha = obtener_alpha();
+		printf("%d\n",alpha);
 */
 		puts("aca entra1");
-
 		puts("hola");
 
 		pthread_create(&hilo_servidor, NULL , iniciar_servidor ,NULL);
 		pthread_detach(hilo_servidor);
+/*
+		pthread_create(&hilo_appeared_pokemon, NULL , iniciar_servidor ,NULL);
+		pthread_detach(hilo_appeared_pokemon);
 
+		pthread_create(&hilo_caught_pokemon, NULL , iniciar_servidor ,NULL);
+		pthread_detach(hilo_servidor);
+
+		pthread_create(&hilo_localized_pokemon, NULL , iniciar_servidor ,NULL);
+		pthread_detach(hilo_servidor);
+*/
 		pthread_create(&hilo_planificador, NULL , planificacion ,NULL);
 		pthread_join(hilo_planificador,NULL);
-		//aparicion_pokemon(pokemon);
+
 		puts("chau");
 
 		return 0;
