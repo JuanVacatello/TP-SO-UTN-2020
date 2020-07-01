@@ -74,7 +74,7 @@ void process_request(op_code cod_op, int socket_cliente) {
 	switch (cod_op) {
 		case 0:
 			atender_suscripcion(socket_cliente);
-			//enviar_mensaje(socket_cliente, "Suscripto");
+			enviar_mensaje(socket_cliente, "Suscripto");
 			break;
 		case 1:
 			recibir_new_pokemon(socket_cliente);
@@ -322,12 +322,12 @@ void recibir_appeared_pokemon(int socket_cliente){
 
 	// Prepararacion y envio de mensaje a suscriptores
 
-	memcpy(bloque_a_agregar_en_memoria + desplazamiento, &id_mensaje_correlativo, sizeof(uint32_t));
+	//memcpy(bloque_a_agregar_en_memoria + desplazamiento, &id_mensaje_correlativo, sizeof(uint32_t));
 
 	t_paquete* paquete = malloc(sizeof(t_paquete));
-	paquete->codigo_operacion = 2;
+	paquete->codigo_operacion = APPEARED_POKEMON;
 	paquete->buffer = malloc(sizeof(t_buffer));
-	paquete->buffer->size = tamanio_buffer;
+	paquete->buffer->size = tamanio_buffer_sin_id_mensaje;
 	paquete->buffer->stream = bloque_a_agregar_en_memoria;
 
 	int tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
@@ -558,7 +558,7 @@ void reenviar_mensaje_a_suscriptores(void* a_enviar, int tamanio_paquete, t_list
 		proceso* suscriptor = list_get(suscriptores, i);
 		int socket_suscriptor = suscriptor->socket_cliente;
 
-		char* mensa = string_from_format("El socket al que le vamos a enviar es es: %d.", socket_suscriptor);
+		char* mensa = string_from_format("El socket al que le vamos a enviar es: %d.", socket_suscriptor);
 		completar_logger(mensa, "Broker", LOG_LEVEL_INFO);
 
 		if(send(socket_suscriptor,a_enviar,tamanio_paquete,0) == -1){

@@ -16,3 +16,18 @@
 [INFO] 20:51:51:943 BROKER/(6170:6185): El desplazamient deberia ser 24 y es: 24.
 [INFO] 20:51:51:943 BROKER/(6170:6185): El desplazamient deberia ser 24 y es: 49.
 [INFO] 20:51:51:943 BROKER/(6170:6185): Se almacenó un mensaje en la posición 49 de la memoria principal y ocupa 17 bytes
+[INFO] 22:38:10:737 BROKER/(9270:9276): Se conectó proceso al Broker
+[INFO] 22:38:10:739 BROKER/(9270:9276): El codigo de operacion es: 0.
+[INFO] 22:38:10:739 BROKER/(9270:9276): Se suscribió el proceso con id 9275 y con socket 5 a la cola de mensajes 2
+[INFO] 22:38:10:739 BROKER/(9270:9277): Se conectó proceso al Broker
+[INFO] 22:38:10:739 BROKER/(9270:9277): El codigo de operacion es: 0.
+[INFO] 22:38:10:739 BROKER/(9270:9277): Se suscribió el proceso con id 9275 y con socket 6 a la cola de mensajes 4
+[INFO] 22:38:10:740 BROKER/(9270:9278): Se conectó proceso al Broker
+[INFO] 22:38:10:741 BROKER/(9270:9278): El codigo de operacion es: 0.
+[INFO] 22:38:10:741 BROKER/(9270:9278): Se suscribió el proceso con id 9275 y con socket 7 a la cola de mensajes 6
+[INFO] 22:38:51:421 BROKER/(9270:9291): Se conectó proceso al Broker
+[INFO] 22:38:51:427 BROKER/(9270:9291): El codigo de operacion es: 2.
+[INFO] 22:38:51:428 BROKER/(9270:9291): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 22:38:51:431 BROKER/(9270:9291): Estoy en if esta vacia
+[INFO] 22:38:51:431 BROKER/(9270:9291): Se almacenó un mensaje en la posición 0 de la memoria principal
+[INFO] 22:38:51:432 BROKER/(9270:9291): El socket al que le vamos a enviar es: 5.
