@@ -5,27 +5,37 @@ t_mensaje_guardado* guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria
 	t_mensaje_guardado* mensaje_nuevo = malloc(sizeof(t_mensaje_guardado));
 	char* esquema_de_administracion = obtener_algoritmo_memoria();
 	char* algoritmo_de_reemplazo = obtener_algoritmo_reemplazo();
+	int tamanio_minimo_particion = obtener_tamanio_minimo_particion(); // Ver que hago con esto
 
-	if(toda_la_memoria_esta_ocupada()){  // logica de implementacion de algoritmo de reemplazo
+	if(toda_la_memoria_esta_ocupada()){
+
+		// Falta ver qué hago si lo saco y no entra
 
 		if(!(strcmp(algoritmo_de_reemplazo, "FIFO"))){
 			mensaje_nuevo = reemplazar_segun_FIFO(bloque_a_agregar_en_memoria, tamanio_a_agregar);
 		}
 
 		if(!(strcmp(algoritmo_de_reemplazo, "LRU"))){
-
+			mensaje_nuevo = reemplazar_segun_LRU(bloque_a_agregar_en_memoria, tamanio_a_agregar);
 		}
 
-	} else { // logica de implementacion de algoritmo de no reemplazo we
+	} else {
 
 		if(!(strcmp(esquema_de_administracion, "PARTICIONES"))){
 			mensaje_nuevo = administracion_de_memoria_particiones(bloque_a_agregar_en_memoria,tamanio_a_agregar);
 		}
 
 		if(!(strcmp(esquema_de_administracion, "BS"))){
-			mensaje_nuevo = administracion_de_memoria_particiones(bloque_a_agregar_en_memoria,tamanio_a_agregar);
+			mensaje_nuevo = administracion_de_memoria_buddy_system(bloque_a_agregar_en_memoria,tamanio_a_agregar);
 		}
 	}
+
+	mensaje_nuevo->ultima_referencia = timestamp;
+	timestamp++;
+	list_add(elementos_en_memoria, mensaje_nuevo);
+
+	char* log = string_from_format("Se almacenó un mensaje en la posición %d de la memoria principal", mensaje_nuevo->byte_comienzo_ocupado);
+	completar_logger(log, "BROKER", LOG_LEVEL_INFO); // LOG OBLIGATORIO
 
 	return mensaje_nuevo;
 }
@@ -73,13 +83,10 @@ t_mensaje_guardado* administracion_de_memoria_particiones(void* bloque_a_agregar
 }
 
 t_mensaje_guardado* guardar_en_primera_posicion(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar, t_mensaje_guardado* mensaje_nuevo){
+
 	memcpy(memoria_principal, bloque_a_agregar_en_memoria, tamanio_a_agregar); //usar semaforos xq es variable global
 	mensaje_nuevo->byte_comienzo_ocupado = 0;
 	mensaje_nuevo->tamanio_ocupado = tamanio_a_agregar;
-	list_add(elementos_en_memoria, mensaje_nuevo);
-
-	char* log = string_from_format("Se almacenó un mensaje en la posición %d de la memoria principal", mensaje_nuevo->byte_comienzo_ocupado);
-	completar_logger(log, "BROKER", LOG_LEVEL_INFO); // LOG OBLIGATORIO
 
 	return mensaje_nuevo;
 }
@@ -88,19 +95,23 @@ t_mensaje_guardado* agregar_segun_first_fit(void* bloque_a_agregar_en_memoria, u
 
 	t_mensaje_guardado* mensaje_nuevo = malloc(sizeof(t_mensaje_guardado));
 	int listsize = list_size(elementos_en_memoria);
-	printf("En memoria hay %d mensajes", listsize);
+
+		printf("En memoria hay %d mensajes", listsize);
 
 	if(list_is_empty(elementos_en_memoria) || primera_posicion_vacia_y_entra(tamanio_a_agregar)){ // Si está vacía o la primera posición, agregar al principio de la memoria
 
-		completar_logger("Estoy en if esta vacia", "BROKER", LOG_LEVEL_INFO);
+			completar_logger("Estoy en if esta vacia", "BROKER", LOG_LEVEL_INFO);
+
 		mensaje_nuevo = guardar_en_primera_posicion(bloque_a_agregar_en_memoria,tamanio_a_agregar,mensaje_nuevo);
 
 	} else {
 
-		completar_logger("Estoy en if no esta vacia", "BROKER", LOG_LEVEL_INFO);
+			completar_logger("Estoy en if no esta vacia", "BROKER", LOG_LEVEL_INFO);
+
 		t_list* lista_ordenada = list_duplicate(elementos_en_memoria);
 		list_sort(lista_ordenada, comparar_inicios_mensajes); // Ordena la lista de menor a mayor a partir de la posición de inicio donde están guardados los mensajes en memoria
 		int tamanio_lista = list_size(lista_ordenada);
+		int encontrado = 0;
 
 		for(int i=0; i<tamanio_lista; i++){ // Recorre para ver todos los mensajes guardados en la memoria principal
 
@@ -111,7 +122,6 @@ t_mensaje_guardado* agregar_segun_first_fit(void* bloque_a_agregar_en_memoria, u
 
 			char* alogea = string_from_format("El desplazamient deberia ser %d y es: %d.", 24, desplazamiento);
 			completar_logger(alogea, "Broker", LOG_LEVEL_INFO);
-
 
 			int contador = 0; // Si está vacío el espacio siguiente, leerá ceros
 			int cero;
@@ -128,14 +138,13 @@ t_mensaje_guardado* agregar_segun_first_fit(void* bloque_a_agregar_en_memoria, u
 			}
 
 			if(contador == tamanio_a_agregar){
+
 				int posicion_inicial_nuevo_mensaje = mensaje_a_leer->byte_comienzo_ocupado + mensaje_a_leer->tamanio_ocupado;
 				memcpy(memoria_principal + posicion_inicial_nuevo_mensaje, bloque_a_agregar_en_memoria, tamanio_a_agregar); //usar semaforos xq es variable global
 				mensaje_nuevo->byte_comienzo_ocupado = posicion_inicial_nuevo_mensaje;
 				mensaje_nuevo->tamanio_ocupado = tamanio_a_agregar;
-				list_add(elementos_en_memoria, mensaje_nuevo);
 
-				char* log = string_from_format("Se almacenó un mensaje en la posición %d de la memoria principal y ocupa %d bytes", mensaje_nuevo->byte_comienzo_ocupado, mensaje_nuevo->tamanio_ocupado);
-				completar_logger(log, "BROKER", LOG_LEVEL_INFO); // LOG OBLIGATORIO
+				encontrado = 1;
 
 				break; // chequear
 			}
@@ -153,12 +162,13 @@ t_mensaje_guardado* agregar_segun_best_fit(void* bloque_a_agregar_en_memoria, ui
 
 	if(list_is_empty(elementos_en_memoria) || primera_posicion_vacia_y_entra(tamanio_a_agregar)){ // Si está vacía o la primera posición, agregar al principio de la memoria
 
-		completar_logger("Estoy en if esta vacia", "BROKER", LOG_LEVEL_INFO);
+			completar_logger("Estoy en if esta vacia", "BROKER", LOG_LEVEL_INFO);
+
 		mensaje_nuevo = guardar_en_primera_posicion(bloque_a_agregar_en_memoria,tamanio_a_agregar,mensaje_nuevo);
 
 	} else {
 
-		completar_logger("Estoy en if no esta vacia", "BROKER", LOG_LEVEL_INFO);
+			completar_logger("Estoy en if no esta vacia", "BROKER", LOG_LEVEL_INFO);
 
 		int tamanio_lista = list_size(elementos_en_memoria);
 		int encontrado = 0;
@@ -192,10 +202,6 @@ t_mensaje_guardado* agregar_segun_best_fit(void* bloque_a_agregar_en_memoria, ui
 					memcpy(memoria_principal + posicion_inicial_nuevo_mensaje, bloque_a_agregar_en_memoria, tamanio_a_agregar); //usar semaforos xq es variable global
 					mensaje_nuevo->byte_comienzo_ocupado = posicion_inicial_nuevo_mensaje;
 					mensaje_nuevo->tamanio_ocupado = tamanio_a_agregar;
-					list_add(elementos_en_memoria, mensaje_nuevo);
-
-					char* log = string_from_format("Se almacenó un mensaje en la posición %d de la memoria principal y ocupa %d bytes", mensaje_nuevo->byte_comienzo_ocupado, mensaje_nuevo->tamanio_ocupado);
-					completar_logger(log, "BROKER", LOG_LEVEL_INFO); // LOG OBLIGATORIO
 
 					encontrado = 1;
 
@@ -214,8 +220,6 @@ t_mensaje_guardado* agregar_segun_best_fit(void* bloque_a_agregar_en_memoria, ui
 
 t_mensaje_guardado* reemplazar_segun_FIFO(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
 
-	// QUE PASA SI NO ME ALCANZA CON EL QUE ELIMINO??
-
 	t_mensaje_guardado* mensaje_a_eliminar = malloc(sizeof(t_mensaje_guardado));
 	mensaje_a_eliminar = list_remove(elementos_en_memoria, 0); // Eliminamos el primer mensaje que entró
 	int posicion_inicial_nuevo_mensaje = mensaje_a_eliminar->byte_comienzo_ocupado;
@@ -227,19 +231,48 @@ t_mensaje_guardado* reemplazar_segun_FIFO(void* bloque_a_agregar_en_memoria, uin
 	memcpy(memoria_principal + posicion_inicial_nuevo_mensaje, bloque_a_agregar_en_memoria, tamanio_a_agregar); //usar semaforos xq es variable global
 	mensaje_nuevo->byte_comienzo_ocupado = posicion_inicial_nuevo_mensaje;
 	mensaje_nuevo->tamanio_ocupado = tamanio_a_agregar;
-	list_add(elementos_en_memoria, mensaje_nuevo);
-
-	char* log = string_from_format("Se almacenó un mensaje en la posición %d de la memoria principal y ocupa %d bytes", mensaje_nuevo->byte_comienzo_ocupado, mensaje_nuevo->tamanio_ocupado);
-	completar_logger(log, "BROKER", LOG_LEVEL_INFO); // LOG OBLIGATORIO
 
 	free(mensaje_a_eliminar);
 
 	return mensaje_nuevo;
 }
 
-void administracion_de_memoria_buddy_system(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
+t_mensaje_guardado* reemplazar_segun_LRU(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
 
-	// Necesito pensar
+	t_list* lista_ordenada = list_duplicate(elementos_en_memoria);
+	list_sort(lista_ordenada, comparar_timestamps_mensajes);
+
+	t_mensaje_guardado* mensaje_a_eliminar = malloc(sizeof(t_mensaje_guardado));
+	mensaje_a_eliminar = list_remove(elementos_en_memoria, 0); // Eliminamos el primer mensaje de la lista ordenada -> Timestamp mas bajo
+
+	int posicion_inicial_nuevo_mensaje = mensaje_a_eliminar->byte_comienzo_ocupado;
+	int cantidad_a_eliminar = mensaje_a_eliminar->tamanio_ocupado;
+
+	t_mensaje_guardado* mensaje_nuevo = malloc(sizeof(t_mensaje_guardado));
+	memcpy(memoria_principal + posicion_inicial_nuevo_mensaje, bloque_a_agregar_en_memoria, tamanio_a_agregar); //usar semaforos xq es variable global
+	mensaje_nuevo->byte_comienzo_ocupado = posicion_inicial_nuevo_mensaje;
+	mensaje_nuevo->tamanio_ocupado = tamanio_a_agregar;
+
+	free(mensaje_a_eliminar);
+
+	return mensaje_nuevo;
+}
+
+t_mensaje_guardado* administracion_de_memoria_buddy_system(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
+
+	t_mensaje_guardado* mensaje_nuevo = malloc(sizeof(t_mensaje_guardado));
+
+	int potencia_de_dos = 2;
+
+	while(potencia_de_dos < tamanio_a_agregar && potencia_de_dos <= tamanio_de_memoria){
+			potencia_de_dos = potencia_de_dos * 2;
+	}
+
+	// NO se como pensarlo
+
+
+
+	return mensaje_nuevo;
 }
 
 int primera_posicion_vacia_y_entra(uint32_t tamanio_a_agregar){
@@ -271,6 +304,10 @@ bool comparar_inicios_mensajes(t_mensaje_guardado* mensaje1, t_mensaje_guardado*
 	//}
 	//return booleano;
 	return mensaje1->byte_comienzo_ocupado < mensaje2->byte_comienzo_ocupado;
+}
+
+bool comparar_timestamps_mensajes(t_mensaje_guardado* mensaje1, t_mensaje_guardado* mensaje2){
+	return mensaje1->ultima_referencia < mensaje2->ultima_referencia;
 }
 
 void mostrar_memoria_principal(void){

@@ -31,3 +31,11 @@
 [INFO] 22:38:51:431 BROKER/(9270:9291): Estoy en if esta vacia
 [INFO] 22:38:51:431 BROKER/(9270:9291): Se almacenó un mensaje en la posición 0 de la memoria principal
 [INFO] 22:38:51:432 BROKER/(9270:9291): El socket al que le vamos a enviar es: 5.
+[INFO] 23:56:40:46 BROKER/(9737:9942): Se conectó proceso al Broker
+[INFO] 23:56:40:110 BROKER/(9737:9942): El codigo de operacion es: 1.
+[INFO] 23:56:40:111 BROKER/(9737:9942): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 23:56:40:112 BROKER/(9737:9942): Estoy en if esta vacia
+[INFO] 23:56:40:114 BROKER/(9737:9942): Se almacenó un mensaje en la posición 0 de la memoria principal
+[INFO] 23:57:02:780 BROKER/(9737:9950): Se conectó proceso al Broker
+[INFO] 23:57:02:780 BROKER/(9737:9950): El codigo de operacion es: 0.
+[INFO] 23:57:02:781 BROKER/(9737:9950): Se suscribió el proceso con id 9949 y con socket 6 a la cola de mensajes 1
