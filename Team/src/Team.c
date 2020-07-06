@@ -37,78 +37,66 @@ void armar_entrenadores(void){
 	}
 
 }
-
+// "Pikachu|Squirtle,Pikachu|Gengar,Squirtle|Onix"
 void generar_objetivo_global(void){
 
 	objetivo_global = dictionary_create();
-
-	t_list* entrenadores = lista_de_entrenadores;
-	t_entrenador* entrenador;
-	t_list* lista_pokemons_entrenador = list_create();
+	t_list* pokemones = list_create();
 	int cantidad_pokemon;
+	char** objetivos = obtener_objetivos_entrenadores();
+
+	for(int i = 0; i<cantidad_entrenadores(); i++){
+		t_list* objetivo = obtener_objetivos(objetivos[i]);
+		list_add_all(pokemones, objetivo);
+	}
 
 	//DE CADA ENTRENADOR OBTENEMOS SU LISTA DE OBJETIVOS Y LA PASAMOS A UN DICCIONARIO
-	for (int indice_entrenador=0; indice_entrenador<cantidad_entrenadores(); indice_entrenador++){
+	for(int indice_pokemon=0; indice_pokemon<list_size(pokemones); indice_pokemon++){
 
-	entrenador = list_get(entrenadores, indice_entrenador);
-	lista_pokemons_entrenador = entrenador->objetivo;
+		if(dictionary_has_key(objetivo_global, list_get(pokemones,indice_pokemon))){
 
-
-			for(int indice_pokemon=0; indice_pokemon<list_size(lista_pokemons_entrenador); indice_pokemon++){
-
-				if(dictionary_has_key(objetivo_global, list_get(lista_pokemons_entrenador,indice_pokemon))){
-
-					cantidad_pokemon = dictionary_get(objetivo_global, list_get(lista_pokemons_entrenador, indice_pokemon));
-					dictionary_remove_and_destroy(objetivo_global,list_get(lista_pokemons_entrenador, indice_pokemon),eliminar_pokemon);
-					dictionary_put(objetivo_global, list_get(lista_pokemons_entrenador, indice_pokemon), cantidad_pokemon+1);
-
-					int asd = dictionary_get(objetivo_global, list_get(lista_pokemons_entrenador, indice_pokemon));
-					printf(" %d", asd);
-				}
-
-				else{
-
-				dictionary_put(objetivo_global, list_get(lista_pokemons_entrenador, indice_pokemon), 1);
-
-				}
-
-			}
+			cantidad_pokemon = dictionary_get(objetivo_global, list_get(pokemones, indice_pokemon));
+			dictionary_remove_and_destroy(objetivo_global,list_get(pokemones, indice_pokemon),eliminar_pokemon);
+			dictionary_put(objetivo_global, list_get(pokemones, indice_pokemon), cantidad_pokemon+1);
 		}
+		else{
+
+			dictionary_put(objetivo_global, list_get(pokemones, indice_pokemon), 1);
+		}
+	}
 
 }
-
+//"Pikachu"
+//"Pikachu,Pikachu|Gengar,Squirtle|Onix"
 void generar_atrapados_global(void){
 
 	atrapados_global = dictionary_create();
-
-	t_list* entrenadores = lista_de_entrenadores;
-	t_entrenador* entrenador;
-	t_list* lista_pokemons_entrenador;
+	t_list* pokemones = list_create();
+	t_list* pokemones_atrapados;
 	int cantidad_pokemon;
+	char** atrapados = obtener_pokemon_entrenadores();
 
-	//DE CADA ENTRENADOR OBTENEMOS SU LISTA DE ATRAPADOS Y LA PASAMOS A UN DICCIONARIO
-	for (int indice_entrenador=0; indice_entrenador<cantidad_entrenadores(); indice_entrenador++){
-
-	entrenador = list_get(entrenadores, indice_entrenador);
-	lista_pokemons_entrenador = entrenador->atrapados;
-
-	if(!list_is_empty(lista_pokemons_entrenador)){
-		for(int indice_pokemon=0; indice_pokemon<list_size(lista_pokemons_entrenador); indice_pokemon++){
-
-			if(list_get(lista_pokemons_entrenador,indice_pokemon) != NULL){
-				if(dictionary_has_key(atrapados_global, list_get(lista_pokemons_entrenador,indice_pokemon))){
-					cantidad_pokemon = dictionary_get(atrapados_global, list_get(lista_pokemons_entrenador, indice_pokemon));
-					dictionary_remove_and_destroy(atrapados_global,list_get(lista_pokemons_entrenador, indice_pokemon),eliminar_pokemon);
-					dictionary_put(atrapados_global, list_get(lista_pokemons_entrenador, indice_pokemon), cantidad_pokemon++);
-
-					}
-				else{
-					dictionary_put(atrapados_global, list_get(lista_pokemons_entrenador, indice_pokemon), 1);
-					}
-				}
-			}
+	for(int indice = 0; indice<cantidad_entrenadores(); indice++){
+		if(atrapados[indice] != NULL){
+			pokemones_atrapados = obtener_atrapados(atrapados[indice]);
+			list_add_all(pokemones, pokemones_atrapados);
 		}
 	}
+
+	//DE CADA ENTRENADOR OBTENEMOS SU LISTA DE ATRAPADOS Y LA PASAMOS A UN DICCIONARIO
+	for(int indice_pokemon=0; indice_pokemon<list_size(pokemones); indice_pokemon++){
+
+		if(dictionary_has_key(atrapados_global, list_get(pokemones,indice_pokemon))){
+
+			cantidad_pokemon = dictionary_get(atrapados_global, list_get(pokemones, indice_pokemon));
+			dictionary_remove_and_destroy(atrapados_global,list_get(pokemones, indice_pokemon),eliminar_pokemon);
+			dictionary_put(atrapados_global, list_get(pokemones, indice_pokemon), cantidad_pokemon+1);
+			}
+		else{
+
+			dictionary_put(atrapados_global, list_get(pokemones, indice_pokemon), 1);
+			}
+		}
 
 }
 
@@ -143,11 +131,12 @@ void planificacion(){
 
 
 void aparicion_pokemon(t_pokemon* pokemon){
-	puts("aca entra 6");
+	//sem_wait(&MUTEX_ENTRENADORES);
+
 	if(es_pokemon_requerido(pokemon)){
-		puts("aca entra 7");
+
 		t_entrenador* entrenador = entrenador_mas_cercano(pokemon);
-		puts("aca entra 8");
+
 		entrenador->pokemon_a_atrapar = pokemon;
 		entrenador->estado = READY;
 
@@ -157,14 +146,11 @@ void aparicion_pokemon(t_pokemon* pokemon){
 		t_accion* accion = armar_accion(atrapar_pokemon, 3);
 		list_add(entrenador->cola_de_acciones, accion);
 
-		puts("aca entra 9");
+
 		list_add(lista_de_entrenadores_ready,entrenador);
-		//list_add(pokemones_requeridos,pokemon);// no entiendo esto tampoco
 
-		//pthread_mutex_unlock(hilo_planificador); //este es el del entrenador??
-		//ejecutamos las acciones
+		}
 
-	}
 	else{
 		//ESPERAMOS A LOG//
 	}

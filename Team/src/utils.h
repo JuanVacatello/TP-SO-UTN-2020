@@ -47,6 +47,9 @@ pthread_mutex_t mutex_entrenador;
 t_list* lista_de_entrenadores_deadlock;
 
 sem_t MUTEX_SUB;
+sem_t MUTEX_ENTRENADORES;
+sem_t CONTADOR_ENTRENADORES;
+
 
 
 

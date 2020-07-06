@@ -5,16 +5,7 @@ void planificar_fifo(void){
 
 	t_entrenador* entrenador;
 
-		puts("aca entra4");
 	while (1){
-
-		pthread_mutex_lock(&mutex_planificador);
-
-
-		puts("aca entra5");
-
-			//SE BLOQUEA BIEN
-
 
 		while(!list_is_empty(lista_de_pokemones_sueltos)){
 				t_pokemon* pokemon_nuevo = list_remove(lista_de_pokemones_sueltos,0);
@@ -31,7 +22,7 @@ void planificar_fifo(void){
 			while(list_size(entrenador->cola_de_acciones) > 0){
 				ejecutar_entrenador(entrenador);
 			}
-
+			sem_post(&CONTADOR_ENTRENADORES);
 		}
 
 
@@ -39,6 +30,8 @@ void planificar_fifo(void){
 			intercambiar_pokemones();
 
 		}
+
+		pthread_mutex_lock(&mutex_planificador);
 	}
 }
 

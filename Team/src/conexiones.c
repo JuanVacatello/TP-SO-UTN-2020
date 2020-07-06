@@ -399,6 +399,7 @@ void* iniciar_paquete_serializado_GetPokemon(int* tamanio_paquete,char* pokemon_
 
 
 void recibir_AppearedPokemon(int socket_cliente){
+		sem_wait(&CONTADOR_ENTRENADORES);
 
 		uint32_t tamanio_buffer;
 		recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);

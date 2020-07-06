@@ -24,15 +24,19 @@ void iniciar_vg(void){
 	//PONEMOS EL SEMÁFORO EN 1
 	//pthread_mutex_lock(&mutex_conexion);
 
+
 	pthread_mutex_init(&mutex_entrenador, NULL);
 	//PONEMOS EL SEMÁFORO EN 0
 	pthread_mutex_lock(&mutex_entrenador);
 
 	sem_init(&MUTEX_SUB,0,1);
+	//sem_init(&MUTEX_ENTRENADORES,0,1);
+	sem_init(&CONTADOR_ENTRENADORES,0,cantidad_entrenadores());
+
 
 	//pokemones nuevos de prueba
 
-/*	t_pokemon* pokemonPikachu = malloc(sizeof(t_pokemon));
+	/*t_pokemon* pokemonPikachu = malloc(sizeof(t_pokemon));
 	pokemonPikachu->especie = "Pikachu";
 	pokemonPikachu->posicion.x = 1;
 	pokemonPikachu->posicion.y = 1;
@@ -49,8 +53,8 @@ void iniciar_vg(void){
 	pokemonOnix->posicion.x = 2;
 	pokemonOnix->posicion.y = 2;
 	list_add(lista_de_pokemones_sueltos, pokemonOnix);
-*/
-/*
+
+
 	t_pokemon* pokemonSquirtle1 = malloc(sizeof(t_pokemon));
 	pokemonSquirtle1->especie = "Squirtle";
 	pokemonSquirtle1->posicion.x = 3;
