@@ -34,6 +34,8 @@ int main(int argc, char* argv[]) {
 		enviar_mensaje_a_broker(socket_conexion, 0, argv); // 0 es el op_code de SUSCRIPTOR
 
 		completar_logger("GameBoy se suscribió a la cola.", "GAMEBOY", LOG_LEVEL_INFO);
+
+		recibir_mensaje(socket_conexion);
 	}
 }
 

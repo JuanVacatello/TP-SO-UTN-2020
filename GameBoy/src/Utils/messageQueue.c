@@ -769,12 +769,12 @@ void recibir_mensaje(int socket_cliente){
 
 		break;
 	}
-
+/*
 	uint32_t identificador = 1;
 	int tamanio_paquete = 0;
 	void* a_enviar = enviar_ack(socket_cliente,codigo_de_operacion,identificador,&tamanio_paquete);
 	send(socket_cliente,a_enviar,tamanio_paquete,0); //no llega el ack
-
+*/
 }
 
 void* enviar_ack(int socket, op_code codigo_op, uint32_t identificador,int* tamanio_paquete){
