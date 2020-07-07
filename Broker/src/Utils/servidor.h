@@ -57,12 +57,12 @@ typedef struct t_paquete_devuelto
 */
 
 typedef struct {
-	uint32_t identificador;
 	op_code codigo_operacion;
-	t_list* suscriptores;
+	uint32_t identificador;
+	uint32_t id_mensaje_correlativo;
 	t_list* suscriptores_ack;
 	uint32_t tamanio_buffer;
-	t_mensaje_guardado* contenido_mensaje;
+	t_mensaje_guardado* ubicacion_mensaje;
 } t_mensaje_a_guardar;
 
 t_list* suscriptores_new_pokemon;
@@ -92,6 +92,7 @@ void atender_suscripcion(int socket_cliente);
 proceso* modelar_proceso(int socket);
 int recibir_tamanio_buffer(int socket);
 void suscribirse_a_cola(proceso* suscriptor, int socket, uint32_t tamanio_buffer);
+void enviar_mensajes_al_nuevo_suscriptor(t_list* mensajes_de_dicha_cola, int socket_suscriptor);
 
 void enviar_mensaje(int socket_cliente, char* mensaje);
 void enviar_mensaje_id(int socket_cliente);
@@ -103,7 +104,7 @@ void recibir_caught_pokemon(int socket_cliente);
 void recibir_get_pokemon(int socket_cliente);
 void recibir_localized_pokemon(int socket_cliente);
 void reenviar_mensaje_a_suscriptores(void* a_enviar, int tamanio_paquete, t_list* suscriptores);
-void guardar_mensaje_en_cola(op_code cod_op, void* contenido, t_list* lista_mensajes, t_mensaje_guardado* mensaje_nuevo, uint32_t tamanio_buffer);
+void guardar_mensaje_en_cola(op_code cod_op, t_list* lista_mensajes, t_mensaje_guardado* mensaje_en_memoria, uint32_t tamanio_buffer, uint32_t id_mensaje_correlativo);
 //void enviar_mensaje_a_suscriptores(int cola_mensaje,int socket_cliente);
 
 void* recibir_mensaje(int socket_cliente, int* size);

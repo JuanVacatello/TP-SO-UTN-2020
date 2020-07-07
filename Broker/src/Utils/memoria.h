@@ -38,8 +38,9 @@ t_mensaje_guardado* agregar_segun_best_fit(void* bloque_a_agregar_en_memoria, ui
 
 t_mensaje_guardado* administracion_de_memoria_buddy_system(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
 
-t_mensaje_guardado* reemplazar_segun_FIFO(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
-t_mensaje_guardado* reemplazar_segun_LRU(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
+int ejecutar_algoritmo_reemplazo(void);
+int reemplazar_segun_FIFO(void);
+int reemplazar_segun_LRU(void);
 
 bool comparar_inicios_mensajes(t_mensaje_guardado* mensaje1, t_mensaje_guardado* mensaje2);
 int primera_posicion_vacia_y_entra(uint32_t tamanio_a_agregar);
@@ -48,5 +49,6 @@ bool comparar_timestamps_mensajes(t_mensaje_guardado* mensaje1, t_mensaje_guarda
 
 int toda_la_memoria_esta_ocupada(void);
 void mostrar_memoria_principal(void);
+void compactar_memoria(int *desplazamiento);
 
 #endif /* UTILS_MEMORIA_H_ */
