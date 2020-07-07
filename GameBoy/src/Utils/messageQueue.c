@@ -16,12 +16,12 @@ int crear_conexion(char* ip, char* puerto)
 	int socket_cliente;
 
 	if((socket_cliente = socket(server_info->ai_family, server_info->ai_socktype, server_info->ai_protocol)) == -1){
-		printf("Error en crear socket.");
+		printf("Error en crear socket. \n");
 		exit(1);
 	}
 
 	if(connect(socket_cliente, server_info->ai_addr, server_info->ai_addrlen) == -1){
-		printf("Error en conectar socket.");
+		printf("Error en conectar socket. \n");
 		exit(2);
 	}
 
@@ -694,10 +694,10 @@ void recibir_mensaje(int socket_cliente){
 		mensaje5 = string_from_format("La posicion en Y es: %d.", posY);
 		puts(mensaje5);
 
-		recv(socket_cliente, &id_mensaje_correlativo, sizeof(uint32_t), MSG_WAITALL);
+		//recv(socket_cliente, &id_mensaje_correlativo, sizeof(uint32_t), MSG_WAITALL);
 
-		mensaje6 = string_from_format("EL id de mensaje correlativo es: %d.", id_mensaje_correlativo);
-		puts(mensaje6);
+		//mensaje6 = string_from_format("EL id de mensaje correlativo es: %d.", id_mensaje_correlativo);
+		//puts(mensaje6);
 
 		free(pokemon);
 
@@ -730,18 +730,18 @@ void recibir_mensaje(int socket_cliente){
 		break;
 	case 4:
 
-		recv(socket_cliente, &id_mensaje_correlativo, sizeof(uint32_t), MSG_WAITALL);
-
-		mensaje3 = string_from_format("El id de mensaje correlativo es es: %d.", id_mensaje_correlativo);
-		puts(mensaje3);
-
 		recv(socket_cliente, &se_pudo_atrapar, sizeof(uint32_t), MSG_WAITALL);
 
-		if(se_pudo_atrapar==0){
+		if(se_pudo_atrapar==-1){
 			puts("No se pudo atrapar.");
 		}else if(se_pudo_atrapar==1){
 			puts("Se pudo atrapar.");
 		}
+
+		recv(socket_cliente, &id_mensaje_correlativo, sizeof(uint32_t), MSG_WAITALL);
+
+		mensaje3 = string_from_format("El id de mensaje correlativo es es: %d.", id_mensaje_correlativo);
+		puts(mensaje3);
 
 		break;
 

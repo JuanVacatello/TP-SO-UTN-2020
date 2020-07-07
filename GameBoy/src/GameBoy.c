@@ -76,7 +76,6 @@ void enviarMensajeBroker(int argc, char *argv[]){
 	}
 
 	//recibir_mensaje(socket_conexion);
-
 }
 
 void enviarMensajeTeam(int argc, char *argv[]){
