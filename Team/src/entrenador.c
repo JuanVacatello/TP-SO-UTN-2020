@@ -134,13 +134,9 @@ t_entrenador* entrenador_mas_cercano(t_pokemon* pokemon){
 	//Filtrar sólo a los entrenadores que se puedan planificar
 
 	t_list* entrenadores = list_filter(lista_de_entrenadores, puede_atrapar);
-
 	t_posicion posicion_pokemon = pokemon->posicion;
-
 	t_entrenador* entrenador;
-
 	t_entrenador* entrenador_cercano;
-
 	t_posicion posicion_entrenador;
 
 	int menor_distancia=-1;
@@ -217,13 +213,9 @@ void ejecutar_entrenador(t_entrenador* entrenador){
 void atrapar_pokemon(t_entrenador* entrenador){
 
 	int cantidad_pokemon = 0;
-	void* data;
 	enviar_CatchPokemon_a_broker(3, entrenador);
 	efectuar_ciclo_cpu(entrenador, 1);
 	pthread_mutex_lock(&mutex_entrenador);
-
-	t_entrenador* entrenador1;
-	char* pokemonn;
 
 	if(entrenador->pudo_atrapar_pokemon == 0){
 		log_operacion_de_atrapar_fallida(entrenador);	//NO ATRAPÓ AL POKEMON
@@ -234,27 +226,20 @@ void atrapar_pokemon(t_entrenador* entrenador){
 
 		if(dictionary_has_key(atrapados_global, entrenador->pokemon_a_atrapar->especie)){
 
-			int cantidad_pokemon = dictionary_get(atrapados_global, entrenador->pokemon_a_atrapar->especie);
+			cantidad_pokemon = dictionary_get(atrapados_global, entrenador->pokemon_a_atrapar->especie);
 		}
-		//data = dictionary_remove(atrapados_global, entrenador->pokemon_a_atrapar->especie);
+		dictionary_remove_and_destroy(atrapados_global, entrenador->pokemon_a_atrapar->especie, eliminar_pokemon);
 		dictionary_put(atrapados_global, entrenador->pokemon_a_atrapar->especie, cantidad_pokemon + 1);
 
-		for(int i = 0; i < cantidad_entrenadores(); i++){
-			entrenador1 = list_get(lista_de_entrenadores,i);
-			for(int j = 0; j <list_size(entrenador1->objetivo); j ++){
-				pokemonn = list_get(entrenador1->objetivo, j);
-				puts(pokemonn);
-			}
-			puts("");
-		}
 		//Actualizamos diccionarios
 
 		verificar_estado_entrenador(entrenador);
 
 	}
 
-	entrenador->pokemon_a_atrapar = NULL;
 
+	entrenador->pokemon_a_atrapar = NULL;
+	sem_post(&MUTEX_POKEMON_REQUERIDO);
 }
 
 
@@ -263,47 +248,66 @@ void verificar_estado_entrenador(t_entrenador* entrenador){
 	int tamanio_lista_objetivo = list_size(entrenador->objetivo);
 	int tamanio_lista_atrapados = list_size(entrenador->atrapados);
 	int contador_atrapados = 0;
-	t_pokemon* pokemon = malloc(sizeof(t_pokemon));
+	char* pokemon;
 
 	if(tamanio_lista_objetivo == tamanio_lista_atrapados){
 
-	for (int indice_pokemon=0; indice_pokemon<list_size(entrenador->objetivo); indice_pokemon++){
-		pokemon->especie = list_get(entrenador->objetivo, indice_pokemon);
+	for(int indice_pokemon=0; indice_pokemon<list_size(entrenador->objetivo); indice_pokemon++){
+		pokemon = list_get(entrenador->objetivo, indice_pokemon);
+
 
 		if (termino_con_pokemon(entrenador, pokemon)){
 			contador_atrapados++;
 		}
+
 	}
 		if(contador_atrapados == tamanio_lista_objetivo){
+			if(esta_entrenador_en_lista(entrenador, lista_de_entrenadores_deadlock)){
+				remover_entrenador(entrenador);
+			}
 			entrenador->estado = EXIT;
 		}
 		else{
 			//PONEMOS ENTRENADOR EN DEADLOCK
 			entrenador->estado = BLOCKED;
-			list_add(lista_de_entrenadores_deadlock, entrenador);
+			if(!esta_entrenador_en_lista(entrenador, lista_de_entrenadores_deadlock)){
+				list_add(lista_de_entrenadores_deadlock, entrenador);
+			}
 		}
 	}
 	else{
 		entrenador->estado = BLOCKED;
 	}
 
-	t_entrenador* entrenador1;
-	char* pokemonn;
+}
+//-----------------------
 
-	for(int i = 0; i < cantidad_entrenadores(); i++){
-		entrenador1 = list_get(lista_de_entrenadores,i);
-		for(int j = 0; j <list_size(entrenador1->objetivo); j ++){
-			pokemonn = list_get(entrenador1->objetivo, j);
-			puts(pokemonn);
+void remover_entrenador(t_entrenador* entrenador){
+	t_entrenador* entrenador_aux;
+	for(int i = 0; i<list_size(lista_de_entrenadores_deadlock); i++){
+		entrenador_aux = list_get(lista_de_entrenadores_deadlock, i);
+		if(entrenador->ID_entrenador == entrenador_aux->ID_entrenador){
+			entrenador_aux = list_remove(lista_de_entrenadores_deadlock, i);
+			break;
 		}
-		puts("");
 	}
-
 }
 
-bool termino_con_pokemon(t_entrenador* entrenador, t_pokemon* pokemon){
+bool esta_entrenador_en_lista(t_entrenador* entrenador ,t_list* lista){
+	t_entrenador* entrenador_aux;
+	for(int i = 0; i<list_size(lista); i++){
+		entrenador_aux = list_get(lista, i);
+		if(entrenador->ID_entrenador == entrenador_aux->ID_entrenador){
+			return true;
+		}
+	}
+	return false;
+}
+//------------------
 
-	t_pokemon* pokemon_auxiliar;
+bool termino_con_pokemon(t_entrenador* entrenador, char* pokemon){
+
+	char* pokemon_auxiliar;
 	int cantidad_objetivo = 0;
 	int cantidad_atrapados = 0;
 
@@ -311,18 +315,18 @@ bool termino_con_pokemon(t_entrenador* entrenador, t_pokemon* pokemon){
 	//determinada especie necesita en total
 
 	for (int indice_pokemon=0; indice_pokemon<list_size(entrenador->objetivo); indice_pokemon++){
-		pokemon_auxiliar->especie = list_get(entrenador->objetivo, indice_pokemon);
+		pokemon_auxiliar = list_get(entrenador->objetivo, indice_pokemon);
 
-		if(strcmp(pokemon_auxiliar->especie, pokemon->especie)==0){
+		if(strcmp(pokemon_auxiliar, pokemon)==0){
 			cantidad_objetivo++;
 		}
 	}
 	//Recorremos la lista de atrapados para saber si ya tiene a todos los que necesita
 
 	for (int indice_pokemon=0; indice_pokemon<list_size(entrenador->objetivo); indice_pokemon++){
-			pokemon_auxiliar->especie = list_get(entrenador->atrapados, indice_pokemon);
+			pokemon_auxiliar = list_get(entrenador->atrapados, indice_pokemon);
 
-			if(strcmp(pokemon_auxiliar->especie, pokemon->especie)==0){
+			if(strcmp(pokemon_auxiliar, pokemon)==0){
 				cantidad_atrapados++;
 			}
 		}
@@ -340,10 +344,10 @@ void intercambiar_pokemones(){
 	t_entrenador* entrenador2 = list_get(lista_de_entrenadores_deadlock,1);
 
 
-	t_pokemon* pokemon_sobra_entrenador1 = malloc(sizeof(t_pokemon));
-	t_pokemon* pokemon_sobra_entrenador2 = malloc(sizeof(t_pokemon));
-	t_pokemon* pokemon_aux_1 = malloc(sizeof(t_pokemon));
-	t_pokemon* pokemon_aux_2 = malloc(sizeof(t_pokemon));
+	char* pokemon_sobra_entrenador1;
+	char* pokemon_sobra_entrenador2;
+	char* pokemon_aux_1;
+	char* pokemon_aux_2;
 
 	t_list* intercambiables_entrenador1 = list_create();
 	t_list* intercambiables_entrenador2 = list_create();
@@ -351,7 +355,7 @@ void intercambiar_pokemones(){
 //-----Ubicamos los pokemones intercambiables de cada entrenador
 
 	for(int indice_pokemon = 0; indice_pokemon < list_size(entrenador1->atrapados); indice_pokemon++){
-		pokemon_sobra_entrenador1->especie = list_get(entrenador1->atrapados, indice_pokemon);
+		pokemon_sobra_entrenador1 = list_get(entrenador1->atrapados, indice_pokemon);
 
 		if(es_intercambiable_pokemon(entrenador1, pokemon_sobra_entrenador1)){
 			list_add(intercambiables_entrenador1, pokemon_sobra_entrenador1);
@@ -359,7 +363,7 @@ void intercambiar_pokemones(){
 	}
 
 	for(int indice_pokemon = 0; indice_pokemon < list_size(entrenador2->atrapados); indice_pokemon++){
-		pokemon_sobra_entrenador2->especie = list_get(entrenador2->atrapados, indice_pokemon);
+		pokemon_sobra_entrenador2 = list_get(entrenador2->atrapados, indice_pokemon);
 
 		if(es_intercambiable_pokemon(entrenador2, pokemon_sobra_entrenador2)){
 			list_add(intercambiables_entrenador2, pokemon_sobra_entrenador2);
@@ -369,14 +373,14 @@ void intercambiar_pokemones(){
 //-----Bucamos el pokemon que necesita a cada uno y sino el que le sobra a cada uno
 
 	for(int indice_pokemon = 0; indice_pokemon < list_size(intercambiables_entrenador1); indice_pokemon++){
-		pokemon_sobra_entrenador1->especie = list_get(intercambiables_entrenador1, indice_pokemon);
+		pokemon_sobra_entrenador1 = list_get(intercambiables_entrenador1, indice_pokemon);
 		if(necesita_pokemon(entrenador2, pokemon_sobra_entrenador1)){
 			break;
 		}
 	}
 
 	for(int indice_pokemon = 0; indice_pokemon < list_size(intercambiables_entrenador2); indice_pokemon++){
-		pokemon_sobra_entrenador2->especie = list_get(intercambiables_entrenador2, indice_pokemon);
+		pokemon_sobra_entrenador2 = list_get(intercambiables_entrenador2, indice_pokemon);
 		if(necesita_pokemon(entrenador1, pokemon_sobra_entrenador2)){
 			break;
 		}
@@ -384,54 +388,46 @@ void intercambiar_pokemones(){
 
 // Ya tenemos los dos pokemones a intercambiar, falta intercambiarlos
 
-	for(int indice_pokemon = 0; indice_pokemon < list_size(entrenador1->atrapados); indice_pokemon++){
-		pokemon_aux_1->especie= list_get(entrenador1->atrapados, indice_pokemon);
-		if(strcmp(pokemon_sobra_entrenador1->especie, pokemon_aux_1->especie)==0){
-			pokemon_aux_1->especie = list_remove(entrenador1->atrapados, indice_pokemon);
-			list_add(entrenador2->atrapados, pokemon_aux_1->especie);
+	for(int indice_pokemon = 0; indice_pokemon < list_size(entrenador1->objetivo); indice_pokemon++){
+		pokemon_aux_1= list_get(entrenador1->atrapados, indice_pokemon);
+		if(strcmp(pokemon_sobra_entrenador1, pokemon_aux_1)==0){
+			pokemon_aux_1 = list_remove(entrenador1->atrapados, indice_pokemon);
+			list_add(entrenador2->atrapados, pokemon_aux_1);
+			break;
 		}
 	}
 
-	for(int indice_pokemon = 0; indice_pokemon < list_size(entrenador2->atrapados); indice_pokemon++){
-		pokemon_aux_2->especie= list_get(entrenador2->atrapados, indice_pokemon);
-		if(strcmp(pokemon_sobra_entrenador2->especie, pokemon_aux_2->especie)==0){
-			pokemon_aux_2->especie = list_remove(entrenador2->atrapados, indice_pokemon);
-			list_add(entrenador1->atrapados, pokemon_aux_2->especie);
+	for(int indice_pokemon = 0; indice_pokemon < list_size(entrenador2->objetivo); indice_pokemon++){
+		pokemon_aux_2= list_get(entrenador2->atrapados, indice_pokemon);
+		if(strcmp(pokemon_sobra_entrenador2, pokemon_aux_2)==0){
+			pokemon_aux_2 = list_remove(entrenador2->atrapados, indice_pokemon);
+			list_add(entrenador1->atrapados, pokemon_aux_2);
+			break;
 		}
 	}
 
-	// POKEMONES INTERCAMBIADOS
-	log_operacion_de_intercambio(entrenador1,entrenador2);
+// POKEMONES INTERCAMBIADOS
+	log_operacion_de_intercambio(entrenador1,entrenador2, pokemon_aux_1, pokemon_aux_2);
+
+	verificar_estado_entrenador(entrenador1);
+	verificar_estado_entrenador(entrenador2);
 }
 
 
-bool es_intercambiable_pokemon(t_entrenador* entrenador, t_pokemon* pokemon){
+bool es_intercambiable_pokemon(t_entrenador* entrenador, char* pokemon){
 	int contador_pokemon_atrapado = 0;
 	int contador_pokemon_objetivo = 0;
 	char* pokemon_entrenador;
 
-	t_entrenador* entrenador1;
-	char* pokemonn;
-
-			for(int i = 0; i < cantidad_entrenadores(); i++){
-				entrenador1 = list_get(lista_de_entrenadores,i);
-				for(int j = 0; j <list_size(entrenador1->objetivo); j ++){
-					pokemonn = list_get(entrenador1->objetivo, j);
-					puts(pokemonn);
-				}
-				puts("");
-			}
-
-
 	for(int indice_pokemon = 0; indice_pokemon < list_size(entrenador->objetivo); indice_pokemon++){
 		pokemon_entrenador = list_get(entrenador->objetivo,indice_pokemon);
-		if(strcmp(pokemon_entrenador, pokemon->especie)==0)
+		if(strcmp(pokemon_entrenador, pokemon)==0)
 			contador_pokemon_objetivo++;
 	}
 
 	for(int indice_pokemon = 0; indice_pokemon < list_size(entrenador->atrapados); indice_pokemon++){
 		pokemon_entrenador = list_get(entrenador->atrapados,indice_pokemon);
-		if(strcmp(pokemon_entrenador, pokemon->especie)==0)
+		if(strcmp(pokemon_entrenador, pokemon)==0)
 			contador_pokemon_atrapado++;
 	}
 
@@ -444,9 +440,9 @@ bool es_intercambiable_pokemon(t_entrenador* entrenador, t_pokemon* pokemon){
 
 }
 
-bool necesita_pokemon(t_entrenador* entrenador, t_pokemon* pokemon){
+bool necesita_pokemon(t_entrenador* entrenador, char* pokemon){
 
-	t_pokemon* pokemon_auxiliar = malloc(sizeof(t_pokemon));
+	char* pokemon_auxiliar;
 	int cantidad_objetivo = 0;
 	int cantidad_atrapados = 0;
 
@@ -454,18 +450,18 @@ bool necesita_pokemon(t_entrenador* entrenador, t_pokemon* pokemon){
 	//determinada especie necesita en total
 
 	for (int indice_pokemon=0; indice_pokemon<list_size(entrenador->objetivo); indice_pokemon++){
-		pokemon_auxiliar->especie = list_get(entrenador->objetivo, indice_pokemon);
+		pokemon_auxiliar = list_get(entrenador->objetivo, indice_pokemon);
 
-		if(strcmp(pokemon_auxiliar->especie, pokemon->especie)==0){
+		if(strcmp(pokemon_auxiliar, pokemon)==0){
 			cantidad_objetivo++;
 		}
 	}
 	//Recorremos la lista de atrapados para saber si ya tiene a todos los que necesita
 
 	for (int indice_pokemon=0; indice_pokemon<list_size(entrenador->objetivo); indice_pokemon++){
-			pokemon_auxiliar->especie = list_get(entrenador->atrapados, indice_pokemon);
+			pokemon_auxiliar = list_get(entrenador->atrapados, indice_pokemon);
 
-			if(strcmp(pokemon_auxiliar->especie, pokemon->especie)==0){
+			if(strcmp(pokemon_auxiliar, pokemon)==0){
 				cantidad_atrapados++;
 			}
 		}

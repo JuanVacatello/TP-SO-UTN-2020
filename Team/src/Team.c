@@ -100,7 +100,7 @@ void generar_atrapados_global(void){
 
 }
 
-void eliminar_pokemon(char* pokemon){}
+void eliminar_pokemon(void* pokemon){}
 
 void planificacion(){
 	puts("aca entra2");
@@ -131,10 +131,6 @@ void planificacion(){
 
 
 void aparicion_pokemon(t_pokemon* pokemon){
-	//sem_wait(&MUTEX_ENTRENADORES);
-
-	if(es_pokemon_requerido(pokemon)){
-
 		t_entrenador* entrenador = entrenador_mas_cercano(pokemon);
 
 		entrenador->pokemon_a_atrapar = pokemon;
@@ -146,22 +142,15 @@ void aparicion_pokemon(t_pokemon* pokemon){
 		t_accion* accion = armar_accion(atrapar_pokemon, 3);
 		list_add(entrenador->cola_de_acciones, accion);
 
-
 		list_add(lista_de_entrenadores_ready,entrenador);
-
-		}
-
-	else{
-		//ESPERAMOS A LOG//
-	}
 }
 
-bool es_pokemon_requerido(t_pokemon* pokemon){
 
-
-	if(dictionary_has_key(objetivo_global,pokemon->especie)){
-		int cantidad_objetivos = dictionary_get(objetivo_global,pokemon->especie);
-		int cantidad_atrapados = dictionary_get(atrapados_global,pokemon->especie);
+bool es_pokemon_requerido(char* pokemon){
+	sem_wait(&MUTEX_POKEMON_REQUERIDO);
+	if(dictionary_has_key(objetivo_global,pokemon)){
+		int cantidad_objetivos = dictionary_get(objetivo_global,pokemon);
+		int cantidad_atrapados = dictionary_get(atrapados_global,pokemon);
 		if(cantidad_objetivos == cantidad_atrapados){
 			return false;
 		}

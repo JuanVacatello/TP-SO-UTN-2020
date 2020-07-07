@@ -72,15 +72,17 @@ t_list* entrenadores_mas_cercanos(t_pokemon* pokemon);
 int sacar_distancia(t_posicion pokeposicion,t_posicion entreposicion);
 bool puede_atrapar(t_entrenador* entrenador);
 void ejecutar_entrenador(t_entrenador* entrenador);
-bool termino_de_atrapar(t_entrenador* entrenador);
-bool termino_con_pokemon(t_entrenador* entrenador, t_pokemon* pokemon);
+bool termino_con_pokemon(t_entrenador* entrenador, char* pokemon);
 void atrapar_pokemon(t_entrenador* entrenador);
 void verificar_estado_entrenador(t_entrenador* entrenador);
 
 //intercambio de pokemones
 void intercambiar_pokemones();
-bool es_intercambiable_pokemon(t_entrenador* entrenador, t_pokemon* pokemon);
-bool necesita_pokemon(t_entrenador* entrenador, t_pokemon* pokemon);
+bool es_intercambiable_pokemon(t_entrenador* entrenador, char* pokemon);
+bool necesita_pokemon(t_entrenador* entrenador, char* pokemon);
+
+void remover_entrenador(t_entrenador* entrenador);
+bool esta_entrenador_en_lista(t_entrenador* entrenador ,t_list* lista);
 
 
 #endif /* ENTRENADOR_H_ */

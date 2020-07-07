@@ -84,11 +84,11 @@ void log_operacion_de_atrapar_fallida(t_entrenador* entrenador){
 }
 
 //4. Operación de intercambio (indicando entrenadores involucrados).
-void log_operacion_de_intercambio(t_entrenador* entrenador1, t_entrenador* entrenador2){
+void log_operacion_de_intercambio(t_entrenador* entrenador1, t_entrenador* entrenador2,char* pokemon1, char* pokemon2){
 	char idEntrenador1 = entrenador1->ID_entrenador;
 	char idEntrenador2 = entrenador2->ID_entrenador;
 
-	char* mensaje = string_from_format("El entrenador %c intercambio un pokemon con el entrenador %c", idEntrenador1, idEntrenador2);
+	char* mensaje = string_from_format("El entrenador %c intercambio un %s por un %s del entrenador %c", idEntrenador1, pokemon1, pokemon2, idEntrenador2);
 
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
 }

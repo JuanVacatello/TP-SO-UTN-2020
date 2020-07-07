@@ -47,6 +47,7 @@ pthread_mutex_t mutex_entrenador;
 t_list* lista_de_entrenadores_deadlock;
 
 sem_t MUTEX_SUB;
+sem_t MUTEX_POKEMON_REQUERIDO;
 sem_t MUTEX_ENTRENADORES;
 sem_t CONTADOR_ENTRENADORES;
 
@@ -74,11 +75,11 @@ int transformarCiclos(int ciclos);
 void ciclos_de_cpu(int ciclos);
 int cantidad_entrenadores(void);
 void iniciar_vg(void);
+void verificar_entrenadores();
 
 int cantidad_de_elementos(char* pokemons);
 bool esta_en_lista(t_list* lista_pokemones, char* especie);
 
 void suscribirse_a_colas();
-
 
 #endif /* CONEXIONES_H_ */

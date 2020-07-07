@@ -30,8 +30,11 @@ void iniciar_vg(void){
 	pthread_mutex_lock(&mutex_entrenador);
 
 	sem_init(&MUTEX_SUB,0,1);
-	//sem_init(&MUTEX_ENTRENADORES,0,1);
+	sem_init(&MUTEX_POKEMON_REQUERIDO,0,1);
 	sem_init(&CONTADOR_ENTRENADORES,0,cantidad_entrenadores());
+
+	verificar_entrenadores();
+
 
 
 	//pokemones nuevos de prueba
@@ -89,7 +92,7 @@ void ciclos_de_cpu(int ciclos){
 
 //----------FUNCIONES AUX ENTRENADORES----------
 
-int cantidad_entrenadores(void){
+int cantidad_entrenadores(){
 	char** entrenadores = obtener_posiciones_entrenadores();
 	int cantidad = 0;
 	for(int i=0; entrenadores[i] != NULL; i++){
@@ -136,3 +139,10 @@ void suscribirse_a_colas(){
 
 }
 
+void verificar_entrenadores(){
+	t_entrenador* entrenador;
+	for(int i=0; i<cantidad_entrenadores(); i++){
+		entrenador = list_get(lista_de_entrenadores,i);
+		verificar_estado_entrenador(entrenador);
+	}
+}

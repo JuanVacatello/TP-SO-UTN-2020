@@ -122,6 +122,7 @@ void process_request(op_code cod_op, int socket_cliente) {
 
 	switch(cod_op) {
 		case 2:
+			sem_wait(&CONTADOR_ENTRENADORES);
 			recibir_AppearedPokemon(socket_cliente);
 			break;
 		case 4:
@@ -399,7 +400,6 @@ void* iniciar_paquete_serializado_GetPokemon(int* tamanio_paquete,char* pokemon_
 
 
 void recibir_AppearedPokemon(int socket_cliente){
-		sem_wait(&CONTADOR_ENTRENADORES);
 
 		uint32_t tamanio_buffer;
 		recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
@@ -416,12 +416,15 @@ void recibir_AppearedPokemon(int socket_cliente){
 		uint32_t posY;
 		recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
 
-		t_pokemon* pokemonNuevo = armarPokemon(pokemon, posX, posY);
+		if(es_pokemon_requerido(pokemon)){
 
-		if(es_pokemon_requerido(pokemonNuevo)){
+			t_pokemon* pokemonNuevo = armarPokemon(pokemon, posX, posY);
 			list_add(lista_de_pokemones_sueltos, pokemonNuevo);
 
 			pthread_mutex_unlock(&mutex_planificador);
+		}
+		else{
+			sem_post(&MUTEX_POKEMON_REQUERIDO);
 		}
 
 		//free(pokemonNuevo);

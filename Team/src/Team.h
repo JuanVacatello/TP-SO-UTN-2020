@@ -30,12 +30,12 @@ void generar_objetivo_global(void);
 void generar_atrapados_global(void);
 void planificacion();
 void aparicion_pokemon(t_pokemon* pokemon);
-bool es_pokemon_requerido( t_pokemon* pokemon);
+bool es_pokemon_requerido( char* pokemon);
 void terminar_programa(int conexion, t_log* logger);
 bool deteccion_de_deadlock();
 t_accion* armar_accion(void(*accion)(void*), int ciclos);
 
 
 bool hay_pokemones_sueltos(t_list*);
-void eliminar_pokemon(char*);
+void eliminar_pokemon(void* pokemon);
 #endif /* TEAM_H_ */
