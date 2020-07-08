@@ -8,8 +8,6 @@ int main(void)
 	tamanio_de_memoria = obtener_tamanio_memoria();
 	elementos_en_memoria = list_create();
 
-	frecuencia_compactacion = obtener_frecuencia_compactacion();
-
 	memoria_principal = malloc(tamanio_de_memoria);
 	memset(memoria_principal,0,tamanio_de_memoria);
 
