@@ -35,8 +35,6 @@ t_list* lista_de_pokemones_sueltos;
 
 pthread_mutex_t mutex_planificador;
 
-//pthread_mutex_t mutex_conexion;
-
 pthread_t hilo_servidor;
 pthread_t hilo_appeared_pokemon;
 pthread_t hilo_caught_pokemon;
@@ -50,8 +48,6 @@ sem_t MUTEX_SUB;
 sem_t MUTEX_POKEMON_REQUERIDO;
 sem_t MUTEX_ENTRENADORES;
 sem_t CONTADOR_ENTRENADORES;
-
-
 
 
 

@@ -50,6 +50,7 @@ t_entrenador* armar_entrenador(int indice){
 	t_list* atrapado = list_create();
 	if(atrapados[indice] != NULL){
 		atrapado = obtener_atrapados(atrapados[indice]);
+
 	}
 	entrenador->atrapados = atrapado;
 
@@ -473,7 +474,12 @@ bool necesita_pokemon(t_entrenador* entrenador, char* pokemon){
 	}
 }
 
-
+bool esta_en_exit(t_entrenador* entrenador){
+	if(entrenador->estado == EXIT)
+		return true;
+	else
+		return false;
+}
 
 
 

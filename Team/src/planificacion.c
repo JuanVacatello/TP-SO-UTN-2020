@@ -31,6 +31,11 @@ void planificar_fifo(void){
 
 		}
 
+		if(TerminoTeam()){
+			puts("Terminó el Team");
+			exit(10);
+		}
+
 		pthread_mutex_lock(&mutex_planificador);
 	}
 }

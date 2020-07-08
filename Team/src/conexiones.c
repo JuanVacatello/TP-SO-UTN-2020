@@ -74,28 +74,6 @@ void esperar_cliente(int socket_servidor)
 
 	int socket_cliente = accept(socket_servidor, (void*) &dir_cliente, &tam_direccion);
 
-	/*op_code cod_op;
-	if(recv(socket_cliente, &cod_op, sizeof(op_code), MSG_WAITALL) == -1)
-		pthread_exit(NULL);
-
-	char* mensaje = string_from_format("El codigo de operacion es: %d.", cod_op);
-	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
-
-	switch(cod_op){
-		case 2:
-			pthread_create(&hilo_appeared_pokemon, NULL , recibir_AppearedPokemon, socket_cliente);
-			pthread_detach(hilo_appeared_pokemon);
-			break;
-		case 4:
-			pthread_create(&hilo_caught_pokemon, NULL , recibir_CaughtPokemon, socket_cliente);
-			pthread_detach(hilo_caught_pokemon);
-			break;
-		case 6:
-			pthread_create(&hilo_localized_pokemon, NULL , recibir_LocalizedPokemon, socket_cliente);
-			pthread_detach(hilo_localized_pokemon);
-			break;
-	}*/
-
 	pthread_create(&thread,NULL,(void*)serve_client,&socket_cliente);
 	pthread_detach(thread);
 }
@@ -135,18 +113,6 @@ void process_request(op_code cod_op, int socket_cliente) {
 	}
 }
 
-
-/*void* recibir_mensaje(int socket_cliente, int* size)
-{
-	void * buffer;
-
-	recv(socket_cliente, size, sizeof(int), MSG_WAITALL);
-	buffer = malloc(*size);
-	recv(socket_cliente, buffer, *size, MSG_WAITALL);
-
-	return buffer;
-}*/
-
 void* serializar_paquete(t_paquete* paquete, int *bytes)
 {
 	void* a_enviar = malloc(*bytes);
@@ -174,6 +140,7 @@ void enviar_suscripcion_a_cola(op_code cola)
 
 	socket_broker = crear_conexion(ip_broker,puerto_broker);
 
+//
 	/*while(socket_broker == -1){
 		sleep(tiempo_reconexion);
 		socket_broker = crear_conexion(ip_broker,puerto_broker);

@@ -83,6 +83,6 @@ bool necesita_pokemon(t_entrenador* entrenador, char* pokemon);
 
 void remover_entrenador(t_entrenador* entrenador);
 bool esta_entrenador_en_lista(t_entrenador* entrenador ,t_list* lista);
-
+bool esta_en_exit(t_entrenador* entrenador);
 
 #endif /* ENTRENADOR_H_ */

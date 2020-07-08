@@ -24,10 +24,11 @@ int main(void) {
 		iniciar_vg();
 		suscribirse_a_colas();
 
+/*
 		t_entrenador* entrenador;
 		char* pokemonn;
 
-		/*for(int i = 0; i < cantidad_entrenadores(); i++){
+		for(int i = 0; i < cantidad_entrenadores(); i++){
 			entrenador = list_get(lista_de_entrenadores,i);
 			for(int j = 0; j <list_size(entrenador->objetivo); j ++){
 				pokemonn = list_get(entrenador->objetivo, j);

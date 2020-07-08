@@ -98,6 +98,7 @@ void generar_atrapados_global(void){
 			}
 		}
 
+	free(pokemones);
 }
 
 void eliminar_pokemon(void* pokemon){}
@@ -180,6 +181,7 @@ bool deteccion_de_deadlock(){
 	t_list* atrapados_aux;
 	t_list* total_objetivos = list_create();
 	t_list* objetivos_aux;
+	char* pokemonn;
 
 	for(int indice = 0; indice < cantidad_entrenadores(); indice++){
 		entrenador = list_get(lista_de_entrenadores,indice);
@@ -264,6 +266,12 @@ void informar_pokemones_a_atrapar(){
 	free(pokemones_a_atrapar);
 	free(entrenador_aux);
 }
+
+bool TerminoTeam(){
+	return list_all_satisfy(lista_de_entrenadores, esta_en_exit);
+}
+
+
 
 
 

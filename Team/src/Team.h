@@ -38,4 +38,6 @@ t_accion* armar_accion(void(*accion)(void*), int ciclos);
 
 bool hay_pokemones_sueltos(t_list*);
 void eliminar_pokemon(void* pokemon);
+
+bool TerminoTeam();
 #endif /* TEAM_H_ */
