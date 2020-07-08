@@ -1,0 +1,30 @@
+
+[INFO] 17:51:44:239 BROKER/(8857:8864): Se conectó proceso al Broker
+[INFO] 17:51:44:274 BROKER/(8857:8864): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:51:44:275 BROKER/(8857:8864): La memoria tiene espacio
+[INFO] 17:51:44:275 BROKER/(8857:8864): Se almacenó un mensaje en la posición 0 de la memoria principal, con un tamaño de 24 bytes.
+[INFO] 17:51:45:819 BROKER/(8857:8866): Se conectó proceso al Broker
+[INFO] 17:51:45:820 BROKER/(8857:8866): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:51:45:820 BROKER/(8857:8866): La memoria tiene espacio
+[INFO] 17:51:45:820 BROKER/(8857:8866): Se almacenó un mensaje en la posición 24 de la memoria principal, con un tamaño de 4 bytes.
+[INFO] 17:51:47:374 BROKER/(8857:8868): Se conectó proceso al Broker
+[INFO] 17:51:47:375 BROKER/(8857:8868): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:51:47:375 BROKER/(8857:8868): La memoria tiene espacio
+[INFO] 17:51:47:375 BROKER/(8857:8868): Se almacenó un mensaje en la posición 28 de la memoria principal, con un tamaño de 21 bytes.
+[INFO] 17:51:48:936 BROKER/(8857:8870): Se conectó proceso al Broker
+[INFO] 17:51:48:936 BROKER/(8857:8870): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:51:48:936 BROKER/(8857:8870): La memoria tiene espacio
+[INFO] 17:51:48:936 BROKER/(8857:8870): Estoy en fifo
+[INFO] 17:51:48:936 BROKER/(8857:8870): Posicion 0 tamanio 0 ult ref 0
+[INFO] 17:51:48:936 BROKER/(8857:8870): Se eliminó de memoria principal la partición que empezaba en la posicion 0
+[INFO] 17:51:48:937 BROKER/(8857:8870): Conto 1 ceros
+[INFO] 17:51:48:937 BROKER/(8857:8870): Estoy en fifo
+[INFO] 17:51:48:937 BROKER/(8857:8870): Posicion 24 tamanio 0 ult ref 1
+[INFO] 17:51:48:937 BROKER/(8857:8870): Se eliminó de memoria principal la partición que empezaba en la posicion 24
+[INFO] 17:51:48:937 BROKER/(8857:8870): Conto 1 ceros
+[INFO] 17:51:48:937 BROKER/(8857:8870): Estoy en fifo
+[INFO] 17:51:48:937 BROKER/(8857:8870): Posicion 28 tamanio 0 ult ref 2
+[INFO] 17:51:48:937 BROKER/(8857:8870): Se eliminó de memoria principal la partición que empezaba en la posicion 28
+[INFO] 17:51:48:937 BROKER/(8857:8870): Conto 1 ceros
+[INFO] 17:51:48:937 BROKER/(8857:8870): Entre aca porque soy re gede
+[INFO] 17:51:48:937 BROKER/(8857:8870): Se compactó la memoria

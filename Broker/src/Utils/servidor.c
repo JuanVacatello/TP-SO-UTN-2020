@@ -57,9 +57,6 @@ void serve_client(int* socket)
 	if(recv(*socket, &cod_op, sizeof(op_code), MSG_WAITALL) == -1)
 		pthread_exit(NULL);
 
-	char* mensaje = string_from_format("El codigo de operacion es: %d.", cod_op);
-	completar_logger(mensaje, "Broker", LOG_LEVEL_INFO);
-
 	process_request(cod_op, *socket);
 }
 
@@ -254,6 +251,10 @@ void enviar_mensajes_al_nuevo_suscriptor(t_list* mensajes_de_dicha_cola, int soc
 		if(send(socket_suscriptor,a_enviar,tamanio_paquete,0) == -1){
 			completar_logger("Error en enviar por el socket","BROKER", LOG_LEVEL_INFO);
 			exit(3);
+
+		char* mensaje = string_from_format("Se le envió un mensaje al suscriptor de socket: %d.", socket_suscriptor);
+		completar_logger(mensaje, "Broker", LOG_LEVEL_INFO); // LOG OBLIGATORIO
+
 		}
 
 		free(paquete);
@@ -615,6 +616,10 @@ void reenviar_mensaje_a_suscriptores(void* a_enviar, int tamanio_paquete, t_list
 		if(send(socket_suscriptor,a_enviar,tamanio_paquete,0) == -1){
 			completar_logger("Error en enviar por el socket","BROKER", LOG_LEVEL_INFO);
 			exit(3);
+
+		char* mensaje = string_from_format("Se envió un mensaje al suscriptor de socket: %d.", socket_suscriptor);
+		completar_logger(mensaje, "Broker", LOG_LEVEL_INFO);
+
 		}
 	}
 }
