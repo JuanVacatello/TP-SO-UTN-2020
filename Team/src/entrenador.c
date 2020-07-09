@@ -43,14 +43,15 @@ t_entrenador* armar_entrenador(int indice){
 	entrenador->objetivo = objetivo;
 
 	//LISTA ATRAPADOS
+	//[Pikachu|Squirtle,Onix]
 	char** atrapados = obtener_pokemon_entrenadores();
-	/*for(int i = 0; atrapados[indice] != NULL ;i++){
-		contador_atrapados = i;
-	}*/
 	t_list* atrapado = list_create();
-	if(atrapados[indice] != NULL){
-		atrapado = obtener_atrapados(atrapados[indice]);
 
+	if(!string_is_empty(atrapados)){//if(contador_atrapados != 1){
+		if(atrapados[indice]!=NULL){
+			atrapado = obtener_atrapados(atrapados[indice]);
+			puts(atrapados[indice]);
+		}
 	}
 	entrenador->atrapados = atrapado;
 
@@ -233,6 +234,10 @@ void atrapar_pokemon(t_entrenador* entrenador){
 		dictionary_put(atrapados_global, entrenador->pokemon_a_atrapar->especie, cantidad_pokemon + 1);
 
 		//Actualizamos diccionarios
+
+		int pid = process_getpid();
+		char* mensaje = string_from_format("pid: %d.",pid);
+		completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
 
 		verificar_estado_entrenador(entrenador);
 

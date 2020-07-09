@@ -76,10 +76,12 @@ void generar_atrapados_global(void){
 	int cantidad_pokemon;
 	char** atrapados = obtener_pokemon_entrenadores();
 
-	for(int indice = 0; indice<cantidad_entrenadores(); indice++){
-		if(atrapados[indice] != NULL){
-			pokemones_atrapados = obtener_atrapados(atrapados[indice]);
-			list_add_all(pokemones, pokemones_atrapados);
+	if(!string_is_empty(atrapados)){
+		for(int indice = 0; indice<cantidad_entrenadores(); indice++){
+			if(atrapados[indice] != NULL){
+				pokemones_atrapados = obtener_atrapados(atrapados[indice]);
+				list_add_all(pokemones, pokemones_atrapados);
+			}
 		}
 	}
 

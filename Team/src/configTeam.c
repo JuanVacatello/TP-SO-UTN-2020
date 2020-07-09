@@ -79,6 +79,12 @@ char** obtener_pokemon_entrenadores(void){
 	return pokemon_entrenadores;
 }
 
+char* obtener_pokemon_entrenadores_string(void){
+	char* pokemon_entrenadores;
+	pokemon_entrenadores = config_get_string_value(config, "POKEMON_ENTRENADORES");
+	return pokemon_entrenadores;
+}
+
 char** obtener_objetivos_entrenadores(void){
 	char** objetivos_entrenadores;
 	objetivos_entrenadores = config_get_array_value(config, "OBJETIVOS_ENTRENADORES");

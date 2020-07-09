@@ -146,3 +146,36 @@ void verificar_entrenadores(){
 		verificar_estado_entrenador(entrenador);
 	}
 }
+
+
+int cantidad_de_elementos_coma(char* pokemons){
+	int contador = 0;
+		for(int i=0; i < string_length(pokemons); i++){
+			if(pokemons[i] ==',')
+				contador++;
+		}
+	return contador+1;
+}
+
+int cantidad_de_entrenadores_que_atrapan(){
+	int cantidad;
+	char* atrapados = obtener_pokemon_entrenadores_string();
+	//atrapados = []
+	int n = cantidad_de_elementos_coma(atrapados);
+
+	string_n_split(atrapados,n, ",");
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

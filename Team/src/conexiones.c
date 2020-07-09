@@ -682,11 +682,9 @@ t_entrenador* buscar_entrenador_por_id_catch(uint32_t id){
 	t_entrenador* entrenador_aux;
 	for(int i = 0; i < cantidad_entrenadores(); i++){
 		entrenador_aux = list_get(lista_de_entrenadores, i);
-		if(entrenador->ID_catch_pokemon == id){
+		if(entrenador_aux->ID_catch_pokemon == id){
 			entrenador = entrenador_aux;
 		}
 	}
-
 	return entrenador;
-
 }
