@@ -15,6 +15,7 @@
 
 void planificar_fifo(void);
 void planificar_sjf_sd(void);
+void planificar_sjf_cd(void);
 void planificar_rr(void);
 t_entrenador* entrenador_con_menor_cpu(void);
 int ciclos_rafaga_a_ejecutar(t_entrenador* entrenador);

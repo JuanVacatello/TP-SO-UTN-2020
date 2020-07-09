@@ -80,6 +80,60 @@ void planificar_sjf_sd(void){
 }
 
 
+void planificar_sjf_cd(void){
+
+	t_entrenador* entrenador_aux;
+	t_entrenador* entrenador;
+
+	while(1){
+
+		//pthread_mutex_lock(&mutex_planificador);
+
+		while(!list_is_empty(lista_de_pokemones_sueltos)){
+			t_pokemon* pokemon_nuevo = list_remove(lista_de_pokemones_sueltos,0);
+
+			aparicion_pokemon(pokemon_nuevo);
+		}
+
+		while(!list_is_empty(lista_de_entrenadores_ready)){
+
+			entrenador_aux = entrenador_con_menor_cpu();
+
+			for(int i =0 ; i<list_size(lista_de_entrenadores_ready); i++){
+				entrenador = list_get(lista_de_entrenadores_ready,i);
+				if(entrenador->ID_entrenador == entrenador_aux->ID_entrenador){
+					entrenador = list_remove(lista_de_entrenadores_ready,i);
+				}
+			}
+
+			entrenador->rafaga_anterior = 0;
+			entrenador->estado = EXEC;
+
+			while(list_size(entrenador->cola_de_acciones) > 0){
+				entrenador_aux = entrenador_con_menor_cpu();
+
+				if(entrenador_aux->ID_entrenador != entrenador->ID_entrenador){
+
+					list_add(lista_de_entrenadores_ready, entrenador);
+
+					for(int i =0 ; i<list_size(lista_de_entrenadores_ready); i++){
+						entrenador = list_get(lista_de_entrenadores_ready,i);
+						if(entrenador->ID_entrenador == entrenador_aux->ID_entrenador){
+							entrenador = list_remove(lista_de_entrenadores_ready,i);
+						}
+					}
+
+
+					}
+
+				ejecutar_entrenador(entrenador);
+
+				}
+			}
+		}
+
+		pthread_mutex_lock(&mutex_planificador);
+}
 
 // Ti = T(i­-1) * a + R(i­-1) * (1 -­ a) , donde a = obtener_alpha()
 
@@ -198,7 +252,6 @@ void planificar_rr(void){
 
 
 void destruir_accion(t_accion* accion){}	//NO BORRAR
-
 
 
 
