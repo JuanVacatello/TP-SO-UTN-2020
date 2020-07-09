@@ -1,30 +1,37 @@
-
-[INFO] 17:51:44:239 BROKER/(8857:8864): Se conectó proceso al Broker
-[INFO] 17:51:44:274 BROKER/(8857:8864): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 17:51:44:275 BROKER/(8857:8864): La memoria tiene espacio
-[INFO] 17:51:44:275 BROKER/(8857:8864): Se almacenó un mensaje en la posición 0 de la memoria principal, con un tamaño de 24 bytes.
-[INFO] 17:51:45:819 BROKER/(8857:8866): Se conectó proceso al Broker
-[INFO] 17:51:45:820 BROKER/(8857:8866): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 17:51:45:820 BROKER/(8857:8866): La memoria tiene espacio
-[INFO] 17:51:45:820 BROKER/(8857:8866): Se almacenó un mensaje en la posición 24 de la memoria principal, con un tamaño de 4 bytes.
-[INFO] 17:51:47:374 BROKER/(8857:8868): Se conectó proceso al Broker
-[INFO] 17:51:47:375 BROKER/(8857:8868): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 17:51:47:375 BROKER/(8857:8868): La memoria tiene espacio
-[INFO] 17:51:47:375 BROKER/(8857:8868): Se almacenó un mensaje en la posición 28 de la memoria principal, con un tamaño de 21 bytes.
-[INFO] 17:51:48:936 BROKER/(8857:8870): Se conectó proceso al Broker
-[INFO] 17:51:48:936 BROKER/(8857:8870): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 17:51:48:936 BROKER/(8857:8870): La memoria tiene espacio
-[INFO] 17:51:48:936 BROKER/(8857:8870): Estoy en fifo
-[INFO] 17:51:48:936 BROKER/(8857:8870): Posicion 0 tamanio 0 ult ref 0
-[INFO] 17:51:48:936 BROKER/(8857:8870): Se eliminó de memoria principal la partición que empezaba en la posicion 0
-[INFO] 17:51:48:937 BROKER/(8857:8870): Conto 1 ceros
-[INFO] 17:51:48:937 BROKER/(8857:8870): Estoy en fifo
-[INFO] 17:51:48:937 BROKER/(8857:8870): Posicion 24 tamanio 0 ult ref 1
-[INFO] 17:51:48:937 BROKER/(8857:8870): Se eliminó de memoria principal la partición que empezaba en la posicion 24
-[INFO] 17:51:48:937 BROKER/(8857:8870): Conto 1 ceros
-[INFO] 17:51:48:937 BROKER/(8857:8870): Estoy en fifo
-[INFO] 17:51:48:937 BROKER/(8857:8870): Posicion 28 tamanio 0 ult ref 2
-[INFO] 17:51:48:937 BROKER/(8857:8870): Se eliminó de memoria principal la partición que empezaba en la posicion 28
-[INFO] 17:51:48:937 BROKER/(8857:8870): Conto 1 ceros
-[INFO] 17:51:48:937 BROKER/(8857:8870): Entre aca porque soy re gede
-[INFO] 17:51:48:937 BROKER/(8857:8870): Se compactó la memoria
+[INFO] 18:24:00:344 BROKER/(8036:8109): Se conectó proceso al Broker
+[INFO] 18:24:00:350 BROKER/(8036:8109): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 18:24:00:350 BROKER/(8036:8109): La memoria tiene espacio
+[INFO] 18:24:00:350 BROKER/(8036:8109): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 18:24:00:372 BROKER/(8036:8111): Se conectó proceso al Broker
+[INFO] 18:24:00:373 BROKER/(8036:8111): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 18:24:00:373 BROKER/(8036:8111): La memoria tiene espacio
+[INFO] 18:24:00:373 BROKER/(8036:8111): Se almacenó un mensaje en la posición 21 de la memoria principal.
+[INFO] 18:24:00:393 BROKER/(8036:8113): Se conectó proceso al Broker
+[INFO] 18:24:00:394 BROKER/(8036:8113): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 18:24:00:394 BROKER/(8036:8113): La memoria tiene espacio
+[INFO] 18:24:00:395 BROKER/(8036:8113): Se almacenó un mensaje en la posición 25 de la memoria principal.
+[INFO] 18:24:00:437 BROKER/(8036:8115): Se conectó proceso al Broker
+[INFO] 18:24:00:437 BROKER/(8036:8115): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 18:24:00:438 BROKER/(8036:8115): La memoria tiene espacio
+[INFO] 18:24:00:438 BROKER/(8036:8115): Estoy en fifo
+[INFO] 18:24:00:438 BROKER/(8036:8115): Posicion 0 tamanio 21 ult ref 0
+[INFO] 18:24:00:438 BROKER/(8036:8115): Se eliminó de memoria principal la partición que empezaba en la posicion 0
+[INFO] 18:24:00:438 BROKER/(8036:8115): Valor en posicion 0: 0.
+[INFO] 18:24:00:438 BROKER/(8036:8115): Valor en posicion 4: 0.
+[INFO] 18:24:00:438 BROKER/(8036:8115): Valor en posicion 8: 0.
+[INFO] 18:24:00:438 BROKER/(8036:8115): Valor en posicion 12: 0.
+[INFO] 18:24:00:438 BROKER/(8036:8115): Valor en posicion 16: 0.
+[INFO] 18:24:00:438 BROKER/(8036:8115): Valor en posicion 20: -256.
+[INFO] 18:24:00:440 BROKER/(8036:8115): Valor en posicion 24: 2303.
+[INFO] 18:24:00:440 BROKER/(8036:8115): Valor en posicion 28: 1802063872.
+[INFO] 18:24:00:440 BROKER/(8036:8115): Valor en posicion 32: 1969775457.
+[INFO] 18:24:00:440 BROKER/(8036:8115): Valor en posicion 36: 512.
+[INFO] 18:24:00:440 BROKER/(8036:8115): Valor en posicion 40: 1024.
+[INFO] 18:24:00:440 BROKER/(8036:8115): Valor en posicion 44: 256.
+[INFO] 18:24:00:440 BROKER/(8036:8115): Valor en posicion 48: 0.
+[INFO] 18:24:00:440 BROKER/(8036:8115): Valor en posicion 52: 0.
+[INFO] 18:24:00:441 BROKER/(8036:8115): Valor en posicion 56: 0.
+[INFO] 18:24:00:441 BROKER/(8036:8115): Valor en posicion 60: 0.
+[INFO] 18:24:00:441 BROKER/(8036:8115): Conto 20 ceros
+[INFO] 18:24:00:441 BROKER/(8036:8115): Entra en hueco
+[INFO] 18:24:00:441 BROKER/(8036:8115): Se almacenó un mensaje en la posición 0 de la memoria principal.
