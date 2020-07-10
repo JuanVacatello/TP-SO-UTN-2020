@@ -30,7 +30,10 @@ void planificar_fifo(void){
 
 		while(deteccion_de_deadlock()){
 			entrenador = preparar_intercambio();
+			entrenador = list_remove(lista_de_entrenadores_ready,0);
 			entrenador->estado = EXEC;
+			cambiosDeContexto++;
+
 			while(list_size(entrenador->cola_de_acciones) > 0){
 				ejecutar_entrenador(entrenador);
 			}
@@ -75,10 +78,30 @@ void planificar_sjf_sd(void){
 
 			entrenador->rafaga_anterior = 0;
 			entrenador->estado = EXEC;
+			cambiosDeContexto++;
 			while(list_size(entrenador->cola_de_acciones) > 0){
 				ejecutar_entrenador(entrenador);
 				}
 			}
+
+		while(deteccion_de_deadlock()){
+			entrenador = preparar_intercambio();
+			entrenador = list_remove(lista_de_entrenadores_ready,0);
+			entrenador->estado = EXEC;
+			cambiosDeContexto++;
+
+			while(list_size(entrenador->cola_de_acciones) > 0){
+				ejecutar_entrenador(entrenador);
+			}
+		}
+		if(terminoTeam()){
+			finalizoTeam();
+			exit(10);
+		}
+
+
+
+
 		}
 
 		pthread_mutex_lock(&mutex_planificador);
@@ -119,12 +142,16 @@ void planificar_sjf_cd(void){
 
 				if(entrenador_aux->ID_entrenador != entrenador->ID_entrenador){
 
+					entrenador->estado = READY;
+					cambiosDeContexto++;
 					list_add(lista_de_entrenadores_ready, entrenador);
 
 					for(int i =0 ; i<list_size(lista_de_entrenadores_ready); i++){
 						entrenador = list_get(lista_de_entrenadores_ready,i);
 						if(entrenador->ID_entrenador == entrenador_aux->ID_entrenador){
 							entrenador = list_remove(lista_de_entrenadores_ready,i);
+							entrenador->estado = EXEC;
+							cambiosDeContexto++;
 						}
 					}
 
@@ -135,6 +162,24 @@ void planificar_sjf_cd(void){
 
 				}
 			}
+
+				while(deteccion_de_deadlock()){
+					entrenador = preparar_intercambio();
+					entrenador = list_remove(lista_de_entrenadores_ready,0);
+					entrenador->estado = EXEC;
+					cambiosDeContexto++;
+
+					while(list_size(entrenador->cola_de_acciones) > 0){
+						ejecutar_entrenador(entrenador);
+					}
+				}
+
+				if(terminoTeam()){
+					finalizoTeam();
+					exit(10);
+				}
+
+
 		}
 
 		pthread_mutex_lock(&mutex_planificador);
@@ -224,6 +269,7 @@ void planificar_rr(void){
 			}
 			entrenador = list_remove(lista_de_entrenadores_ready,0);
 			entrenador->estado = EXEC;
+			cambiosDeContexto++;
 
 			while(list_size(entrenador->cola_de_acciones) > 0 && quantum_remanente > 0){
 				accion_aux = list_get(entrenador->cola_de_acciones,0);
@@ -242,6 +288,7 @@ void planificar_rr(void){
 			}
 			if(list_size(entrenador->cola_de_acciones) > 0 && quantum_remanente == 0){
 				entrenador->estado = READY;
+				cambiosDeContexto++;
 				list_add(lista_de_entrenadores_ready, entrenador);
 			}
 		}

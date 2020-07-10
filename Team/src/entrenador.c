@@ -274,10 +274,12 @@ void verificar_estado_entrenador(t_entrenador* entrenador){
 				remover_entrenador(entrenador);
 			}
 			entrenador->estado = EXIT;
+			cambiosDeContexto++;
 		}
 		else{
 			//PONEMOS ENTRENADOR EN DEADLOCK
 			entrenador->estado = BLOCKED;
+			cambiosDeContexto++;
 			if(!esta_entrenador_en_lista(entrenador, lista_de_entrenadores_deadlock)){
 				list_add(lista_de_entrenadores_deadlock, entrenador);
 			}
@@ -285,6 +287,7 @@ void verificar_estado_entrenador(t_entrenador* entrenador){
 	}
 	else{
 		entrenador->estado = BLOCKED;
+		cambiosDeContexto++;
 	}
 
 }
@@ -353,6 +356,9 @@ t_entrenador* preparar_intercambio(){
 	entrenador1->posicionIntercambio.x = entrenador2->posicion.x;
 	entrenador1->posicionIntercambio.y = entrenador2->posicion.y;
 
+	entrenador1->estado = READY;
+	cambiosDeContexto++;
+
 	armar_movimiento(entrenador1);
 
 	t_accion* accionIntercambio = malloc(sizeof(t_accion));
@@ -360,6 +366,8 @@ t_entrenador* preparar_intercambio(){
 	accionIntercambio->accion = intercambiar_pokemones;
 
 	list_add(entrenador1->cola_de_acciones, accionIntercambio);
+
+	list_add(lista_de_entrenadores_ready, entrenador1);
 
 	return entrenador1;
 }
