@@ -6,7 +6,7 @@
 
 //------------INICIAMOS VARIABLES GLOBALES-------------//
 
-void iniciar_vg(void){
+void iniciar_vg(){
 
 	armar_entrenadores();
 	generar_objetivo_global();
@@ -16,14 +16,14 @@ void iniciar_vg(void){
 	lista_de_pokemones_sueltos = list_create();
 	//informar_pokemones_a_atrapar();
 
+	ciclosCpuTotales = 0;
+	cambiosDeContexto = 0;
+	deadlocksProducidos = 0;
+	deadlocksResueltos = 0;
+
 	pthread_mutex_init(&mutex_planificador, NULL);
 	//PONEMOS EL SEMÁFORO EN 0
 	pthread_mutex_lock(&mutex_planificador);
-
-	//pthread_mutex_init(&mutex_conexion, NULL);
-	//PONEMOS EL SEMÁFORO EN 1
-	//pthread_mutex_lock(&mutex_conexion);
-
 
 	pthread_mutex_init(&mutex_entrenador, NULL);
 	//PONEMOS EL SEMÁFORO EN 0

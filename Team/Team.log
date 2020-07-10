@@ -1,178 +1,104 @@
-[INFO] 18:00:29:188 TEAM/(10246:10258): El codigo de operacion es: 2.
-[INFO] 18:00:29:188 TEAM/(10246:10258): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 18:00:29:188 TEAM/(10246:10258): El nombre del pokemon es: Pikachu
-[INFO] 18:00:29:188 TEAM/(10246:10258): posicion en x: 1
-[INFO] 18:00:29:188 TEAM/(10246:10258): posicion en y: 1
-[INFO] 18:00:29:188 TEAM/(10246:10259): El entrenador A se movió a la posicion 1|3.
-[INFO] 18:00:29:198 TEAM/(10246:10261): El codigo de operacion es: 2.
-[INFO] 18:00:29:198 TEAM/(10246:10261): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 18:00:29:202 TEAM/(10246:10263): El codigo de operacion es: 2.
-[INFO] 18:00:29:202 TEAM/(10246:10263): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 18:00:29:206 TEAM/(10246:10265): El codigo de operacion es: 2.
-[INFO] 18:00:29:207 TEAM/(10246:10265): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 18:00:29:209 TEAM/(10246:10267): El codigo de operacion es: 2.
-[INFO] 18:00:29:210 TEAM/(10246:10267): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 18:00:34:191 TEAM/(10246:10268): El entrenador A se movió a la posicion 1|2.
-[INFO] 18:00:39:191 TEAM/(10246:10269): El entrenador A se movió a la posicion 1|1.
-[INFO] 18:00:49:193 TEAM/(10246:10270): El entrenador A atrapó un Pikachu en la posicion 1|1.
-[INFO] 18:00:49:193 TEAM/(10246:10261): El nombre del pokemon es: Squirtle
-[INFO] 18:00:49:193 TEAM/(10246:10261): posicion en x: 9
-[INFO] 18:00:49:193 TEAM/(10246:10261): posicion en y: 7
-[INFO] 18:00:49:193 TEAM/(10246:10271): El entrenador C se movió a la posicion 9|8.
-[INFO] 18:00:54:199 TEAM/(10246:10272): El entrenador C se movió a la posicion 9|7.
-[INFO] 18:01:04:202 TEAM/(10246:10273): El entrenador C atrapó un Squirtle en la posicion 9|7.
-[INFO] 18:01:04:202 TEAM/(10246:10263): El nombre del pokemon es: Onix
-[INFO] 18:01:04:202 TEAM/(10246:10263): posicion en x: 2
-[INFO] 18:01:04:202 TEAM/(10246:10263): posicion en y: 2
-[INFO] 18:01:04:203 TEAM/(10246:10274): El entrenador B se movió a la posicion 5|5.
-[INFO] 18:01:09:203 TEAM/(10246:10275): El entrenador B se movió a la posicion 4|5.
-[INFO] 18:01:14:206 TEAM/(10246:10276): El entrenador B se movió a la posicion 3|5.
-[INFO] 18:01:19:207 TEAM/(10246:10279): El entrenador B se movió a la posicion 2|5.
-[INFO] 18:01:24:208 TEAM/(10246:10280): El entrenador B se movió a la posicion 2|4.
-[INFO] 18:01:29:209 TEAM/(10246:10282): El entrenador B se movió a la posicion 2|3.
-[INFO] 18:01:34:211 TEAM/(10246:10283): El entrenador B se movió a la posicion 2|2.
-[INFO] 18:01:44:212 TEAM/(10246:10284): El entrenador B atrapó un Onix en la posicion 2|2.
-[INFO] 18:01:44:213 TEAM/(10246:10265): El nombre del pokemon es: Squirtle
-[INFO] 18:01:44:213 TEAM/(10246:10265): posicion en x: 3
-[INFO] 18:01:44:213 TEAM/(10246:10265): posicion en y: 5
-[INFO] 18:01:44:213 TEAM/(10246:10285): El entrenador B se movió a la posicion 3|2.
-[INFO] 18:01:49:213 TEAM/(10246:10291): El entrenador B se movió a la posicion 3|3.
-[INFO] 18:01:54:214 TEAM/(10246:10297): El entrenador B se movió a la posicion 3|4.
-[INFO] 18:01:59:215 TEAM/(10246:10299): El entrenador B se movió a la posicion 3|5.
-[INFO] 18:02:09:216 TEAM/(10246:10300): El entrenador B atrapó un Squirtle en la posicion 3|5.
-[INFO] 18:02:09:216 TEAM/(10246:10267): El nombre del pokemon es: Gengar
-[INFO] 18:02:09:216 TEAM/(10246:10267): posicion en x: 7
-[INFO] 18:02:09:216 TEAM/(10246:10267): posicion en y: 5
-[INFO] 18:02:09:217 TEAM/(10246:10301): El entrenador C se movió a la posicion 8|7.
-[INFO] 18:02:14:217 TEAM/(10246:10302): El entrenador C se movió a la posicion 7|7.
-[INFO] 18:02:19:218 TEAM/(10246:10310): El entrenador C se movió a la posicion 7|6.
-[INFO] 18:02:24:218 TEAM/(10246:10311): El entrenador C se movió a la posicion 7|5.
-[INFO] 18:02:34:220 TEAM/(10246:10312): El entrenador C atrapó un Gengar en la posicion 7|5.
-[INFO] 18:02:34:221 TEAM/(10246:10253): Inicio de algoritmo de deteccion de Deadlock
-[INFO] 18:02:34:221 TEAM/(10246:10253): Se detecto que hay situacion de deadlock
-[INFO] 18:02:34:221 TEAM/(10246:10253): El entrenador A intercambio un Pikachu por un Squirtle del entrenador B
-[INFO] 18:02:34:221 TEAM/(10246:10253): Inicio de algoritmo de deteccion de Deadlock
-[INFO] 18:02:34:221 TEAM/(10246:10253): Se detecto que hay situacion de deadlock
-[INFO] 18:02:34:221 TEAM/(10246:10253): El entrenador B intercambio un Onix por un Gengar del entrenador C
-[INFO] 18:02:34:221 TEAM/(10246:10253): Inicio de algoritmo de deteccion de Deadlock
-[INFO] 18:02:34:221 TEAM/(10246:10253): No se detecto situacion de deadlock
-[INFO] 19:03:02:59 TEAM/(10768:10776): El codigo de operacion es: 2.
-[INFO] 19:03:02:61 TEAM/(10768:10776): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 19:03:02:61 TEAM/(10768:10776): El nombre del pokemon es: Pikachu
-[INFO] 19:03:02:72 TEAM/(10768:10776): posicion en x: 1
-[INFO] 19:03:02:73 TEAM/(10768:10776): posicion en y: 1
-[INFO] 19:03:02:82 TEAM/(10768:10778): El entrenador A se movió a la posicion 1|3.
-[INFO] 19:03:02:87 TEAM/(10768:10779): El codigo de operacion es: 2.
-[INFO] 19:03:02:88 TEAM/(10768:10779): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 19:03:02:94 TEAM/(10768:10781): El codigo de operacion es: 2.
-[INFO] 19:03:02:94 TEAM/(10768:10781): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 19:03:02:99 TEAM/(10768:10783): El codigo de operacion es: 2.
-[INFO] 19:03:02:99 TEAM/(10768:10783): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 19:03:02:102 TEAM/(10768:10785): El codigo de operacion es: 2.
-[INFO] 19:03:02:102 TEAM/(10768:10785): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 19:03:07:83 TEAM/(10768:10793): El entrenador A se movió a la posicion 1|2.
-[INFO] 19:03:12:86 TEAM/(10768:10794): El entrenador A se movió a la posicion 1|1.
-[INFO] 19:03:45:640 TEAM/(10803:10914): El codigo de operacion es: 2.
-[INFO] 19:03:45:640 TEAM/(10803:10914): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 19:03:45:640 TEAM/(10803:10914): El nombre del pokemon es: Pikachu
-[INFO] 19:03:45:640 TEAM/(10803:10914): posicion en x: 1
-[INFO] 19:03:45:640 TEAM/(10803:10914): posicion en y: 1
-[INFO] 19:03:45:660 TEAM/(10803:10916): El entrenador A se movió a la posicion 1|3.
-[INFO] 19:03:45:669 TEAM/(10803:10917): El codigo de operacion es: 2.
-[INFO] 19:03:45:670 TEAM/(10803:10917): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 19:03:45:675 TEAM/(10803:10919): El codigo de operacion es: 2.
-[INFO] 19:03:45:675 TEAM/(10803:10919): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 19:03:45:680 TEAM/(10803:10921): El codigo de operacion es: 2.
-[INFO] 19:03:45:680 TEAM/(10803:10921): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 19:03:45:683 TEAM/(10803:10923): El codigo de operacion es: 2.
-[INFO] 19:03:45:683 TEAM/(10803:10923): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 19:03:46:668 TEAM/(10803:10924): El entrenador A se movió a la posicion 1|2.
-[INFO] 19:03:47:670 TEAM/(10803:10925): El entrenador A se movió a la posicion 1|1.
-[INFO] 19:03:49:672 TEAM/(10803:10926): El entrenador A atrapó un Pikachu en la posicion 1|1.
-[INFO] 19:03:49:673 TEAM/(10803:10917): El nombre del pokemon es: Squirtle
-[INFO] 19:03:49:673 TEAM/(10803:10917): posicion en x: 9
-[INFO] 19:03:49:673 TEAM/(10803:10917): posicion en y: 7
-[INFO] 19:03:49:673 TEAM/(10803:10927): El entrenador C se movió a la posicion 9|8.
-[INFO] 19:03:50:674 TEAM/(10803:10928): El entrenador C se movió a la posicion 9|7.
-[INFO] 19:03:52:675 TEAM/(10803:10929): El entrenador C atrapó un Squirtle en la posicion 9|7.
-[INFO] 19:03:52:676 TEAM/(10803:10919): El nombre del pokemon es: Onix
-[INFO] 19:03:52:676 TEAM/(10803:10919): posicion en x: 2
-[INFO] 19:03:52:676 TEAM/(10803:10919): posicion en y: 2
-[INFO] 19:03:52:676 TEAM/(10803:10930): El entrenador B se movió a la posicion 5|5.
-[INFO] 19:03:53:696 TEAM/(10803:10931): El entrenador B se movió a la posicion 4|5.
-[INFO] 19:03:54:697 TEAM/(10803:10932): El entrenador B se movió a la posicion 3|5.
-[INFO] 19:03:55:699 TEAM/(10803:10933): El entrenador B se movió a la posicion 2|5.
-[INFO] 19:03:56:701 TEAM/(10803:10934): El entrenador B se movió a la posicion 2|4.
-[INFO] 19:03:57:703 TEAM/(10803:10935): El entrenador B se movió a la posicion 2|3.
-[INFO] 19:03:58:705 TEAM/(10803:10936): El entrenador B se movió a la posicion 2|2.
-[INFO] 19:04:00:707 TEAM/(10803:10937): El entrenador B atrapó un Onix en la posicion 2|2.
-[INFO] 19:04:00:708 TEAM/(10803:10921): El nombre del pokemon es: Squirtle
-[INFO] 19:04:00:708 TEAM/(10803:10921): posicion en x: 3
-[INFO] 19:04:00:708 TEAM/(10803:10921): posicion en y: 5
-[INFO] 19:04:00:709 TEAM/(10803:10938): El entrenador B se movió a la posicion 3|2.
-[INFO] 19:04:01:709 TEAM/(10803:10939): El entrenador B se movió a la posicion 3|3.
-[INFO] 19:04:02:720 TEAM/(10803:10940): El entrenador B se movió a la posicion 3|4.
-[INFO] 19:04:03:722 TEAM/(10803:10941): El entrenador B se movió a la posicion 3|5.
-[INFO] 19:05:39:524 TEAM/(11020:11135): El codigo de operacion es: 2.
-[INFO] 19:05:39:525 TEAM/(11020:11135): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 19:05:39:525 TEAM/(11020:11135): El nombre del pokemon es: Pikachu
-[INFO] 19:05:39:525 TEAM/(11020:11135): posicion en x: 1
-[INFO] 19:05:39:525 TEAM/(11020:11135): posicion en y: 1
-[INFO] 19:05:39:531 TEAM/(11020:11136): El entrenador A se movió a la posicion 1|3.
-[INFO] 19:05:39:547 TEAM/(11020:11138): El codigo de operacion es: 2.
-[INFO] 19:05:39:548 TEAM/(11020:11138): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 19:05:39:560 TEAM/(11020:11140): El codigo de operacion es: 2.
-[INFO] 19:05:39:560 TEAM/(11020:11140): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 19:05:39:568 TEAM/(11020:11142): El codigo de operacion es: 2.
-[INFO] 19:05:39:568 TEAM/(11020:11142): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 19:05:39:572 TEAM/(11020:11144): El codigo de operacion es: 2.
-[INFO] 19:05:39:572 TEAM/(11020:11144): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 19:05:40:536 TEAM/(11020:11145): El entrenador A se movió a la posicion 1|2.
-[INFO] 19:05:41:538 TEAM/(11020:11146): El entrenador A se movió a la posicion 1|1.
-[INFO] 19:05:43:550 TEAM/(11020:11148): El entrenador A atrapó un Pikachu en la posicion 1|1.
-[INFO] 19:05:43:552 TEAM/(11020:11148): pid: 11020.
-[INFO] 19:05:43:552 TEAM/(11020:11138): El nombre del pokemon es: Squirtle
-[INFO] 19:05:43:553 TEAM/(11020:11138): posicion en x: 9
-[INFO] 19:05:43:553 TEAM/(11020:11138): posicion en y: 7
-[INFO] 19:05:43:555 TEAM/(11020:11149): El entrenador C se movió a la posicion 9|8.
-[INFO] 19:05:44:568 TEAM/(11020:11150): El entrenador C se movió a la posicion 9|7.
-[INFO] 19:05:46:575 TEAM/(11020:11151): El entrenador C atrapó un Squirtle en la posicion 9|7.
-[INFO] 19:05:46:575 TEAM/(11020:11151): pid: 11020.
-[INFO] 19:05:46:575 TEAM/(11020:11140): El nombre del pokemon es: Onix
-[INFO] 19:05:46:575 TEAM/(11020:11140): posicion en x: 2
-[INFO] 19:05:46:575 TEAM/(11020:11140): posicion en y: 2
-[INFO] 19:05:46:580 TEAM/(11020:11152): El entrenador B se movió a la posicion 5|5.
-[INFO] 19:05:47:584 TEAM/(11020:11153): El entrenador B se movió a la posicion 4|5.
-[INFO] 19:05:48:588 TEAM/(11020:11154): El entrenador B se movió a la posicion 3|5.
-[INFO] 19:05:49:593 TEAM/(11020:11155): El entrenador B se movió a la posicion 2|5.
-[INFO] 19:05:50:600 TEAM/(11020:11156): El entrenador B se movió a la posicion 2|4.
-[INFO] 19:05:51:608 TEAM/(11020:11157): El entrenador B se movió a la posicion 2|3.
-[INFO] 19:05:52:617 TEAM/(11020:11158): El entrenador B se movió a la posicion 2|2.
-[INFO] 19:05:54:624 TEAM/(11020:11159): El entrenador B atrapó un Onix en la posicion 2|2.
-[INFO] 19:05:54:624 TEAM/(11020:11159): pid: 11020.
-[INFO] 19:05:54:624 TEAM/(11020:11142): El nombre del pokemon es: Squirtle
-[INFO] 19:05:54:625 TEAM/(11020:11142): posicion en x: 3
-[INFO] 19:05:54:625 TEAM/(11020:11142): posicion en y: 5
-[INFO] 19:05:54:632 TEAM/(11020:11160): El entrenador B se movió a la posicion 3|2.
-[INFO] 19:05:55:639 TEAM/(11020:11166): El entrenador B se movió a la posicion 3|3.
-[INFO] 19:05:56:654 TEAM/(11020:11167): El entrenador B se movió a la posicion 3|4.
-[INFO] 19:05:57:660 TEAM/(11020:11168): El entrenador B se movió a la posicion 3|5.
-[INFO] 19:05:59:660 TEAM/(11020:11169): El entrenador B atrapó un Squirtle en la posicion 3|5.
-[INFO] 19:05:59:661 TEAM/(11020:11169): pid: 11020.
-[INFO] 19:05:59:661 TEAM/(11020:11144): El nombre del pokemon es: Gengar
-[INFO] 19:05:59:661 TEAM/(11020:11144): posicion en x: 7
-[INFO] 19:05:59:661 TEAM/(11020:11144): posicion en y: 5
-[INFO] 19:05:59:663 TEAM/(11020:11175): El entrenador C se movió a la posicion 8|7.
-[INFO] 19:06:00:664 TEAM/(11020:11176): El entrenador C se movió a la posicion 7|7.
-[INFO] 19:06:01:665 TEAM/(11020:11177): El entrenador C se movió a la posicion 7|6.
-[INFO] 19:06:02:666 TEAM/(11020:11178): El entrenador C se movió a la posicion 7|5.
-[INFO] 19:06:04:668 TEAM/(11020:11179): El entrenador C atrapó un Gengar en la posicion 7|5.
-[INFO] 19:06:04:669 TEAM/(11020:11179): pid: 11020.
-[INFO] 19:06:04:669 TEAM/(11020:11030): Inicio de algoritmo de deteccion de Deadlock
-[INFO] 19:06:04:669 TEAM/(11020:11030): Se detecto que hay situacion de deadlock
-[INFO] 19:06:04:669 TEAM/(11020:11030): El entrenador A intercambio un Pikachu por un Squirtle del entrenador B
-[INFO] 19:06:04:669 TEAM/(11020:11030): Inicio de algoritmo de deteccion de Deadlock
-[INFO] 19:06:04:669 TEAM/(11020:11030): Se detecto que hay situacion de deadlock
-[INFO] 19:06:04:669 TEAM/(11020:11030): El entrenador B intercambio un Onix por un Gengar del entrenador C
-[INFO] 19:06:04:669 TEAM/(11020:11030): Inicio de algoritmo de deteccion de Deadlock
-[INFO] 19:06:04:669 TEAM/(11020:11030): No se detecto situacion de deadlock
+[INFO] 03:56:42:858 TEAM/(15097:15116): El codigo de operacion es: 2.
+[INFO] 03:56:42:859 TEAM/(15097:15116): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 03:56:42:859 TEAM/(15097:15116): El nombre del pokemon es: Jolteon
+[INFO] 03:56:42:859 TEAM/(15097:15116): posicion en x: 2
+[INFO] 03:56:42:859 TEAM/(15097:15116): posicion en y: 2
+[INFO] 03:56:42:863 TEAM/(15097:15119): El codigo de operacion es: 2.
+[INFO] 03:56:42:864 TEAM/(15097:15119): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 03:56:42:879 TEAM/(15097:15121): El codigo de operacion es: 2.
+[INFO] 03:56:42:879 TEAM/(15097:15121): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 03:56:42:884 TEAM/(15097:15123): El codigo de operacion es: 2.
+[INFO] 03:56:42:884 TEAM/(15097:15123): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 03:56:42:889 TEAM/(15097:15125): El codigo de operacion es: 2.
+[INFO] 03:56:42:889 TEAM/(15097:15125): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 03:56:43:859 TEAM/(15097:15118): El entrenador A se movió a la posicion 2|2.
+[INFO] 03:56:44:861 TEAM/(15097:15126): El entrenador A atrapó un Jolteon en la posicion 2|2.
+[INFO] 03:56:44:862 TEAM/(15097:15126): pid: 15097.
+[INFO] 03:56:44:862 TEAM/(15097:15119): El nombre del pokemon es: Flareon
+[INFO] 03:56:44:862 TEAM/(15097:15119): posicion en x: 4
+[INFO] 03:56:44:862 TEAM/(15097:15119): posicion en y: 6
+[INFO] 03:56:45:864 TEAM/(15097:15127): El entrenador B se movió a la posicion 5|5.
+[INFO] 03:56:46:864 TEAM/(15097:15128): El entrenador B se movió a la posicion 4|5.
+[INFO] 03:56:47:864 TEAM/(15097:15129): El entrenador B se movió a la posicion 4|6.
+[INFO] 03:56:48:866 TEAM/(15097:15130): El entrenador B atrapó un Flareon en la posicion 4|6.
+[INFO] 03:56:48:866 TEAM/(15097:15130): pid: 15097.
+[INFO] 03:56:48:866 TEAM/(15097:15121): El nombre del pokemon es: Umbreon
+[INFO] 03:56:48:866 TEAM/(15097:15121): posicion en x: 10
+[INFO] 03:56:48:866 TEAM/(15097:15121): posicion en y: 6
+[INFO] 03:56:49:867 TEAM/(15097:15131): El entrenador C se movió a la posicion 10|9.
+[INFO] 03:56:50:868 TEAM/(15097:15132): El entrenador C se movió a la posicion 10|8.
+[INFO] 03:56:51:869 TEAM/(15097:15133): El entrenador C se movió a la posicion 10|7.
+[INFO] 03:56:52:869 TEAM/(15097:15134): El entrenador C se movió a la posicion 10|6.
+[INFO] 03:56:53:871 TEAM/(15097:15135): El entrenador C atrapó un Umbreon en la posicion 10|6.
+[INFO] 03:56:53:871 TEAM/(15097:15135): pid: 15097.
+[INFO] 03:56:53:871 TEAM/(15097:15123): El nombre del pokemon es: Espeon
+[INFO] 03:56:53:871 TEAM/(15097:15123): posicion en x: 7
+[INFO] 03:56:53:871 TEAM/(15097:15123): posicion en y: 1
+[INFO] 03:56:54:872 TEAM/(15097:15136): El entrenador D se movió a la posicion 8|2.
+[INFO] 03:56:55:873 TEAM/(15097:15137): El entrenador D se movió a la posicion 7|2.
+[INFO] 03:56:56:873 TEAM/(15097:15138): El entrenador D se movió a la posicion 7|1.
+[INFO] 03:56:57:875 TEAM/(15097:15140): El entrenador D atrapó un Espeon en la posicion 7|1.
+[INFO] 03:56:57:875 TEAM/(15097:15140): pid: 15097.
+[INFO] 03:56:57:875 TEAM/(15097:15125): El nombre del pokemon es: Vaporeon
+[INFO] 03:56:57:875 TEAM/(15097:15125): posicion en x: 4
+[INFO] 03:56:57:875 TEAM/(15097:15125): posicion en y: 10
+[INFO] 03:56:58:875 TEAM/(15097:15141): El entrenador E se movió a la posicion 3|9.
+[INFO] 03:56:59:876 TEAM/(15097:15142): El entrenador E se movió a la posicion 4|9.
+[INFO] 03:57:00:877 TEAM/(15097:15143): El entrenador E se movió a la posicion 4|10.
+[INFO] 03:57:01:878 TEAM/(15097:15144): El entrenador E atrapó un Vaporeon en la posicion 4|10.
+[INFO] 03:57:01:878 TEAM/(15097:15144): pid: 15097.
+[INFO] 03:57:01:878 TEAM/(15097:15103): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 03:57:01:878 TEAM/(15097:15103): Se detecto que hay situacion de deadlock
+[INFO] 03:57:02:879 TEAM/(15097:15145): El entrenador A se movió a la posicion 3|2.
+[INFO] 03:57:03:880 TEAM/(15097:15146): El entrenador A se movió a la posicion 4|2.
+[INFO] 03:57:04:880 TEAM/(15097:15147): El entrenador A se movió a la posicion 4|3.
+[INFO] 03:57:05:881 TEAM/(15097:15148): El entrenador A se movió a la posicion 4|4.
+[INFO] 03:57:06:882 TEAM/(15097:15149): El entrenador A se movió a la posicion 4|5.
+[INFO] 03:57:07:883 TEAM/(15097:15150): El entrenador A se movió a la posicion 4|6.
+[INFO] 03:57:12:884 TEAM/(15097:15151): El entrenador A intercambio un Jolteon por un Flareon del entrenador B
+[INFO] 03:57:12:884 TEAM/(15097:15103): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 03:57:12:885 TEAM/(15097:15103): Se detecto que hay situacion de deadlock
+[INFO] 03:57:13:885 TEAM/(15097:15154): El entrenador A se movió a la posicion 5|6.
+[INFO] 03:57:14:886 TEAM/(15097:15155): El entrenador A se movió a la posicion 6|6.
+[INFO] 03:57:15:887 TEAM/(15097:15156): El entrenador A se movió a la posicion 7|6.
+[INFO] 03:57:16:888 TEAM/(15097:15157): El entrenador A se movió a la posicion 8|6.
+[INFO] 03:57:17:888 TEAM/(15097:15158): El entrenador A se movió a la posicion 9|6.
+[INFO] 03:57:18:889 TEAM/(15097:15159): El entrenador A se movió a la posicion 10|6.
+[INFO] 03:57:23:890 TEAM/(15097:15160): El entrenador A intercambio un Flareon por un Umbreon del entrenador C
+[INFO] 03:57:23:890 TEAM/(15097:15103): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 03:57:23:890 TEAM/(15097:15103): Se detecto que hay situacion de deadlock
+[INFO] 03:57:24:890 TEAM/(15097:15161): El entrenador A se movió a la posicion 9|6.
+[INFO] 03:57:25:891 TEAM/(15097:15162): El entrenador A se movió a la posicion 8|6.
+[INFO] 03:57:26:892 TEAM/(15097:15163): El entrenador A se movió a la posicion 7|6.
+[INFO] 03:57:27:892 TEAM/(15097:15164): El entrenador A se movió a la posicion 7|5.
+[INFO] 03:57:28:893 TEAM/(15097:15165): El entrenador A se movió a la posicion 7|4.
+[INFO] 03:57:29:894 TEAM/(15097:15166): El entrenador A se movió a la posicion 7|3.
+[INFO] 03:57:30:895 TEAM/(15097:15167): El entrenador A se movió a la posicion 7|2.
+[INFO] 03:57:31:896 TEAM/(15097:15168): El entrenador A se movió a la posicion 7|1.
+[INFO] 03:57:36:896 TEAM/(15097:15169): El entrenador A intercambio un Umbreon por un Espeon del entrenador D
+[INFO] 03:57:36:897 TEAM/(15097:15103): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 03:57:36:897 TEAM/(15097:15103): Se detecto que hay situacion de deadlock
+[INFO] 03:57:37:898 TEAM/(15097:15170): El entrenador A se movió a la posicion 6|1.
+[INFO] 03:57:38:901 TEAM/(15097:15171): El entrenador A se movió a la posicion 5|1.
+[INFO] 03:57:39:904 TEAM/(15097:15172): El entrenador A se movió a la posicion 4|1.
+[INFO] 03:57:40:905 TEAM/(15097:15173): El entrenador A se movió a la posicion 4|2.
+[INFO] 03:57:41:905 TEAM/(15097:15174): El entrenador A se movió a la posicion 4|3.
+[INFO] 03:57:42:906 TEAM/(15097:15175): El entrenador A se movió a la posicion 4|4.
+[INFO] 03:57:43:907 TEAM/(15097:15176): El entrenador A se movió a la posicion 4|5.
+[INFO] 03:57:44:908 TEAM/(15097:15177): El entrenador A se movió a la posicion 4|6.
+[INFO] 03:57:45:916 TEAM/(15097:15178): El entrenador A se movió a la posicion 4|7.
+[INFO] 03:57:46:919 TEAM/(15097:15179): El entrenador A se movió a la posicion 4|8.
+[INFO] 03:57:47:920 TEAM/(15097:15180): El entrenador A se movió a la posicion 4|9.
+[INFO] 03:57:48:921 TEAM/(15097:15181): El entrenador A se movió a la posicion 4|10.
+[INFO] 03:57:53:922 TEAM/(15097:15182): El entrenador A intercambio un Espeon por un Vaporeon del entrenador E
+[INFO] 03:57:53:922 TEAM/(15097:15103): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 03:57:53:922 TEAM/(15097:15103): No se detecto situacion de deadlock
+[INFO] 03:57:53:922 TEAM/(15097:15103): Se ejecutaron 86 ciclos de cpu
+[INFO] 03:57:53:922 TEAM/(15097:15103): Ocurrieron 5 cambios de contexto durante todo el team
+[INFO] 03:57:53:922 TEAM/(15097:15103): El entrenador A ejecutó 56 ciclos de cpu
+[INFO] 03:57:53:922 TEAM/(15097:15103): El entrenador B ejecutó 6 ciclos de cpu
+[INFO] 03:57:53:922 TEAM/(15097:15103): El entrenador C ejecutó 7 ciclos de cpu
+[INFO] 03:57:53:922 TEAM/(15097:15103): El entrenador D ejecutó 6 ciclos de cpu
+[INFO] 03:57:53:922 TEAM/(15097:15103): El entrenador E ejecutó 6 ciclos de cpu
+[INFO] 03:57:53:922 TEAM/(15097:15103): Se produjeron 4 deadlocks
+[INFO] 03:57:53:922 TEAM/(15097:15103): Se resolvieron 4 deadlocks

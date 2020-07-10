@@ -18,21 +18,26 @@ void planificar_fifo(void){
 
 			entrenador = list_remove(lista_de_entrenadores_ready,0);
 			entrenador->estado = EXEC;
+			cambiosDeContexto++;
 
 			while(list_size(entrenador->cola_de_acciones) > 0){
 				ejecutar_entrenador(entrenador);
 			}
+
 			sem_post(&CONTADOR_ENTRENADORES);
 		}
 
 
 		while(deteccion_de_deadlock()){
-			intercambiar_pokemones();
-
+			entrenador = preparar_intercambio();
+			entrenador->estado = EXEC;
+			while(list_size(entrenador->cola_de_acciones) > 0){
+				ejecutar_entrenador(entrenador);
+			}
 		}
 
-		if(TerminoTeam()){
-			puts("Terminó el Team");
+		if(terminoTeam()){
+			finalizoTeam();
 			exit(10);
 		}
 

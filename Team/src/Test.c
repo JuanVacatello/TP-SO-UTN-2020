@@ -12,10 +12,6 @@
 
 int main(void) {
 
-		int algoritmo;
-		char* logFile;
-		int retardo, tiempoReconexion, estimacion, quantum;// alpha;
-
 		leer_config();
 		iniciar_logger();
 
@@ -23,6 +19,8 @@ int main(void) {
 
 		iniciar_vg();
 		suscribirse_a_colas();
+
+
 
 /*
 		t_entrenador* entrenador;
@@ -39,6 +37,10 @@ int main(void) {
 */
 
 /*
+ 	 	int algoritmo;
+		char* logFile;
+		int retardo, tiempoReconexion, estimacion, quantum;// alpha;
+
 		retardo = obtener_retardo_ciclo_cpu();
 		printf("Retardo: %d\n",retardo);
 		tiempoReconexion = obtener_tiempo_reconexion();

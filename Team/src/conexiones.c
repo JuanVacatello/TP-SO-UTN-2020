@@ -1,5 +1,4 @@
 #include"conexiones.h"
-#include"configTeam.h"
 
 int crear_conexion(char* ip, char* puerto)
 {
@@ -221,6 +220,7 @@ void enviar_CatchPokemon_a_broker(op_code codigo_operacion, t_entrenador* entren
 
 	if(socket_broker == -1){
 		entrenador->pudo_atrapar_pokemon = 1;
+		ciclosCpuTotales++;
 		pthread_mutex_unlock(&mutex_entrenador);
 	}
 
@@ -235,8 +235,10 @@ void enviar_CatchPokemon_a_broker(op_code codigo_operacion, t_entrenador* entren
 			printf("Error en enviar por el socket");
 			exit(3);
 		}
+		ciclosCpuTotales++;
 		free(a_enviar);
 	}
+
 
 }
 
@@ -263,6 +265,7 @@ void enviar_GetPokemon_a_broker(op_code codigo_operacion, char* pokemon)
 
 		free(a_enviar);
 	}
+	ciclosCpuTotales++;
 }
 
 

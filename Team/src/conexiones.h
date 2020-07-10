@@ -14,6 +14,8 @@
 #include "entrenador.h"
 #include "Team.h"
 #include "utils.h"
+#include"configTeam.h"
+
 
 #define IP "127.0.0.2"
 #define PUERTO "5555"

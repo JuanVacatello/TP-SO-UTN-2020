@@ -27,7 +27,6 @@
 t_entrenador* armar_entrenador(int indice){
 
 	t_entrenador* entrenador = malloc(sizeof(t_entrenador));
-	int contador_atrapados = 0;
 
 	//NOMBRE
 	entrenador->ID_entrenador = indice + 65;
@@ -44,13 +43,12 @@ t_entrenador* armar_entrenador(int indice){
 
 	//LISTA ATRAPADOS
 	//[Pikachu|Squirtle,Onix]
-	char** atrapados = obtener_pokemon_entrenadores();
+	char** atrapados =obtener_pokemon_entrenadores();
 	t_list* atrapado = list_create();
 
 	if(!string_is_empty(atrapados)){//if(contador_atrapados != 1){
 		if(atrapados[indice]!=NULL){
 			atrapado = obtener_atrapados(atrapados[indice]);
-			puts(atrapados[indice]);
 		}
 	}
 	entrenador->atrapados = atrapado;
@@ -73,6 +71,10 @@ t_entrenador* armar_entrenador(int indice){
 
 	//POKEMON_A_ATRAPAR
 	entrenador->pokemon_a_atrapar = NULL;
+
+	//POSICION_INTERCAMBIO
+	entrenador->posicionIntercambio.x = NULL;
+	entrenador->posicionIntercambio.y = NULL;
 
 	return entrenador;
 }
@@ -344,11 +346,31 @@ bool termino_con_pokemon(t_entrenador* entrenador, char* pokemon){
 	}
 }
 
-void intercambiar_pokemones(){
-
+t_entrenador* preparar_intercambio(){
 	t_entrenador* entrenador1 = list_get(lista_de_entrenadores_deadlock,0);
 	t_entrenador* entrenador2 = list_get(lista_de_entrenadores_deadlock,1);
 
+	entrenador1->posicionIntercambio.x = entrenador2->posicion.x;
+	entrenador1->posicionIntercambio.y = entrenador2->posicion.y;
+
+	armar_movimiento(entrenador1);
+
+	t_accion* accionIntercambio = malloc(sizeof(t_accion));
+	accionIntercambio->ciclo_cpu = 5;
+	accionIntercambio->accion = intercambiar_pokemones;
+
+	list_add(entrenador1->cola_de_acciones, accionIntercambio);
+
+	return entrenador1;
+}
+
+
+void intercambiar_pokemones(t_entrenador* entrenador1){
+
+	t_entrenador* entrenador2 = list_get(lista_de_entrenadores_deadlock,1);
+
+	entrenador1->posicionIntercambio.x = entrenador2->posicion.x;
+	entrenador1->posicionIntercambio.y = entrenador2->posicion.y;
 
 	char* pokemon_sobra_entrenador1;
 	char* pokemon_sobra_entrenador2;
@@ -413,7 +435,9 @@ void intercambiar_pokemones(){
 	}
 
 // POKEMONES INTERCAMBIADOS
+	ciclos_de_cpu(5);
 	log_operacion_de_intercambio(entrenador1,entrenador2, pokemon_aux_1, pokemon_aux_2);
+	deadlocksResueltos++;
 
 	verificar_estado_entrenador(entrenador1);
 	verificar_estado_entrenador(entrenador2);

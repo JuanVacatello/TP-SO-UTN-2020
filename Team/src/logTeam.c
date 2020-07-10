@@ -145,8 +145,8 @@ void log_llego_mensaje_nuevo_localized_pokemon(char* pokemon, int posX, int posY
 
 // 10. Inicio de proceso de reintento de comunicación con el Broker
 void log_intento_reintento_comunicacion_broker(char* pokemon, int posX, int posY){
-
-	char* mensaje = string_from_format("No se pudo conectar con el BROKER, reintentando...");
+	int tiempoReconexion = obtener_tiempo_reconexion();
+	char* mensaje = string_from_format("No se pudo conectar con el BROKER, reintentando en %d segundos...", tiempoReconexion);
 
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
 }
@@ -165,4 +165,8 @@ void log_reintento_comunicacion_Broker_fallido(){
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
 }
 
+//-----------------------------------------------------------------------------------------------
 
+void loguearMensaje(char* mensaje){
+	completar_logger(mensaje,"TEAM", LOG_LEVEL_INFO);
+}

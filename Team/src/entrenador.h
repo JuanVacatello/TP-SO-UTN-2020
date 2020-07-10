@@ -50,7 +50,7 @@ typedef struct
 	t_list* cola_de_acciones;
 	uint32_t ID_catch_pokemon;
 	uint32_t pudo_atrapar_pokemon;
-	int estado_deadlock;  // SI ES 1 ESTA EN DEADLOCK
+	t_posicion posicionIntercambio;
 
 } t_entrenador;
 
@@ -77,7 +77,8 @@ void atrapar_pokemon(t_entrenador* entrenador);
 void verificar_estado_entrenador(t_entrenador* entrenador);
 
 //intercambio de pokemones
-void intercambiar_pokemones();
+t_entrenador* preparar_intercambio();
+void intercambiar_pokemones(t_entrenador* entrenador1);
 bool es_intercambiable_pokemon(t_entrenador* entrenador, char* pokemon);
 bool necesita_pokemon(t_entrenador* entrenador, char* pokemon);
 

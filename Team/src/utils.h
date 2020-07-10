@@ -28,7 +28,6 @@ t_list* lista_de_entrenadores_ready; // CUANDO LLEGA UN CAUGHT EL ENTRENADOR CON
 
 //t_list* pokemones_requeridos;
 
-
 pthread_t hilo_planificador;
 
 t_list* lista_de_pokemones_sueltos;
@@ -49,7 +48,10 @@ sem_t MUTEX_POKEMON_REQUERIDO;
 sem_t MUTEX_ENTRENADORES;
 sem_t CONTADOR_ENTRENADORES;
 
-
+int ciclosCpuTotales;
+int	cambiosDeContexto;
+int deadlocksProducidos;
+int deadlocksResueltos;
 
 typedef enum
 {

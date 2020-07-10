@@ -199,6 +199,7 @@ bool deteccion_de_deadlock(){
 
 		if(!list_is_empty(lista_de_entrenadores_deadlock)){
 			log_deadlock_detectado();
+			deadlocksProducidos++;
 			return true;
 		}
 		else{
@@ -269,8 +270,41 @@ void informar_pokemones_a_atrapar(){
 	free(entrenador_aux);
 }
 
-bool TerminoTeam(){
+bool terminoTeam(){
 	return list_all_satisfy(lista_de_entrenadores, esta_en_exit);
+}
+
+void finalizoTeam(){
+	t_entrenador* entrenador;
+	int ciclosPorEntrenador = 0;
+
+//	CICLOS DE CPU TOTALES
+	for(int i = 0; i<cantidad_entrenadores(); i++){
+		entrenador = list_get(lista_de_entrenadores, i);
+		ciclosCpuTotales += entrenador->ciclos_de_cpu_totales;
+	}
+	char* mensajeCiclosTotales = string_from_format("Se ejecutaron %d ciclos de cpu",ciclosCpuTotales);
+	loguearMensaje(mensajeCiclosTotales);
+
+//	CAMBIOS DE CONTEXTO
+	char* mensajeCambiosDeContexto = string_from_format("Ocurrieron %d cambios de contexto durante todo el team", cambiosDeContexto);
+	loguearMensaje(mensajeCambiosDeContexto);
+
+//	CICLOS DE CPU POR ENTRENADOR
+	for(int i = 0; i<cantidad_entrenadores(); i++){
+		entrenador = list_get(lista_de_entrenadores, i);
+		ciclosPorEntrenador = entrenador->ciclos_de_cpu_totales;
+		char* mensajeCiclosEntrenador = string_from_format("El entrenador %c ejecutó %d ciclos de cpu",entrenador->ID_entrenador, ciclosPorEntrenador);
+		loguearMensaje(mensajeCiclosEntrenador);
+	}
+//	DEADLOCKS PRODUCIDOS
+	char* mensajeDeadlockProducidos = string_from_format("Se produjeron %d deadlocks", deadlocksProducidos);
+	loguearMensaje(mensajeDeadlockProducidos);
+
+//	DEADLOCKS RESUELTOS
+	char* mensajeDeadlockResueltos = string_from_format("Se resolvieron %d deadlocks", deadlocksResueltos);
+	loguearMensaje(mensajeDeadlockResueltos);
+
 }
 
 
