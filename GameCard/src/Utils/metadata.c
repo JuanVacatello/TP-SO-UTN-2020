@@ -7,10 +7,11 @@
 #include "string.h"
 #include <commons/collections/dictionary.h>
 
+//ñeer metadata tall grass
 void leer_metadata_tall_grass(){
 
 	char* path_metadata = obtener_path_metadata();
-	string_append(&path_metadata, "Metadata.bin");
+	string_append(&path_metadata, "/Metadata.bin");
 
 	metadata_tall_grass = config_create(path_metadata);
 
@@ -19,6 +20,7 @@ void leer_metadata_tall_grass(){
 			exit(2);
 		}
 }
+
 
 int obtener_cantidad_bloques(){
 	int cantidad;
@@ -34,7 +36,7 @@ int obtener_tamanio_bloques(){
 
 
 
-
+//leer metadata pokemon
 t_config* leer_metadata_pokemon(char* path_metadata_pokemon){
 
 	t_config* metadata;

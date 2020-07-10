@@ -7,7 +7,7 @@ void crear_bitmap(){
 	int bloques = obtener_cantidad_bloques();
 
 	if(bloques==0){
-		log_error(logger,"El sistema no puede inicializar con 0 bloques");
+		//log_error(logger,"El sistema no puede inicializar con 0 bloques");
 		pthread_mutex_unlock(&MUTEX_BITMAP);
 		return;
 	}
@@ -19,7 +19,7 @@ void crear_bitmap(){
 	ftruncate(bitmap_fd, bloques/8 + 1);
 
 	if(bitmap_fd == -1){
-			log_error(logger,"No se pudo abrir el archivo bitmap.h");
+		//	log_error(logger,"No se pudo abrir el archivo bitmap.h");
 			close(bitmap_fd);
 
 			free(path_bitmap); //Chequear
@@ -33,15 +33,19 @@ void crear_bitmap(){
 
 
 	free(path_bitmap); //Chequear
-
+/*
 	for(int i = 0; i < bloques; i++){
 		if(bloque_esta_vacio(i)==1){
 			bitarray_clean_bit(bitmap,i);
 		}
 			bitarray_set_bit(bitmap,i);
 	}
-
+FALTA TERMINAR FUNCION BLOQUE_ESTA_VACIO()*/
 	msync(bitmap->bitarray,bitmap_fd,MS_SYNC);
 	close(bitmap_fd);
 
 }
+
+
+void bitmap_liberar_bloque(int bloque, int bitmap);
+

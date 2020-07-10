@@ -48,19 +48,9 @@ void inicializar_file_system(char* punto_montaje){
 
 	actualizar_paths_config(path_files, path_bloques, path_metadata );
 
-	inicializar_metadata(path_metadata, 4, 2);
+	inicializar_metadata(path_metadata, 64, 16);
 	inicializar_bloques(path_bloques);
 	inicializar_files(path_files);
-
-
-	leer_metadata("/home/utnso/Documentos/Prueba_GameCard/TALL_GRASS/Files/Charmander/Metadata.bin");
-	char* bloques = obtener_bloques_metada();
-	puts(bloques);
-
-
-
-
-
 
 	//obtener_bloque_pokemon("Charmander", path_files);
 
@@ -81,30 +71,32 @@ void inicializar_metadata(char* path_metadata, int block_size, int cant_bloques)
 	FILE* metadata = txt_open_for_append(path_archivo_metadata);
 
 	char* tamanio_bloques = string_new();
-	itoa(block_size,tamanio_bloques,10);
+	tamanio_bloques = string_itoa(block_size);
 
 	char* cantidad_bloques = string_new();
-	itoa(cant_bloques, cantidad_bloques,10);
+	cantidad_bloques = string_itoa(cant_bloques);
 
-	char* sentencia_bloques = string_new();
-	string_append(&sentencia_bloques, "BLOCK_SIZE=");
-	string_append(&sentencia_bloques, tamanio_bloques);
-	string_append(&sentencia_bloques, "\n");
+	char* sentencia_tamanio_bloques = string_new();
+	string_append(&sentencia_tamanio_bloques, "BLOCK_SIZE=");
+	string_append(&sentencia_tamanio_bloques, tamanio_bloques);
+	string_append(&sentencia_tamanio_bloques, "\n");
 
 	char* sentencia_cantidad_bloques = string_new();
 	string_append(&sentencia_cantidad_bloques, "BLOCKS=");
 	string_append(&sentencia_cantidad_bloques, cantidad_bloques);
 	string_append(&sentencia_cantidad_bloques, "\n");
 
-	txt_write_in_file(metadata, sentencia_bloques);
+	txt_write_in_file(metadata, sentencia_tamanio_bloques);
 	txt_write_in_file(metadata, sentencia_cantidad_bloques);
 	txt_write_in_file(metadata, "MAGIC_NUMBER=TALL_GRASS\n");
 	txt_close_file(metadata);
 
+	leer_metadata_tall_grass();
+
 	free(path_archivo_metadata);
 	free(tamanio_bloques);
 	free(cantidad_bloques);
-	free(sentencia_bloques);
+	free(sentencia_tamanio_bloques);
 	free(sentencia_cantidad_bloques);
 
 
@@ -125,6 +117,7 @@ void inicializar_files(char* path_files){
 void inicializar_bloques(char* path_bloques){
 
 	completar_metadata_directorio(path_bloques);
+	crear_bloques();
 }
 
 void completar_metadata_directorio(char* path_directorio){
@@ -137,6 +130,35 @@ void completar_metadata_directorio(char* path_directorio){
 
 		txt_write_in_file(metadata, "DIRECTORY=Y\n");
 		txt_close_file(metadata);
+}
+
+void crear_bloques(){
+	int cantidad_bloques = obtener_cantidad_bloques();
+	int tamanio_bloques = obtener_tamanio_bloques();
+	char* path = obtener_path_bloques();
+
+	for(int i = 0 ; i < cantidad_bloques ; i++){
+
+		char* numero_bloque = string_new();
+		numero_bloque = string_itoa(i+1);
+
+		char* aux = string_new();
+		string_append(&aux, path);
+		string_append(&aux, "/");
+		string_append(&aux,numero_bloque);
+		string_append(&aux, ".bin");
+
+		int bloque_fd = open(aux, O_WRONLY | O_CREAT );
+
+	    if(bloque_fd < 0){
+	    printf("open error del crear bloques\n");
+		 }
+	    ftruncate(bloque_fd, tamanio_bloques);
+	    close(bloque_fd);
+
+	    free(numero_bloque);
+	    free(aux);
+	}
 }
 
 

@@ -14,6 +14,8 @@
 #include<commons/collections/list.h>
 #include<commons/string.h>
 
+#include<commons/string.h>
+
 t_config* configGameCard;
 
 void leer_config(void);

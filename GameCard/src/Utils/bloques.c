@@ -1,11 +1,14 @@
 #include "bloques.h"
 
+/*
 int bloque_esta_vacio(int bloque){
 	if(bloque_tamanio_libre(bloque) == obtener_tamanio_bloques()){
 	return 1;
 	}
 	return 0;
+
 }
+*/
 
 int existe_bloque(char* path_bloques,char* numero_de_bloque){
 	char* path_bloque = string_new();
@@ -30,8 +33,22 @@ void actualizar_valores_pokemon(char* path_metadata_pokemon,int posX,int posY,in
 	int cantidad_bloques = obtener_cantidad_bloques_pokemon(metadata);
 
 	for(int i =0; i<cantidad_bloques ; i++){
-		actualizar_valores_bloque(bloques_pokemon[i],)
+		//actualizar_valores_bloque(bloques_pokemon[i],)
 		}
 
 
 }
+ int espacio_libre(int bloque);
+
+//USAR CONFIG PARA PATH
+
+ /*
+  * FSEEK
+
+	1-1=2/n
+	2-3=1/n
+	1-/o
+
+	2=3/n
+	1-2=3
+  */

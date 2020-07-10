@@ -23,9 +23,9 @@ int obtener_cantidad_bloques();
 int obtener_tamanio_bloques();
 
 t_config* leer_metadata_pokemon(char* path_metadata);
-char** obtener_bloques_pokemon(t_config metadata);
-int obtener_cantidad_bloques_pokemon(t_config metadata);
-int archivo_esta_abierto(t_config metadata);
+char** obtener_bloques_pokemon(t_config* metadata);
+int obtener_cantidad_bloques_pokemon(t_config* metadata);
+int archivo_esta_abierto(t_config* metadata);
 int obtener_tamanio_archivo(t_config* metadata);
 
 
