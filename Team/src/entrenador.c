@@ -42,15 +42,15 @@ t_entrenador* armar_entrenador(int indice){
 	entrenador->objetivo = objetivo;
 
 	//LISTA ATRAPADOS
-//--------------[Pikachu|Squirtle,Onix]
+//--------------[Jolteon]
 	char** atrapados =obtener_pokemon_entrenadores();
 	t_list* atrapado = list_create();
 
-	if(!string_is_empty(atrapados)){
+	//if(!string_is_empty(atrapados)){
 		if(atrapados[indice]!=NULL){
 			atrapado = obtener_atrapados(atrapados[indice]);
 		}
-	}
+	//}
 	entrenador->atrapados = atrapado;
 
 	//COLA DE ACCIONES

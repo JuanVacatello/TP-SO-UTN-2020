@@ -400,71 +400,6 @@ void recibir_AppearedPokemon(int socket_cliente){
 		//free(pokemonNuevo);
 
 }
-/*
-void recibir_appeared_pokemon_loggeo(void){
-
-	char* puerto_broker = obtener_puerto();
-	char* ip_broker = obtener_ip();
-
-	int socket_cliente = crear_conexion(ip_broker,puerto_broker);
-
-	completar_logger("recibo el pokemon", "TEAM", LOG_LEVEL_INFO);
-
-	uint32_t tamanio_buffer;
-	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
-
-		char* m1 = string_from_format("tamaño buffer: %d.", tamanio_buffer);
-		completar_logger(m1, "TEAM", LOG_LEVEL_INFO);
-
-	uint32_t tamanio_leido= 0;
-
-	uint32_t caracteresPokemon;
-	recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
-	tamanio_leido += sizeof(uint32_t);
-			//log
-		char* m2 = string_from_format("Los caracteres de pokemon son: %d.", caracteresPokemon);
-		completar_logger(m2, "TEAM", LOG_LEVEL_INFO);
-
-	char* pokemon = (char*)malloc(caracteresPokemon);
-	recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
-	tamanio_leido += caracteresPokemon;
-			//log
-		completar_logger(pokemon, "TEAM", LOG_LEVEL_INFO);
-
-	uint32_t posX;
-	recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
-	tamanio_leido += sizeof(uint32_t);
-		//log
-		char* m3 = string_from_format("La posicion en X es: %d", posX);
-		completar_logger(m3, "TEAM", LOG_LEVEL_INFO);
-
-	uint32_t posY;
-	recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
-	tamanio_leido += sizeof(uint32_t);
-		//log
-		char* m4 = string_from_format("La posicion en Y es: %d", posY);
-		completar_logger(m4, "TEAM", LOG_LEVEL_INFO);
-
-	if((tamanio_buffer - tamanio_leido) != 0){
-		uint32_t id_correlativo;
-		recv(socket_cliente, &id_correlativo, sizeof(uint32_t), MSG_WAITALL);
-			//log
-			char* m5 = string_from_format("El id correlativo es: %d", id_correlativo);
-			completar_logger(m5, "TEAM", LOG_LEVEL_INFO);
-	}
-		t_pokemon* pokemonNuevo = armarPokemon(pokemon, posX, posY);
-
-		if(es_pokemon_requerido(pokemonNuevo)){
-			list_add(lista_de_pokemones_sueltos, pokemonNuevo);
-
-
-			pthread_mutex_unlock(&mutex_planificador);
-		}
-
-		free(pokemonNuevo);
-		//armar pokemon con los datos recibidos y mandar el pokemon armado a APARACION_POKEMON()
-
-}*/
 
 t_pokemon* armarPokemon(char* pokemon, int posX, int posY){
 	t_pokemon* pokeNuevo = malloc(sizeof(t_pokemon));
@@ -638,46 +573,38 @@ void recibir_localized_pokemon_loggeo(int socket_cliente){
 
 //----------------------- RECEPCION DE MENSAJES DE GAMEBOY -----------------------
 
-
 /*
-void recibir_appeared_pokemon_loggeo(int socket_cliente){
+void recibir_AppearedPokemon(int socket_cliente){
 
 		uint32_t tamanio_buffer;
 		recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
-		//void* buffer = malloc(tamanio_buffer);
-			//log
-			char* m1 = string_from_format("El tamanio del buffer es: %d.", tamanio_buffer);
-			completar_logger(m1, "BROKER", LOG_LEVEL_INFO);
-
 		uint32_t caracteresPokemon;
 		recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
-			//log
-			char* m2 = string_from_format("Los caracteres de pokemon son: %d.", caracteresPokemon);
-			completar_logger(m2, "BROKER", LOG_LEVEL_INFO);
 
 		char* pokemon = (char*)malloc(caracteresPokemon);
 		recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
-			//log
-			completar_logger(pokemon, "BROKER", LOG_LEVEL_INFO);
 
 		uint32_t posX;
 		recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
-			//log
-		char* m3 = string_from_format("La posicion en X es: %d", posX);
-		completar_logger(m3, "BROKER", LOG_LEVEL_INFO);
 
 		uint32_t posY;
 		recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
-			//log
-		char* m4 = string_from_format("La posicion en Y es: %d", posY);
-		completar_logger(m4, "BROKER", LOG_LEVEL_INFO);
 
-		//armar pokemon con los datos recibidos y mandar el pokemon armado a APARACION_POKEMON()
-}
+		if(es_pokemon_requerido(pokemon)){
 
+			t_pokemon* pokemonNuevo = armarPokemon(pokemon, posX, posY);
+			list_add(lista_de_pokemones_sueltos, pokemonNuevo);
 
-*/
+			pthread_mutex_unlock(&mutex_planificador);
+		}
+		else{
+			sem_post(&MUTEX_POKEMON_REQUERIDO);
+		}
+
+		//free(pokemonNuevo);
+
+}*/
 
 
 t_entrenador* buscar_entrenador_por_id_catch(uint32_t id){

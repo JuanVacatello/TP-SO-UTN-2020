@@ -1,0 +1,980 @@
+==8658== Memcheck, a memory error detector
+==8658== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==8658== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==8658== Command: ./Team
+==8658== Parent PID: 8255
+==8658== 
+--8658-- 
+--8658-- Valgrind options:
+--8658--    --show-leak-kinds=all
+--8658--    --leak-check=full
+--8658--    -v
+--8658--    --log-file=valgrind
+--8658-- Contents of /proc/version:
+--8658--   Linux version 4.4.0-177-generic (buildd@lgw01-amd64-031) (gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) ) #207-Ubuntu SMP Mon Mar 16 01:15:50 UTC 2020
+--8658-- 
+--8658-- Arch and hwcaps: X86, LittleEndian, x86-mmxext-sse1-sse2-sse3
+--8658-- Page sizes: currently 4096, max supported 4096
+--8658-- Valgrind library directory: /usr/lib/valgrind
+--8658-- Reading syms from /lib/i386-linux-gnu/ld-2.23.so
+--8658--   Considering /lib/i386-linux-gnu/ld-2.23.so ..
+--8658--   .. CRC mismatch (computed f6bf32f6 wanted cd116314)
+--8658--   Considering /usr/lib/debug/lib/i386-linux-gnu/ld-2.23.so ..
+--8658--   .. CRC is valid
+--8658-- Reading syms from /home/utnso/Documentos/Delibird/Team/tp-2020-1c-wRAPPERS/Team/Debug/Team
+--8658-- Reading syms from /usr/lib/valgrind/memcheck-x86-linux
+--8658--   Considering /usr/lib/valgrind/memcheck-x86-linux ..
+--8658--   .. CRC mismatch (computed 6036da3f wanted 652e483f)
+--8658--    object doesn't have a symbol table
+--8658--    object doesn't have a dynamic symbol table
+--8658-- Scheduler: using generic scheduler lock implementation.
+--8658-- Reading suppressions file: /usr/lib/valgrind/default.supp
+==8658== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-8658-by-utnso-on-???
+==8658== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-8658-by-utnso-on-???
+==8658== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-8658-by-utnso-on-???
+==8658== 
+==8658== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==8658== don't want to do, unless you know exactly what you're doing,
+==8658== or are doing some strange experiment):
+==8658==   /usr/lib/valgrind/../../bin/vgdb --pid=8658 ...command...
+==8658== 
+==8658== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==8658==   /path/to/gdb ./Team
+==8658== and then give GDB the following command
+==8658==   target remote | /usr/lib/valgrind/../../bin/vgdb --pid=8658
+==8658== --pid is optional if only one valgrind process is running
+==8658== 
+--8658-- REDIR: 0x4019030 (ld-linux.so.2:strlen) redirected to 0x380490f2 (???)
+--8658-- REDIR: 0x4018df0 (ld-linux.so.2:index) redirected to 0x380490cd (???)
+--8658-- Reading syms from /usr/lib/valgrind/vgpreload_core-x86-linux.so
+--8658--   Considering /usr/lib/valgrind/vgpreload_core-x86-linux.so ..
+--8658--   .. CRC mismatch (computed 5b95c0c4 wanted 39e79efa)
+--8658--    object doesn't have a symbol table
+--8658-- Reading syms from /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so
+--8658--   Considering /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so ..
+--8658--   .. CRC mismatch (computed 4d5a1526 wanted 33571d5b)
+--8658--    object doesn't have a symbol table
+==8658== WARNING: new redirection conflicts with existing -- ignoring it
+--8658--     old: 0x04019030 (strlen              ) R-> (0000.0) 0x380490f2 ???
+--8658--     new: 0x04019030 (strlen              ) R-> (2007.0) 0x0402f410 strlen
+--8658-- Reading syms from /usr/lib/libcommons.so
+--8658-- Reading syms from /lib/i386-linux-gnu/libpthread-2.23.so
+--8658--   Considering /usr/lib/debug/.build-id/51/ddb6090511af5615d5f4af155a4403d2845346.debug ..
+--8658--   .. build-id is valid
+--8658-- Reading syms from /lib/i386-linux-gnu/libc-2.23.so
+--8658--   Considering /lib/i386-linux-gnu/libc-2.23.so ..
+--8658--   .. CRC mismatch (computed 05488cfc wanted a5215580)
+--8658--   Considering /usr/lib/debug/lib/i386-linux-gnu/libc-2.23.so ..
+--8658--   .. CRC is valid
+--8658-- REDIR: 0x40ef4b0 (libc.so.6:strncasecmp) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--8658-- REDIR: 0x40f6140 (libc.so.6:memrchr) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--8658-- REDIR: 0x4108b20 (libc.so.6:wcslen) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--8658-- REDIR: 0x40ee350 (libc.so.6:strstr) redirected to 0x4033700 (strstr)
+--8658-- REDIR: 0x40ed7e0 (libc.so.6:__GI_strrchr) redirected to 0x402ee00 (__GI_strrchr)
+--8658-- REDIR: 0x40e8f00 (libc.so.6:malloc) redirected to 0x402c110 (malloc)
+--8658-- REDIR: 0x40ed5c0 (libc.so.6:__GI_strlen) redirected to 0x402f390 (__GI_strlen)
+--8658-- REDIR: 0x40ef680 (libc.so.6:__GI_memcpy) redirected to 0x4030fb0 (__GI_memcpy)
+--8658-- REDIR: 0x40e9810 (libc.so.6:calloc) redirected to 0x402e010 (calloc)
+--8658-- REDIR: 0x40e9520 (libc.so.6:realloc) redirected to 0x402e250 (realloc)
+--8658-- REDIR: 0x40e9470 (libc.so.6:free) redirected to 0x402d2f0 (free)
+--8658-- REDIR: 0x40ed580 (libc.so.6:strlen) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--8658-- REDIR: 0x40f6440 (libc.so.6:__strlen_sse2_bsf) redirected to 0x402f370 (strlen)
+--8658-- REDIR: 0x40ed700 (libc.so.6:strncmp) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--8658-- REDIR: 0x41ad5c0 (libc.so.6:__strncmp_ssse3) redirected to 0x402fab0 (strncmp)
+--8658-- REDIR: 0x40ed750 (libc.so.6:strncpy) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--8658-- REDIR: 0x40f7dc0 (libc.so.6:__strncpy_ssse3) redirected to 0x402f5f0 (strncpy)
+==8658== Invalid read of size 4
+==8658==    at 0x804B3C9: armar_entrenador (entrenador.c:50)
+==8658==    by 0x8049436: armar_entrenadores (Team.c:35)
+==8658==    by 0x804D16E: iniciar_vg (utils.c:11)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658==  Address 0x4238e04 is 0 bytes after a block of size 4 alloc'd
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x402E370: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4054BC4: _string_split (string.c:277)
+==8658==    by 0x40545F3: string_split (string.c:150)
+==8658==    by 0x4054716: string_get_string_as_array (string.c:163)
+==8658==    by 0x40565D5: config_get_array_value (config.c:96)
+==8658==    by 0x804B29B: obtener_pokemon_entrenadores (configTeam.c:78)
+==8658==    by 0x804B3AE: armar_entrenador (entrenador.c:46)
+==8658==    by 0x8049436: armar_entrenadores (Team.c:35)
+==8658==    by 0x804D16E: iniciar_vg (utils.c:11)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+--8658-- REDIR: 0x40eefc0 (libc.so.6:memset) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--8658-- REDIR: 0x419d4d0 (libc.so.6:__memset_sse2) redirected to 0x40327d0 (memset)
+--8658-- REDIR: 0x40f1280 (libc.so.6:strchrnul) redirected to 0x40330b0 (strchrnul)
+--8658-- REDIR: 0x40ef0d0 (libc.so.6:__GI_mempcpy) redirected to 0x40332c0 (__GI_mempcpy)
+--8658-- REDIR: 0x40ef610 (libc.so.6:memcpy) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--8658-- REDIR: 0x419fb70 (libc.so.6:__memcpy_ssse3) redirected to 0x4030cc0 (memcpy)
+==8658== Conditional jump or move depends on uninitialised value(s)
+==8658==    at 0x402C136: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x804A2CF: recibir_mensaje (conexiones.c:174)
+==8658==    by 0x804A250: enviar_suscripcion_a_cola (conexiones.c:156)
+==8658==    by 0x804D3A8: suscribirse_a_colas (utils.c:129)
+==8658==    by 0x8049CFA: main (Test.c:21)
+==8658== 
+==8658== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==8658==    at 0x406A389: recv (recv.c:35)
+==8658==    by 0x804A2E9: recibir_mensaje (conexiones.c:175)
+==8658==    by 0x804A250: enviar_suscripcion_a_cola (conexiones.c:156)
+==8658==    by 0x804D3A8: suscribirse_a_colas (utils.c:129)
+==8658==    by 0x8049CFA: main (Test.c:21)
+==8658==  Address 0xbec80b88 is on thread 1's stack
+==8658==  in frame #0, created by recv (recv.c:29)
+==8658== 
+==8658== Conditional jump or move depends on uninitialised value(s)
+==8658==    at 0x402F39B: __GI_strlen (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x40D7CBB: puts (ioputs.c:35)
+==8658==    by 0x804A261: enviar_suscripcion_a_cola (conexiones.c:158)
+==8658==    by 0x804D3A8: suscribirse_a_colas (utils.c:129)
+==8658==    by 0x8049CFA: main (Test.c:21)
+==8658== 
+==8658== Conditional jump or move depends on uninitialised value(s)
+==8658==    at 0x402C136: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x804A2CF: recibir_mensaje (conexiones.c:174)
+==8658==    by 0x804A250: enviar_suscripcion_a_cola (conexiones.c:156)
+==8658==    by 0x804D3E5: suscribirse_a_colas (utils.c:134)
+==8658==    by 0x8049CFA: main (Test.c:21)
+==8658== 
+==8658== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==8658==    at 0x406A389: recv (recv.c:35)
+==8658==    by 0x804A2E9: recibir_mensaje (conexiones.c:175)
+==8658==    by 0x804A250: enviar_suscripcion_a_cola (conexiones.c:156)
+==8658==    by 0x804D3E5: suscribirse_a_colas (utils.c:134)
+==8658==    by 0x8049CFA: main (Test.c:21)
+==8658==  Address 0xbec80b88 is on thread 1's stack
+==8658==  in frame #0, created by recv (recv.c:29)
+==8658== 
+==8658== Conditional jump or move depends on uninitialised value(s)
+==8658==    at 0x402F39B: __GI_strlen (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x40D7CBB: puts (ioputs.c:35)
+==8658==    by 0x804A261: enviar_suscripcion_a_cola (conexiones.c:158)
+==8658==    by 0x804D3E5: suscribirse_a_colas (utils.c:134)
+==8658==    by 0x8049CFA: main (Test.c:21)
+==8658== 
+==8658== Conditional jump or move depends on uninitialised value(s)
+==8658==    at 0x402C136: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x804A2CF: recibir_mensaje (conexiones.c:174)
+==8658==    by 0x804A250: enviar_suscripcion_a_cola (conexiones.c:156)
+==8658==    by 0x804D402: suscribirse_a_colas (utils.c:137)
+==8658==    by 0x8049CFA: main (Test.c:21)
+==8658== 
+==8658== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==8658==    at 0x406A389: recv (recv.c:35)
+==8658==    by 0x804A2E9: recibir_mensaje (conexiones.c:175)
+==8658==    by 0x804A250: enviar_suscripcion_a_cola (conexiones.c:156)
+==8658==    by 0x804D402: suscribirse_a_colas (utils.c:137)
+==8658==    by 0x8049CFA: main (Test.c:21)
+==8658==  Address 0xbec80b88 is on thread 1's stack
+==8658==  in frame #0, created by recv (recv.c:29)
+==8658== 
+==8658== Conditional jump or move depends on uninitialised value(s)
+==8658==    at 0x402F39B: __GI_strlen (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x40D7CBB: puts (ioputs.c:35)
+==8658==    by 0x804A261: enviar_suscripcion_a_cola (conexiones.c:158)
+==8658==    by 0x804D402: suscribirse_a_colas (utils.c:137)
+==8658==    by 0x8049CFA: main (Test.c:21)
+==8658== 
+--8658-- REDIR: 0x40ef460 (libc.so.6:strcasecmp) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--8658-- REDIR: 0x41aefb0 (libc.so.6:__strcasecmp_ssse3) redirected to 0x402fcf0 (strcasecmp)
+==8658== 
+==8658== Process terminating with default action of signal 2 (SIGINT)
+==8658==    at 0x40623FB: pthread_join (pthread_join.c:90)
+==8658==    by 0x8049D67: main (Test.c:76)
+==8658== 
+==8658== HEAP SUMMARY:
+==8658==     in use at exit: 208,430,723 bytes in 383 blocks
+==8658==   total heap usage: 1,137 allocs, 754 frees, 208,450,211 bytes allocated
+==8658== 
+==8658== Searching for pointers to 383 not-freed blocks
+==8658== Checked 16,849,032 bytes
+==8658== 
+==8658== 4 bytes in 1 blocks are definitely lost in loss record 1 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x402E370: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4054BC4: _string_split (string.c:277)
+==8658==    by 0x40545F3: string_split (string.c:150)
+==8658==    by 0x4054716: string_get_string_as_array (string.c:163)
+==8658==    by 0x40565D5: config_get_array_value (config.c:96)
+==8658==    by 0x804B29B: obtener_pokemon_entrenadores (configTeam.c:78)
+==8658==    by 0x80495E6: generar_atrapados_global (Team.c:77)
+==8658==    by 0x804D178: iniciar_vg (utils.c:13)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 5 bytes in 1 blocks are still reachable in loss record 2 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x40ED2C5: strdup (strdup.c:42)
+==8658==    by 0x405409A: string_duplicate (string.c:42)
+==8658==    by 0x4053C49: log_create (log.c:77)
+==8658==    by 0x804C288: iniciar_logger (logTeam.c:6)
+==8658==    by 0x8049CF0: main (Test.c:16)
+==8658== 
+==8658== 8 bytes in 1 blocks are still reachable in loss record 3 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4056393: config_create (config.c:36)
+==8658==    by 0x804B0B5: leer_config (configTeam.c:13)
+==8658==    by 0x8049CEB: main (Test.c:15)
+==8658== 
+==8658== 8 bytes in 1 blocks are still reachable in loss record 4 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4054E01: list_create (list.c:27)
+==8658==    by 0x8049415: armar_entrenadores (Team.c:27)
+==8658==    by 0x804D16E: iniciar_vg (utils.c:11)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 8 bytes in 1 blocks are still reachable in loss record 5 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4054E01: list_create (list.c:27)
+==8658==    by 0x804D17D: iniciar_vg (utils.c:14)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 8 bytes in 1 blocks are still reachable in loss record 6 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4054E01: list_create (list.c:27)
+==8658==    by 0x804D187: iniciar_vg (utils.c:15)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 8 bytes in 1 blocks are still reachable in loss record 7 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4054E01: list_create (list.c:27)
+==8658==    by 0x804D191: iniciar_vg (utils.c:16)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 8 bytes in 1 blocks are definitely lost in loss record 8 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4054E01: list_create (list.c:27)
+==8658==    by 0x80498F5: deteccion_de_deadlock (Team.c:190)
+==8658==    by 0x804C9E5: planificar_fifo (planificacion.c:31)
+==8658==    by 0x80497B9: planificacion (Team.c:119)
+==8658==    by 0x4061294: start_thread (pthread_create.c:333)
+==8658==    by 0x415F0AD: clone (clone.S:114)
+==8658== 
+==8658== 16 bytes in 1 blocks are still reachable in loss record 9 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x40559F7: dictionary_create (dictionary.c:38)
+==8658==    by 0x40563B6: config_create (config.c:39)
+==8658==    by 0x804B0B5: leer_config (configTeam.c:13)
+==8658==    by 0x8049CEB: main (Test.c:15)
+==8658== 
+==8658== 16 bytes in 1 blocks are still reachable in loss record 10 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x40559F7: dictionary_create (dictionary.c:38)
+==8658==    by 0x8049468: generar_objetivo_global (Team.c:43)
+==8658==    by 0x804D173: iniciar_vg (utils.c:12)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 16 bytes in 1 blocks are still reachable in loss record 11 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x40559F7: dictionary_create (dictionary.c:38)
+==8658==    by 0x80495D4: generar_atrapados_global (Team.c:73)
+==8658==    by 0x804D178: iniciar_vg (utils.c:13)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 16 bytes in 1 blocks are indirectly lost in loss record 12 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x40559F7: dictionary_create (dictionary.c:38)
+==8658==    by 0x40563B6: config_create (config.c:39)
+==8658==    by 0x804B087: leer_config (configTeam.c:8)
+==8658==    by 0x8049CEB: main (Test.c:15)
+==8658== 
+==8658== 20 bytes in 1 blocks are still reachable in loss record 13 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4053BA3: log_create (log.c:54)
+==8658==    by 0x804C288: iniciar_logger (logTeam.c:6)
+==8658==    by 0x8049CF0: main (Test.c:16)
+==8658== 
+==8658== 20 bytes in 5 blocks are indirectly lost in loss record 14 of 72
+==8658==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x405445E: string_trim_right (string.c:122)
+==8658==    by 0x4054354: string_trim (string.c:99)
+==8658==    by 0x405473D: string_get_string_as_array (string.c:167)
+==8658==    by 0x40565D5: config_get_array_value (config.c:96)
+==8658==    by 0x804B277: obtener_posiciones_entrenadores (configTeam.c:72)
+==8658==    by 0x804D2AC: cantidad_entrenadores (utils.c:96)
+==8658==    by 0x804941F: armar_entrenadores (Team.c:31)
+==8658==    by 0x804D16E: iniciar_vg (utils.c:11)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 20 bytes in 5 blocks are indirectly lost in loss record 15 of 72
+==8658==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x405445E: string_trim_right (string.c:122)
+==8658==    by 0x4054354: string_trim (string.c:99)
+==8658==    by 0x405473D: string_get_string_as_array (string.c:167)
+==8658==    by 0x40565D5: config_get_array_value (config.c:96)
+==8658==    by 0x804B277: obtener_posiciones_entrenadores (configTeam.c:72)
+==8658==    by 0x804D2AC: cantidad_entrenadores (utils.c:96)
+==8658==    by 0x804D22F: iniciar_vg (utils.c:34)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 20 bytes in 10 blocks are indirectly lost in loss record 16 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x40ED2C5: strdup (strdup.c:42)
+==8658==    by 0x405409A: string_duplicate (string.c:42)
+==8658==    by 0x4054B44: _string_split (string.c:267)
+==8658==    by 0x40545F3: string_split (string.c:150)
+==8658==    by 0x804B47A: obtener_posicion (entrenador.c:84)
+==8658==    by 0x804B366: armar_entrenador (entrenador.c:36)
+==8658==    by 0x8049436: armar_entrenadores (Team.c:35)
+==8658==    by 0x804D16E: iniciar_vg (utils.c:11)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 20 bytes in 5 blocks are definitely lost in loss record 17 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x402E370: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4054BC4: _string_split (string.c:277)
+==8658==    by 0x40545F3: string_split (string.c:150)
+==8658==    by 0x4054716: string_get_string_as_array (string.c:163)
+==8658==    by 0x40565D5: config_get_array_value (config.c:96)
+==8658==    by 0x804B29B: obtener_pokemon_entrenadores (configTeam.c:78)
+==8658==    by 0x804B3AE: armar_entrenador (entrenador.c:46)
+==8658==    by 0x8049436: armar_entrenadores (Team.c:35)
+==8658==    by 0x804D16E: iniciar_vg (utils.c:11)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 40 bytes in 5 blocks are still reachable in loss record 18 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x40ED2C5: strdup (strdup.c:42)
+==8658==    by 0x405409A: string_duplicate (string.c:42)
+==8658==    by 0x4054BA9: _string_split (string.c:273)
+==8658==    by 0x40546AF: string_n_split (string.c:157)
+==8658==    by 0x804B4F6: obtener_objetivos (entrenador.c:99)
+==8658==    by 0x804B39A: armar_entrenador (entrenador.c:41)
+==8658==    by 0x8049436: armar_entrenadores (Team.c:35)
+==8658==    by 0x804D16E: iniciar_vg (utils.c:11)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 40 bytes in 5 blocks are still reachable in loss record 19 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4054E01: list_create (list.c:27)
+==8658==    by 0x804B501: obtener_objetivos (entrenador.c:101)
+==8658==    by 0x804B39A: armar_entrenador (entrenador.c:41)
+==8658==    by 0x8049436: armar_entrenadores (Team.c:35)
+==8658==    by 0x804D16E: iniciar_vg (utils.c:11)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 40 bytes in 5 blocks are still reachable in loss record 20 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4055905: list_create_element (list.c:312)
+==8658==    by 0x4054E3D: list_add (list.c:34)
+==8658==    by 0x804B52A: obtener_objetivos (entrenador.c:105)
+==8658==    by 0x804B39A: armar_entrenador (entrenador.c:41)
+==8658==    by 0x8049436: armar_entrenadores (Team.c:35)
+==8658==    by 0x804D16E: iniciar_vg (utils.c:11)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 40 bytes in 5 blocks are still reachable in loss record 21 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4054E01: list_create (list.c:27)
+==8658==    by 0x804B3B6: armar_entrenador (entrenador.c:47)
+==8658==    by 0x8049436: armar_entrenadores (Team.c:35)
+==8658==    by 0x804D16E: iniciar_vg (utils.c:11)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 40 bytes in 5 blocks are still reachable in loss record 22 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4054E01: list_create (list.c:27)
+==8658==    by 0x804B3FC: armar_entrenador (entrenador.c:57)
+==8658==    by 0x8049436: armar_entrenadores (Team.c:35)
+==8658==    by 0x804D16E: iniciar_vg (utils.c:11)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 40 bytes in 5 blocks are still reachable in loss record 23 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4055905: list_create_element (list.c:312)
+==8658==    by 0x4054E3D: list_add (list.c:34)
+==8658==    by 0x804944A: armar_entrenadores (Team.c:35)
+==8658==    by 0x804D16E: iniciar_vg (utils.c:11)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 40 bytes in 5 blocks are still reachable in loss record 24 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x40ED2C5: strdup (strdup.c:42)
+==8658==    by 0x4055B2D: dictionary_put (dictionary.c:73)
+==8658==    by 0x80495A4: generar_objetivo_global (Team.c:64)
+==8658==    by 0x804D173: iniciar_vg (utils.c:12)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 40 bytes in 5 blocks are indirectly lost in loss record 25 of 72
+==8658==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x405445E: string_trim_right (string.c:122)
+==8658==    by 0x4054354: string_trim (string.c:99)
+==8658==    by 0x405473D: string_get_string_as_array (string.c:167)
+==8658==    by 0x40565D5: config_get_array_value (config.c:96)
+==8658==    by 0x804B2E3: obtener_objetivos_entrenadores (configTeam.c:90)
+==8658==    by 0x804947A: generar_objetivo_global (Team.c:46)
+==8658==    by 0x804D173: iniciar_vg (utils.c:12)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 40 bytes in 5 blocks are indirectly lost in loss record 26 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x40ED2C5: strdup (strdup.c:42)
+==8658==    by 0x405409A: string_duplicate (string.c:42)
+==8658==    by 0x4054BA9: _string_split (string.c:273)
+==8658==    by 0x40546AF: string_n_split (string.c:157)
+==8658==    by 0x804B4F6: obtener_objetivos (entrenador.c:99)
+==8658==    by 0x80494A0: generar_objetivo_global (Team.c:49)
+==8658==    by 0x804D173: iniciar_vg (utils.c:12)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 40 bytes in 5 blocks are indirectly lost in loss record 27 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4055905: list_create_element (list.c:312)
+==8658==    by 0x4054E3D: list_add (list.c:34)
+==8658==    by 0x804B52A: obtener_objetivos (entrenador.c:105)
+==8658==    by 0x80494A0: generar_objetivo_global (Team.c:49)
+==8658==    by 0x804D173: iniciar_vg (utils.c:12)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 40 bytes in 5 blocks are indirectly lost in loss record 28 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4055905: list_create_element (list.c:312)
+==8658==    by 0x4054E3D: list_add (list.c:34)
+==8658==    by 0x4054EBE: _add_in_list.2211 (list.c:47)
+==8658==    by 0x4055148: list_iterate (list.c:107)
+==8658==    by 0x4054F2D: list_add_all (list.c:50)
+==8658==    by 0x80494B4: generar_objetivo_global (Team.c:50)
+==8658==    by 0x804D173: iniciar_vg (utils.c:12)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 40 bytes in 5 blocks are indirectly lost in loss record 29 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4055905: list_create_element (list.c:312)
+==8658==    by 0x4054E3D: list_add (list.c:34)
+==8658==    by 0x4054EBE: _add_in_list.2211 (list.c:47)
+==8658==    by 0x4055148: list_iterate (list.c:107)
+==8658==    by 0x4054F2D: list_add_all (list.c:50)
+==8658==    by 0x8049951: deteccion_de_deadlock (Team.c:201)
+==8658==    by 0x804C9E5: planificar_fifo (planificacion.c:31)
+==8658==    by 0x80497B9: planificacion (Team.c:119)
+==8658==    by 0x4061294: start_thread (pthread_create.c:333)
+==8658==    by 0x415F0AD: clone (clone.S:114)
+==8658== 
+==8658== 40 bytes in 5 blocks are definitely lost in loss record 30 of 72
+==8658==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4054BC4: _string_split (string.c:277)
+==8658==    by 0x40546AF: string_n_split (string.c:157)
+==8658==    by 0x804B4F6: obtener_objetivos (entrenador.c:99)
+==8658==    by 0x804B39A: armar_entrenador (entrenador.c:41)
+==8658==    by 0x8049436: armar_entrenadores (Team.c:35)
+==8658==    by 0x804D16E: iniciar_vg (utils.c:11)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 40 bytes in 5 blocks are definitely lost in loss record 31 of 72
+==8658==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4054BC4: _string_split (string.c:277)
+==8658==    by 0x40546AF: string_n_split (string.c:157)
+==8658==    by 0x804B4F6: obtener_objetivos (entrenador.c:99)
+==8658==    by 0x80494A0: generar_objetivo_global (Team.c:49)
+==8658==    by 0x804D173: iniciar_vg (utils.c:12)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 44 (24 direct, 20 indirect) bytes in 1 blocks are definitely lost in loss record 32 of 72
+==8658==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4054BC4: _string_split (string.c:277)
+==8658==    by 0x40545F3: string_split (string.c:150)
+==8658==    by 0x4054716: string_get_string_as_array (string.c:163)
+==8658==    by 0x40565D5: config_get_array_value (config.c:96)
+==8658==    by 0x804B277: obtener_posiciones_entrenadores (configTeam.c:72)
+==8658==    by 0x804D2AC: cantidad_entrenadores (utils.c:96)
+==8658==    by 0x804941F: armar_entrenadores (Team.c:31)
+==8658==    by 0x804D16E: iniciar_vg (utils.c:11)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 44 (24 direct, 20 indirect) bytes in 1 blocks are definitely lost in loss record 33 of 72
+==8658==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4054BC4: _string_split (string.c:277)
+==8658==    by 0x40545F3: string_split (string.c:150)
+==8658==    by 0x4054716: string_get_string_as_array (string.c:163)
+==8658==    by 0x40565D5: config_get_array_value (config.c:96)
+==8658==    by 0x804B277: obtener_posiciones_entrenadores (configTeam.c:72)
+==8658==    by 0x804D2AC: cantidad_entrenadores (utils.c:96)
+==8658==    by 0x804D22F: iniciar_vg (utils.c:34)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 48 bytes in 1 blocks are definitely lost in loss record 34 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4145A1D: gaih_inet (getaddrinfo.c:1223)
+==8658==    by 0x41473E2: getaddrinfo (getaddrinfo.c:2425)
+==8658==    by 0x8049DDF: crear_conexion (conexiones.c:13)
+==8658==    by 0x804A1FC: enviar_suscripcion_a_cola (conexiones.c:140)
+==8658==    by 0x804D3A8: suscribirse_a_colas (utils.c:129)
+==8658==    by 0x8049CFA: main (Test.c:21)
+==8658== 
+==8658== 48 bytes in 1 blocks are definitely lost in loss record 35 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4145A1D: gaih_inet (getaddrinfo.c:1223)
+==8658==    by 0x41473E2: getaddrinfo (getaddrinfo.c:2425)
+==8658==    by 0x8049DDF: crear_conexion (conexiones.c:13)
+==8658==    by 0x804A1FC: enviar_suscripcion_a_cola (conexiones.c:140)
+==8658==    by 0x804D3E5: suscribirse_a_colas (utils.c:134)
+==8658==    by 0x8049CFA: main (Test.c:21)
+==8658== 
+==8658== 48 bytes in 1 blocks are definitely lost in loss record 36 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4145A1D: gaih_inet (getaddrinfo.c:1223)
+==8658==    by 0x41473E2: getaddrinfo (getaddrinfo.c:2425)
+==8658==    by 0x8049DDF: crear_conexion (conexiones.c:13)
+==8658==    by 0x804A1FC: enviar_suscripcion_a_cola (conexiones.c:140)
+==8658==    by 0x804D402: suscribirse_a_colas (utils.c:137)
+==8658==    by 0x8049CFA: main (Test.c:21)
+==8658== 
+==8658== 48 (8 direct, 40 indirect) bytes in 1 blocks are definitely lost in loss record 37 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4054E01: list_create (list.c:27)
+==8658==    by 0x80498FD: deteccion_de_deadlock (Team.c:192)
+==8658==    by 0x804C9E5: planificar_fifo (planificacion.c:31)
+==8658==    by 0x80497B9: planificacion (Team.c:119)
+==8658==    by 0x4061294: start_thread (pthread_create.c:333)
+==8658==    by 0x415F0AD: clone (clone.S:114)
+==8658== 
+==8658== 64 (24 direct, 40 indirect) bytes in 1 blocks are definitely lost in loss record 38 of 72
+==8658==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4054BC4: _string_split (string.c:277)
+==8658==    by 0x40545F3: string_split (string.c:150)
+==8658==    by 0x4054716: string_get_string_as_array (string.c:163)
+==8658==    by 0x40565D5: config_get_array_value (config.c:96)
+==8658==    by 0x804B2E3: obtener_objetivos_entrenadores (configTeam.c:90)
+==8658==    by 0x804947A: generar_objetivo_global (Team.c:46)
+==8658==    by 0x804D173: iniciar_vg (utils.c:12)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 74 bytes in 1 blocks are still reachable in loss record 39 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x40ED2C5: strdup (strdup.c:42)
+==8658==    by 0x40563A7: config_create (config.c:38)
+==8658==    by 0x804B0B5: leer_config (configTeam.c:13)
+==8658==    by 0x8049CEB: main (Test.c:15)
+==8658== 
+==8658== 74 bytes in 1 blocks are indirectly lost in loss record 40 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x40ED2C5: strdup (strdup.c:42)
+==8658==    by 0x40563A7: config_create (config.c:38)
+==8658==    by 0x804B087: leer_config (configTeam.c:8)
+==8658==    by 0x8049CEB: main (Test.c:15)
+==8658== 
+==8658== 80 bytes in 1 blocks are still reachable in loss record 41 of 72
+==8658==    at 0x402E0B8: calloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4055A18: dictionary_create (dictionary.c:40)
+==8658==    by 0x40563B6: config_create (config.c:39)
+==8658==    by 0x804B0B5: leer_config (configTeam.c:13)
+==8658==    by 0x8049CEB: main (Test.c:15)
+==8658== 
+==8658== 80 bytes in 1 blocks are still reachable in loss record 42 of 72
+==8658==    at 0x402E0B8: calloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4055A18: dictionary_create (dictionary.c:40)
+==8658==    by 0x8049468: generar_objetivo_global (Team.c:43)
+==8658==    by 0x804D173: iniciar_vg (utils.c:12)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 80 bytes in 1 blocks are still reachable in loss record 43 of 72
+==8658==    at 0x402E0B8: calloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4055A18: dictionary_create (dictionary.c:40)
+==8658==    by 0x80495D4: generar_atrapados_global (Team.c:73)
+==8658==    by 0x804D178: iniciar_vg (utils.c:13)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 80 bytes in 5 blocks are still reachable in loss record 44 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4056004: dictionary_create_element (dictionary.c:231)
+==8658==    by 0x4055B3F: dictionary_put (dictionary.c:73)
+==8658==    by 0x80495A4: generar_objetivo_global (Team.c:64)
+==8658==    by 0x804D173: iniciar_vg (utils.c:12)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 80 bytes in 1 blocks are indirectly lost in loss record 45 of 72
+==8658==    at 0x402E0B8: calloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4055A18: dictionary_create (dictionary.c:40)
+==8658==    by 0x40563B6: config_create (config.c:39)
+==8658==    by 0x804B087: leer_config (configTeam.c:8)
+==8658==    by 0x8049CEB: main (Test.c:15)
+==8658== 
+==8658== 80 (60 direct, 20 indirect) bytes in 5 blocks are definitely lost in loss record 46 of 72
+==8658==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4054BC4: _string_split (string.c:277)
+==8658==    by 0x40545F3: string_split (string.c:150)
+==8658==    by 0x804B47A: obtener_posicion (entrenador.c:84)
+==8658==    by 0x804B366: armar_entrenador (entrenador.c:36)
+==8658==    by 0x8049436: armar_entrenadores (Team.c:35)
+==8658==    by 0x804D16E: iniciar_vg (utils.c:11)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 80 (40 direct, 40 indirect) bytes in 5 blocks are definitely lost in loss record 47 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4054E01: list_create (list.c:27)
+==8658==    by 0x804B501: obtener_objetivos (entrenador.c:101)
+==8658==    by 0x80494A0: generar_objetivo_global (Team.c:49)
+==8658==    by 0x804D173: iniciar_vg (utils.c:12)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 88 (8 direct, 80 indirect) bytes in 1 blocks are definitely lost in loss record 48 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4054E01: list_create (list.c:27)
+==8658==    by 0x8049472: generar_objetivo_global (Team.c:44)
+==8658==    by 0x804D173: iniciar_vg (utils.c:12)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 100 bytes in 25 blocks are indirectly lost in loss record 49 of 72
+==8658==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x405445E: string_trim_right (string.c:122)
+==8658==    by 0x4054354: string_trim (string.c:99)
+==8658==    by 0x405473D: string_get_string_as_array (string.c:167)
+==8658==    by 0x40565D5: config_get_array_value (config.c:96)
+==8658==    by 0x804B277: obtener_posiciones_entrenadores (configTeam.c:72)
+==8658==    by 0x804B345: armar_entrenador (entrenador.c:35)
+==8658==    by 0x8049436: armar_entrenadores (Team.c:35)
+==8658==    by 0x804D16E: iniciar_vg (utils.c:11)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 120 bytes in 30 blocks are indirectly lost in loss record 50 of 72
+==8658==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x405445E: string_trim_right (string.c:122)
+==8658==    by 0x4054354: string_trim (string.c:99)
+==8658==    by 0x405473D: string_get_string_as_array (string.c:167)
+==8658==    by 0x40565D5: config_get_array_value (config.c:96)
+==8658==    by 0x804B277: obtener_posiciones_entrenadores (configTeam.c:72)
+==8658==    by 0x804D2AC: cantidad_entrenadores (utils.c:96)
+==8658==    by 0x80494C0: generar_objetivo_global (Team.c:48)
+==8658==    by 0x804D173: iniciar_vg (utils.c:12)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 120 bytes in 30 blocks are indirectly lost in loss record 51 of 72
+==8658==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x405445E: string_trim_right (string.c:122)
+==8658==    by 0x4054354: string_trim (string.c:99)
+==8658==    by 0x405473D: string_get_string_as_array (string.c:167)
+==8658==    by 0x40565D5: config_get_array_value (config.c:96)
+==8658==    by 0x804B277: obtener_posiciones_entrenadores (configTeam.c:72)
+==8658==    by 0x804D2AC: cantidad_entrenadores (utils.c:96)
+==8658==    by 0x804D455: verificar_entrenadores (utils.c:144)
+==8658==    by 0x804D247: iniciar_vg (utils.c:36)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 120 bytes in 30 blocks are indirectly lost in loss record 52 of 72
+==8658==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x405445E: string_trim_right (string.c:122)
+==8658==    by 0x4054354: string_trim (string.c:99)
+==8658==    by 0x405473D: string_get_string_as_array (string.c:167)
+==8658==    by 0x40565D5: config_get_array_value (config.c:96)
+==8658==    by 0x804B277: obtener_posiciones_entrenadores (configTeam.c:72)
+==8658==    by 0x804D2AC: cantidad_entrenadores (utils.c:96)
+==8658==    by 0x804995D: deteccion_de_deadlock (Team.c:196)
+==8658==    by 0x804C9E5: planificar_fifo (planificacion.c:31)
+==8658==    by 0x80497B9: planificacion (Team.c:119)
+==8658==    by 0x4061294: start_thread (pthread_create.c:333)
+==8658==    by 0x415F0AD: clone (clone.S:114)
+==8658== 
+==8658== 136 bytes in 1 blocks are possibly lost in loss record 53 of 72
+==8658==    at 0x402E0B8: calloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4011726: allocate_dtv (dl-tls.c:322)
+==8658==    by 0x401214B: _dl_allocate_tls (dl-tls.c:539)
+==8658==    by 0x4061CC3: allocate_stack (allocatestack.c:588)
+==8658==    by 0x4061CC3: pthread_create@@GLIBC_2.1 (pthread_create.c:539)
+==8658==    by 0x8049D2D: main (Test.c:63)
+==8658== 
+==8658== 136 bytes in 1 blocks are possibly lost in loss record 54 of 72
+==8658==    at 0x402E0B8: calloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4011726: allocate_dtv (dl-tls.c:322)
+==8658==    by 0x401214B: _dl_allocate_tls (dl-tls.c:539)
+==8658==    by 0x4061CC3: allocate_stack (allocatestack.c:588)
+==8658==    by 0x4061CC3: pthread_create@@GLIBC_2.1 (pthread_create.c:539)
+==8658==    by 0x8049D54: main (Test.c:75)
+==8658== 
+==8658== 167 bytes in 11 blocks are still reachable in loss record 55 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x40ED2C5: strdup (strdup.c:42)
+==8658==    by 0x405409A: string_duplicate (string.c:42)
+==8658==    by 0x4054BA9: _string_split (string.c:273)
+==8658==    by 0x40546AF: string_n_split (string.c:157)
+==8658==    by 0x40562B0: add_cofiguration.2909 (config.c:55)
+==8658==    by 0x4054846: string_iterate_lines (string.c:191)
+==8658==    by 0x4056444: config_create (config.c:61)
+==8658==    by 0x804B0B5: leer_config (configTeam.c:13)
+==8658==    by 0x8049CEB: main (Test.c:15)
+==8658== 
+==8658== 167 bytes in 11 blocks are indirectly lost in loss record 56 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x40ED2C5: strdup (strdup.c:42)
+==8658==    by 0x405409A: string_duplicate (string.c:42)
+==8658==    by 0x4054BA9: _string_split (string.c:273)
+==8658==    by 0x40546AF: string_n_split (string.c:157)
+==8658==    by 0x40562B0: add_cofiguration.2909 (config.c:55)
+==8658==    by 0x4054846: string_iterate_lines (string.c:191)
+==8658==    by 0x4056444: config_create (config.c:61)
+==8658==    by 0x804B087: leer_config (configTeam.c:8)
+==8658==    by 0x8049CEB: main (Test.c:15)
+==8658== 
+==8658== 176 bytes in 11 blocks are still reachable in loss record 57 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4056004: dictionary_create_element (dictionary.c:231)
+==8658==    by 0x4055B3F: dictionary_put (dictionary.c:73)
+==8658==    by 0x40562D3: add_cofiguration.2909 (config.c:56)
+==8658==    by 0x4054846: string_iterate_lines (string.c:191)
+==8658==    by 0x4056444: config_create (config.c:61)
+==8658==    by 0x804B0B5: leer_config (configTeam.c:13)
+==8658==    by 0x8049CEB: main (Test.c:15)
+==8658== 
+==8658== 176 bytes in 11 blocks are indirectly lost in loss record 58 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4056004: dictionary_create_element (dictionary.c:231)
+==8658==    by 0x4055B3F: dictionary_put (dictionary.c:73)
+==8658==    by 0x40562D3: add_cofiguration.2909 (config.c:56)
+==8658==    by 0x4054846: string_iterate_lines (string.c:191)
+==8658==    by 0x4056444: config_create (config.c:61)
+==8658==    by 0x804B087: leer_config (configTeam.c:8)
+==8658==    by 0x8049CEB: main (Test.c:15)
+==8658== 
+==8658== 188 bytes in 11 blocks are still reachable in loss record 59 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x40ED2C5: strdup (strdup.c:42)
+==8658==    by 0x4055B2D: dictionary_put (dictionary.c:73)
+==8658==    by 0x40562D3: add_cofiguration.2909 (config.c:56)
+==8658==    by 0x4054846: string_iterate_lines (string.c:191)
+==8658==    by 0x4056444: config_create (config.c:61)
+==8658==    by 0x804B0B5: leer_config (configTeam.c:13)
+==8658==    by 0x8049CEB: main (Test.c:15)
+==8658== 
+==8658== 188 bytes in 11 blocks are indirectly lost in loss record 60 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x40ED2C5: strdup (strdup.c:42)
+==8658==    by 0x4055B2D: dictionary_put (dictionary.c:73)
+==8658==    by 0x40562D3: add_cofiguration.2909 (config.c:56)
+==8658==    by 0x4054846: string_iterate_lines (string.c:191)
+==8658==    by 0x4056444: config_create (config.c:61)
+==8658==    by 0x804B087: leer_config (configTeam.c:8)
+==8658==    by 0x8049CEB: main (Test.c:15)
+==8658== 
+==8658== 200 bytes in 25 blocks are indirectly lost in loss record 61 of 72
+==8658==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x405445E: string_trim_right (string.c:122)
+==8658==    by 0x4054354: string_trim (string.c:99)
+==8658==    by 0x405473D: string_get_string_as_array (string.c:167)
+==8658==    by 0x40565D5: config_get_array_value (config.c:96)
+==8658==    by 0x804B2E3: obtener_objetivos_entrenadores (configTeam.c:90)
+==8658==    by 0x804B37D: armar_entrenador (entrenador.c:40)
+==8658==    by 0x8049436: armar_entrenadores (Team.c:35)
+==8658==    by 0x804D16E: iniciar_vg (utils.c:11)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 220 (120 direct, 100 indirect) bytes in 5 blocks are definitely lost in loss record 62 of 72
+==8658==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4054BC4: _string_split (string.c:277)
+==8658==    by 0x40545F3: string_split (string.c:150)
+==8658==    by 0x4054716: string_get_string_as_array (string.c:163)
+==8658==    by 0x40565D5: config_get_array_value (config.c:96)
+==8658==    by 0x804B277: obtener_posiciones_entrenadores (configTeam.c:72)
+==8658==    by 0x804B345: armar_entrenador (entrenador.c:35)
+==8658==    by 0x8049436: armar_entrenadores (Team.c:35)
+==8658==    by 0x804D16E: iniciar_vg (utils.c:11)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 264 (144 direct, 120 indirect) bytes in 6 blocks are definitely lost in loss record 63 of 72
+==8658==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4054BC4: _string_split (string.c:277)
+==8658==    by 0x40545F3: string_split (string.c:150)
+==8658==    by 0x4054716: string_get_string_as_array (string.c:163)
+==8658==    by 0x40565D5: config_get_array_value (config.c:96)
+==8658==    by 0x804B277: obtener_posiciones_entrenadores (configTeam.c:72)
+==8658==    by 0x804D2AC: cantidad_entrenadores (utils.c:96)
+==8658==    by 0x80494C0: generar_objetivo_global (Team.c:48)
+==8658==    by 0x804D173: iniciar_vg (utils.c:12)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 264 (144 direct, 120 indirect) bytes in 6 blocks are definitely lost in loss record 64 of 72
+==8658==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4054BC4: _string_split (string.c:277)
+==8658==    by 0x40545F3: string_split (string.c:150)
+==8658==    by 0x4054716: string_get_string_as_array (string.c:163)
+==8658==    by 0x40565D5: config_get_array_value (config.c:96)
+==8658==    by 0x804B277: obtener_posiciones_entrenadores (configTeam.c:72)
+==8658==    by 0x804D2AC: cantidad_entrenadores (utils.c:96)
+==8658==    by 0x804D455: verificar_entrenadores (utils.c:144)
+==8658==    by 0x804D247: iniciar_vg (utils.c:36)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 264 (144 direct, 120 indirect) bytes in 6 blocks are definitely lost in loss record 65 of 72
+==8658==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4054BC4: _string_split (string.c:277)
+==8658==    by 0x40545F3: string_split (string.c:150)
+==8658==    by 0x4054716: string_get_string_as_array (string.c:163)
+==8658==    by 0x40565D5: config_get_array_value (config.c:96)
+==8658==    by 0x804B277: obtener_posiciones_entrenadores (configTeam.c:72)
+==8658==    by 0x804D2AC: cantidad_entrenadores (utils.c:96)
+==8658==    by 0x804995D: deteccion_de_deadlock (Team.c:196)
+==8658==    by 0x804C9E5: planificar_fifo (planificacion.c:31)
+==8658==    by 0x80497B9: planificacion (Team.c:119)
+==8658==    by 0x4061294: start_thread (pthread_create.c:333)
+==8658==    by 0x415F0AD: clone (clone.S:114)
+==8658== 
+==8658== 300 bytes in 5 blocks are still reachable in loss record 66 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x804B32D: armar_entrenador (entrenador.c:29)
+==8658==    by 0x8049436: armar_entrenadores (Team.c:35)
+==8658==    by 0x804D16E: iniciar_vg (utils.c:11)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 320 (120 direct, 200 indirect) bytes in 5 blocks are definitely lost in loss record 67 of 72
+==8658==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4054BC4: _string_split (string.c:277)
+==8658==    by 0x40545F3: string_split (string.c:150)
+==8658==    by 0x4054716: string_get_string_as_array (string.c:163)
+==8658==    by 0x40565D5: config_get_array_value (config.c:96)
+==8658==    by 0x804B2E3: obtener_objetivos_entrenadores (configTeam.c:90)
+==8658==    by 0x804B37D: armar_entrenador (entrenador.c:40)
+==8658==    by 0x8049436: armar_entrenadores (Team.c:35)
+==8658==    by 0x804D16E: iniciar_vg (utils.c:11)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== 344 bytes in 1 blocks are still reachable in loss record 68 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x40D6359: __fopen_internal (iofopen.c:69)
+==8658==    by 0x40D641D: fopen@@GLIBC_2.1 (iofopen.c:97)
+==8658==    by 0x4053ADA: txt_open_for_append (txt.c:23)
+==8658==    by 0x4053BE3: log_create (log.c:64)
+==8658==    by 0x804C288: iniciar_logger (logTeam.c:6)
+==8658==    by 0x8049CF0: main (Test.c:16)
+==8658== 
+==8658== 709 (8 direct, 701 indirect) bytes in 1 blocks are definitely lost in loss record 69 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4056393: config_create (config.c:36)
+==8658==    by 0x804B087: leer_config (configTeam.c:8)
+==8658==    by 0x8049CEB: main (Test.c:15)
+==8658== 
+==8658== 69,474,920 bytes in 1 blocks are possibly lost in loss record 70 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x804A2CF: recibir_mensaje (conexiones.c:174)
+==8658==    by 0x804A250: enviar_suscripcion_a_cola (conexiones.c:156)
+==8658==    by 0x804D3A8: suscribirse_a_colas (utils.c:129)
+==8658==    by 0x8049CFA: main (Test.c:21)
+==8658== 
+==8658== 69,475,248 bytes in 1 blocks are possibly lost in loss record 71 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x804A2CF: recibir_mensaje (conexiones.c:174)
+==8658==    by 0x804A250: enviar_suscripcion_a_cola (conexiones.c:156)
+==8658==    by 0x804D3E5: suscribirse_a_colas (utils.c:134)
+==8658==    by 0x8049CFA: main (Test.c:21)
+==8658== 
+==8658== 69,475,576 bytes in 1 blocks are possibly lost in loss record 72 of 72
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x804A2CF: recibir_mensaje (conexiones.c:174)
+==8658==    by 0x804A250: enviar_suscripcion_a_cola (conexiones.c:156)
+==8658==    by 0x804D402: suscribirse_a_colas (utils.c:137)
+==8658==    by 0x8049CFA: main (Test.c:21)
+==8658== 
+==8658== LEAK SUMMARY:
+==8658==    definitely lost: 1,124 bytes in 64 blocks
+==8658==    indirectly lost: 1,621 bytes in 221 blocks
+==8658==      possibly lost: 208,426,016 bytes in 5 blocks
+==8658==    still reachable: 1,962 bytes in 93 blocks
+==8658==         suppressed: 0 bytes in 0 blocks
+==8658== 
+==8658== Use --track-origins=yes to see where uninitialised values come from
+==8658== ERROR SUMMARY: 39 errors from 36 contexts (suppressed: 0 from 0)
+==8658== 
+==8658== 1 errors in context 1 of 36:
+==8658== Conditional jump or move depends on uninitialised value(s)
+==8658==    at 0x402F39B: __GI_strlen (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x40D7CBB: puts (ioputs.c:35)
+==8658==    by 0x804A261: enviar_suscripcion_a_cola (conexiones.c:158)
+==8658==    by 0x804D402: suscribirse_a_colas (utils.c:137)
+==8658==    by 0x8049CFA: main (Test.c:21)
+==8658== 
+==8658== 
+==8658== 1 errors in context 2 of 36:
+==8658== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==8658==    at 0x406A389: recv (recv.c:35)
+==8658==    by 0x804A2E9: recibir_mensaje (conexiones.c:175)
+==8658==    by 0x804A250: enviar_suscripcion_a_cola (conexiones.c:156)
+==8658==    by 0x804D402: suscribirse_a_colas (utils.c:137)
+==8658==    by 0x8049CFA: main (Test.c:21)
+==8658==  Address 0xbec80b88 is on thread 1's stack
+==8658==  in frame #0, created by recv (recv.c:29)
+==8658== 
+==8658== 
+==8658== 1 errors in context 3 of 36:
+==8658== Conditional jump or move depends on uninitialised value(s)
+==8658==    at 0x402C136: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x804A2CF: recibir_mensaje (conexiones.c:174)
+==8658==    by 0x804A250: enviar_suscripcion_a_cola (conexiones.c:156)
+==8658==    by 0x804D402: suscribirse_a_colas (utils.c:137)
+==8658==    by 0x8049CFA: main (Test.c:21)
+==8658== 
+==8658== 
+==8658== 1 errors in context 4 of 36:
+==8658== Conditional jump or move depends on uninitialised value(s)
+==8658==    at 0x402F39B: __GI_strlen (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x40D7CBB: puts (ioputs.c:35)
+==8658==    by 0x804A261: enviar_suscripcion_a_cola (conexiones.c:158)
+==8658==    by 0x804D3E5: suscribirse_a_colas (utils.c:134)
+==8658==    by 0x8049CFA: main (Test.c:21)
+==8658== 
+==8658== 
+==8658== 1 errors in context 5 of 36:
+==8658== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==8658==    at 0x406A389: recv (recv.c:35)
+==8658==    by 0x804A2E9: recibir_mensaje (conexiones.c:175)
+==8658==    by 0x804A250: enviar_suscripcion_a_cola (conexiones.c:156)
+==8658==    by 0x804D3E5: suscribirse_a_colas (utils.c:134)
+==8658==    by 0x8049CFA: main (Test.c:21)
+==8658==  Address 0xbec80b88 is on thread 1's stack
+==8658==  in frame #0, created by recv (recv.c:29)
+==8658== 
+==8658== 
+==8658== 1 errors in context 6 of 36:
+==8658== Conditional jump or move depends on uninitialised value(s)
+==8658==    at 0x402C136: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x804A2CF: recibir_mensaje (conexiones.c:174)
+==8658==    by 0x804A250: enviar_suscripcion_a_cola (conexiones.c:156)
+==8658==    by 0x804D3E5: suscribirse_a_colas (utils.c:134)
+==8658==    by 0x8049CFA: main (Test.c:21)
+==8658== 
+==8658== 
+==8658== 1 errors in context 7 of 36:
+==8658== Conditional jump or move depends on uninitialised value(s)
+==8658==    at 0x402F39B: __GI_strlen (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x40D7CBB: puts (ioputs.c:35)
+==8658==    by 0x804A261: enviar_suscripcion_a_cola (conexiones.c:158)
+==8658==    by 0x804D3A8: suscribirse_a_colas (utils.c:129)
+==8658==    by 0x8049CFA: main (Test.c:21)
+==8658== 
+==8658== 
+==8658== 1 errors in context 8 of 36:
+==8658== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==8658==    at 0x406A389: recv (recv.c:35)
+==8658==    by 0x804A2E9: recibir_mensaje (conexiones.c:175)
+==8658==    by 0x804A250: enviar_suscripcion_a_cola (conexiones.c:156)
+==8658==    by 0x804D3A8: suscribirse_a_colas (utils.c:129)
+==8658==    by 0x8049CFA: main (Test.c:21)
+==8658==  Address 0xbec80b88 is on thread 1's stack
+==8658==  in frame #0, created by recv (recv.c:29)
+==8658== 
+==8658== 
+==8658== 1 errors in context 9 of 36:
+==8658== Conditional jump or move depends on uninitialised value(s)
+==8658==    at 0x402C136: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x804A2CF: recibir_mensaje (conexiones.c:174)
+==8658==    by 0x804A250: enviar_suscripcion_a_cola (conexiones.c:156)
+==8658==    by 0x804D3A8: suscribirse_a_colas (utils.c:129)
+==8658==    by 0x8049CFA: main (Test.c:21)
+==8658== 
+==8658== 
+==8658== 4 errors in context 10 of 36:
+==8658== Invalid read of size 4
+==8658==    at 0x804B3C9: armar_entrenador (entrenador.c:50)
+==8658==    by 0x8049436: armar_entrenadores (Team.c:35)
+==8658==    by 0x804D16E: iniciar_vg (utils.c:11)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658==  Address 0x4238e04 is 0 bytes after a block of size 4 alloc'd
+==8658==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x402E370: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==8658==    by 0x4054BC4: _string_split (string.c:277)
+==8658==    by 0x40545F3: string_split (string.c:150)
+==8658==    by 0x4054716: string_get_string_as_array (string.c:163)
+==8658==    by 0x40565D5: config_get_array_value (config.c:96)
+==8658==    by 0x804B29B: obtener_pokemon_entrenadores (configTeam.c:78)
+==8658==    by 0x804B3AE: armar_entrenador (entrenador.c:46)
+==8658==    by 0x8049436: armar_entrenadores (Team.c:35)
+==8658==    by 0x804D16E: iniciar_vg (utils.c:11)
+==8658==    by 0x8049CF5: main (Test.c:20)
+==8658== 
+==8658== ERROR SUMMARY: 39 errors from 36 contexts (suppressed: 0 from 0)

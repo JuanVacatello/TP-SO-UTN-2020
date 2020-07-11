@@ -91,7 +91,7 @@ void generar_atrapados_global(void){
 		if(dictionary_has_key(atrapados_global, list_get(pokemones,indice_pokemon))){
 
 			cantidad_pokemon = dictionary_get(atrapados_global, list_get(pokemones, indice_pokemon));
-			dictionary_remove_and_destroy(atrapados_global,list_get(pokemones, indice_pokemon),eliminar_pokemon);
+			dictionary_remove_and_destroy(atrapados_global,list_get(pokemones, indice_pokemon),(void*) free);
 			dictionary_put(atrapados_global, list_get(pokemones, indice_pokemon), cantidad_pokemon+1);
 			}
 		else{
@@ -102,8 +102,6 @@ void generar_atrapados_global(void){
 
 	free(pokemones);
 }
-
-void eliminar_pokemon(void* pokemon){}
 
 void planificacion(){
 	puts("aca entra2");
