@@ -40,47 +40,16 @@ t_mensaje_guardado* eliminar_y_compactar_hasta_encontrar(void* bloque_a_agregar_
 	int frecuencia_compactacion = obtener_frecuencia_compactacion();
 	int encontrado = 0;
 
-	// Si no encontro un lugar con espacio suficiente, 1) Compactar 2) Eliminar
-
-	if(frecuencia_compactacion == -1 || frecuencia_compactacion == 0 || frecuencia_compactacion == 1){ //Compacto cada vez que se libera
-		int desplazamiento = 0;
-		compactar_memoria(&desplazamiento);
-
-		if(entra_en_hueco(tamanio_a_agregar, desplazamiento)){ //Si entra al final de la memoria (espacio libre) lo guardo
-			mensaje_nuevo = guardar_en_posicion(bloque_a_agregar_en_memoria, tamanio_a_agregar, desplazamiento);
-			encontrado = 1;
-		}
-	}
-
-	if(frecuencia_compactacion != 2 && (contador_fallos%frecuencia_compactacion) == 0 && contador_fallos >= 3){ //Si la frecuencia es mayor a 1 y los fallos son multiplo de la frecuencia
-		completar_logger("Estoy en compactar", "Broker", LOG_LEVEL_INFO);
-		int desplazamiento = 0;
-		compactar_memoria(&desplazamiento);
-
-		if(entra_en_hueco(tamanio_a_agregar, desplazamiento)){
-			mensaje_nuevo = guardar_en_posicion(bloque_a_agregar_en_memoria, tamanio_a_agregar, desplazamiento);
-			encontrado = 1;
-		}
-	}
-
 	// Si despues de compactar sigue sin haber lugar, procedo a eliminar algun mensaje
 
 	while(encontrado == 0){ //Repito el procedimiento hasta poder guardar el nuevo mensaje
 
 		int posicion_inicial_nuevo_mensaje = ejecutar_algoritmo_reemplazo(); //Elimino un mensaje de memoria
 
-		if(entra_en_hueco(tamanio_a_agregar, posicion_inicial_nuevo_mensaje)){ //Me fijo si en esa posicion tiene espacio suficiente
-			completar_logger("Entra en hueco", "Broker", LOG_LEVEL_INFO);
-
-			mensaje_nuevo = guardar_en_posicion(bloque_a_agregar_en_memoria, tamanio_a_agregar, posicion_inicial_nuevo_mensaje);
-			encontrado = 1;
-		}
-
 		contador_fallos++; //Cuento el primer fallo (por si la frecuencia de compactación es 2
 
 		if(frecuencia_compactacion == -1 || frecuencia_compactacion == 0 || frecuencia_compactacion == 1){ //Compacto cada vez que se libera
-			int desplazamiento = 0;
-			compactar_memoria(&desplazamiento);
+			int desplazamiento = compactar_memoria();
 
 			if(entra_en_hueco(tamanio_a_agregar, desplazamiento)){ //Si entra al final de la memoria (espacio libre) lo guardo
 				mensaje_nuevo = guardar_en_posicion(bloque_a_agregar_en_memoria, tamanio_a_agregar, desplazamiento);
@@ -89,15 +58,23 @@ t_mensaje_guardado* eliminar_y_compactar_hasta_encontrar(void* bloque_a_agregar_
 		}
 
 		if(frecuencia_compactacion != 2 && (contador_fallos%frecuencia_compactacion) == 0 && contador_fallos >=3){ //Si la frecuencia es 2 y los fallos son multiplo de 2
-			completar_logger("Entre aca porque soy re gede", "Broker", LOG_LEVEL_INFO);
+			int desplazamiento = compactar_memoria();
 
-			int desplazamiento = 0;
-			compactar_memoria(&desplazamiento);
+			char* log = string_from_format("El primer lugar vacio es %d.", desplazamiento);
+			completar_logger(log, "BROKER", LOG_LEVEL_INFO);
+
 
 			if(entra_en_hueco(tamanio_a_agregar, desplazamiento)){
 				mensaje_nuevo = guardar_en_posicion(bloque_a_agregar_en_memoria, tamanio_a_agregar, desplazamiento);
 				encontrado = 1;
 			}
+		}
+
+		if(entra_en_hueco(tamanio_a_agregar, posicion_inicial_nuevo_mensaje) && encontrado == 0){ //Me fijo si en esa posicion tiene espacio suficiente
+			completar_logger("Entra en hueco", "Broker", LOG_LEVEL_INFO);
+
+			mensaje_nuevo = guardar_en_posicion(bloque_a_agregar_en_memoria, tamanio_a_agregar, posicion_inicial_nuevo_mensaje);
+			encontrado = 1;
 		}
 	}
 
@@ -110,8 +87,6 @@ int ejecutar_algoritmo_reemplazo(void){
 	int posicion_liberada;
 
 	if(!(strcmp(algoritmo_de_reemplazo, "FIFO"))){
-		completar_logger("Estoy en fifo", "Broker", LOG_LEVEL_INFO);
-
 		posicion_liberada = reemplazar_segun_FIFO();
 	}
 
@@ -122,8 +97,6 @@ int ejecutar_algoritmo_reemplazo(void){
 	char* log = string_from_format("Se eliminó de memoria principal la partición que empezaba en la posicion %d", posicion_liberada);
 	completar_logger(log, "BROKER", LOG_LEVEL_INFO); // LOG OBLIGATORIO
 
-	mostrar_memoria_principal();
-
 	return posicion_liberada;
 }
 
@@ -133,10 +106,6 @@ int reemplazar_segun_FIFO(void){
 	mensaje_a_eliminar = list_remove(elementos_en_memoria, 0); // Eliminamos el primer mensaje que entró
 	int posicion_inicial_nuevo_mensaje = mensaje_a_eliminar->byte_comienzo_ocupado;
 	int cantidad_a_eliminar = mensaje_a_eliminar->tamanio_ocupado;
-
-	//No se que pasa me lee un 0 en el tamanio pero se guarda bien
-	char* log = string_from_format("Posicion %d tamanio %d ult ref %d", mensaje_a_eliminar->byte_comienzo_ocupado, mensaje_a_eliminar->tamanio_ocupado,mensaje_a_eliminar->ultima_referencia);
-	completar_logger(log, "BROKER", LOG_LEVEL_INFO); //LOG OBLIGATORIO
 
 	memset(memoria_principal + posicion_inicial_nuevo_mensaje, 0, cantidad_a_eliminar);
 
@@ -184,9 +153,9 @@ t_mensaje_guardado* administracion_de_memoria_particiones(void* bloque_a_agregar
 t_mensaje_guardado* agregar_segun_first_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
 
 	t_mensaje_guardado* mensaje_nuevo;
-	int listsize = list_size(elementos_en_memoria);
+	//int listsize = list_size(elementos_en_memoria);
 
-	if(list_is_empty(elementos_en_memoria)){ // Si está vacía o la primera posición, agregar al principio de la memoria
+	if(list_is_empty(elementos_en_memoria) || primera_posicion_vacia_y_entra(tamanio_a_agregar)){ // Si está vacía o la primera posición esta vacia, agregar al principio de la memoria
 
 		mensaje_nuevo = guardar_en_posicion(bloque_a_agregar_en_memoria, tamanio_a_agregar, 0);
 	}
@@ -227,6 +196,29 @@ t_mensaje_guardado* agregar_segun_first_fit(void* bloque_a_agregar_en_memoria, u
 		}
 
 		if(se_guardo_el_mensaje == 0){
+
+			int frecuencia_compactacion = obtener_frecuencia_compactacion();
+			if(frecuencia_compactacion == -1 || frecuencia_compactacion == 0 || frecuencia_compactacion == 1){ //Compacto cada vez que se libera
+				int desplazamiento = compactar_memoria();
+
+				if(entra_en_hueco(tamanio_a_agregar, desplazamiento)){ //Si entra al final de la memoria (espacio libre) lo guardo
+					mensaje_nuevo = guardar_en_posicion(bloque_a_agregar_en_memoria, tamanio_a_agregar, desplazamiento);
+					se_guardo_el_mensaje = 1;
+				}
+			}
+
+			if(frecuencia_compactacion != 2 && (contador_fallos%frecuencia_compactacion) == 0 && contador_fallos >= 3){ //Si la frecuencia es mayor a 1 y los fallos son multiplo de la frecuencia
+				completar_logger("Estoy en compactar", "Broker", LOG_LEVEL_INFO);
+				int desplazamiento = compactar_memoria();
+
+				if(entra_en_hueco(tamanio_a_agregar, desplazamiento)){
+					mensaje_nuevo = guardar_en_posicion(bloque_a_agregar_en_memoria, tamanio_a_agregar, desplazamiento);
+					se_guardo_el_mensaje = 1;
+				}
+			}
+		}
+
+		if(se_guardo_el_mensaje == 0){
 			mensaje_nuevo = eliminar_y_compactar_hasta_encontrar(bloque_a_agregar_en_memoria, tamanio_a_agregar);
 		}
 	}
@@ -238,7 +230,7 @@ t_mensaje_guardado* agregar_segun_best_fit(void* bloque_a_agregar_en_memoria, ui
 
 	t_mensaje_guardado* mensaje_nuevo;
 
-	if(list_is_empty(elementos_en_memoria)){ // Si está vacía agregar al principio de la memoria
+	if(list_is_empty(elementos_en_memoria) || primera_posicion_vacia_y_entra(tamanio_a_agregar)){ // Si está vacía agregar al principio de la memoria
 
 			completar_logger("Estoy en if esta vacia", "BROKER", LOG_LEVEL_INFO);
 
@@ -340,6 +332,18 @@ void mostrar_memoria_principal(void){
 
 }
 
+int primera_posicion_vacia_y_entra(uint32_t tamanio_a_agregar){
+	int cero;
+	int boolean = 0;
+	memcpy(&cero, memoria_principal, sizeof(int));
+
+	if(cero == 0 && entra_en_hueco(tamanio_a_agregar, 0)){
+		boolean = 1;
+	}
+
+	return boolean;
+}
+
 int toda_la_memoria_esta_ocupada(void){
 	int booleano = 0;
 	int tamanio_lista = list_size(elementos_en_memoria);
@@ -370,12 +374,9 @@ int entra_en_hueco(int tamanio_a_agregar, int posicion_libre){
 
 	while(cero == 0 && contador <= tamanio_a_agregar){
 		desplazamiento += sizeof(int);
-		memcpy(&cero, memoria_principal + desplazamiento, sizeof(int));
+		memcpy(&cero, memoria_principal + posicion_libre + desplazamiento, sizeof(int));
 		contador+=4;
 	}
-
-	char* log = string_from_format("Conto %d ceros", contador);
-	completar_logger(log, "BROKER", LOG_LEVEL_INFO); //LOG OBLIGATORIO
 
 	if(contador >= tamanio_a_agregar){
 		boolean = 1;
@@ -395,8 +396,8 @@ t_mensaje_guardado* guardar_en_posicion(void* bloque_a_agregar_en_memoria, uint3
 	return mensaje_nuevo;
 }
 
-void compactar_memoria(int *desplazamiento){
-
+int compactar_memoria(void){
+	int desplazamiento = 0;
 	t_list* lista_ordenada = list_duplicate(elementos_en_memoria);
 	list_sort(lista_ordenada, comparar_inicios_mensajes); // Ordena la lista de menor a mayor a partir de la posición de inicio donde están guardados los mensajes en memoria
 	int tamanio_lista = list_size(lista_ordenada);
@@ -415,10 +416,13 @@ void compactar_memoria(int *desplazamiento){
 		void* bloque_a_agregar_en_memoria = malloc(tamanio_mensaje);
 		memcpy(bloque_a_agregar_en_memoria, memoria_principal + inicio_mensaje, tamanio_mensaje);
 
-		memcpy(memoria_copactada + *desplazamiento, bloque_a_agregar_en_memoria, tamanio_mensaje);
-		*desplazamiento += tamanio_mensaje;
+		memcpy(memoria_copactada + desplazamiento, bloque_a_agregar_en_memoria, tamanio_mensaje);
 
-		free(bloque_a_agregar_en_memoria);
+		mensaje_a_leer->byte_comienzo_ocupado = desplazamiento;
+
+		desplazamiento += tamanio_mensaje;
+
+		//free(bloque_a_agregar_en_memoria);
 	}
 
 	memoria_principal = memoria_copactada;
@@ -426,9 +430,10 @@ void compactar_memoria(int *desplazamiento){
 	completar_logger("Se compactó la memoria", "BROKER", LOG_LEVEL_INFO); // LOG OBLIGATORIO
 
 	free(memoria_copactada);
-	free(mensaje_a_leer);
-}
+	//free(mensaje_a_leer);
 
+	return desplazamiento;
+}
 
 /*		int tamanio_lista_mensajes = list_size(elementos_en_memoria);
 		t_mensaje_guardado* mensaje_comparar = malloc(sizeof(t_mensaje_guardado));

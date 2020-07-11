@@ -46,8 +46,9 @@ bool comparar_timestamps_mensajes(t_mensaje_guardado* mensaje1, t_mensaje_guarda
 
 int toda_la_memoria_esta_ocupada(void);
 void mostrar_memoria_principal(void);
-void compactar_memoria(int *desplazamiento);
+int compactar_memoria(void);
 int entra_en_hueco(int tamanio_a_agregar, int posicion_libre);
+int primera_posicion_vacia_y_entra(uint32_t tamanio_a_agregar);
 t_mensaje_guardado* guardar_en_posicion(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar, int posicion);
 
 #endif /* UTILS_MEMORIA_H_ */
