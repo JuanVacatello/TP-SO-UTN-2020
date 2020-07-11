@@ -400,6 +400,7 @@ int compactar_memoria(void){
 
 	void* memoria_copactada = malloc(tamanio_de_memoria);
 	t_mensaje_guardado* mensaje_a_leer;
+	memset(memoria_copactada,0,tamanio_de_memoria);
 	int inicio_mensaje;
 	int tamanio_mensaje;
 
@@ -420,6 +421,7 @@ int compactar_memoria(void){
 
 		//free(bloque_a_agregar_en_memoria);
 	}
+//setear en 0
 
 	memcpy(memoria_principal, memoria_copactada, tamanio_de_memoria);
 
