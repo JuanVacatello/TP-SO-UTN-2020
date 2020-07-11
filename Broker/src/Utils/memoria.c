@@ -119,9 +119,8 @@ int reemplazar_segun_LRU(void){
 	t_list* lista_ordenada = list_duplicate(elementos_en_memoria);
 	list_sort(lista_ordenada, comparar_timestamps_mensajes);
 
-	t_mensaje_guardado* mensaje_a_eliminar = malloc(sizeof(t_mensaje_guardado));
+	t_mensaje_guardado* mensaje_a_eliminar;
 	mensaje_a_eliminar = list_remove(elementos_en_memoria, 0); // Eliminamos el primer mensaje de la lista ordenada -> Timestamp mas bajo
-
 	int posicion_inicial_nuevo_mensaje = mensaje_a_eliminar->byte_comienzo_ocupado;
 	int cantidad_a_eliminar = mensaje_a_eliminar->tamanio_ocupado;
 
@@ -244,7 +243,7 @@ t_mensaje_guardado* agregar_segun_best_fit(void* bloque_a_agregar_en_memoria, ui
 		int encontrado = 0;
 		int tamanio_aceptable = tamanio_a_agregar; // Empieza buscando un tamaño igual al necesario, si no lo encuentra, busca uno mas grande por 1 byte, y asi
 
-		while(encontrado == 0 || tamanio_aceptable <= tamanio_de_memoria){
+		while(encontrado == 0 && tamanio_aceptable <= tamanio_de_memoria){
 
 			for(int i=0; i<tamanio_lista; i++){ // Recorre para ver todos los mensajes guardados en la memoria principal
 
@@ -252,9 +251,6 @@ t_mensaje_guardado* agregar_segun_best_fit(void* bloque_a_agregar_en_memoria, ui
 				mensaje_a_leer = list_get(elementos_en_memoria, i);
 
 				int desplazamiento = mensaje_a_leer->byte_comienzo_ocupado + mensaje_a_leer->tamanio_ocupado; // Me paro al final del primer mensaje guardado
-
-				char* alogea = string_from_format("El desplazamient deberia ser %d y es: %d.", 24, desplazamiento);
-				completar_logger(alogea, "Broker", LOG_LEVEL_INFO);
 
 				int contador = 4; // Si está vacío el espacio siguiente, leerá ceros
 				int cero;
@@ -393,7 +389,7 @@ t_mensaje_guardado* guardar_en_posicion(void* bloque_a_agregar_en_memoria, uint3
 	mensaje_nuevo->byte_comienzo_ocupado = posicion;
 	mensaje_nuevo->tamanio_ocupado = tamanio_a_agregar;
 
-	return mensaje_nuevo;
+ 	return mensaje_nuevo;
 }
 
 int compactar_memoria(void){
@@ -425,7 +421,7 @@ int compactar_memoria(void){
 		//free(bloque_a_agregar_en_memoria);
 	}
 
-	memoria_principal = memoria_copactada;
+	memcpy(memoria_principal, memoria_copactada, tamanio_de_memoria);
 
 	completar_logger("Se compactó la memoria", "BROKER", LOG_LEVEL_INFO); // LOG OBLIGATORIO
 
