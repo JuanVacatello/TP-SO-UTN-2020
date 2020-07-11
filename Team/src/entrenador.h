@@ -78,6 +78,7 @@ void verificar_estado_entrenador(t_entrenador* entrenador);
 
 //intercambio de pokemones
 t_entrenador* preparar_intercambio();
+t_entrenador* obtener_entrenador_con_pokemon_del_entrenador1(t_entrenador* entrenador1);
 void intercambiar_pokemones(t_entrenador* entrenador1);
 bool es_intercambiable_pokemon(t_entrenador* entrenador, char* pokemon);
 bool necesita_pokemon(t_entrenador* entrenador, char* pokemon);

@@ -42,11 +42,11 @@ t_entrenador* armar_entrenador(int indice){
 	entrenador->objetivo = objetivo;
 
 	//LISTA ATRAPADOS
-	//[Pikachu|Squirtle,Onix]
+//--------------[Pikachu|Squirtle,Onix]
 	char** atrapados =obtener_pokemon_entrenadores();
 	t_list* atrapado = list_create();
 
-	if(!string_is_empty(atrapados)){//if(contador_atrapados != 1){
+	if(!string_is_empty(atrapados)){
 		if(atrapados[indice]!=NULL){
 			atrapado = obtener_atrapados(atrapados[indice]);
 		}
@@ -351,7 +351,7 @@ bool termino_con_pokemon(t_entrenador* entrenador, char* pokemon){
 
 t_entrenador* preparar_intercambio(){
 	t_entrenador* entrenador1 = list_get(lista_de_entrenadores_deadlock,0);
-	t_entrenador* entrenador2 = list_get(lista_de_entrenadores_deadlock,1);
+	t_entrenador* entrenador2 = obtener_entrenador_con_pokemon_del_entrenador1(entrenador1);
 
 	entrenador1->posicionIntercambio.x = entrenador2->posicion.x;
 	entrenador1->posicionIntercambio.y = entrenador2->posicion.y;
@@ -375,7 +375,8 @@ t_entrenador* preparar_intercambio(){
 
 void intercambiar_pokemones(t_entrenador* entrenador1){
 
-	t_entrenador* entrenador2 = list_get(lista_de_entrenadores_deadlock,1);
+	t_entrenador* entrenador2 = obtener_entrenador_con_pokemon_del_entrenador1(entrenador1);
+
 
 	entrenador1->posicionIntercambio.x = entrenador2->posicion.x;
 	entrenador1->posicionIntercambio.y = entrenador2->posicion.y;
@@ -519,10 +520,56 @@ bool esta_en_exit(t_entrenador* entrenador){
 }
 
 
+t_entrenador* obtener_entrenador_con_pokemon_del_entrenador1(t_entrenador* entrenador1){
+	t_entrenador* entrenador2;
+	char* pokemon_sobra_entrenador2;
+	t_list* intercambiables = list_create();
 
+	for(int i = 0; i<list_size(lista_de_entrenadores_deadlock); i++){
+		entrenador2 =list_get(lista_de_entrenadores_deadlock, i);
+		list_clean(intercambiables);
+		for(int indice_pokemon = 0; indice_pokemon < list_size(entrenador2->atrapados); indice_pokemon++){
+			pokemon_sobra_entrenador2 = list_get(entrenador2->atrapados, indice_pokemon);
+			if(es_intercambiable_pokemon(entrenador2, pokemon_sobra_entrenador2)){
+				list_add(intercambiables, pokemon_sobra_entrenador2);
+			}
+		}
 
+		for(int indice_pokemon = 0; indice_pokemon < list_size(intercambiables); indice_pokemon++){
+			pokemon_sobra_entrenador2 = list_get(intercambiables, indice_pokemon);
+			if(necesita_pokemon(entrenador1, pokemon_sobra_entrenador2)){
+				return entrenador2;
+			}
+		}
+	}
+	return entrenador2;
+}
 
+/*
+t_entrenador* obtener_entrenador_con_pokemon_del_entrenador1(t_entrenador* entrenador1){
+	t_entrenador* entrenador2;
+	char* pokemon_sobra_entrenador1;
+	t_list* intercambiables = list_create();
 
+		for(int indice_pokemon = 0; indice_pokemon < list_size(entrenador1->atrapados); indice_pokemon++){
+				pokemon_sobra_entrenador1 = list_get(entrenador1->atrapados, indice_pokemon);
+				if(es_intercambiable_pokemon(entrenador1, pokemon_sobra_entrenador1)){
+					list_add(intercambiables, pokemon_sobra_entrenador1);
+				}
+		}
+
+	for(int i = 1; i<list_size(lista_de_entrenadores_deadlock); i++){
+			entrenador2 =list_get(lista_de_entrenadores_deadlock, i);
+		for(int indice_pokemon = 0; indice_pokemon < list_size(intercambiables); indice_pokemon++){
+			pokemon_sobra_entrenador1 = list_get(intercambiables, indice_pokemon);
+			if(necesita_pokemon(entrenador2, pokemon_sobra_entrenador1)){
+				return entrenador2;
+			}
+		}
+	}
+
+	return entrenador2;
+}*/
 
 
 

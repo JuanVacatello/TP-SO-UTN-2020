@@ -134,6 +134,7 @@ void planificacion(){
 
 
 void aparicion_pokemon(t_pokemon* pokemon){
+	//if(es_pokemon_requerido(pokemon)){
 		t_entrenador* entrenador = entrenador_mas_cercano(pokemon);
 
 		entrenador->pokemon_a_atrapar = pokemon;
@@ -146,7 +147,14 @@ void aparicion_pokemon(t_pokemon* pokemon){
 		list_add(entrenador->cola_de_acciones, accion);
 
 		list_add(lista_de_entrenadores_ready,entrenador);
-}
+	}
+	/*else
+	{
+		sem_post(&MUTEX_POKEMON_REQUERIDO);
+		free(pokemon->especie);
+		free(pokemon);
+	}*/
+//}
 
 
 bool es_pokemon_requerido(char* pokemon){
@@ -277,6 +285,8 @@ bool terminoTeam(){
 void finalizoTeam(){
 	t_entrenador* entrenador;
 	int ciclosPorEntrenador = 0;
+
+	loguearMensaje("Finalizo el TEAM");
 
 //	CICLOS DE CPU TOTALES
 	for(int i = 0; i<cantidad_entrenadores(); i++){

@@ -244,15 +244,6 @@ void planificar_rr(void){
 
 	while (1){
 
-		if(deteccion_de_deadlock()){
-
-			//hacer el intercambio
-
-		}
-
-		else{
-
-		puts("aca entra5");
 
 		//pthread_mutex_lock(&mutex_planificador);	//SE BLOQUEA BIEN
 
@@ -280,9 +271,9 @@ void planificar_rr(void){
 				else{
 					accion_aux->ciclo_cpu -= quantum_remanente;
 					list_replace_and_destroy_element(entrenador->cola_de_acciones, 0, accion_aux, destruir_accion);
-					//list_add_in_index(entrenador->cola_de_acciones,0,accion_aux);
+
 					quantum_remanente = 0;
-					//puts("le resto el quantum a la accion"); //termina en -1 cuando tenemos acciones grandes
+					//termina en -1 cuando tenemos acciones grandes
 				}
 
 			}
@@ -293,14 +284,30 @@ void planificar_rr(void){
 			}
 		}
 
+		while(deteccion_de_deadlock()){
+			entrenador = preparar_intercambio();
+			entrenador = list_remove(lista_de_entrenadores_ready,0);
+			entrenador->estado = EXEC;
+			cambiosDeContexto++;
+
+			while(list_size(entrenador->cola_de_acciones) > 0){
+				ejecutar_entrenador(entrenador);
+			}
+		}
+
+		if(terminoTeam()){
+			finalizoTeam();
+			exit(10);
+		}
+
+
 
 		//intentar atrapar pokemon --> mandar catch pokemon
-		puts("SE BLOQUEA DESPUES DE EJECUTAR");
+		//puts("SE BLOQUEA DESPUES DE EJECUTAR");
 		pthread_mutex_lock(&mutex_planificador);
 		}
 
 	}
-}
 
 
 void destruir_accion(t_accion* accion){}	//NO BORRAR
