@@ -75,29 +75,21 @@ void process_request(op_code cod_op, int socket_cliente) {
 			break;
 		case 1:
 			recibir_new_pokemon(socket_cliente);
-			//enviar_mensaje_a_suscriptores(1, socket_cliente); -> no sirve mucho esta funcion
-			//enviar_mensaje_id(socket_cliente); //tecnicamente a los suscriptores tiene q mandarle esto y no se q mas
-			//mensaje_id ++;
 			break;
 		case 2:
 			recibir_appeared_pokemon(socket_cliente);
-			//enviar_mensaje_a_suscriptores(2, socket_cliente);
 			break;
 		case 3:
 			recibir_catch_pokemon(socket_cliente);
-			//enviar_mensaje_a_suscriptores(3, socket_cliente);
 			break;
 		case 4:
 			recibir_caught_pokemon(socket_cliente);
-			//enviar_mensaje_a_suscriptores(4, socket_cliente);
 			break;
 		case 5:
 			recibir_get_pokemon(socket_cliente);
-			//enviar_mensaje_a_suscriptores(5, socket_cliente);
 			break;
 		case 6:
 			recibir_localized_pokemon(socket_cliente);
-			//enviar_mensaje_a_suscriptores(6, socket_cliente);
 			break;
 		case 7: //ack
 			recibir_ack(socket_cliente);
@@ -227,6 +219,9 @@ void enviar_mensajes_al_nuevo_suscriptor(t_list* mensajes_de_dicha_cola, int soc
 	for(int i = 0; i<tamanio_lista; i++){
 
 		mensaje_a_enviar = list_get(mensajes_de_dicha_cola, i);
+
+		mensaje_a_enviar->ubicacion_mensaje->ultima_referencia = timestamp; // Aumento el timestamp
+		timestamp++;
 
 		t_paquete* paquete = malloc(sizeof(t_paquete));
 		paquete->codigo_operacion = mensaje_a_enviar->codigo_operacion;;

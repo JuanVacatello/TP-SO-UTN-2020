@@ -1,129 +1,20 @@
 
-[INFO] 16:25:34:844 BROKER/(12355:12395): Se conectó proceso al Broker
-[INFO] 16:25:34:845 BROKER/(12355:12395): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 16:25:34:845 BROKER/(12355:12395): La memoria tiene espacio
-[INFO] 16:25:34:845 BROKER/(12355:12395): Se almacenó un mensaje en la posición 0 de la memoria principal.
-[INFO] 16:26:25:992 BROKER/(12355:12401): Se conectó proceso al Broker
-[INFO] 16:26:25:993 BROKER/(12355:12401): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 16:26:25:994 BROKER/(12355:12401): La memoria tiene espacio
-[INFO] 16:26:34:429 BROKER/(12355:12401): Se almacenó un mensaje en la posición 24 de la memoria principal.
-[INFO] 16:26:56:249 BROKER/(12355:12412): Se conectó proceso al Broker
-[INFO] 16:26:56:251 BROKER/(12355:12412): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 16:26:56:259 BROKER/(12355:12412): La memoria tiene espacio
-[INFO] 16:26:56:259 BROKER/(12355:12412): Se almacenó un mensaje en la posición 28 de la memoria principal.
-[INFO] 16:27:49:239 BROKER/(12355:12417): Se conectó proceso al Broker
-[INFO] 16:27:49:239 BROKER/(12355:12417): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 16:27:49:239 BROKER/(12355:12417): La memoria tiene espacio
-[INFO] 16:27:49:239 BROKER/(12355:12417): Se almacenó un mensaje en la posición 49 de la memoria principal.
-[INFO] 16:28:23:507 BROKER/(12355:12420): Se conectó proceso al Broker
-[INFO] 16:28:23:507 BROKER/(12355:12420): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 16:28:23:507 BROKER/(12355:12420): La memoria tiene espacio
-[INFO] 16:28:23:507 BROKER/(12355:12420): Se eliminó de memoria principal la partición que empezaba en la posicion 0
-[INFO] 16:28:23:507 BROKER/(12355:12420): Entra en hueco
-[INFO] 16:28:23:507 BROKER/(12355:12420): Se almacenó un mensaje en la posición 0 de la memoria principal.
-[INFO] 16:28:52:604 BROKER/(12355:12424): Se conectó proceso al Broker
-[INFO] 16:28:52:608 BROKER/(12355:12424): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 16:28:52:610 BROKER/(12355:12424): La memoria tiene espacio
-[INFO] 16:28:52:610 BROKER/(12355:12424): Se eliminó de memoria principal la partición que empezaba en la posicion 24
-[INFO] 16:28:52:610 BROKER/(12355:12424): Se eliminó de memoria principal la partición que empezaba en la posicion 28
-[INFO] 16:29:09:897 BROKER/(12355:12424): Se compactó la memoria
-[INFO] 16:29:09:898 BROKER/(12355:12424): El primer lugar vacio es 30.
-[INFO] 16:29:09:898 BROKER/(12355:12424): Se eliminó de memoria principal la partición que empezaba en la posicion 19
-[INFO] 16:29:09:898 BROKER/(12355:12424): Se eliminó de memoria principal la partición que empezaba en la posicion 0
-[INFO] 16:29:09:898 BROKER/(12355:12424): Entra en hueco
-[INFO] 16:29:09:898 BROKER/(12355:12424): Se almacenó un mensaje en la posición 0 de la memoria principal.
-[INFO] 16:30:48:500 BROKER/(12475:12499): Se conectó proceso al Broker
-[INFO] 16:30:48:501 BROKER/(12475:12499): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 16:30:48:501 BROKER/(12475:12499): La memoria tiene espacio
-[INFO] 16:30:48:501 BROKER/(12475:12499): Se almacenó un mensaje en la posición 0 de la memoria principal.
-[INFO] 16:30:57:824 BROKER/(12475:12501): Se conectó proceso al Broker
-[INFO] 16:30:57:824 BROKER/(12475:12501): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 16:30:57:824 BROKER/(12475:12501): La memoria tiene espacio
-[INFO] 16:30:57:825 BROKER/(12475:12501): Se almacenó un mensaje en la posición 24 de la memoria principal.
-[INFO] 16:31:00:807 BROKER/(12475:12503): Se conectó proceso al Broker
-[INFO] 16:31:00:810 BROKER/(12475:12503): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 16:31:00:810 BROKER/(12475:12503): La memoria tiene espacio
-[INFO] 16:31:00:810 BROKER/(12475:12503): Se almacenó un mensaje en la posición 28 de la memoria principal.
-[INFO] 16:31:09:9 BROKER/(12475:12505): Se conectó proceso al Broker
-[INFO] 16:31:09:9 BROKER/(12475:12505): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 16:31:09:9 BROKER/(12475:12505): La memoria tiene espacio
-[INFO] 16:31:09:9 BROKER/(12475:12505): Se almacenó un mensaje en la posición 49 de la memoria principal.
-[INFO] 16:31:13:811 BROKER/(12475:12507): Se conectó proceso al Broker
-[INFO] 16:31:13:822 BROKER/(12475:12507): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 16:31:13:822 BROKER/(12475:12507): La memoria tiene espacio
-[INFO] 16:31:13:822 BROKER/(12475:12507): Se eliminó de memoria principal la partición que empezaba en la posicion 0
-[INFO] 16:31:13:823 BROKER/(12475:12507): Entra en hueco
-[INFO] 16:31:13:823 BROKER/(12475:12507): Se almacenó un mensaje en la posición 0 de la memoria principal.
-[INFO] 16:31:24:601 BROKER/(12475:12509): Se conectó proceso al Broker
-[INFO] 16:31:24:604 BROKER/(12475:12509): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 16:31:24:604 BROKER/(12475:12509): La memoria tiene espacio
-[INFO] 16:31:24:604 BROKER/(12475:12509): Se eliminó de memoria principal la partición que empezaba en la posicion 24
-[INFO] 16:31:24:605 BROKER/(12475:12509): Se eliminó de memoria principal la partición que empezaba en la posicion 28
-[INFO] 16:33:03:133 BROKER/(12475:12509): Se compactó la memoria
-[INFO] 16:33:03:134 BROKER/(12475:12509): El primer lugar vacio es 30.
-[INFO] 16:33:03:134 BROKER/(12475:12509): Se eliminó de memoria principal la partición que empezaba en la posicion 19
-[INFO] 16:33:03:134 BROKER/(12475:12509): Se eliminó de memoria principal la partición que empezaba en la posicion 0
-[INFO] 16:33:03:134 BROKER/(12475:12509): Entra en hueco
-[INFO] 16:33:03:134 BROKER/(12475:12509): Se almacenó un mensaje en la posición 0 de la memoria principal.
-[INFO] 16:34:13:676 BROKER/(12588:12612): Se conectó proceso al Broker
-[INFO] 16:34:13:676 BROKER/(12588:12612): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 16:34:13:676 BROKER/(12588:12612): La memoria tiene espacio
-[INFO] 16:34:13:676 BROKER/(12588:12612): Se almacenó un mensaje en la posición 0 de la memoria principal.
-[INFO] 16:34:15:942 BROKER/(12588:12614): Se conectó proceso al Broker
-[INFO] 16:34:15:942 BROKER/(12588:12614): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 16:34:15:942 BROKER/(12588:12614): La memoria tiene espacio
-[INFO] 16:34:15:942 BROKER/(12588:12614): Se almacenó un mensaje en la posición 24 de la memoria principal.
-[INFO] 16:34:18:468 BROKER/(12588:12616): Se conectó proceso al Broker
-[INFO] 16:34:18:470 BROKER/(12588:12616): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 16:34:18:471 BROKER/(12588:12616): La memoria tiene espacio
-[INFO] 16:34:18:471 BROKER/(12588:12616): Se almacenó un mensaje en la posición 28 de la memoria principal.
-[INFO] 16:34:26:943 BROKER/(12588:12620): Se conectó proceso al Broker
-[INFO] 16:34:26:944 BROKER/(12588:12620): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 16:34:26:944 BROKER/(12588:12620): La memoria tiene espacio
-[INFO] 16:34:26:944 BROKER/(12588:12620): Se almacenó un mensaje en la posición 49 de la memoria principal.
-[INFO] 16:34:29:865 BROKER/(12588:12622): Se conectó proceso al Broker
-[INFO] 16:34:29:865 BROKER/(12588:12622): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 16:34:29:865 BROKER/(12588:12622): La memoria tiene espacio
-[INFO] 16:34:29:865 BROKER/(12588:12622): Se eliminó de memoria principal la partición que empezaba en la posicion 0
-[INFO] 16:34:29:865 BROKER/(12588:12622): Entra en hueco
-[INFO] 16:34:29:865 BROKER/(12588:12622): Se almacenó un mensaje en la posición 0 de la memoria principal.
-[INFO] 16:34:35:915 BROKER/(12588:12624): Se conectó proceso al Broker
-[INFO] 16:34:35:926 BROKER/(12588:12624): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 16:34:35:926 BROKER/(12588:12624): La memoria tiene espacio
-[INFO] 16:34:35:926 BROKER/(12588:12624): Se eliminó de memoria principal la partición que empezaba en la posicion 24
-[INFO] 16:34:35:926 BROKER/(12588:12624): Se eliminó de memoria principal la partición que empezaba en la posicion 28
-[INFO] 16:40:30:224 BROKER/(12588:12624): Se compactó la memoria
-[INFO] 16:40:55:940 BROKER/(12588:12624): El primer lugar vacio es 30.
-[INFO] 16:45:04:493 BROKER/(12941:12948): Se conectó proceso al Broker
-[INFO] 16:45:04:494 BROKER/(12941:12948): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 16:45:04:494 BROKER/(12941:12948): La memoria tiene espacio
-[INFO] 16:45:04:494 BROKER/(12941:12948): Se almacenó un mensaje en la posición 0 de la memoria principal.
-[INFO] 16:45:06:505 BROKER/(12941:12950): Se conectó proceso al Broker
-[INFO] 16:45:06:505 BROKER/(12941:12950): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 16:45:06:505 BROKER/(12941:12950): La memoria tiene espacio
-[INFO] 16:45:06:505 BROKER/(12941:12950): Se almacenó un mensaje en la posición 24 de la memoria principal.
-[INFO] 16:45:09:182 BROKER/(12941:12957): Se conectó proceso al Broker
-[INFO] 16:45:09:182 BROKER/(12941:12957): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 16:45:09:182 BROKER/(12941:12957): La memoria tiene espacio
-[INFO] 16:45:09:182 BROKER/(12941:12957): Se almacenó un mensaje en la posición 28 de la memoria principal.
-[INFO] 16:45:11:196 BROKER/(12941:12959): Se conectó proceso al Broker
-[INFO] 16:45:11:197 BROKER/(12941:12959): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 16:45:11:197 BROKER/(12941:12959): La memoria tiene espacio
-[INFO] 16:45:11:197 BROKER/(12941:12959): Se almacenó un mensaje en la posición 49 de la memoria principal.
-[INFO] 16:45:29:445 BROKER/(12941:12961): Se conectó proceso al Broker
-[INFO] 16:45:29:446 BROKER/(12941:12961): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 16:45:29:446 BROKER/(12941:12961): La memoria tiene espacio
-[INFO] 16:45:29:446 BROKER/(12941:12961): Se eliminó de memoria principal la partición que empezaba en la posicion 0
-[INFO] 16:45:29:446 BROKER/(12941:12961): Entra en hueco
-[INFO] 16:45:29:446 BROKER/(12941:12961): Se almacenó un mensaje en la posición 0 de la memoria principal.
-[INFO] 16:45:45:852 BROKER/(12941:12965): Se conectó proceso al Broker
-[INFO] 16:45:45:852 BROKER/(12941:12965): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 16:45:45:852 BROKER/(12941:12965): La memoria tiene espacio
-[INFO] 16:45:45:852 BROKER/(12941:12965): Se eliminó de memoria principal la partición que empezaba en la posicion 24
-[INFO] 16:45:45:852 BROKER/(12941:12965): Se eliminó de memoria principal la partición que empezaba en la posicion 28
-[INFO] 16:45:45:852 BROKER/(12941:12965): Se compactó la memoria
-[INFO] 16:45:45:852 BROKER/(12941:12965): El primer lugar vacio es 30.
-[INFO] 16:45:45:852 BROKER/(12941:12965): Se almacenó un mensaje en la posición 30 de la memoria principal.
-[INFO] 21:46:33:280 BROKER/(11768:11903): Se conectó proceso al Broker
-[INFO] 21:46:33:288 BROKER/(11768:11903): Se suscribió el proceso con id 11899 y con socket 5 a la cola de mensajes 2
-[INFO] 21:48:40:168 BROKER/(12106:12134): Se conectó proceso al Broker
+[INFO] 14:57:38:174 BROKER/(6208:6214): Se conectó proceso al Broker
+[INFO] 14:57:38:174 BROKER/(6208:6214): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 14:57:38:174 BROKER/(6208:6214): La memoria tiene espacio
+[INFO] 14:57:38:174 BROKER/(6208:6214): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 14:57:44:185 BROKER/(6208:6216): Se conectó proceso al Broker
+[INFO] 14:57:44:185 BROKER/(6208:6216): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 14:57:44:185 BROKER/(6208:6216): La memoria tiene espacio
+[INFO] 14:57:44:185 BROKER/(6208:6216): Se almacenó un mensaje en la posición 24 de la memoria principal.
+[INFO] 14:57:51:116 BROKER/(6208:6218): Se conectó proceso al Broker
+[INFO] 14:57:51:116 BROKER/(6208:6218): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 14:57:51:116 BROKER/(6208:6218): La memoria tiene espacio
+[INFO] 14:57:51:116 BROKER/(6208:6218): Se almacenó un mensaje en la posición 40 de la memoria principal.
+[INFO] 14:58:00:90 BROKER/(6208:6220): Se conectó proceso al Broker
+[INFO] 14:58:00:90 BROKER/(6208:6220): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 14:58:00:90 BROKER/(6208:6220): La memoria tiene espacio
+[INFO] 14:58:00:91 BROKER/(6208:6220): Se eliminó de memoria principal la partición que empezaba en la posicion 0
+[INFO] 14:58:00:91 BROKER/(6208:6220): Entra en hueco
+[INFO] 14:58:00:91 BROKER/(6208:6220): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 14:58:30:453 BROKER/(6208:6225): Se conectó proceso al Broker

@@ -10,6 +10,7 @@
 #include<commons/string.h>
 #include<string.h>
 #include<pthread.h>
+#include<semaphore.h>
 #include"configBroker.h"
 #include"logBroker.h"
 #include<time.h>
@@ -21,12 +22,18 @@ typedef struct
 	int ultima_referencia;
 }t_mensaje_guardado;
 
-void* memoria_principal;
+int tamanio_minimo_particion;
 int tamanio_de_memoria;
-int desplazamiento_memoria_principal;
 t_list* elementos_en_memoria; // Lista de t_mensaje_guardado
+
+void* memoria_principal;
+sem_t mutex_mem_princial;
+
 int timestamp;
-int contador_fallos; // Para cuando la frecuencia de compactación es 2
+sem_t mutex_timestamp;
+
+int contador_fallos; // Para cuando la frecuencia de compactación es mayor a 2
+sem_t mutex_contador_fallos;
 
 t_mensaje_guardado* guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
 
@@ -49,6 +56,7 @@ void mostrar_memoria_principal(void);
 int compactar_memoria(void);
 int entra_en_hueco(int tamanio_a_agregar, int posicion_libre);
 int primera_posicion_vacia_y_entra(uint32_t tamanio_a_agregar);
+void* tratar_fragmentacion_interna(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
 t_mensaje_guardado* guardar_en_posicion(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar, int posicion);
 
 #endif /* UTILS_MEMORIA_H_ */

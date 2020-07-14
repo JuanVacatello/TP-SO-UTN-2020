@@ -4,7 +4,6 @@ t_mensaje_guardado* guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria
 
 	t_mensaje_guardado* mensaje_nuevo;
 	char* esquema_de_administracion = obtener_algoritmo_memoria();
-	int tamanio_minimo_particion = obtener_tamanio_minimo_particion(); // Ver que hago con esto
 
 	if(toda_la_memoria_esta_ocupada()){
 		completar_logger("La memoria está llena", "BROKER", LOG_LEVEL_INFO);
@@ -23,7 +22,9 @@ t_mensaje_guardado* guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria
 	}
 
 	mensaje_nuevo->ultima_referencia = timestamp;
+	//sem_wait(&mutex_timestamp);
 	timestamp++;
+
 	list_add(elementos_en_memoria, mensaje_nuevo);
 
 	char* log = string_from_format("Se almacenó un mensaje en la posición %d de la memoria principal.", mensaje_nuevo->byte_comienzo_ocupado);
@@ -40,8 +41,6 @@ t_mensaje_guardado* eliminar_y_compactar_hasta_encontrar(void* bloque_a_agregar_
 	int frecuencia_compactacion = obtener_frecuencia_compactacion();
 	int encontrado = 0;
 
-	// Si despues de compactar sigue sin haber lugar, procedo a eliminar algun mensaje
-
 	while(encontrado == 0){ //Repito el procedimiento hasta poder guardar el nuevo mensaje
 
 		int posicion_inicial_nuevo_mensaje = ejecutar_algoritmo_reemplazo(); //Elimino un mensaje de memoria
@@ -57,12 +56,11 @@ t_mensaje_guardado* eliminar_y_compactar_hasta_encontrar(void* bloque_a_agregar_
 			}
 		}
 
-		if(frecuencia_compactacion != 2 && (contador_fallos%frecuencia_compactacion) == 0 && contador_fallos >=3){ //Si la frecuencia es 2 y los fallos son multiplo de 2
+		if(frecuencia_compactacion >= 2 && (contador_fallos%frecuencia_compactacion) == 0 && contador_fallos >=3){ //Si la frecuencia es 2 y los fallos son multiplo de 2
 			int desplazamiento = compactar_memoria();
 
 			char* log = string_from_format("El primer lugar vacio es %d.", desplazamiento);
 			completar_logger(log, "BROKER", LOG_LEVEL_INFO);
-
 
 			if(entra_en_hueco(tamanio_a_agregar, desplazamiento)){
 				mensaje_nuevo = guardar_en_posicion(bloque_a_agregar_en_memoria, tamanio_a_agregar, desplazamiento);
@@ -196,6 +194,8 @@ t_mensaje_guardado* agregar_segun_first_fit(void* bloque_a_agregar_en_memoria, u
 
 		if(se_guardo_el_mensaje == 0){
 
+			contador_fallos++;
+
 			int frecuencia_compactacion = obtener_frecuencia_compactacion();
 			if(frecuencia_compactacion == -1 || frecuencia_compactacion == 0 || frecuencia_compactacion == 1){ //Compacto cada vez que se libera
 				int desplazamiento = compactar_memoria();
@@ -206,7 +206,7 @@ t_mensaje_guardado* agregar_segun_first_fit(void* bloque_a_agregar_en_memoria, u
 				}
 			}
 
-			if(frecuencia_compactacion != 2 && (contador_fallos%frecuencia_compactacion) == 0 && contador_fallos >= 3){ //Si la frecuencia es mayor a 1 y los fallos son multiplo de la frecuencia
+			if(frecuencia_compactacion >= 2 && (contador_fallos%frecuencia_compactacion) == 0 && contador_fallos >= 3){ //Si la frecuencia es mayor a 1 y los fallos son multiplo de la frecuencia
 				completar_logger("Estoy en compactar", "Broker", LOG_LEVEL_INFO);
 				int desplazamiento = compactar_memoria();
 
@@ -275,6 +275,30 @@ t_mensaje_guardado* agregar_segun_best_fit(void* bloque_a_agregar_en_memoria, ui
 			}
 
 			tamanio_aceptable++;
+		}
+
+		if(encontrado == 0){
+
+			contador_fallos++;
+			int frecuencia_compactacion = obtener_frecuencia_compactacion();
+			if(frecuencia_compactacion == -1 || frecuencia_compactacion == 0 || frecuencia_compactacion == 1){ //Compacto cada vez que se libera
+				int desplazamiento = compactar_memoria();
+
+				if(entra_en_hueco(tamanio_a_agregar, desplazamiento)){ //Si entra al final de la memoria (espacio libre) lo guardo
+					mensaje_nuevo = guardar_en_posicion(bloque_a_agregar_en_memoria, tamanio_a_agregar, desplazamiento);
+					encontrado = 1;
+				}
+			}
+
+			if(frecuencia_compactacion != 2 && (contador_fallos%frecuencia_compactacion) == 0 && contador_fallos >= 3){ //Si la frecuencia es mayor a 1 y los fallos son multiplo de la frecuencia
+				completar_logger("Estoy en compactar", "Broker", LOG_LEVEL_INFO);
+				int desplazamiento = compactar_memoria();
+
+				if(entra_en_hueco(tamanio_a_agregar, desplazamiento)){
+					mensaje_nuevo = guardar_en_posicion(bloque_a_agregar_en_memoria, tamanio_a_agregar, desplazamiento);
+					encontrado = 1;
+				}
+			}
 		}
 
 		if(encontrado == 0){
@@ -385,11 +409,39 @@ int entra_en_hueco(int tamanio_a_agregar, int posicion_libre){
 t_mensaje_guardado* guardar_en_posicion(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar, int posicion){
 	t_mensaje_guardado* mensaje_nuevo = malloc(sizeof(t_mensaje_guardado));
 
-	memcpy(memoria_principal + posicion, bloque_a_agregar_en_memoria, tamanio_a_agregar); //usar semaforos xq es variable global
-	mensaje_nuevo->byte_comienzo_ocupado = posicion;
-	mensaje_nuevo->tamanio_ocupado = tamanio_a_agregar;
+	if(tamanio_a_agregar < tamanio_minimo_particion){
+		void* bloque_con_fragmentacion = tratar_fragmentacion_interna(bloque_a_agregar_en_memoria, tamanio_a_agregar);
 
- 	return mensaje_nuevo;
+		memcpy(memoria_principal + posicion, bloque_con_fragmentacion, tamanio_minimo_particion); //usar semaforos xq es variable global
+		mensaje_nuevo->byte_comienzo_ocupado = posicion;
+		mensaje_nuevo->tamanio_ocupado = tamanio_minimo_particion;
+
+	} else {
+		memcpy(memoria_principal + posicion, bloque_a_agregar_en_memoria, tamanio_a_agregar); //usar semaforos xq es variable global
+		mensaje_nuevo->byte_comienzo_ocupado = posicion;
+		mensaje_nuevo->tamanio_ocupado = tamanio_a_agregar;
+	}
+
+	return mensaje_nuevo;
+}
+
+void* tratar_fragmentacion_interna(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
+
+	int tamanio_que_ocupara_en_memoria = tamanio_minimo_particion;
+	int fragmentacion_interna = tamanio_minimo_particion - tamanio_a_agregar;
+	int desplazamiento = 0;
+	char relleno = 'f';
+
+	void* bloque_con_fragmentacion = malloc(tamanio_minimo_particion);
+	memcpy(bloque_con_fragmentacion + desplazamiento, bloque_a_agregar_en_memoria, tamanio_a_agregar);
+	desplazamiento += tamanio_a_agregar;
+
+	while(desplazamiento < tamanio_minimo_particion){
+		memcpy(bloque_con_fragmentacion + desplazamiento, &relleno, sizeof(char));
+		desplazamiento++;
+	}
+
+	return bloque_con_fragmentacion;
 }
 
 int compactar_memoria(void){

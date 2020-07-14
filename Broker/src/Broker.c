@@ -6,15 +6,19 @@ int main(void)
 	iniciar_logger();
 
 	tamanio_de_memoria = obtener_tamanio_memoria();
+	tamanio_minimo_particion = obtener_tamanio_minimo_particion();
+
 	elementos_en_memoria = list_create();
 	contador_fallos=0;
+	timestamp = 0;
 
 	memoria_principal = malloc(tamanio_de_memoria);
 	memset(memoria_principal,0,tamanio_de_memoria);
 
 	creacion_colas_de_mensajes();
-	pthread_create(&hilo_servidor, NULL , iniciar_servidor ,NULL);
-	pthread_join(hilo_servidor, NULL);
+	iniciar_servidor();
+//	pthread_create(&hilo_servidor, NULL , iniciar_servidor ,NULL);
+//	pthread_join(hilo_servidor, NULL);
 
 	terminar_programa();
 
