@@ -47,9 +47,14 @@ t_entrenador* armar_entrenador(int indice){
 	t_list* atrapado = list_create();
 
 	//if(!string_is_empty(atrapados)){
+	if(flagListaAtrapados == 0){
 		if(atrapados[indice]!=NULL){
 			atrapado = obtener_atrapados(atrapados[indice]);
 		}
+		else{
+			flagListaAtrapados = 1;
+		}
+	}
 	//}
 	entrenador->atrapados = atrapado;
 

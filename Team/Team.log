@@ -2481,3 +2481,5 @@
 [INFO] 22:21:11:696 TEAM/(13188:13195): Se logró conectar con el BROKER de manera exitosa
 [INFO] 22:22:58:301 TEAM/(13236:13242): el socket de conexion es: 4.
 [INFO] 22:22:58:302 TEAM/(13236:13242): Se logró conectar con el BROKER de manera exitosa
+[INFO] 23:10:24:97 TEAM/(5371:5378): Reintento de comunicacion con BROKER fallido
+[INFO] 23:10:24:100 TEAM/(5371:5378): No se pudo conectar con el BROKER, reintentando en 30 segundos...

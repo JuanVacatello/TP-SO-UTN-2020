@@ -21,6 +21,8 @@ void iniciar_vg(){
 	deadlocksProducidos = 0;
 	deadlocksResueltos = 0;
 
+	flagListaAtrapados = 0;
+
 	pthread_mutex_init(&mutex_planificador, NULL);
 	//PONEMOS EL SEMÁFORO EN 0
 	pthread_mutex_lock(&mutex_planificador);

@@ -43,6 +43,8 @@ int	cambiosDeContexto;
 int deadlocksProducidos;
 int deadlocksResueltos;
 
+int flagListaAtrapados;
+
 typedef enum
 {
 	SUSCRIPTOR=0,
