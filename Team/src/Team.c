@@ -146,6 +146,15 @@ void planificacion(){
 void aparicion_pokemon(t_pokemon* pokemon){
 	//if(es_pokemon_requerido(pokemon)){
 		t_entrenador* entrenador = entrenador_mas_cercano(pokemon);
+		int cantidad_pokemon = 0;
+
+		if(dictionary_has_key(atrapados_global, pokemon->especie)){
+
+					cantidad_pokemon = dictionary_get(atrapados_global, pokemon->especie);
+		}
+
+				dictionary_remove_and_destroy(atrapados_global, pokemon->especie, (void *) eliminarPokemon);
+				dictionary_put(atrapados_global, pokemon->especie, cantidad_pokemon + 1);
 
 		entrenador->pokemon_a_atrapar = pokemon;
 		entrenador->estado = READY;
@@ -168,7 +177,7 @@ void aparicion_pokemon(t_pokemon* pokemon){
 
 
 bool es_pokemon_requerido(char* pokemon){
-	sem_wait(&MUTEX_POKEMON_REQUERIDO);
+	//sem_wait(&MUTEX_POKEMON_REQUERIDO);
 	if(dictionary_has_key(objetivo_global,pokemon)){
 		int cantidad_objetivos = dictionary_get(objetivo_global,pokemon);
 		int cantidad_atrapados = dictionary_get(atrapados_global,pokemon);

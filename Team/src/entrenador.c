@@ -228,19 +228,24 @@ void atrapar_pokemon(t_entrenador* entrenador){
 
 	if(entrenador->pudo_atrapar_pokemon == 0){
 		log_operacion_de_atrapar_fallida(entrenador);	//NO ATRAPÓ AL POKEMON
-	}
-	else if(entrenador->pudo_atrapar_pokemon == 1){
-		list_add(entrenador->atrapados, entrenador->pokemon_a_atrapar->especie);
-		log_operacion_de_atrapar_exitosa(entrenador);	//ATRAPÓ AL POKEMON
 
 		if(dictionary_has_key(atrapados_global, entrenador->pokemon_a_atrapar->especie)){
 
 			cantidad_pokemon = dictionary_get(atrapados_global, entrenador->pokemon_a_atrapar->especie);
-		}
-		dictionary_remove_and_destroy(atrapados_global, entrenador->pokemon_a_atrapar->especie, (void *) free);
-		dictionary_put(atrapados_global, entrenador->pokemon_a_atrapar->especie, cantidad_pokemon + 1);
 
-		//Actualizamos diccionarios
+			if(cantidad_pokemon == 1){
+				dictionary_remove_and_destroy(atrapados_global, entrenador->pokemon_a_atrapar->especie, (void *) free);
+			}
+			else{
+			dictionary_remove_and_destroy(atrapados_global, entrenador->pokemon_a_atrapar->especie, (void *) free);
+			dictionary_put(atrapados_global, entrenador->pokemon_a_atrapar->especie, cantidad_pokemon - 1);
+		}
+	}
+
+	}
+	else if(entrenador->pudo_atrapar_pokemon == 1){
+		list_add(entrenador->atrapados, entrenador->pokemon_a_atrapar->especie);
+		log_operacion_de_atrapar_exitosa(entrenador);	//ATRAPÓ AL POKEMON
 
 		int pid = process_getpid();
 		char* mensaje = string_from_format("pid: %d.",pid);
@@ -252,8 +257,10 @@ void atrapar_pokemon(t_entrenador* entrenador){
 
 
 	entrenador->pokemon_a_atrapar = NULL;
-	sem_post(&MUTEX_POKEMON_REQUERIDO);
+	//sem_post(&MUTEX_POKEMON_REQUERIDO);
 }
+
+
 
 
 void verificar_estado_entrenador(t_entrenador* entrenador){

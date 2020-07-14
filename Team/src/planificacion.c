@@ -7,11 +7,13 @@ void planificar_fifo(void){
 
 	while (1){
 
-		while(!list_is_empty(lista_de_pokemones_sueltos)){
+		pthread_mutex_lock(&mutex_planificador);
+
+		/*while(!list_is_empty(lista_de_pokemones_sueltos)){
 				t_pokemon* pokemon_nuevo = list_remove(lista_de_pokemones_sueltos,0);
 				aparicion_pokemon(pokemon_nuevo);
 		}
-
+*/
 		puts("aca entra10");
 
 		while(!list_is_empty(lista_de_entrenadores_ready)){
@@ -44,7 +46,6 @@ void planificar_fifo(void){
 			exit(10);
 		}
 
-		pthread_mutex_lock(&mutex_planificador);
 	}
 }
 
@@ -57,14 +58,14 @@ void planificar_sjf_sd(void){
 
 	while(1){
 
-		//pthread_mutex_lock(&mutex_planificador);
+		pthread_mutex_lock(&mutex_planificador);
 
-		while(!list_is_empty(lista_de_pokemones_sueltos)){
+		/*while(!list_is_empty(lista_de_pokemones_sueltos)){
 			t_pokemon* pokemon_nuevo = list_remove(lista_de_pokemones_sueltos,0);
 
 			aparicion_pokemon(pokemon_nuevo);
 		}
-
+*/
 		while(!list_is_empty(lista_de_entrenadores_ready)){
 
 			entrenador_aux = entrenador_con_menor_cpu();
@@ -104,7 +105,6 @@ void planificar_sjf_sd(void){
 
 		}
 
-		pthread_mutex_lock(&mutex_planificador);
 }
 
 
@@ -115,14 +115,14 @@ void planificar_sjf_cd(void){
 
 	while(1){
 
-		//pthread_mutex_lock(&mutex_planificador);
+		pthread_mutex_lock(&mutex_planificador);
 
-		while(!list_is_empty(lista_de_pokemones_sueltos)){
+/*		while(!list_is_empty(lista_de_pokemones_sueltos)){
 			t_pokemon* pokemon_nuevo = list_remove(lista_de_pokemones_sueltos,0);
 
 			aparicion_pokemon(pokemon_nuevo);
 		}
-
+*/
 		while(!list_is_empty(lista_de_entrenadores_ready)){
 
 			entrenador_aux = entrenador_con_menor_cpu();
@@ -182,7 +182,6 @@ void planificar_sjf_cd(void){
 
 		}
 
-		pthread_mutex_lock(&mutex_planificador);
 }
 
 // Ti = T(i­-1) * a + R(i­-1) * (1 -­ a) , donde a = obtener_alpha()
@@ -245,13 +244,13 @@ void planificar_rr(void){
 	while (1){
 
 
-		//pthread_mutex_lock(&mutex_planificador);	//SE BLOQUEA BIEN
+		pthread_mutex_lock(&mutex_planificador);
 
-		while(!list_is_empty(lista_de_pokemones_sueltos)){
+		/*while(!list_is_empty(lista_de_pokemones_sueltos)){
 				t_pokemon* pokemon_nuevo = list_remove(lista_de_pokemones_sueltos,0);
 				aparicion_pokemon(pokemon_nuevo);
 		}
-
+*/
 		puts("aca entra10");
 															//quantum = 0
 		while(!list_is_empty(lista_de_entrenadores_ready)){//, entrenador2= 2 acciones  entrenador 1 = 1 acciones
@@ -300,11 +299,6 @@ void planificar_rr(void){
 			exit(10);
 		}
 
-
-
-		//intentar atrapar pokemon --> mandar catch pokemon
-		//puts("SE BLOQUEA DESPUES DE EJECUTAR");
-		pthread_mutex_lock(&mutex_planificador);
 		}
 
 	}

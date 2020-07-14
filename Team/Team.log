@@ -2483,3 +2483,78 @@
 [INFO] 22:22:58:302 TEAM/(13236:13242): Se logró conectar con el BROKER de manera exitosa
 [INFO] 23:10:24:97 TEAM/(5371:5378): Reintento de comunicacion con BROKER fallido
 [INFO] 23:10:24:100 TEAM/(5371:5378): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:32:15:293 TEAM/(6050:6056): Reintento de comunicacion con BROKER fallido
+[INFO] 17:32:15:325 TEAM/(6050:6056): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:32:45:330 TEAM/(6050:6056): Reintento de comunicacion con BROKER fallido
+[INFO] 17:32:45:342 TEAM/(6050:6056): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:32:58:984 TEAM/(6050:6059): El codigo de operacion es: 2.
+[INFO] 17:32:58:988 TEAM/(6050:6059): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:32:58:999 TEAM/(6050:6059): El nombre del pokemon es: Pikachu
+[INFO] 17:32:58:2 TEAM/(6050:6059): posicion en x: 1
+[INFO] 17:32:59:5 TEAM/(6050:6059): posicion en y: 1
+[INFO] 17:35:39:353 TEAM/(6102:6108): Reintento de comunicacion con BROKER fallido
+[INFO] 17:35:39:355 TEAM/(6102:6108): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:37:43:756 TEAM/(6152:6175): Reintento de comunicacion con BROKER fallido
+[INFO] 17:37:43:758 TEAM/(6152:6175): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:38:04:802 TEAM/(6152:6190): El codigo de operacion es: 2.
+[INFO] 17:38:04:804 TEAM/(6152:6190): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:38:14:381 TEAM/(6152:6175): Reintento de comunicacion con BROKER fallido
+[INFO] 17:38:14:382 TEAM/(6152:6175): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:38:32:69 TEAM/(6152:6190): El nombre del pokemon es: Pikachu
+[INFO] 17:38:32:71 TEAM/(6152:6190): posicion en x: 1
+[INFO] 17:38:32:73 TEAM/(6152:6190): posicion en y: 1
+[INFO] 17:38:45:95 TEAM/(6152:6175): Reintento de comunicacion con BROKER fallido
+[INFO] 17:38:45:97 TEAM/(6152:6175): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:48:05:643 TEAM/(6439:6446): Reintento de comunicacion con BROKER fallido
+[INFO] 17:48:05:647 TEAM/(6439:6446): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:48:32:877 TEAM/(6439:6449): El codigo de operacion es: 2.
+[INFO] 17:48:32:895 TEAM/(6439:6449): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:48:32:899 TEAM/(6439:6449): El nombre del pokemon es: Pikachu
+[INFO] 17:48:32:906 TEAM/(6439:6449): posicion en x: 1
+[INFO] 17:48:32:937 TEAM/(6439:6449): posicion en y: 1
+[INFO] 17:49:54:946 TEAM/(6488:6509): Reintento de comunicacion con BROKER fallido
+[INFO] 17:49:54:962 TEAM/(6488:6509): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:50:03:59 TEAM/(6488:6518): El codigo de operacion es: 2.
+[INFO] 17:50:03:86 TEAM/(6488:6518): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:50:15:751 TEAM/(6488:6518): El nombre del pokemon es: Pikachu
+[INFO] 17:50:15:755 TEAM/(6488:6518): posicion en x: 1
+[INFO] 17:50:15:760 TEAM/(6488:6518): posicion en y: 1
+[INFO] 17:50:24:970 TEAM/(6488:6509): Reintento de comunicacion con BROKER fallido
+[INFO] 17:50:24:972 TEAM/(6488:6509): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:53:07:278 TEAM/(6616:6635): Reintento de comunicacion con BROKER fallido
+[INFO] 17:53:07:287 TEAM/(6616:6635): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:53:16:375 TEAM/(6616:6643): El codigo de operacion es: 2.
+[INFO] 17:53:16:401 TEAM/(6616:6643): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:53:23:417 TEAM/(6616:6643): El nombre del pokemon es: Pikachu
+[INFO] 17:53:23:418 TEAM/(6616:6643): posicion en x: 1
+[INFO] 17:53:23:418 TEAM/(6616:6643): posicion en y: 1
+[INFO] 18:00:12:169 TEAM/(6763:6774): Reintento de comunicacion con BROKER fallido
+[INFO] 18:00:12:269 TEAM/(6763:6774): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 18:00:27:827 TEAM/(6763:6790): El codigo de operacion es: 2.
+[INFO] 18:00:27:845 TEAM/(6763:6790): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 18:00:27:863 TEAM/(6763:6790): El nombre del pokemon es: Pikachu
+[INFO] 18:00:27:894 TEAM/(6763:6790): posicion en x: 1
+[INFO] 18:00:27:899 TEAM/(6763:6790): posicion en y: 1
+[INFO] 18:00:28:974 TEAM/(6763:6791): El entrenador A se movió a la posicion 1|3.
+[INFO] 18:00:29:994 TEAM/(6763:6792): El entrenador A se movió a la posicion 1|2.
+[INFO] 18:00:31:10 TEAM/(6763:6793): El entrenador A se movió a la posicion 1|1.
+[INFO] 18:00:32:21 TEAM/(6763:6794): El entrenador A atrapó un Pikachu en la posicion 1|1.
+[INFO] 18:00:32:26 TEAM/(6763:6794): pid: 6763.
+[INFO] 18:00:42:289 TEAM/(6763:6774): Reintento de comunicacion con BROKER fallido
+[INFO] 18:00:42:303 TEAM/(6763:6774): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 18:00:46:605 TEAM/(6763:6801): El codigo de operacion es: 2.
+[INFO] 18:00:46:621 TEAM/(6763:6801): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 18:01:12:322 TEAM/(6763:6774): Reintento de comunicacion con BROKER fallido
+[INFO] 18:01:12:328 TEAM/(6763:6774): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 18:01:19:367 TEAM/(6763:6803): El codigo de operacion es: 2.
+[INFO] 18:01:19:388 TEAM/(6763:6803): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 18:01:19:401 TEAM/(6763:6803): El nombre del pokemon es: Squirtle
+[INFO] 18:01:19:427 TEAM/(6763:6803): posicion en x: 3
+[INFO] 18:01:19:438 TEAM/(6763:6803): posicion en y: 3
+[INFO] 18:01:20:481 TEAM/(6763:6804): El entrenador B se movió a la posicion 5|5.
+[INFO] 18:01:21:509 TEAM/(6763:6805): El entrenador B se movió a la posicion 4|5.
+[INFO] 18:01:22:526 TEAM/(6763:6806): El entrenador B se movió a la posicion 3|5.
+[INFO] 18:01:23:547 TEAM/(6763:6807): El entrenador B se movió a la posicion 3|4.
+[INFO] 18:01:24:571 TEAM/(6763:6808): El entrenador B se movió a la posicion 3|3.
+[INFO] 18:01:25:602 TEAM/(6763:6809): El entrenador B atrapó un Squirtle en la posicion 3|3.
+[INFO] 18:01:25:614 TEAM/(6763:6809): pid: 6763.

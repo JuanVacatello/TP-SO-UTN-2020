@@ -441,13 +441,14 @@ void recibir_AppearedPokemon(int socket_cliente){
 		if(es_pokemon_requerido(pokemon)){
 
 			t_pokemon* pokemonNuevo = armarPokemon(pokemon, posX, posY);
-			list_add(lista_de_pokemones_sueltos, pokemonNuevo);
+			//list_add(lista_de_pokemones_sueltos, pokemonNuevo);
+			aparicion_pokemon(pokemonNuevo);
 
 			pthread_mutex_unlock(&mutex_planificador);
 		}
-		else{
-			sem_post(&MUTEX_POKEMON_REQUERIDO);
-		}
+		//else{
+			//sem_post(&MUTEX_POKEMON_REQUERIDO);
+		//}
 
 		//free(pokemonNuevo);
 
