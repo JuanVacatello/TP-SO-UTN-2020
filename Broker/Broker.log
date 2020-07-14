@@ -124,3 +124,6 @@
 [INFO] 16:45:45:852 BROKER/(12941:12965): Se compactó la memoria
 [INFO] 16:45:45:852 BROKER/(12941:12965): El primer lugar vacio es 30.
 [INFO] 16:45:45:852 BROKER/(12941:12965): Se almacenó un mensaje en la posición 30 de la memoria principal.
+[INFO] 21:46:33:280 BROKER/(11768:11903): Se conectó proceso al Broker
+[INFO] 21:46:33:288 BROKER/(11768:11903): Se suscribió el proceso con id 11899 y con socket 5 a la cola de mensajes 2
+[INFO] 21:48:40:168 BROKER/(12106:12134): Se conectó proceso al Broker

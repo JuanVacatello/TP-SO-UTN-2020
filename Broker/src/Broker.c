@@ -13,7 +13,8 @@ int main(void)
 	memset(memoria_principal,0,tamanio_de_memoria);
 
 	creacion_colas_de_mensajes();
-	iniciar_servidor();
+	pthread_create(&hilo_servidor, NULL , iniciar_servidor ,NULL);
+	pthread_join(hilo_servidor, NULL);
 
 	terminar_programa();
 

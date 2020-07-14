@@ -10,6 +10,9 @@
 #include "Utils/servidor.h"
 #include "Utils/logBroker.h"
 #include "Utils/memoria.h"
+#include<pthread.h>
+
+pthread_t hilo_servidor;
 
 void terminar_programa(void);
 void creacion_colas_de_mensajes(void);
