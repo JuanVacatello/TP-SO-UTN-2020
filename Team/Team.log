@@ -2417,3 +2417,67 @@
 [INFO] 13:00:22:934 TEAM/(7261:7267): El entrenador E ejecutó 6 ciclos de cpu
 [INFO] 13:00:22:934 TEAM/(7261:7267): Se produjeron 4 deadlocks
 [INFO] 13:00:22:934 TEAM/(7261:7267): Se resolvieron 4 deadlocks
+[INFO] 20:40:06:971 TEAM/(8379:8463): el socket de conexion es: 6.
+[INFO] 20:40:07:789 TEAM/(8379:8467): el socket de conexion es: 7.
+[INFO] 20:40:08:960 TEAM/(8379:8471): el socket de conexion es: 8.
+[INFO] 20:46:43:904 TEAM/(8670:8678): el socket de conexion es: 4.
+[INFO] 20:46:43:905 TEAM/(8670:8677): el socket de conexion es: 5.
+[INFO] 20:46:43:905 TEAM/(8670:8676): el socket de conexion es: 6.
+[INFO] 20:51:04:889 TEAM/(8853:8861): Reintento de comunicacion con BROKER fallido
+[INFO] 20:51:04:889 TEAM/(8853:8861): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 20:51:04:889 TEAM/(8853:8860): Reintento de comunicacion con BROKER fallido
+[INFO] 20:51:04:889 TEAM/(8853:8860): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 20:51:04:891 TEAM/(8853:8859): Reintento de comunicacion con BROKER fallido
+[INFO] 20:51:04:892 TEAM/(8853:8859): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 20:51:34:890 TEAM/(8853:8860): Reintento de comunicacion con BROKER fallido
+[INFO] 20:51:34:890 TEAM/(8853:8860): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 20:51:34:890 TEAM/(8853:8861): Reintento de comunicacion con BROKER fallido
+[INFO] 20:51:34:890 TEAM/(8853:8861): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 20:51:34:892 TEAM/(8853:8859): Reintento de comunicacion con BROKER fallido
+[INFO] 20:51:34:892 TEAM/(8853:8859): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 20:55:28:132 TEAM/(9029:9037): Reintento de comunicacion con BROKER fallido
+[INFO] 20:55:28:133 TEAM/(9029:9037): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 20:55:46:652 TEAM/(9047:9056): el socket de conexion es: 4.
+[INFO] 20:55:46:652 TEAM/(9047:9056): Reintento de comunicacion con BROKER exitoso
+[INFO] 21:00:36:920 TEAM/(9313:9347): el socket de conexion es: 6.
+[INFO] 21:00:57:582 TEAM/(9313:9347): Reintento de comunicacion con BROKER exitoso
+[INFO] 21:02:26:913 TEAM/(9431:9449): el socket de conexion es: 6.
+[INFO] 21:02:26:913 TEAM/(9431:9449): Reintento de comunicacion con BROKER exitoso
+[INFO] 21:12:18:125 TEAM/(9833:9842): el socket de conexion es: 4.
+[INFO] 21:12:18:125 TEAM/(9833:9842): Reintento de comunicacion con BROKER exitoso
+[INFO] 21:12:20:845 TEAM/(9833:9847): El codigo de operacion es: 2.
+[INFO] 21:12:20:845 TEAM/(9833:9847): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 21:12:20:845 TEAM/(9833:9847): El nombre del pokemon es: Pikachu
+[INFO] 21:12:20:845 TEAM/(9833:9847): posicion en x: 1
+[INFO] 21:12:20:845 TEAM/(9833:9847): posicion en y: 1
+[INFO] 21:12:21:851 TEAM/(9833:9848): El entrenador A se movió a la posicion 1|3.
+[INFO] 21:12:22:852 TEAM/(9833:9849): El entrenador A se movió a la posicion 1|2.
+[INFO] 21:12:23:853 TEAM/(9833:9850): El entrenador A se movió a la posicion 1|1.
+[INFO] 21:12:23:853 TEAM/(9833:9851): el socket de conexion es: 8.
+[INFO] 21:19:29:205 TEAM/(10076:10082): el socket de conexion es: 4.
+[INFO] 21:19:29:207 TEAM/(10076:10082): Se logró conectar con el BROKER de manera exitosa
+[INFO] 21:21:03:533 TEAM/(10076:10082): El codigo de operacion es: 10.
+[INFO] 21:23:22:82 TEAM/(10189:10195): el socket de conexion es: 4.
+[INFO] 21:23:22:82 TEAM/(10189:10195): Se logró conectar con el BROKER de manera exitosa
+[INFO] 21:35:30:705 TEAM/(11075:11081): el socket de conexion es: 4.
+[INFO] 21:35:30:708 TEAM/(11075:11081): Se logró conectar con el BROKER de manera exitosa
+[INFO] 21:46:33:272 TEAM/(11899:11901): el socket de conexion es: 4.
+[INFO] 21:46:33:282 TEAM/(11899:11901): Se logró conectar con el BROKER de manera exitosa
+[INFO] 21:48:40:164 TEAM/(12130:12132): el socket de conexion es: 4.
+[INFO] 21:48:40:167 TEAM/(12130:12132): Se logró conectar con el BROKER de manera exitosa
+[INFO] 21:58:46:120 TEAM/(12480:12511): el socket de conexion es: 6.
+[INFO] 21:58:55:135 TEAM/(12480:12511): Se logró conectar con el BROKER de manera exitosa
+[INFO] 22:14:32:904 TEAM/(12901:12907): el socket de conexion es: 4.
+[INFO] 22:14:32:907 TEAM/(12901:12907): Se logró conectar con el BROKER de manera exitosa
+[INFO] 22:16:12:925 TEAM/(12946:12952): Reintento de comunicacion con BROKER fallido
+[INFO] 22:16:12:927 TEAM/(12946:12952): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 22:16:42:927 TEAM/(12946:12952): Reintento de comunicacion con BROKER fallido
+[INFO] 22:16:42:929 TEAM/(12946:12952): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 22:17:41:878 TEAM/(13081:13087): el socket de conexion es: 4.
+[INFO] 22:17:41:880 TEAM/(13081:13087): Se logró conectar con el BROKER de manera exitosa
+[INFO] 22:20:29:776 TEAM/(13166:13172): el socket de conexion es: 4.
+[INFO] 22:20:29:777 TEAM/(13166:13172): Se logró conectar con el BROKER de manera exitosa
+[INFO] 22:21:11:691 TEAM/(13188:13195): el socket de conexion es: 4.
+[INFO] 22:21:11:696 TEAM/(13188:13195): Se logró conectar con el BROKER de manera exitosa
+[INFO] 22:22:58:301 TEAM/(13236:13242): el socket de conexion es: 4.
+[INFO] 22:22:58:302 TEAM/(13236:13242): Se logró conectar con el BROKER de manera exitosa

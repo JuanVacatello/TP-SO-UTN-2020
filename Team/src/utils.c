@@ -35,41 +35,6 @@ void iniciar_vg(){
 
 	verificar_entrenadores();
 
-
-
-	//pokemones nuevos de prueba
-
-	/*t_pokemon* pokemonPikachu = malloc(sizeof(t_pokemon));
-	pokemonPikachu->especie = "Pikachu";
-	pokemonPikachu->posicion.x = 1;
-	pokemonPikachu->posicion.y = 1;
-	list_add(lista_de_pokemones_sueltos, pokemonPikachu);
-
-	t_pokemon* pokemonSquirtle = malloc(sizeof(t_pokemon));
-	pokemonSquirtle->especie = "Squirtle";
-	pokemonSquirtle->posicion.x = 9;
-	pokemonSquirtle->posicion.y = 7;
-	list_add(lista_de_pokemones_sueltos, pokemonSquirtle);
-
-	t_pokemon* pokemonOnix = malloc(sizeof(t_pokemon));
-	pokemonOnix->especie = "Onix";
-	pokemonOnix->posicion.x = 2;
-	pokemonOnix->posicion.y = 2;
-	list_add(lista_de_pokemones_sueltos, pokemonOnix);
-
-
-	t_pokemon* pokemonSquirtle1 = malloc(sizeof(t_pokemon));
-	pokemonSquirtle1->especie = "Squirtle";
-	pokemonSquirtle1->posicion.x = 3;
-	pokemonSquirtle1->posicion.y = 5;
-	list_add(lista_de_pokemones_sueltos, pokemonSquirtle1);
-
-	t_pokemon* pokemonGengar = malloc(sizeof(t_pokemon));
-	pokemonGengar->especie = "Gengar";
-	pokemonGengar->posicion.x = 7;
-	pokemonGengar->posicion.y = 5;
-	list_add(lista_de_pokemones_sueltos, pokemonGengar);
-*/
 }
 
 
@@ -159,18 +124,52 @@ int cantidad_de_elementos_coma(char* pokemons){
 
 int cantidad_de_entrenadores_que_atrapan(){
 	int cantidad;
-	char* atrapados = obtener_pokemon_entrenadores_string();
-	//atrapados = []
-	int n = cantidad_de_elementos_coma(atrapados);
+	char** atrapados = obtener_pokemon_entrenadores();
 
-	string_n_split(atrapados,n, ",");
+	if(!string_is_empty(atrapados)){
+		int n = cantidad_de_elementos_coma(atrapados);
 
+		string_n_split(atrapados,n, ",");
+	}
+	return cantidad;
 }
 
 
 
 
+//pokemones nuevos de prueba
 
+/*t_pokemon* pokemonPikachu = malloc(sizeof(t_pokemon));
+pokemonPikachu->especie = "Pikachu";
+pokemonPikachu->posicion.x = 1;
+pokemonPikachu->posicion.y = 1;
+list_add(lista_de_pokemones_sueltos, pokemonPikachu);
+
+t_pokemon* pokemonSquirtle = malloc(sizeof(t_pokemon));
+pokemonSquirtle->especie = "Squirtle";
+pokemonSquirtle->posicion.x = 9;
+pokemonSquirtle->posicion.y = 7;
+list_add(lista_de_pokemones_sueltos, pokemonSquirtle);
+
+t_pokemon* pokemonOnix = malloc(sizeof(t_pokemon));
+pokemonOnix->especie = "Onix";
+pokemonOnix->posicion.x = 2;
+pokemonOnix->posicion.y = 2;
+list_add(lista_de_pokemones_sueltos, pokemonOnix);
+
+
+t_pokemon* pokemonSquirtle1 = malloc(sizeof(t_pokemon));
+pokemonSquirtle1->especie = "Squirtle";
+pokemonSquirtle1->posicion.x = 3;
+pokemonSquirtle1->posicion.y = 5;
+list_add(lista_de_pokemones_sueltos, pokemonSquirtle1);
+
+t_pokemon* pokemonGengar = malloc(sizeof(t_pokemon));
+pokemonGengar->especie = "Gengar";
+pokemonGengar->posicion.x = 7;
+pokemonGengar->posicion.y = 5;
+list_add(lista_de_pokemones_sueltos, pokemonGengar);
+*/
 
 
 

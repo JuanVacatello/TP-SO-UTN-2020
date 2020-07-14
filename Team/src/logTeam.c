@@ -44,7 +44,9 @@ void completar_logger(char* mensaje, char* programa, t_log_level log_level)
  */
 
 //1. Cambio de un entrenador de cola de planificación (indicando la razón del porqué).
-void log_cambio_de_entrenador(t_entrenador* entrenador1, t_entrenador* entrenador2){}
+void log_cambio_de_entrenador(t_entrenador* entrenador1, t_entrenador* entrenador2){
+
+}
 
 //2. Movimiento de un entrenador (indicando la ubicación a la que se movió).
 void log_movimiento_entrenador(t_entrenador* entrenador){
@@ -144,7 +146,7 @@ void log_llego_mensaje_nuevo_localized_pokemon(char* pokemon, int posX, int posY
 
 
 // 10. Inicio de proceso de reintento de comunicación con el Broker
-void log_intento_reintento_comunicacion_broker(char* pokemon, int posX, int posY){
+void log_intento_reintento_comunicacion_broker(){
 	int tiempoReconexion = obtener_tiempo_reconexion();
 	char* mensaje = string_from_format("No se pudo conectar con el BROKER, reintentando en %d segundos...", tiempoReconexion);
 
@@ -153,8 +155,8 @@ void log_intento_reintento_comunicacion_broker(char* pokemon, int posX, int posY
 
 
 // 11. Resultado de proceso de reintento de comunicación con el Broker.
-void log_reintento_comunicacion_Broker_exitoso(){
-	char* mensaje = string_from_format("Reintento de comunicacion con BROKER exitoso");
+void log_intento_comunicacion_Broker_exitoso(){
+	char* mensaje = string_from_format("Se logró conectar con el BROKER de manera exitosa");
 
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
 }

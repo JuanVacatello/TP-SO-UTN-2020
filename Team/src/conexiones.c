@@ -97,7 +97,7 @@ void process_request(op_code cod_op, int socket_cliente) {
 		completar_logger("Llegó un nuevo mensaje a la cola de mensajes", "TEAM", LOG_LEVEL_INFO); // LOG OBLIGATORIO
 	}
 
-	switch(cod_op) {
+	switch(cod_op){
 		case 2:
 			sem_wait(&CONTADOR_ENTRENADORES);
 			recibir_AppearedPokemon(socket_cliente);
@@ -128,28 +128,80 @@ void* serializar_paquete(t_paquete* paquete, int *bytes)
 	return a_enviar;
 }
 
-void enviar_suscripcion_a_cola(op_code cola)
+//----------------------- COLAS A SUSCRIBIRSE -----------------------
+void appeared_pokemon_broker(){
+	int socket_broker = enviar_suscripcion_a_cola(2);
+
+	while(1){
+
+		op_code cod_op = 10;
+
+		if(recv(socket_broker, &cod_op, sizeof(op_code), MSG_WAITALL) == 2){
+
+		char* mensaje = string_from_format("El codigo de operacion es: %d.", cod_op);
+		completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+
+		recibir_AppearedPokemon(socket_broker);
+		}
+	}
+}
+
+void caught_pokemon_broker(){
+	int socket_broker = enviar_suscripcion_a_cola(CAUGHT_POKEMON);
+
+	while(1){
+
+		op_code cod_op = 10;
+		if(recv(socket_broker, &cod_op, sizeof(op_code), MSG_WAITALL) != -1){
+
+		char* mensaje = string_from_format("El codigo de operacion es: %d.", cod_op);
+		completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+
+		recibir_CaughtPokemon(socket_broker);
+		}
+	}
+}
+
+void localized_pokemon_broker(){
+	int socket_broker = enviar_suscripcion_a_cola(LOCALIZED_POKEMON);
+
+	while(1){
+
+		op_code cod_op = 10;
+		if(recv(socket_broker, &cod_op, sizeof(op_code), MSG_WAITALL) != -1){
+
+		char* mensaje = string_from_format("El codigo de operacion es: %d.", cod_op);
+		completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+
+		recibir_LocalizedPokemon(socket_broker);
+		}
+	}
+}
+
+//----------------------- SUSCRIPCIONES -----------------------
+int enviar_suscripcion_a_cola(op_code cola)
 {
 
 	char* puerto_broker = obtener_puerto();
 	char* ip_broker = obtener_ip();
 
-	int socket_broker;
+	int socket_broker = -1;
 	int tiempo_reconexion = obtener_tiempo_reconexion();
-
+	sem_wait(&MUTEX_SUB);
 	socket_broker = crear_conexion(ip_broker,puerto_broker);
 
-//
-	/*while(socket_broker == -1){
+	while(socket_broker == -1){
+		log_reintento_comunicacion_Broker_fallido();
+		log_intento_reintento_comunicacion_broker();
 		sleep(tiempo_reconexion);
 		socket_broker = crear_conexion(ip_broker,puerto_broker);
-	}*/
+	}
+
+	log_intento_comunicacion_Broker_exitoso();
 
 	int tamanio_paquete = 0;
-	void* a_enviar;
+	void* a_enviar = suscribirse_a_cola(socket_broker, cola, &tamanio_paquete);
 	puts("aca entra1.5");
-
-	a_enviar = suscribirse_a_cola(socket_broker, cola, &tamanio_paquete);
 
 	send(socket_broker,a_enviar,tamanio_paquete,0);
 
@@ -159,24 +211,8 @@ void enviar_suscripcion_a_cola(op_code cola)
 
 	//pthread_mutex_unlock(&mutex_conexion);
 	free(a_enviar);
-}
 
-//recibir id de catch
-
-char* recibir_mensaje(int socket_cliente){
-
-	op_code code_op;
-	recv(socket_cliente, &code_op, sizeof(op_code), MSG_WAITALL);
-
-	uint32_t tamanio_buffer;
-	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
-
-	char* mensaje = malloc(tamanio_buffer);
-	recv(socket_cliente, mensaje, tamanio_buffer, MSG_WAITALL);
-
-	sem_post(&MUTEX_SUB);
-
-	return mensaje;
+	return socket_broker;
 }
 
 void* suscribirse_a_cola(int socket_cliente, uint32_t cola, int* tamanio_paquete){
@@ -365,6 +401,22 @@ void* iniciar_paquete_serializado_GetPokemon(int* tamanio_paquete,char* pokemon_
 
 }
 
+//----------------------- RECEPCION DE MENSAJES -----------------------
+char* recibir_mensaje(int socket_cliente){
+
+	op_code code_op;
+	recv(socket_cliente, &code_op, sizeof(op_code), MSG_WAITALL);
+
+	uint32_t tamanio_buffer;
+	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
+
+	char* mensaje = malloc(tamanio_buffer);
+	recv(socket_cliente, mensaje, tamanio_buffer, MSG_WAITALL);
+
+	sem_post(&MUTEX_SUB);
+
+	return mensaje;
+}
 
 //----------------------- RECEPCION DE MENSAJES DE GAMEBOY -----------------------
 
@@ -401,23 +453,6 @@ void recibir_AppearedPokemon(int socket_cliente){
 
 }
 
-t_pokemon* armarPokemon(char* pokemon, int posX, int posY){
-	t_pokemon* pokeNuevo = malloc(sizeof(t_pokemon));
-	pokeNuevo->especie = pokemon;
-	pokeNuevo->posicion.x= posX;
-	pokeNuevo->posicion.y= posY;
-
-	char* pokemonNombre = string_from_format("El nombre del pokemon es: %s", pokeNuevo->especie);
-					completar_logger(pokemonNombre, "TEAM", LOG_LEVEL_INFO);
-	char* xx = string_from_format("posicion en x: %d",pokeNuevo->posicion.x);
-					completar_logger(xx, "TEAM", LOG_LEVEL_INFO);
-	char* yy = string_from_format("posicion en y: %d", pokeNuevo->posicion.y);
-					completar_logger(yy, "TEAM", LOG_LEVEL_INFO);
-
-	return pokeNuevo;
-}
-
-
 void recibir_CaughtPokemon(int socket_cliente){
 
 		uint32_t tamanio_buffer;
@@ -437,9 +472,7 @@ void recibir_CaughtPokemon(int socket_cliente){
 			entrenador->pudo_atrapar_pokemon = pudoAtraparlo;
 			pthread_mutex_unlock(&mutex_entrenador);
 		}
-
 }
-
 
 void recibir_caught_pokemon_loggeo(int socket_cliente){
 
@@ -607,6 +640,22 @@ void recibir_AppearedPokemon(int socket_cliente){
 }*/
 
 
+t_pokemon* armarPokemon(char* pokemon, int posX, int posY){
+	t_pokemon* pokeNuevo = malloc(sizeof(t_pokemon));
+	pokeNuevo->especie = pokemon;
+	pokeNuevo->posicion.x= posX;
+	pokeNuevo->posicion.y= posY;
+
+	char* pokemonNombre = string_from_format("El nombre del pokemon es: %s", pokeNuevo->especie);
+					completar_logger(pokemonNombre, "TEAM", LOG_LEVEL_INFO);
+	char* xx = string_from_format("posicion en x: %d",pokeNuevo->posicion.x);
+					completar_logger(xx, "TEAM", LOG_LEVEL_INFO);
+	char* yy = string_from_format("posicion en y: %d", pokeNuevo->posicion.y);
+					completar_logger(yy, "TEAM", LOG_LEVEL_INFO);
+
+	return pokeNuevo;
+}
+
 t_entrenador* buscar_entrenador_por_id_catch(uint32_t id){
 	t_entrenador* entrenador = NULL;
 	t_entrenador* entrenador_aux;
@@ -618,3 +667,6 @@ t_entrenador* buscar_entrenador_por_id_catch(uint32_t id){
 	}
 	return entrenador;
 }
+
+
+

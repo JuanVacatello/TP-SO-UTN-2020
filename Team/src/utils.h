@@ -17,32 +17,22 @@
 
 
 //DEFINO VARIABLES GLOBALES
-
-t_list* lista_de_entrenadores;
-
 t_dictionary* objetivo_global;
-
 t_dictionary* atrapados_global;
 
+t_list* lista_de_entrenadores;
 t_list* lista_de_entrenadores_ready; // CUANDO LLEGA UN CAUGHT EL ENTRENADOR CON ESE ID ENTRA A ESTA LISTA
-
-//t_list* pokemones_requeridos;
-
-pthread_t hilo_planificador;
-
 t_list* lista_de_pokemones_sueltos;
-
-pthread_mutex_t mutex_planificador;
+t_list* lista_de_entrenadores_deadlock;
 
 pthread_t hilo_servidor;
 pthread_t hilo_appeared_pokemon;
 pthread_t hilo_caught_pokemon;
 pthread_t hilo_localized_pokemon;
+pthread_t hilo_planificador;
 
 pthread_mutex_t mutex_entrenador;
-
-t_list* lista_de_entrenadores_deadlock;
-
+pthread_mutex_t mutex_planificador;
 sem_t MUTEX_SUB;
 sem_t MUTEX_POKEMON_REQUERIDO;
 sem_t MUTEX_ENTRENADORES;

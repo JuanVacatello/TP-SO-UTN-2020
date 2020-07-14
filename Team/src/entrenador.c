@@ -232,7 +232,7 @@ void atrapar_pokemon(t_entrenador* entrenador){
 
 			cantidad_pokemon = dictionary_get(atrapados_global, entrenador->pokemon_a_atrapar->especie);
 		}
-		dictionary_remove_and_destroy(atrapados_global, entrenador->pokemon_a_atrapar->especie, eliminar_pokemon);
+		dictionary_remove_and_destroy(atrapados_global, entrenador->pokemon_a_atrapar->especie, (void *) free);
 		dictionary_put(atrapados_global, entrenador->pokemon_a_atrapar->especie, cantidad_pokemon + 1);
 
 		//Actualizamos diccionarios

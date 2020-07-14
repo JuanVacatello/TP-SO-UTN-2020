@@ -42,7 +42,7 @@ void generar_objetivo_global(void){
 
 	objetivo_global = dictionary_create();
 	t_list* pokemones = list_create();
-	int cantidad_pokemon;
+	int cantidad_pokemon = 0;
 	char** objetivos = obtener_objetivos_entrenadores();
 
 	for(int i = 0; i<cantidad_entrenadores(); i++){
@@ -52,20 +52,29 @@ void generar_objetivo_global(void){
 
 	//DE CADA ENTRENADOR OBTENEMOS SU LISTA DE OBJETIVOS Y LA PASAMOS A UN DICCIONARIO
 	for(int indice_pokemon=0; indice_pokemon<list_size(pokemones); indice_pokemon++){
+		//char* pokemonSinMalloc = list_get(pokemones,indice_pokemon);
+		//int tamanio = strlen(pokemonSinMalloc);
 
-		if(dictionary_has_key(objetivo_global, list_get(pokemones,indice_pokemon))){
+		//char* pokemon = malloc(tamanio);
+		char* pokemon = list_get(pokemones,indice_pokemon);
 
-			cantidad_pokemon = dictionary_get(objetivo_global, list_get(pokemones, indice_pokemon));
-			dictionary_remove_and_destroy(objetivo_global,list_get(pokemones, indice_pokemon),eliminar_pokemon);
-			dictionary_put(objetivo_global, list_get(pokemones, indice_pokemon), cantidad_pokemon+1);
+		if(dictionary_has_key(objetivo_global, pokemon)){
+
+			cantidad_pokemon = dictionary_get(objetivo_global, pokemon);
+			dictionary_remove_and_destroy(objetivo_global,pokemon,eliminarPokemon);
+			dictionary_put(objetivo_global, pokemon, cantidad_pokemon+1);
 		}
 		else{
 
-			dictionary_put(objetivo_global, list_get(pokemones, indice_pokemon), 1);
+			dictionary_put(objetivo_global, pokemon, 1);
 		}
 	}
+}
+
+void eliminarPokemon(void* pokemon){
 
 }
+
 //"Pikachu"
 //"Pikachu,Pikachu|Gengar,Squirtle|Onix"
 void generar_atrapados_global(void){
@@ -87,16 +96,17 @@ void generar_atrapados_global(void){
 
 	//DE CADA ENTRENADOR OBTENEMOS SU LISTA DE ATRAPADOS Y LA PASAMOS A UN DICCIONARIO
 	for(int indice_pokemon=0; indice_pokemon<list_size(pokemones); indice_pokemon++){
+		char* pokemon = list_get(pokemones,indice_pokemon);
 
-		if(dictionary_has_key(atrapados_global, list_get(pokemones,indice_pokemon))){
+		if(dictionary_has_key(atrapados_global, pokemon)){
 
-			cantidad_pokemon = dictionary_get(atrapados_global, list_get(pokemones, indice_pokemon));
-			dictionary_remove_and_destroy(atrapados_global,list_get(pokemones, indice_pokemon),(void*) free);
-			dictionary_put(atrapados_global, list_get(pokemones, indice_pokemon), cantidad_pokemon+1);
+			cantidad_pokemon = dictionary_get(atrapados_global, pokemon);
+			dictionary_remove_and_destroy(atrapados_global,pokemon,(void*) eliminarPokemon);
+			dictionary_put(atrapados_global, pokemon, cantidad_pokemon+1);
 			}
 		else{
 
-			dictionary_put(atrapados_global, list_get(pokemones, indice_pokemon), 1);
+			dictionary_put(atrapados_global, pokemon, 1);
 			}
 		}
 
@@ -105,12 +115,9 @@ void generar_atrapados_global(void){
 
 void planificacion(){
 	puts("aca entra2");
-	//Esta funcion se la mandamos al hilo principal para que la ejecute
 	int planificador = obtener_algoritmo_planificacion();
 
 	puts("aca entra3");
-
-	//puts("inicia las variables globales");
 
 	switch(planificador){
 		case 1:
@@ -119,15 +126,13 @@ void planificacion(){
 		case 2:
 		planificar_sjf_sd();
 		break;
-		//case 3:
-		//planificar_sjf_cd();
-		//break;
+		case 3:
+		planificar_sjf_cd();
+		break;
 		case 4:
 		planificar_rr();
 		break;
-
 	}
-
 }
 
 
@@ -214,14 +219,11 @@ bool deteccion_de_deadlock(){
 		}
 
 	}
-
 	//free(atrapados_aux);
 	//free(objetivos_aux);
 
 	return false;
 }
-
-
 
 
 void terminar_programa(int conexion, t_log* logger){
@@ -235,7 +237,6 @@ void terminar_programa(int conexion, t_log* logger){
 
 //----------------
 
-//0 para vacia, 1 para hay un pokemons
 bool hay_pokemones_sueltos(t_list* listaTest){
 	if(list_is_empty(listaTest))
 		return false;
