@@ -1,20 +1,84 @@
-
-[INFO] 14:57:38:174 BROKER/(6208:6214): Se conectó proceso al Broker
-[INFO] 14:57:38:174 BROKER/(6208:6214): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 14:57:38:174 BROKER/(6208:6214): La memoria tiene espacio
-[INFO] 14:57:38:174 BROKER/(6208:6214): Se almacenó un mensaje en la posición 0 de la memoria principal.
-[INFO] 14:57:44:185 BROKER/(6208:6216): Se conectó proceso al Broker
-[INFO] 14:57:44:185 BROKER/(6208:6216): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 14:57:44:185 BROKER/(6208:6216): La memoria tiene espacio
-[INFO] 14:57:44:185 BROKER/(6208:6216): Se almacenó un mensaje en la posición 24 de la memoria principal.
-[INFO] 14:57:51:116 BROKER/(6208:6218): Se conectó proceso al Broker
-[INFO] 14:57:51:116 BROKER/(6208:6218): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 14:57:51:116 BROKER/(6208:6218): La memoria tiene espacio
-[INFO] 14:57:51:116 BROKER/(6208:6218): Se almacenó un mensaje en la posición 40 de la memoria principal.
-[INFO] 14:58:00:90 BROKER/(6208:6220): Se conectó proceso al Broker
-[INFO] 14:58:00:90 BROKER/(6208:6220): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 14:58:00:90 BROKER/(6208:6220): La memoria tiene espacio
-[INFO] 14:58:00:91 BROKER/(6208:6220): Se eliminó de memoria principal la partición que empezaba en la posicion 0
-[INFO] 14:58:00:91 BROKER/(6208:6220): Entra en hueco
-[INFO] 14:58:00:91 BROKER/(6208:6220): Se almacenó un mensaje en la posición 0 de la memoria principal.
-[INFO] 14:58:30:453 BROKER/(6208:6225): Se conectó proceso al Broker
+[INFO] 16:41:03:255 BROKER/(8598:8608): Se conectó proceso al Broker
+[INFO] 16:41:03:256 BROKER/(8598:8608): Se suscribió el proceso con id 8604 y con socket 5 a la cola de mensajes 2
+[INFO] 16:41:12:673 BROKER/(8598:8612): Se conectó proceso al Broker
+[INFO] 16:41:12:679 BROKER/(8598:8612): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 16:41:12:679 BROKER/(8598:8612): La memoria tiene espacio
+[INFO] 16:41:12:679 BROKER/(8598:8612): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 16:41:12:679 BROKER/(8598:8612): El socket al que le vamos a enviar es: 5.
+[INFO] 16:41:12:682 BROKER/(8598:8614): Se conectó proceso al Broker
+[INFO] 16:41:12:683 BROKER/(8598:8614): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 16:41:12:684 BROKER/(8598:8614): La memoria tiene espacio
+[INFO] 16:41:12:684 BROKER/(8598:8614): Se almacenó un mensaje en la posición 21 de la memoria principal.
+[INFO] 16:44:00:975 BROKER/(8685:8695): Se conectó proceso al Broker
+[INFO] 16:44:00:976 BROKER/(8685:8695): Se suscribió el proceso con id 8691 y con socket 5 a la cola de mensajes 2
+[INFO] 16:44:13:935 BROKER/(8685:8700): Se conectó proceso al Broker
+[INFO] 16:44:13:941 BROKER/(8685:8700): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 16:44:13:954 BROKER/(8685:8700): La memoria tiene espacio
+[INFO] 16:44:13:965 BROKER/(8685:8700): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 16:44:13:965 BROKER/(8685:8700): El socket al que le vamos a enviar es: 5.
+[INFO] 16:44:13:971 BROKER/(8685:8702): Se conectó proceso al Broker
+[INFO] 16:44:13:972 BROKER/(8685:8702): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 16:44:13:972 BROKER/(8685:8702): La memoria tiene espacio
+[INFO] 16:44:13:984 BROKER/(8685:8702): Se almacenó un mensaje en la posición 21 de la memoria principal.
+[INFO] 17:02:51:44 BROKER/(9649:9676): Se conectó proceso al Broker
+[INFO] 17:02:51:47 BROKER/(9649:9676): Se suscribió el proceso con id 9672 y con socket 5 a la cola de mensajes 2
+[INFO] 17:03:14:957 BROKER/(9649:9693): Se conectó proceso al Broker
+[INFO] 17:03:14:958 BROKER/(9649:9693): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:03:14:958 BROKER/(9649:9693): La memoria tiene espacio
+[INFO] 17:03:47:699 BROKER/(9649:9693): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 17:03:49:733 BROKER/(9649:9693): El socket al que le vamos a enviar es: 5.
+[INFO] 17:03:54:200 BROKER/(9649:9790): Se conectó proceso al Broker
+[INFO] 17:03:54:206 BROKER/(9649:9790): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:03:54:206 BROKER/(9649:9790): La memoria tiene espacio
+[INFO] 17:03:54:206 BROKER/(9649:9790): Se almacenó un mensaje en la posición 20 de la memoria principal.
+[INFO] 17:05:22:526 BROKER/(9837:9861): Se conectó proceso al Broker
+[INFO] 17:05:22:528 BROKER/(9837:9861): Se suscribió el proceso con id 9857 y con socket 5 a la cola de mensajes 2
+[INFO] 17:05:39:724 BROKER/(9837:9863): Se conectó proceso al Broker
+[INFO] 17:05:39:724 BROKER/(9837:9863): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:05:39:724 BROKER/(9837:9863): La memoria tiene espacio
+[INFO] 17:05:39:724 BROKER/(9837:9863): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 17:05:39:724 BROKER/(9837:9863): El socket al que le vamos a enviar es: 5.
+[INFO] 17:05:42:769 BROKER/(9837:9868): Se conectó proceso al Broker
+[INFO] 17:05:42:770 BROKER/(9837:9868): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:05:42:770 BROKER/(9837:9868): La memoria tiene espacio
+[INFO] 17:05:42:771 BROKER/(9837:9868): Se almacenó un mensaje en la posición 20 de la memoria principal.
+[INFO] 17:07:41:587 BROKER/(10026:10054): Se conectó proceso al Broker
+[INFO] 17:08:57:810 BROKER/(10026:10054): Se suscribió el proceso con id 10050 y con socket 5 a la cola de mensajes 2
+[INFO] 17:09:48:234 BROKER/(10026:10108): Se conectó proceso al Broker
+[INFO] 17:09:57:562 BROKER/(10026:10108): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:10:04:424 BROKER/(10026:10108): La memoria tiene espacio
+[INFO] 17:10:04:425 BROKER/(10026:10108): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 17:10:04:425 BROKER/(10026:10108): El socket al que le vamos a enviar es: 5.
+[INFO] 17:10:15:668 BROKER/(10026:10127): Se conectó proceso al Broker
+[INFO] 17:22:41:490 BROKER/(10807:10817): Se conectó proceso al Broker
+[INFO] 17:22:41:503 BROKER/(10807:10817): Se suscribió el proceso con id 10813 y con socket 5 a la cola de mensajes 2
+[INFO] 17:22:55:550 BROKER/(10807:10825): Se conectó proceso al Broker
+[INFO] 17:22:55:559 BROKER/(10807:10825): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:22:55:565 BROKER/(10807:10825): La memoria tiene espacio
+[INFO] 17:22:55:569 BROKER/(10807:10825): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 17:22:55:569 BROKER/(10807:10825): El socket al que le vamos a enviar es: 5.
+[INFO] 17:22:58:586 BROKER/(10807:10830): Se conectó proceso al Broker
+[INFO] 17:22:58:586 BROKER/(10807:10830): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:22:58:586 BROKER/(10807:10830): La memoria tiene espacio
+[INFO] 17:22:58:586 BROKER/(10807:10830): Se almacenó un mensaje en la posición 20 de la memoria principal.
+[INFO] 17:35:08:541 BROKER/(11512:11546): Se conectó proceso al Broker
+[INFO] 17:35:13:547 BROKER/(11512:11546): Se suscribió el proceso con id 11542 y con socket 5 a la cola de mensajes 2
+[INFO] 17:35:23:664 BROKER/(11512:11556): Se conectó proceso al Broker
+[INFO] 17:35:28:167 BROKER/(11512:11556): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:35:28:925 BROKER/(11512:11556): La memoria tiene espacio
+[INFO] 17:35:28:926 BROKER/(11512:11556): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 17:35:28:926 BROKER/(11512:11556): El socket al que le vamos a enviar es: 5.
+[INFO] 17:38:11:24 BROKER/(11709:11740): Se conectó proceso al Broker
+[INFO] 17:38:12:830 BROKER/(11709:11740): Se suscribió el proceso con id 11736 y con socket 5 a la cola de mensajes 2
+[INFO] 17:38:18:817 BROKER/(11709:11747): Se conectó proceso al Broker
+[INFO] 17:38:22:960 BROKER/(11709:11747): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:38:23:464 BROKER/(11709:11747): La memoria tiene espacio
+[INFO] 17:38:23:464 BROKER/(11709:11747): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 17:38:23:464 BROKER/(11709:11747): El socket al que le vamos a enviar es: 5.
+[INFO] 17:46:52:569 BROKER/(12020:12036): Se conectó proceso al Broker
+[INFO] 17:46:52:582 BROKER/(12020:12036): Se suscribió el proceso con id 12032 y con socket 5 a la cola de mensajes 2
+[INFO] 17:46:58:647 BROKER/(12020:12039): Se conectó proceso al Broker
+[INFO] 17:46:58:657 BROKER/(12020:12039): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:46:58:662 BROKER/(12020:12039): La memoria tiene espacio
+[INFO] 17:46:58:670 BROKER/(12020:12039): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 17:46:58:672 BROKER/(12020:12039): El socket al que le vamos a enviar es: 5.

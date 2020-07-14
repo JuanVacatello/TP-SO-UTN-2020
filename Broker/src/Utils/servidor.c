@@ -34,7 +34,7 @@ void iniciar_servidor(void)
     freeaddrinfo(servinfo);
 
     while(1)
-    	esperar_cliente(socket_servidor); // hacerlo con select, NUNCA ESPERA ACTIVA
+    	esperar_cliente(socket_servidor); //
 }
 
 void esperar_cliente(int socket_servidor)
@@ -71,7 +71,7 @@ void process_request(op_code cod_op, int socket_cliente) {
 	switch (cod_op) {
 		case 0:
 			atender_suscripcion(socket_cliente);
-			//enviar_mensaje(socket_cliente, "Suscripto");
+			enviar_mensaje(socket_cliente, "Suscripto");
 			break;
 		case 1:
 			recibir_new_pokemon(socket_cliente);
@@ -739,8 +739,8 @@ void guardar_mensaje(t_list* cola_de_mensajes, op_code codigo_operacion, t_list*
 */
 
 void recibir_ack(int socket_cliente){
-	uint32_t tamanio_buffer;
-	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
+//	uint32_t tamanio_buffer;
+//	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
 	uint32_t largo_mensaje;
 	recv(socket_cliente, &largo_mensaje, sizeof(uint32_t), MSG_WAITALL);
@@ -748,15 +748,17 @@ void recibir_ack(int socket_cliente){
 	char* ack = (char*)malloc(largo_mensaje);
 	recv(socket_cliente, ack, largo_mensaje, MSG_WAITALL);
 
-	char* loggear = string_from_format("El suscriptor de socket %d recibió el mensaje.", socket_cliente);
-	completar_logger(loggear,"BROKER", LOG_LEVEL_INFO); // LOG OBLIGATORIO
+	puts(ack);
 
+	char* loggearACK = string_from_format("El suscriptor de socket %d recibió el mensaje.", socket_cliente);
+	completar_logger(loggearACK,"BROKER", LOG_LEVEL_INFO); // LOG OBLIGATORIO
+/*
 	op_code cod_op;
 	recv(socket_cliente, &cod_op, sizeof(op_code), MSG_WAITALL);
 
 	uint32_t id_mensaje;
 	recv(socket_cliente, &id_mensaje, sizeof(uint32_t), MSG_WAITALL);
-
+*/
 	/*
 	t_list* cola_de_mensajes;
 

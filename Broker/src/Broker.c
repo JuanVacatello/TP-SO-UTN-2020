@@ -46,6 +46,8 @@ void creacion_colas_de_mensajes(void){
 	mensajes_de_cola_caught_pokemon = list_create();
 	mensajes_de_cola_get_pokemon = list_create();
 	mensajes_de_cola_localized_pokemon = list_create();
+
+	sem_init(&MUTEX_LOGGER,0,1);
 }
 
 /* para probar con la memoria

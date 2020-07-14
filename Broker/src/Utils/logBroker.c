@@ -10,6 +10,7 @@ void iniciar_logger(){
 
 void completar_logger(char* mensaje, char* programa, t_log_level log_level)
 {
+	sem_wait(&MUTEX_LOGGER);
 	switch(log_level){
 	case LOG_LEVEL_TRACE:
 		log_trace(logger,mensaje);
@@ -26,4 +27,5 @@ void completar_logger(char* mensaje, char* programa, t_log_level log_level)
 	case LOG_LEVEL_ERROR:
 		log_error(logger, mensaje);
 	}
+	sem_post(&MUTEX_LOGGER);
 }
