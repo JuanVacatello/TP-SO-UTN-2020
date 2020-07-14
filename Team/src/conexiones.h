@@ -42,14 +42,13 @@ void esperar_cliente(int);
 void process_request(op_code cod_op, int cliente_fd);
 void serve_client(int *socket);
 void* serializar_paquete(t_paquete* paquete, int* bytes);
-//void devolver_mensaje(void* payload, int size, int socket_cliente); POR AHORA NO LO USAMOS
 
 //SUSCRIPCIONES
-
 void* suscribirse_a_cola(int socket_cliente, op_code cola, int* tamanio_paquete);
 int enviar_suscripcion_a_cola(op_code cola);
 
 //ENVIAR MENSAJE A BROKER
+void enviar_ACK(int socket_broker);
 void enviar_CatchPokemon_a_broker(op_code codigo_operacion, t_entrenador* entrenador);
 void enviar_GetPokemon_a_broker(op_code codigo_operacion, char* pokemon);
 void* iniciar_paquete_serializado_CatchPokemon(int* tamanio_paquete,t_entrenador* entrenador);

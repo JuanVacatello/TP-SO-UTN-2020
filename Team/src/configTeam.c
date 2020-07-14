@@ -1,7 +1,6 @@
 #include "configTeam.h"
 
 
-//t_config* config = leer_config();
 
 void leer_config(void)
 {

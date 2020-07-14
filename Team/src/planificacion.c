@@ -9,7 +9,7 @@ void planificar_fifo(void){
 
 		pthread_mutex_lock(&mutex_planificador);
 
-		/*while(!list_is_empty(lista_de_pokemones_sueltos)){
+/*		while(!list_is_empty(lista_de_pokemones_sueltos)){
 				t_pokemon* pokemon_nuevo = list_remove(lista_de_pokemones_sueltos,0);
 				aparicion_pokemon(pokemon_nuevo);
 		}
@@ -83,6 +83,7 @@ void planificar_sjf_sd(void){
 			while(list_size(entrenador->cola_de_acciones) > 0){
 				ejecutar_entrenador(entrenador);
 				}
+				sem_post(&CONTADOR_ENTRENADORES);
 			}
 
 		while(deteccion_de_deadlock()){
@@ -263,23 +264,33 @@ void planificar_rr(void){
 
 			while(list_size(entrenador->cola_de_acciones) > 0 && quantum_remanente > 0){
 				accion_aux = list_get(entrenador->cola_de_acciones,0);
-				if(accion_aux->ciclo_cpu <= quantum_remanente){
-						ejecutar_entrenador(entrenador);
-						quantum_remanente-= accion_aux->ciclo_cpu;
+
+				if(list_size(entrenador->cola_de_acciones) == 1){
+					ejecutar_entrenador(entrenador);
+					quantum_remanente-= accion_aux->ciclo_cpu;
+					if(list_size(entrenador->objetivo) != list_size(entrenador->atrapados)){
+						sem_post(&CONTADOR_ENTRENADORES);
+					}
 				}
 				else{
-					accion_aux->ciclo_cpu -= quantum_remanente;
-					list_replace_and_destroy_element(entrenador->cola_de_acciones, 0, accion_aux, destruir_accion);
+					if(accion_aux->ciclo_cpu <= quantum_remanente){
+							ejecutar_entrenador(entrenador);
+							quantum_remanente-= accion_aux->ciclo_cpu;
+					}
+					else{
+						accion_aux->ciclo_cpu -= quantum_remanente;
+						list_replace_and_destroy_element(entrenador->cola_de_acciones, 0, accion_aux, destruir_accion);
 
-					quantum_remanente = 0;
-					//termina en -1 cuando tenemos acciones grandes
+						quantum_remanente = 0;
+						//termina en -1 cuando tenemos acciones grandes
+					}
+
+					if(list_size(entrenador->cola_de_acciones) > 0 && quantum_remanente == 0){
+						entrenador->estado = READY;
+						cambiosDeContexto++;
+						list_add(lista_de_entrenadores_ready, entrenador);
+					}
 				}
-
-			}
-			if(list_size(entrenador->cola_de_acciones) > 0 && quantum_remanente == 0){
-				entrenador->estado = READY;
-				cambiosDeContexto++;
-				list_add(lista_de_entrenadores_ready, entrenador);
 			}
 		}
 

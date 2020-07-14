@@ -130,18 +130,20 @@ void* serializar_paquete(t_paquete* paquete, int *bytes)
 
 //----------------------- COLAS A SUSCRIBIRSE -----------------------
 void appeared_pokemon_broker(){
-	int socket_broker = enviar_suscripcion_a_cola(2);
+	int socket_broker = enviar_suscripcion_a_cola(APPEARED_POKEMON);
 
 	while(1){
 
 		op_code cod_op = 10;
+		recv(socket_broker, &cod_op, sizeof(op_code), MSG_WAITALL);
 
-		if(recv(socket_broker, &cod_op, sizeof(op_code), MSG_WAITALL) == 2){
+		if(cod_op == APPEARED_POKEMON){
 
-		char* mensaje = string_from_format("El codigo de operacion es: %d.", cod_op);
-		completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+			char* mensaje = string_from_format("El codigo de operacion es: %d.", cod_op);
+			completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
 
-		recibir_AppearedPokemon(socket_broker);
+			recibir_AppearedPokemon(socket_broker);
+			enviar_ACK(socket_broker);
 		}
 	}
 }
@@ -152,12 +154,15 @@ void caught_pokemon_broker(){
 	while(1){
 
 		op_code cod_op = 10;
-		if(recv(socket_broker, &cod_op, sizeof(op_code), MSG_WAITALL) != -1){
+		recv(socket_broker, &cod_op, sizeof(op_code), MSG_WAITALL);
 
-		char* mensaje = string_from_format("El codigo de operacion es: %d.", cod_op);
-		completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+		if(cod_op == CAUGHT_POKEMON){
 
-		recibir_CaughtPokemon(socket_broker);
+			char* mensaje = string_from_format("El codigo de operacion es: %d.", cod_op);
+			completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+
+			recibir_CaughtPokemon(socket_broker);
+			enviar_ACK(socket_broker);
 		}
 	}
 }
@@ -168,12 +173,15 @@ void localized_pokemon_broker(){
 	while(1){
 
 		op_code cod_op = 10;
-		if(recv(socket_broker, &cod_op, sizeof(op_code), MSG_WAITALL) != -1){
+		recv(socket_broker, &cod_op, sizeof(op_code), MSG_WAITALL);
 
-		char* mensaje = string_from_format("El codigo de operacion es: %d.", cod_op);
-		completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+		if(cod_op == LOCALIZED_POKEMON){
 
-		recibir_LocalizedPokemon(socket_broker);
+			char* mensaje = string_from_format("El codigo de operacion es: %d.", cod_op);
+			completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+
+			recibir_LocalizedPokemon(socket_broker);
+			enviar_ACK(socket_broker);
 		}
 	}
 }
@@ -256,6 +264,7 @@ void enviar_CatchPokemon_a_broker(op_code codigo_operacion, t_entrenador* entren
 
 	if(socket_broker == -1){
 		entrenador->pudo_atrapar_pokemon = 1;
+		entrenador->estado = EXEC;
 		ciclosCpuTotales++;
 		pthread_mutex_unlock(&mutex_entrenador);
 	}
@@ -471,6 +480,7 @@ void recibir_CaughtPokemon(int socket_cliente){
 
 		if(entrenador != NULL){
 			entrenador->pudo_atrapar_pokemon = pudoAtraparlo;
+			entrenador->estado = EXEC;
 			pthread_mutex_unlock(&mutex_entrenador);
 		}
 }
@@ -669,5 +679,21 @@ t_entrenador* buscar_entrenador_por_id_catch(uint32_t id){
 	return entrenador;
 }
 
+void enviar_ACK(int socket_broker){
 
+	t_paquete* paquete = malloc(sizeof(t_paquete));
+	paquete->codigo_operacion = MENSAJE;
+	paquete->buffer = malloc(sizeof(t_buffer));
+	paquete->buffer->stream = "ACK";
+	paquete->buffer->size = strlen(paquete->buffer->stream) + 1;
+
+	int tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
+	void* a_enviar = serializar_paquete(paquete,&tamanio_paquete);
+
+	send(socket_broker,a_enviar,tamanio_paquete,0);
+
+	free(paquete);
+	free(paquete->buffer);
+	//sem_post(&MUTEX_ACK);
+}
 

@@ -222,9 +222,11 @@ void ejecutar_entrenador(t_entrenador* entrenador){
 void atrapar_pokemon(t_entrenador* entrenador){
 
 	int cantidad_pokemon = 0;
+	entrenador->estado = BLOCKED;
 	enviar_CatchPokemon_a_broker(3, entrenador);
 	efectuar_ciclo_cpu(entrenador, 1);
 	pthread_mutex_lock(&mutex_entrenador);
+
 
 	if(entrenador->pudo_atrapar_pokemon == 0){
 		log_operacion_de_atrapar_fallida(entrenador);	//NO ATRAPÓ AL POKEMON
@@ -234,10 +236,10 @@ void atrapar_pokemon(t_entrenador* entrenador){
 			cantidad_pokemon = dictionary_get(atrapados_global, entrenador->pokemon_a_atrapar->especie);
 
 			if(cantidad_pokemon == 1){
-				dictionary_remove_and_destroy(atrapados_global, entrenador->pokemon_a_atrapar->especie, (void *) free);
+				dictionary_remove_and_destroy(atrapados_global, entrenador->pokemon_a_atrapar->especie, eliminarPokemon);
 			}
 			else{
-			dictionary_remove_and_destroy(atrapados_global, entrenador->pokemon_a_atrapar->especie, (void *) free);
+			dictionary_remove_and_destroy(atrapados_global, entrenador->pokemon_a_atrapar->especie, eliminarPokemon);
 			dictionary_put(atrapados_global, entrenador->pokemon_a_atrapar->especie, cantidad_pokemon - 1);
 		}
 	}
