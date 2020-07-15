@@ -11,6 +11,7 @@
 #include<commons/error.h>
 #include<commons/process.h>
 #include<stdint.h>
+#include <pthread.h>
 #include "Utils/messageQueue.h"
 #include "Utils/configGameBoy.h"
 #include "Utils/logGameBoy.h"
@@ -23,5 +24,7 @@ void cumple_cant_parametros(int argc, int cantidad_necesaria);
 void controlar_cant_argumentos(int argc);
 
 void terminar_programa(int conexion); //void terminar_programa(int conexion, t_log* logger, t_config* config);
+
+pthread_t hilo_recibir;
 
 #endif /* GAMEBOY_H_ */

@@ -30,7 +30,13 @@ typedef enum
 	LOCALIZED_POKEMON=6,
 	MENSAJE=7
 }op_code;
-
+/*
+typedef enum
+{
+	FAIL=0,
+	OK=1
+}caught_code;
+*/
 typedef struct
 {
 	uint32_t size;

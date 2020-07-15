@@ -35,8 +35,15 @@ int main(int argc, char* argv[]) {
 
 		completar_logger("GameBoy se suscribió a la cola.", "GAMEBOY", LOG_LEVEL_INFO);
 
-		recibir_mensaje(socket_conexion);
+		//while(1){
+
+		//recibir_mensaje(socket_conexion);
+			//pthread_create(&hilo_recibir, NULL , recibir_mensaje ,socket_conexion);
+			//pthread_join(hilo_recibir, NULL);
+		//}
+
 	}
+	return 0;
 }
 
 void enviarMensajeBroker(int argc, char *argv[]){
