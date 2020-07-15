@@ -52,3 +52,46 @@ void actualizar_valores_pokemon(char* path_metadata_pokemon,int posX,int posY,in
 	2=3/n
 	1-2=3
   */
+
+
+
+
+
+ int obtener_tamanio_bloque(){
+ 	return 26;
+ }
+
+
+
+ char* obtener_path_bloque(char* bloque){
+ 	char* path = string_new();
+ 	string_append(&path, "/home/utnso/Documentos/Prueba/");
+ 	string_append(&path, bloque);
+ 	string_append(&path, ".bin");
+ 	return path;
+ }
+
+ int diferente_largo(char* numero1,char * numero2){
+ 	int largo1 = strlen(numero1);
+ 	int largo2 = strlen(numero2);
+
+ 	if(largo1 != largo2){
+
+ 		return 1;
+ 	}
+ 	return 0;
+ }
+
+
+ int tamanio_libre_bloque(char* bloque){
+ 	char* path = obtener_path_bloque(bloque);
+
+ 	struct stat st;
+ 	stat(path,&st);
+
+ 	int tamanio_actual = st.st_size;
+
+ 	free(path);
+
+ 	return(obtener_tamanio_bloque() - tamanio_actual);
+ }

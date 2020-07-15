@@ -68,56 +68,77 @@ void inicializar_metadata(char* path_metadata, int block_size, int cant_bloques)
 	string_append(&path_archivo_metadata, path_metadata);
 	string_append(&path_archivo_metadata, "/Metadata.bin");
 
-	FILE* metadata = txt_open_for_append(path_archivo_metadata);
+	struct stat st_metadata;
+	if(stat(path_archivo_metadata, &st_metadata) == -1){
 
-	char* tamanio_bloques = string_new();
-	tamanio_bloques = string_itoa(block_size);
+		FILE* metadata = txt_open_for_append(path_archivo_metadata);
 
-	char* cantidad_bloques = string_new();
-	cantidad_bloques = string_itoa(cant_bloques);
+			char* tamanio_bloques = string_new();
+			tamanio_bloques = string_itoa(block_size);
 
-	char* sentencia_tamanio_bloques = string_new();
-	string_append(&sentencia_tamanio_bloques, "BLOCK_SIZE=");
-	string_append(&sentencia_tamanio_bloques, tamanio_bloques);
-	string_append(&sentencia_tamanio_bloques, "\n");
+			char* cantidad_bloques = string_new();
+			cantidad_bloques = string_itoa(cant_bloques);
 
-	char* sentencia_cantidad_bloques = string_new();
-	string_append(&sentencia_cantidad_bloques, "BLOCKS=");
-	string_append(&sentencia_cantidad_bloques, cantidad_bloques);
-	string_append(&sentencia_cantidad_bloques, "\n");
+			char* sentencia_tamanio_bloques = string_new();
+			string_append(&sentencia_tamanio_bloques, "BLOCK_SIZE=");
+			string_append(&sentencia_tamanio_bloques, tamanio_bloques);
+			string_append(&sentencia_tamanio_bloques, "\n");
 
-	txt_write_in_file(metadata, sentencia_tamanio_bloques);
-	txt_write_in_file(metadata, sentencia_cantidad_bloques);
-	txt_write_in_file(metadata, "MAGIC_NUMBER=TALL_GRASS\n");
-	txt_close_file(metadata);
+			char* sentencia_cantidad_bloques = string_new();
+			string_append(&sentencia_cantidad_bloques, "BLOCKS=");
+			string_append(&sentencia_cantidad_bloques, cantidad_bloques);
+			string_append(&sentencia_cantidad_bloques, "\n");
+
+			txt_write_in_file(metadata, sentencia_tamanio_bloques);
+			txt_write_in_file(metadata, sentencia_cantidad_bloques);
+			txt_write_in_file(metadata, "MAGIC_NUMBER=TALL_GRASS\n");
+			txt_close_file(metadata);
+
+
+			free(tamanio_bloques);
+			free(cantidad_bloques);
+			free(sentencia_tamanio_bloques);
+			free(sentencia_cantidad_bloques);
+	}
 
 	leer_metadata_tall_grass();
-
 	free(path_archivo_metadata);
-	free(tamanio_bloques);
-	free(cantidad_bloques);
-	free(sentencia_tamanio_bloques);
-	free(sentencia_cantidad_bloques);
 
 
+
+char* path_archivo_bitmap = string_new();
+string_append(&path_archivo_bitmap,path_metadata);
+string_append(&path_archivo_bitmap,"/bitmap.bin");
+
+	//struct stat st_bitmap;
+	//	if(stat(path_archivo_bitmap, &st_bitmap) == -1){
 
 //inicializa bitmap.bin
-	crear_bitmap();
+		crear_bitmap();
+	//	}
+		free(path_archivo_bitmap);
 }
 
 
 
 void inicializar_files(char* path_files){
 
-	completar_metadata_directorio(path_files);
+	struct stat st_metadata_files;
+			if(stat(path_files, &st_metadata_files) == -1){
 
+	completar_metadata_directorio(path_files);
+	}
 }
 
 
 void inicializar_bloques(char* path_bloques){
 
-	completar_metadata_directorio(path_bloques);
-	crear_bloques();
+	struct stat st_metadata_bloques;
+				if(stat(path_bloques, &st_metadata_bloques) == -1){
+
+		completar_metadata_directorio(path_bloques);
+		crear_bloques();
+		}
 }
 
 void completar_metadata_directorio(char* path_directorio){
