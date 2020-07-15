@@ -73,6 +73,8 @@ int sacar_distancia(t_posicion pokeposicion,t_posicion entreposicion);
 bool puede_atrapar(t_entrenador* entrenador);
 void ejecutar_entrenador(t_entrenador* entrenador);
 bool termino_con_pokemon(t_entrenador* entrenador, char* pokemon);
+
+void intentar_atrapar_pokemon(t_entrenador* entrenador);
 void atrapar_pokemon(t_entrenador* entrenador);
 void verificar_estado_entrenador(t_entrenador* entrenador);
 

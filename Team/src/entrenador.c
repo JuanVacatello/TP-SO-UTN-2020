@@ -42,11 +42,9 @@ t_entrenador* armar_entrenador(int indice){
 	entrenador->objetivo = objetivo;
 
 	//LISTA ATRAPADOS
-//--------------[Jolteon]
 	char** atrapados =obtener_pokemon_entrenadores();
 	t_list* atrapado = list_create();
 
-	//if(!string_is_empty(atrapados)){
 	if(flagListaAtrapados == 0){
 		if(atrapados[indice]!=NULL){
 			atrapado = obtener_atrapados(atrapados[indice]);
@@ -219,14 +217,19 @@ void ejecutar_entrenador(t_entrenador* entrenador){
 }
 
 
-void atrapar_pokemon(t_entrenador* entrenador){
+void intentar_atrapar_pokemon(t_entrenador* entrenador){
 
-	int cantidad_pokemon = 0;
 	entrenador->estado = BLOCKED;
-	enviar_CatchPokemon_a_broker(3, entrenador);
+	enviar_CatchPokemon_a_broker(3, entrenador); //hardcodear cod_op adentro de la funcion
 	efectuar_ciclo_cpu(entrenador, 1);
-	pthread_mutex_lock(&mutex_entrenador);
+	if(entrenador->pudo_atrapar_pokemon == NULL){
+		pthread_create(&hilo_entrenador_esperando, NULL, recibir_CaughtPokemon, entrenador);
+		pthread_detach(hilo_entrenador_esperando);
+	}
+}
 
+void atrapar_pokemon(t_entrenador* entrenador){
+	int cantidad_pokemon = 0;
 
 	if(entrenador->pudo_atrapar_pokemon == 0){
 		log_operacion_de_atrapar_fallida(entrenador);	//NO ATRAPÓ AL POKEMON
@@ -249,10 +252,6 @@ void atrapar_pokemon(t_entrenador* entrenador){
 		list_add(entrenador->atrapados, entrenador->pokemon_a_atrapar->especie);
 		log_operacion_de_atrapar_exitosa(entrenador);	//ATRAPÓ AL POKEMON
 
-		int pid = process_getpid();
-		char* mensaje = string_from_format("pid: %d.",pid);
-		completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
-
 		verificar_estado_entrenador(entrenador);
 
 	}
@@ -261,7 +260,6 @@ void atrapar_pokemon(t_entrenador* entrenador){
 	entrenador->pokemon_a_atrapar = NULL;
 	//sem_post(&MUTEX_POKEMON_REQUERIDO);
 }
-
 
 
 

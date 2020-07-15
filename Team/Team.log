@@ -1,0 +1,36 @@
+[INFO] 17:09:37:135 TEAM/(5107:5115): Reintento de comunicacion con BROKER fallido
+[INFO] 17:09:37:136 TEAM/(5107:5115): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 19:15:56:463 TEAM/(10142:10146): el socket de conexion es: 4.
+[INFO] 19:15:56:467 TEAM/(10142:10146): Se logró conectar con el BROKER de manera exitosa
+[INFO] 19:15:56:473 TEAM/(10142:10145): el socket de conexion es: 5.
+[INFO] 19:15:56:474 TEAM/(10142:10145): Se logró conectar con el BROKER de manera exitosa
+[INFO] 19:15:56:481 TEAM/(10142:10144): el socket de conexion es: 9.
+[INFO] 19:15:56:482 TEAM/(10142:10144): Se logró conectar con el BROKER de manera exitosa
+[INFO] 19:16:26:613 TEAM/(10142:10144): El codigo de operacion es: 2.
+[INFO] 19:16:31:568 TEAM/(10142:10144): El codigo de operacion es: 2.
+[INFO] 19:18:45:310 TEAM/(10210:10214): Reintento de comunicacion con BROKER fallido
+[INFO] 19:18:45:311 TEAM/(10210:10214): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 19:18:52:940 TEAM/(10210:10217): El codigo de operacion es: 0.
+[INFO] 19:19:15:312 TEAM/(10210:10214): Reintento de comunicacion con BROKER fallido
+[INFO] 19:19:15:314 TEAM/(10210:10214): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 19:19:32:399 TEAM/(10210:10222): El codigo de operacion es: 2.
+[INFO] 19:19:32:400 TEAM/(10210:10222): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 19:19:32:400 TEAM/(10210:10222): El nombre del pokemon es: Onix
+[INFO] 19:19:32:400 TEAM/(10210:10222): posicion en x: 3
+[INFO] 19:19:32:400 TEAM/(10210:10222): posicion en y: 2
+[INFO] 19:19:33:401 TEAM/(10210:10223): El entrenador C se movió a la posicion 3|2.
+[INFO] 19:19:34:402 TEAM/(10210:10224): El entrenador C atrapó un Onix en la posicion 3|2.
+[INFO] 19:19:34:403 TEAM/(10210:10224): pid: 10210.
+[INFO] 19:19:41:265 TEAM/(10210:10228): El codigo de operacion es: 2.
+[INFO] 19:19:41:265 TEAM/(10210:10228): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 19:19:41:265 TEAM/(10210:10228): El nombre del pokemon es: Pikachu
+[INFO] 19:19:41:265 TEAM/(10210:10228): posicion en x: 1
+[INFO] 19:19:41:266 TEAM/(10210:10228): posicion en y: 1
+[INFO] 19:19:42:266 TEAM/(10210:10229): El entrenador A se movió a la posicion 1|2.
+[INFO] 19:19:43:267 TEAM/(10210:10230): El entrenador A se movió a la posicion 1|1.
+[INFO] 19:19:44:271 TEAM/(10210:10231): El entrenador A atrapó un Pikachu en la posicion 1|1.
+[INFO] 19:19:44:271 TEAM/(10210:10231): pid: 10210.
+[INFO] 19:19:45:315 TEAM/(10210:10214): Reintento de comunicacion con BROKER fallido
+[INFO] 19:19:45:315 TEAM/(10210:10214): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 20:03:13:423 TEAM/(12576:12583): Reintento de comunicacion con BROKER fallido
+[INFO] 20:03:13:424 TEAM/(12576:12583): No se pudo conectar con el BROKER, reintentando en 30 segundos...

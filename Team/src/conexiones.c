@@ -266,7 +266,8 @@ void enviar_CatchPokemon_a_broker(op_code codigo_operacion, t_entrenador* entren
 		entrenador->pudo_atrapar_pokemon = 1;
 		entrenador->estado = EXEC;
 		ciclosCpuTotales++;
-		pthread_mutex_unlock(&mutex_entrenador);
+		//pthread_mutex_unlock(&mutex_entrenador);
+		atrapar_pokemon(entrenador);
 	}
 
 	else{
@@ -481,7 +482,8 @@ void recibir_CaughtPokemon(int socket_cliente){
 		if(entrenador != NULL){
 			entrenador->pudo_atrapar_pokemon = pudoAtraparlo;
 			entrenador->estado = EXEC;
-			pthread_mutex_unlock(&mutex_entrenador);
+			//pthread_mutex_unlock(&mutex_entrenador);
+			atrapar_pokemon(entrenador);
 		}
 }
 

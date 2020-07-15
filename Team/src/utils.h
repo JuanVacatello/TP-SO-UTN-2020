@@ -30,6 +30,7 @@ pthread_t hilo_appeared_pokemon;
 pthread_t hilo_caught_pokemon;
 pthread_t hilo_localized_pokemon;
 pthread_t hilo_planificador;
+pthread_t hilo_entrenador_esperando;
 
 pthread_mutex_t mutex_entrenador;
 pthread_mutex_t mutex_planificador;
