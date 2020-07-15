@@ -290,9 +290,16 @@ void* iniciar_paquete_serializado_CaughtPokemon(int* tamanio_paquete,char* argv[
 	sscanf(argv[3], "%d", &id_mensaje_correlativo);
 
 	uint32_t se_pudo_atrapar; // devuelve 1 o 0 dependiendo de si se pudo o no -> lo mandamos asi o como true/false string?
-	sscanf(argv[4], "%d", &se_pudo_atrapar);
+	char* ok_o_fail = argv[4];
 
-						   // ID_MENSAJE_CORRELATIVO + OK/FAIL
+	if(!(strcmp(ok_o_fail, "OK"))){
+		se_pudo_atrapar = 1;
+	}
+	if(!(strcmp(ok_o_fail, "FAIL"))){
+			se_pudo_atrapar = 0;
+	}
+
+		   // ID_MENSAJE_CORRELATIVO + OK/FAIL
 	paquete->buffer->size = sizeof(uint32_t) + sizeof(uint32_t);
 	void* stream = malloc(paquete->buffer->size);
 	int offset = 0;
