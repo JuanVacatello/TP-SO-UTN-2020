@@ -64,37 +64,31 @@ t_mensaje_guardado* eliminar_y_compactar_hasta_encontrar(void* bloque_a_agregar_
 		}
 
 		// Si no entra, cuenta como fallo y procede a compactar si es momento
-		contador_fallos++;
-		//int se_compacto = 0;
-
+		int se_compacto = 0;
 		if((frecuencia_compactacion == -1 || frecuencia_compactacion == 0 || frecuencia_compactacion == 1) && encontrado == 0){ //Compacto cada vez que se libera
 			compactar_memoria();
-			//se_compacto = 1;
+			se_compacto = 1;
 		}
 
 		if(frecuencia_compactacion >= 2 && (contador_fallos%frecuencia_compactacion) == 0 && contador_fallos >=frecuencia_compactacion && encontrado == 0){ //Si la frecuencia es 2 y los fallos son multiplo de 2
 			compactar_memoria();
-			//se_compacto = 1;
+			se_compacto = 1;
 		}
 
 		// Una vez compactada la memoria me fijo si ahora entra
-		if((!(strcmp(algoritmo_particion_libre, "FF")) && encontrado == 0)){
+		if((!(strcmp(algoritmo_particion_libre, "FF"))) && encontrado == 0 && se_compacto == 1){
 			posicion_inicial_nuevo_mensaje = buscar_first_fit(&encontrado, bloque_a_agregar_en_memoria, tamanio_a_agregar);
 		}
 
-		if((!(strcmp(algoritmo_particion_libre, "BF"))) && encontrado == 0){
+		if((!(strcmp(algoritmo_particion_libre, "BF"))) && encontrado == 0 && se_compacto == 1){
 			posicion_inicial_nuevo_mensaje = buscar_best_fit(&encontrado, bloque_a_agregar_en_memoria, tamanio_a_agregar);
 		}
 
 		if(encontrado == 1){
 			mensaje_nuevo = guardar_en_posicion(bloque_a_agregar_en_memoria, tamanio_a_agregar, posicion_inicial_nuevo_mensaje);
-			break;
 		}
 
-		// Si se compacto y tampoco entro, cuenta otro fallo y vuelve a empezar
-		/* if(encontrado == 0 && se_compacto == 1){
-			contador_fallos++;
-		}*/
+		// Si se compacto y aun asi no entra, se vuelve a eliminar
 	}
 	sem_post(&MUTEX_FALLOS);
 
@@ -119,6 +113,8 @@ int ejecutar_algoritmo_reemplazo(void){
 	if(list_is_empty(elementos_en_memoria)){
 		log_compactacion();
 	}
+
+	contador_fallos++; // Cada vez que se elimina, sumo fallos
 
 	return posicion_liberada;
 }
@@ -231,32 +227,27 @@ t_mensaje_guardado* agregar_segun_first_fit(void* bloque_a_agregar_en_memoria, u
 	}
 
 		// Si no se encuentra, y es momento de compactar, se compacta
-	//sem_wait(&MUTEX_FALLOS); POR AHORA SOLO CUENTO FALLOS SI SE ELIMINA
+	//sem_wait(&MUTEX_FALLOS);
 	if(encontrado == 0){
-
-		//contador_fallos++;
-		//int se_compacto = 0;
 		int frecuencia_compactacion = obtener_frecuencia_compactacion();
+		int se_compacto = 0;
 
 		if(frecuencia_compactacion == -1 || frecuencia_compactacion == 0 || frecuencia_compactacion == 1){ //Compacto cada vez que se libera
 			compactar_memoria();
-			//se_compacto = 1;
+			se_compacto = 1;
 		}
 
 		if(frecuencia_compactacion >= 2 && (contador_fallos%frecuencia_compactacion) == 0 && contador_fallos >= frecuencia_compactacion){ //Si la frecuencia es mayor a 1 y los fallos son multiplo de la frecuencia
 			compactar_memoria();
-			//se_compacto = 1;
+			se_compacto = 1;
 		}
 
-		posicion_inicial_nuevo_mensaje = buscar_first_fit(&encontrado, bloque_a_agregar_en_memoria, tamanio_a_agregar);
-
-		if(encontrado == 1){
-			mensaje_nuevo = guardar_en_posicion(bloque_a_agregar_en_memoria, tamanio_a_agregar, posicion_inicial_nuevo_mensaje);
+		if(se_compacto == 1){
+			posicion_inicial_nuevo_mensaje = buscar_first_fit(&encontrado, bloque_a_agregar_en_memoria, tamanio_a_agregar);
+			if(encontrado == 1){
+				mensaje_nuevo = guardar_en_posicion(bloque_a_agregar_en_memoria, tamanio_a_agregar, posicion_inicial_nuevo_mensaje);
+			}
 		}
-
-		/* if(se_compacto == 1 && encontrado == 0){
-			contador_fallos++;
-		}*/
 	}
 	//sem_post(&MUTEX_FALLOS);
 
@@ -329,35 +320,30 @@ t_mensaje_guardado* agregar_segun_best_fit(void* bloque_a_agregar_en_memoria, ui
 	}
 
 		// Si no se encuentra, y es momento de compactar, se compacta
-	//sem_wait(&MUTEX_FALLOS); POR AHORA SOLO CUENTO FALLOS SI SE ELIMINAN MENSAJES
+	//sem_wait(&MUTEX_FALLOS);
 	if(encontrado == 0){
 
-		//contador_fallos++;
-		//int se_compacto = 0;
-
 		int frecuencia_compactacion = obtener_frecuencia_compactacion();
+		int se_compacto = 0;
 
 		if(frecuencia_compactacion == -1 || frecuencia_compactacion == 0 || frecuencia_compactacion == 1){ //Compacto cada vez que se libera
 			compactar_memoria();
-			//se_compacto = 1;
+			se_compacto = 1;
 		}
 
 		if(frecuencia_compactacion >= 2 && (contador_fallos%frecuencia_compactacion) == 0 && contador_fallos >= frecuencia_compactacion){ //Si la frecuencia es mayor a 1 y los fallos son multiplo de la frecuencia
 			compactar_memoria();
-			//se_compacto = 1;
+			se_compacto = 1;
 		}
 
-		posicion_inicial_nuevo_mensaje = buscar_best_fit(&encontrado, bloque_a_agregar_en_memoria, tamanio_a_agregar);
-
-		if(encontrado == 1){
-			mensaje_nuevo = guardar_en_posicion(bloque_a_agregar_en_memoria, tamanio_a_agregar, posicion_inicial_nuevo_mensaje);
+		if(se_compacto == 1){
+			posicion_inicial_nuevo_mensaje = buscar_best_fit(&encontrado, bloque_a_agregar_en_memoria, tamanio_a_agregar);
+			if(encontrado == 1){
+				mensaje_nuevo = guardar_en_posicion(bloque_a_agregar_en_memoria, tamanio_a_agregar, posicion_inicial_nuevo_mensaje);
+			}
 		}
-
-		/*if(se_compacto == 1 && encontrado == 0){
-				contador_fallos++;
-		}*/
-		}
-		//sem_post(&MUTEX_FALLOS);
+	}
+	//sem_post(&MUTEX_FALLOS);
 
 		// Si luego de compactar tampoco entra, se elimina y compacta hasta que se encuentre
 	if(encontrado == 0){

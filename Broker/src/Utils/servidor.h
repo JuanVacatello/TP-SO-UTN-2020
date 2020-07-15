@@ -63,7 +63,7 @@ typedef struct {
 	t_list* suscriptores_ack;
 	uint32_t tamanio_buffer;
 	t_mensaje_guardado* ubicacion_mensaje;
-} t_mensaje_a_guardar;
+} t_mensaje_en_cola;
 
 t_list* suscriptores_new_pokemon;
 t_list* suscriptores_appeared_pokemon;

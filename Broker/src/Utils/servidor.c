@@ -132,26 +132,32 @@ void suscribirse_a_cola(proceso* suscriptor, int socket, uint32_t tamanio_buffer
 			break;
 		case 1:
 			list_add(suscriptores_new_pokemon, suscriptor);
+			log_suscripcion_nueva(suscriptor->socket_cliente, suscriptor->id, 1);
 			enviar_mensajes_al_nuevo_suscriptor(mensajes_de_cola_new_pokemon, suscriptor->socket_cliente);
 			break;
 		case 2:
 			list_add(suscriptores_appeared_pokemon, suscriptor);
+			log_suscripcion_nueva(suscriptor->socket_cliente, suscriptor->id, 2);
 			enviar_mensajes_al_nuevo_suscriptor(mensajes_de_cola_appeared_pokemon, suscriptor->socket_cliente);
 			break;
 		case 3:
 			list_add(suscriptores_catch_pokemon, suscriptor);
+			log_suscripcion_nueva(suscriptor->socket_cliente, suscriptor->id, 3);
 			enviar_mensajes_al_nuevo_suscriptor(mensajes_de_cola_catch_pokemon, suscriptor->socket_cliente);
 			break;
 		case 4:
 			list_add(suscriptores_caught_pokemon, suscriptor);
+			log_suscripcion_nueva(suscriptor->socket_cliente, suscriptor->id, 4);
 			enviar_mensajes_al_nuevo_suscriptor(mensajes_de_cola_caught_pokemon, suscriptor->socket_cliente);
 			break;
 		case 5:
 			list_add(suscriptores_get_pokemon, suscriptor);
+			log_suscripcion_nueva(suscriptor->socket_cliente, suscriptor->id, 5);
 			enviar_mensajes_al_nuevo_suscriptor(mensajes_de_cola_get_pokemon, suscriptor->socket_cliente);
 			break;
 		case 6:
 			list_add(suscriptores_localized_pokemon, suscriptor);
+			log_suscripcion_nueva(suscriptor->socket_cliente, suscriptor->id, 6);
 			enviar_mensajes_al_nuevo_suscriptor(mensajes_de_cola_localized_pokemon, suscriptor->socket_cliente);
 			break;
 	}
@@ -160,14 +166,12 @@ void suscribirse_a_cola(proceso* suscriptor, int socket, uint32_t tamanio_buffer
 		uint32_t tiempo_de_suscripcion;
 		recv(socket, &tiempo_de_suscripcion, sizeof(uint32_t), MSG_WAITALL);
 	}
-
-	log_suscripcion_nueva(suscriptor->socket_cliente, suscriptor->id, cola_a_suscribirse);
 }
 
 void enviar_mensajes_al_nuevo_suscriptor(t_list* mensajes_de_dicha_cola, int socket_suscriptor){
 
 	int tamanio_lista = list_size(mensajes_de_dicha_cola);
-	t_mensaje_a_guardar* mensaje_a_enviar;
+	t_mensaje_en_cola* mensaje_a_enviar;
 
 	for(int i = 0; i<tamanio_lista; i++){
 
@@ -535,7 +539,7 @@ void recibir_localized_pokemon(int socket_cliente){
 
 void guardar_mensaje_en_cola(op_code cod_op, t_list* lista_mensajes, t_mensaje_guardado* mensaje_en_memoria, uint32_t tamanio_buffer, uint32_t id_mensaje_correlativo){
 
-	t_mensaje_a_guardar* nuevo_mensaje = malloc(sizeof(t_mensaje_a_guardar));
+	t_mensaje_en_cola* nuevo_mensaje = malloc(sizeof(t_mensaje_en_cola));
 	nuevo_mensaje->codigo_operacion = cod_op;
 	nuevo_mensaje->identificador = 1; // tengo q ver como hago esto
 	nuevo_mensaje->suscriptores_ack = suscriptores_new_pokemon; // tengo q ver como hago esto - tecnicamente tiene q empezar vacia y llenarse a medida q llegan los ack e ir comparando si es igual a la total, elimino el mensaje de memoria ?¿
