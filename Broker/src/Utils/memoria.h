@@ -37,28 +37,31 @@ sem_t MUTEX_FALLOS;
 
 t_mensaje_guardado* guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
 
+// REEMPLAZO Y COMPACTACION
+int ejecutar_algoritmo_reemplazo(void);
+int reemplazar_segun_FIFO(void);
+int reemplazar_segun_LRU(void);
+t_mensaje_guardado* eliminar_y_compactar_hasta_encontrar(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
+void compactar_memoria(void);
+
+// PARTICIONES DINÁMICAS
 t_mensaje_guardado* administracion_de_memoria_particiones(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
 t_mensaje_guardado* agregar_segun_first_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
 int buscar_first_fit(int *se_guardo_el_mensaje, void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
 t_mensaje_guardado* agregar_segun_best_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
 int buscar_best_fit(int *encontrado, void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
 
+// BUDDY SYSTEM
 t_mensaje_guardado* administracion_de_memoria_buddy_system(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
 
-int ejecutar_algoritmo_reemplazo(void);
-int reemplazar_segun_FIFO(void);
-int reemplazar_segun_LRU(void);
-t_mensaje_guardado* eliminar_y_compactar_hasta_encontrar(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
-
+// AUXILIARES
 bool comparar_inicios_mensajes(t_mensaje_guardado* mensaje1, t_mensaje_guardado* mensaje2);
 bool comparar_timestamps_mensajes(t_mensaje_guardado* mensaje1, t_mensaje_guardado* mensaje2);
-
-int toda_la_memoria_esta_ocupada(void);
 void mostrar_memoria_principal(void);
-void compactar_memoria(void);
-int entra_en_hueco(int tamanio_a_agregar, int posicion_libre);
 int primera_posicion_vacia_y_entra(uint32_t tamanio_a_agregar);
-void* tratar_fragmentacion_interna(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
+int toda_la_memoria_esta_ocupada(void);
+int entra_en_hueco(int tamanio_a_agregar, int posicion_libre);
 t_mensaje_guardado* guardar_en_posicion(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar, int posicion);
+void* tratar_fragmentacion_interna(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
 
 #endif /* UTILS_MEMORIA_H_ */

@@ -2,8 +2,16 @@
 
 t_mensaje_guardado* guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
 
+	sem_wait(&MUTEX_LISTA);
+
 	t_mensaje_guardado* mensaje_nuevo;
 	char* esquema_de_administracion = obtener_algoritmo_memoria();
+	int tamanio_minimo_particion = obtener_tamanio_minimo_particion();
+
+	if(tamanio_a_agregar < tamanio_minimo_particion){
+		bloque_a_agregar_en_memoria = tratar_fragmentacion_interna(bloque_a_agregar_en_memoria, tamanio_a_agregar);
+		tamanio_a_agregar = tamanio_minimo_particion;
+	}
 
 	if(toda_la_memoria_esta_ocupada()){
 		mensaje_nuevo = eliminar_y_compactar_hasta_encontrar(bloque_a_agregar_en_memoria, tamanio_a_agregar);
@@ -25,13 +33,14 @@ t_mensaje_guardado* guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria
 
 	list_add(elementos_en_memoria, mensaje_nuevo);
 
-	char* log = string_from_format("Se almacenó un mensaje en la posición %d de la memoria principal.", mensaje_nuevo->byte_comienzo_ocupado);
-	completar_logger(log, "BROKER", LOG_LEVEL_INFO); // LOG OBLIGATORIO
+	log_almacenar_mensaje(mensaje_nuevo->byte_comienzo_ocupado);
+
+	sem_post(&MUTEX_LISTA);
 
 	return mensaje_nuevo;
 }
 
-// REEMPLAZO
+// REEMPLAZO Y COMPACTACION
 
 t_mensaje_guardado* eliminar_y_compactar_hasta_encontrar(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
 
@@ -56,16 +65,16 @@ t_mensaje_guardado* eliminar_y_compactar_hasta_encontrar(void* bloque_a_agregar_
 
 		// Si no entra, cuenta como fallo y procede a compactar si es momento
 		contador_fallos++;
-		int se_compacto = 0;
+		//int se_compacto = 0;
 
 		if((frecuencia_compactacion == -1 || frecuencia_compactacion == 0 || frecuencia_compactacion == 1) && encontrado == 0){ //Compacto cada vez que se libera
 			compactar_memoria();
-			se_compacto = 1;
+			//se_compacto = 1;
 		}
 
 		if(frecuencia_compactacion >= 2 && (contador_fallos%frecuencia_compactacion) == 0 && contador_fallos >=frecuencia_compactacion && encontrado == 0){ //Si la frecuencia es 2 y los fallos son multiplo de 2
 			compactar_memoria();
-			se_compacto = 1;
+			//se_compacto = 1;
 		}
 
 		// Una vez compactada la memoria me fijo si ahora entra
@@ -83,9 +92,9 @@ t_mensaje_guardado* eliminar_y_compactar_hasta_encontrar(void* bloque_a_agregar_
 		}
 
 		// Si se compacto y tampoco entro, cuenta otro fallo y vuelve a empezar
-		if(encontrado == 0 && se_compacto == 1){
+		/* if(encontrado == 0 && se_compacto == 1){
 			contador_fallos++;
-		}
+		}*/
 	}
 	sem_post(&MUTEX_FALLOS);
 
@@ -105,8 +114,11 @@ int ejecutar_algoritmo_reemplazo(void){
 		posicion_liberada = reemplazar_segun_LRU();
 	}
 
-	char* log = string_from_format("Se eliminó de memoria principal la partición que empezaba en la posicion %d", posicion_liberada);
-	completar_logger(log, "BROKER", LOG_LEVEL_INFO); // LOG OBLIGATORIO
+	log_particion_eliminada(posicion_liberada);
+
+	if(list_is_empty(elementos_en_memoria)){
+		log_compactacion();
+	}
 
 	return posicion_liberada;
 }
@@ -146,6 +158,48 @@ int reemplazar_segun_LRU(void){
 	return posicion_inicial_nuevo_mensaje;
 }
 
+void compactar_memoria(void){
+	int desplazamiento = 0;
+	t_list* lista_ordenada = list_duplicate(elementos_en_memoria);
+	list_sort(lista_ordenada, comparar_inicios_mensajes); // Ordena la lista de menor a mayor a partir de la posición de inicio donde están guardados los mensajes en memoria
+	int tamanio_lista = list_size(lista_ordenada);
+
+	void* memoria_copactada = malloc(tamanio_de_memoria);
+	t_mensaje_guardado* mensaje_a_leer;
+	memset(memoria_copactada,0,tamanio_de_memoria);
+	int inicio_mensaje;
+	int tamanio_mensaje;
+
+	sem_wait(&MUTEX_MEM_PRIN);
+	for(int i=0; i<tamanio_lista; i++){
+
+		mensaje_a_leer = list_get(lista_ordenada, i);
+		inicio_mensaje = mensaje_a_leer->byte_comienzo_ocupado;
+		tamanio_mensaje = mensaje_a_leer->tamanio_ocupado;
+
+		void* bloque_a_agregar_en_memoria = malloc(tamanio_mensaje);
+		memcpy(bloque_a_agregar_en_memoria, memoria_principal + inicio_mensaje, tamanio_mensaje);
+
+		memcpy(memoria_copactada + desplazamiento, bloque_a_agregar_en_memoria, tamanio_mensaje);
+
+		mensaje_a_leer->byte_comienzo_ocupado = desplazamiento;
+
+		desplazamiento += tamanio_mensaje;
+
+		//free(bloque_a_agregar_en_memoria);
+	}
+
+	memcpy(memoria_principal, memoria_copactada, tamanio_de_memoria);
+	sem_post(&MUTEX_MEM_PRIN);
+
+	log_compactacion();
+
+	free(memoria_copactada);
+	//free(mensaje_a_leer);
+
+}
+
+
 // PARTICIONES DINÁMICAS
 
 t_mensaje_guardado* administracion_de_memoria_particiones(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
@@ -168,172 +222,72 @@ t_mensaje_guardado* agregar_segun_first_fit(void* bloque_a_agregar_en_memoria, u
 
 	t_mensaje_guardado* mensaje_nuevo;
 
-	if(list_is_empty(elementos_en_memoria) || primera_posicion_vacia_y_entra(tamanio_a_agregar)){ // Si está vacía o la primera posición esta vacia, agregar al principio de la memoria
-
-		mensaje_nuevo = guardar_en_posicion(bloque_a_agregar_en_memoria, tamanio_a_agregar, 0);
-	}
-	else {
-
-		int encontrado = 0;
+	int encontrado = 0;
 
 		// Primero se busca posicion libre por First Fit
-		int posicion_inicial_nuevo_mensaje = buscar_first_fit(&encontrado, bloque_a_agregar_en_memoria, tamanio_a_agregar);
+	int posicion_inicial_nuevo_mensaje = buscar_first_fit(&encontrado, bloque_a_agregar_en_memoria, tamanio_a_agregar);
+	if(encontrado == 1){
+		mensaje_nuevo = guardar_en_posicion(bloque_a_agregar_en_memoria, tamanio_a_agregar, posicion_inicial_nuevo_mensaje);
+	}
+
+		// Si no se encuentra, y es momento de compactar, se compacta
+	//sem_wait(&MUTEX_FALLOS); POR AHORA SOLO CUENTO FALLOS SI SE ELIMINA
+	if(encontrado == 0){
+
+		//contador_fallos++;
+		//int se_compacto = 0;
+		int frecuencia_compactacion = obtener_frecuencia_compactacion();
+
+		if(frecuencia_compactacion == -1 || frecuencia_compactacion == 0 || frecuencia_compactacion == 1){ //Compacto cada vez que se libera
+			compactar_memoria();
+			//se_compacto = 1;
+		}
+
+		if(frecuencia_compactacion >= 2 && (contador_fallos%frecuencia_compactacion) == 0 && contador_fallos >= frecuencia_compactacion){ //Si la frecuencia es mayor a 1 y los fallos son multiplo de la frecuencia
+			compactar_memoria();
+			//se_compacto = 1;
+		}
+
+		posicion_inicial_nuevo_mensaje = buscar_first_fit(&encontrado, bloque_a_agregar_en_memoria, tamanio_a_agregar);
+
 		if(encontrado == 1){
 			mensaje_nuevo = guardar_en_posicion(bloque_a_agregar_en_memoria, tamanio_a_agregar, posicion_inicial_nuevo_mensaje);
 		}
 
-		// Si no se encuentra, y es momento de compactar, se compacta
-		sem_wait(&MUTEX_FALLOS);
-		if(encontrado == 0){
-
+		/* if(se_compacto == 1 && encontrado == 0){
 			contador_fallos++;
-			int se_compacto = 0;
-
-			int frecuencia_compactacion = obtener_frecuencia_compactacion();
-
-			if(frecuencia_compactacion == -1 || frecuencia_compactacion == 0 || frecuencia_compactacion == 1){ //Compacto cada vez que se libera
-				compactar_memoria();
-				se_compacto = 1;
-			}
-
-			if(frecuencia_compactacion >= 2 && (contador_fallos%frecuencia_compactacion) == 0 && contador_fallos >= frecuencia_compactacion){ //Si la frecuencia es mayor a 1 y los fallos son multiplo de la frecuencia
-				compactar_memoria();
-				se_compacto = 1;
-			}
-
-			posicion_inicial_nuevo_mensaje = buscar_first_fit(&encontrado, bloque_a_agregar_en_memoria, tamanio_a_agregar);
-
-			if(encontrado == 1){
-				mensaje_nuevo = guardar_en_posicion(bloque_a_agregar_en_memoria, tamanio_a_agregar, posicion_inicial_nuevo_mensaje);
-			}
-
-			if(se_compacto == 1 && encontrado == 0){
-				contador_fallos++;
-			}
-		}
-		sem_post(&MUTEX_FALLOS);
+		}*/
+	}
+	//sem_post(&MUTEX_FALLOS);
 
 		// Si luego de compactar tampoco entra, se elimina y compacta hasta que se encuentre
-		if(encontrado == 0){
-			mensaje_nuevo = eliminar_y_compactar_hasta_encontrar(bloque_a_agregar_en_memoria, tamanio_a_agregar);
-		}
+	if(encontrado == 0){
+		mensaje_nuevo = eliminar_y_compactar_hasta_encontrar(bloque_a_agregar_en_memoria, tamanio_a_agregar);
 	}
 
 	return mensaje_nuevo;
 }
 
-int buscar_first_fit(int *se_guardo_el_mensaje, void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
+int buscar_first_fit(int *encontrado, void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
 
-	t_mensaje_guardado* mensaje_nuevo;
 	int posicion_inicial_nuevo_mensaje = -1;
 
 	t_list* lista_ordenada = list_duplicate(elementos_en_memoria);
 	list_sort(lista_ordenada, comparar_inicios_mensajes); // Ordena la lista de menor a mayor a partir de la posición de inicio donde están guardados los mensajes en memoria
 	int tamanio_lista = list_size(lista_ordenada);
 
-	sem_wait(&MUTEX_MEM_PRIN);
-	for(int i=0; i<tamanio_lista; i++){ // Recorre para ver todos los mensajes guardados en la memoria principal
+	if(list_is_empty(elementos_en_memoria) || primera_posicion_vacia_y_entra(tamanio_a_agregar)){ // Si está vacía o la primera posición esta vacia, agregar al principio de la memoria
 
-		t_mensaje_guardado* mensaje_a_leer;
-		mensaje_a_leer = list_get(lista_ordenada, i);
-
-		int desplazamiento = mensaje_a_leer->byte_comienzo_ocupado + mensaje_a_leer->tamanio_ocupado; // Me paro al final del primer mensaje guardado
-
-		int contador = 4; // Si está vacío el espacio siguiente, leerá ceros
-		int cero;
-		memcpy(&cero, memoria_principal + desplazamiento, sizeof(int));
-
-		while(cero == 0 && contador <= tamanio_a_agregar){
-			desplazamiento += sizeof(int);
-			memcpy(&cero, memoria_principal + desplazamiento, sizeof(int));
-			contador+=4;
-		}
-
-		if(contador >= tamanio_a_agregar){
-
-			posicion_inicial_nuevo_mensaje = mensaje_a_leer->byte_comienzo_ocupado + mensaje_a_leer->tamanio_ocupado;
-			*se_guardo_el_mensaje = 1;
-
-			break;
-		}
+		posicion_inicial_nuevo_mensaje = 0;
+		*encontrado = 1;
 	}
-	sem_post(&MUTEX_MEM_PRIN);
+	else {
 
-	return posicion_inicial_nuevo_mensaje;
-}
-
-t_mensaje_guardado* agregar_segun_best_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
-
-	t_mensaje_guardado* mensaje_nuevo;
-
-	if(list_is_empty(elementos_en_memoria) || primera_posicion_vacia_y_entra(tamanio_a_agregar)){ // Si está vacía agregar al principio de la memoria
-
-			completar_logger("Estoy en if esta vacia", "BROKER", LOG_LEVEL_INFO);
-
-		mensaje_nuevo = guardar_en_posicion(bloque_a_agregar_en_memoria, tamanio_a_agregar, 0);
-
-	} else {
-
-			completar_logger("Estoy en if no esta vacia", "BROKER", LOG_LEVEL_INFO);
-
-		int encontrado = 0;
-
-		// Primero se busca posicion libre por Best Fit
-		int posicion_inicial_nuevo_mensaje = buscar_best_fit(&encontrado, bloque_a_agregar_en_memoria, tamanio_a_agregar);
-		if(encontrado == 1){
-			mensaje_nuevo = guardar_en_posicion(bloque_a_agregar_en_memoria, tamanio_a_agregar, posicion_inicial_nuevo_mensaje);
-		}
-
-		// Si no se encuentra, y es momento de compactar, se compacta
-		sem_wait(&MUTEX_FALLOS);
-		if(encontrado == 0){
-
-			contador_fallos++;
-			int se_compacto = 0;
-
-			int frecuencia_compactacion = obtener_frecuencia_compactacion();
-
-			if(frecuencia_compactacion == -1 || frecuencia_compactacion == 0 || frecuencia_compactacion == 1){ //Compacto cada vez que se libera
-				compactar_memoria();
-				se_compacto = 1;
-			}
-
-			if(frecuencia_compactacion != 2 && (contador_fallos%frecuencia_compactacion) == 0 && contador_fallos >= frecuencia_compactacion){ //Si la frecuencia es mayor a 1 y los fallos son multiplo de la frecuencia
-				compactar_memoria();
-				se_compacto = 1;
-			}
-
-			posicion_inicial_nuevo_mensaje = buscar_best_fit(&encontrado, bloque_a_agregar_en_memoria, tamanio_a_agregar);
-
-			if(encontrado == 1){
-				mensaje_nuevo = guardar_en_posicion(bloque_a_agregar_en_memoria, tamanio_a_agregar, posicion_inicial_nuevo_mensaje);
-			}
-			if(se_compacto == 1 && encontrado == 0){
-				contador_fallos++;
-			}
-		}
-		sem_post(&MUTEX_FALLOS);
-
-		// Si luego de compactar tampoco entra, se elimina y compacta hasta que se encuentre
-		if(encontrado == 0){
-			mensaje_nuevo = eliminar_y_compactar_hasta_encontrar(bloque_a_agregar_en_memoria, tamanio_a_agregar);
-		}
-	}
-	return mensaje_nuevo;
-}
-
-int buscar_best_fit(int *encontrado, void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
-	int tamanio_lista = list_size(elementos_en_memoria);
-	int tamanio_aceptable = tamanio_a_agregar; // Empieza buscando un tamaño igual al necesario, si no lo encuentra, busca uno mas grande por 1 byte, y asi
-	int posicion_inicial_nuevo_mensaje = -1;
-
-	sem_wait(&MUTEX_MEM_PRIN);
-	while(encontrado == 0 && tamanio_aceptable <= tamanio_de_memoria){
-
+		//sem_wait(&MUTEX_MEM_PRIN);
 		for(int i=0; i<tamanio_lista; i++){ // Recorre para ver todos los mensajes guardados en la memoria principal
 
 			t_mensaje_guardado* mensaje_a_leer;
-			mensaje_a_leer = list_get(elementos_en_memoria, i);
+			mensaje_a_leer = list_get(lista_ordenada, i);
 
 			int desplazamiento = mensaje_a_leer->byte_comienzo_ocupado + mensaje_a_leer->tamanio_ocupado; // Me paro al final del primer mensaje guardado
 
@@ -347,23 +301,120 @@ int buscar_best_fit(int *encontrado, void* bloque_a_agregar_en_memoria, uint32_t
 				contador+=4;
 			}
 
-			if(contador >= tamanio_aceptable){
+			if(contador >= tamanio_a_agregar){
 
 				posicion_inicial_nuevo_mensaje = mensaje_a_leer->byte_comienzo_ocupado + mensaje_a_leer->tamanio_ocupado;
-				encontrado = 1;
+				*encontrado = 1;
+
 				break;
 			}
-
-			//free(mensaje_a_leer);
 		}
-	tamanio_aceptable++;
-
+		//sem_post(&MUTEX_MEM_PRIN);
 	}
-	sem_post(&MUTEX_MEM_PRIN);
 
 	return posicion_inicial_nuevo_mensaje;
 }
 
+t_mensaje_guardado* agregar_segun_best_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
+
+	t_mensaje_guardado* mensaje_nuevo;
+
+	int encontrado = 0;
+
+		// Primero se busca posicion libre por Best Fit
+	int posicion_inicial_nuevo_mensaje = buscar_best_fit(&encontrado, bloque_a_agregar_en_memoria, tamanio_a_agregar);
+
+	if(encontrado == 1){
+		mensaje_nuevo = guardar_en_posicion(bloque_a_agregar_en_memoria, tamanio_a_agregar, posicion_inicial_nuevo_mensaje);
+	}
+
+		// Si no se encuentra, y es momento de compactar, se compacta
+	//sem_wait(&MUTEX_FALLOS); POR AHORA SOLO CUENTO FALLOS SI SE ELIMINAN MENSAJES
+	if(encontrado == 0){
+
+		//contador_fallos++;
+		//int se_compacto = 0;
+
+		int frecuencia_compactacion = obtener_frecuencia_compactacion();
+
+		if(frecuencia_compactacion == -1 || frecuencia_compactacion == 0 || frecuencia_compactacion == 1){ //Compacto cada vez que se libera
+			compactar_memoria();
+			//se_compacto = 1;
+		}
+
+		if(frecuencia_compactacion >= 2 && (contador_fallos%frecuencia_compactacion) == 0 && contador_fallos >= frecuencia_compactacion){ //Si la frecuencia es mayor a 1 y los fallos son multiplo de la frecuencia
+			compactar_memoria();
+			//se_compacto = 1;
+		}
+
+		posicion_inicial_nuevo_mensaje = buscar_best_fit(&encontrado, bloque_a_agregar_en_memoria, tamanio_a_agregar);
+
+		if(encontrado == 1){
+			mensaje_nuevo = guardar_en_posicion(bloque_a_agregar_en_memoria, tamanio_a_agregar, posicion_inicial_nuevo_mensaje);
+		}
+
+		/*if(se_compacto == 1 && encontrado == 0){
+				contador_fallos++;
+		}*/
+		}
+		//sem_post(&MUTEX_FALLOS);
+
+		// Si luego de compactar tampoco entra, se elimina y compacta hasta que se encuentre
+	if(encontrado == 0){
+		mensaje_nuevo = eliminar_y_compactar_hasta_encontrar(bloque_a_agregar_en_memoria, tamanio_a_agregar);
+	}
+
+	return mensaje_nuevo;
+}
+
+int buscar_best_fit(int *encontrado, void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
+	int tamanio_lista = list_size(elementos_en_memoria);
+	int tamanio_aceptable = tamanio_a_agregar; // Empieza buscando un tamaño igual al necesario, si no lo encuentra, busca uno mas grande por 1 byte, y asi
+	int posicion_inicial_nuevo_mensaje = -1;
+
+	if(list_is_empty(elementos_en_memoria) || primera_posicion_vacia_y_entra(tamanio_a_agregar)){ // Si está vacía agregar al principio de la memoria
+
+		posicion_inicial_nuevo_mensaje = 0;
+		*encontrado = 1;
+
+	} else {
+		//sem_wait(&MUTEX_MEM_PRIN);
+		while(*encontrado == 0 && tamanio_aceptable <= tamanio_de_memoria){
+
+			for(int i=0; i<tamanio_lista; i++){ // Recorre para ver todos los mensajes guardados en la memoria principal
+
+				t_mensaje_guardado* mensaje_a_leer;
+				mensaje_a_leer = list_get(elementos_en_memoria, i);
+
+				int desplazamiento = mensaje_a_leer->byte_comienzo_ocupado + mensaje_a_leer->tamanio_ocupado; // Me paro al final del primer mensaje guardado
+
+				int contador = 4; // Si está vacío el espacio siguiente, leerá ceros
+				int cero;
+				memcpy(&cero, memoria_principal + desplazamiento, sizeof(int));
+
+				while(cero == 0 && contador <= tamanio_a_agregar){
+					desplazamiento += sizeof(int);
+					memcpy(&cero, memoria_principal + desplazamiento, sizeof(int));
+					contador+=4;
+				}
+
+				if(contador >= tamanio_aceptable){
+
+					posicion_inicial_nuevo_mensaje = mensaje_a_leer->byte_comienzo_ocupado + mensaje_a_leer->tamanio_ocupado;
+					*encontrado = 1;
+					break;
+				}
+
+				//free(mensaje_a_leer);
+			}
+		tamanio_aceptable++;
+
+		}
+		//sem_post(&MUTEX_MEM_PRIN);
+	}
+
+	return posicion_inicial_nuevo_mensaje;
+}
 
 // BUDDY SYSTEM
 
@@ -471,22 +522,12 @@ int entra_en_hueco(int tamanio_a_agregar, int posicion_libre){
 
 t_mensaje_guardado* guardar_en_posicion(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar, int posicion){
 	t_mensaje_guardado* mensaje_nuevo = malloc(sizeof(t_mensaje_guardado));
-	int tamanio_minimo_particion = obtener_tamanio_minimo_particion();
 
-	sem_wait(&MUTEX_MEM_PRIN);
-	if(tamanio_a_agregar < tamanio_minimo_particion){
-		void* bloque_con_fragmentacion = tratar_fragmentacion_interna(bloque_a_agregar_en_memoria, tamanio_a_agregar);
+	memcpy(memoria_principal + posicion, bloque_a_agregar_en_memoria, tamanio_a_agregar); //usar semaforos xq es variable global
+	mensaje_nuevo->byte_comienzo_ocupado = posicion;
+	mensaje_nuevo->tamanio_ocupado = tamanio_a_agregar;
 
-		memcpy(memoria_principal + posicion, bloque_con_fragmentacion, tamanio_minimo_particion); //usar semaforos xq es variable global
-		mensaje_nuevo->byte_comienzo_ocupado = posicion;
-		mensaje_nuevo->tamanio_ocupado = tamanio_minimo_particion;
-
-	} else {
-		memcpy(memoria_principal + posicion, bloque_a_agregar_en_memoria, tamanio_a_agregar); //usar semaforos xq es variable global
-		mensaje_nuevo->byte_comienzo_ocupado = posicion;
-		mensaje_nuevo->tamanio_ocupado = tamanio_a_agregar;
-	}
-	sem_post(&MUTEX_MEM_PRIN);
+	//sem_post(&MUTEX_MEM_PRIN);
 
 	return mensaje_nuevo;
 }
@@ -509,45 +550,5 @@ void* tratar_fragmentacion_interna(void* bloque_a_agregar_en_memoria, uint32_t t
 	return bloque_con_fragmentacion;
 }
 
-void compactar_memoria(void){
-	int desplazamiento = 0;
-	t_list* lista_ordenada = list_duplicate(elementos_en_memoria);
-	list_sort(lista_ordenada, comparar_inicios_mensajes); // Ordena la lista de menor a mayor a partir de la posición de inicio donde están guardados los mensajes en memoria
-	int tamanio_lista = list_size(lista_ordenada);
-
-	void* memoria_copactada = malloc(tamanio_de_memoria);
-	t_mensaje_guardado* mensaje_a_leer;
-	memset(memoria_copactada,0,tamanio_de_memoria);
-	int inicio_mensaje;
-	int tamanio_mensaje;
-
-	sem_wait(&MUTEX_MEM_PRIN);
-	for(int i=0; i<tamanio_lista; i++){
-
-		mensaje_a_leer = list_get(lista_ordenada, i);
-		inicio_mensaje = mensaje_a_leer->byte_comienzo_ocupado;
-		tamanio_mensaje = mensaje_a_leer->tamanio_ocupado;
-
-		void* bloque_a_agregar_en_memoria = malloc(tamanio_mensaje);
-		memcpy(bloque_a_agregar_en_memoria, memoria_principal + inicio_mensaje, tamanio_mensaje);
-
-		memcpy(memoria_copactada + desplazamiento, bloque_a_agregar_en_memoria, tamanio_mensaje);
-
-		mensaje_a_leer->byte_comienzo_ocupado = desplazamiento;
-
-		desplazamiento += tamanio_mensaje;
-
-		//free(bloque_a_agregar_en_memoria);
-	}
-
-	memcpy(memoria_principal, memoria_copactada, tamanio_de_memoria);
-	sem_post(&MUTEX_MEM_PRIN);
-
-	completar_logger("Se compactó la memoria", "BROKER", LOG_LEVEL_INFO); // LOG OBLIGATORIO
-
-	free(memoria_copactada);
-	//free(mensaje_a_leer);
-
-}
 
 
