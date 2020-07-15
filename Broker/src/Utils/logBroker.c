@@ -1,8 +1,8 @@
 #include "logBroker.h"
 
 void iniciar_logger(){
-	//char* file = obtener_log_file();
-	if((logger = log_create("Broker.log","BROKER",1,LOG_LEVEL_INFO )) == NULL){
+	char* file = obtener_log_file();
+	if((logger = log_create(file,"BROKER",1,LOG_LEVEL_INFO )) == NULL){
 		printf("No se pudo crear el log");
 		exit(1);
 	}
@@ -35,7 +35,7 @@ void completar_logger(char* mensaje, char* programa, t_log_level log_level)
  * 2.   Suscripción de un proceso a una cola de mensajes.
  * 3.   Llegada de un nuevo mensaje a una cola de mensajes.
  * 4.   Envío de un mensaje a un suscriptor específico.
- * 5.   Confirmación de reepción de un suscriptor al envío de un mensaje previo. --> NO HECHO
+ * 5.   Confirmación de recepción de un suscriptor al envío de un mensaje previo. --> NO HECHO
  * 6.   Almacenado de un mensaje dentro de la memoria (indicando posición de inicio de su partición).
  * 7.   Eliminado de una partición de memoria (indicando la posición de inicio de la misma).
  * 8.1. Ejecución de compactación para particiones dinámicas.

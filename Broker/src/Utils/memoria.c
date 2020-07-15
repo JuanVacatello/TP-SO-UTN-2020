@@ -286,19 +286,21 @@ int buscar_first_fit(int *encontrado, void* bloque_a_agregar_en_memoria, uint32_
 			int cero;
 			memcpy(&cero, memoria_principal + desplazamiento, sizeof(int));
 
-			while(cero == 0 && contador <= tamanio_a_agregar){
+			while(cero == 0){
 				desplazamiento += sizeof(int);
 				memcpy(&cero, memoria_principal + desplazamiento, sizeof(int));
 				contador+=4;
+
+				if(contador >= tamanio_a_agregar){
+
+					posicion_inicial_nuevo_mensaje = mensaje_a_leer->byte_comienzo_ocupado + mensaje_a_leer->tamanio_ocupado;
+					*encontrado = 1;
+
+					break;
+				}
 			}
-
-			if(contador >= tamanio_a_agregar){
-
-				posicion_inicial_nuevo_mensaje = mensaje_a_leer->byte_comienzo_ocupado + mensaje_a_leer->tamanio_ocupado;
-				*encontrado = 1;
-
+			if(*encontrado == 1)
 				break;
-			}
 		}
 		//sem_post(&MUTEX_MEM_PRIN);
 	}

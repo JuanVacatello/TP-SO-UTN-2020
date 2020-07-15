@@ -82,6 +82,7 @@ t_list* mensajes_de_cola_localized_pokemon;
 t_buffer* buffer;
 uint32_t mensaje_id;
 pthread_t thread;
+sem_t MUTEX_MENSAJE;
 
 // CONEXION CON CLIENTE
 void iniciar_servidor(void);
