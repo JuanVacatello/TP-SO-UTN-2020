@@ -15,7 +15,7 @@
 pthread_t hilo_servidor;
 
 void terminar_programa(void);
-void creacion_colas_de_mensajes(void);
+void inicializacion_de_variables_globales(void);
 
 #endif /* BROKER_H_ */
 

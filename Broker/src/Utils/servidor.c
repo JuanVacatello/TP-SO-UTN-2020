@@ -220,8 +220,10 @@ void enviar_mensajes_al_nuevo_suscriptor(t_list* mensajes_de_dicha_cola, int soc
 
 		mensaje_a_enviar = list_get(mensajes_de_dicha_cola, i);
 
+		sem_wait(&MUTEX_TIMESTAMP);
 		mensaje_a_enviar->ubicacion_mensaje->ultima_referencia = timestamp; // Aumento el timestamp
 		timestamp++;
+		sem_post(&MUTEX_TIMESTAMP);
 
 		t_paquete* paquete = malloc(sizeof(t_paquete));
 		paquete->codigo_operacion = mensaje_a_enviar->codigo_operacion;;
@@ -739,14 +741,11 @@ void guardar_mensaje(t_list* cola_de_mensajes, op_code codigo_operacion, t_list*
 */
 
 void recibir_ack(int socket_cliente){
-//	uint32_t tamanio_buffer;
-//	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
+	uint32_t tamanio_buffer;
+	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
-	uint32_t largo_mensaje;
-	recv(socket_cliente, &largo_mensaje, sizeof(uint32_t), MSG_WAITALL);
-
-	char* ack = (char*)malloc(largo_mensaje);
-	recv(socket_cliente, ack, largo_mensaje, MSG_WAITALL);
+	char* ack = (char*)malloc(tamanio_buffer);
+	recv(socket_cliente, ack, tamanio_buffer, MSG_WAITALL);
 
 	puts(ack);
 
