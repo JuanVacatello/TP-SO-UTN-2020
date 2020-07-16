@@ -57,10 +57,12 @@ t_config* leer_metadata_pokemon(char* path_pokemon){
 }
 
 char** obtener_bloques_pokemon(char* path_pokemon){ //DEVUELVE EN FORMATO: ["1","2",....,"N"]
+
 	t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
 	char* bloques;
 	bloques = config_get_string_value(metadata_pokemon, "BLOCKS");
 	char** array_bloques = string_get_string_as_array(bloques);
+	config_destroy(metadata_pokemon);
 	return array_bloques;
 
 	/*
@@ -71,7 +73,7 @@ char** obtener_bloques_pokemon(char* path_pokemon){ //DEVUELVE EN FORMATO: ["1",
 }
 
 
-int obtener_cantidad_bloques_pokemon(t_config* metadata){
+int obtener_cantidad_bloques_pokemon(t_config* metadata){// ADAPTAR COMO EL OBTENER_BLOQUES_POKEMON(SIN EL CONFIG)
 
 	char* bloques;
 	bloques = config_get_string_value(metadata, "BLOCKS");

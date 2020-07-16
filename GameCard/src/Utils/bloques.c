@@ -115,29 +115,27 @@ void actualizar_valores_pokemon(char* path_metadata_pokemon,int posX,int posY,in
  	int nuevo_bloque = obtener_nuevo_bloque(); // IMPLEMENTAR EN BITMAP NASHE
  	char** bloques = obtener_bloques_pokemon(path_pokemon);
 
- 	t_list *listBlocks = list_create();
- 	for(int j = 0; j < sizeofArray(arrayBlocks); j++){
- 		list_add(listBlocks,string_duplicate(arrayBlocks[j]));
- 		free(arrayBlocks[j]);
+ 	t_list *lista_bloques = list_create();
+ 	for(int j = 0; j < sizeofArray(bloques); j++){
+ 		list_add(lista_bloques,string_duplicate(bloques[j]));
+ 		free(bloques[j]);
  	}
- 	free(arrayBlocks);free(stringArrayBlocks);
+ 	free(bloques);
 
- 	char *x = string_itoa(newBlock);
- 	list_add(listBlocks,x);
+ 	char *x = string_itoa(nuevo_bloque);
+ 	list_add(lista_bloques,x);
 
- 	char *stringArray = string_new();
- 	string_append(&stringArray, "[");
- 	for(int k = 0; k < list_size(listBlocks); k++){
- 		string_append(&stringArray,list_get(listBlocks,k));
- 		if((k + 1) != list_size(listBlocks)) string_append(&stringArray,",");
+ 	char *vector_bloques = string_new();
+ 	string_append(&vector_bloques, "[");
+ 	for(int k = 0; k < list_size(lista_bloques); k++){
+ 		string_append(&vector_bloques,list_get(lista_bloques,k));
+ 		if((k + 1) != list_size(lista_bloques)) string_append(&vector_bloques,",");
  	}
- 	string_append(&stringArray, "]");
+ 	string_append(&vector_bloques, "]");
 
- 	b_modifyBlocks(url,stringArray);
+ 	list_destroy_and_destroy_elements(lista_bloques,free);
 
- 	list_destroy_and_destroy_elements(listBlocks,free);
-
- 	free(stringArray);
+ 	free(vector_bloques);
  }
 
 

@@ -56,3 +56,7 @@ void eliminar_bitmap(){
 
 void bitmap_liberar_bloque(int bloque, int bitmap);
 
+int obtener_nuevo_bloque(){
+
+}
+
