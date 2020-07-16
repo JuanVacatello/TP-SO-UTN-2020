@@ -18,7 +18,9 @@ void planificar_fifo(void){
 
 		while(!list_is_empty(lista_de_entrenadores_ready)){
 
-			entrenador = list_remove(lista_de_entrenadores_ready,0);
+			sem_wait(&MUTEX_ENTRENADORES);
+
+			entrenador = list_get(lista_de_entrenadores_ready,0);
 			entrenador->estado = EXEC;
 			cambiosDeContexto++;
 

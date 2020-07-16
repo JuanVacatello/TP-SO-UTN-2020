@@ -27,13 +27,14 @@ void iniciar_vg(){
 	//PONEMOS EL SEMÁFORO EN 0
 	pthread_mutex_lock(&mutex_planificador);
 
-	pthread_mutex_init(&mutex_entrenador, NULL);
+//	pthread_mutex_init(&mutex_entrenador, NULL);
 	//PONEMOS EL SEMÁFORO EN 0
-	pthread_mutex_lock(&mutex_entrenador);
+//	pthread_mutex_lock(&mutex_entrenador);
 
 	sem_init(&MUTEX_SUB,0,1);
 	sem_init(&MUTEX_POKEMON_REQUERIDO,0,1);
 	sem_init(&CONTADOR_ENTRENADORES,0,cantidad_entrenadores());
+	sem_init(&MUTEX_ENTRENADORES,0,1);
 
 	verificar_entrenadores();
 

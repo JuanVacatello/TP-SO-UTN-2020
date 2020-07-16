@@ -226,6 +226,10 @@ void intentar_atrapar_pokemon(t_entrenador* entrenador){
 		pthread_create(&hilo_entrenador_esperando, NULL, recibir_CaughtPokemon, entrenador);
 		pthread_detach(hilo_entrenador_esperando);
 	}
+
+	entrenador = list_remove(lista_de_entrenadores_ready,0);
+
+	sem_post(&MUTEX_ENTRENADORES);
 }
 
 void atrapar_pokemon(t_entrenador* entrenador){
