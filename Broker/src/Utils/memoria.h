@@ -63,5 +63,6 @@ int toda_la_memoria_esta_ocupada(void);
 int entra_en_hueco(int tamanio_a_agregar, int posicion_libre);
 t_mensaje_guardado* guardar_en_posicion(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar, int posicion);
 void* tratar_fragmentacion_interna(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
+int encontrar_mensaje_a_eliminar_por_posicion(int posicion);
 
 #endif /* UTILS_MEMORIA_H_ */

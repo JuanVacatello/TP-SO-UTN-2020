@@ -57,15 +57,6 @@ t_mensaje_guardado* eliminar_y_compactar_hasta_encontrar(void* bloque_a_agregar_
 
 		int posicion_inicial_nuevo_mensaje = ejecutar_algoritmo_reemplazo();
 
-		//Elimino un mensaje de memoria y me fijo si entra
-		if(!(strcmp(algoritmo_particion_libre, "FF"))){
-			posicion_inicial_nuevo_mensaje = buscar_first_fit(&encontrado, bloque_a_agregar_en_memoria, tamanio_a_agregar);
-		}
-
-		if(!(strcmp(algoritmo_particion_libre, "BF"))){
-			posicion_inicial_nuevo_mensaje = buscar_best_fit(&encontrado, bloque_a_agregar_en_memoria, tamanio_a_agregar);
-		}
-
 		// Si no entra, cuenta como fallo y procede a compactar si es momento
 		int se_compacto = 0;
 		if((frecuencia_compactacion == -1 || frecuencia_compactacion == 0 || frecuencia_compactacion == 1) && encontrado == 0){ //Compacto cada vez que se libera
@@ -79,11 +70,11 @@ t_mensaje_guardado* eliminar_y_compactar_hasta_encontrar(void* bloque_a_agregar_
 		}
 
 		// Una vez compactada la memoria me fijo si ahora entra
-		if((!(strcmp(algoritmo_particion_libre, "FF"))) && encontrado == 0 && se_compacto == 1){
+		if((!(strcmp(algoritmo_particion_libre, "FF"))) && encontrado == 0){
 			posicion_inicial_nuevo_mensaje = buscar_first_fit(&encontrado, bloque_a_agregar_en_memoria, tamanio_a_agregar);
 		}
 
-		if((!(strcmp(algoritmo_particion_libre, "BF"))) && encontrado == 0 && se_compacto == 1){
+		if((!(strcmp(algoritmo_particion_libre, "BF"))) && encontrado == 0){
 			posicion_inicial_nuevo_mensaje = buscar_best_fit(&encontrado, bloque_a_agregar_en_memoria, tamanio_a_agregar);
 		}
 
@@ -143,16 +134,21 @@ int reemplazar_segun_LRU(void){
 	t_list* lista_ordenada = list_duplicate(elementos_en_memoria);
 	list_sort(lista_ordenada, comparar_timestamps_mensajes);
 
-	t_mensaje_guardado* mensaje_a_eliminar;
-	mensaje_a_eliminar = list_remove(elementos_en_memoria, 0); // Eliminamos el primer mensaje de la lista ordenada -> Timestamp mas bajo
-	int posicion_inicial_nuevo_mensaje = mensaje_a_eliminar->byte_comienzo_ocupado;
-	int cantidad_a_eliminar = mensaje_a_eliminar->tamanio_ocupado;
+	t_mensaje_guardado* mensaje_aux;
+	mensaje_aux = list_remove(lista_ordenada, 0); // Eliminamos el primer mensaje de la lista ordenada -> Timestamp mas bajo
+	int posicion_inicial_nuevo_mensaje = mensaje_aux->byte_comienzo_ocupado;
+	int cantidad_a_eliminar = mensaje_aux->tamanio_ocupado;
+
+	int posicion_mensaje_a_eliminar = encontrar_mensaje_a_eliminar_por_posicion(posicion_inicial_nuevo_mensaje);
+	t_mensaje_guardado* mensaje_a_eliminar = list_remove(elementos_en_memoria, posicion_mensaje_a_eliminar);
 
 	sem_wait(&MUTEX_MEM_PRIN);
 	memset(memoria_principal + posicion_inicial_nuevo_mensaje, 0, cantidad_a_eliminar);
 	sem_post(&MUTEX_MEM_PRIN);
 
+	//free(mensaje_aux);
 	free(mensaje_a_eliminar);
+	//free(lista_ordenada);
 
 	return posicion_inicial_nuevo_mensaje;
 }
@@ -541,5 +537,13 @@ void* tratar_fragmentacion_interna(void* bloque_a_agregar_en_memoria, uint32_t t
 	return bloque_con_fragmentacion;
 }
 
-
+int encontrar_mensaje_a_eliminar_por_posicion(int posicion){
+	t_mensaje_guardado* mensaje_aux;
+	for(int i = 0; i<list_size(elementos_en_memoria); i++){
+		mensaje_aux = list_get(elementos_en_memoria, i);
+		if(mensaje_aux->byte_comienzo_ocupado == posicion){
+			return i;
+		}
+	}
+}
 
