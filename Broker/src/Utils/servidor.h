@@ -47,15 +47,6 @@ typedef struct t_paquete
 	t_buffer* buffer;
 } t_paquete;
 
-/*
-typedef struct t_paquete_devuelto
-{
-	op_code codigo_operacion;
-	t_buffer* buffer;
-	uint32_t identificador;
-} t_paquete_devuelto;
-*/
-
 typedef struct {
 	op_code codigo_operacion;
 	uint32_t identificador;
@@ -63,6 +54,7 @@ typedef struct {
 	t_list* suscriptores_ack;
 	uint32_t tamanio_buffer;
 	t_mensaje_guardado* ubicacion_mensaje;
+	char* pokemon;
 } t_mensaje_en_cola;
 
 t_list* suscriptores_new_pokemon;
@@ -96,7 +88,11 @@ void process_request(op_code cod_op, int socket_cliente);
 void atender_suscripcion(int socket_cliente);
 proceso* modelar_proceso(int socket);
 void suscribirse_a_cola(proceso* suscriptor, int socket, uint32_t tamanio_buffer);
-void enviar_mensajes_al_nuevo_suscriptor(t_list* mensajes_de_dicha_cola, int socket_suscriptor);
+void enviar_mensajes_al_nuevo_suscriptor_NP(t_list* mensajes_de_dicha_cola, int socket_suscriptor);
+void enviar_mensajes_al_nuevo_suscriptor_AP(t_list* mensajes_de_dicha_cola, int socket_suscriptor);
+void enviar_mensajes_al_nuevo_suscriptor_CATP(t_list* mensajes_de_dicha_cola, int socket_suscriptor);
+void enviar_mensajes_al_nuevo_suscriptor_CAUP(t_list* mensajes_de_dicha_cola, int socket_suscriptor);
+void enviar_mensajes_al_nuevo_suscriptor_GP(t_list* mensajes_de_dicha_cola, int socket_suscriptor);
 
 // RECEPCION, ALMACENAMIENTO EN MEMORIA Y REENVIO DE MENSAJES
 void recibir_new_pokemon(int socket_cliente);
@@ -106,7 +102,7 @@ void recibir_caught_pokemon(int socket_cliente);
 void recibir_get_pokemon(int socket_cliente);
 void recibir_localized_pokemon(int socket_cliente);
 void reenviar_mensaje_a_suscriptores(void* a_enviar, int tamanio_paquete, t_list* suscriptores);
-void guardar_mensaje_en_cola(op_code cod_op, t_list* lista_mensajes, t_mensaje_guardado* mensaje_en_memoria, uint32_t tamanio_buffer, uint32_t id_mensaje_correlativo);
+void guardar_mensaje_en_cola(op_code cod_op, t_list* lista_mensajes, t_mensaje_guardado* mensaje_en_memoria, uint32_t tamanio_buffer, uint32_t id_mensaje_correlativo, char* pokemon);
 void reenviar_mensaje_a_suscriptores(void* a_enviar, int tamanio_paquete, t_list* suscriptores);
 void recibir_ack(int socket_cliente);
 
@@ -117,6 +113,7 @@ int recibir_tamanio_buffer(int socket);
 // ENVIAR MENSAJE
 void enviar_mensaje(int socket_cliente, char* mensaje);
 void enviar_mensaje_id(int socket_cliente);
+
 
 #endif
 

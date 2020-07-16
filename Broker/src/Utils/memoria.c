@@ -27,13 +27,16 @@ t_mensaje_guardado* guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria
 	}
 
 	sem_wait(&MUTEX_TIMESTAMP);
-	mensaje_nuevo->ultima_referencia = timestamp;
 	timestamp++;
+	mensaje_nuevo->ultima_referencia = timestamp;
 	sem_post(&MUTEX_TIMESTAMP);
 
 	list_add(elementos_en_memoria, mensaje_nuevo);
 
 	log_almacenar_mensaje(mensaje_nuevo->byte_comienzo_ocupado);
+
+	char* log = string_from_format("Con timestamp %d y tamaño ocupado %d.", mensaje_nuevo->ultima_referencia, mensaje_nuevo->tamanio_ocupado);
+	completar_logger(log, "BROKER", LOG_LEVEL_INFO);
 
 	sem_post(&MUTEX_LISTA);
 
