@@ -23,7 +23,7 @@
 #include"metadata.h"
 #include"configGameCard.h"
 
-
+t_bitarray *bitarray;
 
 pthread_mutex_t MUTEX_BITMAP;
 

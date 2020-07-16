@@ -37,17 +37,17 @@ int obtener_tamanio_bloques(){
 
 
 //leer metadata pokemon
-t_config* leer_metadata_pokemon(char* path_metadata_pokemon){
+t_config* leer_metadata_pokemon(char* path_pokemon){
 
 	t_config* metadata;
 
-	/*
-	char* path_archivo_metadata = string_new();
-	string_append(&path_archivo_metadata, path_metadata);
-	string_append(&path_archivo_metadata, "/Metadata.bin")
-	*/
 
-	metadata = config_create(path_metadata_pokemon);
+	char* path_archivo_metadata = string_new();
+	string_append(&path_archivo_metadata, path_pokemon);
+	string_append(&path_archivo_metadata, "/Metadata.bin")
+
+
+	metadata = config_create(path_archivo_metadata);
 
 		if(metadata == NULL){
 			printf("No se pudo leer el archivo metadata.");
@@ -56,9 +56,10 @@ t_config* leer_metadata_pokemon(char* path_metadata_pokemon){
 	return metadata;
 }
 
-char** obtener_bloques_pokemon(t_config* metadata){ //DEVUELVE EN FORMATO: ["1","2",....,"N"]
+char** obtener_bloques_pokemon(char* path_pokemon){ //DEVUELVE EN FORMATO: ["1","2",....,"N"]
+	t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
 	char* bloques;
-	bloques = config_get_string_value(metadata, "BLOCKS");
+	bloques = config_get_string_value(metadata_pokemon, "BLOCKS");
 	char** array_bloques = string_get_string_as_array(bloques);
 	return array_bloques;
 

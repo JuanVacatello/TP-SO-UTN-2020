@@ -19,7 +19,7 @@ void crear_bitmap(){
 	ftruncate(bitmap_fd, bloques/8 + 1);
 
 	if(bitmap_fd == -1){
-		//	log_error(logger,"No se pudo abrir el archivo bitmap.h");
+		//	log_error(logger,"No se pudo abrir el archivo bitmap.bin");
 			close(bitmap_fd);
 
 			free(path_bitmap); //Chequear
@@ -29,20 +29,27 @@ void crear_bitmap(){
 		}
 
 	char* contenido_bitmap = mmap(NULL, bloques/8 + 1 , PROT_READ | PROT_WRITE, MAP_SHARED | MAP_FILE, bitmap_fd, 0);
-	t_bitarray* bitmap = bitarray_create(contenido_bitmap, bloques/8 + 1 );
+	bitarray = bitarray_create(contenido_bitmap, bloques/8 + 1 );
 
 
 	free(path_bitmap); //Chequear
-/*
+
 	for(int i = 0; i < bloques; i++){
 		if(bloque_esta_vacio(i)==1){
-			bitarray_clean_bit(bitmap,i);
+			bitarray_clean_bit(bitarray,i);
 		}
-			bitarray_set_bit(bitmap,i);
+			bitarray_set_bit(bitarray,i);
 	}
-FALTA TERMINAR FUNCION BLOQUE_ESTA_VACIO()*/
-	msync(bitmap->bitarray,bitmap_fd,MS_SYNC);
+
+	msync(bitarray->bitarray,bitmap_fd,MS_SYNC);
 	close(bitmap_fd);
+
+}
+
+void eliminar_bitmap(){
+	//msync(bitarray->bitarray, bitarrayfd, MS_SYNC);
+		bitarray_destroy(bitarray);
+	}
 
 }
 

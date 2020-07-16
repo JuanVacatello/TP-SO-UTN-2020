@@ -25,6 +25,8 @@ int existe_file(char* path){
 	return stat(path,&buffer);
 }
 
+
+
 void actualizar_valores_pokemon(char* path_metadata_pokemon,int posX,int posY,int cantidad){
 
 	t_config* metadata = leer_metadata_pokemon(path_metadata_pokemon);
@@ -38,6 +40,11 @@ void actualizar_valores_pokemon(char* path_metadata_pokemon,int posX,int posY,in
 
 
 }
+
+
+
+
+
  int espacio_libre(int bloque);
 
 //USAR CONFIG PARA PATH
@@ -52,14 +59,6 @@ void actualizar_valores_pokemon(char* path_metadata_pokemon,int posX,int posY,in
 	2=3/n
 	1-2=3
   */
-
-
-
-
-
- int obtener_tamanio_bloque(){
- 	return 26;
- }
 
 
 
@@ -95,3 +94,55 @@ void actualizar_valores_pokemon(char* path_metadata_pokemon,int posX,int posY,in
 
  	return(obtener_tamanio_bloque() - tamanio_actual);
  }
+
+ int bloque_esta_vacio(char* bloque){
+	 if(tamanio_libre_bloque(bloque) == obtener_tamanio_bloques())
+	 return 1;
+	 else
+	 return 0;
+	 }
+ }
+
+
+ int bloque_lleno(char* bloque){
+	 if(tamanio_libre_bloque(bloque)==0){
+		 return 1;
+	 }
+	 return 0;
+}
+
+ void asignar_bloque_pokemon(char* path_pokemon){
+ 	int nuevo_bloque = obtener_nuevo_bloque(); // IMPLEMENTAR EN BITMAP NASHE
+ 	char** bloques = obtener_bloques_pokemon(path_pokemon);
+
+ 	t_list *listBlocks = list_create();
+ 	for(int j = 0; j < sizeofArray(arrayBlocks); j++){
+ 		list_add(listBlocks,string_duplicate(arrayBlocks[j]));
+ 		free(arrayBlocks[j]);
+ 	}
+ 	free(arrayBlocks);free(stringArrayBlocks);
+
+ 	char *x = string_itoa(newBlock);
+ 	list_add(listBlocks,x);
+
+ 	char *stringArray = string_new();
+ 	string_append(&stringArray, "[");
+ 	for(int k = 0; k < list_size(listBlocks); k++){
+ 		string_append(&stringArray,list_get(listBlocks,k));
+ 		if((k + 1) != list_size(listBlocks)) string_append(&stringArray,",");
+ 	}
+ 	string_append(&stringArray, "]");
+
+ 	b_modifyBlocks(url,stringArray);
+
+ 	list_destroy_and_destroy_elements(listBlocks,free);
+
+ 	free(stringArray);
+ }
+
+
+
+
+
+
+
