@@ -70,12 +70,14 @@ void planificar_sjf_sd(void){
 */
 		while(!list_is_empty(lista_de_entrenadores_ready)){
 
+			sem_wait(&MUTEX_ENTRENADORES);
+
 			entrenador_aux = entrenador_con_menor_cpu();
 
 			for(int i =0 ; i<list_size(lista_de_entrenadores_ready); i++){
 				entrenador = list_get(lista_de_entrenadores_ready,i);
 				if(entrenador->ID_entrenador == entrenador_aux->ID_entrenador){
-					entrenador = list_remove(lista_de_entrenadores_ready,i);
+					entrenador = list_get(lista_de_entrenadores_ready,i);
 				}
 			}
 

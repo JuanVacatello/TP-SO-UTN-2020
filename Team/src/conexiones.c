@@ -99,7 +99,6 @@ void process_request(op_code cod_op, int socket_cliente) {
 
 	switch(cod_op){
 		case 2:
-			sem_wait(&CONTADOR_ENTRENADORES);
 			recibir_AppearedPokemon(socket_cliente);
 			break;
 		case 4:
@@ -450,6 +449,7 @@ void recibir_AppearedPokemon(int socket_cliente){
 
 		if(es_pokemon_requerido(pokemon)){
 
+			sem_wait(&CONTADOR_ENTRENADORES);
 			t_pokemon* pokemonNuevo = armarPokemon(pokemon, posX, posY);
 			//list_add(lista_de_pokemones_sueltos, pokemonNuevo);
 			aparicion_pokemon(pokemonNuevo);
