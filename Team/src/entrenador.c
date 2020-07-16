@@ -185,12 +185,16 @@ int sacar_distancia(t_posicion pokeposicion,t_posicion entreposicion){
 
 bool puede_atrapar(t_entrenador* entrenador){
 	if (entrenador->estado == BLOCKED || entrenador->estado == NEW){
-		if(list_size(entrenador->atrapados) < list_size(entrenador->objetivo)){
-			return true;
+		if(entrenador->pokemon_a_atrapar == NULL){
+			if(list_size(entrenador->atrapados) < list_size(entrenador->objetivo)){
+				return true;
+			}
+			else{
+				return false;
+			}
 		}
-		else{
+		else
 			return false;
-		}
 	}
 	else{
 		return false;
@@ -263,7 +267,7 @@ void atrapar_pokemon(t_entrenador* entrenador){
 
 
 	entrenador->pokemon_a_atrapar = NULL;
-	//sem_post(&MUTEX_POKEMON_REQUERIDO);
+	sem_post(&CONTADOR_ENTRENADORES);
 }
 
 

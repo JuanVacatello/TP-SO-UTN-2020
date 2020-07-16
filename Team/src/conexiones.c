@@ -70,7 +70,7 @@ void esperar_cliente(int socket_servidor)
 	struct sockaddr_in dir_cliente;
 
 	int tam_direccion = sizeof(struct sockaddr_in);
-
+	sem_wait(&MUTEX_MENSAJES_GB);
 	int socket_cliente = accept(socket_servidor, (void*) &dir_cliente, &tam_direccion);
 
 	pthread_create(&thread,NULL,(void*)serve_client,&socket_cliente);
@@ -99,17 +99,10 @@ void process_request(op_code cod_op, int socket_cliente) {
 
 	switch(cod_op){
 		case 2:
-			sem_wait(&CONTADOR_ENTRENADORES);
 			recibir_AppearedPokemon(socket_cliente);
 			break;
-		case 4:
-			recibir_CaughtPokemon(socket_cliente);
-			break;
-		case 6:
-			recibir_LocalizedPokemon(socket_cliente);
-
-			break;
 	}
+	sem_post(&MUTEX_MENSAJES_GB);
 }
 
 void* serializar_paquete(t_paquete* paquete, int *bytes)
@@ -209,7 +202,6 @@ int enviar_suscripcion_a_cola(op_code cola)
 
 	int tamanio_paquete = 0;
 	void* a_enviar = suscribirse_a_cola(socket_broker, cola, &tamanio_paquete);
-	puts("aca entra1.5");
 
 	send(socket_broker,a_enviar,tamanio_paquete,0);
 
@@ -449,18 +441,12 @@ void recibir_AppearedPokemon(int socket_cliente){
 		recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
 
 		if(es_pokemon_requerido(pokemon)){
-
+			sem_wait(&CONTADOR_ENTRENADORES);
 			t_pokemon* pokemonNuevo = armarPokemon(pokemon, posX, posY);
-			//list_add(lista_de_pokemones_sueltos, pokemonNuevo);
 			aparicion_pokemon(pokemonNuevo);
 
 			pthread_mutex_unlock(&mutex_planificador);
 		}
-		//else{
-			//sem_post(&MUTEX_POKEMON_REQUERIDO);
-		//}
-
-		//free(pokemonNuevo);
 
 }
 
@@ -616,41 +602,6 @@ void recibir_localized_pokemon_loggeo(int socket_cliente){
 
 		//pthread_mutex_unlock(hilo_planificador);
 }
-
-//----------------------- RECEPCION DE MENSAJES DE GAMEBOY -----------------------
-
-/*
-void recibir_AppearedPokemon(int socket_cliente){
-
-		uint32_t tamanio_buffer;
-		recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
-
-		uint32_t caracteresPokemon;
-		recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
-
-		char* pokemon = (char*)malloc(caracteresPokemon);
-		recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
-
-		uint32_t posX;
-		recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
-
-		uint32_t posY;
-		recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
-
-		if(es_pokemon_requerido(pokemon)){
-
-			t_pokemon* pokemonNuevo = armarPokemon(pokemon, posX, posY);
-			list_add(lista_de_pokemones_sueltos, pokemonNuevo);
-
-			pthread_mutex_unlock(&mutex_planificador);
-		}
-		else{
-			sem_post(&MUTEX_POKEMON_REQUERIDO);
-		}
-
-		//free(pokemonNuevo);
-
-}*/
 
 
 t_pokemon* armarPokemon(char* pokemon, int posX, int posY){

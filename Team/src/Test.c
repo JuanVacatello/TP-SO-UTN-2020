@@ -15,42 +15,8 @@ int main(void) {
 		leer_config();
 		iniciar_logger();
 
-
 		iniciar_vg();
 
-/*
-		t_entrenador* entrenador;
-		char* pokemonn;
-
-		for(int i = 0; i < cantidad_entrenadores(); i++){
-			entrenador = list_get(lista_de_entrenadores,i);
-			for(int j = 0; j <list_size(entrenador->objetivo); j ++){
-				pokemonn = list_get(entrenador->objetivo, j);
-				puts(pokemonn);
-			}
-			puts("");
-		}
-
- 	 	int algoritmo;
-		char* logFile;
-		int retardo, tiempoReconexion, estimacion, quantum;// alpha;
-
-		retardo = obtener_retardo_ciclo_cpu();
-		printf("Retardo: %d\n",retardo);
-		tiempoReconexion = obtener_tiempo_reconexion();
-		printf("Tiempo de reconexion: %d\n",tiempoReconexion);
-		estimacion = obtener_estimacion_inicial();
-		printf("Estimacion: %d\n",estimacion);
-		quantum = obtener_quantum();
-		printf("Quantum: %d\n",quantum);
-		logFile = obtener_log_file();
-		puts("Log path:");
-		puts(logFile);
-		algoritmo = obtener_algoritmo_planificacion();
-		printf("Algoritmo de planificacion: %d\n",algoritmo);
-		alpha = obtener_alpha();
-		printf("%d\n",alpha);
-*/
 		puts("aca entra1");
 		puts("hola");
 
@@ -73,5 +39,4 @@ int main(void) {
 
 		return 0;
 }
-
 

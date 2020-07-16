@@ -14,7 +14,7 @@ void iniciar_vg(){
 	lista_de_entrenadores_deadlock = list_create();
 	lista_de_entrenadores_ready = list_create();
 	lista_de_pokemones_sueltos = list_create();
-	//informar_pokemones_a_atrapar();
+
 
 	ciclosCpuTotales = 0;
 	cambiosDeContexto = 0;
@@ -35,6 +35,7 @@ void iniciar_vg(){
 	sem_init(&MUTEX_POKEMON_REQUERIDO,0,1);
 	sem_init(&CONTADOR_ENTRENADORES,0,cantidad_entrenadores());
 	sem_init(&MUTEX_ENTRENADORES,0,1);
+	sem_init(&MUTEX_MENSAJES_GB,0,1);
 
 	verificar_entrenadores();
 

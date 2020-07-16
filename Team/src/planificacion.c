@@ -9,26 +9,17 @@ void planificar_fifo(void){
 
 		pthread_mutex_lock(&mutex_planificador);
 
-/*		while(!list_is_empty(lista_de_pokemones_sueltos)){
-				t_pokemon* pokemon_nuevo = list_remove(lista_de_pokemones_sueltos,0);
-				aparicion_pokemon(pokemon_nuevo);
-		}
-*/
-		puts("aca entra10");
-
 		while(!list_is_empty(lista_de_entrenadores_ready)){
 
 			sem_wait(&MUTEX_ENTRENADORES);
 
 			entrenador = list_get(lista_de_entrenadores_ready,0);
 			entrenador->estado = EXEC;
-			cambiosDeContexto++;
+
 
 			while(list_size(entrenador->cola_de_acciones) > 0){
 				ejecutar_entrenador(entrenador);
 			}
-
-			sem_post(&CONTADOR_ENTRENADORES);
 		}
 
 
@@ -36,7 +27,7 @@ void planificar_fifo(void){
 			entrenador = preparar_intercambio();
 			entrenador = list_remove(lista_de_entrenadores_ready,0);
 			entrenador->estado = EXEC;
-			cambiosDeContexto++;
+
 
 			while(list_size(entrenador->cola_de_acciones) > 0){
 				ejecutar_entrenador(entrenador);
@@ -62,12 +53,6 @@ void planificar_sjf_sd(void){
 
 		pthread_mutex_lock(&mutex_planificador);
 
-		/*while(!list_is_empty(lista_de_pokemones_sueltos)){
-			t_pokemon* pokemon_nuevo = list_remove(lista_de_pokemones_sueltos,0);
-
-			aparicion_pokemon(pokemon_nuevo);
-		}
-*/
 		while(!list_is_empty(lista_de_entrenadores_ready)){
 
 			sem_wait(&MUTEX_ENTRENADORES);
@@ -83,18 +68,17 @@ void planificar_sjf_sd(void){
 
 			entrenador->rafaga_anterior = 0;
 			entrenador->estado = EXEC;
-			cambiosDeContexto++;
+
 			while(list_size(entrenador->cola_de_acciones) > 0){
 				ejecutar_entrenador(entrenador);
 				}
-				sem_post(&CONTADOR_ENTRENADORES);
 			}
 
 		while(deteccion_de_deadlock()){
 			entrenador = preparar_intercambio();
 			entrenador = list_remove(lista_de_entrenadores_ready,0);
 			entrenador->estado = EXEC;
-			cambiosDeContexto++;
+
 
 			while(list_size(entrenador->cola_de_acciones) > 0){
 				ejecutar_entrenador(entrenador);
@@ -105,10 +89,7 @@ void planificar_sjf_sd(void){
 			exit(10);
 		}
 
-
-
-
-		}
+	}
 
 }
 
@@ -122,12 +103,6 @@ void planificar_sjf_cd(void){
 
 		pthread_mutex_lock(&mutex_planificador);
 
-/*		while(!list_is_empty(lista_de_pokemones_sueltos)){
-			t_pokemon* pokemon_nuevo = list_remove(lista_de_pokemones_sueltos,0);
-
-			aparicion_pokemon(pokemon_nuevo);
-		}
-*/
 		while(!list_is_empty(lista_de_entrenadores_ready)){
 
 			entrenador_aux = entrenador_con_menor_cpu();
@@ -135,7 +110,7 @@ void planificar_sjf_cd(void){
 			for(int i =0 ; i<list_size(lista_de_entrenadores_ready); i++){
 				entrenador = list_get(lista_de_entrenadores_ready,i);
 				if(entrenador->ID_entrenador == entrenador_aux->ID_entrenador){
-					entrenador = list_remove(lista_de_entrenadores_ready,i);
+					entrenador = list_get(lista_de_entrenadores_ready,i);
 				}
 			}
 
@@ -148,7 +123,7 @@ void planificar_sjf_cd(void){
 				if(entrenador_aux->ID_entrenador != entrenador->ID_entrenador){
 
 					entrenador->estado = READY;
-					cambiosDeContexto++;
+
 					list_add(lista_de_entrenadores_ready, entrenador);
 
 					for(int i =0 ; i<list_size(lista_de_entrenadores_ready); i++){
@@ -156,12 +131,10 @@ void planificar_sjf_cd(void){
 						if(entrenador->ID_entrenador == entrenador_aux->ID_entrenador){
 							entrenador = list_remove(lista_de_entrenadores_ready,i);
 							entrenador->estado = EXEC;
-							cambiosDeContexto++;
+
 						}
 					}
-
-
-					}
+				}
 
 				ejecutar_entrenador(entrenador);
 
@@ -172,7 +145,7 @@ void planificar_sjf_cd(void){
 					entrenador = preparar_intercambio();
 					entrenador = list_remove(lista_de_entrenadores_ready,0);
 					entrenador->estado = EXEC;
-					cambiosDeContexto++;
+
 
 					while(list_size(entrenador->cola_de_acciones) > 0){
 						ejecutar_entrenador(entrenador);
@@ -264,7 +237,7 @@ void planificar_rr(void){
 			}
 			entrenador = list_remove(lista_de_entrenadores_ready,0);
 			entrenador->estado = EXEC;
-			cambiosDeContexto++;
+
 
 			while(list_size(entrenador->cola_de_acciones) > 0 && quantum_remanente > 0){
 				accion_aux = list_get(entrenador->cola_de_acciones,0);
@@ -291,7 +264,7 @@ void planificar_rr(void){
 
 					if(list_size(entrenador->cola_de_acciones) > 0 && quantum_remanente == 0){
 						entrenador->estado = READY;
-						cambiosDeContexto++;
+
 						list_add(lista_de_entrenadores_ready, entrenador);
 					}
 				}
@@ -302,7 +275,7 @@ void planificar_rr(void){
 			entrenador = preparar_intercambio();
 			entrenador = list_remove(lista_de_entrenadores_ready,0);
 			entrenador->estado = EXEC;
-			cambiosDeContexto++;
+
 
 			while(list_size(entrenador->cola_de_acciones) > 0){
 				ejecutar_entrenador(entrenador);

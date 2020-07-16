@@ -22,7 +22,7 @@ void log_llego_mensaje_nuevo_appeared_pokemon(char* pokemon, int posX, int posY)
 void log_llego_mensaje_nuevo_caught_pokemon(char* pokemon, int posX, int posY);
 void log_llego_mensaje_nuevo_localized_pokemon(char* pokemon, int posX, int posY);
 void log_intento_reintento_comunicacion_broker();
-void log_reintento_comunicacion_Broker_exitoso();
+void log_intento_comunicacion_Broker_exitoso();
 void log_reintento_comunicacion_Broker_fallido();
 
 
