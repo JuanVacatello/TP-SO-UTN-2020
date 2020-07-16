@@ -65,6 +65,7 @@ void* serializar_paquete(t_paquete* paquete , int *bytes);
 
 void enviar_mensaje_a_broker(int socket_cliente, op_code codigo_operacion, char* argv[]);
 void* suscribirse_a_cola(int* tamanio_paquete,char* argv[]);
+uint32_t cola_a_suscribirse(char* cola_leida);
 void* iniciar_paquete_serializado_NewPokemon(int* tamanio_paquete, char* argv[]);
 void* iniciar_paquete_serializado_AppearedPokemon(int* tamanio_paquete,char* argv[]);
 void* iniciar_paquete_serializado_CatchPokemon(int* tamanio_paquete,char* argv[]);

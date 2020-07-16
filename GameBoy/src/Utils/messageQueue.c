@@ -100,8 +100,8 @@ void* suscribirse_a_cola(int* tamanio_paquete,char* argv[]){
 	paquete->buffer = malloc(sizeof(t_buffer));
 
 	uint32_t proccess_id = obtener_id_propio(); //getpid();
-	uint32_t cola;
-	sscanf(argv[2], "%d", &cola);
+	char* cola_leida = argv[2];
+	uint cola = cola_a_suscribirse(cola_leida);
 	uint32_t tiempo_de_suscripcion;
 	sscanf(argv[3], "%d", &tiempo_de_suscripcion);
 
@@ -129,6 +129,27 @@ void* suscribirse_a_cola(int* tamanio_paquete,char* argv[]){
 
 	return a_enviar;
 }
+
+uint32_t cola_a_suscribirse(char* cola_leida){
+	if(string_equals_ignore_case(cola_leida, "NEW_POKEMON"))
+			return 1;
+	else if(string_equals_ignore_case(cola_leida, "APPEARED_POKEMON"))
+			return 2;
+	else if(string_equals_ignore_case(cola_leida, "CATCH_POKEMON"))
+			return 3;
+	else if (string_equals_ignore_case(cola_leida, "CAUGHT_POKEMON"))
+			return 4;
+	else if (string_equals_ignore_case(cola_leida, "GET_POKEMON"))
+			return 5;
+	else if (string_equals_ignore_case(cola_leida, "LOCALIZED_POKEMON"))
+			return 6;
+	else{
+		puts("No existe esta cola de mensajes \n");
+		return 0;
+	}
+}
+
+
 
 // BROKER - NEW POKEMON
 
