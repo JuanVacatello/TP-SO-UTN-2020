@@ -37,7 +37,8 @@ int main(int argc, char* argv[]) {
 
 		//while(1){
 
-		//recibir_mensaje(socket_conexion);
+		recibir_mensaje(socket_conexion);
+		recibir_mensaje(socket_conexion);
 			//pthread_create(&hilo_recibir, NULL , recibir_mensaje ,socket_conexion);
 			//pthread_join(hilo_recibir, NULL);
 		//}

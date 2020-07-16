@@ -297,8 +297,10 @@ void* iniciar_paquete_serializado_CaughtPokemon(int* tamanio_paquete,char* argv[
 		se_pudo_atrapar = 1;
 	}
 	if(!(strcmp(ok_o_fail, "FAIL"))){
-			se_pudo_atrapar = 0;
+		se_pudo_atrapar = -1;
 	}
+
+	printf("Se pudo atrapar quedo en %d \n", se_pudo_atrapar);
 
 		   // ID_MENSAJE_CORRELATIVO + OK/FAIL
 	paquete->buffer->size = sizeof(uint32_t) + sizeof(uint32_t);
@@ -618,7 +620,7 @@ void recibir_mensaje(int socket_cliente){
 	uint32_t buffer_size;
 	recv(socket_cliente, &buffer_size, sizeof(uint32_t), MSG_WAITALL);
 
-		char* mensaje2 = string_from_format("El tamanio del buffer es: %d.", buffer_size-1);
+		char* mensaje2 = string_from_format("El tamanio del buffer es: %d.", buffer_size);
 		puts(mensaje2);
 
 	// recibe a partir del codigo de operacion
@@ -655,7 +657,7 @@ void recibir_mensaje(int socket_cliente){
 		recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
 		tamanio_leido += caracteresPokemon;
 
-		puts(pokemon);
+		printf("El pokemon es %s\n", pokemon);
 
 		recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
 		tamanio_leido += sizeof(uint32_t);
@@ -686,11 +688,11 @@ void recibir_mensaje(int socket_cliente){
 		mensaje3 = string_from_format("La cantidad de caracteres del pokemon es: %d.", caracteresPokemon-1);
 		puts(mensaje3);
 
-		pokemon = (char*)malloc(caracteresPokemon-1);
+		pokemon = (char*)malloc(caracteresPokemon);
 
-		recv(socket_cliente, pokemon, caracteresPokemon-1, MSG_WAITALL);
+		recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
 
-		puts(pokemon);
+		printf("El pokemon es %s\n", pokemon);
 
 		recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
 
@@ -701,13 +703,6 @@ void recibir_mensaje(int socket_cliente){
 
 		mensaje5 = string_from_format("La posicion en Y es: %d.", posY);
 		puts(mensaje5);
-
-		recv(socket_cliente, &caracteresPokemon, 1, MSG_WAITALL);
-
-		//recv(socket_cliente, &id_mensaje_correlativo, sizeof(uint32_t), MSG_WAITALL);
-
-		//mensaje6 = string_from_format("EL id de mensaje correlativo es: %d.", id_mensaje_correlativo);
-		//puts(mensaje6);
 
 		free(pokemon);
 
@@ -723,7 +718,7 @@ void recibir_mensaje(int socket_cliente){
 
 		recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
 
-		puts(pokemon);
+		printf("El pokemon es %s\n", pokemon);
 
 		recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
 
@@ -742,11 +737,8 @@ void recibir_mensaje(int socket_cliente){
 
 		recv(socket_cliente, &se_pudo_atrapar, sizeof(uint32_t), MSG_WAITALL);
 
-		if(se_pudo_atrapar==-1){
-			puts("No se pudo atrapar.");
-		}else if(se_pudo_atrapar==1){
-			puts("Se pudo atrapar.");
-		}
+		mensaje3 = string_from_format("Se pudo atrapar es: %d.", se_pudo_atrapar);
+		puts(mensaje3);
 
 		recv(socket_cliente, &id_mensaje_correlativo, sizeof(uint32_t), MSG_WAITALL);
 
@@ -763,10 +755,10 @@ void recibir_mensaje(int socket_cliente){
 		puts(mensaje3);
 
 		pokemon = (char*)malloc(caracteresPokemon);
-
 		recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
 
-		puts(pokemon);
+		printf("El pokemon es %s\n", pokemon);
+
 		break;
 	case 6:
 		break;
