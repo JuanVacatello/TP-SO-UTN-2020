@@ -1,88 +1,32 @@
-[INFO] 13:22:41:452 BROKER/(3818:3829): Se conectó proceso de socket 5 al Broker
-[INFO] 13:22:41:556 BROKER/(3818:3829): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 13:26:31:906 BROKER/(4007:4045): Se conectó proceso de socket 5 al Broker
-[INFO] 13:26:31:940 BROKER/(4007:4045): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 13:31:42:302 BROKER/(4245:4291): Se conectó proceso de socket 5 al Broker
-[INFO] 13:31:42:303 BROKER/(4245:4291): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 13:32:52:126 BROKER/(4377:4394): Se conectó proceso de socket 5 al Broker
-[INFO] 13:32:52:126 BROKER/(4377:4394): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 13:38:39:168 BROKER/(4588:4615): Se conectó proceso de socket 5 al Broker
-[INFO] 13:38:39:175 BROKER/(4588:4615): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 13:41:12:250 BROKER/(4759:4781): Se conectó proceso de socket 5 al Broker
-[INFO] 13:41:12:250 BROKER/(4759:4781): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 13:43:32:418 BROKER/(4901:4916): Se conectó proceso de socket 5 al Broker
-[INFO] 13:43:32:418 BROKER/(4901:4916): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 13:47:30:582 BROKER/(5095:5110): Se conectó proceso de socket 5 al Broker
-[INFO] 13:47:30:677 BROKER/(5095:5110): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 13:48:04:605 BROKER/(5095:5110): Se almacenó un mensaje en la posición 0 de la memoria principal.
-[INFO] 13:49:04:176 BROKER/(5095:5110): Con timestamp 1 y tamaño ocupado 32.
-[INFO] 13:52:57:309 BROKER/(5095:5276): Se conectó proceso de socket 6 al Broker
-[INFO] 13:52:57:309 BROKER/(5095:5276): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 13:56:04:623 BROKER/(5412:5426): Se conectó proceso de socket 5 al Broker
-[INFO] 13:56:04:661 BROKER/(5412:5426): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 13:56:08:642 BROKER/(5412:5426): Se almacenó un mensaje en la posición 0 de la memoria principal.
-[INFO] 13:56:08:643 BROKER/(5412:5426): Con timestamp 1 y tamaño ocupado 32.
-[INFO] 13:56:20:517 BROKER/(5412:5448): Se conectó proceso de socket 6 al Broker
-[INFO] 13:56:20:517 BROKER/(5412:5448): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 14:15:46:352 BROKER/(5878:5896): Se conectó proceso de socket 5 al Broker
-[INFO] 14:15:46:374 BROKER/(5878:5896): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 14:15:50:193 BROKER/(5878:5896): Se almacenó un mensaje en la posición 0 de la memoria principal.
-[INFO] 14:15:50:193 BROKER/(5878:5896): Con timestamp 1 y tamaño ocupado 32.
-[INFO] 14:16:15:15 BROKER/(5878:5934): Se conectó proceso de socket 6 al Broker
-[INFO] 14:16:15:15 BROKER/(5878:5934): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 14:19:41:283 BROKER/(6075:6091): Se conectó proceso de socket 5 al Broker
-[INFO] 14:19:41:311 BROKER/(6075:6091): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 14:21:18:216 BROKER/(6075:6091): Se almacenó un mensaje en la posición 0 de la memoria principal.
-[INFO] 14:21:18:216 BROKER/(6075:6091): Con timestamp 1 y tamaño ocupado 32.
-[INFO] 14:22:09:495 BROKER/(6203:6217): Se conectó proceso de socket 5 al Broker
-[INFO] 14:22:09:511 BROKER/(6203:6217): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 14:22:13:968 BROKER/(6203:6217): Se almacenó un mensaje en la posición 0 de la memoria principal.
-[INFO] 14:22:13:968 BROKER/(6203:6217): Con timestamp 1 y tamaño ocupado 32.
-[INFO] 14:22:43:473 BROKER/(6203:6238): Se conectó proceso de socket 6 al Broker
-[INFO] 14:22:43:473 BROKER/(6203:6238): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 14:24:16:71 BROKER/(6308:6324): Se conectó proceso de socket 5 al Broker
-[INFO] 14:24:16:154 BROKER/(6308:6324): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 14:26:04:302 BROKER/(6431:6444): Se conectó proceso de socket 5 al Broker
-[INFO] 14:26:04:330 BROKER/(6431:6444): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 14:26:09:360 BROKER/(6431:6444): Se almacenó un mensaje en la posición 0 de la memoria principal.
-[INFO] 14:26:09:361 BROKER/(6431:6444): Con timestamp 1 y tamaño ocupado 32.
-[INFO] 14:26:25:57 BROKER/(6431:6471): Se conectó proceso de socket 6 al Broker
-[INFO] 14:26:25:57 BROKER/(6431:6471): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 14:28:03:192 BROKER/(6431:6471): Se creo una nueva particion con inicio en 40, final en 47, y tamaño de 8
-[INFO] 14:30:00:805 BROKER/(6615:6639): Se conectó proceso de socket 5 al Broker
-[INFO] 14:30:00:855 BROKER/(6615:6639): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 14:30:07:607 BROKER/(6615:6639): Se almacenó un mensaje en la posición 0 de la memoria principal.
-[INFO] 14:30:07:607 BROKER/(6615:6639): Con timestamp 1 y tamaño ocupado 32.
-[INFO] 14:30:48:164 BROKER/(6615:6673): Se conectó proceso de socket 6 al Broker
-[INFO] 14:30:48:164 BROKER/(6615:6673): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 14:31:12:425 BROKER/(6615:6673): Se creo una nueva particion con inicio en 40, final en 47, y tamaño de 8
-[INFO] 14:33:44:404 BROKER/(6763:6784): Se conectó proceso de socket 5 al Broker
-[INFO] 14:33:44:432 BROKER/(6763:6784): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 14:33:49:217 BROKER/(6763:6784): Se almacenó un mensaje en la posición 0 de la memoria principal.
-[INFO] 14:33:49:217 BROKER/(6763:6784): Con timestamp 1 y tamaño ocupado 32.
-[INFO] 14:34:00:930 BROKER/(6763:6804): Se conectó proceso de socket 6 al Broker
-[INFO] 14:34:00:930 BROKER/(6763:6804): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 14:36:33:221 BROKER/(6763:6804): Se creo una nueva particion con inicio en 40, final en 47, y tamaño de 8
-[INFO] 14:37:45:282 BROKER/(6980:6992): Se conectó proceso de socket 5 al Broker
-[INFO] 14:37:45:347 BROKER/(6980:6992): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 14:37:48:554 BROKER/(6980:6992): Se almacenó un mensaje en la posición 0 de la memoria principal.
-[INFO] 14:37:48:555 BROKER/(6980:6992): Con timestamp 1 y tamaño ocupado 32.
-[INFO] 14:37:58:24 BROKER/(6980:7015): Se conectó proceso de socket 6 al Broker
-[INFO] 14:37:58:24 BROKER/(6980:7015): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 14:38:50:150 BROKER/(6980:7015): Se creo una nueva particion con inicio en 40, final en 47, y tamaño de 8
-[INFO] 14:55:43:6 BROKER/(7475:7490): Se conectó proceso de socket 5 al Broker
-[INFO] 14:55:44:24 BROKER/(7475:7490): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 14:55:47:313 BROKER/(7475:7490): Se almacenó un mensaje en la posición 0 de la memoria principal.
-[INFO] 14:55:47:313 BROKER/(7475:7490): Con timestamp 1 y tamaño ocupado 32.
-[INFO] 14:56:19:497 BROKER/(7475:7523): Se conectó proceso de socket 6 al Broker
-[INFO] 14:56:19:497 BROKER/(7475:7523): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 14:56:42:685 BROKER/(7475:7523): Se creo una nueva particion con inicio en 40, final en 47, y tamaño de 8
-[INFO] 14:57:04:543 BROKER/(7475:7523): Se creo una nueva particion con inicio en 36, final en 39, y tamaño de 4
-[INFO] 14:58:14:780 BROKER/(7664:7679): Se conectó proceso de socket 5 al Broker
-[INFO] 14:58:14:849 BROKER/(7664:7679): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 14:58:20:581 BROKER/(7664:7679): Se almacenó un mensaje en la posición 0 de la memoria principal.
-[INFO] 14:58:20:582 BROKER/(7664:7679): Con timestamp 1 y tamaño ocupado 32.
-[INFO] 14:58:31:303 BROKER/(7664:7704): Se conectó proceso de socket 6 al Broker
-[INFO] 14:58:31:304 BROKER/(7664:7704): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 14:58:54:530 BROKER/(7664:7704): Se creo una nueva particion con inicio en 40, final en 47, y tamaño de 8
-[INFO] 14:59:05:546 BROKER/(7664:7704): Se creo una nueva particion con inicio en 36, final en 39, y tamaño de 4
+
+[INFO] 17:13:28:4 BROKER/(10406:10424): Se conectó proceso de socket 5 al Broker
+[INFO] 17:13:29:41 BROKER/(10406:10424): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:13:44:818 BROKER/(10406:10424): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 17:13:44:819 BROKER/(10406:10424): Con timestamp 1 y tamaño ocupado 32.
+[INFO] 17:14:52:320 BROKER/(10406:10464): Se conectó proceso de socket 6 al Broker
+[INFO] 17:17:07:362 BROKER/(10539:10556): Se conectó proceso de socket 5 al Broker
+[INFO] 17:17:07:388 BROKER/(10539:10556): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:17:14:445 BROKER/(10539:10556): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 17:17:14:446 BROKER/(10539:10556): Con timestamp 1 y tamaño ocupado 32.
+[INFO] 17:17:34:794 BROKER/(10539:10576): Se conectó proceso de socket 6 al Broker
+[INFO] 17:22:09:853 BROKER/(10702:10709): Se conectó proceso de socket 5 al Broker
+[INFO] 17:22:09:883 BROKER/(10702:10709): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:22:09:884 BROKER/(10702:10709): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 17:22:09:884 BROKER/(10702:10709): Con timestamp 1 y tamaño ocupado 32.
+[INFO] 17:22:11:558 BROKER/(10702:10711): Se conectó proceso de socket 6 al Broker
+[INFO] 17:22:11:558 BROKER/(10702:10711): Se suscribió el proceso con socket 10710 y con id 6 a la cola de mensajes 1
+[INFO] 17:22:11:558 BROKER/(10702:10711): Con timestamp 2.
+[INFO] 17:24:51:686 BROKER/(10807:10844): Se conectó proceso de socket 5 al Broker
+[INFO] 17:24:53:305 BROKER/(10807:10844): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:24:56:357 BROKER/(10807:10844): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 17:24:56:358 BROKER/(10807:10844): Con timestamp 1 y tamaño ocupado 32.
+[INFO] 17:25:19:695 BROKER/(10807:10879): Se conectó proceso de socket 6 al Broker
+[INFO] 17:26:45:341 BROKER/(10807:10879): Se suscribió el proceso con socket 10878 y con id 6 a la cola de mensajes 1
+[INFO] 17:27:33:925 BROKER/(10807:10879): Con timestamp 2.
+[INFO] 17:31:49:687 BROKER/(11250:11257): Se conectó proceso de socket 5 al Broker
+[INFO] 17:31:49:728 BROKER/(11250:11257): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:31:49:732 BROKER/(11250:11257): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 17:31:49:733 BROKER/(11250:11257): Con timestamp 1 y tamaño ocupado 32.
+[INFO] 17:31:51:210 BROKER/(11250:11259): Se conectó proceso de socket 6 al Broker
+[INFO] 17:31:51:210 BROKER/(11250:11259): Se suscribió el proceso con socket 11258 y con id 6 a la cola de mensajes 1
+[INFO] 17:31:51:210 BROKER/(11250:11259): Con timestamp 2.

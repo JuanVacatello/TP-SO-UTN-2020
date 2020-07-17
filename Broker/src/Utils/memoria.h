@@ -14,6 +14,7 @@
 #include"configBroker.h"
 #include"logBroker.h"
 #include<time.h>
+#include<math.h>
 
 typedef struct
 {
@@ -46,14 +47,14 @@ sem_t MUTEX_FALLOS;
 
 t_mensaje_guardado* guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
 
-// REEMPLAZO Y COMPACTACION
+// REEMPLAZO
 int ejecutar_algoritmo_reemplazo(void);
 int reemplazar_segun_FIFO(void);
 int reemplazar_segun_LRU(void);
-t_mensaje_guardado* eliminar_y_compactar_hasta_encontrar(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
-void compactar_memoria(void);
 
 // PARTICIONES DINÁMICAS
+t_mensaje_guardado* eliminar_y_compactar_hasta_encontrar(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
+void compactar_memoria(void);
 t_mensaje_guardado* administracion_de_memoria_particiones(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
 t_mensaje_guardado* agregar_segun_first_fit(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
 int buscar_first_fit(int *se_guardo_el_mensaje, void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
@@ -62,11 +63,17 @@ int buscar_best_fit(int *encontrado, void* bloque_a_agregar_en_memoria, uint32_t
 
 // BUDDY SYSTEM
 t_mensaje_guardado* administracion_de_memoria_buddy_system(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
+int for_best_fit_BS(int *encontrado, uint32_t tamanio_a_agregar);
+int for_first_fit_BS(int *encontrado, uint32_t tamanio_a_agregar);
+int particionar_buddy_system(uint32_t tamanio_a_agregar, int *tamanio_minimo, int index);
+t_mensaje_guardado* eliminar_y_consolidar_hasta_encontrar(uint32_t tamanio_a_agregar, void* bloque_a_agregar_en_memoria);
+void consolidar_buddy_system(int posicion_inicial_nuevo_mensaje);
 
 // AUXILIARES
 bool comparar_inicios_mensajes(t_mensaje_guardado* mensaje1, t_mensaje_guardado* mensaje2);
 bool comparar_timestamps_mensajes(t_mensaje_guardado* mensaje1, t_mensaje_guardado* mensaje2);
 bool comparar_tamanios_de_particiones(t_particion_buddy* particion1, t_particion_buddy* particion2);
+bool comparar_inicios_de_particiones(t_particion_buddy* particion1, t_particion_buddy* particion2);
 void mostrar_memoria_principal(void);
 int primera_posicion_vacia_y_entra(uint32_t tamanio_a_agregar);
 int toda_la_memoria_esta_ocupada(void);
