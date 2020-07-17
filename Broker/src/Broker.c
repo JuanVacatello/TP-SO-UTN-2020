@@ -30,14 +30,15 @@ void inicializacion_de_variables_globales(void){
 	timestamp = 0;
 
 	char* esquema_de_administracion = obtener_algoritmo_memoria();
-	if(!(strcmp(esquema_de_administracion, "PARTICIONES"))){
-		elementos_en_memoria = list_create();
-	}
+
+	elementos_en_memoria = list_create();
+
 	if(!(strcmp(esquema_de_administracion, "BS"))){
 		elementos_en_buddy = list_create();
 		t_particion_buddy* particion = malloc(sizeof(t_particion_buddy));
 		particion->tam_particion = obtener_tamanio_memoria();
 		particion->comienzo_particion = 0;
+		particion->final_de_particion = particion->tam_particion - 1;
 		list_add(elementos_en_buddy, particion);
 	}
 

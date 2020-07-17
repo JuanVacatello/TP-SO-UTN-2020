@@ -135,7 +135,7 @@ int reemplazar_segun_LRU(void){
 	int posicion_inicial_nuevo_mensaje = mensaje_aux->byte_comienzo_ocupado;
 	int cantidad_a_eliminar = mensaje_aux->tamanio_ocupado;
 
-	int posicion_mensaje_a_eliminar = encontrar_mensaje_a_eliminar_por_posicion(posicion_inicial_nuevo_mensaje);
+	int posicion_mensaje_a_eliminar = encontrar_mensaje_a_eliminar_por_posicion(posicion_inicial_nuevo_mensaje, elementos_en_memoria);
 	t_mensaje_guardado* mensaje_a_eliminar = list_remove(elementos_en_memoria, posicion_mensaje_a_eliminar);
 
 	sem_wait(&MUTEX_MEM_PRIN);
@@ -407,7 +407,7 @@ t_mensaje_guardado* administracion_de_memoria_buddy_system(void* bloque_a_agrega
 	int encontrado = 0;
 	int tamanio_minimo = 0;
 	int posicion_inicial_mensaje = 0;
-	int cantidad_de_particiones;
+	int cantidad_de_particiones = 0;
 
 	// Ordeno la lista de menor a mayor segun el tamaño de la particion, para no particionar al pedo
 	t_list* lista_ordenada = list_duplicate(elementos_en_buddy);
@@ -419,10 +419,11 @@ t_mensaje_guardado* administracion_de_memoria_buddy_system(void* bloque_a_agrega
 	for(int i=0; i<(list_size(lista_ordenada)); i++){
 
 		particion_a_leer = list_get(lista_ordenada, i);
+		t_particion_buddy* particion_aux = malloc(sizeof(t_particion_buddy));
 
 		if(tamanio_a_agregar <= particion_a_leer->tam_particion){
 
-			if(tamanio_a_agregar > (tamanio_minimo/2)){
+			/*if(tamanio_a_agregar > ((particion_a_leer->tam_particion)/2)){
 				posicion_inicial_mensaje = particion_a_leer->comienzo_particion;
 				tamanio_minimo = particion_a_leer->tam_particion;
 
@@ -436,36 +437,46 @@ t_mensaje_guardado* administracion_de_memoria_buddy_system(void* bloque_a_agrega
 
 				mensaje_nuevo = guardar_en_posicion(bloque_con_fragmentacion, tamanio_minimo, posicion_inicial_mensaje);
 				break;
-			}
+			}*/
 
-			if(tamanio_a_agregar <= (tamanio_minimo/2)){
 				encontrado = 1;
 				particion_a_reducir = list_remove(lista_ordenada, 0); // Como va a particionar esa particion, la elimina de la lista de particiones
 
-				int posicion_mensaje_a_eliminar = encontrar_mensaje_a_eliminar_por_posicion(particion_a_reducir->comienzo_particion);
-				t_mensaje_guardado* mensaje_a_eliminar = list_remove(elementos_en_memoria, posicion_mensaje_a_eliminar);
+				int posicion_mensaje_a_eliminar = encontrar_mensaje_a_eliminar_por_posicion(particion_a_reducir->comienzo_particion, elementos_en_buddy);
+				t_particion_buddy* particion_a_eliminar = list_remove(elementos_en_buddy, posicion_mensaje_a_eliminar);
 
 				particion_nueva->tam_particion = (particion_a_reducir->tam_particion)/2;
 				particion_nueva->comienzo_particion = particion_a_reducir->comienzo_particion + particion_nueva->tam_particion;
+				particion_nueva->final_de_particion = particion_a_reducir->final_de_particion;
 				list_add(elementos_en_buddy, particion_nueva);
 
 				tamanio_minimo = particion_nueva->tam_particion;
 				posicion_inicial_mensaje = particion_nueva->comienzo_particion - particion_nueva->tam_particion;
+				particion_aux = particion_nueva;
 
 				free(particion_a_reducir);
-			}
+				//free(particion_a_eliminar);
 		}
 
-		while(encontrado == 1 && tamanio_a_agregar < tamanio_minimo && tamanio_a_agregar < (tamanio_minimo/2)){
+		while(encontrado == 1 && tamanio_a_agregar < tamanio_minimo && tamanio_a_agregar <= (tamanio_minimo/2)){
 			cantidad_de_particiones++;
 			t_particion_buddy* otra_particion_nueva = malloc(sizeof(t_particion_buddy));
 			otra_particion_nueva->tam_particion = tamanio_minimo/2;
-			otra_particion_nueva->comienzo_particion = particion_nueva->comienzo_particion - ((2^(cantidad_de_particiones-1))*(otra_particion_nueva->tam_particion)) - otra_particion_nueva->tam_particion;
+			otra_particion_nueva->comienzo_particion = particion_aux->comienzo_particion - otra_particion_nueva->tam_particion;
+			otra_particion_nueva->final_de_particion = particion_aux->comienzo_particion - 1;
 			list_add(elementos_en_buddy, otra_particion_nueva);
 
+
+			char* log = string_from_format("Se creo una nueva particion con inicio en %d, final en %d, y tamaño de %d",otra_particion_nueva->comienzo_particion, otra_particion_nueva->final_de_particion, otra_particion_nueva->tam_particion);
+			completar_logger(log, "BROKER", LOG_LEVEL_INFO);
+
 			tamanio_minimo = otra_particion_nueva->tam_particion;
+			// NO me anda el 2^cant
 			posicion_inicial_mensaje = particion_nueva->comienzo_particion - ((2^cantidad_de_particiones)*(otra_particion_nueva->tam_particion));
+			particion_aux = otra_particion_nueva;
 		}
+
+		//free(particion_aux);
 
 		if(encontrado == 1){
 			void* bloque_con_fragmentacion;
@@ -624,13 +635,14 @@ void* crear_fragmentacion_interna(void* bloque_a_agregar_en_memoria, uint32_t ta
 	return bloque_con_fragmentacion;
 }
 
-int encontrar_mensaje_a_eliminar_por_posicion(int posicion){
+int encontrar_mensaje_a_eliminar_por_posicion(int posicion, t_list* lista){
 	t_mensaje_guardado* mensaje_aux;
-	for(int i = 0; i<list_size(elementos_en_memoria); i++){
-		mensaje_aux = list_get(elementos_en_memoria, i);
+	for(int i = 0; i<list_size(lista); i++){
+		mensaje_aux = list_get(lista, i);
 		if(mensaje_aux->byte_comienzo_ocupado == posicion){
 			return i;
 		}
 	}
+	return 8;
 }
 
