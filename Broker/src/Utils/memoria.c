@@ -13,17 +13,13 @@ t_mensaje_guardado* guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria
 		tamanio_a_agregar = tamanio_minimo_particion;
 	}
 
-	if(toda_la_memoria_esta_ocupada()){
-		mensaje_nuevo = eliminar_y_compactar_hasta_encontrar(bloque_a_agregar_en_memoria, tamanio_a_agregar);
-	}
-	else {
-		if(!(strcmp(esquema_de_administracion, "PARTICIONES"))){
-			mensaje_nuevo = administracion_de_memoria_particiones(bloque_a_agregar_en_memoria, tamanio_a_agregar);
-		}
 
-		if(!(strcmp(esquema_de_administracion, "BS"))){
-			mensaje_nuevo = administracion_de_memoria_buddy_system(bloque_a_agregar_en_memoria, tamanio_a_agregar);
-		}
+	if(!(strcmp(esquema_de_administracion, "PARTICIONES"))){
+		mensaje_nuevo = administracion_de_memoria_particiones(bloque_a_agregar_en_memoria, tamanio_a_agregar);
+	}
+
+	if(!(strcmp(esquema_de_administracion, "BS"))){
+		mensaje_nuevo = administracion_de_memoria_buddy_system(bloque_a_agregar_en_memoria, tamanio_a_agregar);
 	}
 
 	sem_wait(&MUTEX_TIMESTAMP);
@@ -391,8 +387,6 @@ int buscar_best_fit(int *encontrado, void* bloque_a_agregar_en_memoria, uint32_t
 					*encontrado = 1;
 					break;
 				}
-
-				//free(mensaje_a_leer);
 			}
 		tamanio_aceptable++;
 
@@ -408,14 +402,88 @@ int buscar_best_fit(int *encontrado, void* bloque_a_agregar_en_memoria, uint32_t
 t_mensaje_guardado* administracion_de_memoria_buddy_system(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
 
 	t_mensaje_guardado* mensaje_nuevo;
+	t_particion_buddy* particion_a_leer;
+	t_particion_buddy* particion_a_reducir;
+	int encontrado = 0;
+	int tamanio_minimo = 0;
+	int posicion_inicial_mensaje = 0;
+	int cantidad_de_particiones;
 
-	int potencia_de_dos = 2;
+	// Ordeno la lista de menor a mayor segun el tamaño de la particion, para no particionar al pedo
+	t_list* lista_ordenada = list_duplicate(elementos_en_buddy);
+	list_sort(lista_ordenada, comparar_tamanios_de_particiones);
 
-	while(potencia_de_dos < tamanio_a_agregar && potencia_de_dos <= tamanio_de_memoria){
-			potencia_de_dos = potencia_de_dos * 2;
+	t_particion_buddy* particion_nueva = malloc(sizeof(t_particion_buddy));
+
+	// Busca la primer particion mas chica en la que entre
+	for(int i=0; i<(list_size(lista_ordenada)); i++){
+
+		particion_a_leer = list_get(lista_ordenada, i);
+
+		if(tamanio_a_agregar <= particion_a_leer->tam_particion){
+
+			if(tamanio_a_agregar > (tamanio_minimo/2)){
+				posicion_inicial_mensaje = particion_a_leer->comienzo_particion;
+				tamanio_minimo = particion_a_leer->tam_particion;
+
+				void* bloque_con_fragmentacion;
+				if(tamanio_a_agregar < tamanio_minimo){
+					bloque_con_fragmentacion =  crear_fragmentacion_interna(bloque_a_agregar_en_memoria, tamanio_a_agregar, tamanio_minimo);
+				}
+				else{
+					bloque_con_fragmentacion = bloque_a_agregar_en_memoria;
+				}
+
+				mensaje_nuevo = guardar_en_posicion(bloque_con_fragmentacion, tamanio_minimo, posicion_inicial_mensaje);
+				break;
+			}
+
+			if(tamanio_a_agregar <= (tamanio_minimo/2)){
+				encontrado = 1;
+				particion_a_reducir = list_remove(lista_ordenada, 0); // Como va a particionar esa particion, la elimina de la lista de particiones
+
+				int posicion_mensaje_a_eliminar = encontrar_mensaje_a_eliminar_por_posicion(particion_a_reducir->comienzo_particion);
+				t_mensaje_guardado* mensaje_a_eliminar = list_remove(elementos_en_memoria, posicion_mensaje_a_eliminar);
+
+				particion_nueva->tam_particion = (particion_a_reducir->tam_particion)/2;
+				particion_nueva->comienzo_particion = particion_a_reducir->comienzo_particion + particion_nueva->tam_particion;
+				list_add(elementos_en_buddy, particion_nueva);
+
+				tamanio_minimo = particion_nueva->tam_particion;
+				posicion_inicial_mensaje = particion_nueva->comienzo_particion - particion_nueva->tam_particion;
+
+				free(particion_a_reducir);
+			}
+		}
+
+		while(encontrado == 1 && tamanio_a_agregar < tamanio_minimo && tamanio_a_agregar < (tamanio_minimo/2)){
+			cantidad_de_particiones++;
+			t_particion_buddy* otra_particion_nueva = malloc(sizeof(t_particion_buddy));
+			otra_particion_nueva->tam_particion = tamanio_minimo/2;
+			otra_particion_nueva->comienzo_particion = particion_nueva->comienzo_particion - ((2^(cantidad_de_particiones-1))*(otra_particion_nueva->tam_particion)) - otra_particion_nueva->tam_particion;
+			list_add(elementos_en_buddy, otra_particion_nueva);
+
+			tamanio_minimo = otra_particion_nueva->tam_particion;
+			posicion_inicial_mensaje = particion_nueva->comienzo_particion - ((2^cantidad_de_particiones)*(otra_particion_nueva->tam_particion));
+		}
+
+		if(encontrado == 1){
+			void* bloque_con_fragmentacion;
+			if(tamanio_a_agregar < tamanio_minimo){
+				bloque_con_fragmentacion =  crear_fragmentacion_interna(bloque_a_agregar_en_memoria, tamanio_a_agregar, tamanio_minimo);
+			}
+			else{
+				bloque_con_fragmentacion = bloque_a_agregar_en_memoria;
+			}
+
+			mensaje_nuevo = guardar_en_posicion(bloque_con_fragmentacion, tamanio_minimo, posicion_inicial_mensaje);
+			break;
+		}
 	}
 
-	// NO se como pensarlo
+	if(encontrado == 0){
+		//eliminar particions lreakfweiofjewif
+	}
 
 	return mensaje_nuevo;
 }
@@ -428,6 +496,10 @@ bool comparar_inicios_mensajes(t_mensaje_guardado* mensaje1, t_mensaje_guardado*
 
 bool comparar_timestamps_mensajes(t_mensaje_guardado* mensaje1, t_mensaje_guardado* mensaje2){
 	return mensaje1->ultima_referencia < mensaje2->ultima_referencia;
+}
+
+bool comparar_tamanios_de_particiones(t_particion_buddy* particion1, t_particion_buddy* particion2){
+	return particion1->tam_particion < particion2->tam_particion;
 }
 
 void mostrar_memoria_principal(void){
@@ -530,6 +602,21 @@ void* tratar_fragmentacion_interna(void* bloque_a_agregar_en_memoria, uint32_t t
 	desplazamiento += tamanio_a_agregar;
 
 	while(desplazamiento < tamanio_minimo_particion){
+		memcpy(bloque_con_fragmentacion + desplazamiento, &relleno, sizeof(char));
+		desplazamiento++;
+	}
+
+	return bloque_con_fragmentacion;
+}
+
+void* crear_fragmentacion_interna(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar, uint32_t tamanio_total){
+	int desplazamiento = 0;
+	void* bloque_con_fragmentacion = malloc(tamanio_total);
+	memcpy(bloque_con_fragmentacion + desplazamiento, bloque_a_agregar_en_memoria, tamanio_a_agregar);
+
+	int espacio_restante = tamanio_total - tamanio_a_agregar;
+	char relleno = 'f';
+	while(desplazamiento < espacio_restante){
 		memcpy(bloque_con_fragmentacion + desplazamiento, &relleno, sizeof(char));
 		desplazamiento++;
 	}

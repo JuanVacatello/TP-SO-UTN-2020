@@ -22,8 +22,17 @@ typedef struct
 	int ultima_referencia;
 }t_mensaje_guardado;
 
+typedef struct
+{
+	int tam_particion;
+	int comienzo_particion;
+	int momento_de_llegada;
+	int time_stamp;
+}t_particion_buddy;
+
 int tamanio_de_memoria;
 t_list* elementos_en_memoria; // Lista de t_mensaje_guardado
+t_list* elementos_en_buddy;
 sem_t MUTEX_LISTA;
 
 void* memoria_principal;
@@ -57,12 +66,14 @@ t_mensaje_guardado* administracion_de_memoria_buddy_system(void* bloque_a_agrega
 // AUXILIARES
 bool comparar_inicios_mensajes(t_mensaje_guardado* mensaje1, t_mensaje_guardado* mensaje2);
 bool comparar_timestamps_mensajes(t_mensaje_guardado* mensaje1, t_mensaje_guardado* mensaje2);
+bool comparar_tamanios_de_particiones(t_particion_buddy* particion1, t_particion_buddy* particion2);
 void mostrar_memoria_principal(void);
 int primera_posicion_vacia_y_entra(uint32_t tamanio_a_agregar);
 int toda_la_memoria_esta_ocupada(void);
 int entra_en_hueco(int tamanio_a_agregar, int posicion_libre);
 t_mensaje_guardado* guardar_en_posicion(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar, int posicion);
 void* tratar_fragmentacion_interna(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
+void* crear_fragmentacion_interna(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar, uint32_t tamanio_total);
 int encontrar_mensaje_a_eliminar_por_posicion(int posicion);
 
 #endif /* UTILS_MEMORIA_H_ */
