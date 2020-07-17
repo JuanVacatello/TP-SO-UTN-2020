@@ -105,6 +105,9 @@ void planificar_sjf_cd(void){
 
 		while(!list_is_empty(lista_de_entrenadores_ready)){
 
+			sem_wait(&MUTEX_ENTRENADORES);
+
+
 			entrenador_aux = entrenador_con_menor_cpu();
 
 			for(int i =0 ; i<list_size(lista_de_entrenadores_ready); i++){
@@ -124,12 +127,13 @@ void planificar_sjf_cd(void){
 
 					entrenador->estado = READY;
 
+					entrenador = list_remove(lista_de_entrenadores_ready, entrenador);
 					list_add(lista_de_entrenadores_ready, entrenador);
 
 					for(int i =0 ; i<list_size(lista_de_entrenadores_ready); i++){
 						entrenador = list_get(lista_de_entrenadores_ready,i);
 						if(entrenador->ID_entrenador == entrenador_aux->ID_entrenador){
-							entrenador = list_remove(lista_de_entrenadores_ready,i);
+							entrenador = list_get(lista_de_entrenadores_ready,i);
 							entrenador->estado = EXEC;
 
 						}
@@ -232,10 +236,13 @@ void planificar_rr(void){
 		puts("aca entra10");
 															//quantum = 0
 		while(!list_is_empty(lista_de_entrenadores_ready)){//, entrenador2= 2 acciones  entrenador 1 = 1 acciones
+
+			sem_wait(&MUTEX_ENTRENADORES);
+
 			if(quantum_remanente == 0){
 				quantum_remanente = obtener_quantum();
 			}
-			entrenador = list_remove(lista_de_entrenadores_ready,0);
+			entrenador = list_get(lista_de_entrenadores_ready,0);
 			entrenador->estado = EXEC;
 
 
@@ -265,7 +272,9 @@ void planificar_rr(void){
 					if(list_size(entrenador->cola_de_acciones) > 0 && quantum_remanente == 0){
 						entrenador->estado = READY;
 
+						remover_entrenador_ready(entrenador);
 						list_add(lista_de_entrenadores_ready, entrenador);
+						sem_post(&MUTEX_ENTRENADORES);
 					}
 				}
 			}

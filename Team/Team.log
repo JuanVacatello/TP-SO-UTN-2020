@@ -683,3 +683,150 @@
 [INFO] 19:57:25:516 TEAM/(15921:15930): El entrenador C ejecutó 8 ciclos de cpu
 [INFO] 19:57:25:516 TEAM/(15921:15930): Se produjeron 2 deadlocks
 [INFO] 19:57:25:516 TEAM/(15921:15930): Se resolvieron 2 deadlocks
+[INFO] 01:25:41:860 TEAM/(5934:5940): Reintento de comunicacion con BROKER fallido
+[INFO] 01:25:41:868 TEAM/(5934:5940): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 01:26:11:877 TEAM/(5934:5940): Reintento de comunicacion con BROKER fallido
+[INFO] 01:26:11:888 TEAM/(5934:5940): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 01:30:56:416 TEAM/(6206:6215): Reintento de comunicacion con BROKER fallido
+[INFO] 01:30:56:418 TEAM/(6206:6215): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 01:31:26:423 TEAM/(6206:6215): el socket de conexion es: 7.
+[INFO] 01:31:26:426 TEAM/(6206:6215): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:33:54:897 TEAM/(6206:6406): El codigo de operacion es: 2.
+[INFO] 01:33:54:900 TEAM/(6206:6406): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 01:33:54:903 TEAM/(6206:6406): El nombre del pokemon es: Pikachu
+[INFO] 01:33:54:915 TEAM/(6206:6406): posicion en x: 9
+[INFO] 01:33:54:917 TEAM/(6206:6406): posicion en y: 9
+[INFO] 01:33:54:980 TEAM/(6206:6407): el socket de conexion es: 9.
+[INFO] 01:34:01:764 TEAM/(6206:6411): El codigo de operacion es: 2.
+[INFO] 01:34:01:768 TEAM/(6206:6411): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 01:34:01:774 TEAM/(6206:6411): El nombre del pokemon es: Squirtle
+[INFO] 01:34:01:777 TEAM/(6206:6411): posicion en x: 10
+[INFO] 01:34:01:779 TEAM/(6206:6411): posicion en y: 10
+[INFO] 01:34:02:785 TEAM/(6206:6412): El entrenador B se movió a la posicion 7|5.
+[INFO] 01:36:12:589 TEAM/(6443:6450): Reintento de comunicacion con BROKER fallido
+[INFO] 01:36:12:595 TEAM/(6443:6450): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 01:36:17:445 TEAM/(6443:6459): El codigo de operacion es: 2.
+[INFO] 01:36:17:453 TEAM/(6443:6459): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 01:36:17:462 TEAM/(6443:6459): El nombre del pokemon es: Pikachu
+[INFO] 01:36:17:466 TEAM/(6443:6459): posicion en x: 9
+[INFO] 01:36:17:473 TEAM/(6443:6459): posicion en y: 9
+[INFO] 01:36:17:489 TEAM/(6443:6460): El entrenador C atrapó un Pikachu en la posicion 9|9.
+[INFO] 01:36:18:859 TEAM/(6443:6462): El codigo de operacion es: 2.
+[INFO] 01:36:18:904 TEAM/(6443:6462): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 01:36:18:920 TEAM/(6443:6462): El nombre del pokemon es: Squirtle
+[INFO] 01:36:18:924 TEAM/(6443:6462): posicion en x: 10
+[INFO] 01:36:18:936 TEAM/(6443:6462): posicion en y: 10
+[INFO] 01:36:19:963 TEAM/(6443:6463): El entrenador C se movió a la posicion 10|9.
+[INFO] 01:37:18:738 TEAM/(6483:6491): Reintento de comunicacion con BROKER fallido
+[INFO] 01:37:18:741 TEAM/(6483:6491): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 01:39:17:89 TEAM/(6536:6557): Reintento de comunicacion con BROKER fallido
+[INFO] 01:39:17:95 TEAM/(6536:6557): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 01:39:40:344 TEAM/(6536:6573): El codigo de operacion es: 2.
+[INFO] 01:39:40:346 TEAM/(6536:6573): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 01:39:40:367 TEAM/(6536:6573): El nombre del pokemon es: Pikachu
+[INFO] 01:39:40:377 TEAM/(6536:6573): posicion en x: 9
+[INFO] 01:39:40:385 TEAM/(6536:6573): posicion en y: 9
+[INFO] 01:39:40:423 TEAM/(6536:6574): El entrenador C atrapó un Pikachu en la posicion 9|9.
+[INFO] 01:39:47:99 TEAM/(6536:6557): Reintento de comunicacion con BROKER fallido
+[INFO] 01:39:47:102 TEAM/(6536:6557): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 01:40:09:207 TEAM/(6536:6582): El codigo de operacion es: 2.
+[INFO] 01:40:09:219 TEAM/(6536:6582): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 01:40:09:224 TEAM/(6536:6582): El nombre del pokemon es: Squirtle
+[INFO] 01:40:09:237 TEAM/(6536:6582): posicion en x: 10
+[INFO] 01:40:09:244 TEAM/(6536:6582): posicion en y: 10
+[INFO] 01:40:10:297 TEAM/(6536:6583): El entrenador C se movió a la posicion 10|9.
+[INFO] 02:39:10:816 TEAM/(6536:6557): Reintento de comunicacion con BROKER fallido
+[INFO] 02:39:10:818 TEAM/(6536:6557): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 02:46:53:12 TEAM/(7187:7217): Reintento de comunicacion con BROKER fallido
+[INFO] 02:46:53:24 TEAM/(7187:7217): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 02:47:06:257 TEAM/(7187:7235): El codigo de operacion es: 2.
+[INFO] 02:47:06:267 TEAM/(7187:7235): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 02:47:06:277 TEAM/(7187:7235): El nombre del pokemon es: Pikachu
+[INFO] 02:47:06:282 TEAM/(7187:7235): posicion en x: 9
+[INFO] 02:47:06:299 TEAM/(7187:7235): posicion en y: 9
+[INFO] 02:47:23:195 TEAM/(7187:7217): Reintento de comunicacion con BROKER fallido
+[INFO] 02:47:23:197 TEAM/(7187:7217): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 02:47:29:193 TEAM/(7187:7248): El entrenador C atrapó un Pikachu en la posicion 9|9.
+[INFO] 02:47:54:17 TEAM/(7187:7217): Reintento de comunicacion con BROKER fallido
+[INFO] 02:47:54:25 TEAM/(7187:7217): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 02:48:13:184 TEAM/(7187:7271): El codigo de operacion es: 2.
+[INFO] 02:48:13:204 TEAM/(7187:7271): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 02:48:13:226 TEAM/(7187:7271): El nombre del pokemon es: Squirtle
+[INFO] 02:48:13:234 TEAM/(7187:7271): posicion en x: 10
+[INFO] 02:48:13:248 TEAM/(7187:7271): posicion en y: 10
+[INFO] 02:48:14:287 TEAM/(7187:7272): El entrenador C se movió a la posicion 10|9.
+[INFO] 02:52:08:339 TEAM/(7341:7349): Reintento de comunicacion con BROKER fallido
+[INFO] 02:52:08:342 TEAM/(7341:7349): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 02:52:38:354 TEAM/(7341:7349): Reintento de comunicacion con BROKER fallido
+[INFO] 02:52:38:360 TEAM/(7341:7349): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 02:53:08:371 TEAM/(7341:7349): Reintento de comunicacion con BROKER fallido
+[INFO] 02:53:08:392 TEAM/(7341:7349): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 02:53:38:401 TEAM/(7341:7349): Reintento de comunicacion con BROKER fallido
+[INFO] 02:53:38:413 TEAM/(7341:7349): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 02:54:08:428 TEAM/(7341:7349): Reintento de comunicacion con BROKER fallido
+[INFO] 02:54:08:438 TEAM/(7341:7349): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 02:54:38:449 TEAM/(7341:7349): Reintento de comunicacion con BROKER fallido
+[INFO] 02:54:38:459 TEAM/(7341:7349): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 02:55:08:472 TEAM/(7341:7349): Reintento de comunicacion con BROKER fallido
+[INFO] 02:55:08:480 TEAM/(7341:7349): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 02:55:38:487 TEAM/(7341:7349): Reintento de comunicacion con BROKER fallido
+[INFO] 02:55:38:491 TEAM/(7341:7349): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 02:56:08:496 TEAM/(7341:7349): Reintento de comunicacion con BROKER fallido
+[INFO] 02:56:08:508 TEAM/(7341:7349): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 02:56:37:820 TEAM/(7341:7374): El codigo de operacion es: 2.
+[INFO] 02:56:37:828 TEAM/(7341:7374): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 02:56:37:836 TEAM/(7341:7374): El nombre del pokemon es: Pikachu
+[INFO] 02:56:37:852 TEAM/(7341:7374): posicion en x: 9
+[INFO] 02:56:37:854 TEAM/(7341:7374): posicion en y: 9
+[INFO] 02:56:37:915 TEAM/(7341:7375): El entrenador C atrapó un Pikachu en la posicion 9|9.
+[INFO] 02:56:38:515 TEAM/(7341:7349): Reintento de comunicacion con BROKER fallido
+[INFO] 02:56:38:529 TEAM/(7341:7349): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 02:56:39:394 TEAM/(7341:7377): El codigo de operacion es: 2.
+[INFO] 02:56:39:418 TEAM/(7341:7377): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 02:56:39:422 TEAM/(7341:7377): El nombre del pokemon es: Squirtle
+[INFO] 02:56:39:428 TEAM/(7341:7377): posicion en x: 10
+[INFO] 02:56:39:430 TEAM/(7341:7377): posicion en y: 10
+[INFO] 02:56:40:441 TEAM/(7341:7378): El entrenador C se movió a la posicion 10|9.
+[INFO] 02:57:08:535 TEAM/(7341:7349): Reintento de comunicacion con BROKER fallido
+[INFO] 02:57:08:537 TEAM/(7341:7349): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 02:59:55:658 TEAM/(7441:7449): Reintento de comunicacion con BROKER fallido
+[INFO] 02:59:55:663 TEAM/(7441:7449): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 03:00:08:776 TEAM/(7441:7453): El codigo de operacion es: 2.
+[INFO] 03:00:08:795 TEAM/(7441:7453): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 03:00:08:797 TEAM/(7441:7453): El nombre del pokemon es: Pikachu
+[INFO] 03:00:08:808 TEAM/(7441:7453): posicion en x: 9
+[INFO] 03:00:08:812 TEAM/(7441:7453): posicion en y: 9
+[INFO] 03:00:08:847 TEAM/(7441:7454): El entrenador C atrapó un Pikachu en la posicion 9|9.
+[INFO] 03:00:10:807 TEAM/(7441:7456): El codigo de operacion es: 2.
+[INFO] 03:00:10:816 TEAM/(7441:7456): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 03:00:10:825 TEAM/(7441:7456): El nombre del pokemon es: Squirtle
+[INFO] 03:00:10:827 TEAM/(7441:7456): posicion en x: 10
+[INFO] 03:00:10:830 TEAM/(7441:7456): posicion en y: 10
+[INFO] 03:00:11:848 TEAM/(7441:7457): El entrenador C se movió a la posicion 10|9.
+[INFO] 03:00:12:856 TEAM/(7441:7458): El entrenador C se movió a la posicion 10|10.
+[INFO] 03:00:12:860 TEAM/(7441:7459): El entrenador C atrapó un Squirtle en la posicion 10|10.
+[INFO] 03:01:53:342 TEAM/(7481:7495): Reintento de comunicacion con BROKER fallido
+[INFO] 03:01:53:344 TEAM/(7481:7495): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 03:02:12:547 TEAM/(7481:7499): El codigo de operacion es: 2.
+[INFO] 03:02:12:550 TEAM/(7481:7499): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 03:02:12:552 TEAM/(7481:7499): El nombre del pokemon es: Squirtle
+[INFO] 03:02:12:571 TEAM/(7481:7499): posicion en x: 12
+[INFO] 03:02:12:574 TEAM/(7481:7499): posicion en y: 12
+[INFO] 03:02:13:596 TEAM/(7481:7500): El entrenador C se movió a la posicion 10|9.
+[INFO] 03:02:14:605 TEAM/(7481:7501): El entrenador C se movió a la posicion 11|9.
+[INFO] 03:02:15:615 TEAM/(7481:7502): El entrenador C se movió a la posicion 12|9.
+[INFO] 03:02:15:733 TEAM/(7481:7505): El codigo de operacion es: 2.
+[INFO] 03:02:15:753 TEAM/(7481:7505): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 03:02:15:768 TEAM/(7481:7505): El nombre del pokemon es: Pikachu
+[INFO] 03:02:15:770 TEAM/(7481:7505): posicion en x: 1
+[INFO] 03:02:15:775 TEAM/(7481:7505): posicion en y: 1
+[INFO] 03:02:16:637 TEAM/(7481:7503): El entrenador C se movió a la posicion 12|10.
+[INFO] 03:02:17:649 TEAM/(7481:7506): El entrenador A se movió a la posicion 1|3.
+[INFO] 03:02:18:666 TEAM/(7481:7507): El entrenador A se movió a la posicion 1|2.
+[INFO] 03:02:19:683 TEAM/(7481:7508): El entrenador C se movió a la posicion 12|11.
+[INFO] 03:02:20:708 TEAM/(7481:7509): El entrenador C se movió a la posicion 12|12.
+[INFO] 03:02:21:715 TEAM/(7481:7510): El entrenador A se movió a la posicion 1|1.
+[INFO] 03:02:21:728 TEAM/(7481:7511): El entrenador A atrapó un Pikachu en la posicion 1|1.
+[INFO] 03:02:22:736 TEAM/(7481:7512): El entrenador C atrapó un Squirtle en la posicion 12|12.
+[INFO] 03:02:23:354 TEAM/(7481:7495): Reintento de comunicacion con BROKER fallido
+[INFO] 03:02:23:363 TEAM/(7481:7495): No se pudo conectar con el BROKER, reintentando en 30 segundos...
