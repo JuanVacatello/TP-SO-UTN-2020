@@ -830,3 +830,508 @@
 [INFO] 03:02:22:736 TEAM/(7481:7512): El entrenador C atrapó un Squirtle en la posicion 12|12.
 [INFO] 03:02:23:354 TEAM/(7481:7495): Reintento de comunicacion con BROKER fallido
 [INFO] 03:02:23:363 TEAM/(7481:7495): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:17:58:355 TEAM/(5627:5640): Reintento de comunicacion con BROKER fallido
+[INFO] 17:17:58:356 TEAM/(5627:5640): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:18:00:997 TEAM/(5627:5644): El codigo de operacion es: 2.
+[INFO] 17:18:00:997 TEAM/(5627:5644): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:18:00:997 TEAM/(5627:5644): El nombre del pokemon es: Pikachu
+[INFO] 17:18:00:997 TEAM/(5627:5644): posicion en x: 9
+[INFO] 17:18:00:997 TEAM/(5627:5644): posicion en y: 9
+[INFO] 17:18:01:12 TEAM/(5627:5647): El codigo de operacion es: 2.
+[INFO] 17:18:01:19 TEAM/(5627:5647): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:18:01:20 TEAM/(5627:5647): El nombre del pokemon es: Squirtle
+[INFO] 17:18:01:21 TEAM/(5627:5647): posicion en x: 5
+[INFO] 17:18:01:21 TEAM/(5627:5647): posicion en y: 2
+[INFO] 17:18:01:36 TEAM/(5627:5649): El codigo de operacion es: 2.
+[INFO] 17:18:01:39 TEAM/(5627:5649): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:18:01:39 TEAM/(5627:5649): El nombre del pokemon es: Onix
+[INFO] 17:18:01:39 TEAM/(5627:5649): posicion en x: 2
+[INFO] 17:18:01:40 TEAM/(5627:5649): posicion en y: 8
+[INFO] 17:18:01:41 TEAM/(5627:5651): El codigo de operacion es: 2.
+[INFO] 17:18:01:41 TEAM/(5627:5651): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:18:02:4 TEAM/(5627:5646): El entrenador B se movió a la posicion 3|3.
+[INFO] 17:18:03:8 TEAM/(5627:5653): El entrenador B se movió a la posicion 4|3.
+[INFO] 17:18:04:9 TEAM/(5627:5654): El entrenador C se movió a la posicion 4|2.
+[INFO] 17:18:05:10 TEAM/(5627:5655): El entrenador C se movió a la posicion 5|2.
+[INFO] 17:18:06:24 TEAM/(5627:5656): El entrenador A se movió a la posicion 2|3.
+[INFO] 17:18:07:26 TEAM/(5627:5657): El entrenador A se movió a la posicion 2|4.
+[INFO] 17:18:08:31 TEAM/(5627:5658): El entrenador B se movió a la posicion 5|3.
+[INFO] 17:18:09:32 TEAM/(5627:5659): El entrenador B se movió a la posicion 6|3.
+[INFO] 17:18:09:32 TEAM/(5627:5660): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 17:18:09:33 TEAM/(5627:5651): El nombre del pokemon es: Gengar
+[INFO] 17:18:09:33 TEAM/(5627:5651): posicion en x: 6
+[INFO] 17:18:09:33 TEAM/(5627:5651): posicion en y: 6
+[INFO] 17:18:09:33 TEAM/(5627:5661): El codigo de operacion es: 2.
+[INFO] 17:18:09:33 TEAM/(5627:5661): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:18:10:33 TEAM/(5627:5661): El nombre del pokemon es: Squirtle
+[INFO] 17:18:10:34 TEAM/(5627:5661): posicion en x: 5
+[INFO] 17:18:10:34 TEAM/(5627:5661): posicion en y: 5
+[INFO] 17:21:12:975 TEAM/(5764:5784): Reintento de comunicacion con BROKER fallido
+[INFO] 17:21:12:976 TEAM/(5764:5784): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:21:24:305 TEAM/(5764:5810): El codigo de operacion es: 2.
+[INFO] 17:21:24:305 TEAM/(5764:5810): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:21:38:249 TEAM/(5764:5810): El nombre del pokemon es: Pikachu
+[INFO] 17:21:38:250 TEAM/(5764:5810): posicion en x: 9
+[INFO] 17:21:38:250 TEAM/(5764:5810): posicion en y: 9
+[INFO] 17:21:41:801 TEAM/(5764:5849): El codigo de operacion es: 2.
+[INFO] 17:21:41:801 TEAM/(5764:5849): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:21:41:801 TEAM/(5764:5849): El nombre del pokemon es: Squirtle
+[INFO] 17:21:41:801 TEAM/(5764:5849): posicion en x: 5
+[INFO] 17:21:41:801 TEAM/(5764:5849): posicion en y: 2
+[INFO] 17:21:41:804 TEAM/(5764:5847): El entrenador B se movió a la posicion 3|3.
+[INFO] 17:22:09:758 TEAM/(5886:5909): Reintento de comunicacion con BROKER fallido
+[INFO] 17:22:09:758 TEAM/(5886:5909): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:22:20:183 TEAM/(5886:5928): El codigo de operacion es: 2.
+[INFO] 17:22:20:184 TEAM/(5886:5928): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:22:20:186 TEAM/(5886:5928): El nombre del pokemon es: Pikachu
+[INFO] 17:22:20:186 TEAM/(5886:5928): posicion en x: 9
+[INFO] 17:22:20:186 TEAM/(5886:5928): posicion en y: 9
+[INFO] 17:22:21:809 TEAM/(5886:5934): El codigo de operacion es: 2.
+[INFO] 17:22:21:809 TEAM/(5886:5934): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:22:21:809 TEAM/(5886:5934): El nombre del pokemon es: Squirtle
+[INFO] 17:22:21:809 TEAM/(5886:5934): posicion en x: 5
+[INFO] 17:22:21:809 TEAM/(5886:5934): posicion en y: 2
+[INFO] 17:22:22:870 TEAM/(5886:5936): El codigo de operacion es: 2.
+[INFO] 17:22:22:871 TEAM/(5886:5936): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:22:22:871 TEAM/(5886:5936): El nombre del pokemon es: Onix
+[INFO] 17:22:22:871 TEAM/(5886:5936): posicion en x: 2
+[INFO] 17:22:22:871 TEAM/(5886:5936): posicion en y: 8
+[INFO] 17:22:22:879 TEAM/(5886:5938): El codigo de operacion es: 2.
+[INFO] 17:22:24:258 TEAM/(5886:5938): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:22:40:15 TEAM/(5886:5909): Reintento de comunicacion con BROKER fallido
+[INFO] 17:22:40:16 TEAM/(5886:5909): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:22:48:544 TEAM/(5886:5957): El entrenador B se movió a la posicion 3|3.
+[INFO] 17:23:06:186 TEAM/(5886:5971): El entrenador B se movió a la posicion 4|3.
+[INFO] 17:23:11:390 TEAM/(5886:5909): Reintento de comunicacion con BROKER fallido
+[INFO] 17:23:11:391 TEAM/(5886:5909): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:23:45:438 TEAM/(5886:5909): Reintento de comunicacion con BROKER fallido
+[INFO] 17:23:45:438 TEAM/(5886:5909): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:24:04:735 TEAM/(5886:6019): El entrenador C se movió a la posicion 4|2.
+[INFO] 17:24:14:186 TEAM/(5886:6028): El entrenador C se movió a la posicion 5|2.
+[INFO] 17:24:15:700 TEAM/(5886:5909): Reintento de comunicacion con BROKER fallido
+[INFO] 17:24:15:700 TEAM/(5886:5909): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:24:37:645 TEAM/(5886:6065): El entrenador A se movió a la posicion 2|3.
+[INFO] 17:24:43:337 TEAM/(5886:6074): El entrenador A se movió a la posicion 2|4.
+[INFO] 17:24:45:714 TEAM/(5886:5909): Reintento de comunicacion con BROKER fallido
+[INFO] 17:24:45:714 TEAM/(5886:5909): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:25:04:431 TEAM/(5886:6096): El entrenador B se movió a la posicion 5|3.
+[INFO] 17:25:10:941 TEAM/(5886:6106): El entrenador B se movió a la posicion 6|3.
+[INFO] 17:25:17:152 TEAM/(5886:5909): Reintento de comunicacion con BROKER fallido
+[INFO] 17:25:17:152 TEAM/(5886:5909): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:25:47:466 TEAM/(5886:5909): Reintento de comunicacion con BROKER fallido
+[INFO] 17:25:47:467 TEAM/(5886:5909): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:25:55:430 TEAM/(5886:6135): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 17:25:55:431 TEAM/(5886:5938): El nombre del pokemon es: Gengar
+[INFO] 17:25:55:431 TEAM/(5886:5938): posicion en x: 6
+[INFO] 17:25:55:431 TEAM/(5886:5938): posicion en y: 6
+[INFO] 17:26:01:157 TEAM/(5886:6141): El codigo de operacion es: 2.
+[INFO] 17:26:01:157 TEAM/(5886:6141): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:26:22:162 TEAM/(5886:5909): Reintento de comunicacion con BROKER fallido
+[INFO] 17:26:22:163 TEAM/(5886:5909): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:26:52:606 TEAM/(5886:5909): Reintento de comunicacion con BROKER fallido
+[INFO] 17:26:52:606 TEAM/(5886:5909): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:27:04:440 TEAM/(5886:6141): El nombre del pokemon es: Squirtle
+[INFO] 17:27:04:440 TEAM/(5886:6141): posicion en x: 5
+[INFO] 17:27:04:440 TEAM/(5886:6141): posicion en y: 5
+[INFO] 17:32:07:395 TEAM/(6343:6366): Reintento de comunicacion con BROKER fallido
+[INFO] 17:32:07:395 TEAM/(6343:6366): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:32:11:622 TEAM/(6343:6386): El codigo de operacion es: 2.
+[INFO] 17:32:11:632 TEAM/(6343:6386): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:32:11:632 TEAM/(6343:6386): El nombre del pokemon es: Pikachu
+[INFO] 17:32:11:632 TEAM/(6343:6386): posicion en x: 9
+[INFO] 17:32:11:633 TEAM/(6343:6386): posicion en y: 9
+[INFO] 17:32:37:689 TEAM/(6343:6366): Reintento de comunicacion con BROKER fallido
+[INFO] 17:32:37:689 TEAM/(6343:6366): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:32:40:395 TEAM/(6343:6438): El codigo de operacion es: 2.
+[INFO] 17:32:40:395 TEAM/(6343:6438): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:32:40:395 TEAM/(6343:6438): El nombre del pokemon es: Squirtle
+[INFO] 17:32:40:395 TEAM/(6343:6438): posicion en x: 5
+[INFO] 17:32:40:395 TEAM/(6343:6438): posicion en y: 2
+[INFO] 17:32:41:391 TEAM/(6343:6436): El entrenador B se movió a la posicion 3|3.
+[INFO] 17:32:44:239 TEAM/(6343:6442): El entrenador B se movió a la posicion 4|3.
+[INFO] 17:32:46:575 TEAM/(6343:6450): El entrenador B se movió a la posicion 5|3.
+[INFO] 17:33:34:80 TEAM/(6511:6534): Reintento de comunicacion con BROKER fallido
+[INFO] 17:33:34:80 TEAM/(6511:6534): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:33:38:861 TEAM/(6511:6553): El codigo de operacion es: 2.
+[INFO] 17:33:38:862 TEAM/(6511:6553): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:33:38:862 TEAM/(6511:6553): El nombre del pokemon es: Pikachu
+[INFO] 17:33:38:862 TEAM/(6511:6553): posicion en x: 9
+[INFO] 17:33:38:862 TEAM/(6511:6553): posicion en y: 9
+[INFO] 17:34:04:297 TEAM/(6511:6534): Reintento de comunicacion con BROKER fallido
+[INFO] 17:34:04:297 TEAM/(6511:6534): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:34:06:879 TEAM/(6511:6609): El codigo de operacion es: 2.
+[INFO] 17:34:06:879 TEAM/(6511:6609): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:34:06:879 TEAM/(6511:6609): El nombre del pokemon es: Squirtle
+[INFO] 17:34:06:879 TEAM/(6511:6609): posicion en x: 5
+[INFO] 17:34:06:879 TEAM/(6511:6609): posicion en y: 2
+[INFO] 17:34:07:973 TEAM/(6511:6611): El codigo de operacion es: 2.
+[INFO] 17:34:07:973 TEAM/(6511:6608): El entrenador B se movió a la posicion 3|3.
+[INFO] 17:34:07:973 TEAM/(6511:6611): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:34:07:973 TEAM/(6511:6611): El nombre del pokemon es: Onix
+[INFO] 17:34:07:973 TEAM/(6511:6611): posicion en x: 2
+[INFO] 17:34:07:973 TEAM/(6511:6611): posicion en y: 8
+[INFO] 17:34:07:978 TEAM/(6511:6612): El codigo de operacion es: 2.
+[INFO] 17:34:07:979 TEAM/(6511:6612): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:34:08:978 TEAM/(6511:6613): El entrenador B se movió a la posicion 4|3.
+[INFO] 17:34:09:985 TEAM/(6511:6616): El entrenador C se movió a la posicion 4|2.
+[INFO] 17:34:10:990 TEAM/(6511:6617): El entrenador C se movió a la posicion 5|2.
+[INFO] 17:34:11:4 TEAM/(6511:6618): El entrenador A se movió a la posicion 2|3.
+[INFO] 17:34:13:17 TEAM/(6511:6619): El entrenador A se movió a la posicion 2|4.
+[INFO] 17:34:14:24 TEAM/(6511:6620): El entrenador B se movió a la posicion 5|3.
+[INFO] 17:34:15:35 TEAM/(6511:6621): El entrenador B se movió a la posicion 6|3.
+[INFO] 17:34:51:63 TEAM/(6511:6534): Reintento de comunicacion con BROKER fallido
+[INFO] 17:34:51:63 TEAM/(6511:6534): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:35:08:689 TEAM/(6511:6622): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 17:35:22:624 TEAM/(6511:6534): Reintento de comunicacion con BROKER fallido
+[INFO] 17:35:22:624 TEAM/(6511:6534): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:35:41:309 TEAM/(6511:6612): El nombre del pokemon es: Gengar
+[INFO] 17:35:41:310 TEAM/(6511:6612): posicion en x: 6
+[INFO] 17:35:41:310 TEAM/(6511:6612): posicion en y: 6
+[INFO] 17:35:54:506 TEAM/(6511:6534): Reintento de comunicacion con BROKER fallido
+[INFO] 17:35:54:506 TEAM/(6511:6534): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:36:26:576 TEAM/(6511:6534): Reintento de comunicacion con BROKER fallido
+[INFO] 17:36:26:576 TEAM/(6511:6534): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:36:27:917 TEAM/(6511:6671): El entrenador A se movió a la posicion 2|5.
+[INFO] 17:36:30:602 TEAM/(6511:6677): El entrenador B se movió a la posicion 7|3.
+[INFO] 17:36:44:740 TEAM/(6511:6686): El entrenador B se movió a la posicion 8|3.
+[INFO] 17:36:47:731 TEAM/(6511:6693): El entrenador A se movió a la posicion 2|6.
+[INFO] 17:36:58:443 TEAM/(6511:6701): El entrenador A se movió a la posicion 2|7.
+[INFO] 17:36:58:443 TEAM/(6511:6534): Reintento de comunicacion con BROKER fallido
+[INFO] 17:36:58:443 TEAM/(6511:6534): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:37:19:841 TEAM/(6511:6709): El entrenador B se movió a la posicion 9|3.
+[INFO] 17:37:21:139 TEAM/(6511:6715): El entrenador B se movió a la posicion 9|4.
+[INFO] 17:37:22:449 TEAM/(6511:6717): El entrenador A se movió a la posicion 2|8.
+[INFO] 17:37:31:206 TEAM/(6511:6724): El codigo de operacion es: 2.
+[INFO] 17:37:31:206 TEAM/(6511:6724): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:37:31:206 TEAM/(6511:6724): El nombre del pokemon es: Squirtle
+[INFO] 17:37:31:206 TEAM/(6511:6724): posicion en x: 5
+[INFO] 17:37:31:206 TEAM/(6511:6724): posicion en y: 5
+[INFO] 17:37:31:206 TEAM/(6511:6534): Reintento de comunicacion con BROKER fallido
+[INFO] 17:37:31:206 TEAM/(6511:6534): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:37:37:376 TEAM/(6511:6719): El entrenador A atrapó un Onix en la posicion 2|8.
+[INFO] 17:37:42:943 TEAM/(6511:6732): El entrenador B se movió a la posicion 9|5.
+[INFO] 17:37:50:738 TEAM/(6511:6737): El entrenador B se movió a la posicion 9|6.
+[INFO] 17:38:01:494 TEAM/(6511:6743): El entrenador C se movió a la posicion 6|2.
+[INFO] 17:38:01:495 TEAM/(6511:6534): Reintento de comunicacion con BROKER fallido
+[INFO] 17:38:01:495 TEAM/(6511:6534): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:38:03:719 TEAM/(6511:6750): El entrenador C se movió a la posicion 6|3.
+[INFO] 17:38:04:855 TEAM/(6511:6754): El entrenador B se movió a la posicion 9|7.
+[INFO] 17:38:05:979 TEAM/(6511:6757): El entrenador B se movió a la posicion 9|8.
+[INFO] 17:38:11:315 TEAM/(6511:6759): El entrenador C se movió a la posicion 6|4.
+[INFO] 17:38:16:899 TEAM/(6511:6762): El entrenador C se movió a la posicion 6|5.
+[INFO] 17:38:19:717 TEAM/(6511:6774): El entrenador B se movió a la posicion 9|9.
+[INFO] 17:38:41:956 TEAM/(6796:6805): Reintento de comunicacion con BROKER fallido
+[INFO] 17:38:41:956 TEAM/(6796:6805): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:38:44:769 TEAM/(6796:6810): El codigo de operacion es: 2.
+[INFO] 17:38:44:769 TEAM/(6796:6810): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:38:44:769 TEAM/(6796:6810): El nombre del pokemon es: Pikachu
+[INFO] 17:38:44:769 TEAM/(6796:6810): posicion en x: 9
+[INFO] 17:38:44:769 TEAM/(6796:6810): posicion en y: 9
+[INFO] 17:38:44:770 TEAM/(6796:6813): El codigo de operacion es: 2.
+[INFO] 17:38:44:770 TEAM/(6796:6813): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:38:44:770 TEAM/(6796:6813): El nombre del pokemon es: Squirtle
+[INFO] 17:38:44:771 TEAM/(6796:6813): posicion en x: 5
+[INFO] 17:38:44:771 TEAM/(6796:6813): posicion en y: 2
+[INFO] 17:38:44:772 TEAM/(6796:6815): El codigo de operacion es: 2.
+[INFO] 17:38:44:774 TEAM/(6796:6815): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:38:44:775 TEAM/(6796:6815): El nombre del pokemon es: Onix
+[INFO] 17:38:44:775 TEAM/(6796:6815): posicion en x: 2
+[INFO] 17:38:44:775 TEAM/(6796:6815): posicion en y: 8
+[INFO] 17:38:44:781 TEAM/(6796:6817): El codigo de operacion es: 2.
+[INFO] 17:38:44:781 TEAM/(6796:6817): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:38:45:771 TEAM/(6796:6812): El entrenador B se movió a la posicion 3|3.
+[INFO] 17:38:46:780 TEAM/(6796:6821): El entrenador B se movió a la posicion 4|3.
+[INFO] 17:38:47:781 TEAM/(6796:6822): El entrenador C se movió a la posicion 4|2.
+[INFO] 17:38:48:788 TEAM/(6796:6823): El entrenador C se movió a la posicion 5|2.
+[INFO] 17:38:49:795 TEAM/(6796:6824): El entrenador A se movió a la posicion 2|3.
+[INFO] 17:38:50:797 TEAM/(6796:6825): El entrenador A se movió a la posicion 2|4.
+[INFO] 17:38:51:805 TEAM/(6796:6826): El entrenador B se movió a la posicion 5|3.
+[INFO] 17:38:52:806 TEAM/(6796:6827): El entrenador B se movió a la posicion 6|3.
+[INFO] 17:38:52:806 TEAM/(6796:6828): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 17:38:52:806 TEAM/(6796:6817): El nombre del pokemon es: Gengar
+[INFO] 17:38:52:806 TEAM/(6796:6817): posicion en x: 6
+[INFO] 17:38:52:806 TEAM/(6796:6817): posicion en y: 6
+[INFO] 17:38:52:806 TEAM/(6796:6829): El codigo de operacion es: 2.
+[INFO] 17:38:52:806 TEAM/(6796:6829): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:38:53:807 TEAM/(6796:6829): El nombre del pokemon es: Squirtle
+[INFO] 17:38:53:808 TEAM/(6796:6829): posicion en x: 5
+[INFO] 17:38:53:808 TEAM/(6796:6829): posicion en y: 5
+[INFO] 17:41:28:609 TEAM/(6931:6938): Reintento de comunicacion con BROKER fallido
+[INFO] 17:41:28:612 TEAM/(6931:6938): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:41:33:948 TEAM/(6931:6945): El codigo de operacion es: 2.
+[INFO] 17:41:33:951 TEAM/(6931:6945): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:41:33:951 TEAM/(6931:6945): El nombre del pokemon es: Pikachu
+[INFO] 17:41:33:952 TEAM/(6931:6945): posicion en x: 9
+[INFO] 17:41:33:952 TEAM/(6931:6945): posicion en y: 9
+[INFO] 17:41:33:956 TEAM/(6931:6948): El codigo de operacion es: 2.
+[INFO] 17:41:33:956 TEAM/(6931:6948): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:41:33:956 TEAM/(6931:6948): El nombre del pokemon es: Squirtle
+[INFO] 17:41:33:956 TEAM/(6931:6948): posicion en x: 5
+[INFO] 17:41:33:957 TEAM/(6931:6948): posicion en y: 2
+[INFO] 17:41:33:961 TEAM/(6931:6950): El codigo de operacion es: 2.
+[INFO] 17:41:33:961 TEAM/(6931:6950): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:41:33:961 TEAM/(6931:6950): El nombre del pokemon es: Onix
+[INFO] 17:41:33:961 TEAM/(6931:6950): posicion en x: 2
+[INFO] 17:41:33:961 TEAM/(6931:6950): posicion en y: 8
+[INFO] 17:41:33:964 TEAM/(6931:6952): El codigo de operacion es: 2.
+[INFO] 17:41:33:964 TEAM/(6931:6952): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:41:34:957 TEAM/(6931:6947): El entrenador B se movió a la posicion 3|3.
+[INFO] 17:41:35:967 TEAM/(6931:6954): El entrenador B se movió a la posicion 4|3.
+[INFO] 17:41:36:968 TEAM/(6931:6955): El entrenador C se movió a la posicion 4|2.
+[INFO] 17:41:37:979 TEAM/(6931:6956): El entrenador C se movió a la posicion 5|2.
+[INFO] 17:41:38:986 TEAM/(6931:6957): El entrenador A se movió a la posicion 2|3.
+[INFO] 17:41:39:992 TEAM/(6931:6958): El entrenador A se movió a la posicion 2|4.
+[INFO] 17:41:40:996 TEAM/(6931:6959): El entrenador B se movió a la posicion 5|3.
+[INFO] 17:41:41:0 TEAM/(6931:6960): El entrenador B se movió a la posicion 6|3.
+[INFO] 17:41:42:8 TEAM/(6931:6961): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 17:41:42:8 TEAM/(6931:6952): El nombre del pokemon es: Gengar
+[INFO] 17:41:42:8 TEAM/(6931:6952): posicion en x: 6
+[INFO] 17:41:42:8 TEAM/(6931:6952): posicion en y: 6
+[INFO] 17:41:42:12 TEAM/(6931:6962): El codigo de operacion es: 2.
+[INFO] 17:41:42:13 TEAM/(6931:6962): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:41:44:12 TEAM/(6931:6963): El entrenador C se movió a la posicion 6|2.
+[INFO] 17:41:45:19 TEAM/(6931:6964): El entrenador A se movió a la posicion 2|5.
+[INFO] 17:41:46:24 TEAM/(6931:6965): El entrenador A se movió a la posicion 2|6.
+[INFO] 17:41:47:36 TEAM/(6931:6968): El entrenador B se movió a la posicion 7|3.
+[INFO] 17:41:48:40 TEAM/(6931:6969): El entrenador B se movió a la posicion 8|3.
+[INFO] 17:41:49:42 TEAM/(6931:6970): El entrenador C se movió a la posicion 6|3.
+[INFO] 17:41:50:44 TEAM/(6931:6971): El entrenador C se movió a la posicion 6|4.
+[INFO] 17:41:51:45 TEAM/(6931:6972): El entrenador A se movió a la posicion 2|7.
+[INFO] 17:41:52:47 TEAM/(6931:6973): El entrenador A se movió a la posicion 2|8.
+[INFO] 17:41:53:48 TEAM/(6931:6974): El entrenador B se movió a la posicion 9|3.
+[INFO] 17:41:54:49 TEAM/(6931:6975): El entrenador B se movió a la posicion 9|4.
+[INFO] 17:41:55:50 TEAM/(6931:6976): El entrenador C se movió a la posicion 6|5.
+[INFO] 17:41:56:52 TEAM/(6931:6977): El entrenador C se movió a la posicion 6|6.
+[INFO] 17:41:56:56 TEAM/(6931:6978): El entrenador A atrapó un Onix en la posicion 2|8.
+[INFO] 17:41:56:56 TEAM/(6931:6962): El nombre del pokemon es: Squirtle
+[INFO] 17:41:56:56 TEAM/(6931:6962): posicion en x: 5
+[INFO] 17:41:56:57 TEAM/(6931:6962): posicion en y: 5
+[INFO] 17:44:26:884 TEAM/(7002:7010): Reintento de comunicacion con BROKER fallido
+[INFO] 17:44:26:884 TEAM/(7002:7010): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:44:28:164 TEAM/(7002:7016): El codigo de operacion es: 2.
+[INFO] 17:44:28:165 TEAM/(7002:7016): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:44:28:165 TEAM/(7002:7016): El nombre del pokemon es: Pikachu
+[INFO] 17:44:28:168 TEAM/(7002:7016): posicion en x: 9
+[INFO] 17:44:28:168 TEAM/(7002:7016): posicion en y: 9
+[INFO] 17:44:28:173 TEAM/(7002:7019): El codigo de operacion es: 2.
+[INFO] 17:44:28:173 TEAM/(7002:7019): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:44:28:174 TEAM/(7002:7019): El nombre del pokemon es: Squirtle
+[INFO] 17:44:28:174 TEAM/(7002:7019): posicion en x: 5
+[INFO] 17:44:28:174 TEAM/(7002:7019): posicion en y: 2
+[INFO] 17:44:28:203 TEAM/(7002:7021): El codigo de operacion es: 2.
+[INFO] 17:44:28:203 TEAM/(7002:7021): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:44:28:204 TEAM/(7002:7021): El nombre del pokemon es: Onix
+[INFO] 17:44:28:204 TEAM/(7002:7021): posicion en x: 2
+[INFO] 17:44:28:204 TEAM/(7002:7021): posicion en y: 8
+[INFO] 17:44:28:218 TEAM/(7002:7023): El codigo de operacion es: 2.
+[INFO] 17:44:28:219 TEAM/(7002:7023): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:44:29:176 TEAM/(7002:7018): El entrenador B se movió a la posicion 3|3.
+[INFO] 17:44:30:178 TEAM/(7002:7025): El entrenador B se movió a la posicion 4|3.
+[INFO] 17:44:31:182 TEAM/(7002:7026): El entrenador C se movió a la posicion 4|2.
+[INFO] 17:44:32:188 TEAM/(7002:7027): El entrenador C se movió a la posicion 5|2.
+[INFO] 17:44:33:192 TEAM/(7002:7028): El entrenador A se movió a la posicion 2|3.
+[INFO] 17:44:34:193 TEAM/(7002:7029): El entrenador A se movió a la posicion 2|4.
+[INFO] 17:44:35:194 TEAM/(7002:7030): El entrenador B se movió a la posicion 5|3.
+[INFO] 17:44:36:196 TEAM/(7002:7031): El entrenador B se movió a la posicion 6|3.
+[INFO] 17:44:36:197 TEAM/(7002:7032): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 17:44:36:197 TEAM/(7002:7023): El nombre del pokemon es: Gengar
+[INFO] 17:44:36:197 TEAM/(7002:7023): posicion en x: 6
+[INFO] 17:44:36:197 TEAM/(7002:7023): posicion en y: 6
+[INFO] 17:44:36:197 TEAM/(7002:7033): El codigo de operacion es: 2.
+[INFO] 17:44:36:197 TEAM/(7002:7033): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:44:38:198 TEAM/(7002:7034): El entrenador C se movió a la posicion 6|2.
+[INFO] 17:44:39:200 TEAM/(7002:7035): El entrenador A se movió a la posicion 2|5.
+[INFO] 17:44:40:204 TEAM/(7002:7036): El entrenador A se movió a la posicion 2|6.
+[INFO] 17:44:41:208 TEAM/(7002:7037): El entrenador B se movió a la posicion 7|3.
+[INFO] 17:44:42:209 TEAM/(7002:7038): El entrenador B se movió a la posicion 8|3.
+[INFO] 17:44:43:210 TEAM/(7002:7039): El entrenador C se movió a la posicion 6|3.
+[INFO] 17:44:44:212 TEAM/(7002:7040): El entrenador C se movió a la posicion 6|4.
+[INFO] 17:44:45:222 TEAM/(7002:7041): El entrenador A se movió a la posicion 2|7.
+[INFO] 17:44:46:224 TEAM/(7002:7042): El entrenador A se movió a la posicion 2|8.
+[INFO] 17:44:47:229 TEAM/(7002:7045): El entrenador B se movió a la posicion 9|3.
+[INFO] 17:44:48:233 TEAM/(7002:7046): El entrenador B se movió a la posicion 9|4.
+[INFO] 17:44:49:234 TEAM/(7002:7047): El entrenador C se movió a la posicion 6|5.
+[INFO] 17:44:50:235 TEAM/(7002:7048): El entrenador C se movió a la posicion 6|6.
+[INFO] 17:44:50:236 TEAM/(7002:7049): El entrenador A atrapó un Onix en la posicion 2|8.
+[INFO] 17:44:50:236 TEAM/(7002:7033): El nombre del pokemon es: Squirtle
+[INFO] 17:44:50:236 TEAM/(7002:7033): posicion en x: 5
+[INFO] 17:44:50:236 TEAM/(7002:7033): posicion en y: 5
+[INFO] 17:49:39:504 TEAM/(7177:7185): Reintento de comunicacion con BROKER fallido
+[INFO] 17:49:39:504 TEAM/(7177:7185): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:49:41:444 TEAM/(7177:7190): El codigo de operacion es: 2.
+[INFO] 17:49:41:445 TEAM/(7177:7190): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:49:41:445 TEAM/(7177:7190): El nombre del pokemon es: Pikachu
+[INFO] 17:49:41:445 TEAM/(7177:7190): posicion en x: 9
+[INFO] 17:49:41:445 TEAM/(7177:7190): posicion en y: 9
+[INFO] 17:49:41:447 TEAM/(7177:7193): El codigo de operacion es: 2.
+[INFO] 17:49:41:447 TEAM/(7177:7193): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:49:41:447 TEAM/(7177:7193): El nombre del pokemon es: Squirtle
+[INFO] 17:49:41:448 TEAM/(7177:7193): posicion en x: 5
+[INFO] 17:49:41:448 TEAM/(7177:7193): posicion en y: 2
+[INFO] 17:49:41:450 TEAM/(7177:7195): El codigo de operacion es: 2.
+[INFO] 17:49:41:450 TEAM/(7177:7195): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:49:41:450 TEAM/(7177:7195): El nombre del pokemon es: Onix
+[INFO] 17:49:41:451 TEAM/(7177:7195): posicion en x: 2
+[INFO] 17:49:41:451 TEAM/(7177:7195): posicion en y: 8
+[INFO] 17:49:41:456 TEAM/(7177:7197): El codigo de operacion es: 2.
+[INFO] 17:49:41:461 TEAM/(7177:7197): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:49:42:447 TEAM/(7177:7192): El entrenador B se movió a la posicion 3|3.
+[INFO] 17:49:43:449 TEAM/(7177:7199): El entrenador B se movió a la posicion 4|3.
+[INFO] 17:49:44:452 TEAM/(7177:7200): El entrenador C se movió a la posicion 4|2.
+[INFO] 17:49:45:460 TEAM/(7177:7201): El entrenador C se movió a la posicion 5|2.
+[INFO] 17:49:46:461 TEAM/(7177:7203): El entrenador A se movió a la posicion 2|3.
+[INFO] 17:49:47:462 TEAM/(7177:7206): El entrenador A se movió a la posicion 2|4.
+[INFO] 17:49:48:467 TEAM/(7177:7207): El entrenador B se movió a la posicion 5|3.
+[INFO] 17:49:49:469 TEAM/(7177:7208): El entrenador B se movió a la posicion 6|3.
+[INFO] 17:49:49:470 TEAM/(7177:7209): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 17:49:49:470 TEAM/(7177:7197): El nombre del pokemon es: Gengar
+[INFO] 17:49:49:470 TEAM/(7177:7197): posicion en x: 6
+[INFO] 17:49:49:470 TEAM/(7177:7197): posicion en y: 6
+[INFO] 17:49:49:470 TEAM/(7177:7210): El codigo de operacion es: 2.
+[INFO] 17:49:49:470 TEAM/(7177:7210): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:49:50:470 TEAM/(7177:7210): El nombre del pokemon es: Squirtle
+[INFO] 17:49:50:472 TEAM/(7177:7210): posicion en x: 5
+[INFO] 17:49:50:472 TEAM/(7177:7210): posicion en y: 5
+[INFO] 17:52:11:440 TEAM/(7309:7317): Reintento de comunicacion con BROKER fallido
+[INFO] 17:52:11:441 TEAM/(7309:7317): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:52:13:577 TEAM/(7309:7322): El codigo de operacion es: 2.
+[INFO] 17:52:13:577 TEAM/(7309:7322): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:52:13:577 TEAM/(7309:7322): El nombre del pokemon es: Pikachu
+[INFO] 17:52:13:577 TEAM/(7309:7322): posicion en x: 9
+[INFO] 17:52:13:577 TEAM/(7309:7322): posicion en y: 9
+[INFO] 17:52:13:578 TEAM/(7309:7325): El codigo de operacion es: 2.
+[INFO] 17:52:13:578 TEAM/(7309:7325): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:52:13:578 TEAM/(7309:7325): El nombre del pokemon es: Squirtle
+[INFO] 17:52:13:578 TEAM/(7309:7325): posicion en x: 5
+[INFO] 17:52:13:578 TEAM/(7309:7325): posicion en y: 2
+[INFO] 17:52:13:579 TEAM/(7309:7327): El codigo de operacion es: 2.
+[INFO] 17:52:13:579 TEAM/(7309:7327): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:52:13:580 TEAM/(7309:7327): El nombre del pokemon es: Onix
+[INFO] 17:52:13:580 TEAM/(7309:7327): posicion en x: 2
+[INFO] 17:52:13:580 TEAM/(7309:7327): posicion en y: 8
+[INFO] 17:52:13:581 TEAM/(7309:7329): El codigo de operacion es: 2.
+[INFO] 17:52:13:581 TEAM/(7309:7329): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:52:14:578 TEAM/(7309:7324): El entrenador B se movió a la posicion 3|3.
+[INFO] 17:52:15:588 TEAM/(7309:7331): El entrenador B se movió a la posicion 4|3.
+[INFO] 17:52:16:591 TEAM/(7309:7332): El entrenador C se movió a la posicion 4|2.
+[INFO] 17:52:17:594 TEAM/(7309:7333): El entrenador C se movió a la posicion 5|2.
+[INFO] 17:52:18:595 TEAM/(7309:7334): El entrenador A se movió a la posicion 2|3.
+[INFO] 17:52:19:597 TEAM/(7309:7335): El entrenador A se movió a la posicion 2|4.
+[INFO] 17:52:20:597 TEAM/(7309:7337): El entrenador B se movió a la posicion 5|3.
+[INFO] 17:52:21:598 TEAM/(7309:7338): El entrenador B se movió a la posicion 6|3.
+[INFO] 17:52:21:599 TEAM/(7309:7339): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 17:52:21:599 TEAM/(7309:7329): El nombre del pokemon es: Gengar
+[INFO] 17:52:21:599 TEAM/(7309:7329): posicion en x: 6
+[INFO] 17:52:21:599 TEAM/(7309:7329): posicion en y: 6
+[INFO] 17:52:21:599 TEAM/(7309:7340): El codigo de operacion es: 2.
+[INFO] 17:52:21:599 TEAM/(7309:7340): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:52:23:601 TEAM/(7309:7341): El entrenador A se movió a la posicion 2|5.
+[INFO] 17:52:24:603 TEAM/(7309:7342): El entrenador B se movió a la posicion 7|3.
+[INFO] 17:52:25:604 TEAM/(7309:7343): El entrenador B se movió a la posicion 8|3.
+[INFO] 17:52:26:605 TEAM/(7309:7344): El entrenador C se movió a la posicion 6|2.
+[INFO] 17:52:27:608 TEAM/(7309:7345): El entrenador C se movió a la posicion 6|3.
+[INFO] 17:52:28:609 TEAM/(7309:7346): El entrenador A se movió a la posicion 2|6.
+[INFO] 17:52:29:610 TEAM/(7309:7347): El entrenador A se movió a la posicion 2|7.
+[INFO] 17:52:30:612 TEAM/(7309:7348): El entrenador B se movió a la posicion 9|3.
+[INFO] 17:52:31:617 TEAM/(7309:7349): El entrenador B se movió a la posicion 9|4.
+[INFO] 17:52:32:619 TEAM/(7309:7350): El entrenador C se movió a la posicion 6|4.
+[INFO] 17:52:33:621 TEAM/(7309:7351): El entrenador C se movió a la posicion 6|5.
+[INFO] 17:52:34:623 TEAM/(7309:7352): El entrenador A se movió a la posicion 2|8.
+[INFO] 17:52:34:624 TEAM/(7309:7353): El entrenador A atrapó un Onix en la posicion 2|8.
+[INFO] 17:52:34:624 TEAM/(7309:7340): El nombre del pokemon es: Squirtle
+[INFO] 17:52:34:624 TEAM/(7309:7340): posicion en x: 5
+[INFO] 17:52:34:624 TEAM/(7309:7340): posicion en y: 5
+[INFO] 17:56:06:346 TEAM/(7586:7594): Reintento de comunicacion con BROKER fallido
+[INFO] 17:56:06:347 TEAM/(7586:7594): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:56:10:7 TEAM/(7586:7599): El codigo de operacion es: 2.
+[INFO] 17:56:11:8 TEAM/(7586:7599): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:56:11:8 TEAM/(7586:7599): El nombre del pokemon es: Pikachu
+[INFO] 17:56:11:8 TEAM/(7586:7599): posicion en x: 9
+[INFO] 17:56:11:8 TEAM/(7586:7599): posicion en y: 9
+[INFO] 17:56:11:11 TEAM/(7586:7602): El codigo de operacion es: 2.
+[INFO] 17:56:11:11 TEAM/(7586:7602): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:56:11:11 TEAM/(7586:7602): El nombre del pokemon es: Squirtle
+[INFO] 17:56:11:11 TEAM/(7586:7602): posicion en x: 5
+[INFO] 17:56:11:11 TEAM/(7586:7602): posicion en y: 2
+[INFO] 17:56:11:12 TEAM/(7586:7604): El codigo de operacion es: 2.
+[INFO] 17:56:11:12 TEAM/(7586:7604): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:56:11:12 TEAM/(7586:7604): El nombre del pokemon es: Onix
+[INFO] 17:56:11:12 TEAM/(7586:7604): posicion en x: 2
+[INFO] 17:56:11:12 TEAM/(7586:7604): posicion en y: 8
+[INFO] 17:56:11:15 TEAM/(7586:7606): El codigo de operacion es: 2.
+[INFO] 17:56:11:15 TEAM/(7586:7606): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:56:12:11 TEAM/(7586:7601): El entrenador B se movió a la posicion 3|3.
+[INFO] 17:56:13:17 TEAM/(7586:7608): El entrenador B se movió a la posicion 4|3.
+[INFO] 17:56:14:18 TEAM/(7586:7609): El entrenador C se movió a la posicion 4|2.
+[INFO] 17:56:15:28 TEAM/(7586:7610): El entrenador C se movió a la posicion 5|2.
+[INFO] 17:56:16:36 TEAM/(7586:7611): El entrenador A se movió a la posicion 2|3.
+[INFO] 17:56:17:39 TEAM/(7586:7612): El entrenador A se movió a la posicion 2|4.
+[INFO] 17:56:18:40 TEAM/(7586:7618): El entrenador B se movió a la posicion 5|3.
+[INFO] 17:56:19:42 TEAM/(7586:7619): El entrenador B se movió a la posicion 6|3.
+[INFO] 17:56:19:44 TEAM/(7586:7620): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 17:56:19:44 TEAM/(7586:7606): El nombre del pokemon es: Gengar
+[INFO] 17:56:19:44 TEAM/(7586:7606): posicion en x: 6
+[INFO] 17:56:19:44 TEAM/(7586:7606): posicion en y: 6
+[INFO] 17:56:19:44 TEAM/(7586:7621): El codigo de operacion es: 2.
+[INFO] 17:56:19:45 TEAM/(7586:7621): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 17:56:21:51 TEAM/(7586:7622): El entrenador A se movió a la posicion 2|5.
+[INFO] 17:56:22:52 TEAM/(7586:7623): El entrenador B se movió a la posicion 7|3.
+[INFO] 17:56:23:53 TEAM/(7586:7624): El entrenador B se movió a la posicion 8|3.
+[INFO] 17:56:24:54 TEAM/(7586:7625): El entrenador C se movió a la posicion 6|2.
+[INFO] 17:56:25:57 TEAM/(7586:7626): El entrenador C se movió a la posicion 6|3.
+[INFO] 17:56:26:57 TEAM/(7586:7628): El entrenador A se movió a la posicion 2|6.
+[INFO] 17:56:27:58 TEAM/(7586:7629): El entrenador A se movió a la posicion 2|7.
+[INFO] 17:56:28:61 TEAM/(7586:7630): El entrenador B se movió a la posicion 9|3.
+[INFO] 17:56:29:63 TEAM/(7586:7631): El entrenador B se movió a la posicion 9|4.
+[INFO] 17:56:30:65 TEAM/(7586:7632): El entrenador C se movió a la posicion 6|4.
+[INFO] 17:56:31:66 TEAM/(7586:7633): El entrenador C se movió a la posicion 6|5.
+[INFO] 17:56:32:68 TEAM/(7586:7634): El entrenador A se movió a la posicion 2|8.
+[INFO] 17:56:32:71 TEAM/(7586:7635): El entrenador A atrapó un Onix en la posicion 2|8.
+[INFO] 17:56:34:72 TEAM/(7586:7636): El entrenador B se movió a la posicion 9|5.
+[INFO] 17:56:35:72 TEAM/(7586:7637): El entrenador B se movió a la posicion 9|6.
+[INFO] 17:56:36:73 TEAM/(7586:7638): El entrenador C se movió a la posicion 6|6.
+[INFO] 17:56:36:74 TEAM/(7586:7639): El entrenador C atrapó un Gengar en la posicion 6|6.
+[INFO] 17:56:36:347 TEAM/(7586:7594): Reintento de comunicacion con BROKER fallido
+[INFO] 17:56:36:347 TEAM/(7586:7594): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:56:38:75 TEAM/(7586:7640): El entrenador B se movió a la posicion 9|7.
+[INFO] 17:56:39:76 TEAM/(7586:7641): El entrenador B se movió a la posicion 9|8.
+[INFO] 17:56:40:77 TEAM/(7586:7642): El entrenador B se movió a la posicion 9|9.
+[INFO] 17:56:40:78 TEAM/(7586:7643): El entrenador B atrapó un Pikachu en la posicion 9|9.
+[INFO] 17:56:40:78 TEAM/(7586:7621): El nombre del pokemon es: Squirtle
+[INFO] 17:56:40:78 TEAM/(7586:7621): posicion en x: 5
+[INFO] 17:56:40:78 TEAM/(7586:7621): posicion en y: 5
+[INFO] 17:56:42:78 TEAM/(7586:7644): El entrenador B se movió a la posicion 8|9.
+[INFO] 17:56:43:82 TEAM/(7586:7645): El entrenador B se movió a la posicion 7|9.
+[INFO] 17:56:44:84 TEAM/(7586:7646): El entrenador B se movió a la posicion 6|9.
+[INFO] 17:56:45:86 TEAM/(7586:7647): El entrenador B se movió a la posicion 5|9.
+[INFO] 17:56:46:87 TEAM/(7586:7648): El entrenador B se movió a la posicion 5|8.
+[INFO] 17:56:47:87 TEAM/(7586:7649): El entrenador B se movió a la posicion 5|7.
+[INFO] 17:56:48:89 TEAM/(7586:7652): El entrenador B se movió a la posicion 5|6.
+[INFO] 17:56:49:90 TEAM/(7586:7653): El entrenador B se movió a la posicion 5|5.
+[INFO] 17:56:49:91 TEAM/(7586:7654): El entrenador B atrapó un Squirtle en la posicion 5|5.
+[INFO] 17:56:50:92 TEAM/(7586:7595): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 17:56:50:93 TEAM/(7586:7595): Se detecto que hay situacion de deadlock
+[INFO] 17:56:51:94 TEAM/(7586:7660): El entrenador A se movió a la posicion 3|8.
+[INFO] 17:56:52:95 TEAM/(7586:7661): El entrenador A se movió a la posicion 4|8.
+[INFO] 17:56:53:95 TEAM/(7586:7662): El entrenador A se movió a la posicion 5|8.
+[INFO] 17:56:54:98 TEAM/(7586:7663): El entrenador A se movió a la posicion 5|7.
+[INFO] 17:56:55:99 TEAM/(7586:7664): El entrenador A se movió a la posicion 5|6.
+[INFO] 17:56:56:101 TEAM/(7586:7665): El entrenador A se movió a la posicion 5|5.
+[INFO] 17:57:01:102 TEAM/(7586:7666): El entrenador A intercambio un Onix por un Squirtle del entrenador B
+[INFO] 17:57:01:102 TEAM/(7586:7595): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 17:57:01:102 TEAM/(7586:7595): Se detecto que hay situacion de deadlock
+[INFO] 17:57:02:103 TEAM/(7586:7667): El entrenador C se movió a la posicion 5|6.
+[INFO] 17:57:03:106 TEAM/(7586:7668): El entrenador C se movió a la posicion 5|5.
+[INFO] 17:57:06:348 TEAM/(7586:7594): Reintento de comunicacion con BROKER fallido
+[INFO] 17:57:06:348 TEAM/(7586:7594): No se pudo conectar con el BROKER, reintentando en 30 segundos...
+[INFO] 17:57:08:108 TEAM/(7586:7669): El entrenador C intercambio un Gengar por un Onix del entrenador B
+[INFO] 17:57:08:108 TEAM/(7586:7595): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 17:57:08:108 TEAM/(7586:7595): No se detecto situacion de deadlock
+[INFO] 17:57:08:108 TEAM/(7586:7595): Finalizo el TEAM
+[INFO] 17:57:08:108 TEAM/(7586:7595): Se ejecutaron 62 ciclos de cpu
+[INFO] 17:57:08:109 TEAM/(7586:7595): Ocurrieron 14 cambios de contexto durante todo el team
+[INFO] 17:57:08:109 TEAM/(7586:7595): El entrenador A ejecutó 18 ciclos de cpu
+[INFO] 17:57:08:109 TEAM/(7586:7595): El entrenador B ejecutó 23 ciclos de cpu
+[INFO] 17:57:08:109 TEAM/(7586:7595): El entrenador C ejecutó 16 ciclos de cpu
+[INFO] 17:57:08:109 TEAM/(7586:7595): Se produjeron 2 deadlocks
+[INFO] 17:57:08:109 TEAM/(7586:7595): Se resolvieron 2 deadlocks

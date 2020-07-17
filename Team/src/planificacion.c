@@ -228,11 +228,6 @@ void planificar_rr(void){
 
 		pthread_mutex_lock(&mutex_planificador);
 
-		/*while(!list_is_empty(lista_de_pokemones_sueltos)){
-				t_pokemon* pokemon_nuevo = list_remove(lista_de_pokemones_sueltos,0);
-				aparicion_pokemon(pokemon_nuevo);
-		}
-*/
 		puts("aca entra10");
 															//quantum = 0
 		while(!list_is_empty(lista_de_entrenadores_ready)){//, entrenador2= 2 acciones  entrenador 1 = 1 acciones
@@ -252,8 +247,11 @@ void planificar_rr(void){
 				if(list_size(entrenador->cola_de_acciones) == 1){
 					ejecutar_entrenador(entrenador);
 					quantum_remanente-= accion_aux->ciclo_cpu;
-					if(list_size(entrenador->objetivo) != list_size(entrenador->atrapados)){
-						sem_post(&CONTADOR_ENTRENADORES);
+					//if(list_size(entrenador->objetivo) != list_size(entrenador->atrapados)){
+					//	sem_post(&CONTADOR_ENTRENADORES);
+					//}
+					if(!list_is_empty(lista_de_entrenadores_ready)){
+						entrenador = list_get(lista_de_entrenadores_ready, 0);
 					}
 				}
 				else{

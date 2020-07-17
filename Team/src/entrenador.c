@@ -267,7 +267,9 @@ void atrapar_pokemon(t_entrenador* entrenador){
 
 
 	entrenador->pokemon_a_atrapar = NULL;
-	sem_post(&CONTADOR_ENTRENADORES);
+	if(list_size(entrenador->objetivo) != list_size(entrenador->atrapados)){
+		sem_post(&CONTADOR_ENTRENADORES);
+	}
 }
 
 
