@@ -46,6 +46,7 @@ int contador_fallos; // Para cuando la frecuencia de compactación es mayor a 2
 sem_t MUTEX_FALLOS;
 
 t_mensaje_guardado* guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
+void aplicar_timestamp(t_mensaje_guardado* mensaje_nuevo);
 
 // REEMPLAZO
 int ejecutar_algoritmo_reemplazo(void);
@@ -68,6 +69,7 @@ int for_first_fit_BS(int *encontrado, uint32_t tamanio_a_agregar);
 int particionar_buddy_system(uint32_t tamanio_a_agregar, int *tamanio_minimo, int index);
 t_mensaje_guardado* eliminar_y_consolidar_hasta_encontrar(uint32_t tamanio_a_agregar, void* bloque_a_agregar_en_memoria);
 void consolidar_buddy_system(int posicion_inicial_nuevo_mensaje);
+int evaluar_posible_consolidacion(int posicion_inicial_nuevo_mensaje, int* hay_que_consolidar);
 
 // AUXILIARES
 bool comparar_inicios_mensajes(t_mensaje_guardado* mensaje1, t_mensaje_guardado* mensaje2);
@@ -77,10 +79,12 @@ bool comparar_inicios_de_particiones(t_particion_buddy* particion1, t_particion_
 void mostrar_memoria_principal(void);
 int primera_posicion_vacia_y_entra(uint32_t tamanio_a_agregar);
 int toda_la_memoria_esta_ocupada(void);
+int espacio_liberado_despues_de_eliminar(int posicion_inicial);
 int entra_en_hueco(int tamanio_a_agregar, int posicion_libre);
 t_mensaje_guardado* guardar_en_posicion(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar, int posicion);
 void* tratar_fragmentacion_interna(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar);
 void* crear_fragmentacion_interna(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar, uint32_t tamanio_total);
-int encontrar_mensaje_a_eliminar_por_posicion(int posicion, t_list* lista);
+int encontrar_mensaje_por_posicion(int posicion, t_list* lista);
+t_particion_buddy* crear_nueva_particion(int comienzo, int tamanio, int final);
 
 #endif /* UTILS_MEMORIA_H_ */

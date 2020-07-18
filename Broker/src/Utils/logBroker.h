@@ -22,5 +22,5 @@ void log_envio_mensaje(int socket_suscriptor);
 void log_almacenar_mensaje(int posicion_mensaje);
 void log_particion_eliminada(int posicion_liberada);
 void log_compactacion();
-// 8.2.
+void log_asociacion_de_bloques(int posicion_1, int posicion_2);
 // 9.

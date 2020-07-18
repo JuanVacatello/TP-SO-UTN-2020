@@ -1,32 +1,22 @@
-
-[INFO] 17:13:28:4 BROKER/(10406:10424): Se conectó proceso de socket 5 al Broker
-[INFO] 17:13:29:41 BROKER/(10406:10424): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 17:13:44:818 BROKER/(10406:10424): Se almacenó un mensaje en la posición 0 de la memoria principal.
-[INFO] 17:13:44:819 BROKER/(10406:10424): Con timestamp 1 y tamaño ocupado 32.
-[INFO] 17:14:52:320 BROKER/(10406:10464): Se conectó proceso de socket 6 al Broker
-[INFO] 17:17:07:362 BROKER/(10539:10556): Se conectó proceso de socket 5 al Broker
-[INFO] 17:17:07:388 BROKER/(10539:10556): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 17:17:14:445 BROKER/(10539:10556): Se almacenó un mensaje en la posición 0 de la memoria principal.
-[INFO] 17:17:14:446 BROKER/(10539:10556): Con timestamp 1 y tamaño ocupado 32.
-[INFO] 17:17:34:794 BROKER/(10539:10576): Se conectó proceso de socket 6 al Broker
-[INFO] 17:22:09:853 BROKER/(10702:10709): Se conectó proceso de socket 5 al Broker
-[INFO] 17:22:09:883 BROKER/(10702:10709): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 17:22:09:884 BROKER/(10702:10709): Se almacenó un mensaje en la posición 0 de la memoria principal.
-[INFO] 17:22:09:884 BROKER/(10702:10709): Con timestamp 1 y tamaño ocupado 32.
-[INFO] 17:22:11:558 BROKER/(10702:10711): Se conectó proceso de socket 6 al Broker
-[INFO] 17:22:11:558 BROKER/(10702:10711): Se suscribió el proceso con socket 10710 y con id 6 a la cola de mensajes 1
-[INFO] 17:22:11:558 BROKER/(10702:10711): Con timestamp 2.
-[INFO] 17:24:51:686 BROKER/(10807:10844): Se conectó proceso de socket 5 al Broker
-[INFO] 17:24:53:305 BROKER/(10807:10844): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 17:24:56:357 BROKER/(10807:10844): Se almacenó un mensaje en la posición 0 de la memoria principal.
-[INFO] 17:24:56:358 BROKER/(10807:10844): Con timestamp 1 y tamaño ocupado 32.
-[INFO] 17:25:19:695 BROKER/(10807:10879): Se conectó proceso de socket 6 al Broker
-[INFO] 17:26:45:341 BROKER/(10807:10879): Se suscribió el proceso con socket 10878 y con id 6 a la cola de mensajes 1
-[INFO] 17:27:33:925 BROKER/(10807:10879): Con timestamp 2.
-[INFO] 17:31:49:687 BROKER/(11250:11257): Se conectó proceso de socket 5 al Broker
-[INFO] 17:31:49:728 BROKER/(11250:11257): Llegó un nuevo mensaje a la cola de mensajes
-[INFO] 17:31:49:732 BROKER/(11250:11257): Se almacenó un mensaje en la posición 0 de la memoria principal.
-[INFO] 17:31:49:733 BROKER/(11250:11257): Con timestamp 1 y tamaño ocupado 32.
-[INFO] 17:31:51:210 BROKER/(11250:11259): Se conectó proceso de socket 6 al Broker
-[INFO] 17:31:51:210 BROKER/(11250:11259): Se suscribió el proceso con socket 11258 y con id 6 a la cola de mensajes 1
-[INFO] 17:31:51:210 BROKER/(11250:11259): Con timestamp 2.
+[INFO] 16:44:40:907 BROKER/(11789:11796): Se conectó proceso de socket 5 al Broker.
+[INFO] 16:44:41:17 BROKER/(11789:11796): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 16:44:41:18 BROKER/(11789:11796): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 16:44:42:585 BROKER/(11789:11798): Se conectó proceso de socket 6 al Broker.
+[INFO] 16:44:42:585 BROKER/(11789:11798): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 16:44:42:585 BROKER/(11789:11798): Se almacenó un mensaje en la posición 4 de la memoria principal.
+[INFO] 16:44:44:236 BROKER/(11789:11800): Se conectó proceso de socket 7 al Broker.
+[INFO] 16:44:44:236 BROKER/(11789:11800): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 16:44:44:236 BROKER/(11789:11800): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 16:44:46:279 BROKER/(11789:11802): Se conectó proceso de socket 8 al Broker.
+[INFO] 16:44:46:280 BROKER/(11789:11802): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 16:44:46:280 BROKER/(11789:11802): Se almacenó un mensaje en la posición 16 de la memoria principal.
+[INFO] 16:44:48:267 BROKER/(11789:11804): Se conectó proceso de socket 9 al Broker.
+[INFO] 16:44:48:267 BROKER/(11789:11804): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 16:44:48:267 BROKER/(11789:11804): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 16:44:48:267 BROKER/(11789:11804): Se eliminó de memoria principal la partición que se encontraba en la posicion 4.
+[INFO] 16:44:48:267 BROKER/(11789:11804): Se asociaron las particiones que se encontraban en las posiciones 0 y 4.
+[INFO] 16:44:48:267 BROKER/(11789:11804): Se asociaron las particiones que se encontraban en las posiciones 0 y 8.
+[INFO] 16:44:48:267 BROKER/(11789:11804): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 16:44:48:267 BROKER/(11789:11804): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 16:52:42:814 BROKER/(11933:11954): Se conectó proceso de socket 5 al Broker.
+[INFO] 16:52:42:870 BROKER/(11933:11954): Llegó un nuevo mensaje a la cola de mensajes.
