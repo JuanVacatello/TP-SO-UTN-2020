@@ -44,7 +44,7 @@ t_config* leer_metadata_pokemon(char* path_pokemon){
 
 	char* path_archivo_metadata = string_new();
 	string_append(&path_archivo_metadata, path_pokemon);
-	string_append(&path_archivo_metadata, "/Metadata.bin")
+	string_append(&path_archivo_metadata, "/Metadata.bin");
 
 
 	metadata = config_create(path_archivo_metadata);
@@ -61,9 +61,8 @@ char** obtener_bloques_pokemon(char* path_pokemon){ //DEVUELVE EN FORMATO: ["1",
 	t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
 	char* bloques;
 	bloques = config_get_string_value(metadata_pokemon, "BLOCKS");
-	char** array_bloques = string_get_string_as_array(bloques);
 	config_destroy(metadata_pokemon);
-	return array_bloques;
+	return bloques;
 
 	/*
 	for(int i =0; i<obtener_cantidad_bloques_pokemon() ; i++){
@@ -73,18 +72,20 @@ char** obtener_bloques_pokemon(char* path_pokemon){ //DEVUELVE EN FORMATO: ["1",
 }
 
 
-int obtener_cantidad_bloques_pokemon(t_config* metadata){// ADAPTAR COMO EL OBTENER_BLOQUES_POKEMON(SIN EL CONFIG)
+int obtener_cantidad_bloques_pokemon(char* path_pokemon){// ADAPTAR COMO EL OBTENER_BLOQUES_POKEMON(SIN EL CONFIG)
 
 	char* bloques;
-	bloques = config_get_string_value(metadata, "BLOCKS");
+	t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
+
+	bloques = config_get_string_value(metadata_pokemon, "BLOCKS");
 	int largo = strlen(bloques);
 	int comas = (largo-2)/2;
 	int cantidad_elementos = largo - comas - 2;
 	return cantidad_elementos;
 }
 
-int archivo_esta_abierto(t_config* metadata){
-
+int archivo_esta_abierto(char* path_file){
+	t_config* metadata = leer_metadata_file(path_file);
 	char* open = config_get_string_value(metadata, "OPEN");
 	if(string_equals_ignore_case(open, "Y")){
 		return 1;
@@ -94,9 +95,29 @@ int archivo_esta_abierto(t_config* metadata){
 	}
 }
 
-int obtener_tamanio_archivo(t_config* metadata){
+int obtener_tamanio_archivo(char* path_file){
+	t_config* metadata = leer_metadata_file(path_file);
 	int tamanio;
 	tamanio = config_get_int_value(metadata,"SIZE");
 	return tamanio;
 }
 
+
+t_config* leer_metadata_file(char* path_file){
+	t_config* metadata;
+
+
+		char* path_archivo_metadata = string_new();
+		string_append(&path_archivo_metadata, path_file);
+		string_append(&path_archivo_metadata, "/Metadata.bin");
+
+
+		metadata = config_create(path_archivo_metadata);
+
+			if(metadata == NULL){
+				printf("No se pudo leer el archivo metadata.");
+				exit(2);
+			}
+		return metadata;
+
+}

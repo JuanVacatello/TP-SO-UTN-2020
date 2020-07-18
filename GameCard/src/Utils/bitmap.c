@@ -51,7 +51,7 @@ void eliminar_bitmap(){
 		bitarray_destroy(bitarray);
 	}
 
-}
+
 
 
 void bitmap_liberar_bloque(int bloque, int bitmap);

@@ -69,7 +69,7 @@ void inicializar_metadata(char* path_metadata, int block_size, int cant_bloques)
 	string_append(&path_archivo_metadata, "/Metadata.bin");
 
 	struct stat st_metadata;
-	if(stat(path_archivo_metadata, &st_metadata) == -1){
+	if(existe_file(path_archivo_metadata)==-1){
 
 		FILE* metadata = txt_open_for_append(path_archivo_metadata);
 
@@ -111,7 +111,7 @@ string_append(&path_archivo_bitmap,path_metadata);
 string_append(&path_archivo_bitmap,"/bitmap.bin");
 
 	//struct stat st_bitmap;
-	//	if(stat(path_archivo_bitmap, &st_bitmap) == -1){
+	//	if(existe_file(path_archivo_bitmap)){
 
 //inicializa bitmap.bin
 		crear_bitmap();
@@ -124,7 +124,7 @@ string_append(&path_archivo_bitmap,"/bitmap.bin");
 void inicializar_files(char* path_files){
 
 	struct stat st_metadata_files;
-			if(stat(path_files, &st_metadata_files) == -1){
+			if(existe_file(path_files)==-1){
 
 	completar_metadata_directorio(path_files);
 	}
@@ -134,7 +134,7 @@ void inicializar_files(char* path_files){
 void inicializar_bloques(char* path_bloques){
 
 	struct stat st_metadata_bloques;
-				if(stat(path_bloques, &st_metadata_bloques) == -1){
+				if(existe_file(path_bloques)==-1){
 
 		completar_metadata_directorio(path_bloques);
 		crear_bloques();

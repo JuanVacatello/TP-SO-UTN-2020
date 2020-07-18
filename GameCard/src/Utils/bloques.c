@@ -1,5 +1,5 @@
 #include "bloques.h"
-
+#include "metadata.h"
 /*
 int bloque_esta_vacio(int bloque){
 	if(bloque_tamanio_libre(bloque) == obtener_tamanio_bloques()){
@@ -92,7 +92,7 @@ void actualizar_valores_pokemon(char* path_metadata_pokemon,int posX,int posY,in
 
  	free(path);
 
- 	return(obtener_tamanio_bloque() - tamanio_actual);
+ 	return(obtener_tamanio_bloques() - tamanio_actual);
  }
 
  int bloque_esta_vacio(char* bloque){
@@ -101,7 +101,7 @@ void actualizar_valores_pokemon(char* path_metadata_pokemon,int posX,int posY,in
 	 else
 	 return 0;
 	 }
- }
+
 
 
  int bloque_lleno(char* bloque){
@@ -113,14 +113,14 @@ void actualizar_valores_pokemon(char* path_metadata_pokemon,int posX,int posY,in
 
  void asignar_bloque_pokemon(char* path_pokemon){
  	int nuevo_bloque = obtener_nuevo_bloque(); // IMPLEMENTAR EN BITMAP NASHE
- 	char** bloques = obtener_bloques_pokemon(path_pokemon);
-
+ 	char* bloques = obtener_bloques_pokemon(path_pokemon);
+ 	char** array_bloques = string_gets_string_as_array(bloques);
  	t_list *lista_bloques = list_create();
- 	for(int j = 0; j < sizeofArray(bloques); j++){
- 		list_add(lista_bloques,string_duplicate(bloques[j]));
- 		free(bloques[j]);
+ 	for(int j = 0; j < tamanio_array_en_string(bloques); j++){ // IMPLEMENTAR TAMANIO ARRAY
+ 		list_add(lista_bloques,string_duplicate(array_bloques[j]));
+ 		free(array_bloques[j]);
  	}
- 	free(bloques);
+ 	free(array_bloques);
 
  	char *x = string_itoa(nuevo_bloque);
  	list_add(lista_bloques,x);
@@ -139,8 +139,11 @@ void actualizar_valores_pokemon(char* path_metadata_pokemon,int posX,int posY,in
  }
 
 
-
-
-
+int tamanio_array_en_string(char* array){
+	int largo = strlen(array);
+	int comas = (largo-2)/2;
+	int cantidad_elementos = largo - comas -2;
+	return cantidad_elementos;
+}
 
 
