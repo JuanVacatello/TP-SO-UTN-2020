@@ -111,39 +111,106 @@ void actualizar_valores_pokemon(char* path_metadata_pokemon,int posX,int posY,in
 	 return 0;
 }
 
- void asignar_bloque_pokemon(char* path_pokemon){
- 	int nuevo_bloque = obtener_nuevo_bloque(); // IMPLEMENTAR EN BITMAP NASHE
- 	char* bloques = obtener_bloques_pokemon(path_pokemon);
- 	char** array_bloques = string_gets_string_as_array(bloques);
- 	t_list *lista_bloques = list_create();
- 	for(int j = 0; j < tamanio_array_en_string(bloques); j++){ // IMPLEMENTAR TAMANIO ARRAY
- 		list_add(lista_bloques,string_duplicate(array_bloques[j]));
- 		free(array_bloques[j]);
- 	}
- 	free(array_bloques);
 
- 	char *x = string_itoa(nuevo_bloque);
- 	list_add(lista_bloques,x);
+void obtener_datos_bloques(t_list *lista,char* path_pokemon ){
 
- 	char *vector_bloques = string_new();
- 	string_append(&vector_bloques, "[");
- 	for(int k = 0; k < list_size(lista_bloques); k++){
- 		string_append(&vector_bloques,list_get(lista_bloques,k));
- 		if((k + 1) != list_size(lista_bloques)) string_append(&vector_bloques,",");
- 	}
- 	string_append(&vector_bloques, "]");
+	FILE *file;
+		int tamanio_archivo;
+		t_list *lista_datos = list_create();
+		char *vector_bloques_string = obtener_bloques_pokemon(path_pokemon);
+		char** bloques = string_get_string_as_array(vector_bloques_string);
+		free(vector_bloques_string);
+		int tamanio_array = tamanio_array_en_string(bloques);
 
- 	list_destroy_and_destroy_elements(lista_bloques,free);
-
- 	free(vector_bloques);
- }
+		char * datos = string_new();
+		char *path_bloque_individual; // url de cada block particular
+		char *path_bloques = obtener_path_bloques(); //url absoluta de donde estan los bloques "mnt/blocks"
+		char *aux;
+		struct stat st;
+		for(int i = 0; i<tamanio_array; i++)
+		{
+			path_bloque_individual = string_new();
+			string_append(&path_bloque_individual,path_bloques);
+			string_append(&path_bloque_individual,bloques[i]);
+			string_append(&path_bloque_individual,".bin");
 
 
-int tamanio_array_en_string(char* array){
-	int largo = strlen(array);
-	int comas = (largo-2)/2;
-	int cantidad_elementos = largo - comas -2;
-	return cantidad_elementos;
+			stat(path_bloque_individual,&st);
+			tamanio_archivo = st.st_size;
+
+			aux = malloc(tamanio_archivo+1);
+
+			file = fopen(path_bloque_individual,"r");
+			fread(aux,tamanio_archivo,1,file);
+			fclose(file);
+			aux[tamanio_archivo] = '\0';
+
+			if(strcmp(aux,"&")) //si no es igual a "&" lo agrego a la lista de inserts
+				string_append(&datos,aux);
+
+			free(bloques[i]);
+			free(aux);
+			free(path_bloque_individual);
+		}
+
+		insertar_datos_a_lista(datos,lista_datos); //parsea el char *inserts por \n y los mete en la lista
+		free(datos); free(path_bloques);
+
+		free(bloques);
+
 }
+
+void insertar_datos_a_lista(char *datos, t_list *lista_datos)
+{
+	if(!strcmp(datos,"")) return; //si viene vacio no agrego nada
+
+	char **array_de_datos = string_split(datos,"\n");
+	char *aux;
+	for(int i =0; i<sizeofArray(array_de_datos); i++)
+	{
+		aux = string_duplicate(array_de_datos[i]);
+		list_add(lista_datos,aux);
+		free(array_de_datos[i]);
+	}
+	free(array_de_datos);
+}
+
+
+void guardar_data_en_bloque(char* data, char* path_bloque){
+
+		char *aux = malloc(3);
+		struct stat st;
+		FILE *file;
+		stat(path_bloque,&st);
+		int tamanio_bloque = st.st_size;
+
+		if(tamanio_bloque == 1){ // NO SE SI ES UTIL
+			file = fopen(path_bloque,"r");
+			fread(aux, tamanio_bloque ,1,file);
+			fclose(file);
+			aux[tamanio_bloque] = '\0';
+			if(!strcmp(aux,"&")){
+				file = fopen(path_bloque,"w");
+				fclose(file);
+			}
+		}
+
+		FILE *file2 = txt_open_for_append(path_bloque);
+		txt_write_in_file(file2, data);
+		txt_close_file(file2);
+		free(aux);
+	}
+
+
+
+
+
+
+
+
+
+
+
+
 
 

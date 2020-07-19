@@ -2,6 +2,8 @@
 
 
 int main(void) {
+
+
 	leer_config();
 
 	/* Funciona la suscripcion y la recepcion de los mensajes del GameBoy, otro dia hago lo del envio a Broker
@@ -16,6 +18,7 @@ int main(void) {
 	inicializar_file_system(punto_montaje);
 
 	return 0;
+
 }
 
 
@@ -30,27 +33,39 @@ void inicializar_file_system(char* punto_montaje){
 	char* path_metadata = string_new();
 	string_append(&path_metadata, path_tall_grass);
 	string_append(&path_metadata, "/Metadata");
-	mkdir(path_metadata, 0777);
+	if(existe_file(path_metadata)==-1){
+		mkdir(path_metadata, 0777);
+		inicializar_metadata(path_metadata, 64, 16);
+	}
+
 
 
 	//CREA BLOQUES
 	char* path_bloques = string_new();
 	string_append(&path_bloques, path_tall_grass);
 	string_append(&path_bloques, "/Bloques");
-	mkdir(path_bloques, 0777);
+	if(existe_file(path_bloques)==-1)  {
+		mkdir(path_bloques, 0777);
+		inicializar_bloques(path_bloques);
+	}
+
+
 
 
 	//CREA FILES
 	char* path_files = string_new();
 	string_append(&path_files, path_tall_grass);
 	string_append(&path_files, "/Files");
-	mkdir(path_files, 0777);
+	if(existe_file(path_bloques)==-1){
+		mkdir(path_files, 0777);
+		inicializar_files(path_files);
+
+	}
 
 	actualizar_paths_config(path_files, path_bloques, path_metadata );
 
-	inicializar_metadata(path_metadata, 64, 16);
-	inicializar_bloques(path_bloques);
-	inicializar_files(path_files);
+
+
 
 	//obtener_bloque_pokemon("Charmander", path_files);
 
@@ -67,9 +82,6 @@ void inicializar_metadata(char* path_metadata, int block_size, int cant_bloques)
 	char* path_archivo_metadata = string_new();
 	string_append(&path_archivo_metadata, path_metadata);
 	string_append(&path_archivo_metadata, "/Metadata.bin");
-
-	struct stat st_metadata;
-	if(existe_file(path_archivo_metadata)==-1){
 
 		FILE* metadata = txt_open_for_append(path_archivo_metadata);
 
@@ -99,7 +111,7 @@ void inicializar_metadata(char* path_metadata, int block_size, int cant_bloques)
 			free(cantidad_bloques);
 			free(sentencia_tamanio_bloques);
 			free(sentencia_cantidad_bloques);
-	}
+
 
 	leer_metadata_tall_grass();
 	free(path_archivo_metadata);
@@ -110,12 +122,9 @@ char* path_archivo_bitmap = string_new();
 string_append(&path_archivo_bitmap,path_metadata);
 string_append(&path_archivo_bitmap,"/bitmap.bin");
 
-	//struct stat st_bitmap;
-	//	if(existe_file(path_archivo_bitmap)){
-
 //inicializa bitmap.bin
-		crear_bitmap();
-	//	}
+		crear_bitmap(path_archivo_bitmap);
+
 		free(path_archivo_bitmap);
 }
 
@@ -123,8 +132,7 @@ string_append(&path_archivo_bitmap,"/bitmap.bin");
 
 void inicializar_files(char* path_files){
 
-	struct stat st_metadata_files;
-			if(existe_file(path_files)==-1){
+	if(existe_file(path_files)==-1){
 
 	completar_metadata_directorio(path_files);
 	}
@@ -133,12 +141,10 @@ void inicializar_files(char* path_files){
 
 void inicializar_bloques(char* path_bloques){
 
-	struct stat st_metadata_bloques;
-				if(existe_file(path_bloques)==-1){
 
 		completar_metadata_directorio(path_bloques);
-		crear_bloques();
-		}
+		crear_bloques(path_bloques);
+
 }
 
 void completar_metadata_directorio(char* path_directorio){
@@ -153,10 +159,13 @@ void completar_metadata_directorio(char* path_directorio){
 		txt_close_file(metadata);
 }
 
-void crear_bloques(){
-	int cantidad_bloques = obtener_cantidad_bloques();
-	int tamanio_bloques = obtener_tamanio_bloques();
-	char* path = obtener_path_bloques();
+void crear_bloques(char* path_bloques){
+
+	//int cantidad_bloques = obtener_cantidad_bloques();
+	//int tamanio_bloques = obtener_tamanio_bloques(); ARREGLAR LECTURA DE CONFIG
+
+	int cantidad_bloques = 16;
+	int tamanio_bloques = 64;
 
 	for(int i = 0 ; i < cantidad_bloques ; i++){
 
@@ -164,22 +173,18 @@ void crear_bloques(){
 		numero_bloque = string_itoa(i+1);
 
 		char* aux = string_new();
-		string_append(&aux, path);
+		string_append(&aux, path_bloques);
 		string_append(&aux, "/");
 		string_append(&aux,numero_bloque);
 		string_append(&aux, ".bin");
 
-		int bloque_fd = open(aux, O_WRONLY | O_CREAT );
-
-	    if(bloque_fd < 0){
-	    printf("open error del crear bloques\n");
-		 }
-	    ftruncate(bloque_fd, tamanio_bloques);
-	    close(bloque_fd);
+		FILE *f = fopen(aux,"w");
+		fclose(f);
 
 	    free(numero_bloque);
 	    free(aux);
 	}
+	free(path_bloques);
 }
 
 

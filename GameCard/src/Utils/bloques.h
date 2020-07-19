@@ -12,6 +12,7 @@
 #include<commons/string.h>
 #include<sys/stat.h>
 
+
 #include"metadata.h"
 #include"configGameCard.h"
 

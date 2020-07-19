@@ -2,7 +2,7 @@
 #include "bitmap.h"
 
 
-void crear_bitmap(){
+void crear_bitmap(char* path_bitmap){
 	pthread_mutex_lock(&MUTEX_BITMAP);
 	int bloques = obtener_cantidad_bloques();
 
@@ -12,8 +12,6 @@ void crear_bitmap(){
 		return;
 	}
 
-	char* path_bitmap = obtener_path_metadata();
-	string_append(&path_bitmap, "/bitmap.bin");
 
 	int bitmap_fd = open(path_bitmap,O_CREAT |O_RDWR, S_IRUSR | S_IWUSR);
 	ftruncate(bitmap_fd, bloques/8 + 1);
@@ -54,9 +52,45 @@ void eliminar_bitmap(){
 
 
 
-void bitmap_liberar_bloque(int bloque, int bitmap);
+void bitmap_liberar_bloque(int bloque, int bitmap){
+	{
+		pthread_mutex_lock(&MUTEX_BITMAP);
+
+		bitarray_clean_bit(bitarray,bloque);
+
+		flag_bloques_libres = 1;
+
+		pthread_mutex_unlock(&MUTEX_BITMAP);
+	}
+
+}
+
 
 int obtener_nuevo_bloque(){
+	{
+		if(!flag_bloques_libres){ //si no hay bloques libres ni busca
+			return -1;
+		}
 
+		pthread_mutex_lock(&MUTEX_BITMAP);
+
+		int bloques = obtener_cantidad_bloques();
+		int i;
+
+		for(i = 1; i <= bloques; i++){
+			if(!bitarray_test_bit(bitarray,i)){ // CHEQUEAR QUE EL INDICE DE BITMAP FUNCIONE ASI CON i=1
+				bitarray_set_bit(bitarray,i);
+
+				msync(bitarray->bitarray, bitarrayfd, MS_SYNC);
+				pthread_mutex_unlock(&MUTEX_BITMAP);
+				return i;
+			}
+		}
+
+
+		flag_bloques_libres = 0; // 0 si no hay libres, 1 si los hay
+		pthread_mutex_unlock(&MUTEX_BITMAP);
+		return -1; // salio del for, por lo que no hay bloque libre/
+	}
 }
 

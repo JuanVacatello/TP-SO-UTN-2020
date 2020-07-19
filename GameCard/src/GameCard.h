@@ -30,7 +30,7 @@ void inicializar_metadata(char* path_metadata, int block_size, int cant_bloques)
 void inicializar_files(char* path_files);
 void inicializar_bloques(char* path_bloques);
 void completar_metadata_directorio(char* path_directorio);
-void crear_bloques();
+void crear_bloques(char* path_bloques);
 
 
 #endif /* GAMECARD_H_ */

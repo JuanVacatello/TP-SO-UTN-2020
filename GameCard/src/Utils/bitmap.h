@@ -27,10 +27,12 @@ t_bitarray *bitarray;
 
 pthread_mutex_t MUTEX_BITMAP;
 
+int flag_bloques_libres;
+
 
 #ifndef UTILS_BITMAP_H_
 #define UTILS_BITMAP_H_
 
-
+void crear_bitmap(char* path_bitmap);
 
 #endif /* UTILS_BITMAP_H_ */
