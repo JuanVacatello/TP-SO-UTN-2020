@@ -57,6 +57,13 @@ typedef struct {
 	char* pokemon;
 } t_mensaje_en_cola;
 
+typedef struct
+{
+	op_code cola;
+	int socket_cliente;
+	int tiempo;
+} t_suscripcion;
+
 t_list* suscriptores_new_pokemon;
 t_list* suscriptores_appeared_pokemon;
 t_list* suscriptores_catch_pokemon;
@@ -93,6 +100,8 @@ void enviar_mensajes_al_nuevo_suscriptor_AP(t_list* mensajes_de_dicha_cola, int 
 void enviar_mensajes_al_nuevo_suscriptor_CATP(t_list* mensajes_de_dicha_cola, int socket_suscriptor);
 void enviar_mensajes_al_nuevo_suscriptor_CAUP(t_list* mensajes_de_dicha_cola, int socket_suscriptor);
 void enviar_mensajes_al_nuevo_suscriptor_GP(t_list* mensajes_de_dicha_cola, int socket_suscriptor);
+void correr_tiempo_suscripcion(t_suscripcion* suscripcion);
+int encontrar_suscriptor_por_posicion(int socket_cliente, t_list* lista);
 
 // RECEPCION, ALMACENAMIENTO EN MEMORIA Y REENVIO DE MENSAJES
 void recibir_new_pokemon(int socket_cliente);
@@ -113,6 +122,18 @@ int recibir_tamanio_buffer(int socket);
 // ENVIAR MENSAJE
 void enviar_mensaje(int socket_cliente, char* mensaje);
 void enviar_mensaje_id(int socket_cliente);
+
+pthread_t hilo_suscripcion;
+pthread_t hilo_newPokemon;
+pthread_t hilo_appearedPokemon;
+pthread_t hilo_catchPokemon;
+pthread_t hilo_caughtPokemon;
+pthread_t hilo_getPokemon;
+pthread_t hilo_localizedPokemon;
+pthread_t hilo_ack;
+
+pthread_mutex_t mutex_suscripcion;
+
 
 
 #endif

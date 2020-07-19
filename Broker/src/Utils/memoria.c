@@ -440,6 +440,7 @@ t_mensaje_guardado* administracion_de_memoria_buddy_system(void* bloque_a_agrega
 		if(tamanio_a_agregar < tamanio_minimo){
 			bloque_con_fragmentacion =  crear_fragmentacion_interna(bloque_a_agregar_en_memoria, tamanio_a_agregar, tamanio_minimo);
 		} else{
+			bloque_con_fragmentacion = malloc(tamanio_minimo);
 			bloque_con_fragmentacion = bloque_a_agregar_en_memoria;
 		}
 
@@ -499,8 +500,8 @@ t_mensaje_guardado* eliminar_y_consolidar_hasta_encontrar(uint32_t tamanio_a_agr
 			void* bloque_con_fragmentacion;
 			if(tamanio_a_agregar < tamanio_minimo){
 				bloque_con_fragmentacion =  crear_fragmentacion_interna(bloque_a_agregar_en_memoria, tamanio_a_agregar, tamanio_minimo);
-			}
-			else{
+			} else{
+				bloque_con_fragmentacion = malloc(tamanio_minimo);
 				bloque_con_fragmentacion = bloque_a_agregar_en_memoria;
 			}
 
@@ -838,6 +839,7 @@ void* crear_fragmentacion_interna(void* bloque_a_agregar_en_memoria, uint32_t ta
 	void* bloque_con_fragmentacion = malloc(tamanio_total);
 	memset(bloque_con_fragmentacion,0,tamanio_total);
 	memcpy(bloque_con_fragmentacion + desplazamiento, bloque_a_agregar_en_memoria, tamanio_a_agregar);
+	desplazamiento += tamanio_a_agregar;
 
 	int espacio_restante = tamanio_total - tamanio_a_agregar;
 	char relleno = 'f';

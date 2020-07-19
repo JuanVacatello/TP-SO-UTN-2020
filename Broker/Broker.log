@@ -20,3 +20,467 @@
 [INFO] 16:44:48:267 BROKER/(11789:11804): Se almacenó un mensaje en la posición 32 de la memoria principal.
 [INFO] 16:52:42:814 BROKER/(11933:11954): Se conectó proceso de socket 5 al Broker.
 [INFO] 16:52:42:870 BROKER/(11933:11954): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 17:53:44:945 BROKER/(8321:8339): Se conectó proceso de socket 5 al Broker.
+[INFO] 17:53:44:952 BROKER/(8321:8339): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 17:53:44:953 BROKER/(8321:8339): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 17:53:44:954 BROKER/(8321:8341): Se conectó proceso de socket 6 al Broker.
+[INFO] 17:53:44:954 BROKER/(8321:8341): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 17:53:44:954 BROKER/(8321:8341): Se almacenó un mensaje en la posición 4 de la memoria principal.
+[INFO] 17:53:44:956 BROKER/(8321:8343): Se conectó proceso de socket 7 al Broker.
+[INFO] 17:53:44:956 BROKER/(8321:8343): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 17:53:44:956 BROKER/(8321:8343): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 17:53:44:957 BROKER/(8321:8345): Se conectó proceso de socket 8 al Broker.
+[INFO] 17:53:44:957 BROKER/(8321:8345): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 17:53:44:958 BROKER/(8321:8345): Se almacenó un mensaje en la posición 16 de la memoria principal.
+[INFO] 17:53:44:959 BROKER/(8321:8347): Se conectó proceso de socket 9 al Broker.
+[INFO] 17:53:44:959 BROKER/(8321:8347): Se suscribió el proceso con socket 8346 y con id 9 a la cola de mensajes 1.
+[INFO] 17:53:44:959 BROKER/(8321:8347): Con timestamp 5.
+[INFO] 17:53:44:961 BROKER/(8321:8347): Se le envió un mensaje al suscriptor de socket 9.
+[INFO] 17:53:54:963 BROKER/(8321:8352): Se conectó proceso de socket 10 al Broker.
+[INFO] 17:53:54:964 BROKER/(8321:8352): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 17:53:54:964 BROKER/(8321:8352): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 17:53:54:964 BROKER/(8321:8352): Se eliminó de memoria principal la partición que se encontraba en la posicion 4.
+[INFO] 17:53:54:964 BROKER/(8321:8352): Se asociaron las particiones que se encontraban en las posiciones 0 y 4.
+[INFO] 17:53:54:964 BROKER/(8321:8352): Se asociaron las particiones que se encontraban en las posiciones 0 y 8.
+[INFO] 17:53:54:964 BROKER/(8321:8352): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 17:53:54:964 BROKER/(8321:8352): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 17:55:22:13 BROKER/(8432:8439): Se conectó proceso de socket 5 al Broker.
+[INFO] 17:55:22:17 BROKER/(8432:8439): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 17:55:22:17 BROKER/(8432:8439): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 17:55:22:18 BROKER/(8432:8441): Se conectó proceso de socket 6 al Broker.
+[INFO] 17:55:22:19 BROKER/(8432:8441): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 17:55:22:19 BROKER/(8432:8441): Se almacenó un mensaje en la posición 4 de la memoria principal.
+[INFO] 17:55:22:22 BROKER/(8432:8443): Se conectó proceso de socket 7 al Broker.
+[INFO] 17:55:22:29 BROKER/(8432:8443): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 17:55:22:29 BROKER/(8432:8443): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 17:55:22:43 BROKER/(8432:8445): Se conectó proceso de socket 8 al Broker.
+[INFO] 17:55:22:45 BROKER/(8432:8445): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 17:55:22:46 BROKER/(8432:8445): Se almacenó un mensaje en la posición 16 de la memoria principal.
+[INFO] 17:55:22:59 BROKER/(8432:8447): Se conectó proceso de socket 9 al Broker.
+[INFO] 17:55:22:60 BROKER/(8432:8447): Se suscribió el proceso con socket 8446 y con id 9 a la cola de mensajes 1.
+[INFO] 17:55:22:62 BROKER/(8432:8447): Con timestamp 5.
+[INFO] 17:55:22:62 BROKER/(8432:8447): Se le envió un mensaje al suscriptor de socket 9.
+[INFO] 17:55:32:72 BROKER/(8432:8512): Se conectó proceso de socket 10 al Broker.
+[INFO] 17:55:32:73 BROKER/(8432:8512): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 17:55:32:73 BROKER/(8432:8512): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 17:55:32:73 BROKER/(8432:8512): Se eliminó de memoria principal la partición que se encontraba en la posicion 4.
+[INFO] 17:55:32:73 BROKER/(8432:8512): Se asociaron las particiones que se encontraban en las posiciones 0 y 4.
+[INFO] 17:55:32:73 BROKER/(8432:8512): Se asociaron las particiones que se encontraban en las posiciones 0 y 8.
+[INFO] 17:55:32:73 BROKER/(8432:8512): Se eliminó de memoria principal la partición que se encontraba en la posicion 16.
+[INFO] 17:55:32:73 BROKER/(8432:8512): Se asociaron las particiones que se encontraban en las posiciones 0 y 16.
+[INFO] 17:55:32:73 BROKER/(8432:8512): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 18:12:15:910 BROKER/(9024:9057): Se conectó proceso de socket 5 al Broker.
+[INFO] 18:12:15:911 BROKER/(9024:9057): Se suscribió el proceso con socket 9047 y con id 5 a la cola de mensajes 6.
+[INFO] 18:12:58:618 BROKER/(9024:9063): Se conectó proceso de socket 7 al Broker.
+[INFO] 18:12:58:621 BROKER/(9024:9063): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 18:12:58:621 BROKER/(9024:9063): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 18:16:02:870 BROKER/(9136:9152): Se conectó proceso de socket 5 al Broker.
+[INFO] 18:16:02:871 BROKER/(9136:9152): Se suscribió el proceso con socket 9142 y con id 5 a la cola de mensajes 6.
+[INFO] 18:16:53:945 BROKER/(9191:9224): Se conectó proceso de socket 5 al Broker.
+[INFO] 18:16:53:945 BROKER/(9191:9224): Se suscribió el proceso con socket 9214 y con id 5 a la cola de mensajes 6.
+[INFO] 18:16:53:946 BROKER/(9191:9225): Se conectó proceso de socket 7 al Broker.
+[INFO] 18:16:53:946 BROKER/(9191:9225): Se suscribió el proceso con socket 9214 y con id 7 a la cola de mensajes 4.
+[INFO] 18:16:53:947 BROKER/(9191:9226): Se conectó proceso de socket 8 al Broker.
+[INFO] 18:16:53:948 BROKER/(9191:9226): Se suscribió el proceso con socket 9214 y con id 8 a la cola de mensajes 2.
+[INFO] 18:16:58:583 BROKER/(9191:9228): Se conectó proceso de socket 9 al Broker.
+[INFO] 18:16:58:584 BROKER/(9191:9228): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 18:16:58:584 BROKER/(9191:9228): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 18:16:58:584 BROKER/(9191:9228): El socket al que le vamos a enviar es: 8.
+[INFO] 18:16:58:589 BROKER/(9191:9228): Se le envió un mensaje al suscriptor de socket 8.
+[INFO] 18:17:00:604 BROKER/(9191:9232): Se conectó proceso de socket 10 al Broker.
+[INFO] 18:17:00:604 BROKER/(9191:9232): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 18:17:00:604 BROKER/(9191:9232): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 18:18:30:273 BROKER/(9191:9245): Se conectó proceso de socket 11 al Broker.
+[INFO] 18:18:30:274 BROKER/(9191:9245): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 18:18:30:274 BROKER/(9191:9245): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 18:18:30:274 BROKER/(9191:9245): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 18:18:30:274 BROKER/(9191:9245): El socket al que le vamos a enviar es: 7.
+[INFO] 18:18:30:275 BROKER/(9191:9245): Se le envió un mensaje al suscriptor de socket 7.
+[INFO] 18:25:13:166 BROKER/(9295:9360): Se conectó proceso de socket 5 al Broker.
+[INFO] 18:25:13:168 BROKER/(9295:9360): Se suscribió el proceso con socket 9338 y con id 5 a la cola de mensajes 2.
+[INFO] 18:25:13:791 BROKER/(9295:9364): Se conectó proceso de socket 7 al Broker.
+[INFO] 18:25:13:792 BROKER/(9295:9364): Se suscribió el proceso con socket 9338 y con id 7 a la cola de mensajes 4.
+[INFO] 18:25:14:909 BROKER/(9295:9368): Se conectó proceso de socket 8 al Broker.
+[INFO] 18:25:14:909 BROKER/(9295:9368): Se suscribió el proceso con socket 9338 y con id 8 a la cola de mensajes 6.
+[INFO] 18:25:27:595 BROKER/(9295:9374): Se conectó proceso de socket 9 al Broker.
+[INFO] 18:25:27:595 BROKER/(9295:9374): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 18:25:27:596 BROKER/(9295:9374): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 18:25:27:596 BROKER/(9295:9374): El socket al que le vamos a enviar es: 5.
+[INFO] 18:25:27:626 BROKER/(9295:9374): Se le envió un mensaje al suscriptor de socket 5.
+[INFO] 18:33:27:326 BROKER/(9703:9753): Se conectó proceso de socket 5 al Broker.
+[INFO] 18:33:27:326 BROKER/(9703:9753): Se suscribió el proceso con socket 9743 y con id 5 a la cola de mensajes 6.
+[INFO] 18:33:27:327 BROKER/(9703:9754): Se conectó proceso de socket 7 al Broker.
+[INFO] 18:33:27:327 BROKER/(9703:9754): Se suscribió el proceso con socket 9743 y con id 7 a la cola de mensajes 4.
+[INFO] 18:33:27:329 BROKER/(9703:9755): Se conectó proceso de socket 8 al Broker.
+[INFO] 18:33:27:331 BROKER/(9703:9755): Se suscribió el proceso con socket 9743 y con id 8 a la cola de mensajes 2.
+[INFO] 18:33:30:773 BROKER/(9703:9758): Se conectó proceso de socket 9 al Broker.
+[INFO] 18:33:30:773 BROKER/(9703:9758): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 18:33:30:773 BROKER/(9703:9758): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 18:33:30:773 BROKER/(9703:9758): El socket al que le vamos a enviar es: 8.
+[INFO] 18:33:30:773 BROKER/(9703:9758): Se le envió un mensaje al suscriptor de socket 8.
+[INFO] 18:33:32:809 BROKER/(9703:9762): Se conectó proceso de socket 10 al Broker.
+[INFO] 18:33:32:809 BROKER/(9703:9762): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 18:33:32:809 BROKER/(9703:9762): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 18:53:13:26 BROKER/(10421:10429): Se conectó proceso de socket 5 al Broker.
+[INFO] 18:53:13:29 BROKER/(10421:10429): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 18:53:13:30 BROKER/(10421:10431): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 18:53:13:31 BROKER/(10421:10432): Se conectó proceso de socket 7 al Broker.
+[INFO] 18:53:13:31 BROKER/(10421:10432): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 18:53:13:34 BROKER/(10421:10434): Se almacenó un mensaje en la posición 4 de la memoria principal.
+[INFO] 18:53:13:34 BROKER/(10421:10435): Se conectó proceso de socket 8 al Broker.
+[INFO] 18:53:13:34 BROKER/(10421:10435): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 18:53:13:37 BROKER/(10421:10437): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 18:53:13:37 BROKER/(10421:10438): Se conectó proceso de socket 9 al Broker.
+[INFO] 18:53:13:38 BROKER/(10421:10438): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 18:53:13:42 BROKER/(10421:10440): Se almacenó un mensaje en la posición 16 de la memoria principal.
+[INFO] 18:53:13:42 BROKER/(10421:10441): Se conectó proceso de socket 10 al Broker.
+[INFO] 18:53:13:42 BROKER/(10421:10441): Se suscribió el proceso con socket 10439 y con id 10 a la cola de mensajes 1.
+[INFO] 18:53:13:42 BROKER/(10421:10441): Con timestamp 5.
+[INFO] 18:53:13:44 BROKER/(10421:10441): Se le envió un mensaje al suscriptor de socket 10.
+[INFO] 18:53:23:47 BROKER/(10421:10444): Se conectó proceso de socket 11 al Broker.
+[INFO] 18:53:23:47 BROKER/(10421:10444): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 18:53:23:47 BROKER/(10421:10445): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 18:53:23:47 BROKER/(10421:10445): Se eliminó de memoria principal la partición que se encontraba en la posicion 4.
+[INFO] 18:53:23:47 BROKER/(10421:10445): Se asociaron las particiones que se encontraban en las posiciones 0 y 4.
+[INFO] 18:53:23:47 BROKER/(10421:10445): Se asociaron las particiones que se encontraban en las posiciones 0 y 8.
+[INFO] 18:53:23:47 BROKER/(10421:10445): Se eliminó de memoria principal la partición que se encontraba en la posicion 16.
+[INFO] 18:53:23:47 BROKER/(10421:10445): Se asociaron las particiones que se encontraban en las posiciones 0 y 16.
+[INFO] 18:53:23:48 BROKER/(10421:10445): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 18:53:54:465 BROKER/(10470:10480): Se conectó proceso de socket 5 al Broker.
+[INFO] 18:53:54:466 BROKER/(10470:10480): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 18:53:54:468 BROKER/(10470:10482): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 18:53:54:469 BROKER/(10470:10483): Se conectó proceso de socket 6 al Broker.
+[INFO] 18:53:54:475 BROKER/(10470:10483): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 18:53:54:480 BROKER/(10470:10485): Se almacenó un mensaje en la posición 4 de la memoria principal.
+[INFO] 18:53:54:480 BROKER/(10470:10486): Se conectó proceso de socket 7 al Broker.
+[INFO] 18:53:54:481 BROKER/(10470:10486): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 18:53:54:485 BROKER/(10470:10488): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 18:53:54:485 BROKER/(10470:10489): Se conectó proceso de socket 8 al Broker.
+[INFO] 18:53:54:485 BROKER/(10470:10489): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 18:53:54:494 BROKER/(10470:10491): Se almacenó un mensaje en la posición 16 de la memoria principal.
+[INFO] 18:53:54:497 BROKER/(10470:10492): Se conectó proceso de socket 9 al Broker.
+[INFO] 18:53:54:498 BROKER/(10470:10492): Se suscribió el proceso con socket 10490 y con id 9 a la cola de mensajes 1.
+[INFO] 18:53:54:498 BROKER/(10470:10492): Con timestamp 5.
+[INFO] 18:53:54:498 BROKER/(10470:10492): Se le envió un mensaje al suscriptor de socket 9.
+[INFO] 18:54:04:505 BROKER/(10470:10495): Se conectó proceso de socket 10 al Broker.
+[INFO] 18:54:04:506 BROKER/(10470:10495): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 18:54:04:506 BROKER/(10470:10496): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 18:54:04:506 BROKER/(10470:10496): Se eliminó de memoria principal la partición que se encontraba en la posicion 4.
+[INFO] 18:54:04:506 BROKER/(10470:10496): Se asociaron las particiones que se encontraban en las posiciones 0 y 4.
+[INFO] 18:54:04:506 BROKER/(10470:10496): Se asociaron las particiones que se encontraban en las posiciones 0 y 8.
+[INFO] 18:54:04:506 BROKER/(10470:10496): Se eliminó de memoria principal la partición que se encontraba en la posicion 16.
+[INFO] 18:54:04:506 BROKER/(10470:10496): Se asociaron las particiones que se encontraban en las posiciones 0 y 16.
+[INFO] 18:54:04:506 BROKER/(10470:10496): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 18:55:46:880 BROKER/(10544:10552): Se conectó proceso de socket 5 al Broker.
+[INFO] 18:55:46:880 BROKER/(10544:10552): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 18:55:46:883 BROKER/(10544:10554): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 18:55:46:883 BROKER/(10544:10555): Se conectó proceso de socket 6 al Broker.
+[INFO] 18:55:46:883 BROKER/(10544:10555): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 18:55:46:886 BROKER/(10544:10557): Se almacenó un mensaje en la posición 4 de la memoria principal.
+[INFO] 18:55:46:889 BROKER/(10544:10558): Se conectó proceso de socket 7 al Broker.
+[INFO] 18:55:46:890 BROKER/(10544:10558): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 18:55:46:890 BROKER/(10544:10560): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 18:55:46:891 BROKER/(10544:10561): Se conectó proceso de socket 8 al Broker.
+[INFO] 18:55:46:891 BROKER/(10544:10561): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 18:55:46:892 BROKER/(10544:10563): Se almacenó un mensaje en la posición 16 de la memoria principal.
+[INFO] 18:55:46:892 BROKER/(10544:10564): Se conectó proceso de socket 9 al Broker.
+[INFO] 18:55:46:893 BROKER/(10544:10564): Se suscribió el proceso con socket 10562 y con id 9 a la cola de mensajes 1.
+[INFO] 18:55:46:893 BROKER/(10544:10564): Con timestamp 5.
+[INFO] 18:55:46:893 BROKER/(10544:10564): Se le envió un mensaje al suscriptor de socket 9.
+[INFO] 18:57:33:601 BROKER/(10666:10674): Se conectó proceso de socket 5 al Broker.
+[INFO] 18:57:33:603 BROKER/(10666:10674): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 18:57:33:604 BROKER/(10666:10676): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 18:57:33:604 BROKER/(10666:10677): Se conectó proceso de socket 6 al Broker.
+[INFO] 18:57:33:604 BROKER/(10666:10677): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 18:57:33:605 BROKER/(10666:10679): Se almacenó un mensaje en la posición 4 de la memoria principal.
+[INFO] 18:57:33:606 BROKER/(10666:10680): Se conectó proceso de socket 7 al Broker.
+[INFO] 18:57:33:606 BROKER/(10666:10680): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 18:57:33:607 BROKER/(10666:10682): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 18:57:33:612 BROKER/(10666:10683): Se conectó proceso de socket 8 al Broker.
+[INFO] 18:57:33:612 BROKER/(10666:10683): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 18:57:33:613 BROKER/(10666:10685): Se almacenó un mensaje en la posición 16 de la memoria principal.
+[INFO] 18:57:33:613 BROKER/(10666:10686): Se conectó proceso de socket 9 al Broker.
+[INFO] 18:57:33:614 BROKER/(10666:10688): Se suscribió el proceso con socket 10684 y con id 9 a la cola de mensajes 1.
+[INFO] 18:57:33:614 BROKER/(10666:10688): Con timestamp 5.
+[INFO] 18:57:33:621 BROKER/(10666:10688): Se le envió un mensaje al suscriptor de socket 9.
+[INFO] 18:57:43:619 BROKER/(10666:10690): Se conectó proceso de socket 10 al Broker.
+[INFO] 18:57:43:619 BROKER/(10666:10690): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 18:57:43:619 BROKER/(10666:10691): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 18:57:43:619 BROKER/(10666:10691): Se eliminó de memoria principal la partición que se encontraba en la posicion 4.
+[INFO] 18:57:43:619 BROKER/(10666:10691): Se asociaron las particiones que se encontraban en las posiciones 0 y 4.
+[INFO] 18:57:43:619 BROKER/(10666:10691): Se asociaron las particiones que se encontraban en las posiciones 0 y 8.
+[INFO] 18:57:43:619 BROKER/(10666:10691): Se eliminó de memoria principal la partición que se encontraba en la posicion 16.
+[INFO] 18:57:43:619 BROKER/(10666:10691): Se asociaron las particiones que se encontraban en las posiciones 0 y 16.
+[INFO] 18:57:43:619 BROKER/(10666:10691): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 19:01:30:86 BROKER/(10847:10871): Se conectó proceso de socket 5 al Broker.
+[INFO] 19:01:30:90 BROKER/(10847:10873): Se conectó proceso de socket 6 al Broker.
+[INFO] 19:01:30:90 BROKER/(10847:10875): Se conectó proceso de socket 7 al Broker.
+[INFO] 19:01:30:91 BROKER/(10847:10872): Se suscribió el proceso con socket 10865 y con id 5 a la cola de mensajes 6.
+[INFO] 19:01:30:91 BROKER/(10847:10874): Se suscribió el proceso con socket 10865 y con id 6 a la cola de mensajes 4.
+[INFO] 19:01:30:91 BROKER/(10847:10876): Se suscribió el proceso con socket 10865 y con id 7 a la cola de mensajes 2.
+[INFO] 19:02:51:416 BROKER/(10847:10897): Se conectó proceso de socket 8 al Broker.
+[INFO] 19:02:51:436 BROKER/(10847:10897): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 19:02:51:441 BROKER/(10847:10899): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 19:02:51:448 BROKER/(10847:10899): El socket al que le vamos a enviar es: 7.
+[INFO] 19:02:51:448 BROKER/(10847:10899): Se le envió un mensaje al suscriptor de socket 7.
+[INFO] 19:02:51:450 BROKER/(10847:10900): Se conectó proceso de socket 9 al Broker.
+[INFO] 19:02:51:451 BROKER/(10847:10903): Se suscribió el proceso con socket 10898 y con id 9 a la cola de mensajes 3.
+[INFO] 19:02:52:451 BROKER/(10847:10905): Se conectó proceso de socket 10 al Broker.
+[INFO] 19:02:52:452 BROKER/(10847:10905): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 19:02:52:452 BROKER/(10847:10906): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 19:02:52:452 BROKER/(10847:10906): El socket al que le vamos a enviar es: 9.
+[INFO] 19:02:52:453 BROKER/(10847:10906): Se le envió un mensaje al suscriptor de socket 9.
+[INFO] 19:05:16:900 BROKER/(10937:10951): Se conectó proceso de socket 5 al Broker.
+[INFO] 19:05:16:901 BROKER/(10937:10951): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 19:05:16:902 BROKER/(10937:10953): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 19:05:16:903 BROKER/(10937:10954): Se conectó proceso de socket 6 al Broker.
+[INFO] 19:05:16:903 BROKER/(10937:10954): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 19:05:16:909 BROKER/(10937:10956): Se almacenó un mensaje en la posición 4 de la memoria principal.
+[INFO] 19:05:16:909 BROKER/(10937:10957): Se conectó proceso de socket 7 al Broker.
+[INFO] 19:05:16:910 BROKER/(10937:10957): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 19:05:16:911 BROKER/(10937:10959): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 19:05:16:911 BROKER/(10937:10960): Se conectó proceso de socket 8 al Broker.
+[INFO] 19:05:16:911 BROKER/(10937:10960): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 19:05:16:912 BROKER/(10937:10962): Se almacenó un mensaje en la posición 16 de la memoria principal.
+[INFO] 19:05:16:912 BROKER/(10937:10963): Se conectó proceso de socket 9 al Broker.
+[INFO] 19:05:16:912 BROKER/(10937:10965): Se suscribió el proceso con socket 10961 y con id 9 a la cola de mensajes 1.
+[INFO] 19:05:16:912 BROKER/(10937:10965): Con timestamp 5.
+[INFO] 19:05:16:913 BROKER/(10937:10965): Se le envió un mensaje al suscriptor de socket 9.
+[INFO] 19:05:26:921 BROKER/(10937:10967): Se conectó proceso de socket 10 al Broker.
+[INFO] 19:05:26:922 BROKER/(10937:10967): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 19:05:26:922 BROKER/(10937:10968): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 19:05:26:922 BROKER/(10937:10968): Se eliminó de memoria principal la partición que se encontraba en la posicion 4.
+[INFO] 19:05:26:922 BROKER/(10937:10968): Se asociaron las particiones que se encontraban en las posiciones 0 y 4.
+[INFO] 19:05:26:922 BROKER/(10937:10968): Se asociaron las particiones que se encontraban en las posiciones 0 y 8.
+[INFO] 19:05:26:922 BROKER/(10937:10968): Se eliminó de memoria principal la partición que se encontraba en la posicion 16.
+[INFO] 19:05:26:922 BROKER/(10937:10968): Se asociaron las particiones que se encontraban en las posiciones 0 y 16.
+[INFO] 19:05:26:922 BROKER/(10937:10968): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 19:07:44:937 BROKER/(11040:11048): Se conectó proceso de socket 5 al Broker.
+[INFO] 19:07:44:937 BROKER/(11040:11048): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 19:07:44:940 BROKER/(11040:11050): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 19:07:44:940 BROKER/(11040:11051): Se conectó proceso de socket 6 al Broker.
+[INFO] 19:07:44:940 BROKER/(11040:11051): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 19:07:44:942 BROKER/(11040:11053): Se almacenó un mensaje en la posición 4 de la memoria principal.
+[INFO] 19:07:44:948 BROKER/(11040:11054): Se conectó proceso de socket 7 al Broker.
+[INFO] 19:07:44:948 BROKER/(11040:11054): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 19:07:44:950 BROKER/(11040:11056): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 19:07:44:950 BROKER/(11040:11057): Se conectó proceso de socket 8 al Broker.
+[INFO] 19:07:44:950 BROKER/(11040:11057): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 19:07:44:951 BROKER/(11040:11059): Se almacenó un mensaje en la posición 16 de la memoria principal.
+[INFO] 19:07:44:951 BROKER/(11040:11060): Se conectó proceso de socket 9 al Broker.
+[INFO] 19:07:44:951 BROKER/(11040:11062): Se suscribió el proceso con socket 11058 y con id 9 a la cola de mensajes 1.
+[INFO] 19:07:44:951 BROKER/(11040:11062): Con timestamp 5.
+[INFO] 19:07:44:952 BROKER/(11040:11062): Se le envió un mensaje al suscriptor de socket 9.
+[INFO] 19:07:54:954 BROKER/(11040:11067): Se conectó proceso de socket 10 al Broker.
+[INFO] 19:07:54:955 BROKER/(11040:11067): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 19:07:54:955 BROKER/(11040:11068): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 19:07:54:955 BROKER/(11040:11068): Se eliminó de memoria principal la partición que se encontraba en la posicion 4.
+[INFO] 19:07:54:955 BROKER/(11040:11068): Se asociaron las particiones que se encontraban en las posiciones 0 y 4.
+[INFO] 19:07:54:955 BROKER/(11040:11068): Se asociaron las particiones que se encontraban en las posiciones 0 y 8.
+[INFO] 19:07:54:955 BROKER/(11040:11068): Se eliminó de memoria principal la partición que se encontraba en la posicion 16.
+[INFO] 19:07:54:955 BROKER/(11040:11068): Se asociaron las particiones que se encontraban en las posiciones 0 y 16.
+[INFO] 19:07:54:955 BROKER/(11040:11068): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 19:08:10:397 BROKER/(11074:11086): Se conectó proceso de socket 5 al Broker.
+[INFO] 19:08:10:399 BROKER/(11074:11088): Se conectó proceso de socket 6 al Broker.
+[INFO] 19:08:10:401 BROKER/(11074:11090): Se conectó proceso de socket 7 al Broker.
+[INFO] 19:08:10:402 BROKER/(11074:11087): Se suscribió el proceso con socket 11080 y con id 5 a la cola de mensajes 6.
+[INFO] 19:08:10:408 BROKER/(11074:11089): Se suscribió el proceso con socket 11080 y con id 6 a la cola de mensajes 4.
+[INFO] 19:08:10:412 BROKER/(11074:11091): Se suscribió el proceso con socket 11080 y con id 7 a la cola de mensajes 2.
+[INFO] 19:08:23:425 BROKER/(11074:11098): Se conectó proceso de socket 8 al Broker.
+[INFO] 19:08:23:431 BROKER/(11074:11098): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 19:08:23:433 BROKER/(11074:11099): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 19:08:23:439 BROKER/(11074:11099): El socket al que le vamos a enviar es: 7.
+[INFO] 19:08:23:450 BROKER/(11074:11099): Se le envió un mensaje al suscriptor de socket 7.
+[INFO] 19:08:23:466 BROKER/(11074:11101): Se conectó proceso de socket 9 al Broker.
+[INFO] 19:08:23:471 BROKER/(11074:11103): Se suscribió el proceso con socket 11100 y con id 9 a la cola de mensajes 3.
+[INFO] 19:08:24:467 BROKER/(11074:11106): Se conectó proceso de socket 10 al Broker.
+[INFO] 19:08:24:468 BROKER/(11074:11106): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 19:08:24:468 BROKER/(11074:11107): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 19:08:24:468 BROKER/(11074:11107): El socket al que le vamos a enviar es: 9.
+[INFO] 19:08:24:468 BROKER/(11074:11107): Se le envió un mensaje al suscriptor de socket 9.
+[INFO] 19:41:00:819 BROKER/(12531:12545): Se conectó proceso de socket 5 al Broker.
+[INFO] 19:41:00:823 BROKER/(12531:12547): Se conectó proceso de socket 6 al Broker.
+[INFO] 19:41:00:823 BROKER/(12531:12549): Se conectó proceso de socket 7 al Broker.
+[INFO] 19:41:00:824 BROKER/(12531:12546): Se suscribió el proceso con socket 12539 y con id 5 a la cola de mensajes 6.
+[INFO] 19:41:00:824 BROKER/(12531:12548): Se suscribió el proceso con socket 12539 y con id 6 a la cola de mensajes 4.
+[INFO] 19:41:00:824 BROKER/(12531:12550): Se suscribió el proceso con socket 12539 y con id 7 a la cola de mensajes 2.
+[INFO] 19:41:12:370 BROKER/(12531:12552): Se conectó proceso de socket 8 al Broker.
+[INFO] 19:41:12:388 BROKER/(12531:12552): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 19:41:12:389 BROKER/(12531:12554): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 19:41:12:390 BROKER/(12531:12554): El socket al que le vamos a enviar es: 7.
+[INFO] 19:41:12:390 BROKER/(12531:12554): Se le envió un mensaje al suscriptor de socket 7.
+[INFO] 19:41:12:396 BROKER/(12531:12555): Se conectó proceso de socket 9 al Broker.
+[INFO] 19:41:12:399 BROKER/(12531:12558): Se suscribió el proceso con socket 12553 y con id 9 a la cola de mensajes 3.
+[INFO] 19:41:13:396 BROKER/(12531:12561): Se conectó proceso de socket 10 al Broker.
+[INFO] 19:41:13:396 BROKER/(12531:12561): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 19:41:13:396 BROKER/(12531:12562): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 19:41:13:396 BROKER/(12531:12562): El socket al que le vamos a enviar es: 9.
+[INFO] 19:41:13:397 BROKER/(12531:12562): Se le envió un mensaje al suscriptor de socket 9.
+[INFO] 19:45:05:488 BROKER/(12650:12662): Se conectó proceso de socket 5 al Broker.
+[INFO] 19:45:05:496 BROKER/(12650:12664): Se conectó proceso de socket 6 al Broker.
+[INFO] 19:45:05:496 BROKER/(12650:12666): Se conectó proceso de socket 7 al Broker.
+[INFO] 19:45:05:496 BROKER/(12650:12663): Se suscribió el proceso con socket 12656 y con id 5 a la cola de mensajes 6.
+[INFO] 19:45:05:496 BROKER/(12650:12665): Se suscribió el proceso con socket 12656 y con id 6 a la cola de mensajes 4.
+[INFO] 19:45:05:497 BROKER/(12650:12667): Se suscribió el proceso con socket 12656 y con id 7 a la cola de mensajes 2.
+[INFO] 19:45:30:298 BROKER/(12650:12674): Se conectó proceso de socket 8 al Broker.
+[INFO] 19:45:30:298 BROKER/(12650:12674): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 19:45:30:300 BROKER/(12650:12676): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 19:45:30:300 BROKER/(12650:12676): El socket al que le vamos a enviar es: 7.
+[INFO] 19:45:30:313 BROKER/(12650:12676): Se le envió un mensaje al suscriptor de socket 7.
+[INFO] 19:45:30:315 BROKER/(12650:12677): Se conectó proceso de socket 9 al Broker.
+[INFO] 19:45:30:320 BROKER/(12650:12680): Se suscribió el proceso con socket 12675 y con id 9 a la cola de mensajes 3.
+[INFO] 19:45:31:321 BROKER/(12650:12683): Se conectó proceso de socket 10 al Broker.
+[INFO] 19:45:31:322 BROKER/(12650:12683): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 19:45:31:322 BROKER/(12650:12684): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 19:45:31:322 BROKER/(12650:12684): El socket al que le vamos a enviar es: 9.
+[INFO] 19:45:31:322 BROKER/(12650:12684): Se le envió un mensaje al suscriptor de socket 9.
+[INFO] 19:49:03:559 BROKER/(12788:12802): Se conectó proceso de socket 5 al Broker.
+[INFO] 19:49:03:561 BROKER/(12788:12804): Se conectó proceso de socket 6 al Broker.
+[INFO] 19:49:03:562 BROKER/(12788:12806): Se conectó proceso de socket 7 al Broker.
+[INFO] 19:49:03:562 BROKER/(12788:12803): Se suscribió el proceso con socket 12796 y con id 5 a la cola de mensajes 6.
+[INFO] 19:49:03:562 BROKER/(12788:12805): Se suscribió el proceso con socket 12796 y con id 6 a la cola de mensajes 4.
+[INFO] 19:49:03:563 BROKER/(12788:12807): Se suscribió el proceso con socket 12796 y con id 7 a la cola de mensajes 2.
+[INFO] 19:49:17:820 BROKER/(12788:12809): Se conectó proceso de socket 8 al Broker.
+[INFO] 19:49:17:821 BROKER/(12788:12809): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 19:49:17:837 BROKER/(12788:12811): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 19:49:17:837 BROKER/(12788:12811): El socket al que le vamos a enviar es: 7.
+[INFO] 19:49:17:838 BROKER/(12788:12811): Se le envió un mensaje al suscriptor de socket 7.
+[INFO] 19:49:17:843 BROKER/(12788:12812): Se conectó proceso de socket 9 al Broker.
+[INFO] 19:49:17:844 BROKER/(12788:12815): Se suscribió el proceso con socket 12810 y con id 9 a la cola de mensajes 3.
+[INFO] 19:49:18:845 BROKER/(12788:12823): Se conectó proceso de socket 10 al Broker.
+[INFO] 19:49:18:845 BROKER/(12788:12823): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 19:49:18:845 BROKER/(12788:12824): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 19:49:18:845 BROKER/(12788:12824): El socket al que le vamos a enviar es: 9.
+[INFO] 19:49:18:846 BROKER/(12788:12824): Se le envió un mensaje al suscriptor de socket 9.
+[INFO] 19:52:00:267 BROKER/(13049:13063): Se conectó proceso de socket 5 al Broker.
+[INFO] 19:52:00:277 BROKER/(13049:13065): Se conectó proceso de socket 6 al Broker.
+[INFO] 19:52:00:280 BROKER/(13049:13067): Se conectó proceso de socket 7 al Broker.
+[INFO] 19:52:00:280 BROKER/(13049:13064): Se suscribió el proceso con socket 13057 y con id 5 a la cola de mensajes 6.
+[INFO] 19:52:00:281 BROKER/(13049:13066): Se suscribió el proceso con socket 13057 y con id 6 a la cola de mensajes 4.
+[INFO] 19:52:00:281 BROKER/(13049:13068): Se suscribió el proceso con socket 13057 y con id 7 a la cola de mensajes 2.
+[INFO] 19:52:10:177 BROKER/(13049:13070): Se conectó proceso de socket 8 al Broker.
+[INFO] 19:52:10:177 BROKER/(13049:13070): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 19:52:10:188 BROKER/(13049:13072): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 19:52:10:188 BROKER/(13049:13072): El socket al que le vamos a enviar es: 7.
+[INFO] 19:52:10:189 BROKER/(13049:13072): Se le envió un mensaje al suscriptor de socket 7.
+[INFO] 19:52:10:190 BROKER/(13049:13073): Se conectó proceso de socket 9 al Broker.
+[INFO] 19:52:10:192 BROKER/(13049:13076): Se suscribió el proceso con socket 13071 y con id 9 a la cola de mensajes 3.
+[INFO] 19:52:11:193 BROKER/(13049:13079): Se conectó proceso de socket 10 al Broker.
+[INFO] 19:52:11:193 BROKER/(13049:13079): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 19:52:11:193 BROKER/(13049:13080): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 19:52:11:193 BROKER/(13049:13080): El socket al que le vamos a enviar es: 9.
+[INFO] 19:52:11:194 BROKER/(13049:13080): Se le envió un mensaje al suscriptor de socket 9.
+[INFO] 19:57:50:755 BROKER/(13254:13266): Se conectó proceso de socket 5 al Broker.
+[INFO] 19:57:50:756 BROKER/(13254:13268): Se conectó proceso de socket 6 al Broker.
+[INFO] 19:57:50:756 BROKER/(13254:13267): Se suscribió el proceso con socket 13260 y con id 5 a la cola de mensajes 6.
+[INFO] 19:57:50:756 BROKER/(13254:13270): Se conectó proceso de socket 7 al Broker.
+[INFO] 19:57:50:756 BROKER/(13254:13269): Se suscribió el proceso con socket 13260 y con id 6 a la cola de mensajes 4.
+[INFO] 19:57:50:756 BROKER/(13254:13271): Se suscribió el proceso con socket 13260 y con id 7 a la cola de mensajes 2.
+[INFO] 19:58:00:503 BROKER/(13254:13275): Se conectó proceso de socket 8 al Broker.
+[INFO] 19:58:00:503 BROKER/(13254:13275): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 19:58:00:510 BROKER/(13254:13277): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 19:58:00:518 BROKER/(13254:13277): El socket al que le vamos a enviar es: 7.
+[INFO] 19:58:00:518 BROKER/(13254:13277): Se le envió un mensaje al suscriptor de socket 7.
+[INFO] 19:58:00:519 BROKER/(13254:13278): Se conectó proceso de socket 9 al Broker.
+[INFO] 19:58:00:526 BROKER/(13254:13280): Se suscribió el proceso con socket 13276 y con id 9 a la cola de mensajes 3.
+[INFO] 19:58:00:527 BROKER/(13254:13280): estoy en el if
+[INFO] 19:58:00:527 BROKER/(13254:13280): aca entra 4
+[INFO] 19:58:01:526 BROKER/(13254:13284): Se conectó proceso de socket 10 al Broker.
+[INFO] 19:58:01:526 BROKER/(13254:13284): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 19:58:01:526 BROKER/(13254:13285): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 19:58:01:527 BROKER/(13254:13285): El socket al que le vamos a enviar es: 9.
+[INFO] 19:58:01:537 BROKER/(13254:13285): Se le envió un mensaje al suscriptor de socket 9.
+[INFO] 20:07:45:542 BROKER/(13660:13674): Se conectó proceso de socket 5 al Broker.
+[INFO] 20:07:45:552 BROKER/(13660:13676): Se conectó proceso de socket 6 al Broker.
+[INFO] 20:07:45:553 BROKER/(13660:13678): Se conectó proceso de socket 7 al Broker.
+[INFO] 20:07:45:553 BROKER/(13660:13675): Se suscribió el proceso con socket 13668 y con id 5 a la cola de mensajes 6.
+[INFO] 20:07:45:554 BROKER/(13660:13677): Se suscribió el proceso con socket 13668 y con id 6 a la cola de mensajes 4.
+[INFO] 20:07:45:554 BROKER/(13660:13679): Se suscribió el proceso con socket 13668 y con id 7 a la cola de mensajes 2.
+[INFO] 20:08:02:946 BROKER/(13660:13683): Se conectó proceso de socket 8 al Broker.
+[INFO] 20:08:02:953 BROKER/(13660:13683): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 20:08:02:977 BROKER/(13660:13684): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 20:08:02:978 BROKER/(13660:13684): El socket al que le vamos a enviar es: 7.
+[INFO] 20:08:02:994 BROKER/(13660:13684): Se le envió un mensaje al suscriptor de socket 7.
+[INFO] 20:08:02:995 BROKER/(13660:13686): Se conectó proceso de socket 9 al Broker.
+[INFO] 20:08:02:996 BROKER/(13660:13688): Se suscribió el proceso con socket 13685 y con id 9 a la cola de mensajes 3.
+[INFO] 20:08:02:996 BROKER/(13660:13688): estoy en el if
+[INFO] 20:08:02:996 BROKER/(13660:13688): aca entra 4
+[INFO] 20:08:03:996 BROKER/(13660:13692): Se conectó proceso de socket 10 al Broker.
+[INFO] 20:08:03:996 BROKER/(13660:13692): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 20:08:03:996 BROKER/(13660:13693): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 20:08:03:996 BROKER/(13660:13693): El socket al que le vamos a enviar es: 9.
+[INFO] 20:08:03:997 BROKER/(13660:13693): Se le envió un mensaje al suscriptor de socket 9.
+[INFO] 20:10:05:771 BROKER/(13748:13762): Se conectó proceso de socket 5 al Broker.
+[INFO] 20:10:05:773 BROKER/(13748:13764): Se conectó proceso de socket 6 al Broker.
+[INFO] 20:10:05:774 BROKER/(13748:13763): Se suscribió el proceso con socket 13756 y con id 5 a la cola de mensajes 6.
+[INFO] 20:10:05:774 BROKER/(13748:13766): Se conectó proceso de socket 7 al Broker.
+[INFO] 20:10:05:774 BROKER/(13748:13765): Se suscribió el proceso con socket 13756 y con id 6 a la cola de mensajes 4.
+[INFO] 20:10:05:774 BROKER/(13748:13767): Se suscribió el proceso con socket 13756 y con id 7 a la cola de mensajes 2.
+[INFO] 20:10:12:784 BROKER/(13748:13770): Se conectó proceso de socket 8 al Broker.
+[INFO] 20:10:12:784 BROKER/(13748:13770): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 20:10:12:787 BROKER/(13748:13772): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 20:10:12:787 BROKER/(13748:13772): El socket al que le vamos a enviar es: 6.
+[INFO] 20:10:12:787 BROKER/(13748:13772): Se le envió un mensaje al suscriptor de socket 6.
+[INFO] 20:10:12:787 BROKER/(13748:13773): Se conectó proceso de socket 9 al Broker.
+[INFO] 20:10:12:788 BROKER/(13748:13773): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 20:10:12:791 BROKER/(13748:13775): Se almacenó un mensaje en la posición 4 de la memoria principal.
+[INFO] 20:10:12:791 BROKER/(13748:13775): El socket al que le vamos a enviar es: 6.
+[INFO] 20:10:12:791 BROKER/(13748:13775): Se le envió un mensaje al suscriptor de socket 6.
+[INFO] 20:10:12:792 BROKER/(13748:13776): Se conectó proceso de socket 10 al Broker.
+[INFO] 20:10:12:792 BROKER/(13748:13776): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 20:10:12:794 BROKER/(13748:13778): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 20:10:12:794 BROKER/(13748:13779): Se conectó proceso de socket 11 al Broker.
+[INFO] 20:10:12:794 BROKER/(13748:13779): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 20:10:12:795 BROKER/(13748:13781): Se almacenó un mensaje en la posición 16 de la memoria principal.
+[INFO] 20:10:12:795 BROKER/(13748:13782): Se conectó proceso de socket 12 al Broker.
+[INFO] 20:10:12:796 BROKER/(13748:13784): Se suscribió el proceso con socket 13780 y con id 12 a la cola de mensajes 1.
+[INFO] 20:10:12:796 BROKER/(13748:13784): Con timestamp 5.
+[INFO] 20:10:12:796 BROKER/(13748:13784): Se le envió un mensaje al suscriptor de socket 12.
+[INFO] 20:10:12:797 BROKER/(13748:13784): estoy en el if
+[INFO] 20:10:12:797 BROKER/(13748:13784): aca entra 4
+[INFO] 20:10:22:802 BROKER/(13748:13787): Se conectó proceso de socket 13 al Broker.
+[INFO] 20:10:22:803 BROKER/(13748:13787): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 20:10:22:803 BROKER/(13748:13788): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 20:10:22:803 BROKER/(13748:13788): Se eliminó de memoria principal la partición que se encontraba en la posicion 4.
+[INFO] 20:10:22:803 BROKER/(13748:13788): Se asociaron las particiones que se encontraban en las posiciones 0 y 4.
+[INFO] 20:10:22:803 BROKER/(13748:13788): Se asociaron las particiones que se encontraban en las posiciones 0 y 8.
+[INFO] 20:10:22:803 BROKER/(13748:13788): Se eliminó de memoria principal la partición que se encontraba en la posicion 16.
+[INFO] 20:10:22:803 BROKER/(13748:13788): Se asociaron las particiones que se encontraban en las posiciones 0 y 16.
+[INFO] 20:10:22:803 BROKER/(13748:13788): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 20:14:05:870 BROKER/(13896:13908): Se conectó proceso de socket 5 al Broker.
+[INFO] 20:14:05:873 BROKER/(13896:13910): Se conectó proceso de socket 6 al Broker.
+[INFO] 20:14:05:874 BROKER/(13896:13912): Se conectó proceso de socket 7 al Broker.
+[INFO] 20:14:05:880 BROKER/(13896:13909): Se suscribió el proceso con socket 13902 y con id 5 a la cola de mensajes 6.
+[INFO] 20:14:05:880 BROKER/(13896:13913): Se suscribió el proceso con socket 13902 y con id 7 a la cola de mensajes 2.
+[INFO] 20:14:05:880 BROKER/(13896:13911): Se suscribió el proceso con socket 13902 y con id 6 a la cola de mensajes 4.
+[INFO] 20:14:16:713 BROKER/(13896:13916): Se conectó proceso de socket 8 al Broker.
+[INFO] 20:14:16:721 BROKER/(13896:13916): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 20:14:16:728 BROKER/(13896:13918): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 20:14:16:729 BROKER/(13896:13918): El socket al que le vamos a enviar es: 6.
+[INFO] 20:14:16:730 BROKER/(13896:13918): Se le envió un mensaje al suscriptor de socket 6.
+[INFO] 20:14:16:732 BROKER/(13896:13919): Se conectó proceso de socket 9 al Broker.
+[INFO] 20:14:16:733 BROKER/(13896:13919): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 20:14:16:734 BROKER/(13896:13921): Se almacenó un mensaje en la posición 4 de la memoria principal.
+[INFO] 20:14:16:734 BROKER/(13896:13921): El socket al que le vamos a enviar es: 6.
+[INFO] 20:14:16:734 BROKER/(13896:13921): Se le envió un mensaje al suscriptor de socket 6.
+[INFO] 20:14:16:735 BROKER/(13896:13922): Se conectó proceso de socket 10 al Broker.
+[INFO] 20:14:16:735 BROKER/(13896:13922): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 20:14:16:736 BROKER/(13896:13924): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 20:14:16:736 BROKER/(13896:13925): Se conectó proceso de socket 11 al Broker.
+[INFO] 20:14:16:736 BROKER/(13896:13925): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 20:14:16:737 BROKER/(13896:13927): Se almacenó un mensaje en la posición 16 de la memoria principal.
+[INFO] 20:14:16:737 BROKER/(13896:13928): Se conectó proceso de socket 12 al Broker.
+[INFO] 20:14:16:745 BROKER/(13896:13930): Se suscribió el proceso con socket 13926 y con id 12 a la cola de mensajes 1.
+[INFO] 20:14:16:745 BROKER/(13896:13930): Con timestamp 5.
+[INFO] 20:14:16:745 BROKER/(13896:13930): Se le envió un mensaje al suscriptor de socket 12.
+[INFO] 20:14:16:747 BROKER/(13896:13930): estoy en el if
+[INFO] 20:14:16:748 BROKER/(13896:13930): aca entra 4
+[INFO] 20:14:26:751 BROKER/(13896:13934): Se conectó proceso de socket 13 al Broker.
+[INFO] 20:14:26:752 BROKER/(13896:13934): Llegó un nuevo mensaje a la cola de mensajes.
+[INFO] 20:14:26:752 BROKER/(13896:13935): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 20:14:26:753 BROKER/(13896:13935): Se eliminó de memoria principal la partición que se encontraba en la posicion 4.
+[INFO] 20:14:26:779 BROKER/(13896:13935): Se asociaron las particiones que se encontraban en las posiciones 0 y 4.
+[INFO] 20:14:26:779 BROKER/(13896:13935): Se asociaron las particiones que se encontraban en las posiciones 0 y 8.
+[INFO] 20:14:26:779 BROKER/(13896:13935): Se eliminó de memoria principal la partición que se encontraba en la posicion 16.
+[INFO] 20:14:26:779 BROKER/(13896:13935): Se asociaron las particiones que se encontraban en las posiciones 0 y 16.
+[INFO] 20:14:26:779 BROKER/(13896:13935): Se almacenó un mensaje en la posición 0 de la memoria principal.

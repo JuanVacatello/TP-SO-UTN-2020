@@ -43,7 +43,7 @@ void esperar_cliente(int socket_servidor)
 	struct sockaddr_in dir_cliente;
 
 	int tam_direccion = sizeof(struct sockaddr_in);
-	sem_wait(&MUTEX_MENSAJE);
+	//sem_wait(&MUTEX_MENSAJE);
 	int socket_cliente = accept(socket_servidor, (void*) &dir_cliente, &tam_direccion);
 
 	pthread_create(&thread,NULL,(void*)serve_client,&socket_cliente);
@@ -72,32 +72,48 @@ void process_request(op_code cod_op, int socket_cliente) {
 
 	switch (cod_op) {
 		case 0:
-			atender_suscripcion(socket_cliente);
-			//enviar_mensaje(socket_cliente, "Suscripto");
+			pthread_create(&hilo_suscripcion, NULL , atender_suscripcion ,socket_cliente);
+			pthread_detach(hilo_suscripcion);
+			//atender_suscripcion(socket_cliente);
+			enviar_mensaje(socket_cliente, "Suscripto");
 			break;
 		case 1:
-			recibir_new_pokemon(socket_cliente);
+			pthread_create(&hilo_newPokemon, NULL , recibir_new_pokemon ,socket_cliente);
+			pthread_detach(hilo_newPokemon);
+			//recibir_new_pokemon(socket_cliente);
 			break;
 		case 2:
-			recibir_appeared_pokemon(socket_cliente);
+			pthread_create(&hilo_appearedPokemon, NULL , recibir_appeared_pokemon ,socket_cliente);
+			pthread_detach(hilo_appearedPokemon);
+			//recibir_appeared_pokemon(socket_cliente);
 			break;
 		case 3:
-			recibir_catch_pokemon(socket_cliente);
+			pthread_create(&hilo_catchPokemon, NULL , recibir_catch_pokemon ,socket_cliente);
+			pthread_detach(hilo_catchPokemon);
+			//recibir_catch_pokemon(socket_cliente);
 			break;
 		case 4:
-			recibir_caught_pokemon(socket_cliente);
+			pthread_create(&hilo_caughtPokemon, NULL , recibir_caught_pokemon ,socket_cliente);
+			pthread_detach(hilo_caughtPokemon);
+			//recibir_caught_pokemon(socket_cliente);
 			break;
 		case 5:
-			recibir_get_pokemon(socket_cliente);
+			pthread_create(&hilo_getPokemon, NULL , recibir_get_pokemon ,socket_cliente);
+			pthread_detach(hilo_getPokemon);
+			//recibir_get_pokemon(socket_cliente);
 			break;
 		case 6:
-			recibir_localized_pokemon(socket_cliente);
+			pthread_create(&hilo_localizedPokemon, NULL , recibir_localized_pokemon ,socket_cliente);
+			pthread_detach(hilo_localizedPokemon);
+			//recibir_localized_pokemon(socket_cliente);
 			break;
 		case 7: //ack
-			recibir_ack(socket_cliente);
+			pthread_create(&hilo_ack, NULL , recibir_ack ,socket_cliente);
+			pthread_detach(hilo_ack);
+			//recibir_ack(socket_cliente);
 			break;
 	}
-	sem_post(&MUTEX_MENSAJE);
+	//sem_post(&MUTEX_MENSAJE);
 }
 
 
@@ -165,10 +181,80 @@ void suscribirse_a_cola(proceso* suscriptor, int socket, uint32_t tamanio_buffer
 	}
 
 	if(tamanio_buffer == 12){ // Entonces la suscripción es del GameBoy
+		completar_logger("estoy en el if", "BROKER", LOG_LEVEL_INFO);
 		uint32_t tiempo_de_suscripcion;
 		recv(socket, &tiempo_de_suscripcion, sizeof(uint32_t), MSG_WAITALL);
+		t_suscripcion* suscripcion = malloc(sizeof(t_suscripcion));
+		suscripcion->cola = cola_a_suscribirse;
+		suscripcion->socket_cliente = suscriptor->socket_cliente;
+		suscripcion->tiempo = tiempo_de_suscripcion;
+
+		pthread_t hilo_recibir;
+		pthread_create(&hilo_recibir, NULL , correr_tiempo_suscripcion , &suscripcion);
+		pthread_detach(hilo_recibir);
+
+		completar_logger("aca entra 4", "BROKER", LOG_LEVEL_INFO);
+		pthread_mutex_lock(&mutex_suscripcion);
 	}
 }
+
+void correr_tiempo_suscripcion(t_suscripcion* suscripcion){
+	sleep(suscripcion->tiempo);
+	completar_logger("aca entra 1", "BROKER", LOG_LEVEL_INFO);
+	proceso* suscriptor;
+	int index;
+	switch(suscripcion->cola){
+		case 1:
+			index = encontrar_suscriptor_por_posicion(suscripcion->socket_cliente, suscriptores_new_pokemon);
+			suscriptor = list_remove(suscriptores_new_pokemon, index);
+			break;
+		case 2:
+			index = encontrar_suscriptor_por_posicion(suscripcion->socket_cliente, suscriptores_appeared_pokemon);
+			suscriptor = list_remove(suscriptores_appeared_pokemon, index);
+			break;
+		case 3:
+			index = encontrar_suscriptor_por_posicion(suscripcion->socket_cliente, suscriptores_catch_pokemon);
+			suscriptor = list_remove(suscriptores_catch_pokemon, index);
+			completar_logger("aca entra 2 ","BROKER", LOG_LEVEL_INFO);
+			break;
+		case 4:
+			index = encontrar_suscriptor_por_posicion(suscripcion->socket_cliente, suscriptores_caught_pokemon);
+			suscriptor = list_remove(suscriptores_caught_pokemon, index);
+			break;
+		case 5:
+			index = encontrar_suscriptor_por_posicion(suscripcion->socket_cliente, suscriptores_get_pokemon);
+			suscriptor = list_remove(suscriptores_get_pokemon, index);
+			break;
+		case 6:
+			index = encontrar_suscriptor_por_posicion(suscripcion->socket_cliente, suscriptores_localized_pokemon);
+			suscriptor = list_remove(suscriptores_localized_pokemon, index);
+			break;
+		}
+
+	char* log = string_from_format("Se desuscribio el proceso de socket %d al Broker.", suscripcion->socket_cliente);
+	completar_logger(log, "BROKER", LOG_LEVEL_INFO);
+
+	completar_logger("aca entra 3", "BROKER", LOG_LEVEL_INFO);
+	free(suscriptor);
+	free(suscripcion);
+
+	pthread_mutex_unlock(&mutex_suscripcion);
+
+	exit(25);
+}
+
+int encontrar_suscriptor_por_posicion(int socket_cliente, t_list* lista){
+	proceso* suscriptor;
+	for(int i = 0; i<list_size(lista); i++){
+		suscriptor = list_get(lista, i);
+		if(suscriptor->socket_cliente == socket_cliente){
+			return i;
+		}
+	}
+	return -1;
+}
+
+//--------------------------------------------------------------------
 
 void enviar_mensajes_al_nuevo_suscriptor_NP(t_list* mensajes_de_dicha_cola, int socket_suscriptor){
 	int tamanio_lista = list_size(mensajes_de_dicha_cola);
@@ -945,15 +1031,14 @@ void reenviar_mensaje_a_suscriptores(void* a_enviar, int tamanio_paquete, t_list
 }
 
 void recibir_ack(int socket_cliente){
+
 	uint32_t tamanio_buffer;
 	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
-	char* ack = (char*)malloc(tamanio_buffer);
+	char* ack = malloc(tamanio_buffer);
 	recv(socket_cliente, ack, tamanio_buffer, MSG_WAITALL);
 
-	puts(ack);
-
-	char* loggearACK = string_from_format("El suscriptor de socket %d recibió el mensaje.", socket_cliente);
+	char* loggearACK = string_from_format("El suscriptor de socket %d recibió el mensaje %s.", socket_cliente, ack);
 	completar_logger(loggearACK,"BROKER", LOG_LEVEL_INFO); // LOG OBLIGATORIO
 /*
 	op_code cod_op;

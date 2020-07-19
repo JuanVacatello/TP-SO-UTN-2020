@@ -56,11 +56,14 @@ void inicializacion_de_variables_globales(void){
 	mensajes_de_cola_get_pokemon = list_create();
 	mensajes_de_cola_localized_pokemon = list_create();
 
-	sem_init(&MUTEX_MENSAJE,0,1);
+	sem_init(&MUTEX_MENSAJE,0,0);
 	sem_init(&MUTEX_LOGGER,0,1);
 	sem_init(&MUTEX_MEM_PRIN,0,1);
 	sem_init(&MUTEX_TIMESTAMP,0,1);
 	sem_init(&MUTEX_FALLOS,0,1);
 	sem_init(&MUTEX_LISTA,0,1);
+
+	pthread_mutex_init(&mutex_suscripcion, NULL);
+	pthread_mutex_lock(&mutex_suscripcion);
 }
 
