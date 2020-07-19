@@ -63,6 +63,7 @@ void planificar_sjf_sd(void){
 				entrenador = list_get(lista_de_entrenadores_ready,i);
 				if(entrenador->ID_entrenador == entrenador_aux->ID_entrenador){
 					entrenador = list_get(lista_de_entrenadores_ready,i);
+					break;
 				}
 			}
 
@@ -84,6 +85,7 @@ void planificar_sjf_sd(void){
 				ejecutar_entrenador(entrenador);
 			}
 		}
+
 		if(terminoTeam()){
 			finalizoTeam();
 			exit(10);
