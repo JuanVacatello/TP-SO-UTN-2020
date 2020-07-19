@@ -22,6 +22,7 @@ void enviarMensajeGameCard(int argc, char *argv[]);
 
 void cumple_cant_parametros(int argc, int cantidad_necesaria);
 void controlar_cant_argumentos(int argc);
+void correr_tiempo_suscripcion(int tiempo);
 
 void terminar_programa(int conexion); //void terminar_programa(int conexion, t_log* logger, t_config* config);
 

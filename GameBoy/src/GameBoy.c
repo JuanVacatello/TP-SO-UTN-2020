@@ -35,17 +35,25 @@ int main(int argc, char* argv[]) {
 
 		completar_logger("GameBoy se suscribió a la cola.", "GAMEBOY", LOG_LEVEL_INFO);
 
-		//while(1){
+		int tiempo_de_suscripcion=0;
+		sscanf(argv[3], "%d", &tiempo_de_suscripcion);
 
-		recibir_mensaje(socket_conexion);
-		recibir_mensaje(socket_conexion);
-			//pthread_create(&hilo_recibir, NULL , recibir_mensaje ,socket_conexion);
-			//pthread_join(hilo_recibir, NULL);
-		//}
+		pthread_create(&hilo_recibir, NULL , correr_tiempo_suscripcion ,tiempo_de_suscripcion);
+		pthread_detach(hilo_recibir);
 
+		while(1){
+			recibir_mensaje(socket_conexion);
+			completar_logger("Llegada de un nuevo mensaje a la cola de mensajes.", "GAMEBOY", LOG_LEVEL_INFO);
+		}
 	}
 	return 0;
 }
+
+void correr_tiempo_suscripcion(int tiempo){
+	sleep(tiempo);
+	exit(1);
+}
+
 
 void enviarMensajeBroker(int argc, char *argv[]){
 

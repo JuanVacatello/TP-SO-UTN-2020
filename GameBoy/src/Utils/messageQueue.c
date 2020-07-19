@@ -321,8 +321,6 @@ void* iniciar_paquete_serializado_CaughtPokemon(int* tamanio_paquete,char* argv[
 		se_pudo_atrapar = -1;
 	}
 
-	printf("Se pudo atrapar quedo en %d \n", se_pudo_atrapar);
-
 		   // ID_MENSAJE_CORRELATIVO + OK/FAIL
 	paquete->buffer->size = sizeof(uint32_t) + sizeof(uint32_t);
 	void* stream = malloc(paquete->buffer->size);
@@ -630,7 +628,7 @@ void* iniciar_paquete_serializado_GetPokemonGC(int* tamanio_paquete,char* argv[]
 
 void recibir_mensaje(int socket_cliente){
 
-	completar_logger("Llegada de un nuevo mensaje a la cola de mensajes.", "GAMEBOY", LOG_LEVEL_INFO);
+
 
 	op_code codigo_de_operacion;
 	recv(socket_cliente, &codigo_de_operacion, sizeof(op_code), MSG_WAITALL);
@@ -785,9 +783,9 @@ void recibir_mensaje(int socket_cliente){
 		break;
 	case 7:
 
-		recv(socket_cliente, &mensajeid, sizeof(uint32_t), MSG_WAITALL); //no recibe pokemon, recibe el mensaje id
+		recv(socket_cliente, mensaje4, buffer_size, MSG_WAITALL); //no recibe pokemon, recibe el mensaje id
 
-		mensaje4 = string_from_format("El id de mensaje es: %d.", mensajeid);
+		//mensaje4 = string_from_format("El id de mensaje es: %d.", mensajeid);
 		puts(mensaje4);
 
 		break;
