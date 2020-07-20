@@ -13,7 +13,7 @@ void iniciar_vg(){
 	generar_atrapados_global();
 	lista_de_entrenadores_deadlock = list_create();
 	lista_de_entrenadores_ready = list_create();
-	lista_de_pokemones_sueltos = list_create();
+	//lista_de_pokemones_sueltos = list_create();
 
 
 	ciclosCpuTotales = 0;

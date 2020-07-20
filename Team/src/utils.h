@@ -22,7 +22,6 @@ t_dictionary* atrapados_global;
 
 t_list* lista_de_entrenadores;
 t_list* lista_de_entrenadores_ready; // CUANDO LLEGA UN CAUGHT EL ENTRENADOR CON ESE ID ENTRA A ESTA LISTA
-t_list* lista_de_pokemones_sueltos;
 t_list* lista_de_entrenadores_deadlock;
 
 pthread_t hilo_servidor;

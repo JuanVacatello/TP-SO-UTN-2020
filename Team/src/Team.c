@@ -5,19 +5,8 @@
 
 
 #include "Team.h"
-#include "entrenador.h"
-#include "utils.h"
-#include "configTeam.h"
-#include "movimiento.h"
-#include "planificacion.h"
 
 
-/*int main(void) {
-
-
-
-}
-*/
 
 //ARMAMOS EL TEAM
 
@@ -243,15 +232,6 @@ void terminar_programa(int conexion, t_log* logger){
 }
 
 
-//----------------
-
-bool hay_pokemones_sueltos(t_list* listaTest){
-	if(list_is_empty(listaTest))
-		return false;
-	else
-		return true;
-}
-
 //pokemonesAAtrapar = [Pikachu,Squirtle,Pikachu,Gengar,Squirtle,Onix]
 
 void informar_pokemones_a_atrapar(){
@@ -322,13 +302,68 @@ void finalizoTeam(){
 	char* mensajeDeadlockResueltos = string_from_format("Se resolvieron %d deadlocks", deadlocksResueltos);
 	loguearMensaje(mensajeDeadlockResueltos);
 
+	liberar_vg();
+
+}
+
+void liberar_entrenador(t_entrenador* entrenador){
+	free(entrenador->objetivo);
+	free(entrenador->atrapados);
+	free(entrenador->pokemon_a_atrapar);
+	free(entrenador->cola_de_acciones);
+	free(entrenador);
 }
 
 
 
+void liberar_vg(){
+	list_destroy_and_destroy_elements(lista_de_entrenadores,liberar_entrenador);
+	list_destroy_and_destroy_elements(lista_de_entrenadores_ready,liberar_entrenador);
+	list_destroy_and_destroy_elements(lista_de_entrenadores_deadlock,liberar_entrenador);
+	//dictionary_destroy_and_destroy_elements(atrapados_global,free);
+	//dictionary_destroy_and_destroy_elements(objetivo_global,free);
+	free(atrapados_global);
+	free(objetivo_global);
+	log_destroy(logger);
+	config_destroy(config);
+
+}
 
 
 
+/*
+void iniciar_vg(){
+
+	armar_entrenadores();
+	generar_objetivo_global();
+	generar_atrapados_global();
+	lista_de_entrenadores_deadlock = list_create();
+	lista_de_entrenadores_ready = list_create();
+
+	ciclosCpuTotales = 0;
+	cambiosDeContexto = 0;
+	deadlocksProducidos = 0;
+	deadlocksResueltos = 0;
+
+	flagListaAtrapados = 0;
+
+	pthread_mutex_init(&mutex_planificador, NULL);
+	//PONEMOS EL SEMÁFORO EN 0
+	pthread_mutex_lock(&mutex_planificador);
+
+//	pthread_mutex_init(&mutex_entrenador, NULL);
+	//PONEMOS EL SEMÁFORO EN 0
+//	pthread_mutex_lock(&mutex_entrenador);
+
+	sem_init(&MUTEX_SUB,0,1);
+	sem_init(&MUTEX_POKEMON_REQUERIDO,0,1);
+	sem_init(&CONTADOR_ENTRENADORES,0,cantidad_entrenadores());
+	sem_init(&MUTEX_ENTRENADORES,0,1);
+	sem_init(&MUTEX_MENSAJES_GB,0,1);
+
+	verificar_entrenadores();
+
+*/
 
 
 

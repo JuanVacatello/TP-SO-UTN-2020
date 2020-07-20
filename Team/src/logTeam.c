@@ -58,6 +58,8 @@ void log_movimiento_entrenador(t_entrenador* entrenador){
 	char* mensaje = string_from_format("El entrenador %c se movió a la posicion %d|%d.",idEntrenador , xPosicion, yPosicion);
 
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+
+	free(mensaje);
 }
 
 //3. Operación de atrapar (indicando la ubicación y el pokemon a atrapar).
@@ -71,6 +73,7 @@ void log_operacion_de_atrapar_exitosa(t_entrenador* entrenador){
 	char* mensaje = string_from_format("El entrenador %c atrapó un %s en la posicion %d|%d.", idEntrenador, pokemonAtrapado, xPosicion, yPosicion);
 
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+	free(mensaje);
 }
 
 void log_operacion_de_atrapar_fallida(t_entrenador* entrenador){
@@ -83,6 +86,7 @@ void log_operacion_de_atrapar_fallida(t_entrenador* entrenador){
 	char* mensaje = string_from_format("El entrenador %c no pudo atrapar un %s en la posicion %d|%d.", idEntrenador, pokemonAtrapado, xPosicion, yPosicion);
 
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+	free(mensaje);
 }
 
 //4. Operación de intercambio (indicando entrenadores involucrados).
@@ -93,6 +97,7 @@ void log_operacion_de_intercambio(t_entrenador* entrenador1, t_entrenador* entre
 	char* mensaje = string_from_format("El entrenador %c intercambio un %s por un %s del entrenador %c", idEntrenador1, pokemon1, pokemon2, idEntrenador2);
 
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+	free(mensaje);
 }
 
 
@@ -102,6 +107,7 @@ void log_inicio_deteccion_deadlock(){
 	char* mensaje = string_from_format("Inicio de algoritmo de deteccion de Deadlock");
 
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+	free(mensaje);
 }
 
 //6. Resultado de algoritmo de detección de deadlock.
@@ -110,6 +116,7 @@ void log_deadlock_detectado(){
 	char* mensaje = string_from_format("Se detecto que hay situacion de deadlock");
 
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+	free(mensaje);
 }
 
 void log_deadlock_no_detectado(){
@@ -117,6 +124,7 @@ void log_deadlock_no_detectado(){
 	char* mensaje = string_from_format("No se detecto situacion de deadlock");
 
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+	free(mensaje);
 }
 
 //7. Llegada de un mensaje (indicando el tipo del mismo y sus datos). FALTA VER
@@ -126,6 +134,7 @@ void log_llego_mensaje_nuevo_appeared_pokemon(char* pokemon, int posX, int posY)
 	char* mensaje = string_from_format("Se detecto que NO hay situacion de deadlock");
 
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+	free(mensaje);
 }
 
 //CAUGHT POKEMON
@@ -134,6 +143,7 @@ void log_llego_mensaje_nuevo_caught_pokemon(char* pokemon, int posX, int posY){
 	char* mensaje = string_from_format("Se detecto que NO hay situacion de deadlock");
 
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+	free(mensaje);
 }
 
 //LOCALIZED POKEMON
@@ -142,6 +152,7 @@ void log_llego_mensaje_nuevo_localized_pokemon(char* pokemon, int posX, int posY
 	char* mensaje = string_from_format("Se detecto que NO hay situacion de deadlock");
 
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+	free(mensaje);
 }
 
 
@@ -151,6 +162,7 @@ void log_intento_reintento_comunicacion_broker(){
 	char* mensaje = string_from_format("No se pudo conectar con el BROKER, reintentando en %d segundos...", tiempoReconexion);
 
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+	free(mensaje);
 }
 
 
@@ -159,12 +171,14 @@ void log_intento_comunicacion_Broker_exitoso(){
 	char* mensaje = string_from_format("Se logró conectar con el BROKER de manera exitosa");
 
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+	free(mensaje);
 }
 
 void log_reintento_comunicacion_Broker_fallido(){
 	char* mensaje = string_from_format("Reintento de comunicacion con BROKER fallido");
 
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+	free(mensaje);
 }
 
 //-----------------------------------------------------------------------------------------------

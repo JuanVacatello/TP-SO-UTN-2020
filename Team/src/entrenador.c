@@ -266,7 +266,6 @@ void atrapar_pokemon(t_entrenador* entrenador){
 
 	}
 
-
 	entrenador->pokemon_a_atrapar = NULL;
 	if(list_size(entrenador->objetivo) != list_size(entrenador->atrapados)){
 		sem_post(&CONTADOR_ENTRENADORES);
@@ -298,12 +297,12 @@ void verificar_estado_entrenador(t_entrenador* entrenador){
 				remover_entrenador(entrenador);
 			}
 			entrenador->estado = EXIT;
-			cambiosDeContexto++;
+
 		}
 		else{
 			//PONEMOS ENTRENADOR EN DEADLOCK
 			entrenador->estado = BLOCKED;
-			cambiosDeContexto++;
+
 			if(!esta_entrenador_en_lista(entrenador, lista_de_entrenadores_deadlock)){
 				list_add(lista_de_entrenadores_deadlock, entrenador);
 			}
@@ -311,7 +310,7 @@ void verificar_estado_entrenador(t_entrenador* entrenador){
 	}
 	else{
 		entrenador->estado = BLOCKED;
-		cambiosDeContexto++;
+
 	}
 
 }
@@ -392,7 +391,7 @@ t_entrenador* preparar_intercambio(){
 	entrenador1->posicionIntercambio.y = entrenador2->posicion.y;
 
 	entrenador1->estado = READY;
-	cambiosDeContexto++;
+
 
 	armar_movimiento(entrenador1);
 

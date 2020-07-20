@@ -13,7 +13,11 @@
 #include<commons/config.h>
 #include<readline/readline.h>
 #include "configTeam.h"
+#include "logTeam.h"
 #include<semaphore.h>
+#include "utils.h"
+#include "movimiento.h"
+#include "planificacion.h"
 
 typedef enum{
 	FIFO = 1,
@@ -36,8 +40,9 @@ bool deteccion_de_deadlock();
 t_accion* armar_accion(void(*accion)(void*), int ciclos);
 
 
-bool hay_pokemones_sueltos(t_list*);
 void eliminarPokemon(void* pokemon);
+void liberar_entrenador(t_entrenador* entrenador);
+void liberar_vg();
 
 bool terminoTeam();
 void finalizoTeam();

@@ -548,7 +548,7 @@ void recibir_LocalizedPokemon(int socket_broker){
 			recv(socket_broker, &posY, sizeof(uint32_t), MSG_WAITALL);
 
 			pokemon_nuevo = armarPokemon(pokemon, posX, posY);//esto no funca todavia pero la logica seria asi
-			list_add(lista_de_pokemones_sueltos,pokemon_nuevo);
+			//list_add(lista_de_pokemones_sueltos,pokemon_nuevo);
 		}
 
 		enviar_ACK(socket_broker, "ACK");
