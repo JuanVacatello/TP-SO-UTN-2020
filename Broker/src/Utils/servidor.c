@@ -181,28 +181,28 @@ void suscribirse_a_cola(proceso* suscriptor, int socket, uint32_t tamanio_buffer
 	}
 
 	if(tamanio_buffer == 12){ // Entonces la suscripción es del GameBoy
-		completar_logger("estoy en el if", "BROKER", LOG_LEVEL_INFO);
+
 		uint32_t tiempo_de_suscripcion;
 		recv(socket, &tiempo_de_suscripcion, sizeof(uint32_t), MSG_WAITALL);
+
 		t_suscripcion* suscripcion = malloc(sizeof(t_suscripcion));
 		suscripcion->cola = cola_a_suscribirse;
 		suscripcion->socket_cliente = suscriptor->socket_cliente;
 		suscripcion->tiempo = tiempo_de_suscripcion;
 
 		pthread_t hilo_recibir;
-		pthread_create(&hilo_recibir, NULL , correr_tiempo_suscripcion , &suscripcion);
-		pthread_detach(hilo_recibir);
+		pthread_create(&hilo_recibir, NULL , correr_tiempo_suscripcion , suscripcion);
+		pthread_join(hilo_recibir, NULL);
 
-		completar_logger("aca entra 4", "BROKER", LOG_LEVEL_INFO);
 		pthread_mutex_lock(&mutex_suscripcion);
 	}
 }
 
 void correr_tiempo_suscripcion(t_suscripcion* suscripcion){
 	sleep(suscripcion->tiempo);
-	completar_logger("aca entra 1", "BROKER", LOG_LEVEL_INFO);
 	proceso* suscriptor;
-	int index;
+	int index = -1;
+
 	switch(suscripcion->cola){
 		case 1:
 			index = encontrar_suscriptor_por_posicion(suscripcion->socket_cliente, suscriptores_new_pokemon);
@@ -215,7 +215,6 @@ void correr_tiempo_suscripcion(t_suscripcion* suscripcion){
 		case 3:
 			index = encontrar_suscriptor_por_posicion(suscripcion->socket_cliente, suscriptores_catch_pokemon);
 			suscriptor = list_remove(suscriptores_catch_pokemon, index);
-			completar_logger("aca entra 2 ","BROKER", LOG_LEVEL_INFO);
 			break;
 		case 4:
 			index = encontrar_suscriptor_por_posicion(suscripcion->socket_cliente, suscriptores_caught_pokemon);
@@ -231,16 +230,11 @@ void correr_tiempo_suscripcion(t_suscripcion* suscripcion){
 			break;
 		}
 
-	char* log = string_from_format("Se desuscribio el proceso de socket %d al Broker.", suscripcion->socket_cliente);
-	completar_logger(log, "BROKER", LOG_LEVEL_INFO);
-
-	completar_logger("aca entra 3", "BROKER", LOG_LEVEL_INFO);
 	free(suscriptor);
 	free(suscripcion);
 
 	pthread_mutex_unlock(&mutex_suscripcion);
 
-	exit(25);
 }
 
 int encontrar_suscriptor_por_posicion(int socket_cliente, t_list* lista){
@@ -392,6 +386,7 @@ void enviar_mensajes_al_nuevo_suscriptor_AP(t_list* mensajes_de_dicha_cola, int 
 		}
 
 		log_envio_mensaje(socket_suscriptor);
+
 
 		free(paquete);
 		free(paquete->buffer);
@@ -1040,6 +1035,7 @@ void recibir_ack(int socket_cliente){
 
 	char* loggearACK = string_from_format("El suscriptor de socket %d recibió el mensaje %s.", socket_cliente, ack);
 	completar_logger(loggearACK,"BROKER", LOG_LEVEL_INFO); // LOG OBLIGATORIO
+
 /*
 	op_code cod_op;
 	recv(socket_cliente, &cod_op, sizeof(op_code), MSG_WAITALL);

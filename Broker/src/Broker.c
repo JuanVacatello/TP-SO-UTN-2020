@@ -2,25 +2,21 @@
 
 int main(void)
 {
-	leer_config();
-	iniciar_logger();
 	inicializacion_de_variables_globales();
 
 	iniciar_servidor();
-//	pthread_create(&hilo_servidor, NULL , iniciar_servidor ,NULL);
-//	pthread_join(hilo_servidor, NULL);
 
 	terminar_programa();
 
 	return 0;
 }
 
-void terminar_programa(void){
-	config_destroy(configBroker);
-	free(memoria_principal);
-}
+
 
 void inicializacion_de_variables_globales(void){
+
+	leer_config();
+	iniciar_logger();
 
 	tamanio_de_memoria = obtener_tamanio_memoria();
 	memoria_principal = malloc(tamanio_de_memoria);
@@ -67,3 +63,8 @@ void inicializacion_de_variables_globales(void){
 	pthread_mutex_lock(&mutex_suscripcion);
 }
 
+void terminar_programa(void){
+	config_destroy(configBroker);
+	log_destroy(logger);
+	free(memoria_principal);
+}

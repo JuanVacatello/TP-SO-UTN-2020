@@ -113,6 +113,7 @@ void recibir_localized_pokemon(int socket_cliente);
 void reenviar_mensaje_a_suscriptores(void* a_enviar, int tamanio_paquete, t_list* suscriptores);
 void guardar_mensaje_en_cola(op_code cod_op, t_list* lista_mensajes, t_mensaje_guardado* mensaje_en_memoria, uint32_t tamanio_buffer, uint32_t id_mensaje_correlativo, char* pokemon);
 void reenviar_mensaje_a_suscriptores(void* a_enviar, int tamanio_paquete, t_list* suscriptores);
+
 void recibir_ack(int socket_cliente);
 
 // AUXILIAR
