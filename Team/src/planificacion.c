@@ -4,6 +4,8 @@
 void planificar_fifo(void){
 
 	t_entrenador* entrenador;
+	t_entrenador* entrenador_test;
+
 
 	while (1){
 
@@ -13,12 +15,25 @@ void planificar_fifo(void){
 
 			sem_wait(&MUTEX_ENTRENADORES);
 
+			//TESTEO
+
+			for(int i=0; i<list_size(lista_de_entrenadores_ready); i++){
+				entrenador_test = list_get(lista_de_entrenadores_ready, i);
+				printf("%c\n", entrenador_test->ID_entrenador);
+			}
+
 			entrenador = list_get(lista_de_entrenadores_ready,0);
 			entrenador->estado = EXEC;
 
 
 			while(list_size(entrenador->cola_de_acciones) > 0){
+				if(list_size(entrenador->cola_de_acciones) == 1){
 				ejecutar_entrenador(entrenador);
+				break;
+				}
+				else{
+				ejecutar_entrenador(entrenador);
+				}
 			}
 		}
 
@@ -71,7 +86,13 @@ void planificar_sjf_sd(void){
 			entrenador->estado = EXEC;
 
 			while(list_size(entrenador->cola_de_acciones) > 0){
-				ejecutar_entrenador(entrenador);
+				if(list_size(entrenador->cola_de_acciones) == 1){
+					ejecutar_entrenador(entrenador);
+					break;
+				}
+				else{
+					ejecutar_entrenador(entrenador);
+				}
 				}
 			}
 

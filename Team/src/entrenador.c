@@ -232,8 +232,9 @@ void intentar_atrapar_pokemon(t_entrenador* entrenador){
 		pthread_detach(hilo_entrenador_esperando);
 	}
 
-	sem_post(&MUTEX_ENTRENADORES);
 	remover_entrenador_ready(entrenador);
+
+	sem_post(&MUTEX_ENTRENADORES);
 
 }
 

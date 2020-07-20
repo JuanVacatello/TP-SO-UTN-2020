@@ -446,7 +446,6 @@ void recibir_AppearedPokemon(int socket_broker){
 			sem_wait(&CONTADOR_ENTRENADORES);
 			t_pokemon* pokemonNuevo = armarPokemon(pokemon, posX, posY);
 			aparicion_pokemon(pokemonNuevo);
-
 			pthread_mutex_unlock(&mutex_planificador);
 		}
 
