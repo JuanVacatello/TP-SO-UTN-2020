@@ -4,7 +4,6 @@
 void planificar_fifo(void){
 
 	t_entrenador* entrenador;
-	t_entrenador* entrenador_test;
 
 
 	while (1){

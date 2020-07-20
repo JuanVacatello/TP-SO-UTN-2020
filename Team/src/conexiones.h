@@ -48,7 +48,8 @@ void* suscribirse_a_cola(int socket_cliente, op_code cola, int* tamanio_paquete)
 int enviar_suscripcion_a_cola(op_code cola);
 
 //ENVIAR MENSAJE A BROKER
-void enviar_ACK(int socket_broker,char* mensaje);
+void* enviar_ACK(int socket_broker,char* mensaje, int* tamanio);
+void responder_ack(void);
 void enviar_CatchPokemon_a_broker(op_code codigo_operacion, t_entrenador* entrenador);
 void enviar_GetPokemon_a_broker(op_code codigo_operacion, char* pokemon);
 void* iniciar_paquete_serializado_CatchPokemon(int* tamanio_paquete,t_entrenador* entrenador);
