@@ -35,7 +35,7 @@ int main(int argc, char* argv[]) {
 
 		completar_logger("GameBoy se suscribió a la cola.", "GAMEBOY", LOG_LEVEL_INFO);
 
-		int tiempo_de_suscripcion=0;
+		uint32_t tiempo_de_suscripcion=0;
 		sscanf(argv[3], "%d", &tiempo_de_suscripcion);
 
 		pthread_create(&hilo_recibir, NULL , correr_tiempo_suscripcion ,tiempo_de_suscripcion);
@@ -49,7 +49,7 @@ int main(int argc, char* argv[]) {
 	return 0;
 }
 
-void correr_tiempo_suscripcion(int tiempo){
+void correr_tiempo_suscripcion(uint32_t tiempo){
 	sleep(tiempo);
 	exit(1);
 }

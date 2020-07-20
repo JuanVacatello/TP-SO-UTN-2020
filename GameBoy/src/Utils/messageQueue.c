@@ -104,7 +104,6 @@ void* suscribirse_a_cola(int* tamanio_paquete,char* argv[]){
 	uint cola = cola_a_suscribirse(cola_leida);
 	uint32_t tiempo_de_suscripcion;
 	sscanf(argv[3], "%d", &tiempo_de_suscripcion);
-
 	paquete->buffer->size = sizeof(uint32_t)+sizeof(uint32_t)+sizeof(uint32_t);
 	void* stream = malloc(paquete->buffer->size);
 	int offset = 0;
@@ -798,42 +797,26 @@ void recibir_mensaje(int socket_cliente){
 */
 }
 
-void* enviar_ack(int socket, op_code codigo_op, uint32_t identificador,int* tamanio_paquete){
+void enviar_ACK(int socket_broker, char* mensaje){
+
 	t_paquete* paquete = malloc(sizeof(t_paquete));
-	paquete->codigo_operacion = MENSAJE;
+	paquete->codigo_operacion = 7;
 	paquete->buffer = malloc(sizeof(t_buffer));
+	paquete->buffer->stream = mensaje;
+	paquete->buffer->size = strlen(mensaje) + 1;
 
-	char* ack = "ACK!";
-	uint32_t largo_mensaje = strlen(ack) + 1;
+	int tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
+	void* a_enviar = serializar_paquete(paquete,&tamanio_paquete);
 
-							//INT CARACTERES + ACK + COD OP + IDENTIFICADOR
-	paquete->buffer->size = sizeof(uint32_t) + largo_mensaje + sizeof(op_code) + sizeof(uint32_t);
-	void* stream = malloc(paquete->buffer->size);
-	int offset = 0;
+	if(send(socket_broker,a_enviar,tamanio_paquete,0) == -1){
+		completar_logger("Error en enviar por el socket","GAMEBOY", LOG_LEVEL_INFO);
+		exit(3);
+	}
 
-		memcpy(stream + offset, &largo_mensaje, sizeof(uint32_t));
-		offset += sizeof(uint32_t);
-
-		memcpy(stream + offset, ack, largo_mensaje);
-		offset += largo_mensaje;
-
-		memcpy(stream + offset, &codigo_op, sizeof(op_code));
-		offset += sizeof(op_code);
-
-		memcpy(stream + offset, &identificador, sizeof(uint32_t));
-
-		paquete->buffer->stream = stream;
-
-							// TAMAÑO STREAM + OP CODE + VARIABLE SIZE
-	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
-	void* a_enviar = serializar_paquete(paquete, tamanio_paquete);
-
-	free(stream);
 	free(paquete->buffer);
 	free(paquete);
 
-	return a_enviar;
-
+	//sem_post(&MUTEX_ACK);
 }
 
 void liberar_conexion(int socket_cliente)
