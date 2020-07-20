@@ -8,12 +8,13 @@
 #include <commons/collections/dictionary.h>
 
 //ñeer metadata tall grass
-void leer_metadata_tall_grass(){
+void leer_metadata_tall_grass(char * path_metadata){
 
-	char* path_metadata = obtener_path_metadata();
-	string_append(&path_metadata, "/Metadata.bin");
+	char* path_metadata_tall_grass = string_new();
+	string_append(&path_metadata_tall_grass, path_metadata);
+	string_append(&path_metadata_tall_grass, "/Metadata.bin");
 
-	metadata_tall_grass = config_create(path_metadata);
+	metadata_tall_grass = config_create(path_metadata_tall_grass);
 
 		if(metadata_tall_grass == NULL){
 			printf("No se pudo leer el archivo metadata.");

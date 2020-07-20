@@ -24,7 +24,7 @@ char* obtener_path_bloque(char* bloque);
 int diferente_largo(char* numero1,char * numero2);
 int tamanio_libre_bloque(char* bloque);
 int bloque_esta_lleno(char* bloque);
-void obtener_datos_bloques(t_list *lista,char* path_pokemon );
+t_list* obtener_datos_bloques(char* path_pokemon );
 void insertar_datos_a_lista(char *datos, t_list *lista_datos);
 void guardar_data_en_bloque(char* data, char* path_bloque);
 

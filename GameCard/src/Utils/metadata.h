@@ -20,7 +20,7 @@
 t_config* metadata_tall_grass;
 pthread_mutex_t MUTEX_ELSOLUCIONES;
 
-void leer_metadata_tall_grass();
+void leer_metadata_tall_grass(char* path_metadata_tall_grass);
 int obtener_cantidad_bloques();
 int obtener_tamanio_bloques();
 

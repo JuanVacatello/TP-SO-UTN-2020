@@ -79,15 +79,15 @@ void actualizar_valores_pokemon(char* path_metadata_pokemon,int posX,int posY,in
 }
 
 
-void obtener_datos_bloques(t_list *lista,char* path_pokemon ){
+t_list* obtener_datos_bloques(char* path_pokemon ){
 
 	FILE *file;
 		int tamanio_archivo;
 		t_list *lista_datos = list_create();
 		char *vector_bloques_string = obtener_bloques_pokemon(path_pokemon);
 		char** bloques = string_get_string_as_array(vector_bloques_string);
-		free(vector_bloques_string);
 		int tamanio_array = tamanio_array_en_string(vector_bloques_string);
+		free(vector_bloques_string);
 
 		char * datos = string_new();
 		char *path_bloque_individual; // url de cada block particular
@@ -112,8 +112,8 @@ void obtener_datos_bloques(t_list *lista,char* path_pokemon ){
 			fclose(file);
 			aux[tamanio_archivo] = '\0';
 
-			if(strcmp(aux,"&")) //si no es igual a "&" lo agrego a la lista de inserts
-				string_append(&datos,aux);
+			//if(strcmp(aux,"&")) //si no es igual a "&" lo agrego a la lista de inserts
+			string_append(&datos,aux);
 
 			free(bloques[i]);
 			free(aux);
@@ -124,6 +124,7 @@ void obtener_datos_bloques(t_list *lista,char* path_pokemon ){
 		free(datos); free(path_bloques);
 
 		free(bloques);
+		return lista_datos;
 
 }
 
@@ -133,7 +134,7 @@ void insertar_datos_a_lista(char *datos, t_list *lista_datos)
 
 	char **array_de_datos = string_split(datos,"\n");
 	char *aux;
-	for(int i =0; i<2; i++) //<Size of array
+	for(int i =0; i<2; i++) //REEMPLAZAR POR : <Size of array
 	{
 		aux = string_duplicate(array_de_datos[i]);
 		list_add(lista_datos,aux);
@@ -164,7 +165,7 @@ void guardar_data_en_bloque(char* data, char* path_bloque){
 
 		FILE *file2;
 		file2 = txt_open_for_append(path_bloque);
-		txt_write_in_file(file2, data);
+		txt_write_in_file(file2, data); //1-2=12\n
 		txt_close_file(file2);
 		free(aux);
 	}

@@ -38,8 +38,6 @@ void inicializar_file_system(char* punto_montaje){
 		inicializar_metadata(path_metadata, 64, 16);
 	}
 
-
-
 	//CREA BLOQUES
 	char* path_bloques = string_new();
 	string_append(&path_bloques, path_tall_grass);
@@ -49,8 +47,11 @@ void inicializar_file_system(char* punto_montaje){
 		inicializar_bloques(path_bloques);
 	}
 
-
-
+	//inicializa bitmap luego de crear los bloques
+	char* path_archivo_bitmap = string_new();
+	string_append(&path_archivo_bitmap,path_metadata);
+	string_append(&path_archivo_bitmap,"/bitmap.bin");
+	crear_bitmap(path_archivo_bitmap);
 
 	//CREA FILES
 	char* path_files = string_new();
@@ -63,6 +64,7 @@ void inicializar_file_system(char* punto_montaje){
 	}
 
 	actualizar_paths_config(path_files, path_bloques, path_metadata );
+
 
 
 
@@ -113,11 +115,11 @@ void inicializar_metadata(char* path_metadata, int block_size, int cant_bloques)
 			free(sentencia_cantidad_bloques);
 
 
-	leer_metadata_tall_grass();
+	leer_metadata_tall_grass(path_metadata);
 	free(path_archivo_metadata);
 
 
-
+/*
 char* path_archivo_bitmap = string_new();
 string_append(&path_archivo_bitmap,path_metadata);
 string_append(&path_archivo_bitmap,"/bitmap.bin");
@@ -126,16 +128,15 @@ string_append(&path_archivo_bitmap,"/bitmap.bin");
 		crear_bitmap(path_archivo_bitmap);
 
 		free(path_archivo_bitmap);
+*/
 }
 
 
 
 void inicializar_files(char* path_files){
 
-	if(existe_file(path_files)==-1){
-
 	completar_metadata_directorio(path_files);
-	}
+
 }
 
 
@@ -161,11 +162,8 @@ void completar_metadata_directorio(char* path_directorio){
 
 void crear_bloques(char* path_bloques){
 
-	//int cantidad_bloques = obtener_cantidad_bloques();
-	//int tamanio_bloques = obtener_tamanio_bloques(); ARREGLAR LECTURA DE CONFIG
-
-	int cantidad_bloques = 16;
-	int tamanio_bloques = 64;
+	int cantidad_bloques = obtener_cantidad_bloques();
+	int tamanio_bloques = obtener_tamanio_bloques();
 
 	for(int i = 0 ; i < cantidad_bloques ; i++){
 
