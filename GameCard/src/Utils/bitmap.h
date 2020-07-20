@@ -25,9 +25,14 @@
 
 t_bitarray *bitarray;
 
+// t_log *logger;
+t_bitarray *bitarray;
+int bitmap_fd;
+int flag_bloques_libres;
+char *bitarrayContent;
+
 pthread_mutex_t MUTEX_BITMAP;
 
-int flag_bloques_libres;
 
 
 #ifndef UTILS_BITMAP_H_

@@ -1,14 +1,5 @@
 #include "bloques.h"
 #include "metadata.h"
-/*
-int bloque_esta_vacio(int bloque){
-	if(bloque_tamanio_libre(bloque) == obtener_tamanio_bloques()){
-	return 1;
-	}
-	return 0;
-
-}
-*/
 
 int existe_bloque(char* path_bloques,char* numero_de_bloque){
 	char* path_bloque = string_new();
@@ -25,8 +16,6 @@ int existe_file(char* path){
 	return stat(path,&buffer);
 }
 
-
-
 void actualizar_valores_pokemon(char* path_metadata_pokemon,int posX,int posY,int cantidad){
 
 	t_config* metadata = leer_metadata_pokemon(path_metadata_pokemon);
@@ -37,30 +26,7 @@ void actualizar_valores_pokemon(char* path_metadata_pokemon,int posX,int posY,in
 	for(int i =0; i<cantidad_bloques ; i++){
 		//actualizar_valores_bloque(bloques_pokemon[i],)
 		}
-
-
 }
-
-
-
-
-
- int espacio_libre(int bloque);
-
-//USAR CONFIG PARA PATH
-
- /*
-  * FSEEK
-
-	1-1=2/n
-	2-3=1/n
-	1-/o
-
-	2=3/n
-	1-2=3
-  */
-
-
 
  char* obtener_path_bloque(char* bloque){
  	char* path = string_new();
@@ -95,8 +61,9 @@ void actualizar_valores_pokemon(char* path_metadata_pokemon,int posX,int posY,in
  	return(obtener_tamanio_bloques() - tamanio_actual);
  }
 
- int bloque_esta_vacio(char* bloque){
-	 if(tamanio_libre_bloque(bloque) == obtener_tamanio_bloques())
+ int bloque_esta_vacio(int bloque){
+	 char* bloque_en_string = string_itoa(bloque);
+	 if(tamanio_libre_bloque(bloque_en_string) == obtener_tamanio_bloques())
 	 return 1;
 	 else
 	 return 0;
@@ -104,7 +71,7 @@ void actualizar_valores_pokemon(char* path_metadata_pokemon,int posX,int posY,in
 
 
 
- int bloque_lleno(char* bloque){
+ int bloque_esta_lleno(char* bloque){
 	 if(tamanio_libre_bloque(bloque)==0){
 		 return 1;
 	 }
@@ -120,7 +87,7 @@ void obtener_datos_bloques(t_list *lista,char* path_pokemon ){
 		char *vector_bloques_string = obtener_bloques_pokemon(path_pokemon);
 		char** bloques = string_get_string_as_array(vector_bloques_string);
 		free(vector_bloques_string);
-		int tamanio_array = tamanio_array_en_string(bloques);
+		int tamanio_array = tamanio_array_en_string(vector_bloques_string);
 
 		char * datos = string_new();
 		char *path_bloque_individual; // url de cada block particular
@@ -166,7 +133,7 @@ void insertar_datos_a_lista(char *datos, t_list *lista_datos)
 
 	char **array_de_datos = string_split(datos,"\n");
 	char *aux;
-	for(int i =0; i<sizeofArray(array_de_datos); i++)
+	for(int i =0; i<2; i++) //<Size of array
 	{
 		aux = string_duplicate(array_de_datos[i]);
 		list_add(lista_datos,aux);
@@ -195,7 +162,8 @@ void guardar_data_en_bloque(char* data, char* path_bloque){
 			}
 		}
 
-		FILE *file2 = txt_open_for_append(path_bloque);
+		FILE *file2;
+		file2 = txt_open_for_append(path_bloque);
 		txt_write_in_file(file2, data);
 		txt_close_file(file2);
 		free(aux);

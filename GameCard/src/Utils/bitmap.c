@@ -13,7 +13,7 @@ void crear_bitmap(char* path_bitmap){
 	}
 
 
-	int bitmap_fd = open(path_bitmap,O_CREAT |O_RDWR, S_IRUSR | S_IWUSR);
+	bitmap_fd = open(path_bitmap,O_CREAT |O_RDWR, S_IRUSR | S_IWUSR);
 	ftruncate(bitmap_fd, bloques/8 + 1);
 
 	if(bitmap_fd == -1){
@@ -33,14 +33,14 @@ void crear_bitmap(char* path_bitmap){
 	free(path_bitmap); //Chequear
 
 	for(int i = 0; i < bloques; i++){
-		if(bloque_esta_vacio(i)==1){
+		if(bloque_esta_vacio(i+1)==1){
 			bitarray_clean_bit(bitarray,i);
 		}
 			bitarray_set_bit(bitarray,i);
 	}
 
 	msync(bitarray->bitarray,bitmap_fd,MS_SYNC);
-	close(bitmap_fd);
+	//close(bitmap_fd); Chequear si hace falta cerrar el archivo
 
 }
 
@@ -81,7 +81,7 @@ int obtener_nuevo_bloque(){
 			if(!bitarray_test_bit(bitarray,i)){ // CHEQUEAR QUE EL INDICE DE BITMAP FUNCIONE ASI CON i=1
 				bitarray_set_bit(bitarray,i);
 
-				msync(bitarray->bitarray, bitarrayfd, MS_SYNC);
+				msync(bitarray->bitarray, bitmap_fd, MS_SYNC);
 				pthread_mutex_unlock(&MUTEX_BITMAP);
 				return i;
 			}
