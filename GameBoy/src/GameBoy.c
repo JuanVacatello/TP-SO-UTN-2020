@@ -8,7 +8,7 @@ int main(int argc, char* argv[]) {
 	leer_config();
 	uint32_t process_id = process_getpid();
 	char* process_id_string = string_itoa(process_id);
-	config_set_value(configGameBoy, "PROCESS_ID", process_id_string); // aunque haga esto me sigue dando pids distintos -> arreglar
+	config_set_value(configGameBoy, "PROCESS_ID", process_id_string);
 
 	const char* proceso = argv[1];
 
@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
 
 		enviar_mensaje_a_broker(socket_conexion, 0, argv); // 0 es el op_code de SUSCRIPTOR
 
-		completar_logger("GameBoy se suscribió a la cola.", "GAMEBOY", LOG_LEVEL_INFO);
+		log_suscripcion(argv[2]);
 
 		uint32_t tiempo_de_suscripcion=0;
 		sscanf(argv[3], "%d", &tiempo_de_suscripcion);
@@ -43,7 +43,7 @@ int main(int argc, char* argv[]) {
 
 		while(1){
 			recibir_mensaje(socket_conexion);
-			completar_logger("Llegada de un nuevo mensaje a la cola de mensajes.", "GAMEBOY", LOG_LEVEL_INFO);
+			log_mensaje_nuevo();
 		}
 	}
 	return 0;
@@ -54,7 +54,6 @@ void correr_tiempo_suscripcion(uint32_t tiempo){
 	exit(1);
 }
 
-
 void enviarMensajeBroker(int argc, char *argv[]){
 
 	char* puerto = obtener_puerto_broker();
@@ -62,7 +61,7 @@ void enviarMensajeBroker(int argc, char *argv[]){
 
 	int socket_conexion = crear_conexion(ip,puerto);
 
-	completar_logger("GameBoy se conectó a Broker.", "GAMEBOY", LOG_LEVEL_INFO); // LOG OBLIGATORIO
+	log_conexion("Broker");
 
 	char* codigo_mensaje = argv[2];
 
@@ -90,8 +89,6 @@ void enviarMensajeBroker(int argc, char *argv[]){
 		cumple_cant_parametros(argc, 4);
 		enviar_mensaje_a_broker(socket_conexion, 5, argv); // 5 es el op_code de GET_POKEMON
 	}
-
-	//recibir_mensaje(socket_conexion);
 }
 
 void enviarMensajeTeam(int argc, char *argv[]){
@@ -101,7 +98,7 @@ void enviarMensajeTeam(int argc, char *argv[]){
 
 	int socket_conexion = crear_conexion(ip,puerto);
 
-	completar_logger("GameBoy se conectó a Team.", "GAMEBOY", LOG_LEVEL_INFO); // LOG OBLIGATORIO
+	log_conexion("Team");
 
 	char* codigo_mensaje = argv[2];
 
@@ -110,11 +107,7 @@ void enviarMensajeTeam(int argc, char *argv[]){
 		cumple_cant_parametros(argc, 6);
 		enviar_mensaje_a_team(socket_conexion, 2, argv); // 2 es el op_code de APPEARED_POKEMON
 
-	} else {
-		error_show("El proceso Team no puede recibir ese mensaje");
-		exit(5);
 	}
-
 }
 
 void enviarMensajeGameCard(int argc, char *argv[]){
@@ -123,7 +116,7 @@ void enviarMensajeGameCard(int argc, char *argv[]){
 
 	int socket_conexion = crear_conexion(ip,puerto);
 
-	completar_logger("GameBoy se conectó a GameCard.", "GAMEBOY", LOG_LEVEL_INFO); // LOG OBLIGATORIO
+	log_conexion("GameCard");
 
 	char* codigo_mensaje = argv[2];
 

@@ -30,3 +30,31 @@ void completar_logger(char* mensaje, char* programa, t_log_level log_level)
 		log_error(logger, mensaje);
 	}
 }
+
+/*
+ * 1.   Conexión a cualquier proceso.
+ * 2.   Suscripción a una cola de mensajes.
+ * 3.   Llegada de un nuevo mensaje a una cola de mensajes.
+*/
+
+// 1. Conexión a cualquier proceso.
+void log_conexion(char* proceso){
+	char* log = string_from_format("GameBoy se conectó exitosamente al proceso %s.", proceso);
+	completar_logger(log, "BROKER", LOG_LEVEL_INFO);
+}
+
+// 2. Suscripción a una cola de mensajes.
+void log_suscripcion(char* cola){
+	char* log = string_from_format("GameBoy se suscribió exitosamente a la cola %s.", cola);
+	completar_logger(log, "BROKER", LOG_LEVEL_INFO);
+}
+
+// 3. Llegada de un nuevo mensaje a una cola de mensajes.
+void log_mensaje_nuevo(){
+	completar_logger("Llegada de un nuevo mensaje a la cola de mensajes.", "GAMEBOY", LOG_LEVEL_INFO);
+}
+
+
+
+
+

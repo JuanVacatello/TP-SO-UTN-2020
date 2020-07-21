@@ -148,8 +148,6 @@ uint32_t cola_a_suscribirse(char* cola_leida){
 	}
 }
 
-
-
 // BROKER - NEW POKEMON
 
 void* iniciar_paquete_serializado_NewPokemon(int* tamanio_paquete,char* argv[]){
@@ -295,7 +293,6 @@ void* iniciar_paquete_serializado_CatchPokemon(int* tamanio_paquete,char* argv[]
 	free(paquete);
 
 	return a_enviar;
-
 }
 
 // BROKER - CAUGHT POKEMON
@@ -311,7 +308,6 @@ void* iniciar_paquete_serializado_CaughtPokemon(int* tamanio_paquete,char* argv[
 
 	uint32_t se_pudo_atrapar; // devuelve 1 o 0 dependiendo de si se pudo o no -> lo mandamos asi o como true/false string?
 	char* ok_o_fail = argv[4];
-
 
 	if(!(strcmp(ok_o_fail, "OK"))){
 		se_pudo_atrapar = 1;
@@ -377,7 +373,6 @@ void* iniciar_paquete_serializado_GetPokemon(int* tamanio_paquete,char* argv[]){
 	free(paquete);
 
 	return a_enviar;
-
 }
 
 // MENSAJE A TEAM
@@ -391,8 +386,6 @@ void enviar_mensaje_a_team(int socket_cliente, op_code codigo_operacion, char* a
 
 	send(socket_cliente,a_enviar,tamanio_paquete,0);
 	free(a_enviar);
-
-//fflush(stdout);
 }
 
 // TEAM - APPEARED POKEMON
@@ -444,8 +437,7 @@ void* iniciar_paquete_serializado_AppearedPokemonTeam(int* tamanio_paquete,char*
 
 // MENSAJES A GAMECARD
 
-void enviar_mensaje_a_gamecard(int socket_cliente, op_code codigo_operacion, char* argv[])
-{
+void enviar_mensaje_a_gamecard(int socket_cliente, op_code codigo_operacion, char* argv[]){
 	int tamanio_paquete = 0;
 	void* a_enviar;
 
@@ -473,8 +465,6 @@ void enviar_mensaje_a_gamecard(int socket_cliente, op_code codigo_operacion, cha
 
 	send(socket_cliente,a_enviar,tamanio_paquete,0);
 	free(a_enviar);
-
-//fflush(stdout);
 }
 
 // GAMECARD - NEW POKEMON
@@ -579,7 +569,6 @@ void* iniciar_paquete_serializado_CatchPokemonGC(int* tamanio_paquete,char* argv
 	free(paquete);
 
 	return a_enviar;
-
 }
 
 // GAMECARD - GET POKEMON
@@ -620,14 +609,11 @@ void* iniciar_paquete_serializado_GetPokemonGC(int* tamanio_paquete,char* argv[]
 	free(paquete);
 
 	return a_enviar;
-
 }
 
 // RECIBIR MENSAJE
 
 void recibir_mensaje(int socket_cliente){
-
-
 
 	op_code codigo_de_operacion;
 	recv(socket_cliente, &codigo_de_operacion, sizeof(op_code), MSG_WAITALL);
@@ -640,8 +626,6 @@ void recibir_mensaje(int socket_cliente){
 
 		char* mensaje2 = string_from_format("El tamanio del buffer es: %d.", buffer_size);
 		puts(mensaje2);
-
-	// recibe a partir del codigo de operacion
 
 	uint32_t caracteresPokemon;
 	char* pokemon;
