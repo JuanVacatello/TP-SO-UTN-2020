@@ -35,7 +35,7 @@ void completar_logger(char* mensaje, char* programa, t_log_level log_level)
  * 2.   Suscripción de un proceso a una cola de mensajes.
  * 3.   Llegada de un nuevo mensaje a una cola de mensajes.
  * 4.   Envío de un mensaje a un suscriptor específico.
- * 5.   Confirmación de recepción de un suscriptor al envío de un mensaje previo. --> NO HECHO
+ * 5.   Confirmación de recepción de un suscriptor al envío de un mensaje previo.
  * 6.   Almacenado de un mensaje dentro de la memoria (indicando posición de inicio de su partición).
  * 7.   Eliminado de una partición de memoria (indicando la posición de inicio de la misma).
  * 8.1. Ejecución de compactación para particiones dinámicas.
@@ -43,7 +43,7 @@ void completar_logger(char* mensaje, char* programa, t_log_level log_level)
  * 9.   Ejecución de Dump de cache (solo informar que se solicitó el mismo). --> NO HECHO
 */
 
-// 1.   Conexión de un proceso al broker.
+// 1. Conexión de un proceso al broker.
 void log_conexion(int socket_proceso){
 	char* log = string_from_format("Se conectó proceso de socket %d al Broker.", socket_proceso);
 	completar_logger(log, "BROKER", LOG_LEVEL_INFO);
@@ -66,7 +66,11 @@ void log_envio_mensaje(int socket_suscriptor){
 	completar_logger(log, "Broker", LOG_LEVEL_INFO);
 }
 
-// 5.
+// 5. Confirmación de recepción de un suscriptor al envío de un mensaje previo.
+void log_confirmacion(int socket_suscriptor, int mensaje_id){
+	char* loggearACK = string_from_format("El suscriptor de socket %d confirmó la recepción del mensaje con id %d.", socket_suscriptor, mensaje_id);
+	completar_logger(loggearACK,"BROKER", LOG_LEVEL_INFO);
+}
 
 // 6. Almacenado de un mensaje dentro de la memoria (indicando posición de inicio de su partición).
 void log_almacenar_mensaje(int posicion_mensaje){

@@ -14,14 +14,27 @@
 #include"configBroker.h"
 #include"logBroker.h"
 #include<time.h>
-#include<math.h>
+
+typedef enum
+{
+	SUSCRIPTOR=0,
+	NEW_POKEMON=1,
+	APPEARED_POKEMON=2,
+	CATCH_POKEMON=3,
+	CAUGHT_POKEMON=4,
+	GET_POKEMON=5,
+	LOCALIZED_POKEMON=6,
+	MENSAJE=7
+} op_code;
 
 typedef struct
 {
 	int tamanio_ocupado;
 	int byte_comienzo_ocupado;
 	int ultima_referencia;
-	//t_particion_buddy* particion;
+	//
+	op_code cola;
+	int id;
 }t_mensaje_guardado;
 
 typedef struct

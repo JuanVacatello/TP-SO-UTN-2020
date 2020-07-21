@@ -4,6 +4,7 @@ int main(void)
 {
 	inicializacion_de_variables_globales();
 
+
 	iniciar_servidor();
 
 	terminar_programa();

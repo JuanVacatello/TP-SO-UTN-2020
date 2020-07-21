@@ -17,18 +17,6 @@
 #define IP "127.0.0.1"
 #define PUERTO "4444"
 
-typedef enum
-{
-	SUSCRIPTOR=0,
-	NEW_POKEMON=1,
-	APPEARED_POKEMON=2,
-	CATCH_POKEMON=3,
-	CAUGHT_POKEMON=4,
-	GET_POKEMON=5,
-	LOCALIZED_POKEMON=6,
-	MENSAJE=7
-} op_code;
-
 typedef struct
 {
 	int id;
@@ -48,8 +36,8 @@ typedef struct t_paquete
 } t_paquete;
 
 typedef struct {
-	op_code codigo_operacion;
-	uint32_t identificador;
+	//op_code codigo_operacion;
+	//uint32_t identificador;
 	uint32_t id_mensaje_correlativo;
 	t_list* suscriptores_ack;
 	uint32_t tamanio_buffer;
@@ -111,7 +99,7 @@ void recibir_caught_pokemon(int socket_cliente);
 void recibir_get_pokemon(int socket_cliente);
 void recibir_localized_pokemon(int socket_cliente);
 void reenviar_mensaje_a_suscriptores(void* a_enviar, int tamanio_paquete, t_list* suscriptores);
-void guardar_mensaje_en_cola(op_code cod_op, t_list* lista_mensajes, t_mensaje_guardado* mensaje_en_memoria, uint32_t tamanio_buffer, uint32_t id_mensaje_correlativo, char* pokemon);
+void guardar_mensaje_en_cola(op_code cod_op, t_list* lista_mensajes, t_mensaje_guardado* mensaje_en_memoria, uint32_t tamanio_buffer, uint32_t id_mensaje_correlativo, char* pokemon, t_list* lista_de_suscriptores);
 void reenviar_mensaje_a_suscriptores(void* a_enviar, int tamanio_paquete, t_list* suscriptores);
 
 void recibir_ack(int socket_cliente);
