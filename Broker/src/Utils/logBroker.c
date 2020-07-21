@@ -40,7 +40,7 @@ void completar_logger(char* mensaje, char* programa, t_log_level log_level)
  * 7.   Eliminado de una partición de memoria (indicando la posición de inicio de la misma).
  * 8.1. Ejecución de compactación para particiones dinámicas.
  * 8.2. Asociación de bloques para Buddy System (indicando qué particiones se asociaron, con posicion inicial de ambas).
- * 9.   Ejecución de Dump de cache (solo informar que se solicitó el mismo). --> NO HECHO
+ * 9.   Ejecución de Dump de cache (solo informar que se solicitó el mismo).
 */
 
 // 1. Conexión de un proceso al broker.
@@ -104,5 +104,9 @@ void log_asociacion_de_bloques(int posicion1, int posicion2){
 	completar_logger(log, "BROKER", LOG_LEVEL_INFO);
 }
 
-// 9.
+// 9. Ejecución de Dump de cache (solo informar que se solicitó el mismo).
+void log_ejecucion_dump(){
+	completar_logger("Se ejecutó el Dump de la cache", "BROKER", LOG_LEVEL_INFO);
+}
+
 

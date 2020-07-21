@@ -12,8 +12,6 @@
 #include "Utils/memoria.h"
 #include<pthread.h>
 
-
-
 void terminar_programa(void);
 void inicializacion_de_variables_globales(void);
 

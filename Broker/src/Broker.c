@@ -4,15 +4,12 @@ int main(void)
 {
 	inicializacion_de_variables_globales();
 
-
 	iniciar_servidor();
 
 	terminar_programa();
 
 	return 0;
 }
-
-
 
 void inicializacion_de_variables_globales(void){
 
