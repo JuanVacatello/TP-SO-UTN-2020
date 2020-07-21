@@ -15,8 +15,6 @@ void armar_entrenadores(void){
 
 	lista_de_entrenadores = list_create();
 
-	//total_entrenadores es para saber el total de entrenadores del config
-
 	int cantidad_elementos = cantidad_entrenadores();
 
 	for (int indice=0; indice<cantidad_elementos; indice++){
@@ -26,7 +24,7 @@ void armar_entrenadores(void){
 	}
 
 }
-// "Pikachu|Squirtle,Pikachu|Gengar,Squirtle|Onix"
+
 void generar_objetivo_global(void){
 
 	objetivo_global = dictionary_create();
@@ -64,8 +62,6 @@ void eliminarPokemon(void* pokemon){
 
 }
 
-//"Pikachu"
-//"Pikachu,Pikachu|Gengar,Squirtle|Onix"
 void generar_atrapados_global(void){
 
 	atrapados_global = dictionary_create();
@@ -110,10 +106,9 @@ void generar_atrapados_global(void){
 }
 
 void planificacion(){
-	puts("aca entra2");
 	int planificador = obtener_algoritmo_planificacion();
 
-	puts("aca entra3");
+
 
 	switch(planificador){
 		case 1:
@@ -191,7 +186,6 @@ bool deteccion_de_deadlock(){
 	t_list* atrapados_aux;
 	t_list* total_objetivos = list_create();
 	t_list* objetivos_aux;
-	char* pokemonn;
 
 	for(int indice = 0; indice < cantidad_entrenadores(); indice++){
 		entrenador = list_get(lista_de_entrenadores,indice);
@@ -216,21 +210,9 @@ bool deteccion_de_deadlock(){
 		}
 
 	}
-	//free(atrapados_aux);
-	//free(objetivos_aux);
 
 	return false;
 }
-
-
-void terminar_programa(int conexion, t_log* logger){
-	if(logger =! NULL)
-		log_destroy(logger);
-
-	if(config =! NULL)
-		config_destroy(config);
-}
-
 
 //pokemonesAAtrapar = [Pikachu,Squirtle,Pikachu,Gengar,Squirtle,Onix]
 
@@ -240,29 +222,34 @@ void informar_pokemones_a_atrapar(){
 	t_entrenador* entrenador_aux;
 	char* pokemon;
 
-	for(int indice; indice < cantidad_entrenadores(); indice++){
+	for(int indice = 0; indice < cantidad_entrenadores(); indice++){
 		entrenador_aux = list_get(lista_de_entrenadores, indice);
 		list_add_all(pokemones_aux, entrenador_aux->objetivo);
 	}
 
-	for(int indice; indice < list_size(pokemones_aux); indice++){
+	for(int indice = 0; indice < list_size(pokemones_aux); indice++){
 		pokemon = list_get(pokemones_aux, indice);
 
-		if(dictionary_get(atrapados_global, pokemon)>0){
+		if(dictionary_has_key(atrapados_global, pokemon)){
+			if(dictionary_get(atrapados_global, pokemon) < dictionary_get(objetivo_global, pokemon)){
+				if(!esta_en_lista(pokemones_a_atrapar, pokemon)){
+					list_add(pokemones_a_atrapar, pokemon);
+				}
+			}
+		}
+		else
 			if(!esta_en_lista(pokemones_a_atrapar, pokemon)){
 				list_add(pokemones_a_atrapar, pokemon);
 			}
-		}
 	}
 
-	for(int indice; indice < list_size(pokemones_a_atrapar); indice++){
+	for(int indice = 0; indice < list_size(pokemones_a_atrapar); indice++){
 		pokemon = list_get(pokemones_a_atrapar, indice);
-		enviar_GetPokemon_a_broker(5 /*GET_POKEMON*/, pokemon);
+		enviar_GetPokemon_a_broker(GET_POKEMON, pokemon);
 	}
 
-	free(pokemones_aux);
-	free(pokemones_a_atrapar);
-	free(entrenador_aux);
+	//free(pokemones_aux);
+	//free(pokemones_a_atrapar);
 }
 
 bool terminoTeam(){
@@ -302,7 +289,7 @@ void finalizoTeam(){
 	char* mensajeDeadlockResueltos = string_from_format("Se resolvieron %d deadlocks", deadlocksResueltos);
 	loguearMensaje(mensajeDeadlockResueltos);
 
-	liberar_vg();
+	liberar_team();
 
 }
 
@@ -314,12 +301,17 @@ void liberar_entrenador(t_entrenador* entrenador){
 	free(entrenador);
 }
 
+void liberar_pokemon(t_pokemon* pokemon){
+	free(pokemon->especie);
+	free(pokemon);
+}
 
-
-void liberar_vg(){
+void liberar_team(){
 	list_destroy_and_destroy_elements(lista_de_entrenadores,liberar_entrenador);
 	list_destroy_and_destroy_elements(lista_de_entrenadores_ready,liberar_entrenador);
 	list_destroy_and_destroy_elements(lista_de_entrenadores_deadlock,liberar_entrenador);
+	list_destroy_and_destroy_elements(lista_pokemonesNoRequeridos_enElMapa,liberar_pokemon);
+	list_destroy(lista_ids_getPokemon);
 	//dictionary_destroy_and_destroy_elements(atrapados_global,free);
 	//dictionary_destroy_and_destroy_elements(objetivo_global,free);
 	free(atrapados_global);
@@ -328,45 +320,6 @@ void liberar_vg(){
 	config_destroy(config);
 
 }
-
-
-
-/*
-void iniciar_vg(){
-
-	armar_entrenadores();
-	generar_objetivo_global();
-	generar_atrapados_global();
-	lista_de_entrenadores_deadlock = list_create();
-	lista_de_entrenadores_ready = list_create();
-
-	ciclosCpuTotales = 0;
-	cambiosDeContexto = 0;
-	deadlocksProducidos = 0;
-	deadlocksResueltos = 0;
-
-	flagListaAtrapados = 0;
-
-	pthread_mutex_init(&mutex_planificador, NULL);
-	//PONEMOS EL SEMÁFORO EN 0
-	pthread_mutex_lock(&mutex_planificador);
-
-//	pthread_mutex_init(&mutex_entrenador, NULL);
-	//PONEMOS EL SEMÁFORO EN 0
-//	pthread_mutex_lock(&mutex_entrenador);
-
-	sem_init(&MUTEX_SUB,0,1);
-	sem_init(&MUTEX_POKEMON_REQUERIDO,0,1);
-	sem_init(&CONTADOR_ENTRENADORES,0,cantidad_entrenadores());
-	sem_init(&MUTEX_ENTRENADORES,0,1);
-	sem_init(&MUTEX_MENSAJES_GB,0,1);
-
-	verificar_entrenadores();
-
-*/
-
-
-
 
 
 

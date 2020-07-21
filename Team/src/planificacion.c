@@ -3,8 +3,8 @@
 
 void planificar_fifo(void){
 
-	t_entrenador* entrenador;
 
+	t_entrenador* entrenador;
 
 	while (1){
 
@@ -16,11 +16,12 @@ void planificar_fifo(void){
 
 			entrenador = list_get(lista_de_entrenadores_ready,0);
 			entrenador->estado = EXEC;
-			cambiosDeContexto++;
+
 
 			while(list_size(entrenador->cola_de_acciones) > 0){
 				if(list_size(entrenador->cola_de_acciones) == 1){
 					ejecutar_entrenador(entrenador);
+					cambiosDeContexto++;
 					break;
 				}
 				else{
@@ -252,7 +253,6 @@ void planificar_rr(void){
 			}
 			entrenador = list_get(lista_de_entrenadores_ready,0);
 			entrenador->estado = EXEC;
-			cambiosDeContexto++;
 
 
 			while(list_size(entrenador->cola_de_acciones) > 0 && quantum_remanente > 0){
@@ -264,6 +264,7 @@ void planificar_rr(void){
 
 					if(!list_is_empty(lista_de_entrenadores_ready)){
 						entrenador = list_get(lista_de_entrenadores_ready, 0);
+						cambiosDeContexto++;
 					}
 				}
 				else{
@@ -281,7 +282,9 @@ void planificar_rr(void){
 
 					if(list_size(entrenador->cola_de_acciones) > 0 && quantum_remanente == 0){
 						entrenador->estado = READY;
-						cambiosDeContexto++;
+						if(list_size(lista_de_entrenadores_ready) != 1){
+							cambiosDeContexto++;
+						}
 						remover_entrenador_ready(entrenador);
 						list_add(lista_de_entrenadores_ready, entrenador);
 						sem_post(&MUTEX_ENTRENADORES);

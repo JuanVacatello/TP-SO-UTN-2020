@@ -13,8 +13,10 @@ void iniciar_vg(){
 	generar_atrapados_global();
 	lista_de_entrenadores_deadlock = list_create();
 	lista_de_entrenadores_ready = list_create();
-	//lista_de_pokemones_sueltos = list_create();
+	lista_ids_getPokemon = list_create();
+	lista_pokemonesNoRequeridos_enElMapa = list_create();
 
+	informar_pokemones_a_atrapar();
 
 	ciclosCpuTotales = 0;
 	cambiosDeContexto = 0;
@@ -86,10 +88,19 @@ bool esta_en_lista(t_list* lista_pokemones, char* especie){
 		  if (strcmp(especie_pokemon, especie) == 0){
 		  return true;
 		}
-		   else{
-		return false;
+	}
+   return false;
+}
+
+bool existe_id_en_lista(uint32_t id_correlativo){
+	int id = -1;
+	for (int i=0; i<list_size(lista_ids_getPokemon); i++){
+	   id = list_get(lista_ids_getPokemon, i);
+	   if (id_correlativo == id){
+		   return true;
 		}
 	}
+	return false;
 }
 
 void suscribirse_a_colas(){
@@ -138,43 +149,17 @@ int cantidad_de_entrenadores_que_atrapan(){
 	return cantidad;
 }
 
-
-
-
-//pokemones nuevos de prueba
-
-/*t_pokemon* pokemonPikachu = malloc(sizeof(t_pokemon));
-pokemonPikachu->especie = "Pikachu";
-pokemonPikachu->posicion.x = 1;
-pokemonPikachu->posicion.y = 1;
-list_add(lista_de_pokemones_sueltos, pokemonPikachu);
-
-t_pokemon* pokemonSquirtle = malloc(sizeof(t_pokemon));
-pokemonSquirtle->especie = "Squirtle";
-pokemonSquirtle->posicion.x = 9;
-pokemonSquirtle->posicion.y = 7;
-list_add(lista_de_pokemones_sueltos, pokemonSquirtle);
-
-t_pokemon* pokemonOnix = malloc(sizeof(t_pokemon));
-pokemonOnix->especie = "Onix";
-pokemonOnix->posicion.x = 2;
-pokemonOnix->posicion.y = 2;
-list_add(lista_de_pokemones_sueltos, pokemonOnix);
-
-
-t_pokemon* pokemonSquirtle1 = malloc(sizeof(t_pokemon));
-pokemonSquirtle1->especie = "Squirtle";
-pokemonSquirtle1->posicion.x = 3;
-pokemonSquirtle1->posicion.y = 5;
-list_add(lista_de_pokemones_sueltos, pokemonSquirtle1);
-
-t_pokemon* pokemonGengar = malloc(sizeof(t_pokemon));
-pokemonGengar->especie = "Gengar";
-pokemonGengar->posicion.x = 7;
-pokemonGengar->posicion.y = 5;
-list_add(lista_de_pokemones_sueltos, pokemonGengar);
-*/
-
+t_pokemon* remover_pokemon_lista(t_list* lista, char* pokemon){
+	t_pokemon* pokemon_aux;
+		for(int i = 0; i<list_size(lista); i++){
+			pokemon_aux = list_get(lista, i);
+			if(!strcmp(pokemon_aux->especie, pokemon)){
+				pokemon_aux = list_remove(lista_de_entrenadores_ready, i);
+				break;
+			}
+		}
+	return pokemon_aux;
+}
 
 
 

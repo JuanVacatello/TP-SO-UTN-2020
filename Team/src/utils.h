@@ -21,8 +21,10 @@ t_dictionary* objetivo_global;
 t_dictionary* atrapados_global;
 
 t_list* lista_de_entrenadores;
-t_list* lista_de_entrenadores_ready; // CUANDO LLEGA UN CAUGHT EL ENTRENADOR CON ESE ID ENTRA A ESTA LISTA
+t_list* lista_de_entrenadores_ready;
 t_list* lista_de_entrenadores_deadlock;
+t_list* lista_ids_getPokemon;
+t_list* lista_pokemonesNoRequeridos_enElMapa;
 
 pthread_t hilo_servidor;
 pthread_t hilo_appeared_pokemon;
@@ -70,6 +72,7 @@ void verificar_entrenadores();
 
 int cantidad_de_elementos(char* pokemons);
 bool esta_en_lista(t_list* lista_pokemones, char* especie);
+bool existe_id_en_lista(uint32_t id_correlativo);
 
 void suscribirse_a_colas();
 

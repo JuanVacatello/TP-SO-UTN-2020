@@ -1,5 +1,5 @@
 #include "logTeam.h"
-#include "entrenador.h"
+
 
 void iniciar_logger(){
 	char* file = obtener_log_file();
@@ -44,8 +44,40 @@ void completar_logger(char* mensaje, char* programa, t_log_level log_level)
  */
 
 //1. Cambio de un entrenador de cola de planificación (indicando la razón del porqué).
-void log_cambio_de_entrenador(t_entrenador* entrenador1, t_entrenador* entrenador2){
+void log_cambio_de_entrenador_termino_anterior(t_entrenador* entrenador){
+	char idEntrenador = entrenador->ID_entrenador;
 
+	char* mensaje = string_from_format("Se cambio al entrenador %c debido a que terminó el anterior",idEntrenador);
+
+	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+	free(mensaje);
+}
+
+void log_cambio_de_entrenador_porque_anterior_espera_broker(t_entrenador* entrenador){ //NO SE SI ESTO ESTA BIEN
+	char idEntrenador = entrenador->ID_entrenador;
+
+	char* mensaje = string_from_format("Se cambio al entrenador %c debido a que el anterior está esperando al BROKER ",idEntrenador);
+
+	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+	free(mensaje);
+}
+
+void log_cambio_de_entrenador_por_trabajo_mas_corto(t_entrenador* entrenador){
+	char idEntrenador = entrenador->ID_entrenador;
+
+	char* mensaje = string_from_format("Se cambio al entrenador %c debido a que tiene menos trabajo",idEntrenador);
+
+	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+	free(mensaje);
+}
+
+void log_cambio_de_entrenador_por_fin_de_quantum(t_entrenador* entrenador){
+	char idEntrenador = entrenador->ID_entrenador;
+
+	char* mensaje = string_from_format("Se cambio al entrenador %c debido a fin de quantum",idEntrenador);
+
+	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+	free(mensaje);
 }
 
 //2. Movimiento de un entrenador (indicando la ubicación a la que se movió).
@@ -58,7 +90,6 @@ void log_movimiento_entrenador(t_entrenador* entrenador){
 	char* mensaje = string_from_format("El entrenador %c se movió a la posicion %d|%d.",idEntrenador , xPosicion, yPosicion);
 
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
-
 	free(mensaje);
 }
 
@@ -131,16 +162,16 @@ void log_deadlock_no_detectado(){
 //APPEARED POKEMON
 void log_llego_mensaje_nuevo_appeared_pokemon(char* pokemon, int posX, int posY){
 
-	char* mensaje = string_from_format("Se detecto que NO hay situacion de deadlock");
+	char* mensaje = string_from_format("Llegó un mensaje APPEARED_POKEMON:\n Pokemon: %s. \n Posicion en X: %d. \n Posicion en Y: %d.", pokemon, posX, posY);
 
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
 	free(mensaje);
 }
 
 //CAUGHT POKEMON
-void log_llego_mensaje_nuevo_caught_pokemon(char* pokemon, int posX, int posY){
+void log_llego_mensaje_nuevo_caught_pokemon(t_entrenador* entrenador, int pudoAtrapar){
 
-	char* mensaje = string_from_format("Se detecto que NO hay situacion de deadlock");
+	char* mensaje = string_from_format("");
 
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
 	free(mensaje);
@@ -149,7 +180,7 @@ void log_llego_mensaje_nuevo_caught_pokemon(char* pokemon, int posX, int posY){
 //LOCALIZED POKEMON
 void log_llego_mensaje_nuevo_localized_pokemon(char* pokemon, int posX, int posY){
 
-	char* mensaje = string_from_format("Se detecto que NO hay situacion de deadlock");
+	char* mensaje = string_from_format("");
 
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
 	free(mensaje);

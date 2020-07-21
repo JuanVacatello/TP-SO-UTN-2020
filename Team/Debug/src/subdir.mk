@@ -4,8 +4,8 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../src/Main.c \
 ../src/Team.c \
-../src/Test.c \
 ../src/conexiones.c \
 ../src/configTeam.c \
 ../src/entrenador.c \
@@ -15,8 +15,8 @@ C_SRCS += \
 ../src/utils.c 
 
 OBJS += \
+./src/Main.o \
 ./src/Team.o \
-./src/Test.o \
 ./src/conexiones.o \
 ./src/configTeam.o \
 ./src/entrenador.o \
@@ -26,8 +26,8 @@ OBJS += \
 ./src/utils.o 
 
 C_DEPS += \
+./src/Main.d \
 ./src/Team.d \
-./src/Test.d \
 ./src/conexiones.d \
 ./src/configTeam.d \
 ./src/entrenador.d \

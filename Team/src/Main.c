@@ -17,9 +17,6 @@ int main(void) {
 
 		iniciar_vg();
 
-		puts("aca entra1");
-		puts("hola");
-
 		pthread_create(&hilo_servidor, NULL , iniciar_servidor ,NULL);
 		pthread_detach(hilo_servidor);
 
@@ -34,8 +31,6 @@ int main(void) {
 
 		pthread_create(&hilo_planificador, NULL , planificacion ,NULL);
 		pthread_join(hilo_planificador,NULL);
-
-		puts("chau");
 
 		return 0;
 }

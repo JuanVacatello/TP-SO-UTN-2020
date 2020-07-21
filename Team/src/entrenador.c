@@ -226,13 +226,14 @@ void intentar_atrapar_pokemon(t_entrenador* entrenador){
 	entrenador->estado = BLOCKED;
 	enviar_CatchPokemon_a_broker(3, entrenador); //hardcodear cod_op adentro de la funcion
 	efectuar_ciclo_cpu(entrenador, 1);
+	remover_entrenador_ready(entrenador);
 
 	if(entrenador->pudo_atrapar_pokemon == NULL){
 		pthread_create(&hilo_entrenador_esperando, NULL, recibir_CaughtPokemon, entrenador);
 		pthread_detach(hilo_entrenador_esperando);
 	}
 
-	remover_entrenador_ready(entrenador);
+
 
 	sem_post(&MUTEX_ENTRENADORES);
 
@@ -256,6 +257,12 @@ void atrapar_pokemon(t_entrenador* entrenador){
 			dictionary_put(atrapados_global, entrenador->pokemon_a_atrapar->especie, cantidad_pokemon - 1);
 		}
 	}
+		sem_post(&CONTADOR_ENTRENADORES);
+
+		if(esta_en_lista(lista_pokemonesNoRequeridos_enElMapa, entrenador->pokemon_a_atrapar->especie)){
+			t_pokemon* pokemon = remover_pokemon_lista(lista_pokemonesNoRequeridos_enElMapa, entrenador->pokemon_a_atrapar->especie);
+			aparicion_pokemon(pokemon);
+		}
 
 	}
 	else if(entrenador->pudo_atrapar_pokemon == 1){
@@ -264,11 +271,11 @@ void atrapar_pokemon(t_entrenador* entrenador){
 
 		verificar_estado_entrenador(entrenador);
 
-	}
+		entrenador->pokemon_a_atrapar = NULL;
 
-	entrenador->pokemon_a_atrapar = NULL;
-	if(list_size(entrenador->objetivo) != list_size(entrenador->atrapados)){
-		sem_post(&CONTADOR_ENTRENADORES);
+		if(list_size(entrenador->objetivo) != list_size(entrenador->atrapados)){
+			sem_post(&CONTADOR_ENTRENADORES);
+		}
 	}
 }
 

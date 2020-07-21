@@ -33,6 +33,7 @@ void armar_entrenadores(void);
 void generar_objetivo_global(void);
 void generar_atrapados_global(void);
 void planificacion();
+void informar_pokemones_a_atrapar(void);
 void aparicion_pokemon(t_pokemon* pokemon);
 bool es_pokemon_requerido( char* pokemon);
 void terminar_programa(int conexion, t_log* logger);
@@ -42,7 +43,8 @@ t_accion* armar_accion(void(*accion)(void*), int ciclos);
 
 void eliminarPokemon(void* pokemon);
 void liberar_entrenador(t_entrenador* entrenador);
-void liberar_vg();
+void liberar_pokemon(t_pokemon* pokemon);
+void liberar_team();
 
 bool terminoTeam();
 void finalizoTeam();

@@ -251,6 +251,7 @@ void enviar_CatchPokemon_a_broker(op_code codigo_operacion, t_entrenador* entren
 {
 	char* puerto_broker = obtener_puerto();
 	char* ip_broker = obtener_ip();
+	int id_correlativo = -1;
 
 	int socket_broker = crear_conexion(ip_broker,puerto_broker);
 
@@ -258,7 +259,6 @@ void enviar_CatchPokemon_a_broker(op_code codigo_operacion, t_entrenador* entren
 		entrenador->pudo_atrapar_pokemon = 1;
 		entrenador->estado = EXEC;
 		ciclosCpuTotales++;
-		//pthread_mutex_unlock(&mutex_entrenador);
 		atrapar_pokemon(entrenador);
 	}
 
@@ -273,10 +273,13 @@ void enviar_CatchPokemon_a_broker(op_code codigo_operacion, t_entrenador* entren
 			printf("Error en enviar por el socket");
 			exit(3);
 		}
+
+		id_correlativo = recibir_id_correlativo(socket_broker);
+		entrenador->ID_catch_pokemon = id_correlativo;
+
 		ciclosCpuTotales++;
 		free(a_enviar);
 	}
-
 
 }
 
@@ -284,11 +287,13 @@ void enviar_GetPokemon_a_broker(op_code codigo_operacion, char* pokemon)
 {
 	char* puerto_broker = obtener_puerto();
 	char* ip_broker = obtener_ip();
+	int id_correlativo = -1;
 
 	int socket_broker = crear_conexion(ip_broker,puerto_broker);
 
 	if(socket_broker == -1){
-		//comportamiento default (NO HAY POKEMONES EN EL MAPAs)
+		char* mensaje = string_from_format("No se encontraron pokemones de la especie %s en el mapa", pokemon);
+		loguearMensaje(mensaje);
 	}
 	else{
 		int tamanio_paquete = 0;
@@ -301,9 +306,13 @@ void enviar_GetPokemon_a_broker(op_code codigo_operacion, char* pokemon)
 			exit(3);
 		}
 
+		id_correlativo = recibir_id_correlativo(socket_broker);
+		list_add(lista_ids_getPokemon, id_correlativo);
+
 		free(a_enviar);
 	}
 	ciclosCpuTotales++;
+	ciclos_de_cpu(1);
 }
 
 
@@ -419,6 +428,20 @@ char* recibir_mensaje(int socket_broker){
 	return mensaje;
 }
 
+int recibir_id_correlativo(int socket_broker){
+
+	op_code code_op;
+	recv(socket_broker, &code_op, sizeof(op_code), MSG_WAITALL);
+
+	uint32_t tamanio_buffer;
+	recv(socket_broker, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
+
+	int id_correlativo = malloc(tamanio_buffer);
+	recv(socket_broker, id_correlativo, tamanio_buffer, MSG_WAITALL);
+
+	return id_correlativo;
+}
+
 //----------------------- RECEPCION DE MENSAJES DE GAMEBOY -----------------------
 
 
@@ -443,6 +466,7 @@ void recibir_AppearedPokemon(int socket_broker){
 
 		if(es_pokemon_requerido(pokemon)){
 			sem_wait(&CONTADOR_ENTRENADORES);
+			log_llego_mensaje_nuevo_appeared_pokemon(pokemon, posX, posY);
 			t_pokemon* pokemonNuevo = armarPokemon(pokemon, posX, posY);
 			aparicion_pokemon(pokemonNuevo);
 			pthread_mutex_unlock(&mutex_planificador);
@@ -474,56 +498,8 @@ void recibir_CaughtPokemon(int socket_broker){
 		}
 }
 
-void recibir_caught_pokemon_loggeo(int socket_broker){
-
-		uint32_t tamanio_buffer;
-		recv(socket_broker, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
-
-		char* m1 = string_from_format("tamaño buffer: %d.", tamanio_buffer);
-					completar_logger(m1, "BROKER", LOG_LEVEL_INFO);
-
-		uint32_t tamanio_leido= 0;
-
-		uint32_t caracteresPokemon;
-		recv(socket_broker, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
-		tamanio_leido += sizeof(uint32_t);
-			//log
-			char* m2 = string_from_format("Los caracteres de pokemon son: %d.", caracteresPokemon);
-			completar_logger(m2, "BROKER", LOG_LEVEL_INFO);
-
-		char* pokemon = (char*)malloc(caracteresPokemon);
-		recv(socket_broker, pokemon, caracteresPokemon, MSG_WAITALL);
-		tamanio_leido += caracteresPokemon;
-			//log
-			completar_logger(pokemon, "BROKER", LOG_LEVEL_INFO);
-
-		uint32_t posX;
-		recv(socket_broker, &posX, sizeof(uint32_t), MSG_WAITALL);
-		tamanio_leido += sizeof(uint32_t);
-			//log
-		char* m3 = string_from_format("La posicion en X es: %d", posX);
-		completar_logger(m3, "BROKER", LOG_LEVEL_INFO);
-
-		uint32_t posY;
-		recv(socket_broker, &posY, sizeof(uint32_t), MSG_WAITALL);
-		tamanio_leido += sizeof(uint32_t);
-			//log
-		char* m4 = string_from_format("La posicion en Y es: %d", posY);
-		completar_logger(m4, "BROKER", LOG_LEVEL_INFO);
-
-		if((tamanio_buffer - tamanio_leido) != 0){
-			uint32_t id_correlativo;
-			recv(socket_broker, &id_correlativo, sizeof(uint32_t), MSG_WAITALL);
-						//log
-				char* m5 = string_from_format("El id correlativo es: %d", id_correlativo);
-				completar_logger(m5, "BROKER", LOG_LEVEL_INFO);
-		}
-
-
-		//armar pokemon con los datos recibidos y mandar el pokemon armado a APARACION_POKEMON()
-}
-
-// "Pikachu" 3 4 5 6 3 5 7
+//	POKEMON	ID CANT	POSICIONES
+// "Pikachu" 1  3   4 5 6 3 5 7
 
 void recibir_LocalizedPokemon(int socket_broker){
 
@@ -531,6 +507,11 @@ void recibir_LocalizedPokemon(int socket_broker){
 
 		uint32_t tamanio_buffer;
 		recv(socket_broker, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
+
+		uint32_t id_correlativo;
+		recv(socket_broker, &id_correlativo, sizeof(uint32_t), MSG_WAITALL);
+
+		if(existe_id_en_lista(id_correlativo)){
 
 		uint32_t caracteresPokemon;
 		recv(socket_broker, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
@@ -541,70 +522,27 @@ void recibir_LocalizedPokemon(int socket_broker){
 		uint32_t cantidadPokemones;
 		recv(socket_broker, &cantidadPokemones, sizeof(uint32_t), MSG_WAITALL);
 
-		for(int i =0; i<cantidadPokemones; i++){
-			uint32_t posX;
-			recv(socket_broker, &posX, sizeof(uint32_t), MSG_WAITALL);
+			for(int i =0; i<cantidadPokemones; i++){
+				uint32_t posX;
+				recv(socket_broker, &posX, sizeof(uint32_t), MSG_WAITALL);
 
-			uint32_t posY;
-			recv(socket_broker, &posY, sizeof(uint32_t), MSG_WAITALL);
+				uint32_t posY;
+				recv(socket_broker, &posY, sizeof(uint32_t), MSG_WAITALL);
 
-			pokemon_nuevo = armarPokemon(pokemon, posX, posY);//esto no funca todavia pero la logica seria asi
-			//list_add(lista_de_pokemones_sueltos,pokemon_nuevo);
+				if(es_pokemon_requerido(pokemon)){
+					sem_wait(&CONTADOR_ENTRENADORES);
+					//log_llego_mensaje_nuevo_appeared_pokemon(pokemon, posX, posY);
+					t_pokemon* pokemonNuevo = armarPokemon(pokemon, posX, posY);
+					aparicion_pokemon(pokemonNuevo);
+					pthread_mutex_unlock(&mutex_planificador);
+				}
+				else{
+					t_pokemon* pokemonNuevo = armarPokemon(pokemon, posX, posY);
+					list_add(lista_pokemonesNoRequeridos_enElMapa, pokemonNuevo);
+				}
+			}
 		}
-
 		responder_ack();
-		pthread_mutex_unlock(&mutex_planificador);
-}
-
-
-void recibir_localized_pokemon_loggeo(int socket_cliente){
-
-
-		uint32_t tamanio_buffer;
-		recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
-
-		char* m1 = string_from_format("tamaño buffer: %d.", tamanio_buffer);
-					completar_logger(m1, "BROKER", LOG_LEVEL_INFO);
-
-		uint32_t tamanio_leido= 0;
-
-		uint32_t caracteresPokemon;
-		recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
-		tamanio_leido += sizeof(uint32_t);
-			//log
-			char* m2 = string_from_format("Los caracteres de pokemon son: %d.", caracteresPokemon);
-			completar_logger(m2, "BROKER", LOG_LEVEL_INFO);
-
-		char* pokemon = (char*)malloc(caracteresPokemon);
-		recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
-		tamanio_leido += caracteresPokemon;
-			//log
-			completar_logger(pokemon, "BROKER", LOG_LEVEL_INFO);
-
-		uint32_t posX;
-		recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
-		tamanio_leido += sizeof(uint32_t);
-			//log
-		char* m3 = string_from_format("La posicion en X es: %d", posX);
-		completar_logger(m3, "BROKER", LOG_LEVEL_INFO);
-
-		uint32_t posY;
-		recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
-		tamanio_leido += sizeof(uint32_t);
-			//log
-		char* m4 = string_from_format("La posicion en Y es: %d", posY);
-		completar_logger(m4, "BROKER", LOG_LEVEL_INFO);
-
-		if((tamanio_buffer - tamanio_leido) != 0){
-			uint32_t id_correlativo;
-			recv(socket_cliente, &id_correlativo, sizeof(uint32_t), MSG_WAITALL);
-						//log
-				char* m5 = string_from_format("El id correlativo es: %d", id_correlativo);
-				completar_logger(m5, "BROKER", LOG_LEVEL_INFO);
-		}
-		//armar pokemon con los datos recibidos y mandar el pokemon armado a APARACION_POKEMON()
-
-		//pthread_mutex_unlock(hilo_planificador);
 }
 
 
@@ -613,13 +551,6 @@ t_pokemon* armarPokemon(char* pokemon, int posX, int posY){
 	pokeNuevo->especie = pokemon;
 	pokeNuevo->posicion.x= posX;
 	pokeNuevo->posicion.y= posY;
-
-	char* pokemonNombre = string_from_format("El nombre del pokemon es: %s", pokeNuevo->especie);
-					completar_logger(pokemonNombre, "TEAM", LOG_LEVEL_INFO);
-	char* xx = string_from_format("posicion en x: %d",pokeNuevo->posicion.x);
-					completar_logger(xx, "TEAM", LOG_LEVEL_INFO);
-	char* yy = string_from_format("posicion en y: %d", pokeNuevo->posicion.y);
-					completar_logger(yy, "TEAM", LOG_LEVEL_INFO);
 
 	return pokeNuevo;
 }
