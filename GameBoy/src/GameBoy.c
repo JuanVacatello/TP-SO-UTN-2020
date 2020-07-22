@@ -89,6 +89,8 @@ void enviarMensajeBroker(int argc, char *argv[]){
 		cumple_cant_parametros(argc, 4);
 		enviar_mensaje_a_broker(socket_conexion, 5, argv); // 5 es el op_code de GET_POKEMON
 	}
+
+	recibir_mensaje(socket_conexion); // Para recibir el id
 }
 
 void enviarMensajeTeam(int argc, char *argv[]){

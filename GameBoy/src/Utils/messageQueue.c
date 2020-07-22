@@ -648,6 +648,12 @@ void recibir_mensaje(int socket_cliente){
 		break;
 	case 1:
 
+		recv(socket_cliente, &mensajeid, sizeof(uint32_t), MSG_WAITALL);
+		tamanio_leido += sizeof(uint32_t);
+
+		mensaje2 = string_from_format("El id del mensaje es es: %d.", mensajeid);
+		puts(mensaje2);
+
 		recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
 		tamanio_leido += sizeof(uint32_t);
 
@@ -711,6 +717,12 @@ void recibir_mensaje(int socket_cliente){
 		break;
 	case 3:
 
+		recv(socket_cliente, &mensajeid, sizeof(uint32_t), MSG_WAITALL);
+		tamanio_leido += sizeof(uint32_t);
+
+		mensaje2 = string_from_format("El id del mensaje es es: %d.", mensajeid);
+		puts(mensaje2);
+
 		recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
 
 		mensaje3 = string_from_format("La cantidad de caracteres del pokemon es: %d.", caracteresPokemon);
@@ -737,19 +749,25 @@ void recibir_mensaje(int socket_cliente){
 		break;
 	case 4:
 
-		recv(socket_cliente, &se_pudo_atrapar, sizeof(uint32_t), MSG_WAITALL);
-
-		mensaje3 = string_from_format("Se pudo atrapar es: %d.", se_pudo_atrapar);
-		puts(mensaje3);
-
 		recv(socket_cliente, &id_mensaje_correlativo, sizeof(uint32_t), MSG_WAITALL);
 
 		mensaje3 = string_from_format("El id de mensaje correlativo es es: %d.", id_mensaje_correlativo);
 		puts(mensaje3);
 
+		recv(socket_cliente, &se_pudo_atrapar, sizeof(uint32_t), MSG_WAITALL);
+
+		mensaje3 = string_from_format("Se pudo atrapar es: %d.", se_pudo_atrapar);
+		puts(mensaje3);
+
 		break;
 
 	case 5:
+
+		recv(socket_cliente, &mensajeid, sizeof(uint32_t), MSG_WAITALL);
+		tamanio_leido += sizeof(uint32_t);
+
+		mensaje2 = string_from_format("El id del mensaje es es: %d.", mensajeid);
+		puts(mensaje2);
 
 		recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
 
@@ -766,10 +784,14 @@ void recibir_mensaje(int socket_cliente){
 		break;
 	case 7:
 
-		recv(socket_cliente, mensaje4, buffer_size, MSG_WAITALL); //no recibe pokemon, recibe el mensaje id
+		if(buffer_size == 4){
+			recv(socket_cliente, &mensajeid, buffer_size, MSG_WAITALL);
+			printf("El id del mensaje enviado es %d \n", mensajeid);
 
-		//mensaje4 = string_from_format("El id de mensaje es: %d.", mensajeid);
-		puts(mensaje4);
+		}else{
+			recv(socket_cliente, mensaje4, buffer_size, MSG_WAITALL);
+			puts(mensaje4);
+		}
 
 		break;
 	}
