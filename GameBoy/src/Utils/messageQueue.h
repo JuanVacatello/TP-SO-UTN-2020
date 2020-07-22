@@ -10,7 +10,7 @@
 #include<string.h>
 #include<commons/collections/list.h>
 #include<stdint.h>
-
+#include<semaphore.h>
 #include"configGameBoy.h"
 #include"logGameBoy.h"
 
@@ -30,13 +30,7 @@ typedef enum
 	LOCALIZED_POKEMON=6,
 	MENSAJE=7
 }op_code;
-/*
-typedef enum
-{
-	FAIL=0,
-	OK=1
-}caught_code;
-*/
+
 typedef struct
 {
 	uint32_t size;
@@ -82,7 +76,7 @@ void* iniciar_paquete_serializado_GetPokemonGC(int* tamanio_paquete,char* argv[]
 
 void recibir_mensaje(int socket_cliente);
 
-void* enviar_ack(int socket, op_code codigo_op, uint32_t identificador,int* tamanio_paquete);
+void enviar_ACK(int socket_broker, char* mensaje, uint32_t id_mensaje);
 
 void liberar_conexion(int socket_cliente);
 

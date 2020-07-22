@@ -3,8 +3,6 @@
 
 void iniciar_logger(){
 	//char* file = obtener_log_file();
-	//if((logger = log_create(file,"GAMEBOY",0,LOG_LEVEL_INFO )) == NULL){
-
 	if((logger = log_create("GameBoy.log","GAMEBOY",1,LOG_LEVEL_INFO )) == NULL){
 		printf("No se pudo crear el log del Gameboy.");
 		exit(1);
@@ -50,8 +48,10 @@ void log_suscripcion(char* cola){
 }
 
 // 3. Llegada de un nuevo mensaje a una cola de mensajes.
-void log_mensaje_nuevo(){
-	completar_logger("Llegada de un nuevo mensaje a la cola de mensajes.", "GAMEBOY", LOG_LEVEL_INFO);
+void log_mensaje_nuevo(char* cola){
+	sem_wait(&MUTEX_RECIBIR);
+	char* log = string_from_format("Llegada de un nuevo mensaje a la cola de mensajes %s.", cola);
+	completar_logger(log, "GAMEBOY", LOG_LEVEL_INFO);
 }
 
 

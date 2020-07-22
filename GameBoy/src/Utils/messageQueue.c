@@ -1,4 +1,4 @@
-#include "../Utils/messageQueue.h"
+#include "messageQueue.h"
 
 // CONEXIONES
 
@@ -621,7 +621,7 @@ void recibir_mensaje(int socket_cliente){
 		char* mensaje = string_from_format("El código de operación es: %d.", codigo_de_operacion);
 		puts(mensaje);
 
-	uint32_t buffer_size;
+	uint32_t buffer_size = 0;
 	recv(socket_cliente, &buffer_size, sizeof(uint32_t), MSG_WAITALL);
 
 		char* mensaje2 = string_from_format("El tamanio del buffer es: %d.", buffer_size);
@@ -642,6 +642,7 @@ void recibir_mensaje(int socket_cliente){
 	char* mensaje4;
 	char* mensaje5;
 	char* mensaje6;
+	char* cola_en_string;
 
 	switch(codigo_de_operacion){
 	case 0:
@@ -687,9 +688,19 @@ void recibir_mensaje(int socket_cliente){
 
 		free(pokemon);
 
+		cola_en_string = "NEW_POKEMON";
+
+		enviar_ACK(socket_cliente, "ACK", mensajeid);
+
 		break;
 
 	case 2:
+
+		recv(socket_cliente, &mensajeid, sizeof(uint32_t), MSG_WAITALL);
+		tamanio_leido += sizeof(uint32_t);
+
+		mensaje2 = string_from_format("El id del mensaje es es: %d.", mensajeid);
+		puts(mensaje2);
 
 		recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
 
@@ -713,6 +724,11 @@ void recibir_mensaje(int socket_cliente){
 		puts(mensaje5);
 
 		free(pokemon);
+
+		//
+
+		cola_en_string = "APPEARED_POKEMON";
+		enviar_ACK(socket_cliente, "ACK", mensajeid);
 
 		break;
 	case 3:
@@ -746,8 +762,17 @@ void recibir_mensaje(int socket_cliente){
 
 		free(pokemon);
 
+		cola_en_string = "CATCH_POKEMON";
+		enviar_ACK(socket_cliente, "ACK", mensajeid);
+
 		break;
 	case 4:
+
+		recv(socket_cliente, &mensajeid, sizeof(uint32_t), MSG_WAITALL);
+		tamanio_leido += sizeof(uint32_t);
+
+		mensaje2 = string_from_format("El id del mensaje es es: %d.", mensajeid);
+		puts(mensaje2);
 
 		recv(socket_cliente, &id_mensaje_correlativo, sizeof(uint32_t), MSG_WAITALL);
 
@@ -758,6 +783,9 @@ void recibir_mensaje(int socket_cliente){
 
 		mensaje3 = string_from_format("Se pudo atrapar es: %d.", se_pudo_atrapar);
 		puts(mensaje3);
+
+		cola_en_string = "CAUGHT_POKEMON";
+		enviar_ACK(socket_cliente, "ACK", mensajeid);
 
 		break;
 
@@ -779,6 +807,9 @@ void recibir_mensaje(int socket_cliente){
 
 		printf("El pokemon es %s\n", pokemon);
 
+		cola_en_string = "GET_POKEMON";
+		enviar_ACK(socket_cliente, "ACK", mensajeid);
+
 		break;
 	case 6:
 		break;
@@ -795,15 +826,34 @@ void recibir_mensaje(int socket_cliente){
 
 		break;
 	}
+
+	sem_post(&MUTEX_RECIBIR);
+	if(buffer_size != 0){
+		log_mensaje_nuevo(cola_en_string);
+	}
+
 }
 
-void enviar_ACK(int socket_broker, char* mensaje){
+void enviar_ACK(int socket_broker, char* mensaje, uint32_t id_mensaje){
 
 	t_paquete* paquete = malloc(sizeof(t_paquete));
 	paquete->codigo_operacion = 7;
 	paquete->buffer = malloc(sizeof(t_buffer));
+
+	int caracteres = strlen(mensaje)+1;
+	paquete->buffer->size = sizeof(uint32_t) + sizeof(uint32_t) + caracteres;
+	void* stream = malloc(paquete->buffer->size);
+	int offset = 0;
+
+	memcpy(stream + offset, &caracteres, sizeof(uint32_t));
+	offset += sizeof(uint32_t);
+
+	memcpy(stream + offset, mensaje, caracteres);
+	offset += caracteres;
+
+	memcpy(stream + offset, &id_mensaje, sizeof(uint32_t));
+
 	paquete->buffer->stream = mensaje;
-	paquete->buffer->size = strlen(mensaje) + 1;
 
 	int tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
 	void* a_enviar = serializar_paquete(paquete,&tamanio_paquete);
