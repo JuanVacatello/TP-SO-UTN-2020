@@ -9,7 +9,6 @@
 #include "conexiones.h"
 
 
-
 int main(void) {
 
 		leer_config();

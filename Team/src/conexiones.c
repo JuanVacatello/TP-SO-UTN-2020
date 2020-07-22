@@ -487,7 +487,6 @@ void recibir_CaughtPokemon(int socket_broker){
 		uint32_t pudoAtraparlo;
 		recv(socket_broker, &pudoAtraparlo, sizeof(uint32_t), MSG_WAITALL);
 
-		responder_ack();
 
 		t_entrenador* entrenador = buscar_entrenador_por_id_catch(id_correlativo);
 
@@ -496,6 +495,8 @@ void recibir_CaughtPokemon(int socket_broker){
 			entrenador->estado = EXEC;
 			atrapar_pokemon(entrenador);
 		}
+
+		responder_ack();
 }
 
 //	POKEMON	ID CANT	POSICIONES
@@ -567,22 +568,17 @@ t_entrenador* buscar_entrenador_por_id_catch(uint32_t id){
 	return entrenador;
 }
 
-void* enviar_ACK(int socket_broker, char* mensaje, int* tamanio){
+void* enviar_ACK(int socket_broker, int* tamanio){
 
 	t_paquete* paquete = malloc(sizeof(t_paquete));
 	paquete->codigo_operacion = 7;
 	paquete->buffer = malloc(sizeof(t_buffer));
-	paquete->buffer->stream = mensaje;
-	paquete->buffer->size = strlen(mensaje) + 1;
+	paquete->buffer->stream = "ACK";
+	paquete->buffer->size = strlen(paquete->buffer->stream) + 1;
 
 	*tamanio = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
 	void* a_enviar = serializar_paquete(paquete,tamanio);
 
-
-	//free(paquete->buffer);
-	//free(paquete);
-
-	//sem_post(&MUTEX_ACK);
 	return a_enviar;
 }
 
@@ -593,6 +589,8 @@ void responder_ack(){
 	int socket_ack = crear_conexion(ip_broker,puerto_broker);
 
 	int tamanio = 0;
-	void* a_enviar = enviar_ACK(socket_ack, "ACK", &tamanio);
+	void* a_enviar = enviar_ACK(socket_ack, &tamanio);
 	send(socket_ack,a_enviar,tamanio,0);
+
+	free(a_enviar);
 }
