@@ -16,8 +16,8 @@ int main(void) {
 	// Hay que hacerlo con hilos para que pueda recibir mensajes mientras hace otras cosas
 	*/
 
-	pthread_create(&hilo_servidor, NULL , iniciar_servidor ,NULL);
-	pthread_detach(hilo_servidor);
+	pthread_create(&hilo_gameboy, NULL , iniciar_espera_mensajes_Gameboy ,NULL);
+	pthread_detach(hilo_gameboy);
 
 	pthread_create(&hilo_new_pokemon, NULL , new_pokemon_broker ,NULL);
 	pthread_detach(hilo_new_pokemon);

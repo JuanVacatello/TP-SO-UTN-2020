@@ -46,7 +46,7 @@ pthread_t thread;
 
 int crear_conexion(char* ip, char* puerto);
 
-void iniciar_servidor(void);
+void iniciar_espera_mensajes_Gameboy(void);
 void esperar_cliente(int socket_servidor);
 void serve_client(int* socket);
 void process_request(op_code cod_op, int socket_cliente);

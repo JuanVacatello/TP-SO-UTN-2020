@@ -2,8 +2,7 @@
 
 
 void iniciar_logger(){
-	char* file = obtener_log_file();
-	if((logger = log_create(file,"TEAM",1,LOG_LEVEL_INFO )) == NULL){
+	if((logger = log_create("GameCard.log","GAMECARD",1,LOG_LEVEL_INFO )) == NULL){
 		printf("No se pudo crear el log");
 		exit(1);
 	}
@@ -36,10 +35,10 @@ void completar_logger(char* mensaje, char* programa, t_log_level log_level)
 
 // Inicio de proceso de reintento de comunicación con el Broker
 void log_intento_reintento_comunicacion_broker(){
-	int tiempoReconexion = obtener_tiempo_reconexion();
+	int tiempoReconexion = tiempo_de_reintento_conexion();
 	char* mensaje = string_from_format("Reintentando conexion con BROKER en %d segundos...", tiempoReconexion);
 
-	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+	completar_logger(mensaje, "GAMECARD", LOG_LEVEL_INFO);
 	free(mensaje);
 }
 
@@ -48,13 +47,13 @@ void log_intento_reintento_comunicacion_broker(){
 void log_intento_comunicacion_Broker_exitoso(){
 	char* mensaje = string_from_format("Se logró conectar con el BROKER de manera exitosa");
 
-	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+	completar_logger(mensaje, "GAMECARD", LOG_LEVEL_INFO);
 	free(mensaje);
 }
 
 void log_reintento_comunicacion_Broker_fallido(){
 	char* mensaje = string_from_format("NO se logró conectar con el BROKER");
 
-	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+	completar_logger(mensaje, "GAMECARD", LOG_LEVEL_INFO);
 	free(mensaje);
 }
