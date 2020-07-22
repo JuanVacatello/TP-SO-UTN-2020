@@ -437,7 +437,7 @@ int recibir_id_correlativo(int socket_broker){
 	recv(socket_broker, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
 	int id_correlativo = malloc(tamanio_buffer);
-	recv(socket_broker, id_correlativo, tamanio_buffer, MSG_WAITALL);
+	recv(socket_broker, &id_correlativo, tamanio_buffer, MSG_WAITALL);
 
 	return id_correlativo;
 }
