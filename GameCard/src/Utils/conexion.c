@@ -1,10 +1,3 @@
-/*
- * conexion.c
- *
- *  Created on: 17 jun. 2020
- *      Author: utnso
- */
-
 #include "conexion.h"
 
 int crear_conexion(char* ip, char* puerto)
@@ -34,6 +27,89 @@ int crear_conexion(char* ip, char* puerto)
 	return socket_cliente;
 }
 
+// RECIBIR MENSAJES DE GAMEBOY
+
+void iniciar_espera_mensajes_Gameboy(void){
+
+	int socket_servidor;
+    struct addrinfo hints, *servinfo, *p;
+
+    memset(&hints, 0, sizeof(hints));
+    hints.ai_family = AF_UNSPEC;
+    hints.ai_socktype = SOCK_STREAM;
+    hints.ai_flags = AI_PASSIVE;
+
+    getaddrinfo(IP, PUERTO, &hints, &servinfo);
+
+    for (p=servinfo; p != NULL; p = p->ai_next){
+        if ((socket_servidor = socket(p->ai_family, p->ai_socktype, p->ai_protocol)) == -1)
+            continue;
+
+        if (bind(socket_servidor, p->ai_addr, p->ai_addrlen) == -1) {
+            close(socket_servidor);
+            continue;
+        }
+        break;
+    }
+
+	if(listen(socket_servidor, SOMAXCONN) == -1){
+		close(socket_servidor);
+		exit(6);
+	}
+
+    freeaddrinfo(servinfo);
+
+    while(1)
+
+    	esperar_cliente(socket_servidor);
+}
+
+void esperar_cliente(int socket_servidor)
+{
+	struct sockaddr_in dir_cliente;
+
+	int tam_direccion = sizeof(struct sockaddr_in);
+	//sem_wait(&MUTEX_MENSAJES_GB);
+	int socket_cliente = accept(socket_servidor, (void*) &dir_cliente, &tam_direccion);
+
+	pthread_create(&thread,NULL,(void*)serve_client,&socket_cliente);
+	pthread_detach(thread);
+}
+
+void serve_client(int* socket)
+{
+	op_code cod_op;
+	if(recv(*socket, &cod_op, sizeof(op_code), MSG_WAITALL) == -1)
+		pthread_exit(NULL);
+
+	//char* mensaje = string_from_format("El codigo de operacion es: %d.", cod_op);
+	//completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+
+	process_request(cod_op, *socket);
+}
+
+// ATENDER AL CLIENTE
+
+void process_request(op_code cod_op, int socket_cliente) {
+
+	if(cod_op != 0){
+//		completar_logger("Llegó un nuevo mensaje a la cola de mensajes", "TEAM", LOG_LEVEL_INFO); // LOG OBLIGATORIO
+	}
+
+	switch(cod_op){
+		case 1:
+			recibir_new_pokemon(socket_cliente);
+			break;
+		case 3:
+			recibir_catch_pokemon(socket_cliente);
+			break;
+		case 5:
+			recibir_get_pokemon(socket_cliente);
+			break;
+	}
+	//sem_post(&MUTEX_MENSAJES_GB);
+}
+
 // SERIALIZAR PAQUETE
 
 void* serializar_paquete(t_paquete* paquete, int *bytes)
@@ -52,63 +128,101 @@ void* serializar_paquete(t_paquete* paquete, int *bytes)
 	return a_enviar;
 }
 
-// ENVIO DE MENSAJES
+// RECEPCION DE MENSAJES DE BROKER
 
-// MENSAJES A BROKER
+void new_pokemon_broker(){
+	int socket_broker = suscribirse_globalmente(NEW_POKEMON);
 
-/*
+	while(1){
 
-void enviar_mensaje_a_broker(int socket_cliente, op_code codigo_operacion, char* argv[])
-{
-	int tamanio_paquete = 0;
-	void* a_enviar;
+		op_code cod_op = -1;
+		recv(socket_broker, &cod_op, sizeof(op_code), MSG_WAITALL);
 
-	switch(codigo_operacion){
-	case 0:
-		a_enviar = suscribirse_a_cola(&tamanio_paquete,argv);
-		break;
-	case 1:
-		//a_enviar = iniciar_paquete_serializado_CatchPokemon(&tamanio_paquete,argv);
-		break;
-	case 2:
-		a_enviar = iniciar_paquete_serializado_CaughtPokemon(&tamanio_paquete,argv);
-		break;
-	case 3:
-		break;
-	case 4:
-		break;
+		if(cod_op == NEW_POKEMON){
+
+			//char* mensaje = string_from_format("El codigo de operacion es: %d.", cod_op);
+			//completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+
+			recibir_new_pokemon(socket_broker);
+
+		}
 	}
-
-	if(send(socket_cliente,a_enviar,tamanio_paquete,0) == -1){
-		printf("Error en enviar por el socket");
-		exit(3);
-	}
-
-	free(a_enviar);
-
-//fflush(stdout);
 }
-*/
+
+void catch_pokemon_broker(){
+	int socket_broker = suscribirse_globalmente(CATCH_POKEMON);
+
+	while(1){
+
+		op_code cod_op = -1;
+		recv(socket_broker, &cod_op, sizeof(op_code), MSG_WAITALL);
+
+		if(cod_op == CATCH_POKEMON){
+
+			//char* mensaje = string_from_format("El codigo de operacion es: %d.", cod_op);
+			//completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+
+			recibir_catch_pokemon(socket_broker);
+
+		}
+	}
+}
+
+void get_pokemon_broker(){
+	int socket_broker = suscribirse_globalmente(GET_POKEMON);
+
+	while(1){
+
+		op_code cod_op = -1;
+		recv(socket_broker, &cod_op, sizeof(op_code), MSG_WAITALL);
+
+		if(cod_op == GET_POKEMON){
+
+			//char* mensaje = string_from_format("El codigo de operacion es: %d.", cod_op);
+			//completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+
+			recibir_get_pokemon(socket_broker);
+
+		}
+	}
+}
 
 // BROKER - SUSCRIPTOR
 
-void suscribirse_globalmente(uint32_t cola_a_suscribirse){
-	int tamanio_paquete = 0;
+int suscribirse_globalmente(op_code cola_a_suscribirse){
 
-	char* puerto_broker = "4444"; //tiene que ser con esto: obtener_puerto_broker();
-	char* ip_broker = "127.0.0.1"; //tiene que ser con esto: obtener_ip_broker(); pero no me lee el config
-	int socket_broker = crear_conexion(ip_broker,puerto_broker);
+	char* puerto_broker = obtener_puerto_broker();
+	char* ip_broker = obtener_ip_broker();
 
-	void* a_enviar = suscribirse_a_cola(&tamanio_paquete,cola_a_suscribirse);
-	if(send(socket_broker,a_enviar,tamanio_paquete,0) == -1){
-		printf("Error en enviar por el socket");
-		exit(3);
+	int socket_broker = -1;
+	int tiempo_reconexion = tiempo_de_reintento_conexion();
+	//sem_wait(&MUTEX_SUB);
+	socket_broker = crear_conexion(ip_broker,puerto_broker);
+
+	while(socket_broker == -1){
+		log_reintento_comunicacion_Broker_fallido();
+		log_intento_reintento_comunicacion_broker();
+		sleep(tiempo_reconexion);
+		socket_broker = crear_conexion(ip_broker,puerto_broker);
 	}
 
+	log_intento_comunicacion_Broker_exitoso();
+
+	int tamanio_paquete = 0;
+	void* a_enviar = suscribirse_a_cola(socket_broker, cola_a_suscribirse, &tamanio_paquete);
+
+	send(socket_broker,a_enviar,tamanio_paquete,0);
+
+	char* mensaje_subscripcion = recibir_mensaje(socket_broker); //por ahora lo dejo despues se sacará
+	puts(mensaje_subscripcion);
+
+	//pthread_mutex_unlock(&mutex_conexion);
 	free(a_enviar);
+
+	return socket_broker;
 }
 
-void* suscribirse_a_cola(int* tamanio_paquete, uint32_t cola_a_suscribirse){
+void* suscribirse_a_cola(int socket_broker, uint32_t cola_a_suscribirse, int* tamanio_paquete){
 
 	t_paquete* paquete = malloc(sizeof(t_paquete));
 	paquete->codigo_operacion = SUSCRIPTOR;
@@ -138,76 +252,6 @@ void* suscribirse_a_cola(int* tamanio_paquete, uint32_t cola_a_suscribirse){
 	return a_enviar;
 }
 
-// RECIBIR MENSAJES DE GAMEBOY
-
-void iniciar_espera_mensajes(void){
-	int socket_servidor;
-    struct addrinfo hints, *servinfo, *p;
-
-    memset(&hints, 0, sizeof(hints));
-    hints.ai_family = AF_UNSPEC;
-    hints.ai_socktype = SOCK_STREAM;
-    hints.ai_flags = AI_PASSIVE;
-
-    getaddrinfo(IP, PUERTO, &hints, &servinfo);
-
-    for (p=servinfo; p != NULL; p = p->ai_next){
-        if ((socket_servidor = socket(p->ai_family, p->ai_socktype, p->ai_protocol)) == -1)
-            continue;
-
-        if (bind(socket_servidor, p->ai_addr, p->ai_addrlen) == -1) {
-            close(socket_servidor);
-            continue;
-        }
-        break;
-    }
-
-	if(listen(socket_servidor, SOMAXCONN) == -1){
-		close(socket_servidor);
-		exit(6);
-	}
-
-	freeaddrinfo(servinfo);
-
-    while(1)
-    	esperar_cliente(socket_servidor); // hacerlo con select, NUNCA ESPERA ACTIVA
-}
-
-void esperar_cliente(int socket_servidor){
-	struct sockaddr_in dir_cliente;
-
-	int tam_direccion = sizeof(struct sockaddr_in);
-
-	int socket_cliente = accept(socket_servidor, (void*) &dir_cliente, &tam_direccion);
-
-	pthread_create(&thread,NULL,(void*)serve_client,&socket_cliente);
-	pthread_detach(thread);
-}
-
-void serve_client(int* socket_cliente){
-	op_code cod_op;
-	if(recv(*socket_cliente, &cod_op, sizeof(op_code), MSG_WAITALL) == -1)
-		pthread_exit(NULL);
-	process_request(cod_op, *socket_cliente);
-}
-
-// ATENDER AL GAMEBOY
-
-void process_request(op_code cod_op, int socket_cliente){
-
-	//no se que hace despues con lo que recibe pero llega todo perfecto, les dejo la logica lista para q lo agarren y lo usen
-	switch(cod_op){
-		case 1:
-			recibir_new_pokemon(socket_cliente);
-			break;
-		case 3:
-			recibir_catch_pokemon(socket_cliente);
-			break;
-		case 5:
-			recibir_get_pokemon(socket_cliente);
-			break;
-	}
-}
 
 void recibir_new_pokemon(int socket_cliente){
 	uint32_t tamanio_buffer;
@@ -232,6 +276,8 @@ void recibir_new_pokemon(int socket_cliente){
 	recv(socket_cliente, &mensaje_id, sizeof(uint32_t), MSG_WAITALL);
 
 	agregar_pokemon(pokemon, posX, posY, -1);
+
+	responder_ack();
 }
 
 void recibir_catch_pokemon(int socket_cliente){
@@ -254,6 +300,8 @@ void recibir_catch_pokemon(int socket_cliente){
 	uint32_t mensaje_id;
 	recv(socket_cliente, &mensaje_id, sizeof(uint32_t), MSG_WAITALL);
 
+	responder_ack();
+
 }
 
 void recibir_get_pokemon(int socket_cliente){
@@ -270,7 +318,54 @@ void recibir_get_pokemon(int socket_cliente){
 	uint32_t mensaje_id;
 	recv(socket_cliente, &mensaje_id, sizeof(uint32_t), MSG_WAITALL);
 
+	responder_ack();
 }
 
+// MENSAJES A BROKER
 
+//falta todavia
 
+// ACK
+
+void* enviar_ACK(int socket_broker, int* tamanio){
+
+	t_paquete* paquete = malloc(sizeof(t_paquete));
+	paquete->codigo_operacion = 7;
+	paquete->buffer = malloc(sizeof(t_buffer));
+	paquete->buffer->stream = "ACK";
+	paquete->buffer->size = strlen(paquete->buffer->stream) + 1;
+
+	*tamanio = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
+	void* a_enviar = serializar_paquete(paquete,tamanio);
+
+	return a_enviar;
+}
+
+void responder_ack(){
+	char* puerto_broker = obtener_puerto_broker();
+	char* ip_broker = obtener_ip_broker();
+
+	int socket_ack = crear_conexion(ip_broker,puerto_broker);
+
+	int tamanio = 0;
+	void* a_enviar = enviar_ACK(socket_ack, &tamanio);
+	send(socket_ack,a_enviar,tamanio,0);
+
+	free(a_enviar);
+}
+
+char* recibir_mensaje(int socket_broker){
+
+	op_code code_op;
+	recv(socket_broker, &code_op, sizeof(op_code), MSG_WAITALL);
+
+	uint32_t tamanio_buffer;
+	recv(socket_broker, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
+
+	char* mensaje = malloc(tamanio_buffer);
+	recv(socket_broker, mensaje, tamanio_buffer, MSG_WAITALL);
+
+	//sem_post(&MUTEX_SUB);
+
+	return mensaje;
+}

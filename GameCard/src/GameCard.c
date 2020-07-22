@@ -14,6 +14,21 @@ int main(void) {
 	// Hay que hacerlo con hilos para que pueda recibir mensajes mientras hace otras cosas
 	*/
 
+	pthread_create(&hilo_servidor, NULL , iniciar_servidor ,NULL);
+	pthread_detach(hilo_servidor);
+
+	pthread_create(&hilo_new_pokemon, NULL , new_pokemon_broker ,NULL);
+	pthread_detach(hilo_new_pokemon);
+
+	pthread_create(&hilo_catch_pokemon, NULL , catch_pokemon_broker ,NULL);
+	pthread_detach(hilo_catch_pokemon);
+
+	pthread_create(&hilo_get_pokemon, NULL , get_pokemon_broker ,NULL);
+	pthread_detach(hilo_get_pokemon);
+
+//	pthread_create(&HILO_PRINCIPAL, NULL , FUNCION_PRINCIPAL_GAMECARD (?) ,NULL);
+//	pthread_join(HILO_PRINCIPAL,NULL);
+
 	char* punto_montaje = obtener_punto_montaje();
 	inicializar_file_system(punto_montaje);
 

@@ -17,12 +17,19 @@
 #include<string.h>
 #include<fcntl.h>
 #include<stdlib.h>
+#include<semaphore.h>
 
 #include"Utils/configGameCard.h"
 #include"Utils/metadata.h"
 #include"Utils/conexion.h"
 #include"Utils/bitmap.h"
 
+pthread_t hilo_servidor;
+pthread_t hilo_new_pokemon;
+pthread_t hilo_catch_pokemon;
+pthread_t hilo_get_pokemon;
+
+sem_t MUTEX_MENSAJES_GB;
 
 void inicializar_file_system(char* punto_montaje);
 char* concat(char* string1,char* string2);
