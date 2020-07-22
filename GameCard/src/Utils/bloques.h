@@ -27,5 +27,8 @@ int bloque_esta_lleno(char* bloque);
 t_list* obtener_datos_bloques(char* path_pokemon );
 void insertar_datos_a_lista(char *datos, t_list *lista_datos);
 void guardar_data_en_bloque(char* data, char* path_bloque);
+char* asignar_bloque(char* bloques);
+char* liberar_ultimo_bloque(char* bloques);
+char* obtener_path_bloque_individual(int numero_bloque);
 
 #endif /* UTILS_BLOQUES_H_ */

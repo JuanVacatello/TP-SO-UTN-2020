@@ -5,6 +5,8 @@ int main(void) {
 
 
 	leer_config();
+	pthread_mutex_init(&MUTEX_BITMAP, NULL);
+
 
 	/* Funciona la suscripcion y la recepcion de los mensajes del GameBoy, otro dia hago lo del envio a Broker
 	suscribirse_globalmente(1);
@@ -31,6 +33,8 @@ int main(void) {
 
 	char* punto_montaje = obtener_punto_montaje();
 	inicializar_file_system(punto_montaje);
+
+	mostrar_contenido_bitmap();
 
 	return 0;
 

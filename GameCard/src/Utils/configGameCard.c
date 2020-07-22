@@ -68,6 +68,8 @@ void actualizar_paths_config(char* path_files,char* path_bloques,char* path_meta
 	config_set_value(configGameCard, "PATH_BLOQUES",path_bloques);
 	config_set_value(configGameCard, "PATH_METADATA",path_metadata);
 
+	config_save(configGameCard);
+
 	leer_config();
 
 }
