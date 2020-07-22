@@ -92,10 +92,6 @@ void serve_client(int* socket)
 
 void process_request(op_code cod_op, int socket_cliente) {
 
-	if(cod_op != 0){
-//		completar_logger("Llegó un nuevo mensaje a la cola de mensajes", "TEAM", LOG_LEVEL_INFO); // LOG OBLIGATORIO
-	}
-
 	switch(cod_op){
 		case 1:
 			recibir_new_pokemon(socket_cliente);
@@ -257,6 +253,9 @@ void recibir_new_pokemon(int socket_cliente){
 	uint32_t tamanio_buffer;
 	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
+	uint32_t mensaje_id;  // Hola chicos este mismo id lo van a tener que poner en el id_mensaje_correlativo del appeared correspondiente a este new salu2
+	recv(socket_cliente, &mensaje_id, sizeof(uint32_t), MSG_WAITALL);
+
 	uint32_t caracteresPokemon;
 	recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
 
@@ -272,10 +271,7 @@ void recibir_new_pokemon(int socket_cliente){
 	uint32_t cantidad;
 	recv(socket_cliente, &cantidad, sizeof(uint32_t), MSG_WAITALL);
 
-	uint32_t mensaje_id;
-	recv(socket_cliente, &mensaje_id, sizeof(uint32_t), MSG_WAITALL);
-
-	agregar_pokemon(pokemon, posX, posY, -1);
+	agregar_pokemon(pokemon, posX, posY, -1); // Holi no quiero tocar nada pero pasan 4 parametros pero la funcion es de 3
 
 	responder_ack();
 }
@@ -284,6 +280,9 @@ void recibir_catch_pokemon(int socket_cliente){
 
 	uint32_t tamanio_buffer;
 	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
+
+	uint32_t mensaje_id;
+	recv(socket_cliente, &mensaje_id, sizeof(uint32_t), MSG_WAITALL);
 
 	uint32_t caracteresPokemon;
 	recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
@@ -297,9 +296,6 @@ void recibir_catch_pokemon(int socket_cliente){
 	uint32_t posY;
 	recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
 
-	uint32_t mensaje_id;
-	recv(socket_cliente, &mensaje_id, sizeof(uint32_t), MSG_WAITALL);
-
 	responder_ack();
 
 }
@@ -309,14 +305,14 @@ void recibir_get_pokemon(int socket_cliente){
 	uint32_t tamanio_buffer;
 	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
+	uint32_t mensaje_id;
+	recv(socket_cliente, &mensaje_id, sizeof(uint32_t), MSG_WAITALL);
+
 	uint32_t caracteresPokemon;
 	recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
 
 	char* pokemon = (char*)malloc(caracteresPokemon);
 	recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
-
-	uint32_t mensaje_id;
-	recv(socket_cliente, &mensaje_id, sizeof(uint32_t), MSG_WAITALL);
 
 	responder_ack();
 }

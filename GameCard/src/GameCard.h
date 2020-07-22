@@ -23,7 +23,6 @@ pthread_t hilo_new_pokemon;
 pthread_t hilo_catch_pokemon;
 pthread_t hilo_get_pokemon;
 
-
 void inicializar_file_system(char* punto_montaje);
 char* concat(char* string1,char* string2);
 void inicializar_metadata(char* path_metadata, int block_size, int cant_bloques);

@@ -7,7 +7,6 @@ int main(void) {
 	leer_config();
 	pthread_mutex_init(&MUTEX_BITMAP, NULL);
 
-
 	/* Funciona la suscripcion y la recepcion de los mensajes del GameBoy, otro dia hago lo del envio a Broker
 	suscribirse_globalmente(1);
 	suscribirse_globalmente(3);
@@ -16,16 +15,16 @@ int main(void) {
 	// Hay que hacerlo con hilos para que pueda recibir mensajes mientras hace otras cosas
 	*/
 
-	pthread_create(&hilo_gameboy, NULL , iniciar_espera_mensajes_Gameboy ,NULL);
+	pthread_create(&hilo_gameboy, NULL, iniciar_espera_mensajes_Gameboy, NULL);
 	pthread_detach(hilo_gameboy);
 
-	pthread_create(&hilo_new_pokemon, NULL , new_pokemon_broker ,NULL);
+	pthread_create(&hilo_new_pokemon, NULL, new_pokemon_broker, NULL);
 	pthread_detach(hilo_new_pokemon);
 
-	pthread_create(&hilo_catch_pokemon, NULL , catch_pokemon_broker ,NULL);
+	pthread_create(&hilo_catch_pokemon, NULL , catch_pokemon_broker, NULL);
 	pthread_detach(hilo_catch_pokemon);
 
-	pthread_create(&hilo_get_pokemon, NULL , get_pokemon_broker ,NULL);
+	pthread_create(&hilo_get_pokemon, NULL , get_pokemon_broker, NULL);
 	pthread_detach(hilo_get_pokemon);
 
 //	pthread_create(&HILO_PRINCIPAL, NULL , FUNCION_PRINCIPAL_GAMECARD (?) ,NULL);

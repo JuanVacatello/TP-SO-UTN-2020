@@ -22,8 +22,6 @@ t_config* configGameCard;
 void leer_config(void);
 char* obtener_puerto_broker(void);
 char* obtener_ip_broker(void);
-char* obtener_puerto_gamecard(void);
-char* obtener_ip_gamecard(void);
 char* obtener_log_file(void);
 char* obtener_punto_montaje(void);
 int tiempo_de_reintento_conexion(void);

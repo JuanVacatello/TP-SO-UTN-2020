@@ -1,17 +1,11 @@
-/*
- * configGameBoy.c
- *
- *  Created on: 15 may. 2020
- *      Author: utnso
- */
-
 #include "configGameCard.h"
 
 #include <commons/string.h>
 
 void leer_config(void)
 {
-	configGameCard = config_create("/home/utnso/Documentos/Delibird/GameCard/tp-2020-1c-wRAPPERS/GameCard/GameCard.config");
+	// El path es este pero no m anda entonces lo cambie: /home/utnso/Documentos/Delibird/GameCard/tp-2020-1c-wRAPPERS/GameCard/
+	configGameCard = config_create("GameCard.config");
 
 	if(configGameCard == NULL){
 		printf("No se pudo leer el archivo de configuración de la GameCard.");

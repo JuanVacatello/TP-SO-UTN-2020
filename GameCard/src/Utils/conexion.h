@@ -2,7 +2,6 @@
 #ifndef UTILS_CONEXION_H_
 #define UTILS_CONEXION_H_
 
-
 #include<stdio.h>
 #include<stdlib.h>
 #include<signal.h>
@@ -13,10 +12,8 @@
 #include<commons/collections/list.h>
 #include<stdint.h>
 #include<pthread.h>
-
 #include"configGameCard.h"
 #include"logGameCard.h"
-
 
 #define IP "127.0.0.4"
 #define PUERTO "7777"
@@ -64,7 +61,6 @@ void process_request(op_code cod_op, int socket_cliente);
 void new_pokemon_broker();
 void catch_pokemon_broker();
 void get_pokemon_broker();
-
 void recibir_new_pokemon(int socket_cliente);
 void recibir_catch_pokemon(int socket_cliente);
 void recibir_get_pokemon(int socket_cliente);
