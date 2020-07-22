@@ -64,3 +64,5 @@
 [INFO] 15:39:00:233 BROKER/(11974:11980): Se conectó proceso de socket 7 al Broker.
 [INFO] 15:39:00:234 BROKER/(11974:11980): Llegó un nuevo mensaje a la cola de mensajes CATCH_POKEMON
 [INFO] 15:39:00:234 BROKER/(11974:11981): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 18:27:48:585 BROKER/(4964:4978): Se conectó proceso de socket 8 al Broker.
+[INFO] 18:27:48:595 BROKER/(4964:4977): Se conectó proceso de socket 8 al Broker.
