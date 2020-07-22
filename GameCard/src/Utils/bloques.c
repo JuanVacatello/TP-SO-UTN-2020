@@ -86,7 +86,6 @@ t_list* obtener_datos_bloques(char* path_pokemon ){
 		t_list *lista_datos = list_create();
 		char *vector_bloques_string = obtener_bloques_pokemon(path_pokemon);
 		char** bloques = string_get_string_as_array(vector_bloques_string);
-		int tamanio_array = tamanio_array_en_string(vector_bloques_string);
 		free(vector_bloques_string);
 
 		char * datos = string_new();
@@ -94,7 +93,7 @@ t_list* obtener_datos_bloques(char* path_pokemon ){
 		char *path_bloques = obtener_path_bloques(); //url absoluta de donde estan los bloques "mnt/blocks"
 		char *aux;
 		struct stat st;
-		for(int i = 0; i<tamanio_array; i++)
+		for(int i = 0; i<tamanio_array(bloques); i++)
 		{
 			path_bloque_individual = string_new();
 			string_append(&path_bloque_individual,path_bloques);
@@ -126,6 +125,19 @@ t_list* obtener_datos_bloques(char* path_pokemon ){
 		free(bloques);
 		return lista_datos;
 
+}
+
+char* obtener_datos_en_string(t_list* lista_datos){
+	int cantidad_nodos = list_size(lista_datos);
+	char* string_stream = string_new();
+
+	for(int i=0; i<cantidad_nodos ; i++){
+		char* aux = string_new()
+		aux =list_get(lista_datos,i);
+		string_append(&string_stream, aux);
+		free(aux);
+	}
+	return string_stream;
 }
 
 void insertar_datos_a_lista(char *datos, t_list *lista_datos)
@@ -172,9 +184,125 @@ void guardar_data_en_bloque(char* data, char* path_bloque){
 
 
 
+void almacenar_datos(char *data, char* path_pokemon){
+	 char* path_bloques = obtener_path_bloques();
+	 char** bloques = obtener_bloques_pokemon(path_pokemon);
+	 char* bloques_string = obtener_bloques_pokemon_string(path_pokemon);
+	 int tamanio_bloques = obtener_tamanio_bloques();
+
+
+	 //ME FIJO CUANTOS BLOQUES VOY A NECESITAR PARA ALMACENAR TODA LA DATA QUE LEVANTE
+		 int bloques_necesitados;
+
+		 if((strlen(data) % tamanio_bloques)==0){ // SI DIVISION TIENE RESTO 0, ENTRA TODO JUSTO EN X CANTIDAD DE BLOQUES
+			 bloques_necesitados = strlen(data)/obtener_tamanio_bloque();
+		 }
+		 else{											   // SI DIVISION TIENE RESTO != 0 , HAY QUE PEDIR UN BLOQUE EXTRA PARA LO QUE SOBRA
+			 bloques_necesitados = strlen(data)/obtener_tamanio_bloque() + 1 ;
+	 }
+
+		while(tamanio_array(bloques) < bloques_necesitados){// SI LA CANT DE BLOQUES QUE TENGO ES MENOR A LO QUE NECESITO, TENGO QUE PEDIR MAS.
+			bloques_string = asignar_bloque(bloques_string);
+			bloques = string_get_string_as_array(bloques_string);
+		}
+		while(tamanio_array(bloques) > bloques_necesitados){// SI LA CANT DE BLOQUES QUE TENGO ES MAYOR A LA QUE NECESITO, LIBERO BLOQUES
+			bloques_string = liberar_ultimo_bloque(bloques_string);
+			bloques = string_get_string_as_array(bloques_string);
+		}
+
+	modificar_campo_bloques_metadata(path_pokemon,bloques_string);// MODIFICO EL ARCHIVO METADATA AL FINAL PARA NO HACER ESCRITURAS EN DISCO
+																  // INNECESARIAS
+
+	int ultima_pos_insertada = 0;
+
+	for(int i =1; i <= tamanio_array(bloques);i++){ // ESCRIBE BLOQUE A BLOQUE, SABIENDO QUE YA TENGO LOS BLOQUES NECESARIOS
+
+		char* path_bloque = obtener_path_bloque_individual(i);
+		char* a_insertar = string_substring(data, ultima_pos_insertada, tamanio_bloques);
+		ultima_pos_insertada += tamanio_bloques;
+		guardar_data_en_bloque(a_insertar, path_bloque);
+
+		free(path_bloque);
+	}
+}
 
 
 
+
+int tamanio_array(char **array){
+	int i=0;
+	if(!array[i]) return 0;
+	while(array[i] != NULL){
+		i++;
+	}
+	return i;
+}
+
+char* obtener_path_bloque_individual(int numero_bloque){
+
+	char* path_bloque = string_new();
+	string_append(&path_bloque, obtener_path_bloques());
+	string_append(&path_bloque, "/");
+	string_append(&path_bloque, string_itoa(numero_bloque));
+	string_append(&path_bloque, ".bin");
+	return path_bloque;
+}
+
+
+char* asignar_bloque(char* bloques){
+
+ 	int nuevo_bloque = obtener_nuevo_bloque(); // IMPLEMENTAR EN BITMAP NASHE
+ 	char** array_bloques = string_get_string_as_array(bloques);
+ 	t_list *lista_bloques = list_create();
+ 	for(int j = 0; j < tamanio_array_en_string(bloques); j++){
+ 		list_add(lista_bloques,string_duplicate(array_bloques[j]));
+ 		free(array_bloques[j]);
+ 	}
+ 	free(array_bloques);
+
+ 	char *x = string_itoa(nuevo_bloque);
+ 	list_add(lista_bloques,x);
+
+ 	char *vector_bloques = string_new();
+ 	string_append(&vector_bloques, "[");
+ 	for(int k = 0; k < list_size(lista_bloques); k++){
+ 		string_append(&vector_bloques,list_get(lista_bloques,k));
+ 		if((k + 1) != list_size(lista_bloques)) string_append(&vector_bloques,",");
+ 	}
+ 	string_append(&vector_bloques, "]");
+
+ 	list_destroy_and_destroy_elements(lista_bloques,free);
+
+ 	//free(vector_bloques);
+ 	return vector_bloques;
+ }
+
+char* liberar_ultimo_bloque(char* bloques){
+
+	char** array_bloques = string_get_string_as_array(bloques);
+	int cantidad_bloques = tamanio_array(array_bloques);
+	 t_list *lista_bloques = list_create();
+	 for(int j = 0; j < cantidad_bloques; j++){
+	 		list_add(lista_bloques,string_duplicate(array_bloques[j]));
+	 		free(array_bloques[j]);
+	 }
+	 free(array_bloques);
+
+	 list_remove(lista_bloques, cantidad_bloques - 1);
+
+	 char *vector_bloques = string_new();
+	  	string_append(&vector_bloques, "[");
+	  	for(int k = 0; k < list_size(lista_bloques); k++){
+	  		string_append(&vector_bloques,list_get(lista_bloques,k));
+	  		if((k + 1) != list_size(lista_bloques)) string_append(&vector_bloques,",");
+	  	}
+	  	string_append(&vector_bloques, "]");
+
+	  	list_destroy_and_destroy_elements(lista_bloques,free);
+
+	  	//free(vector_bloques);
+	  	return vector_bloques;
+}
 
 
 

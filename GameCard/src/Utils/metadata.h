@@ -25,7 +25,8 @@ int obtener_cantidad_bloques();
 int obtener_tamanio_bloques();
 
 t_config* leer_metadata_pokemon(char* path_metadata);
-char* obtener_bloques_pokemon(char* path_pokemon);
+char** obtener_bloques_pokemon(char* path_pokemon);
+char* obtener_bloques_pokemon_string(char* path_pokemon)
 int obtener_cantidad_bloques_pokemon(char* path_pokemon);
 void asignar_bloque_pokemon(char* path_pokemon);
 void modificar_campo_bloques_metadata(char * path,char* bloques);

@@ -23,7 +23,7 @@
 #include"metadata.h"
 #include"configGameCard.h"
 
-t_bitarray *bitarray;
+
 
 // t_log *logger;
 t_bitarray *bitarray;
@@ -39,5 +39,8 @@ pthread_mutex_t MUTEX_BITMAP;
 #define UTILS_BITMAP_H_
 
 void crear_bitmap(char* path_bitmap);
+void eliminar_bitmap();
+void bitmap_liberar_bloque(int bloque, int bitmap);
+int obtener_nuevo_bloque();
 
 #endif /* UTILS_BITMAP_H_ */

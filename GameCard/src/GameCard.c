@@ -17,6 +17,9 @@ int main(void) {
 	char* punto_montaje = obtener_punto_montaje();
 	inicializar_file_system(punto_montaje);
 
+
+
+
 	return 0;
 
 }

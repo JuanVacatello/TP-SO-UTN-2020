@@ -57,11 +57,13 @@ t_config* leer_metadata_pokemon(char* path_pokemon){
 	return metadata;
 }
 
-char* obtener_bloques_pokemon(char* path_pokemon){ //DEVUELVE EN FORMATO: ["1","2",....,"N"]
+char** obtener_bloques_pokemon(char* path_pokemon){ //DEVUELVE EN FORMATO: ["1","2",....,"N"]
 
 	t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
-	char* bloques;
-	bloques = config_get_string_value(metadata_pokemon, "BLOCKS");
+	char* bloques_string;
+	bloques_string = config_get_string_value(metadata_pokemon, "BLOCKS");
+
+	char** bloques = string_get_string_as_array(bloques_string);
 	config_destroy(metadata_pokemon);
 	return bloques;
 
@@ -72,8 +74,23 @@ char* obtener_bloques_pokemon(char* path_pokemon){ //DEVUELVE EN FORMATO: ["1","
 	*/
 }
 
+char* obtener_bloques_pokemon_string(char* path_pokemon){
 
-int obtener_cantidad_bloques_pokemon(char* path_pokemon){// ADAPTAR COMO EL OBTENER_BLOQUES_POKEMON(SIN EL CONFIG)
+	t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
+	char* bloques_string;
+	bloques_string = config_get_string_value(metadata_pokemon, "BLOCKS");
+	config_destroy(metadata_pokemon);
+	return bloques_string;
+
+	/*
+	for(int i =0; i<obtener_cantidad_bloques_pokemon() ; i++){
+	printf("%s,",array_bloques[i]);
+	}
+	*/
+}
+
+
+int obtener_cantidad_bloques_pokemon(char* path_pokemon){
 
 	char* bloques;
 	t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
@@ -122,37 +139,6 @@ t_config* leer_metadata_file(char* path_file){
 		return metadata;
 
 }
-
-void asignar_bloque_pokemon(char* path_pokemon){
-
- 	int nuevo_bloque = obtener_nuevo_bloque(); // IMPLEMENTAR EN BITMAP NASHE
- 	char* bloques = obtener_bloques_pokemon(path_pokemon);
- 	char** array_bloques = string_get_string_as_array(bloques);
- 	t_list *lista_bloques = list_create();
- 	for(int j = 0; j < tamanio_array_en_string(bloques); j++){
- 		list_add(lista_bloques,string_duplicate(array_bloques[j]));
- 		free(array_bloques[j]);
- 	}
- 	free(array_bloques);
-
- 	char *x = string_itoa(nuevo_bloque);
- 	list_add(lista_bloques,x);
-
- 	char *vector_bloques = string_new();
- 	string_append(&vector_bloques, "[");
- 	for(int k = 0; k < list_size(lista_bloques); k++){
- 		string_append(&vector_bloques,list_get(lista_bloques,k));
- 		if((k + 1) != list_size(lista_bloques)) string_append(&vector_bloques,",");
- 	}
- 	string_append(&vector_bloques, "]");
-
- 	modificar_campo_bloques_metadata(path_pokemon,vector_bloques);
-
- 	list_destroy_and_destroy_elements(lista_bloques,free);
-
- 	free(vector_bloques);
- }
-
 
 
 void modificar_campo_bloques_metadata(char * path,char* bloques){

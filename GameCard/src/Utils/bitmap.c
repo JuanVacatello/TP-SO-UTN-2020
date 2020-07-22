@@ -53,7 +53,7 @@ void eliminar_bitmap(){
 
 
 void bitmap_liberar_bloque(int bloque, int bitmap){
-	{
+
 		pthread_mutex_lock(&MUTEX_BITMAP);
 
 		bitarray_clean_bit(bitarray,bloque);
@@ -61,13 +61,13 @@ void bitmap_liberar_bloque(int bloque, int bitmap){
 		flag_bloques_libres = 1;
 
 		pthread_mutex_unlock(&MUTEX_BITMAP);
-	}
+
 
 }
 
 
 int obtener_nuevo_bloque(){
-	{
+
 		if(!flag_bloques_libres){ //si no hay bloques libres ni busca
 			return -1;
 		}
@@ -91,6 +91,5 @@ int obtener_nuevo_bloque(){
 		flag_bloques_libres = 0; // 0 si no hay libres, 1 si los hay
 		pthread_mutex_unlock(&MUTEX_BITMAP);
 		return -1; // salio del for, por lo que no hay bloque libre/
-	}
 }
 
