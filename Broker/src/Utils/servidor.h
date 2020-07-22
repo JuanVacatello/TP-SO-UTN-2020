@@ -86,6 +86,7 @@ void enviar_mensajes_al_nuevo_suscriptor_AP(t_list* mensajes_de_dicha_cola, int 
 void enviar_mensajes_al_nuevo_suscriptor_CATP(t_list* mensajes_de_dicha_cola, int socket_suscriptor);
 void enviar_mensajes_al_nuevo_suscriptor_CAUP(t_list* mensajes_de_dicha_cola, int socket_suscriptor);
 void enviar_mensajes_al_nuevo_suscriptor_GP(t_list* mensajes_de_dicha_cola, int socket_suscriptor);
+void enviar_mensajes_al_nuevo_suscriptor_LP(t_list* mensajes_de_dicha_cola, int socket_suscriptor);
 void correr_tiempo_suscripcion(t_suscripcion* suscripcion);
 int encontrar_suscriptor_por_posicion(int socket_cliente, t_list* lista);
 
@@ -96,9 +97,8 @@ void recibir_catch_pokemon(int socket_cliente);
 void recibir_caught_pokemon(int socket_cliente);
 void recibir_get_pokemon(int socket_cliente);
 void recibir_localized_pokemon(int socket_cliente);
-void reenviar_mensaje_a_suscriptores(void* a_enviar, int tamanio_paquete, t_list* suscriptores);
+void reenviar_mensaje_a_suscriptores(void* a_enviar, int tamanio_paquete, t_list* suscriptores, int cola);
 void guardar_mensaje_en_cola(t_list* lista_mensajes, t_mensaje_guardado* mensaje_en_memoria, uint32_t tamanio_buffer, uint32_t id_mensaje_correlativo, char* pokemon, t_list* lista_de_suscriptores);
-void reenviar_mensaje_a_suscriptores(void* a_enviar, int tamanio_paquete, t_list* suscriptores);
 
 void recibir_ack(int socket_cliente);
 
@@ -108,7 +108,7 @@ int recibir_tamanio_buffer(int socket);
 
 // ENVIAR MENSAJE
 void enviar_mensaje(int socket_cliente, char* mensaje);
-void enviar_mensaje_id(int socket_cliente);
+void enviar_id_mensaje(uint32_t id_del_mensaje, int socket_cliente);
 
 pthread_t hilo_suscripcion;
 pthread_t hilo_newPokemon;

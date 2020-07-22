@@ -51,25 +51,29 @@ void log_conexion(int socket_proceso){
 
 // 2. Suscripción de un proceso a una cola de mensajes.
 void log_suscripcion_nueva(int socket_suscriptor, int id_suscriptor, int cola_mensaje){
-	char* log = string_from_format("Se suscribió el proceso con socket %d y con id %d a la cola de mensajes %d.", id_suscriptor, socket_suscriptor, cola_mensaje);
+	char* cola_en_string = cola_referida(cola_mensaje);
+	char* log = string_from_format("Se suscribió el proceso con socket %d y con id %d a la cola de mensajes %s.", id_suscriptor, socket_suscriptor, cola_en_string);
 	completar_logger(log, "BROKER", LOG_LEVEL_INFO);
 }
 
 // 3. Llegada de un nuevo mensaje a una cola de mensajes.
-void log_mensaje_nuevo(){
-	completar_logger("Llegó un nuevo mensaje a la cola de mensajes.", "BROKER", LOG_LEVEL_INFO);
+void log_mensaje_nuevo(int cola){
+	char* cola_en_string = cola_referida(cola);
+	char* log = string_from_format("Llegó un nuevo mensaje a la cola de mensajes %s", cola_en_string);
+	completar_logger(log, "Broker", LOG_LEVEL_INFO);
 }
 
 // 4. Envío de un mensaje a un suscriptor específico.
-void log_envio_mensaje(int socket_suscriptor){
-	char* log = string_from_format("Se le envió un mensaje al suscriptor de socket %d.", socket_suscriptor);
+void log_envio_mensaje(int socket_suscriptor, int cola){
+	char* cola_en_string = cola_referida(cola);
+	char* log = string_from_format("Se le envió un mensaje al suscriptor de socket %d, a través de la cola %s.", socket_suscriptor, cola_en_string);
 	completar_logger(log, "Broker", LOG_LEVEL_INFO);
 }
 
 // 5. Confirmación de recepción de un suscriptor al envío de un mensaje previo.
 void log_confirmacion(int socket_suscriptor, int mensaje_id){
-	char* loggearACK = string_from_format("El suscriptor de socket %d confirmó la recepción del mensaje con id %d.", socket_suscriptor, mensaje_id);
-	completar_logger(loggearACK,"BROKER", LOG_LEVEL_INFO);
+	char* log = string_from_format("El suscriptor de socket %d confirmó la recepción del mensaje con id %d.", socket_suscriptor, mensaje_id);
+	completar_logger(log,"BROKER", LOG_LEVEL_INFO);
 }
 
 // 6. Almacenado de un mensaje dentro de la memoria (indicando posición de inicio de su partición).
@@ -86,7 +90,9 @@ void log_particion_eliminada(int posicion_liberada){
 
 // 8.1. Ejecución de compactación para particiones dinámicas.
 void log_compactacion(){
-	completar_logger("Se compactó la memoria.", "BROKER", LOG_LEVEL_INFO);
+	char* frecuencia_de_compactacion = obtener_frecuencia_compactacion();
+	char* log = string_from_format("Se compactó la memoria ya que la frecuencia de compactación es %s.", frecuencia_de_compactacion);
+	completar_logger(log, "BROKER", LOG_LEVEL_INFO);
 }
 
 // 8.2. Asociación de bloques para Buddy System (indicando qué particiones se asociaron, con posicion inicial de ambas).
@@ -109,4 +115,20 @@ void log_ejecucion_dump(){
 	completar_logger("Se ejecutó el Dump de la cache", "BROKER", LOG_LEVEL_INFO);
 }
 
+char* cola_referida(int numero){
+	switch(numero){
+	case 1:
+		return "NEW_POKEMON";
+	case 2:
+		return "APPEARED_POKEMON";
+	case 3:
+		return "CATCH_POKEMON";
+	case 4:
+		return "CAUGHT_POKEMON";
+	case 5:
+		return "GET_POKEMON";
+	case 6:
+		return "LOCALIZED_POKEMON";
+	}
+}
 

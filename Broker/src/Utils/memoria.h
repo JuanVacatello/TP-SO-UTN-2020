@@ -64,9 +64,10 @@ int contador_fallos; // Para cuando la frecuencia de compactación es mayor a 2
 sem_t MUTEX_FALLOS;
 
 uint32_t mensaje_id;
+sem_t MUTEX_MENSAJE_ID;
 
 t_mensaje_guardado* guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar, op_code cola);
-void aplicar_timestamp(t_mensaje_guardado* mensaje_nuevo);
+void aplicar_timestamp_e_id(t_mensaje_guardado* mensaje_nuevo);
 
 // REEMPLAZO
 int ejecutar_algoritmo_reemplazo(void);
@@ -114,7 +115,6 @@ void llenar_inicio_dump(FILE* dump);
 int si_el_anterior_esta_vacio(t_list* lista_ordenada, FILE* dump, int index, int contador_de_particiones);
 char* crear_linea_a_agregar_ocupada(int inicio, int final, int tamanio, int lru, int cola, int id);
 char* crear_linea_a_agregar_vacia(int inicio, int final, int tamanio);
-char* cola_referida(int numero);
 char* obtener_fecha(void);
 
 void handler(int senial);

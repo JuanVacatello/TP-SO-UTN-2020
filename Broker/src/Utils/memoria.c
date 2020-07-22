@@ -19,10 +19,8 @@ t_mensaje_guardado* guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria
 		mensaje_nuevo = administracion_de_memoria_buddy_system(bloque_a_agregar_en_memoria, tamanio_a_agregar);
 	}
 
-	aplicar_timestamp(mensaje_nuevo);
+	aplicar_timestamp_e_id(mensaje_nuevo);
 	mensaje_nuevo->cola = cola;
-	mensaje_id ++;
-	mensaje_nuevo->id = mensaje_id;
 
 	list_add(elementos_en_memoria, mensaje_nuevo);
 
@@ -30,16 +28,21 @@ t_mensaje_guardado* guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria
 
 	actualizar_dump_cache();
 
-//	signal(SIGUSR1, handler); // Por ahora lo dejo aca
+	//signal(SIGUSR1, handler); // Por ahora lo dejo aca
 
 	return mensaje_nuevo;
 }
 
-void aplicar_timestamp(t_mensaje_guardado* mensaje_nuevo){
+void aplicar_timestamp_e_id(t_mensaje_guardado* mensaje_nuevo){
 	sem_wait(&MUTEX_TIMESTAMP);
 	timestamp++;
 	mensaje_nuevo->ultima_referencia = timestamp;
 	sem_post(&MUTEX_TIMESTAMP);
+
+	sem_wait(&MUTEX_MENSAJE_ID);
+	mensaje_id ++;
+	mensaje_nuevo->id = mensaje_id;
+	sem_post(&MUTEX_MENSAJE_ID);
 }
 
 // REEMPLAZO Y COMPACTACION
@@ -980,10 +983,11 @@ void llenar_inicio_dump(FILE* dump){
 	txt_write_in_file(dump, guiones);
 
 	char* hora_actual = temporal_get_string_time();
+	char* hora_actual_sin_mili = string_substring_until(hora_actual, 8);
 	string_append(&linea_inicial, "Dump: ");
 	char* fecha_actual = obtener_fecha();
 	string_append_with_format(&linea_inicial, "%s ", fecha_actual);
-	string_append_with_format(&linea_inicial, "%s \n", hora_actual);
+	string_append_with_format(&linea_inicial, "%s \n", hora_actual_sin_mili);
 	txt_write_in_file(dump, linea_inicial);
 }
 
@@ -1085,23 +1089,6 @@ char* crear_linea_a_agregar_vacia(int inicio, int final, int tamanio){
 	string_append_with_format(&linea_a_agregar, "Size: %db \n", tamanio);
 
 	return linea_a_agregar;
-}
-
-char* cola_referida(int numero){
-	switch(numero){
-	case 1:
-		return "NEW_POKEMON";
-	case 2:
-		return "APPEARED_POKEMON";
-	case 3:
-		return "CATCH_POKEMON";
-	case 4:
-		return "CAUGHT_POKEMON";
-	case 5:
-		return "GET_POKEMON";
-	case 6:
-		return "LOCALIZED_POKEMON";
-	}
 }
 
 char* obtener_fecha(){

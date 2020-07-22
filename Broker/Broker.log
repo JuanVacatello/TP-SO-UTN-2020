@@ -1,0 +1,9 @@
+[INFO] 13:23:40:746 BROKER/(8051:8075): Se conectó proceso de socket 5 al Broker.
+[INFO] 13:23:40:771 BROKER/(8051:8075): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 13:23:40:774 BROKER/(8051:8076): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 13:24:39:291 BROKER/(8128:8136): Se conectó proceso de socket 5 al Broker.
+[INFO] 13:24:39:307 BROKER/(8128:8136): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 13:24:39:313 BROKER/(8128:8137): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 13:25:34:641 BROKER/(8189:8199): Se conectó proceso de socket 5 al Broker.
+[INFO] 13:25:34:656 BROKER/(8189:8199): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 13:25:46:932 BROKER/(8189:8200): Se almacenó un mensaje en la posición 0 de la memoria principal.
