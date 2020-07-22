@@ -604,7 +604,9 @@ void recibir_new_pokemon(int socket_cliente)
 	memcpy(bloque_a_agregar_en_memoria + desplazamiento, &cantidad, sizeof(uint32_t));
 
 	t_mensaje_guardado* mensaje_nuevo;
-	mensaje_nuevo = guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, buffer_sin_barra_n);
+	mensaje_nuevo = guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, buffer_sin_barra_n, 1);
+
+	// ENVIAR ID
 
 	// Prepararacion y envio de mensaje a suscriptores ---> Una vez que chequeo que se manda, hacerlo con todos
 
@@ -639,7 +641,7 @@ void recibir_new_pokemon(int socket_cliente)
 
 	// Guardo información del mensaje
 
-	guardar_mensaje_en_cola(1, mensajes_de_cola_new_pokemon, mensaje_nuevo, tamanio_buffer, NULL, pokemon, suscriptores_new_pokemon);
+	guardar_mensaje_en_cola(mensajes_de_cola_new_pokemon, mensaje_nuevo, tamanio_buffer, NULL, pokemon, suscriptores_new_pokemon);
 
 	free(bloque_a_agregar_en_memoria);
 	free(paquete);
@@ -685,7 +687,7 @@ void recibir_appeared_pokemon(int socket_cliente){
 	desplazamiento += sizeof(uint32_t);
 
 	t_mensaje_guardado* mensaje_nuevo;
-	mensaje_nuevo = guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, tamanio_buffer_sin_barra_n_ni_id);
+	mensaje_nuevo = guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, tamanio_buffer_sin_barra_n_ni_id, 2);
 
 	// Prepararacion y envio de mensaje a suscriptores
 
@@ -718,7 +720,7 @@ void recibir_appeared_pokemon(int socket_cliente){
 
 	int tamanio_buffer_sin_id = tamanio_buffer_sin_barra_n_ni_id + 1;
 
-	guardar_mensaje_en_cola(2, mensajes_de_cola_appeared_pokemon, mensaje_nuevo, tamanio_buffer_sin_id, NULL, pokemon, suscriptores_appeared_pokemon);
+	guardar_mensaje_en_cola(mensajes_de_cola_appeared_pokemon, mensaje_nuevo, tamanio_buffer_sin_id, NULL, pokemon, suscriptores_appeared_pokemon);
 
 	free(bloque_a_agregar_en_memoria);
 }
@@ -758,7 +760,7 @@ void recibir_catch_pokemon(int socket_cliente){
 	memcpy(bloque_a_agregar_en_memoria + desplazamiento, &posY, sizeof(uint32_t));
 
 	t_mensaje_guardado* mensaje_nuevo;
-	mensaje_nuevo = guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, buffer_sin_barra_n);
+	mensaje_nuevo = guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, buffer_sin_barra_n, 3);
 
 	// Prepararacion y envio de mensaje a suscriptores ---> Una vez que chequeo que se manda, hacerlo con todos
 
@@ -789,7 +791,7 @@ void recibir_catch_pokemon(int socket_cliente){
 
 	// Guardo información del mensaje
 
-	guardar_mensaje_en_cola(3, mensajes_de_cola_catch_pokemon, mensaje_nuevo, tamanio_buffer, NULL, pokemon, suscriptores_catch_pokemon);
+	guardar_mensaje_en_cola(mensajes_de_cola_catch_pokemon, mensaje_nuevo, tamanio_buffer, NULL, pokemon, suscriptores_catch_pokemon);
 
 	free(bloque_a_agregar_en_memoria);
 }
@@ -816,7 +818,7 @@ void recibir_caught_pokemon(int socket_cliente){
 	desplazamiento += sizeof(uint32_t);
 
 	t_mensaje_guardado* mensaje_nuevo;
-	mensaje_nuevo = guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, tamanio_buffer_sin_id_mensaje);
+	mensaje_nuevo = guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, tamanio_buffer_sin_id_mensaje, 4);
 
 	// Prepararacion y envio de mensaje a suscriptores
 
@@ -834,7 +836,7 @@ void recibir_caught_pokemon(int socket_cliente){
 
 	// Guardo información del mensaje
 
-	guardar_mensaje_en_cola(4, mensajes_de_cola_caught_pokemon, mensaje_nuevo, tamanio_buffer, id_mensaje_correlativo, NULL, suscriptores_caught_pokemon);
+	guardar_mensaje_en_cola(mensajes_de_cola_caught_pokemon, mensaje_nuevo, tamanio_buffer, id_mensaje_correlativo, NULL, suscriptores_caught_pokemon);
 
 	free(bloque_a_agregar_en_memoria);
 }
@@ -862,7 +864,7 @@ void recibir_get_pokemon(int socket_cliente){
 	memcpy(bloque_a_agregar_en_memoria + desplazamiento, pokemon, caracteresPokemon-1);
 
 	t_mensaje_guardado* mensaje_nuevo;
-	mensaje_nuevo = guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, buffer_sin_barra_n);
+	mensaje_nuevo = guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, buffer_sin_barra_n, 5);
 
 	// Prepararacion y envio de mensaje a suscriptores
 
@@ -885,7 +887,7 @@ void recibir_get_pokemon(int socket_cliente){
 
 	// Guardo información del mensaje
 
-	guardar_mensaje_en_cola(5, mensajes_de_cola_get_pokemon, mensaje_nuevo, tamanio_buffer, NULL, pokemon, suscriptores_get_pokemon);
+	guardar_mensaje_en_cola(mensajes_de_cola_get_pokemon, mensaje_nuevo, tamanio_buffer, NULL, pokemon, suscriptores_get_pokemon);
 
 	free(bloque_a_agregar_en_memoria);
 }
@@ -941,7 +943,7 @@ void recibir_localized_pokemon(int socket_cliente){
 	memcpy(bloque_a_agregar_en_memoria + desplazamiento, posxposy, tam_posxposy);
 
 	t_mensaje_guardado* mensaje_nuevo;
-	mensaje_nuevo = guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, buffer_sin_barra_n);
+	mensaje_nuevo = guardar_mensaje_en_memoria(bloque_a_agregar_en_memoria, buffer_sin_barra_n, 6);
 
 	// Prepararacion y envio de mensaje a suscriptores ---> Una vez que chequeo que se manda, hacerlo con todos
 
@@ -973,7 +975,7 @@ void recibir_localized_pokemon(int socket_cliente){
 
 	// Guardo información del mensaje
 
-	guardar_mensaje_en_cola(6, mensajes_de_cola_localized_pokemon, mensaje_nuevo, tamanio_buffer, NULL, pokemon, suscriptores_localized_pokemon);
+	guardar_mensaje_en_cola(mensajes_de_cola_localized_pokemon, mensaje_nuevo, tamanio_buffer, NULL, pokemon, suscriptores_localized_pokemon);
 
 	free(bloque_a_agregar_en_memoria);
 	free(posxposy);
@@ -981,19 +983,14 @@ void recibir_localized_pokemon(int socket_cliente){
 	free(paquete->buffer);
 }
 
-void guardar_mensaje_en_cola(op_code cod_op, t_list* lista_mensajes, t_mensaje_guardado* mensaje_en_memoria, uint32_t tamanio_buffer, uint32_t id_mensaje_correlativo, char* pokemon, t_list* lista_de_suscriptores){
+void guardar_mensaje_en_cola(t_list* lista_mensajes, t_mensaje_guardado* mensaje_en_memoria, uint32_t tamanio_buffer, uint32_t id_mensaje_correlativo, char* pokemon, t_list* lista_de_suscriptores){
 
 	t_mensaje_en_cola* nuevo_mensaje = malloc(sizeof(t_mensaje_en_cola));
-	nuevo_mensaje->ubicacion_mensaje->cola = cod_op;
-	nuevo_mensaje->ubicacion_mensaje->id = 1; // tengo q ver como hago esto
-	//nuevo_mensaje->codigo_operacion = cod_op;
-	//nuevo_mensaje->identificador = 1;
 	nuevo_mensaje->suscriptores_ack = lista_de_suscriptores;
 	nuevo_mensaje->tamanio_buffer = tamanio_buffer;
 	nuevo_mensaje->ubicacion_mensaje = mensaje_en_memoria;
 	nuevo_mensaje->id_mensaje_correlativo = id_mensaje_correlativo;
 	nuevo_mensaje->pokemon = pokemon;
-
 
 	list_add(lista_mensajes, nuevo_mensaje);
 	//free?

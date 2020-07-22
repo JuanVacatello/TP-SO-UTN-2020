@@ -1,6 +1,6 @@
-#include "memoria.h"
+ #include "memoria.h"
 
-t_mensaje_guardado* guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar){
+t_mensaje_guardado* guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar, op_code cola){
 
 	t_mensaje_guardado* mensaje_nuevo;
 	char* esquema_de_administracion = obtener_algoritmo_memoria();
@@ -20,9 +20,15 @@ t_mensaje_guardado* guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria
 	}
 
 	aplicar_timestamp(mensaje_nuevo);
+	mensaje_nuevo->cola = cola;
+	mensaje_id ++;
+	mensaje_nuevo->id = mensaje_id;
+
 	list_add(elementos_en_memoria, mensaje_nuevo);
 
 	log_almacenar_mensaje(mensaje_nuevo->byte_comienzo_ocupado);
+
+	actualizar_dump_cache();
 
 //	signal(SIGUSR1, handler); // Por ahora lo dejo aca
 
@@ -901,10 +907,10 @@ void llenar_el_dump(FILE* dump){
 	int contador_de_particiones = 1;
 	int memoria_leida = 0;
 
-	t_list* lista_ordenada = list_duplicate(elementos_en_memoria);
+	t_list* lista_ordenada = list_duplicate(elementos_en_memoria); // NO me ordena la lista :(((((((
 	list_sort(lista_ordenada, comparar_inicios_mensajes);
 
-	t_mensaje_guardado* mensaje_a_leer = list_get(elementos_en_memoria, 0);
+	t_mensaje_guardado* mensaje_a_leer = list_get(lista_ordenada, 0);
 	t_mensaje_guardado* siguiente_mensaje;
 
 	if(mensaje_a_leer->byte_comienzo_ocupado != 0){ // Entonces el principio de la memoria está vacío
@@ -912,31 +918,34 @@ void llenar_el_dump(FILE* dump){
 		contador_de_particiones++;
 	}
 
-	char* linea_a_agregar;
 	int inicio, tamanio, final, lru, id;
 	op_code cola;
 
 	for(int i=0; i<list_size(lista_ordenada); i++){
 
-		mensaje_a_leer = list_get(elementos_en_memoria, i);
+		char* linea_final = string_new();
+		char* linea_a_agregar;
 
-		string_append(&linea_a_agregar, "Particion ");
-		string_append_with_format(&linea_a_agregar, "%d: ", contador_de_particiones);
+		mensaje_a_leer = list_get(lista_ordenada, i);
+
+		string_append(&linea_final, "Particion ");
+		string_append_with_format(&linea_final, "%d: ", contador_de_particiones);
 
 		inicio = mensaje_a_leer->byte_comienzo_ocupado;
 		tamanio = mensaje_a_leer->tamanio_ocupado;
 		final = inicio + tamanio - 1;
 		lru = mensaje_a_leer->ultima_referencia;
 		cola = mensaje_a_leer->cola;
-		id = mensaje_a_leer->cola;
+		id = mensaje_a_leer->id;
 
 		linea_a_agregar = crear_linea_a_agregar_ocupada(inicio, final, tamanio, lru, cola, id);
-		txt_write_in_file(dump, linea_a_agregar);
+		string_append(&linea_final, linea_a_agregar);
+		txt_write_in_file(dump, linea_final);
 		contador_de_particiones++;
+		memoria_leida += tamanio;
 
 		if((i+1) < list_size(lista_ordenada)){
-
-			siguiente_mensaje = list_get(elementos_en_memoria, (i+1));
+			siguiente_mensaje = list_get(lista_ordenada, (i+1));
 			if(final != (siguiente_mensaje->byte_comienzo_ocupado - 1)){
 				memoria_leida += si_el_anterior_esta_vacio(lista_ordenada, dump, i, contador_de_particiones);
 				contador_de_particiones++;
@@ -945,25 +954,36 @@ void llenar_el_dump(FILE* dump){
 	}
 
 	if(memoria_leida < tamanio_de_memoria){ // Entonces el final de la memoria está vacío
+
+		char* linea_final = string_new();
+		char* linea_a_agregar;
+		string_append(&linea_final, "Particion ");
+		string_append_with_format(&linea_final, "%d: ", contador_de_particiones);
+
 		int tamanio_restante = tamanio_de_memoria - memoria_leida;
-		crear_linea_a_agregar_vacia((final+1), (tamanio_de_memoria-1), tamanio_restante);
+		linea_a_agregar = crear_linea_a_agregar_vacia((final+1), (tamanio_de_memoria-1), tamanio_restante);
+		string_append(&linea_final, linea_a_agregar);
+		txt_write_in_file(dump, linea_final);
+
 	}
 
-	char* guiones = string_repeat('-', 30);
+	char* guiones = string_repeat('-', 100);
 	txt_write_in_file(dump, guiones);
 
 }
 
 void llenar_inicio_dump(FILE* dump){
 
-	char* guiones = string_repeat('-', 30);
+	char* guiones = string_repeat('-', 50);
 	char* linea_inicial = string_new();
 	string_append_with_format(&linea_inicial, "%s \n", guiones);
 	txt_write_in_file(dump, guiones);
 
 	char* hora_actual = temporal_get_string_time();
 	string_append(&linea_inicial, "Dump: ");
-	string_append_with_format(&linea_inicial, "%s \n", hora_actual); // FALTA LA FECHA
+	char* fecha_actual = obtener_fecha();
+	string_append_with_format(&linea_inicial, "%s ", fecha_actual);
+	string_append_with_format(&linea_inicial, "%s \n", hora_actual);
 	txt_write_in_file(dump, linea_inicial);
 }
 
@@ -988,7 +1008,7 @@ int si_el_anterior_esta_vacio(t_list* lista_ordenada, FILE* dump, int index, int
 		txt_write_in_file(dump, linea_final);
 
 	} else {
-		t_mensaje_guardado* siguiente_mensaje = list_get(elementos_en_memoria, (index+1));
+		t_mensaje_guardado* siguiente_mensaje = list_get(lista_ordenada, (index+1));
 		int final_a_leer = mensaje_a_leer->byte_comienzo_ocupado + mensaje_a_leer->tamanio_ocupado - 1;
 
 		string_append(&linea_final, "Particion ");
@@ -1009,17 +1029,45 @@ int si_el_anterior_esta_vacio(t_list* lista_ordenada, FILE* dump, int index, int
 char* crear_linea_a_agregar_ocupada(int inicio, int final, int tamanio, int lru, int cola, int id){
 
 	char* linea_a_agregar = string_new();
+	char* cola_en_string = cola_referida(cola);
 
-	int direccion_de_inicio = &inicio;
-	int direccion_de_final = &final;
+	int direccion_de_inicio = memoria_principal + inicio;
+	int direccion_de_final = memoria_principal + final;
 
 	string_append_with_format(&linea_a_agregar, "%p - ", direccion_de_inicio);
 	string_append_with_format(&linea_a_agregar, "%p.     ", direccion_de_final);
 	string_append(&linea_a_agregar, "[X]     ");
-	string_append_with_format(&linea_a_agregar, "Size: %db     ", tamanio);
+	if(tamanio <= 9){
+		string_append_with_format(&linea_a_agregar, "Size: %db     ", tamanio);
+	}
+	if(tamanio > 9 && tamanio <= 99){
+		string_append_with_format(&linea_a_agregar, "Size: %db    ", tamanio);
+	}
+	if(tamanio > 99 && tamanio <= 999){
+		string_append_with_format(&linea_a_agregar, "Size: %db   ", tamanio);
+	}
+	if(tamanio > 999){
+		string_append_with_format(&linea_a_agregar, "Size: %db  ", tamanio);
+	}
 	string_append_with_format(&linea_a_agregar, "LRU: %d   ", lru);
-	string_append_with_format(&linea_a_agregar, "COLA: %d   ", cola);
-	string_append_with_format(&linea_a_agregar, "COLA: %d \n", id);
+
+	if(strlen(cola_en_string) == 17){
+		string_append_with_format(&linea_a_agregar, "COLA: %s  ", cola_en_string);
+	}
+	if(strlen(cola_en_string) == 16){
+		string_append_with_format(&linea_a_agregar, "COLA: %s   ", cola_en_string);
+	}
+	if(strlen(cola_en_string) == 14){
+		string_append_with_format(&linea_a_agregar, "COLA: %s     ", cola_en_string);
+	}
+	if(strlen(cola_en_string) == 13){
+		string_append_with_format(&linea_a_agregar, "COLA: %s      ", cola_en_string);
+	}
+	if(strlen(cola_en_string) == 11){
+		string_append_with_format(&linea_a_agregar, "COLA: %s        ", cola_en_string);
+	}
+
+	string_append_with_format(&linea_a_agregar, "ID: %d \n", id);
 
 	return linea_a_agregar;
 }
@@ -1028,13 +1076,94 @@ char* crear_linea_a_agregar_vacia(int inicio, int final, int tamanio){
 
 	char* linea_a_agregar = string_new();
 
-	int direccion_de_inicio = &inicio;
-	int direccion_de_final = &final;
+	int direccion_de_inicio = memoria_principal + inicio;
+	int direccion_de_final = memoria_principal + final;
 
 	string_append_with_format(&linea_a_agregar, "%p - ", direccion_de_inicio);
 	string_append_with_format(&linea_a_agregar, "%p.     ", direccion_de_final);
 	string_append(&linea_a_agregar, "[L]     ");
-	string_append_with_format(&linea_a_agregar, "Size: %db     ", tamanio);
+	string_append_with_format(&linea_a_agregar, "Size: %db \n", tamanio);
 
 	return linea_a_agregar;
+}
+
+char* cola_referida(int numero){
+	switch(numero){
+	case 1:
+		return "NEW_POKEMON";
+	case 2:
+		return "APPEARED_POKEMON";
+	case 3:
+		return "CATCH_POKEMON";
+	case 4:
+		return "CAUGHT_POKEMON";
+	case 5:
+		return "GET_POKEMON";
+	case 6:
+		return "LOCALIZED_POKEMON";
+	}
+}
+
+char* obtener_fecha(){
+	time_t fecha = time(NULL);
+	struct tm *tm = localtime(&fecha);
+	char s[64];
+	assert(strftime(s, sizeof(s), "%c", tm));
+
+	printf("%s\n", s);
+
+	char* anio = string_substring_from(s, 20);
+
+	char* dia = string_substring_from(s, 8);
+	char* dia_final = string_substring_until(dia, 2);
+
+	char* mes = string_substring_from(s, 4);
+	char* mes_final = string_substring_until(mes, 3);
+
+	char* fecha_final = string_new();
+	string_append(&fecha_final, dia_final);
+	string_append(&fecha_final, "/");
+	char* mes_en_numero;
+	if(!(strcmp(mes_final, "Jan"))){
+		mes_en_numero = "01";
+	}
+	if(!(strcmp(mes_final, "Feb"))){
+		mes_en_numero = "02";
+	}
+	if(!(strcmp(mes_final, "Mar"))){
+		mes_en_numero = "03";
+	}
+	if(!(strcmp(mes_final, "Apr"))){
+		mes_en_numero = "04";
+	}
+	if(!(strcmp(mes_final, "May"))){
+		mes_en_numero = "05";
+	}
+	if(!(strcmp(mes_final, "Jun"))){
+		mes_en_numero = "06";
+	}
+	if(!(strcmp(mes_final, "Jul"))){
+		mes_en_numero = "07";
+	}
+	if(!(strcmp(mes_final, "Aug"))){
+		mes_en_numero = "08";
+	}
+	if(!(strcmp(mes_final, "Sep"))){
+		mes_en_numero = "09";
+	}
+	if(!(strcmp(mes_final, "Oct"))){
+		mes_en_numero = "10";
+	}
+	if(!(strcmp(mes_final, "Nov"))){
+		mes_en_numero = "10";
+	}
+	if(!(strcmp(mes_final, "Dec"))){
+		mes_en_numero = "12";
+	}
+
+	string_append(&fecha_final, mes_en_numero);
+	string_append(&fecha_final, "/");
+	string_append(&fecha_final, anio);
+
+	return fecha_final;
 }

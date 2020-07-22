@@ -1,0 +1,8 @@
+---------------------------------------------------------------------------------------------------- 
+Dump: 21/07/2020 23:03:06:737 
+Particion 1: 0x837d5a0 - 0x837d5a3.     [X]     Size: 4b     LRU: 1   COLA: CAUGHT_POKEMON     ID: 1 
+Particion 2: 0x837d5a4 - 0x837d5a7.     [X]     Size: 4b     LRU: 2   COLA: CAUGHT_POKEMON     ID: 2 
+Particion 3: 0x837d5a8 - 0x837d5af.     [L]     Size: 8b 
+Particion 4: 0x837d5b0 - 0x837d5bf.     [X]     Size: 16b    LRU: 4   COLA: CATCH_POKEMON      ID: 4 
+Particion 5: 0x837d5c0 - 0x837d5df.     [X]     Size: 32b    LRU: 3   COLA: NEW_POKEMON        ID: 3 
+----------------------------------------------------------------------------------------------------

@@ -36,8 +36,7 @@ typedef struct t_paquete
 } t_paquete;
 
 typedef struct {
-	//op_code codigo_operacion;
-	//uint32_t identificador;
+
 	uint32_t id_mensaje_correlativo;
 	t_list* suscriptores_ack;
 	uint32_t tamanio_buffer;
@@ -67,7 +66,6 @@ t_list* mensajes_de_cola_get_pokemon;
 t_list* mensajes_de_cola_localized_pokemon;
 
 t_buffer* buffer;
-uint32_t mensaje_id;
 pthread_t thread;
 sem_t MUTEX_MENSAJE;
 
@@ -99,7 +97,7 @@ void recibir_caught_pokemon(int socket_cliente);
 void recibir_get_pokemon(int socket_cliente);
 void recibir_localized_pokemon(int socket_cliente);
 void reenviar_mensaje_a_suscriptores(void* a_enviar, int tamanio_paquete, t_list* suscriptores);
-void guardar_mensaje_en_cola(op_code cod_op, t_list* lista_mensajes, t_mensaje_guardado* mensaje_en_memoria, uint32_t tamanio_buffer, uint32_t id_mensaje_correlativo, char* pokemon, t_list* lista_de_suscriptores);
+void guardar_mensaje_en_cola(t_list* lista_mensajes, t_mensaje_guardado* mensaje_en_memoria, uint32_t tamanio_buffer, uint32_t id_mensaje_correlativo, char* pokemon, t_list* lista_de_suscriptores);
 void reenviar_mensaje_a_suscriptores(void* a_enviar, int tamanio_paquete, t_list* suscriptores);
 
 void recibir_ack(int socket_cliente);

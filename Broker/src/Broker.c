@@ -1,4 +1,7 @@
 #include "Broker.h"
+#include<time.h>
+#include<errno.h>
+#include<assert.h>
 
 int main(void)
 {
@@ -22,6 +25,7 @@ void inicializacion_de_variables_globales(void){
 
 	contador_fallos = 0;
 	timestamp = 0;
+	mensaje_id = 0;
 
 	char* esquema_de_administracion = obtener_algoritmo_memoria();
 
