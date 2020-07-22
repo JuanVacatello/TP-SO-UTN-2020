@@ -167,7 +167,7 @@ void suscribirse_a_cola(proceso* suscriptor, int socket, uint32_t tamanio_buffer
 		case 6:
 			list_add(suscriptores_localized_pokemon, suscriptor);
 			log_suscripcion_nueva(suscriptor->socket_cliente, suscriptor->id, 6);
-			//enviar_mensajes_al_nuevo_suscriptor(mensajes_de_cola_localized_pokemon, suscriptor->socket_cliente);
+			enviar_mensajes_al_nuevo_suscriptor_LP(mensajes_de_cola_localized_pokemon, suscriptor->socket_cliente);
 			break;
 	}
 
@@ -331,12 +331,16 @@ void enviar_mensajes_al_nuevo_suscriptor_AP(t_list* mensajes_de_dicha_cola, int 
 		t_paquete* paquete = malloc(sizeof(t_paquete));
 		paquete->codigo_operacion = mensaje_a_enviar->ubicacion_mensaje->cola;
 		paquete->buffer = malloc(sizeof(t_buffer));
-		paquete->buffer->size = mensaje_a_enviar->tamanio_buffer;
+		paquete->buffer->size = mensaje_a_enviar->tamanio_buffer + sizeof(uint32_t);
 
 		void* stream = malloc(paquete->buffer->size);
 		int offset_stream = 0;
 		int inicio_mensaje = mensaje_a_enviar->ubicacion_mensaje->byte_comienzo_ocupado;
 		int offset_memoria = inicio_mensaje;
+
+		uint32_t id_mensaje = mensaje_a_enviar->ubicacion_mensaje->id;
+		memcpy(stream + offset_stream, &id_mensaje, sizeof(uint32_t));
+		offset_stream += sizeof(uint32_t);
 
 		uint32_t caracteres;
 		memcpy(&caracteres, memoria_principal + offset_memoria, sizeof(uint32_t));
@@ -467,12 +471,16 @@ void enviar_mensajes_al_nuevo_suscriptor_CAUP(t_list* mensajes_de_dicha_cola, in
 		t_paquete* paquete = malloc(sizeof(t_paquete));
 		paquete->codigo_operacion = mensaje_a_enviar->ubicacion_mensaje->cola;
 		paquete->buffer = malloc(sizeof(t_buffer));
-		paquete->buffer->size = mensaje_a_enviar->tamanio_buffer;
+		paquete->buffer->size = mensaje_a_enviar->tamanio_buffer + sizeof(uint32_t);
 
 		void* stream = malloc(paquete->buffer->size);
 		int inicio_mensaje = mensaje_a_enviar->ubicacion_mensaje->byte_comienzo_ocupado;
 		int tamanio_mensaje = mensaje_a_enviar->ubicacion_mensaje->tamanio_ocupado;
 		int desplazamiento = 0;
+
+		uint32_t id_mensaje = mensaje_a_enviar->ubicacion_mensaje->id;
+		memcpy(stream + desplazamiento, &id_mensaje, sizeof(uint32_t));
+		desplazamiento += sizeof(uint32_t);
 
 		uint32_t id_correlativo = mensaje_a_enviar->id_mensaje_correlativo;
 		memcpy(stream + desplazamiento, &id_correlativo, sizeof(uint32_t));
@@ -570,12 +578,16 @@ void enviar_mensajes_al_nuevo_suscriptor_LP(t_list* mensajes_de_dicha_cola, int 
 		t_paquete* paquete = malloc(sizeof(t_paquete));
 		paquete->codigo_operacion = mensaje_a_enviar->ubicacion_mensaje->cola;
 		paquete->buffer = malloc(sizeof(t_buffer));
-		paquete->buffer->size = mensaje_a_enviar->tamanio_buffer;
+		paquete->buffer->size = mensaje_a_enviar->tamanio_buffer + sizeof(uint32_t);
 
 		void* stream = malloc(paquete->buffer->size);
 		int offset_stream = 0;
 		int inicio_mensaje = mensaje_a_enviar->ubicacion_mensaje->byte_comienzo_ocupado;
 		int offset_memoria = inicio_mensaje;
+
+		uint32_t id_del_mensaje = mensaje_a_enviar->ubicacion_mensaje->id;
+		memcpy(stream + offset_stream, &id_del_mensaje, sizeof(uint32_t));
+		offset_stream += sizeof(uint32_t);
 
 		uint32_t id_mensaje_correlativo = mensaje_a_enviar->id_mensaje_correlativo;
 		memcpy(stream + offset_stream, &id_mensaje_correlativo, sizeof(uint32_t));
@@ -783,10 +795,14 @@ void recibir_appeared_pokemon(int socket_cliente){
 	t_paquete* paquete = malloc(sizeof(t_paquete));
 	paquete->codigo_operacion = 2;
 	paquete->buffer = malloc(sizeof(t_buffer));
-	paquete->buffer->size = tamanio_buffer - sizeof(uint32_t);
+	paquete->buffer->size = tamanio_buffer;
 
 	void* bloque_con_barra_n = malloc(paquete->buffer->size);
 	int desplazamiento_con_barra_n = 0;
+
+	uint32_t id_del_mensaje = mensaje_nuevo->id;
+	memcpy(bloque_con_barra_n + desplazamiento_con_barra_n, &id_del_mensaje, sizeof(uint32_t));
+	desplazamiento_con_barra_n += sizeof(uint32_t);
 
 	memcpy(bloque_con_barra_n + desplazamiento_con_barra_n, &caracteresPokemon, sizeof(uint32_t));
 	desplazamiento_con_barra_n += sizeof(uint32_t);
@@ -923,13 +939,24 @@ void recibir_caught_pokemon(int socket_cliente){
 
 	// Prepararacion y envio de mensaje a suscriptores
 
-	memcpy(bloque_a_agregar_en_memoria + desplazamiento, &id_mensaje_correlativo, sizeof(uint32_t));
-
 	t_paquete* paquete = malloc(sizeof(t_paquete));
 	paquete->codigo_operacion = 4;
 	paquete->buffer = malloc(sizeof(t_buffer));
-	paquete->buffer->size = tamanio_buffer;
-	paquete->buffer->stream = bloque_a_agregar_en_memoria;
+	paquete->buffer->size = tamanio_buffer + sizeof(uint32_t);
+
+	void* bloque_con_id = malloc(paquete->buffer->size);
+	int desplazamiento_con_id = 0;
+
+	uint32_t id_del_mensaje = mensaje_nuevo->id;
+	memcpy(bloque_con_id + desplazamiento_con_id, &id_del_mensaje, sizeof(uint32_t));
+	desplazamiento_con_id += sizeof(uint32_t);
+
+	memcpy(bloque_con_id + desplazamiento_con_id, &id_mensaje_correlativo, sizeof(uint32_t));
+	desplazamiento_con_id += sizeof(uint32_t);
+
+	memcpy(bloque_con_id + desplazamiento_con_id, bloque_a_agregar_en_memoria, tamanio_buffer_sin_id_mensaje);
+
+	paquete->buffer->stream = bloque_con_id;
 
 	int tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
 	void* a_enviar = serializar_paquete(paquete, tamanio_paquete);
@@ -1066,15 +1093,19 @@ void recibir_localized_pokemon(int socket_cliente){
 	t_paquete* paquete = malloc(sizeof(t_paquete));
 	paquete->codigo_operacion = 1;
 	paquete->buffer = malloc(sizeof(t_buffer));
-	paquete->buffer->size = tamanio_buffer;
+	paquete->buffer->size = tamanio_buffer + sizeof(uint32_t);
 
-	void* bloque_con_barra_n = malloc(tamanio_buffer);
+	void* bloque_con_barra_n = malloc(paquete->buffer->size);
 	int desplazamiento_con_barra_n = 0;
 
-	memcpy(bloque_con_barra_n + desplazamiento_con_barra_n, &caracteresPokemon, sizeof(uint32_t));
+	uint32_t id_del_mensaje = mensaje_nuevo->id;
+	memcpy(bloque_con_barra_n + desplazamiento_con_barra_n, &id_del_mensaje, sizeof(uint32_t));
 	desplazamiento_con_barra_n += sizeof(uint32_t);
 
 	memcpy(bloque_con_barra_n + desplazamiento_con_barra_n, &id_mensaje_correlativo, sizeof(uint32_t));
+	desplazamiento_con_barra_n += sizeof(uint32_t);
+
+	memcpy(bloque_con_barra_n + desplazamiento_con_barra_n, &caracteresPokemon, sizeof(uint32_t));
 	desplazamiento_con_barra_n += sizeof(uint32_t);
 
 	memcpy(bloque_con_barra_n + desplazamiento_con_barra_n, pokemon, caracteresPokemon);
@@ -1140,56 +1171,19 @@ void recibir_ack(int socket_cliente){
 	uint32_t tamanio_buffer;
 	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
-	char* ack = malloc(tamanio_buffer);
-	recv(socket_cliente, ack, tamanio_buffer, MSG_WAITALL);
+	uint32_t caracteres_mensaje;
+	recv(socket_cliente, &caracteres_mensaje, sizeof(uint32_t), MSG_WAITALL);
+
+	char* ack = malloc(caracteres_mensaje);
+	recv(socket_cliente, ack, caracteres_mensaje, MSG_WAITALL);
 
 	uint32_t mensaje_id;
-	// Habría que recibir el mensaje id
+	recv(socket_cliente, &mensaje_id, sizeof(uint32_t), MSG_WAITALL);
 
 	log_confirmacion(socket_cliente, mensaje_id);
 
 	// ahora hay que buscar a que mensaje de que cola pertenece ese mensaje id, y eliminar al suscriptor de la lista de ack
 
-/*
-	op_code cod_op;
-	recv(socket_cliente, &cod_op, sizeof(op_code), MSG_WAITALL);
-
-	uint32_t id_mensaje;
-	recv(socket_cliente, &id_mensaje, sizeof(uint32_t), MSG_WAITALL);
-*/
-	/*
-	t_list* cola_de_mensajes;
-
-	switch(cod_op){
-		case 1:
-			cola_de_mensajes = mensajes_de_cola_new_pokemon;
-			break;
-		case 2:
-			cola_de_mensajes = mensajes_de_cola_appeared_pokemon;
-			break;
-		case 3:
-			cola_de_mensajes = mensajes_de_cola_catch_pokemon;
-			break;
-		case 4:
-			cola_de_mensajes = mensajes_de_cola_caught_pokemon;
-			break;
-		case 5:
-			cola_de_mensajes = mensajes_de_cola_get_pokemon;
-			break;
-		case 6:
-			cola_de_mensajes = mensajes_de_cola_localized_pokemon;
-			break;
-		case 7:
-			break;
-		}
-
-	int tamanio_lista = list_size(cola_de_mensajes);
-	for(int i = 0; i < tamanio_lista; i++){
-		if(list_get(cola_de_mensajes, i)->identificador == id_mensaje){
-			list_add(cola_de_mensajes->suscriptores_ack, socket_cliente);
-		}
-	}
-*/
 }
 
 // AUXILIAR

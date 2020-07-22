@@ -121,7 +121,5 @@ pthread_t hilo_ack;
 
 pthread_mutex_t mutex_suscripcion;
 
-
-
 #endif
 

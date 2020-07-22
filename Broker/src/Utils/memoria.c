@@ -26,7 +26,7 @@ t_mensaje_guardado* guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria
 
 	log_almacenar_mensaje(mensaje_nuevo->byte_comienzo_ocupado);
 
-	actualizar_dump_cache();
+	//actualizar_dump_cache();
 
 	//signal(SIGUSR1, handler); // Por ahora lo dejo aca
 
@@ -885,6 +885,7 @@ t_particion_buddy* crear_nueva_particion(int comienzo, int tamanio, int final){
 // DUMP
 
 void handler(int senial){
+	signal(senial, handler);
 	if(senial == SIGUSR1){
 		actualizar_dump_cache();
 		log_ejecucion_dump();
@@ -1096,8 +1097,6 @@ char* obtener_fecha(){
 	struct tm *tm = localtime(&fecha);
 	char s[64];
 	assert(strftime(s, sizeof(s), "%c", tm));
-
-	printf("%s\n", s);
 
 	char* anio = string_substring_from(s, 20);
 

@@ -1,8 +1,0 @@
----------------------------------------------------------------------------------------------------- 
-Dump: 22/07/2020 13:20:17 
-Particion 1: 0x92eb5a0 - 0x92eb5a3.     [X]     Size: 4b     LRU: 4   COLA: CAUGHT_POKEMON     ID: 1 
-Particion 2: 0x92eb5a4 - 0x92eb5a7.     [X]     Size: 4b     LRU: 5   COLA: CAUGHT_POKEMON     ID: 2 
-Particion 3: 0x92eb5a8 - 0x92eb5ab.     [X]     Size: 4b     LRU: 6   COLA: CAUGHT_POKEMON     ID: 3 
-Particion 4: 0x92eb5ac - 0x92eb5af.     [X]     Size: 4b     LRU: 7   COLA: CAUGHT_POKEMON     ID: 4 
-Particion 5: 0x92eb5b0 - 0x92eb5df.     [L]     Size: 48b 
-----------------------------------------------------------------------------------------------------

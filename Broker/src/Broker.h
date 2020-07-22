@@ -12,6 +12,9 @@
 #include "Utils/memoria.h"
 #include<pthread.h>
 
+pthread_t hilo_servidor;
+pthread_t hilo_ejecucion_dump;
+
 void terminar_programa(void);
 void inicializacion_de_variables_globales(void);
 
