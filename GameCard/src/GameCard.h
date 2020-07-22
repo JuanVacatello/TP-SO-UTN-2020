@@ -17,6 +17,7 @@
 #include<string.h>
 #include<fcntl.h>
 #include<stdlib.h>
+#include<pthread.h>
 
 #include"Utils/configGameCard.h"
 #include"Utils/metadata.h"

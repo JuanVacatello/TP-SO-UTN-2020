@@ -20,7 +20,7 @@ void crear_bitmap(char* path_bitmap){
 		//	log_error(logger,"No se pudo abrir el archivo bitmap.bin");
 			close(bitmap_fd);
 
-			free(path_bitmap); //Chequear
+			free(path_bitmap);
 
 			pthread_mutex_unlock(&MUTEX_BITMAP);
 			return;
@@ -30,7 +30,7 @@ void crear_bitmap(char* path_bitmap){
 	bitarray = bitarray_create(contenido_bitmap, bloques/8 + 1 );
 
 
-	free(path_bitmap); //Chequear
+	free(path_bitmap);
 
 	for(int i = 0; i < bloques; i++){
 		if(bloque_esta_vacio(i+1)==1){
@@ -77,13 +77,13 @@ int obtener_nuevo_bloque(){
 		int bloques = obtener_cantidad_bloques();
 		int i;
 
-		for(i = 1; i <= bloques; i++){
+		for(i = 0; i < bloques; i++){
 			if(!bitarray_test_bit(bitarray,i)){ // CHEQUEAR QUE EL INDICE DE BITMAP FUNCIONE ASI CON i=1
 				bitarray_set_bit(bitarray,i);
 
 				msync(bitarray->bitarray, bitmap_fd, MS_SYNC);
 				pthread_mutex_unlock(&MUTEX_BITMAP);
-				return i;
+				return i+1;
 			}
 		}
 
@@ -91,5 +91,16 @@ int obtener_nuevo_bloque(){
 		flag_bloques_libres = 0; // 0 si no hay libres, 1 si los hay
 		pthread_mutex_unlock(&MUTEX_BITMAP);
 		return -1; // salio del for, por lo que no hay bloque libre/
+}
+
+void mostrar_contenido_bitmap(){
+	int tamanio =bitarray_get_max_bit(bitarray);
+
+	for(int i=0 ; i< tamanio ; i++){
+		if(bitarray_test_bit(bitarray, i))
+			puts("1");
+		else
+			puts("0");
+	}
 }
 

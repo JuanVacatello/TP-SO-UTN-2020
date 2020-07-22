@@ -54,7 +54,7 @@ void actualizar_valores_pokemon(char* path_metadata_pokemon,int posX,int posY,in
  	struct stat st;
  	stat(path,&st);
 
- 	int tamanio_actual = st.st_size;
+ 	__off_t tamanio_actual = st.st_size;
 
  	free(path);
 
@@ -63,12 +63,17 @@ void actualizar_valores_pokemon(char* path_metadata_pokemon,int posX,int posY,in
 
  int bloque_esta_vacio(int bloque){
 	 char* bloque_en_string = string_itoa(bloque);
-	 if(tamanio_libre_bloque(bloque_en_string) == obtener_tamanio_bloques())
-	 return 1;
-	 else
-	 return 0;
+	 int tamanio_libre = tamanio_libre_bloque(bloque_en_string);
+	 if(tamanio_libre == obtener_tamanio_bloques()){
+		 free(bloque_en_string);
+		 return 1;
 	 }
+	 else{
+	free(bloque_en_string);
+	 return 0;
 
+	 }
+ }
 
 
  int bloque_esta_lleno(char* bloque){
@@ -132,7 +137,7 @@ char* obtener_datos_en_string(t_list* lista_datos){
 	char* string_stream = string_new();
 
 	for(int i=0; i<cantidad_nodos ; i++){
-		char* aux = string_new()
+		char* aux = string_new();
 		aux =list_get(lista_datos,i);
 		string_append(&string_stream, aux);
 		free(aux);
@@ -195,10 +200,10 @@ void almacenar_datos(char *data, char* path_pokemon){
 		 int bloques_necesitados;
 
 		 if((strlen(data) % tamanio_bloques)==0){ // SI DIVISION TIENE RESTO 0, ENTRA TODO JUSTO EN X CANTIDAD DE BLOQUES
-			 bloques_necesitados = strlen(data)/obtener_tamanio_bloque();
+			 bloques_necesitados = strlen(data)/tamanio_bloques;
 		 }
 		 else{											   // SI DIVISION TIENE RESTO != 0 , HAY QUE PEDIR UN BLOQUE EXTRA PARA LO QUE SOBRA
-			 bloques_necesitados = strlen(data)/obtener_tamanio_bloque() + 1 ;
+			 bloques_necesitados = strlen(data)/tamanio_bloques + 1 ;
 	 }
 
 		while(tamanio_array(bloques) < bloques_necesitados){// SI LA CANT DE BLOQUES QUE TENGO ES MENOR A LO QUE NECESITO, TENGO QUE PEDIR MAS.
