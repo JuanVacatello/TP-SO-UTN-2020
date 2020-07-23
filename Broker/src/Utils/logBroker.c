@@ -52,7 +52,7 @@ void log_conexion(int socket_proceso){
 // 2. Suscripción de un proceso a una cola de mensajes.
 void log_suscripcion_nueva(int socket_suscriptor, int id_suscriptor, int cola_mensaje){
 	char* cola_en_string = cola_referida(cola_mensaje);
-	char* log = string_from_format("Se suscribió el proceso con socket %d y con id %d a la cola de mensajes %s.", id_suscriptor, socket_suscriptor, cola_en_string);
+	char* log = string_from_format("Se suscribió el proceso con socket %d y con id %d a la cola de mensajes %s.", socket_suscriptor, id_suscriptor, cola_en_string);
 	completar_logger(log, "BROKER", LOG_LEVEL_INFO);
 }
 

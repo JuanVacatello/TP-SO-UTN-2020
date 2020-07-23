@@ -26,9 +26,7 @@ t_mensaje_guardado* guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria
 
 	log_almacenar_mensaje(mensaje_nuevo->byte_comienzo_ocupado);
 
-	//actualizar_dump_cache();
-
-	//signal(SIGUSR1, handler); // Por ahora lo dejo aca
+	//actualizar_dump_cache(); // Por ahora lo dejo aca
 
 	return mensaje_nuevo;
 }
@@ -900,18 +898,158 @@ void actualizar_dump_cache(){
 	fclose(dump);
 
 	dump = txt_open_for_append(path);
-	llenar_el_dump(dump);
+
+	char* algoritmo_de_memoria = obtener_algoritmo_memoria();
+	if(!(strcmp(algoritmo_de_memoria, "PARTICIONES"))){
+		llenar_el_dump_para_particiones(dump);
+	}
+	if(!(strcmp(algoritmo_de_memoria, "BS"))){
+		llenar_el_dump_para_buddy_system(dump);
+	}
+
 	txt_close_file(dump);
 }
 
-void llenar_el_dump(FILE* dump){
+void llenar_el_dump_para_buddy_system(FILE* dump){
 
 	llenar_inicio_dump(dump);
 
 	int contador_de_particiones = 1;
 	int memoria_leida = 0;
 
-	t_list* lista_ordenada = list_duplicate(elementos_en_memoria); // NO me ordena la lista :(((((((
+	t_list* lista_ordenada_llenas = list_duplicate(elementos_en_memoria);
+	list_sort(lista_ordenada_llenas, comparar_inicios_mensajes);
+
+	t_list* lista_ordenada_vacias = list_duplicate(elementos_en_buddy);
+	list_sort(lista_ordenada_vacias, comparar_inicios_de_particiones);
+
+	t_mensaje_guardado* mensaje_a_leer = list_get(lista_ordenada_llenas, 0);
+	t_mensaje_guardado* siguiente_mensaje;
+
+	int index_vacia = 0;
+
+	if(mensaje_a_leer->byte_comienzo_ocupado != 0){ // Entonces el principio de la memoria está vacío
+
+		int ocupado = 0;
+		while(ocupado == 0 && index_vacia < list_size(lista_ordenada_vacias)){
+			t_particion_buddy* particion_a_leer = list_get(lista_ordenada_vacias, index_vacia);
+			int inicio = particion_a_leer->comienzo_particion;
+			int final = particion_a_leer->final_de_particion;
+			int tamanio = particion_a_leer->tam_particion;
+
+			char* linea_final = string_new();
+			char* linea_a_agregar = crear_linea_a_agregar_vacia(inicio, final, tamanio);
+
+			string_append(&linea_final, "Partición ");
+			string_append_with_format(&linea_final, "%d: ", contador_de_particiones);
+			string_append(&linea_final, linea_a_agregar);
+			txt_write_in_file(dump, linea_final);
+
+			memoria_leida += tamanio;
+			contador_de_particiones++;
+			if((final + 1) == mensaje_a_leer->byte_comienzo_ocupado){
+				ocupado = 1;
+			}
+
+			index_vacia++;
+		}
+	}
+
+	int inicio, tamanio, final, lru, id;
+	op_code cola;
+
+	for(int i=0; i<list_size(lista_ordenada_llenas); i++){
+
+		char* linea_final = string_new();
+		char* linea_a_agregar;
+
+		mensaje_a_leer = list_get(lista_ordenada_llenas, i);
+
+		string_append(&linea_final, "Partición ");
+		string_append_with_format(&linea_final, "%d: ", contador_de_particiones);
+
+		inicio = mensaje_a_leer->byte_comienzo_ocupado;
+		tamanio = mensaje_a_leer->tamanio_ocupado;
+		final = inicio + tamanio - 1;
+		lru = mensaje_a_leer->ultima_referencia;
+		cola = mensaje_a_leer->cola;
+		id = mensaje_a_leer->id;
+
+		linea_a_agregar = crear_linea_a_agregar_ocupada(inicio, final, tamanio, lru, cola, id);
+		string_append(&linea_final, linea_a_agregar);
+		txt_write_in_file(dump, linea_final);
+
+		contador_de_particiones++;
+		memoria_leida += tamanio;
+
+		if((i+1) < list_size(lista_ordenada_llenas)){
+			siguiente_mensaje = list_get(lista_ordenada_llenas, (i+1));
+			if(final != (siguiente_mensaje->byte_comienzo_ocupado - 1)){
+				int ocupado = 0;
+				while(ocupado == 0 && index_vacia < list_size(lista_ordenada_vacias)){
+					t_particion_buddy* particion_a_leer = list_get(lista_ordenada_vacias, index_vacia);
+					int inicio = particion_a_leer->comienzo_particion;
+					int final = particion_a_leer->final_de_particion;
+					int tamanio = particion_a_leer->tam_particion;
+
+					char* linea_final = string_new();
+					char* linea_a_agregar = crear_linea_a_agregar_vacia(inicio, final, tamanio);
+
+					string_append(&linea_final, "Partición ");
+					string_append_with_format(&linea_final, "%d: ", contador_de_particiones);
+					string_append(&linea_final, linea_a_agregar);
+					txt_write_in_file(dump, linea_final);
+
+					memoria_leida += tamanio;
+					contador_de_particiones++;
+					if((final + 1) == mensaje_a_leer->byte_comienzo_ocupado){
+						ocupado = 1;
+					}
+
+					index_vacia++;
+				}
+			}
+		}
+	}
+
+	if(memoria_leida < tamanio_de_memoria){ // Entonces el final de la memoria está vacío
+		int ocupado = 0;
+		while(ocupado == 0 && index_vacia < list_size(lista_ordenada_vacias)){
+			t_particion_buddy* particion_a_leer = list_get(lista_ordenada_vacias, index_vacia);
+			int inicio = particion_a_leer->comienzo_particion;
+			int final = particion_a_leer->final_de_particion;
+			int tamanio = particion_a_leer->tam_particion;
+
+			char* linea_final = string_new();
+			char* linea_a_agregar = crear_linea_a_agregar_vacia(inicio, final, tamanio);
+
+			string_append(&linea_final, "Partición ");
+			string_append_with_format(&linea_final, "%d: ", contador_de_particiones);
+			string_append(&linea_final, linea_a_agregar);
+			txt_write_in_file(dump, linea_final);
+
+			memoria_leida += tamanio;
+			contador_de_particiones++;
+			if((final + 1) == mensaje_a_leer->byte_comienzo_ocupado){
+				ocupado = 1;
+			}
+
+		index_vacia++;
+		}
+	}
+
+	char* guiones = string_repeat('-', 100);
+	txt_write_in_file(dump, guiones);
+}
+
+void llenar_el_dump_para_particiones(FILE* dump){
+
+	llenar_inicio_dump(dump);
+
+	int contador_de_particiones = 1;
+	int memoria_leida = 0;
+
+	t_list* lista_ordenada = list_duplicate(elementos_en_memoria);
 	list_sort(lista_ordenada, comparar_inicios_mensajes);
 
 	t_mensaje_guardado* mensaje_a_leer = list_get(lista_ordenada, 0);
@@ -932,7 +1070,7 @@ void llenar_el_dump(FILE* dump){
 
 		mensaje_a_leer = list_get(lista_ordenada, i);
 
-		string_append(&linea_final, "Particion ");
+		string_append(&linea_final, "Partición ");
 		string_append_with_format(&linea_final, "%d: ", contador_de_particiones);
 
 		inicio = mensaje_a_leer->byte_comienzo_ocupado;
@@ -961,7 +1099,7 @@ void llenar_el_dump(FILE* dump){
 
 		char* linea_final = string_new();
 		char* linea_a_agregar;
-		string_append(&linea_final, "Particion ");
+		string_append(&linea_final, "Partición ");
 		string_append_with_format(&linea_final, "%d: ", contador_de_particiones);
 
 		int tamanio_restante = tamanio_de_memoria - memoria_leida;
@@ -1000,8 +1138,8 @@ int si_el_anterior_esta_vacio(t_list* lista_ordenada, FILE* dump, int index, int
 	int final_vacio;
 	int inicio_vacio;
 
-	if(index == 0){
-		string_append(&linea_final, "Particion ");
+	if(index == 0 && (mensaje_a_leer->byte_comienzo_ocupado != 0)){
+		string_append(&linea_final, "Partición ");
 		string_append_with_format(&linea_final, "%d: ", contador_de_particiones);
 
 		tamanio_vacio = mensaje_a_leer->byte_comienzo_ocupado;
@@ -1016,7 +1154,7 @@ int si_el_anterior_esta_vacio(t_list* lista_ordenada, FILE* dump, int index, int
 		t_mensaje_guardado* siguiente_mensaje = list_get(lista_ordenada, (index+1));
 		int final_a_leer = mensaje_a_leer->byte_comienzo_ocupado + mensaje_a_leer->tamanio_ocupado - 1;
 
-		string_append(&linea_final, "Particion ");
+		string_append(&linea_final, "Partición ");
 		string_append_with_format(&linea_final, "%d: ", contador_de_particiones);
 
 		final_vacio = siguiente_mensaje->byte_comienzo_ocupado - 1;

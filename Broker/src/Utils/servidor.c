@@ -1017,6 +1017,8 @@ void recibir_get_pokemon(int socket_cliente){
 
 	memcpy(bloque_con_barra_n + desplazamiento_con_barra_n, pokemon, caracteresPokemon);
 
+	paquete->buffer->stream = bloque_con_barra_n;
+
 	int tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
 	void* a_enviar = serializar_paquete(paquete, tamanio_paquete);
 	reenviar_mensaje_a_suscriptores(a_enviar, tamanio_paquete, suscriptores_get_pokemon, 5);
@@ -1153,9 +1155,6 @@ void reenviar_mensaje_a_suscriptores(void* a_enviar, int tamanio_paquete, t_list
 
 		proceso* suscriptor = list_get(suscriptores, i);
 		int socket_suscriptor = suscriptor->socket_cliente;
-
-		char* mensa = string_from_format("El socket al que le vamos a enviar es: %d.", socket_suscriptor);
-		completar_logger(mensa, "Broker", LOG_LEVEL_INFO);
 
 		if(send(socket_suscriptor,a_enviar,tamanio_paquete,0) == -1){
 			completar_logger("Error en enviar por el socket","BROKER", LOG_LEVEL_INFO);

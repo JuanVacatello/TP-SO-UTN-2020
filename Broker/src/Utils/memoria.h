@@ -110,7 +110,8 @@ t_particion_buddy* crear_nueva_particion(int comienzo, int tamanio, int final);
 
 // DUMP
 void actualizar_dump_cache(void);
-void llenar_el_dump(FILE* dump);
+void llenar_el_dump_para_particiones(FILE* dump);
+void llenar_el_dump_para_buddy_system(FILE* dump);
 void llenar_inicio_dump(FILE* dump);
 int si_el_anterior_esta_vacio(t_list* lista_ordenada, FILE* dump, int index, int contador_de_particiones);
 char* crear_linea_a_agregar_ocupada(int inicio, int final, int tamanio, int lru, int cola, int id);
