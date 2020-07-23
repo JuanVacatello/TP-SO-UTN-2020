@@ -47,7 +47,7 @@ void completar_logger(char* mensaje, char* programa, t_log_level log_level)
 void log_cambio_de_entrenador_termino_anterior(t_entrenador* entrenador){
 	char idEntrenador = entrenador->ID_entrenador;
 
-	char* mensaje = string_from_format("Se cambio al entrenador %c debido a que terminó el anterior",idEntrenador);
+	char* mensaje = string_from_format("Se cambio al entrenador %c debido a que terminó de ejecutar",idEntrenador);
 
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
 	free(mensaje);

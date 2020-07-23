@@ -22,6 +22,7 @@ void planificar_fifo(void){
 				if(list_size(entrenador->cola_de_acciones) == 1){
 					ejecutar_entrenador(entrenador);
 					cambiosDeContexto++;
+					log_cambio_de_entrenador_termino_anterior(entrenador);
 					break;
 				}
 				else{
@@ -39,6 +40,9 @@ void planificar_fifo(void){
 			while(list_size(entrenador->cola_de_acciones) > 0){
 				ejecutar_entrenador(entrenador);
 			}
+
+			log_cambio_de_entrenador_termino_anterior(entrenador);
+
 		}
 
 		if(terminoTeam()){
@@ -81,6 +85,7 @@ void planificar_sjf_sd(void){
 			while(list_size(entrenador->cola_de_acciones) > 0){
 				if(list_size(entrenador->cola_de_acciones) == 1){
 					ejecutar_entrenador(entrenador);
+					log_cambio_de_entrenador_termino_anterior(entrenador);
 					break;
 				}
 				else{
@@ -98,6 +103,7 @@ void planificar_sjf_sd(void){
 			while(list_size(entrenador->cola_de_acciones) > 0){
 				ejecutar_entrenador(entrenador);
 			}
+			log_cambio_de_entrenador_termino_anterior(entrenador);
 		}
 
 		if(terminoTeam()){
@@ -146,6 +152,7 @@ void planificar_sjf_cd(void){
 
 					remover_entrenador_ready(entrenador);
 					list_add(lista_de_entrenadores_ready, entrenador);
+					log_cambio_de_entrenador_por_trabajo_mas_corto(entrenador);
 					sem_post(&MUTEX_ENTRENADORES);
 					break;
 
@@ -153,6 +160,7 @@ void planificar_sjf_cd(void){
 
 				if(list_size(entrenador->cola_de_acciones) == 1){
 					ejecutar_entrenador(entrenador);
+					log_cambio_de_entrenador_termino_anterior(entrenador);
 					break;
 				}
 				else{
@@ -171,6 +179,7 @@ void planificar_sjf_cd(void){
 				while(list_size(entrenador->cola_de_acciones) > 0){
 					ejecutar_entrenador(entrenador);
 				}
+				log_cambio_de_entrenador_termino_anterior(entrenador);
 			}
 
 			if(terminoTeam()){
@@ -265,6 +274,7 @@ void planificar_rr(void){
 					if(!list_is_empty(lista_de_entrenadores_ready)){
 						entrenador = list_get(lista_de_entrenadores_ready, 0);
 						cambiosDeContexto++;
+						log_cambio_de_entrenador_termino_anterior(entrenador);
 					}
 				}
 				else{
@@ -284,6 +294,7 @@ void planificar_rr(void){
 						entrenador->estado = READY;
 						if(list_size(lista_de_entrenadores_ready) != 1){
 							cambiosDeContexto++;
+							log_cambio_de_entrenador_por_fin_de_quantum(entrenador);
 						}
 						remover_entrenador_ready(entrenador);
 						list_add(lista_de_entrenadores_ready, entrenador);
@@ -302,6 +313,8 @@ void planificar_rr(void){
 			while(list_size(entrenador->cola_de_acciones) > 0){
 				ejecutar_entrenador(entrenador);
 			}
+
+			log_cambio_de_entrenador_termino_anterior(entrenador);
 		}
 
 		if(terminoTeam()){
