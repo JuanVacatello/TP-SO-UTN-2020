@@ -116,19 +116,27 @@ void log_ejecucion_dump(){
 }
 
 char* cola_referida(int numero){
+	char* cola = string_new();
 	switch(numero){
-	case 1:
-		return "NEW_POKEMON";
-	case 2:
-		return "APPEARED_POKEMON";
-	case 3:
-		return "CATCH_POKEMON";
-	case 4:
-		return "CAUGHT_POKEMON";
-	case 5:
-		return "GET_POKEMON";
-	case 6:
-		return "LOCALIZED_POKEMON";
-	}
+		case 1:
+			cola = "NEW_POKEMON";
+			break;
+		case 2:
+			cola = "APPEARED_POKEMON";
+			break;
+		case 3:
+			cola = "CATCH_POKEMON";
+			break;
+		case 4:
+			cola = "CAUGHT_POKEMON";
+			break;
+		case 5:
+			cola = "GET_POKEMON";
+			break;
+		case 6:
+			cola = "LOCALIZED_POKEMON";
+			break;
+		}
+	return cola;
 }
 

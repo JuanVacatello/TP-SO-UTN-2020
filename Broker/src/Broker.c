@@ -4,11 +4,11 @@ int main(void)
 {
 	inicializacion_de_variables_globales();
 
+//	pthread_create(&hilo_ejecucion_dump, NULL, pause, NULL);
+//	pthread_detach(hilo_ejecucion_dump);
+
 	pthread_create(&hilo_servidor, NULL, iniciar_servidor, NULL);
 	pthread_join(hilo_servidor, NULL);
-
-	pthread_create(&hilo_ejecucion_dump, NULL, pause, NULL);
-	pthread_detach(hilo_ejecucion_dump);
 
 	terminar_programa();
 

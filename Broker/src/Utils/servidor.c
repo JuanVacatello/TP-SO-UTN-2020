@@ -977,7 +977,7 @@ void recibir_get_pokemon(int socket_cliente){
 	uint32_t caracteresPokemon;
 	recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
 
-	char* pokemon = (char*)malloc(caracteresPokemon);
+	char* pokemon = malloc(caracteresPokemon);
 	recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
 
 	// Creacion de bloque a guardar en memoria
@@ -1196,8 +1196,8 @@ void* serializar_paquete(t_paquete* paquete, int bytes)
 	memcpy(a_enviar + offset, &(paquete->codigo_operacion), sizeof(op_code));
 	offset += sizeof(op_code);
 
-	memcpy(a_enviar + offset, &(paquete->buffer->size), sizeof(int));
-	offset +=sizeof(int);
+	memcpy(a_enviar + offset, &(paquete->buffer->size), sizeof(uint32_t));
+	offset +=sizeof(uint32_t);
 
 	memcpy(a_enviar + offset, paquete->buffer->stream, paquete->buffer->size);
 
