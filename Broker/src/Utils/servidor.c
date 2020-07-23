@@ -1091,7 +1091,7 @@ void recibir_localized_pokemon(int socket_cliente){
 	// Prepararacion y envio de mensaje a suscriptores ---> Una vez que chequeo que se manda, hacerlo con todos
 
 	t_paquete* paquete = malloc(sizeof(t_paquete));
-	paquete->codigo_operacion = 1;
+	paquete->codigo_operacion = 6;
 	paquete->buffer = malloc(sizeof(t_buffer));
 	paquete->buffer->size = tamanio_buffer + sizeof(uint32_t);
 
