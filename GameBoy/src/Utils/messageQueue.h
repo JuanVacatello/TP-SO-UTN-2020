@@ -50,13 +50,14 @@ typedef struct t_paquete_devuelto
 	t_buffer* buffer;
 } t_paquete_devuelto;
 
+// Conexion
 int crear_conexion(char* ip, char* puerto);
 void iniciar_servidor(void);
 void esperar_cliente(int socket_servidor);
 void serve_client(int* socket_cliente);
 void process_request(op_code cod_op, int socket_cliente);
-void* serializar_paquete(t_paquete* paquete , int *bytes);
 
+// Envio de mensajes a Broker
 void enviar_mensaje_a_broker(int socket_cliente, op_code codigo_operacion, char* argv[]);
 void* suscribirse_a_cola(int* tamanio_paquete,char* argv[]);
 uint32_t cola_a_suscribirse(char* cola_leida);
@@ -66,18 +67,27 @@ void* iniciar_paquete_serializado_CatchPokemon(int* tamanio_paquete,char* argv[]
 void* iniciar_paquete_serializado_CaughtPokemon(int* tamanio_paquete,char* argv[]);
 void* iniciar_paquete_serializado_GetPokemon(int* tamanio_paquete,char* argv[]);
 
+// Envio de mensajes a Team
 void enviar_mensaje_a_team(int socket_cliente, op_code codigo_operacion, char* argv[]);
 void* iniciar_paquete_serializado_AppearedPokemonTeam(int* tamanio_paquete,char* argv[]);
 
+// Envio de mensajes a GameCard
 void enviar_mensaje_a_gamecard(int socket_cliente, op_code codigo_operacion, char* argv[]);
 void* iniciar_paquete_serializado_NewPokemonGC(int* tamanio_paquete,char* argv[]);
 void* iniciar_paquete_serializado_CatchPokemonGC(int* tamanio_paquete,char* argv[]);
 void* iniciar_paquete_serializado_GetPokemonGC(int* tamanio_paquete,char* argv[]);
 
+// Recepcion de mensajes
 void recibir_mensaje(int socket_cliente);
+void recibir_new_pokemon(int socket_cliente);
+void recibir_appeared_pokemon(int socket_cliente);
+void recibir_catch_pokemon(int socket_cliente);
+void recibir_caught_pokemon(int socket_cliente);
+void recibir_get_pokemon(int socket_cliente);
 
+// Auxiliares
+void* serializar_paquete(t_paquete* paquete , int *bytes);
 void enviar_ACK(int socket_broker, char* mensaje, uint32_t id_mensaje);
-
 void liberar_conexion(int socket_cliente);
 
 #endif /* MSGQ_H_ */

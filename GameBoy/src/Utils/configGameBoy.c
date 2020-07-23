@@ -1,11 +1,4 @@
-/*
- * configGameBoy.c
- *
- *  Created on: 15 may. 2020
- *      Author: utnso
- */
-
-#include "../Utils/configGameBoy.h"
+#include "configGameBoy.h"
 
 void leer_config(void)
 {

@@ -1,10 +1,3 @@
-/*
- * configGameBoy.h
- *
- *  Created on: 15 may. 2020
- *      Author: utnso
- */
-
 #ifndef CONFIGGAMEBOY_H_
 #define CONFIGGAMEBOY_H_
 
