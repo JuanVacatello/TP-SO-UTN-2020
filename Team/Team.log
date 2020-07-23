@@ -1,0 +1,102 @@
+[INFO] 14:42:36:905 TEAM/(10524:10524): No se encontraron pokemones de la especie Pikachu en el mapa
+[INFO] 14:42:37:911 TEAM/(10524:10524): No se encontraron pokemones de la especie Squirtle en el mapa
+[INFO] 14:42:38:913 TEAM/(10524:10524): No se encontraron pokemones de la especie Gengar en el mapa
+[INFO] 14:42:39:916 TEAM/(10524:10524): No se encontraron pokemones de la especie Onix en el mapa
+[INFO] 14:42:40:918 TEAM/(10524:10536): el socket de conexion es: 8.
+[INFO] 14:42:40:918 TEAM/(10524:10536): Se logró conectar con el BROKER de manera exitosa
+[INFO] 14:42:40:919 TEAM/(10524:10535): el socket de conexion es: 9.
+[INFO] 14:42:40:919 TEAM/(10524:10535): Se logró conectar con el BROKER de manera exitosa
+[INFO] 14:42:40:919 TEAM/(10524:10534): el socket de conexion es: 12.
+[INFO] 14:42:40:919 TEAM/(10524:10534): Se logró conectar con el BROKER de manera exitosa
+[INFO] 14:43:04:532 TEAM/(10552:10552): el socket de conexion es: 4.
+[INFO] 14:44:07:968 TEAM/(10624:10632): el socket de conexion es: 4.
+[INFO] 14:44:07:968 TEAM/(10624:10632): Se logró conectar con el BROKER de manera exitosa
+[INFO] 14:44:07:969 TEAM/(10624:10631): el socket de conexion es: 7.
+[INFO] 14:44:07:969 TEAM/(10624:10631): Se logró conectar con el BROKER de manera exitosa
+[INFO] 14:44:07:971 TEAM/(10624:10630): el socket de conexion es: 8.
+[INFO] 14:44:07:971 TEAM/(10624:10630): Se logró conectar con el BROKER de manera exitosa
+[INFO] 14:45:04:123 TEAM/(10624:10630): El codigo de operacion es: 2.
+[INFO] 14:45:04:123 TEAM/(10624:10630): el socket de conexion es: 9.
+[INFO] 14:45:04:123 TEAM/(10624:10630): Llegó un mensaje APPEARED_POKEMON:
+ Pokemon: Pikachu. 
+ Posicion en X: 1. 
+ Posicion en Y: 1.
+[INFO] 14:45:05:124 TEAM/(10624:10656): El entrenador A se movió a la posicion 1|2.
+[INFO] 14:45:06:129 TEAM/(10624:10658): El entrenador A se movió a la posicion 1|1.
+[INFO] 14:45:06:134 TEAM/(10624:10659): El entrenador A atrapó un Pikachu en la posicion 1|1.
+[INFO] 14:45:07:134 TEAM/(10624:10633): Se cambio al entrenador A debido a que terminó de ejecutar
+[INFO] 14:48:38:749 TEAM/(10707:10715): el socket de conexion es: 4.
+[INFO] 14:48:38:749 TEAM/(10707:10715): Se logró conectar con el BROKER de manera exitosa
+[INFO] 14:48:38:754 TEAM/(10707:10714): el socket de conexion es: 7.
+[INFO] 14:48:38:754 TEAM/(10707:10714): Se logró conectar con el BROKER de manera exitosa
+[INFO] 14:48:38:758 TEAM/(10707:10713): el socket de conexion es: 8.
+[INFO] 14:48:38:761 TEAM/(10707:10713): Se logró conectar con el BROKER de manera exitosa
+[INFO] 14:48:55:10 TEAM/(10707:10713): El codigo de operacion es: 2.
+[INFO] 14:48:55:11 TEAM/(10707:10713): el socket de conexion es: 9.
+[INFO] 14:48:55:11 TEAM/(10707:10713): Llegó un mensaje APPEARED_POKEMON:
+ Pokemon: Pikachu. 
+ Posicion en X: 1. 
+ Posicion en Y: 2.
+[INFO] 14:48:56:12 TEAM/(10707:10732): El entrenador A se movió a la posicion 1|2.
+[INFO] 14:48:56:17 TEAM/(10707:10734): El entrenador A atrapó un Pikachu en la posicion 1|2.
+[INFO] 14:48:57:18 TEAM/(10707:10716): Se cambio al entrenador A debido a que terminó de ejecutar
+[INFO] 14:52:12:447 TEAM/(10943:10947): el socket de conexion es: 4.
+[INFO] 14:52:12:448 TEAM/(10943:10947): Se logró conectar con el BROKER de manera exitosa
+[INFO] 14:52:12:457 TEAM/(10943:10946): el socket de conexion es: 8.
+[INFO] 14:52:12:458 TEAM/(10943:10946): Se logró conectar con el BROKER de manera exitosa
+[INFO] 14:52:12:469 TEAM/(10943:10945): el socket de conexion es: 9.
+[INFO] 14:52:12:470 TEAM/(10943:10945): Se logró conectar con el BROKER de manera exitosa
+[INFO] 14:52:20:157 TEAM/(10943:10945): El codigo de operacion es: 2.
+[INFO] 14:52:20:158 TEAM/(10943:10945): el socket de conexion es: 10.
+[INFO] 14:52:20:158 TEAM/(10943:10945): Llegó un mensaje APPEARED_POKEMON:
+ Pokemon: Pikachu. 
+ Posicion en X: 1. 
+ Posicion en Y: 2.
+[INFO] 14:52:21:160 TEAM/(10943:10963): El entrenador A se movió a la posicion 1|2.
+[INFO] 14:52:21:173 TEAM/(10943:10969): el socket de conexion es: 11.
+[INFO] 14:53:38:530 TEAM/(10943:10948): Se cambio al entrenador A debido a que terminó de ejecutar
+[INFO] 14:56:55:644 TEAM/(11164:11168): el socket de conexion es: 4.
+[INFO] 14:56:55:658 TEAM/(11164:11168): Se logró conectar con el BROKER de manera exitosa
+[INFO] 14:56:55:668 TEAM/(11164:11167): el socket de conexion es: 8.
+[INFO] 14:56:55:669 TEAM/(11164:11167): Se logró conectar con el BROKER de manera exitosa
+[INFO] 14:56:55:670 TEAM/(11164:11166): el socket de conexion es: 9.
+[INFO] 14:56:55:670 TEAM/(11164:11166): Se logró conectar con el BROKER de manera exitosa
+[INFO] 14:57:01:370 TEAM/(11164:11166): El codigo de operacion es: 2.
+[INFO] 14:57:01:370 TEAM/(11164:11166): el socket de conexion es: 10.
+[INFO] 14:57:01:371 TEAM/(11164:11166): Llegó un mensaje APPEARED_POKEMON:
+ Pokemon: Pikachu. 
+ Posicion en X: 1. 
+ Posicion en Y: 2.
+[INFO] 14:57:02:371 TEAM/(11164:11181): El entrenador A se movió a la posicion 1|2.
+[INFO] 14:57:02:376 TEAM/(11164:11183): el socket de conexion es: 11.
+[INFO] 14:57:03:395 TEAM/(11164:11169): Se cambio al entrenador A debido a que terminó de ejecutar
+[INFO] 15:00:10:561 TEAM/(11279:11283): el socket de conexion es: 4.
+[INFO] 15:00:10:561 TEAM/(11279:11283): Se logró conectar con el BROKER de manera exitosa
+[INFO] 15:00:10:563 TEAM/(11279:11282): el socket de conexion es: 5.
+[INFO] 15:00:10:563 TEAM/(11279:11282): Se logró conectar con el BROKER de manera exitosa
+[INFO] 15:00:10:564 TEAM/(11279:11281): el socket de conexion es: 9.
+[INFO] 15:00:10:564 TEAM/(11279:11281): Se logró conectar con el BROKER de manera exitosa
+[INFO] 15:00:25:971 TEAM/(11279:11281): El codigo de operacion es: 2.
+[INFO] 15:00:25:972 TEAM/(11279:11281): el socket de conexion es: 10.
+[INFO] 15:00:25:972 TEAM/(11279:11281): Llegó un mensaje APPEARED_POKEMON:
+ Pokemon: Pikachu. 
+ Posicion en X: 1. 
+ Posicion en Y: 2.
+[INFO] 15:00:26:973 TEAM/(11279:11299): El entrenador A se movió a la posicion 1|2.
+[INFO] 15:00:26:974 TEAM/(11279:11301): el socket de conexion es: 11.
+[INFO] 15:00:27:979 TEAM/(11279:11284): Se cambio al entrenador A debido a que terminó de ejecutar
+[INFO] 15:02:32:46 TEAM/(11392:11396): el socket de conexion es: 4.
+[INFO] 15:02:32:52 TEAM/(11392:11396): Se logró conectar con el BROKER de manera exitosa
+[INFO] 15:02:32:53 TEAM/(11392:11395): el socket de conexion es: 5.
+[INFO] 15:02:32:53 TEAM/(11392:11395): Se logró conectar con el BROKER de manera exitosa
+[INFO] 15:02:32:58 TEAM/(11392:11394): el socket de conexion es: 9.
+[INFO] 15:02:32:58 TEAM/(11392:11394): Se logró conectar con el BROKER de manera exitosa
+[INFO] 15:02:35:679 TEAM/(11392:11394): El codigo de operacion es: 2.
+[INFO] 15:02:35:679 TEAM/(11392:11394): el socket de conexion es: 10.
+[INFO] 15:02:35:680 TEAM/(11392:11394): Llegó un mensaje APPEARED_POKEMON:
+ Pokemon: Pikachu. 
+ Posicion en X: 1. 
+ Posicion en Y: 2.
+[INFO] 15:02:36:686 TEAM/(11392:11408): El entrenador A se movió a la posicion 1|2.
+[INFO] 15:02:36:688 TEAM/(11392:11410): el socket de conexion es: 11.
+[INFO] 15:02:37:692 TEAM/(11392:11397): Se cambio al entrenador A debido a que terminó de ejecutar

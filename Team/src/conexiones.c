@@ -30,7 +30,7 @@ int crear_conexion(char* ip, char* puerto)
 	return socket_cliente;
 }
 
-void iniciar_servidor(void)
+void iniciar_espera_mensajes_Gameboy(void)
 {
 	int socket_servidor;
     struct addrinfo hints, *servinfo, *p;

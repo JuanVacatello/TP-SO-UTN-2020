@@ -16,8 +16,8 @@ int main(void) {
 
 		iniciar_vg();
 
-		pthread_create(&hilo_servidor, NULL , iniciar_servidor ,NULL);
-		pthread_detach(hilo_servidor);
+		pthread_create(&hilo_gameboy, NULL , iniciar_espera_mensajes_Gameboy ,NULL);
+		pthread_detach(hilo_gameboy);
 
 		pthread_create(&hilo_appeared_pokemon, NULL , appeared_pokemon_broker ,NULL);
 		pthread_detach(hilo_appeared_pokemon);

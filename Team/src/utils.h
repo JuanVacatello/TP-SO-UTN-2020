@@ -26,7 +26,7 @@ t_list* lista_de_entrenadores_deadlock;
 t_list* lista_ids_getPokemon;
 t_list* lista_pokemonesNoRequeridos_enElMapa;
 
-pthread_t hilo_servidor;
+pthread_t hilo_gameboy;
 pthread_t hilo_appeared_pokemon;
 pthread_t hilo_caught_pokemon;
 pthread_t hilo_localized_pokemon;
