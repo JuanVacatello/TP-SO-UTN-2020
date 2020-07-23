@@ -2,7 +2,7 @@
 
 
 void iniciar_logger(){
-	if((logger = log_create("GameCard.log","GAMECARD",1,LOG_LEVEL_INFO )) == NULL){
+	if((logger = log_create("/home/utnso/Documentos/Delibird/GameCard/tp-2020-1c-wRAPPERS/GameCard/GameCard.log","GAMECARD",1,LOG_LEVEL_INFO )) == NULL){
 		printf("No se pudo crear el log");
 		exit(1);
 	}

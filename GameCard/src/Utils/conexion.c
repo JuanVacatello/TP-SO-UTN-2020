@@ -22,10 +22,14 @@ int crear_conexion(char* ip, char* puerto)
 
 	if(connect(socket_cliente, server_info->ai_addr, server_info->ai_addrlen) == -1){
 		printf("Error en conectar socket.");
-		exit(2);
+		return -1;
 	}
 
 	freeaddrinfo(server_info);
+
+	char* mensaje = string_from_format("el socket de conexion es: %d.", socket_cliente);
+	completar_logger(mensaje, "GAMECARD", LOG_LEVEL_INFO);
+
 	return socket_cliente;
 }
 
@@ -71,7 +75,7 @@ void esperar_gameboy(int socket_servidor)
 	struct sockaddr_in dir_cliente;
 
 	int tam_direccion = sizeof(struct sockaddr_in);
-	//sem_wait(&MUTEX_MENSAJES_GB);
+	sem_wait(&MUTEX_MENSAJES_GB);
 	int socket_cliente = accept(socket_servidor, (void*) &dir_cliente, &tam_direccion);
 
 	pthread_create(&thread,NULL,(void*)serve_client,&socket_cliente);
@@ -84,8 +88,9 @@ void serve_client(int* socket)
 	if(recv(*socket, &cod_op, sizeof(op_code), MSG_WAITALL) == -1)
 		pthread_exit(NULL);
 
-	//char* mensaje = string_from_format("El codigo de operacion es: %d.", cod_op);
-	//completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+	char* mensaje = string_from_format("El codigo de operacion es: %d.", cod_op);
+	completar_logger(mensaje, "GAMECARD", LOG_LEVEL_INFO);
+
 
 	process_request(cod_op, *socket);
 }
@@ -94,19 +99,16 @@ void process_request(op_code cod_op, int socket_cliente) {
 
 	switch(cod_op){
 		case 1:
-			pthread_create(&hilo_new_pokemon, NULL, recibir_new_pokemon, socket_cliente);
-			pthread_detach(hilo_new_pokemon);
+			recibir_new_pokemon(socket_cliente);
 			break;
 		case 3:
-			pthread_create(&hilo_catch_pokemon, NULL, recibir_catch_pokemon, socket_cliente);
-			pthread_detach(hilo_catch_pokemon);
+			recibir_catch_pokemon(socket_cliente);
 			break;
 		case 5:
-			pthread_create(&hilo_get_pokemon, NULL, recibir_get_pokemon, socket_cliente);
-			pthread_detach(hilo_get_pokemon);
+			recibir_get_pokemon(socket_cliente);
 			break;
 	}
-	//sem_post(&MUTEX_MENSAJES_GB);
+	sem_post(&MUTEX_MENSAJES_GB);
 }
 
 // SERIALIZAR PAQUETE
@@ -192,7 +194,7 @@ int suscribirse_globalmente(op_code cola_a_suscribirse){
 
 	int socket_broker = -1;
 	int tiempo_reconexion = tiempo_de_reintento_conexion();
-	//sem_wait(&MUTEX_SUB);
+	sem_wait(&MUTEX_SUB);
 	socket_broker = crear_conexion(ip_broker,puerto_broker);
 
 	while(socket_broker == -1){
@@ -212,7 +214,6 @@ int suscribirse_globalmente(op_code cola_a_suscribirse){
 	char* mensaje_subscripcion = recibir_mensaje(socket_broker); //por ahora lo dejo despues se sacará
 	puts(mensaje_subscripcion);
 
-	//pthread_mutex_unlock(&mutex_conexion);
 	free(a_enviar);
 
 	return socket_broker;
@@ -250,86 +251,107 @@ void* suscribirse_a_cola(int socket_broker, uint32_t cola_a_suscribirse, int* ta
 
 // Recibir mensajes de GameBoy y Broker
 
-void recibir_new_pokemon(int socket_cliente){
+void recibir_new_pokemon(int socket_cliente){	//RECIBE TODO PERFECTO (NO MUEVAN EL ORDEN DE LAS COSAS BOE)
 	uint32_t tamanio_buffer;
 	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
-		printf("El tamaño del buffer es %d", tamanio_buffer);
+		printf("El tamaño del buffer es %d \n", tamanio_buffer);
 
 	uint32_t mensaje_id;  // Hola chicos este mismo id lo van a tener que poner en el id_mensaje_correlativo del appeared correspondiente a este new salu2
 	recv(socket_cliente, &mensaje_id, sizeof(uint32_t), MSG_WAITALL);
 
-		printf("El mensaje_id es %d", mensaje_id);
+		printf("El mensaje_id es %d \n", mensaje_id);
 
 	uint32_t caracteresPokemon;
 	recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
 
-		printf("El largo del pokemon es %d", caracteresPokemon);
+		printf("El largo del pokemon es %d \n", caracteresPokemon);
 
-	char* pokemon = (char*)malloc(caracteresPokemon);
+	char* pokemon = malloc(caracteresPokemon);
 	recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
 
-		printf("El pokemon es %s", pokemon);
+		printf("El pokemon es %s \n", pokemon);
 
 	uint32_t posX;
 	recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
 
-		printf("La posicion en x es %d", posX);
+		printf("La posicion en x es %d \n", posX);
 
 	uint32_t posY;
 	recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
 
-		printf("La posicion en Y %d", posY);
+		printf("La posicion en Y %d \n", posY);
 
 	uint32_t cantidad;
 	recv(socket_cliente, &cantidad, sizeof(uint32_t), MSG_WAITALL);
 
-		printf("La cantidaad es %d", cantidad);
+		printf("La cantidad es %d \n", cantidad);
 
 	//agregar_pokemon(pokemon, posX, posY, -1); // Holi no quiero tocar nada pero pasan 4 parametros pero la funcion es de 3
 
 	//responder_ack(mensaje_id);
 }
 
-void recibir_catch_pokemon(int socket_cliente){
+void recibir_catch_pokemon(int socket_cliente){//RECIBE TODO PERFECTO (NO MUEVAN EL ORDEN DE LAS COSAS BOE)
 
 	uint32_t tamanio_buffer;
 	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
+	printf("El tamaño del buffer es %d \n", tamanio_buffer);
+
 	uint32_t mensaje_id;
 	recv(socket_cliente, &mensaje_id, sizeof(uint32_t), MSG_WAITALL);
+
+	printf("El mensaje_id es %d \n", mensaje_id);
 
 	uint32_t caracteresPokemon;
 	recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
 
+	printf("El largo del pokemon es %d \n", caracteresPokemon);
+
 	char* pokemon = (char*)malloc(caracteresPokemon);
 	recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
+
+	printf("El pokemon es %s \n", pokemon);
 
 	uint32_t posX;
 	recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
 
+	printf("La posicion en x es %d \n", posX);
+
 	uint32_t posY;
 	recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
+
+	printf("La posicion en Y %d \n", posY);
+
 
 	responder_ack(mensaje_id);
 
 }
 
-void recibir_get_pokemon(int socket_cliente){
+void recibir_get_pokemon(int socket_cliente){//RECIBE TODO PERFECTO (NO MUEVAN EL ORDEN DE LAS COSAS BOE)
 
 	uint32_t tamanio_buffer;
 	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
+	printf("El tamaño del buffer es %d \n", tamanio_buffer);
+
 	uint32_t mensaje_id;
 	recv(socket_cliente, &mensaje_id, sizeof(uint32_t), MSG_WAITALL);
+
+	printf("El mensaje_id es %d \n", mensaje_id);
 
 	uint32_t caracteresPokemon;
 	recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
 
+	printf("El largo del pokemon es %d \n", caracteresPokemon);
+
 	char* pokemon = (char*)malloc(caracteresPokemon);
 	recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
 
-	responder_ack(mensaje_id);
+	printf("El pokemon es %s \n", pokemon);
+
+	//responder_ack(mensaje_id);
 }
 
 // Enviar mensaje a Broker
@@ -545,7 +567,7 @@ char* recibir_mensaje(int socket_broker){
 	char* mensaje = malloc(tamanio_buffer);
 	recv(socket_broker, mensaje, tamanio_buffer, MSG_WAITALL);
 
-	//sem_post(&MUTEX_SUB);
+	sem_post(&MUTEX_SUB);
 
 	return mensaje;
 }

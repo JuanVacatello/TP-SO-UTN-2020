@@ -1,0 +1,30 @@
+[INFO] 15:27:07:389 GAMECARD/(12353:12357): el socket de conexion es: 4.
+[INFO] 15:27:07:391 GAMECARD/(12353:12357): Se logró conectar con el BROKER de manera exitosa
+[INFO] 15:27:07:393 GAMECARD/(12353:12356): el socket de conexion es: 5.
+[INFO] 15:27:07:393 GAMECARD/(12353:12356): Se logró conectar con el BROKER de manera exitosa
+[INFO] 15:27:07:393 GAMECARD/(12353:12355): el socket de conexion es: 9.
+[INFO] 15:27:07:396 GAMECARD/(12353:12355): Se logró conectar con el BROKER de manera exitosa
+[INFO] 15:28:07:675 GAMECARD/(12397:12401): el socket de conexion es: 4.
+[INFO] 15:28:07:675 GAMECARD/(12397:12401): Se logró conectar con el BROKER de manera exitosa
+[INFO] 15:28:07:679 GAMECARD/(12397:12400): el socket de conexion es: 8.
+[INFO] 15:28:07:679 GAMECARD/(12397:12400): Se logró conectar con el BROKER de manera exitosa
+[INFO] 15:28:07:686 GAMECARD/(12397:12399): el socket de conexion es: 9.
+[INFO] 15:28:07:686 GAMECARD/(12397:12399): Se logró conectar con el BROKER de manera exitosa
+[INFO] 15:35:55:324 GAMECARD/(12593:12597): el socket de conexion es: 4.
+[INFO] 15:35:55:326 GAMECARD/(12593:12597): Se logró conectar con el BROKER de manera exitosa
+[INFO] 15:35:55:331 GAMECARD/(12593:12596): el socket de conexion es: 5.
+[INFO] 15:35:55:331 GAMECARD/(12593:12596): Se logró conectar con el BROKER de manera exitosa
+[INFO] 15:36:08:712 GAMECARD/(12593:12595): el socket de conexion es: 9.
+[INFO] 15:36:08:712 GAMECARD/(12593:12595): Se logró conectar con el BROKER de manera exitosa
+[INFO] 15:42:56:122 GAMECARD/(12873:12922): NO se logró conectar con el BROKER
+[INFO] 15:42:56:123 GAMECARD/(12873:12922): Reintentando conexion con BROKER en 10 segundos...
+[INFO] 15:43:06:123 GAMECARD/(12873:12922): NO se logró conectar con el BROKER
+[INFO] 15:43:06:124 GAMECARD/(12873:12922): Reintentando conexion con BROKER en 10 segundos...
+[INFO] 15:43:16:124 GAMECARD/(12873:12922): NO se logró conectar con el BROKER
+[INFO] 15:43:16:125 GAMECARD/(12873:12922): Reintentando conexion con BROKER en 10 segundos...
+[INFO] 15:43:43:17 GAMECARD/(13038:13041): el socket de conexion es: 4.
+[INFO] 15:43:43:18 GAMECARD/(13038:13041): Se logró conectar con el BROKER de manera exitosa
+[INFO] 15:43:43:32 GAMECARD/(13038:13040): el socket de conexion es: 5.
+[INFO] 15:43:43:32 GAMECARD/(13038:13040): Se logró conectar con el BROKER de manera exitosa
+[INFO] 15:43:43:34 GAMECARD/(13038:13039): el socket de conexion es: 7.
+[INFO] 15:43:43:34 GAMECARD/(13038:13039): Se logró conectar con el BROKER de manera exitosa

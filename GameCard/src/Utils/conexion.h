@@ -12,6 +12,8 @@
 #include<commons/collections/list.h>
 #include<stdint.h>
 #include<pthread.h>
+#include<semaphore.h>
+
 #include"configGameCard.h"
 #include"logGameCard.h"
 
@@ -40,9 +42,9 @@ typedef struct{
 } t_paquete;
 
 pthread_t thread;
-pthread_t hilo_new_pokemon;
-pthread_t hilo_catch_pokemon;
-pthread_t hilo_get_pokemon;
+
+sem_t MUTEX_MENSAJES_GB;
+sem_t MUTEX_SUB;
 
 // Crear conexion (para Broker)
 int crear_conexion(char* ip, char* puerto);
