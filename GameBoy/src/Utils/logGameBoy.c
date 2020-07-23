@@ -49,7 +49,6 @@ void log_suscripcion(char* cola){
 
 // 3. Llegada de un nuevo mensaje a una cola de mensajes.
 void log_mensaje_nuevo(char* cola){
-	sem_wait(&MUTEX_RECIBIR);
 	char* log = string_from_format("Llegada de un nuevo mensaje a la cola de mensajes %s.", cola);
 	completar_logger(log, "GAMEBOY", LOG_LEVEL_INFO);
 }

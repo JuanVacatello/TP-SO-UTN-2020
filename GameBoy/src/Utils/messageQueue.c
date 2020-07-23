@@ -646,7 +646,7 @@ void recibir_mensaje(int socket_cliente){
 	char* mensaje4;
 	char* mensaje5;
 	char* mensaje6;
-	char* cola_en_string;
+	char* cola_en_string = string_new();
 
 	switch(codigo_de_operacion){
 	case 0:
@@ -729,7 +729,6 @@ void recibir_mensaje(int socket_cliente){
 
 		free(pokemon);
 
-		//
 
 		cola_en_string = "APPEARED_POKEMON";
 		enviar_ACK(socket_cliente, "ACK", mensajeid);
@@ -831,8 +830,7 @@ void recibir_mensaje(int socket_cliente){
 		break;
 	}
 
-	sem_post(&MUTEX_RECIBIR);
-	if(buffer_size != 0){
+	if(buffer_size != 0 && codigo_de_operacion != 7){
 		log_mensaje_nuevo(cola_en_string);
 	}
 
