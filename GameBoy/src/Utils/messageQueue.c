@@ -633,6 +633,8 @@ void recibir_mensaje(int socket_cliente){
 	char* mensaje2 = string_from_format("El tamanio del buffer es: %d.", buffer_size);
 	puts(mensaje2);
 
+
+	char* logger = string_new();
 	char* cola_en_string = string_new();
 
 	switch(codigo_de_operacion){
@@ -668,7 +670,6 @@ void recibir_mensaje(int socket_cliente){
 			printf("El id del mensaje enviado es %d \n", mensaje_id);
 
 		}else{
-			char* logger;
 			recv(socket_cliente, logger, buffer_size, MSG_WAITALL);
 			puts(logger);
 		}
