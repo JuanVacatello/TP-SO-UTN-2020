@@ -35,15 +35,6 @@ typedef struct t_paquete
 	t_buffer* buffer;
 } t_paquete;
 
-typedef struct {
-
-	uint32_t id_mensaje_correlativo;
-	t_list* suscriptores_ack;
-	uint32_t tamanio_buffer;
-	t_mensaje_guardado* ubicacion_mensaje;
-	char* pokemon;
-} t_mensaje_en_cola;
-
 typedef struct
 {
 	op_code cola;
@@ -51,23 +42,8 @@ typedef struct
 	int tiempo;
 } t_suscripcion;
 
-t_list* suscriptores_new_pokemon;
-t_list* suscriptores_appeared_pokemon;
-t_list* suscriptores_catch_pokemon;
-t_list* suscriptores_caught_pokemon;
-t_list* suscriptores_get_pokemon;
-t_list* suscriptores_localized_pokemon;
-
-t_list* mensajes_de_cola_new_pokemon;
-t_list* mensajes_de_cola_appeared_pokemon;
-t_list* mensajes_de_cola_catch_pokemon;
-t_list* mensajes_de_cola_caught_pokemon;
-t_list* mensajes_de_cola_get_pokemon;
-t_list* mensajes_de_cola_localized_pokemon;
-
 t_buffer* buffer;
 pthread_t thread;
-sem_t MUTEX_MENSAJE;
 
 // CONEXION CON CLIENTE
 void iniciar_servidor(void);
@@ -101,6 +77,7 @@ void reenviar_mensaje_a_suscriptores(void* a_enviar, int tamanio_paquete, t_list
 void guardar_mensaje_en_cola(t_list* lista_mensajes, t_mensaje_guardado* mensaje_en_memoria, uint32_t tamanio_buffer, uint32_t id_mensaje_correlativo, char* pokemon, t_list* lista_de_suscriptores);
 
 void recibir_ack(int socket_cliente);
+void eliminar_suscriptor_que_ya_ack(uint32_t mensaje_id_recibido, int socket_cliente);
 
 // AUXILIAR
 void* serializar_paquete(t_paquete* paquete, int bytes);

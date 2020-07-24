@@ -1,0 +1,12 @@
+[INFO] 17:02:50:698 BROKER/(9152:9175): Se conectó proceso de socket 5 al Broker.
+[INFO] 17:02:50:727 BROKER/(9152:9175): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 17:02:53:748 BROKER/(9152:9176): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 17:03:06:472 BROKER/(9152:9189): Se conectó proceso de socket 6 al Broker.
+[INFO] 17:03:06:472 BROKER/(9152:9189): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 17:08:10:950 BROKER/(9321:9354): Se conectó proceso de socket 5 al Broker.
+[INFO] 17:08:10:976 BROKER/(9321:9354): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 17:08:13:619 BROKER/(9321:9355): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 17:08:17:869 BROKER/(9321:9366): Se conectó proceso de socket 6 al Broker.
+[INFO] 17:08:17:869 BROKER/(9321:9366): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 17:08:41:377 BROKER/(9321:9367): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 17:08:43:48 BROKER/(9321:9367): Se almacenó un mensaje en la posición 0 de la memoria principal.

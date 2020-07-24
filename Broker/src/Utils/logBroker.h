@@ -7,6 +7,7 @@
 #include<string.h>
 #include<commons/log.h>
 #include<semaphore.h>
+#include "configBroker.h"
 
 t_log* logger;
 sem_t MUTEX_LOGGER;

@@ -1,5 +1,7 @@
  #include "memoria.h"
 
+// Guardado de mensaje en memoria
+
 t_mensaje_guardado* guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar, op_code cola){
 
 	t_mensaje_guardado* mensaje_nuevo;
@@ -26,7 +28,7 @@ t_mensaje_guardado* guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria
 
 	log_almacenar_mensaje(mensaje_nuevo->byte_comienzo_ocupado);
 
-	//actualizar_dump_cache(); // Por ahora lo dejo aca
+	actualizar_dump_cache(); // Por ahora lo dejo aca
 
 	return mensaje_nuevo;
 }
@@ -52,7 +54,6 @@ t_mensaje_guardado* eliminar_y_compactar_hasta_encontrar(void* bloque_a_agregar_
 	int encontrado = 0;
 	char* algoritmo_particion_libre = obtener_algoritmo_particion_libre();
 
-	sem_wait(&MUTEX_FALLOS);
 	while(encontrado == 0){ //Repito el procedimiento hasta poder guardar el nuevo mensaje
 
 		int posicion_inicial_nuevo_mensaje = ejecutar_algoritmo_reemplazo();
@@ -84,7 +85,6 @@ t_mensaje_guardado* eliminar_y_compactar_hasta_encontrar(void* bloque_a_agregar_
 
 		// Si se compacto y aun asi no entra, se vuelve a eliminar
 	}
-	sem_post(&MUTEX_FALLOS);
 
 	return mensaje_nuevo;
 }
@@ -109,12 +109,55 @@ int ejecutar_algoritmo_reemplazo(void){
 	return posicion_liberada;
 }
 
+void eliminar_de_generales(int posicion_liberada){
+
+	for(int i=0; i<(list_size(lista_de_todos_los_mensajes)); i++){
+		t_mensaje_en_cola* mensaje_guardado = list_get(lista_de_todos_los_mensajes, i);
+		if(mensaje_guardado->ubicacion_mensaje->byte_comienzo_ocupado == posicion_liberada){
+			op_code cola_a_la_que_pertenece = mensaje_guardado->ubicacion_mensaje->cola;
+			t_list* lista_correspondiente;
+			switch(cola_a_la_que_pertenece){
+				case 1:
+					lista_correspondiente = mensajes_de_cola_new_pokemon;
+					break;
+				case 2:
+					lista_correspondiente = mensajes_de_cola_appeared_pokemon;
+					break;
+				case 3:
+					lista_correspondiente = mensajes_de_cola_catch_pokemon;
+					break;
+				case 4:
+					lista_correspondiente = mensajes_de_cola_caught_pokemon;
+					break;
+				case 5:
+					lista_correspondiente = mensajes_de_cola_get_pokemon;
+					break;
+				case 6:
+					lista_correspondiente = mensajes_de_cola_localized_pokemon;
+					break;
+				}
+
+			for(int j=0; j<(list_size(lista_correspondiente)); j++){
+				t_mensaje_en_cola* mensaje_a_eliminar = list_get(lista_correspondiente, j);
+				if(mensaje_a_eliminar->ubicacion_mensaje->byte_comienzo_ocupado == posicion_liberada){
+					mensaje_a_eliminar = list_remove(lista_correspondiente, j);
+					break;
+				}
+			}
+			break;
+		}
+	}
+}
+
 int reemplazar_segun_FIFO(void){
 
 	t_mensaje_guardado* mensaje_a_eliminar;
-	mensaje_a_eliminar = list_remove(elementos_en_memoria, 0); // Eliminamos el primer mensaje que entró
+	mensaje_a_eliminar = list_get(elementos_en_memoria, 0); // Eliminamos el primer mensaje que entró
 	int posicion_liberada = mensaje_a_eliminar->byte_comienzo_ocupado;
 	int cantidad_liberada = mensaje_a_eliminar->tamanio_ocupado;
+
+	eliminar_de_generales(posicion_liberada);
+	mensaje_a_eliminar = list_remove(elementos_en_memoria, 0);
 
 	if(!(strcmp(obtener_algoritmo_memoria(), "BS"))){
 		t_particion_buddy* particion;
@@ -136,9 +179,12 @@ int reemplazar_segun_LRU(void){
 	list_sort(lista_ordenada, comparar_timestamps_mensajes);
 
 	t_mensaje_guardado* mensaje_aux;
-	mensaje_aux = list_remove(lista_ordenada, 0); // Eliminamos el primer mensaje de la lista ordenada -> Timestamp mas bajo
+	mensaje_aux = list_get(lista_ordenada, 0); // Eliminamos el primer mensaje de la lista ordenada -> Timestamp mas bajo
 	int posicion_liberada = mensaje_aux->byte_comienzo_ocupado;
 	int cantidad_liberada = mensaje_aux->tamanio_ocupado;
+
+	eliminar_de_generales(posicion_liberada);
+	mensaje_aux = list_remove(lista_ordenada, 0); // Eliminamos el primer mensaje de la lista ordenada -> Timestamp mas bajo
 
 	int posicion_mensaje_a_eliminar = encontrar_mensaje_por_posicion(posicion_liberada, elementos_en_memoria);
 	t_mensaje_guardado* mensaje_a_eliminar = list_remove(elementos_en_memoria, posicion_mensaje_a_eliminar);
@@ -232,7 +278,6 @@ t_mensaje_guardado* agregar_segun_first_fit(void* bloque_a_agregar_en_memoria, u
 	}
 
 		// Si no se encuentra, y es momento de compactar, se compacta
-	//sem_wait(&MUTEX_FALLOS);
 	if(encontrado == 0){
 		int frecuencia_compactacion = obtener_frecuencia_compactacion();
 		int se_compacto = 0;
@@ -254,7 +299,6 @@ t_mensaje_guardado* agregar_segun_first_fit(void* bloque_a_agregar_en_memoria, u
 			}
 		}
 	}
-	//sem_post(&MUTEX_FALLOS);
 
 		// Si luego de compactar tampoco entra, se elimina y compacta hasta que se encuentre
 	if(encontrado == 0){
@@ -327,7 +371,6 @@ t_mensaje_guardado* agregar_segun_best_fit(void* bloque_a_agregar_en_memoria, ui
 	}
 
 		// Si no se encuentra, y es momento de compactar, se compacta
-	//sem_wait(&MUTEX_FALLOS);
 	if(encontrado == 0){
 
 		int frecuencia_compactacion = obtener_frecuencia_compactacion();
@@ -350,8 +393,6 @@ t_mensaje_guardado* agregar_segun_best_fit(void* bloque_a_agregar_en_memoria, ui
 			}
 		}
 	}
-	//sem_post(&MUTEX_FALLOS);
-
 		// Si luego de compactar tampoco entra, se elimina y compacta hasta que se encuentre
 	if(encontrado == 0){
 		mensaje_nuevo = eliminar_y_compactar_hasta_encontrar(bloque_a_agregar_en_memoria, tamanio_a_agregar);

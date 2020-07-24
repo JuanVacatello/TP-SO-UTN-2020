@@ -42,7 +42,7 @@ void esperar_cliente(int socket_servidor)
 	struct sockaddr_in dir_cliente;
 
 	int tam_direccion = sizeof(struct sockaddr_in);
-	//sem_wait(&MUTEX_MENSAJE);
+
 	int socket_cliente = accept(socket_servidor, (void*) &dir_cliente, &tam_direccion);
 
 	pthread_create(&thread,NULL,(void*)serve_client,&socket_cliente);
@@ -104,7 +104,6 @@ void process_request(op_code cod_op, int socket_cliente) {
 			pthread_detach(hilo_ack);
 			break;
 	}
-	//sem_post(&MUTEX_MENSAJE);
 }
 
 
@@ -1145,6 +1144,7 @@ void guardar_mensaje_en_cola(t_list* lista_mensajes, t_mensaje_guardado* mensaje
 	nuevo_mensaje->pokemon = pokemon;
 
 	list_add(lista_mensajes, nuevo_mensaje);
+	list_add(lista_de_todos_los_mensajes, nuevo_mensaje);
 }
 
 void reenviar_mensaje_a_suscriptores(void* a_enviar, int tamanio_paquete, t_list* suscriptores, int cola){
@@ -1176,13 +1176,65 @@ void recibir_ack(int socket_cliente){
 	char* ack = malloc(caracteres_mensaje);
 	recv(socket_cliente, ack, caracteres_mensaje, MSG_WAITALL);
 
-	uint32_t mensaje_id;
-	recv(socket_cliente, &mensaje_id, sizeof(uint32_t), MSG_WAITALL);
+	uint32_t mensaje_id_recibido;
+	recv(socket_cliente, &mensaje_id_recibido, sizeof(uint32_t), MSG_WAITALL);
 
-	log_confirmacion(socket_cliente, mensaje_id);
+	log_confirmacion(socket_cliente, mensaje_id_recibido);
 
-	// ahora hay que buscar a que mensaje de que cola pertenece ese mensaje id, y eliminar al suscriptor de la lista de ack
+	eliminar_suscriptor_que_ya_ack(mensaje_id_recibido, socket_cliente);
 
+}
+
+void eliminar_suscriptor_que_ya_ack(uint32_t mensaje_id_recibido, int socket_cliente){
+	t_mensaje_en_cola* mensaje_a_leer;
+	for(int i=0; i<(list_size(lista_de_todos_los_mensajes)); i++){
+		mensaje_a_leer = list_get(lista_de_todos_los_mensajes, i);
+
+		if(mensaje_a_leer->ubicacion_mensaje->id == mensaje_id_recibido){
+			op_code cola_a_la_que_pertenece = mensaje_a_leer->ubicacion_mensaje->cola;
+			t_list* lista_correspondiente;
+
+			switch(cola_a_la_que_pertenece){
+			case 1:
+				lista_correspondiente = mensajes_de_cola_new_pokemon;
+				break;
+			case 2:
+				lista_correspondiente = mensajes_de_cola_appeared_pokemon;
+				break;
+			case 3:
+				lista_correspondiente = mensajes_de_cola_catch_pokemon;
+				break;
+			case 4:
+				lista_correspondiente = mensajes_de_cola_caught_pokemon;
+				break;
+			case 5:
+				lista_correspondiente = mensajes_de_cola_get_pokemon;
+				break;
+			case 6:
+				lista_correspondiente = mensajes_de_cola_localized_pokemon;
+				break;
+			}
+
+			for(int j=0; j<(list_size(lista_correspondiente)); j++){
+				mensaje_a_leer = list_get(lista_correspondiente, j);
+
+				if(mensaje_a_leer->ubicacion_mensaje->id == mensaje_id_recibido){
+					t_list* suscriptores_que_no_ack = mensaje_a_leer->suscriptores_ack;
+
+					for(int k=0; k<(list_size(suscriptores_que_no_ack)); k++){
+						proceso* suscriptor_ack = list_get(suscriptores_que_no_ack, k);
+
+						if(suscriptor_ack->socket_cliente == socket_cliente){
+							suscriptor_ack = list_remove(suscriptores_que_no_ack, k);
+							break;
+						}
+					}
+					break;
+				}
+			}
+			break;
+		}
+	}
 }
 
 // AUXILIAR

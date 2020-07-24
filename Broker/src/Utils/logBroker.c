@@ -1,7 +1,7 @@
 #include "logBroker.h"
 
 void iniciar_logger(){
-	char* file = obtener_log_file();
+	char* file = "Broker.log"; //obtener_log_file();
 	if((logger = log_create(file,"BROKER",1,LOG_LEVEL_INFO )) == NULL){
 		printf("No se pudo crear el log");
 		exit(1);
@@ -90,8 +90,8 @@ void log_particion_eliminada(int posicion_liberada){
 
 // 8.1. Ejecución de compactación para particiones dinámicas.
 void log_compactacion(){
-	char* frecuencia_de_compactacion = obtener_frecuencia_compactacion();
-	char* log = string_from_format("Se compactó la memoria ya que la frecuencia de compactación es %s.", frecuencia_de_compactacion);
+	int frecuencia_de_compactacion = obtener_frecuencia_compactacion();
+	char* log = string_from_format("Se compactó la memoria ya que la frecuencia de compactación es %d.", frecuencia_de_compactacion);
 	completar_logger(log, "BROKER", LOG_LEVEL_INFO);
 }
 

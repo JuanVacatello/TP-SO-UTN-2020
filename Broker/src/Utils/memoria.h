@@ -42,6 +42,15 @@ typedef struct
 	int id;
 }t_mensaje_guardado;
 
+typedef struct {
+
+	uint32_t id_mensaje_correlativo;
+	t_list* suscriptores_ack;
+	uint32_t tamanio_buffer;
+	t_mensaje_guardado* ubicacion_mensaje;
+	char* pokemon;
+} t_mensaje_en_cola;
+
 typedef struct
 {
 	int tam_particion;
@@ -49,28 +58,40 @@ typedef struct
 	int final_de_particion;
 }t_particion_buddy;
 
-int tamanio_de_memoria;
+t_list* suscriptores_new_pokemon;
+t_list* suscriptores_appeared_pokemon;
+t_list* suscriptores_catch_pokemon;
+t_list* suscriptores_caught_pokemon;
+t_list* suscriptores_get_pokemon;
+t_list* suscriptores_localized_pokemon;
+
+t_list* mensajes_de_cola_new_pokemon;
+t_list* mensajes_de_cola_appeared_pokemon;
+t_list* mensajes_de_cola_catch_pokemon;
+t_list* mensajes_de_cola_caught_pokemon;
+t_list* mensajes_de_cola_get_pokemon;
+t_list* mensajes_de_cola_localized_pokemon;
+
 t_list* elementos_en_memoria; // Lista de t_mensaje_guardado
 t_list* elementos_en_buddy;
-sem_t MUTEX_LISTA;
+t_list* lista_de_todos_los_mensajes;
 
 void* memoria_principal;
-sem_t MUTEX_MEM_PRIN;
-
-int timestamp;
-sem_t MUTEX_TIMESTAMP;
-
 int contador_fallos; // Para cuando la frecuencia de compactación es mayor a 2
-sem_t MUTEX_FALLOS;
-
+int tamanio_de_memoria;
+int timestamp;
 uint32_t mensaje_id;
 sem_t MUTEX_MENSAJE_ID;
+sem_t MUTEX_TIMESTAMP;
+sem_t MUTEX_MEM_PRIN;
 
+// Guardado de mensaje en memoria
 t_mensaje_guardado* guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar, op_code cola);
 void aplicar_timestamp_e_id(t_mensaje_guardado* mensaje_nuevo);
 
 // REEMPLAZO
 int ejecutar_algoritmo_reemplazo(void);
+void eliminar_de_generales(int posicion_liberada);
 int reemplazar_segun_FIFO(void);
 int reemplazar_segun_LRU(void);
 
