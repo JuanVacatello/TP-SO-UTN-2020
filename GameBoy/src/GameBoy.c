@@ -41,8 +41,6 @@ int main(int argc, char* argv[]) {
 		pthread_create(&hilo_recibir, NULL , correr_tiempo_suscripcion ,tiempo_de_suscripcion);
 		pthread_detach(hilo_recibir);
 
-		//sem_init(&MUTEX_RECIBIR,0,0);
-
 		while(1){
 			recibir_mensaje(socket_conexion);
 

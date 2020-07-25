@@ -1,0 +1,14 @@
+[INFO] 16:42:58:900 GAMEBOY/(8890:8890): GameBoy se conectó exitosamente al proceso Broker.
+[INFO] 16:42:58:940 GAMEBOY/(8894:8894): GameBoy se conectó exitosamente al proceso Broker.
+[INFO] 16:42:58:948 GAMEBOY/(8897:8897): GameBoy se conectó exitosamente al proceso Broker.
+[INFO] 16:42:58:956 GAMEBOY/(8900:8900): GameBoy se conectó exitosamente al proceso Broker.
+[INFO] 16:42:58:958 GAMEBOY/(8903:8903): GameBoy se suscribió exitosamente a la cola NEW_POKEMON.
+[INFO] 16:42:58:988 GAMEBOY/(8903:8903): Llegada de un nuevo mensaje a la cola de mensajes NEW_POKEMON.
+[INFO] 16:43:08:980 GAMEBOY/(8910:8910): GameBoy se conectó exitosamente al proceso Broker.
+[INFO] 16:44:49:252 GAMEBOY/(9006:9006): GameBoy se conectó exitosamente al proceso Broker.
+[INFO] 16:44:49:286 GAMEBOY/(9009:9009): GameBoy se conectó exitosamente al proceso Broker.
+[INFO] 16:44:49:308 GAMEBOY/(9012:9012): GameBoy se conectó exitosamente al proceso Broker.
+[INFO] 16:44:49:335 GAMEBOY/(9015:9015): GameBoy se conectó exitosamente al proceso Broker.
+[INFO] 16:44:49:355 GAMEBOY/(9018:9018): GameBoy se suscribió exitosamente a la cola NEW_POKEMON.
+[INFO] 16:44:49:360 GAMEBOY/(9018:9018): Llegada de un nuevo mensaje a la cola de mensajes NEW_POKEMON.
+[INFO] 16:44:59:365 GAMEBOY/(9023:9023): GameBoy se conectó exitosamente al proceso Broker.
