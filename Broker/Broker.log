@@ -10,3 +10,27 @@
 [INFO] 17:08:17:869 BROKER/(9321:9366): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
 [INFO] 17:08:41:377 BROKER/(9321:9367): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
 [INFO] 17:08:43:48 BROKER/(9321:9367): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 16:44:49:253 BROKER/(8999:9007): Se conectó proceso de socket 5 al Broker.
+[INFO] 16:44:49:269 BROKER/(8999:9007): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 16:44:49:277 BROKER/(8999:9008): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 16:44:49:286 BROKER/(8999:9010): Se conectó proceso de socket 6 al Broker.
+[INFO] 16:44:49:292 BROKER/(8999:9010): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 16:44:49:299 BROKER/(8999:9011): Se almacenó un mensaje en la posición 4 de la memoria principal.
+[INFO] 16:44:49:317 BROKER/(8999:9013): Se conectó proceso de socket 7 al Broker.
+[INFO] 16:44:49:319 BROKER/(8999:9013): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 16:44:49:326 BROKER/(8999:9014): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 16:44:49:344 BROKER/(8999:9016): Se conectó proceso de socket 8 al Broker.
+[INFO] 16:44:49:345 BROKER/(8999:9016): Llegó un nuevo mensaje a la cola de mensajes CATCH_POKEMON
+[INFO] 16:44:49:348 BROKER/(8999:9017): Se almacenó un mensaje en la posición 16 de la memoria principal.
+[INFO] 16:44:49:356 BROKER/(8999:9019): Se conectó proceso de socket 9 al Broker.
+[INFO] 16:44:49:358 BROKER/(8999:9021): Se suscribió el proceso con socket 9 y con id 9018 a la cola de mensajes NEW_POKEMON.
+[INFO] 16:44:49:361 BROKER/(8999:9021): Se le envió un mensaje al suscriptor de socket 9, a través de la cola NEW_POKEMON.
+[INFO] 16:44:59:369 BROKER/(8999:9024): Se conectó proceso de socket 10 al Broker.
+[INFO] 16:44:59:370 BROKER/(8999:9024): Llegó un nuevo mensaje a la cola de mensajes CATCH_POKEMON
+[INFO] 16:44:59:370 BROKER/(8999:9025): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 16:44:59:370 BROKER/(8999:9025): Se eliminó de memoria principal la partición que se encontraba en la posicion 4.
+[INFO] 16:44:59:370 BROKER/(8999:9025): Se asociaron las particiones que se encontraban en las posiciones 0 y 4.
+[INFO] 16:44:59:370 BROKER/(8999:9025): Se asociaron las particiones que se encontraban en las posiciones 0 y 8.
+[INFO] 16:44:59:370 BROKER/(8999:9025): Se eliminó de memoria principal la partición que se encontraba en la posicion 16.
+[INFO] 16:44:59:370 BROKER/(8999:9025): Se asociaron las particiones que se encontraban en las posiciones 0 y 16.
+[INFO] 16:44:59:370 BROKER/(8999:9025): Se almacenó un mensaje en la posición 0 de la memoria principal.

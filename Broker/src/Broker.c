@@ -4,11 +4,7 @@ int main(void)
 {
 	inicializacion_de_variables_globales();
 
-//	pthread_create(&hilo_ejecucion_dump, NULL, pause, NULL);
-//	pthread_detach(hilo_ejecucion_dump);
-
-	pthread_create(&hilo_servidor, NULL, iniciar_servidor, NULL);
-	pthread_join(hilo_servidor, NULL);
+	iniciar_servidor();
 
 	terminar_programa();
 
@@ -64,6 +60,8 @@ void inicializacion_de_variables_globales(void){
 
 	pthread_mutex_init(&mutex_suscripcion, NULL);
 	pthread_mutex_lock(&mutex_suscripcion);
+
+	signal(SIGUSR1,actualizar_dump_cache);
 }
 
 void terminar_programa(void){

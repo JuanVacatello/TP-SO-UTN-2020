@@ -28,8 +28,6 @@ t_mensaje_guardado* guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria
 
 	log_almacenar_mensaje(mensaje_nuevo->byte_comienzo_ocupado);
 
-	actualizar_dump_cache(); // Por ahora lo dejo aca
-
 	return mensaje_nuevo;
 }
 
@@ -923,32 +921,27 @@ t_particion_buddy* crear_nueva_particion(int comienzo, int tamanio, int final){
 
 // DUMP
 
-void handler(int senial){
-	signal(senial, handler);
+void actualizar_dump_cache(int senial){
+
 	if(senial == SIGUSR1){
-		actualizar_dump_cache();
+		FILE *dump;
+		char* path = "/home/utnso/Documentos/Delibird/Broker/tp-2020-1c-wRAPPERS/Broker/Broker.dump";
+		dump = fopen(path, "a");
+		fclose(dump);
+
+		dump = txt_open_for_append(path);
+
+		char* algoritmo_de_memoria = obtener_algoritmo_memoria();
+		if(!(strcmp(algoritmo_de_memoria, "PARTICIONES"))){
+			llenar_el_dump_para_particiones(dump);
+		}
+		if(!(strcmp(algoritmo_de_memoria, "BS"))){
+			llenar_el_dump_para_buddy_system(dump);
+		}
+
+		txt_close_file(dump);
 		log_ejecucion_dump();
 	}
-}
-
-void actualizar_dump_cache(){
-
-	FILE *dump;
-	char* path = "/home/utnso/Documentos/Delibird/Broker/tp-2020-1c-wRAPPERS/Broker/Broker.dump";
-	dump = fopen(path, "w");
-	fclose(dump);
-
-	dump = txt_open_for_append(path);
-
-	char* algoritmo_de_memoria = obtener_algoritmo_memoria();
-	if(!(strcmp(algoritmo_de_memoria, "PARTICIONES"))){
-		llenar_el_dump_para_particiones(dump);
-	}
-	if(!(strcmp(algoritmo_de_memoria, "BS"))){
-		llenar_el_dump_para_buddy_system(dump);
-	}
-
-	txt_close_file(dump);
 }
 
 void llenar_el_dump_para_buddy_system(FILE* dump){

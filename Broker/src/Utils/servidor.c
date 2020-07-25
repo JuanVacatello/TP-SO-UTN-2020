@@ -228,7 +228,7 @@ void correr_tiempo_suscripcion(t_suscripcion* suscripcion){
 }
 
 int encontrar_suscriptor_por_posicion(int socket_cliente, t_list* lista){
-	proceso* suscriptor;
+	proceso* suscriptor = NULL;
 	for(int i = 0; i<list_size(lista); i++){
 		suscriptor = list_get(lista, i);
 		if(suscriptor->socket_cliente == socket_cliente){

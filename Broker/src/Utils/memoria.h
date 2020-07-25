@@ -130,7 +130,7 @@ int encontrar_mensaje_por_posicion(int posicion, t_list* lista);
 t_particion_buddy* crear_nueva_particion(int comienzo, int tamanio, int final);
 
 // DUMP
-void actualizar_dump_cache(void);
+void actualizar_dump_cache(int senial);
 void llenar_el_dump_para_particiones(FILE* dump);
 void llenar_el_dump_para_buddy_system(FILE* dump);
 void llenar_inicio_dump(FILE* dump);
@@ -139,6 +139,6 @@ char* crear_linea_a_agregar_ocupada(int inicio, int final, int tamanio, int lru,
 char* crear_linea_a_agregar_vacia(int inicio, int final, int tamanio);
 char* obtener_fecha(void);
 
-void handler(int senial);
+
 
 #endif /* UTILS_MEMORIA_H_ */
