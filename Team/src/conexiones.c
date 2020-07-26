@@ -221,7 +221,7 @@ void* suscribirse_a_cola(int socket_cliente, uint32_t cola, int* tamanio_paquete
 	paquete->codigo_operacion = SUSCRIPTOR;
 	paquete->buffer = malloc(sizeof(t_buffer));
 
-	uint32_t proccess_id = getpid();
+	uint32_t proccess_id = obtener_id_propio();
 
 	paquete->buffer->size = sizeof(uint32_t)+sizeof(uint32_t);
 	void* stream = malloc(paquete->buffer->size);
@@ -585,7 +585,7 @@ void* enviar_ACK(int socket_broker, int* tamanio, uint32_t mensaje_id){
 
 	char* mensaje = "ACK";
 	uint32_t caracteres_mensaje = strlen(mensaje) + 1;
-	paquete->buffer->size = sizeof(uint32_t) + sizeof(uint32_t) + caracteres_mensaje;
+	paquete->buffer->size = sizeof(uint32_t) + sizeof(uint32_t) + caracteres_mensaje + sizeof(uint32_t);
 	void* stream = malloc(paquete->buffer->size);
 	int offset = 0;
 
@@ -597,6 +597,9 @@ void* enviar_ACK(int socket_broker, int* tamanio, uint32_t mensaje_id){
 
 	memcpy(stream + offset, &mensaje_id, sizeof(uint32_t));
 	offset += sizeof(uint32_t);
+
+	uint32_t id_team = obtener_id_propio();
+	memcpy(stream + offset, &id_team, sizeof(uint32_t));
 
 	paquete->buffer->stream = stream;
 

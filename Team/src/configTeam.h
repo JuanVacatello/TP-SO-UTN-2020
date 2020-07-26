@@ -19,3 +19,4 @@ char** obtener_posiciones_entrenadores(void);
 char** obtener_pokemon_entrenadores(void);
 char** obtener_objetivos_entrenadores(void);
 double obtener_alpha(void);
+int obtener_id_propio(void);

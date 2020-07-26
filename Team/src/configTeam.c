@@ -96,4 +96,11 @@ double obtener_alpha(void){
 	return alpha;
 }
 
+int obtener_id_propio(void){
+	int process_id;
+	process_id = config_get_int_value(config, "PROCESS_ID");
+	return process_id;
+}
+
+
 
