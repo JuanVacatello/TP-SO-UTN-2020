@@ -57,3 +57,22 @@ void log_reintento_comunicacion_Broker_fallido(){
 	completar_logger(mensaje, "GAMECARD", LOG_LEVEL_INFO);
 	free(mensaje);
 }
+
+void log_asignar_bloque(int bloque){
+	char* mensaje = string_from_format("Se asignó correctamente el bloque numero %d",bloque);
+
+	completar_logger(mensaje, "GAMECARD", LOG_LEVEL_INFO);
+	free(mensaje);
+}
+
+void log_liberar_bloque(int bloque){
+	char* mensaje = string_from_format("Se libero correctamente el bloque numero %d",bloque);
+
+	completar_logger(mensaje, "GAMECARD", LOG_LEVEL_INFO);
+	free(mensaje);
+}
+
+
+
+
+
