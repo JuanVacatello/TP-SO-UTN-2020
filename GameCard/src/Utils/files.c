@@ -6,7 +6,7 @@
  */
 #include "files.h"
 
-void agregar_pokemon(char* pokemon,int posX,int posY){
+void new_pokemon(char* pokemon,int posX,int posY){ //funciona
 
 	char* path_pokemon = string_new();
 	char* path_files = obtener_path_files();
@@ -36,7 +36,7 @@ void agregar_pokemon(char* pokemon,int posX,int posY){
 			//char* bloque_asignado = obtener_siguiente_bloque_libre(); //FALTA IMPLEMENTAR.OBTENER PROX BLOQUE FORMATO:[]
 			//string_append(&sentencia_blocks,bloque_asignado);
 			//txt_write_in_file(metadata, sentencia_blocks);
-			txt_write_in_file(metadata, "\n");
+			txt_write_in_file(metadata, "BLOCKS=\n");
 
 			txt_write_in_file(metadata, "OPEN=N");
 			txt_close_file(metadata);

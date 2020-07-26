@@ -36,7 +36,9 @@ void crear_bitmap(char* path_bitmap){
 		if(bloque_esta_vacio(i+1)==1){
 			bitarray_clean_bit(bitarray,i);
 		}
+		else{
 			bitarray_set_bit(bitarray,i);
+		}
 	}
 
 	msync(bitarray->bitarray,bitmap_fd,MS_SYNC);

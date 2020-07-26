@@ -102,9 +102,9 @@ int obtener_cantidad_bloques_pokemon(char* path_pokemon){
 	return cantidad_elementos;
 }
 
-int archivo_esta_abierto(char* path_file){
-	t_config* metadata = leer_metadata_file(path_file);
-	char* open = config_get_string_value(metadata, "OPEN");
+int archivo_pokemon_esta_abierto(char* path_pokemon){
+	t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
+	char* open = config_get_string_value(metadata_pokemon, "OPEN");
 	if(string_equals_ignore_case(open, "Y")){
 		return 1;
 	}
@@ -113,10 +113,10 @@ int archivo_esta_abierto(char* path_file){
 	}
 }
 
-int obtener_tamanio_archivo(char* path_file){
-	t_config* metadata = leer_metadata_file(path_file);
+int obtener_tamanio_archivo(char* path_pokemon){
+	t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
 	int tamanio;
-	tamanio = config_get_int_value(metadata,"SIZE");
+	tamanio = config_get_int_value(metadata_pokemon,"SIZE");
 	return tamanio;
 }
 

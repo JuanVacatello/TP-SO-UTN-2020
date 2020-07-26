@@ -30,7 +30,8 @@ void actualizar_valores_pokemon(char* path_metadata_pokemon,int posX,int posY,in
 
  char* obtener_path_bloque(char* bloque){
  	char* path = string_new();
- 	string_append(&path, "/home/utnso/Documentos/Prueba/");
+ 	string_append(&path, obtener_path_bloques());
+ 	string_append(&path, "/");
  	string_append(&path, bloque);
  	string_append(&path, ".bin");
  	return path;
@@ -54,7 +55,7 @@ void actualizar_valores_pokemon(char* path_metadata_pokemon,int posX,int posY,in
  	struct stat st;
  	stat(path,&st);
 
- 	__off_t tamanio_actual = st.st_size;
+ 	int tamanio_actual = st.st_size;
 
  	free(path);
 
@@ -63,8 +64,19 @@ void actualizar_valores_pokemon(char* path_metadata_pokemon,int posX,int posY,in
 
  int bloque_esta_vacio(int bloque){
 	 char* bloque_en_string = string_itoa(bloque);
+
+	 char* path = obtener_path_bloque(bloque_en_string);
+
+	  	struct stat st;
+	  	stat(path,&st);
+
+	  	int tamanio_actual = st.st_size;
+
+	 /*
 	 int tamanio_libre = tamanio_libre_bloque(bloque_en_string);
 	 if(tamanio_libre == obtener_tamanio_bloques()){
+	 */
+	  	if(tamanio_actual==0){
 		 free(bloque_en_string);
 		 return 1;
 	 }
@@ -89,19 +101,19 @@ t_list* obtener_datos_bloques(char* path_pokemon ){
 	FILE *file;
 		int tamanio_archivo;
 		t_list *lista_datos = list_create();
-		char *vector_bloques_string = obtener_bloques_pokemon(path_pokemon);
-		char** bloques = string_get_string_as_array(vector_bloques_string);
-		free(vector_bloques_string);
+		char** bloques = obtener_bloques_pokemon(path_pokemon);
+
 
 		char * datos = string_new();
 		char *path_bloque_individual; // url de cada block particular
-		char *path_bloques = obtener_path_bloques(); //url absoluta de donde estan los bloques "mnt/blocks"
+		char *path_bloques = obtener_path_bloques(); //url absoluta de donde estan los bloques
 		char *aux;
 		struct stat st;
 		for(int i = 0; i<tamanio_array(bloques); i++)
 		{
 			path_bloque_individual = string_new();
 			string_append(&path_bloque_individual,path_bloques);
+			string_append(&path_bloque_individual,"/");
 			string_append(&path_bloque_individual,bloques[i]);
 			string_append(&path_bloque_individual,".bin");
 
@@ -132,16 +144,18 @@ t_list* obtener_datos_bloques(char* path_pokemon ){
 
 }
 
-char* obtener_datos_en_string(t_list* lista_datos){
+char* obtener_datos_en_string(t_list* lista_datos){ //para insertar el chorro de string a los bloques con almacenar_datos
 	int cantidad_nodos = list_size(lista_datos);
 	char* string_stream = string_new();
+	char* aux = string_new();
 
 	for(int i=0; i<cantidad_nodos ; i++){
-		char* aux = string_new();
+
 		aux =list_get(lista_datos,i);
 		string_append(&string_stream, aux);
-		free(aux);
+		// NO SE ESTA LIBERANDO EL AUX PORQUE ME ROMPE A LA MIERDA
 	}
+	//free(aux);
 	return string_stream;
 }
 
@@ -151,9 +165,10 @@ void insertar_datos_a_lista(char *datos, t_list *lista_datos)
 
 	char **array_de_datos = string_split(datos,"\n");
 	char *aux;
-	for(int i =0; i<2; i++) //REEMPLAZAR POR : <Size of array
+	for(int i =0; i<tamanio_array(array_de_datos); i++)
 	{
 		aux = string_duplicate(array_de_datos[i]);
+		string_append(&aux, "\n");
 		list_add(lista_datos,aux);
 		free(array_de_datos[i]);
 	}
@@ -193,7 +208,7 @@ void almacenar_datos(char *data, char* path_pokemon){
 	 char* path_bloques = obtener_path_bloques();
 	 char** bloques = obtener_bloques_pokemon(path_pokemon);
 	 char* bloques_string = obtener_bloques_pokemon_string(path_pokemon);
-	 int tamanio_bloques = obtener_tamanio_bloques();
+	 int tamanio_bloques = 25; // CAMBIAAAAAAAAAAAAAARRRRRRR!!!!  obtener_tamanio_bloques();
 
 
 	 //ME FIJO CUANTOS BLOQUES VOY A NECESITAR PARA ALMACENAR TODA LA DATA QUE LEVANTE
@@ -309,10 +324,17 @@ char* liberar_ultimo_bloque(char* bloques){
 	  	return vector_bloques;
 }
 
+void agregar_linea(t_list* lista, char* linea){ //agrega una entrada al final de la lista. Caso de uso que la pos no este en el FS
 
+	list_add(lista, linea);
+}
 
+void mostrar_contenido_lista(t_list* datos){
 
+	int tamanio_lista = list_size(datos);
 
+	for(int i=0; i<tamanio_lista ; i++){
+		printf("%s", list_get(datos, i));
+	}
 
-
-
+}

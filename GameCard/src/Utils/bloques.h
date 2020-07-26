@@ -31,4 +31,6 @@ char* asignar_bloque(char* bloques);
 char* liberar_ultimo_bloque(char* bloques);
 char* obtener_path_bloque_individual(int numero_bloque);
 
+void mostrar_contenido_lista(t_list* datos);
+
 #endif /* UTILS_BLOQUES_H_ */

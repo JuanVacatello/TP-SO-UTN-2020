@@ -5,18 +5,20 @@ int main(void) {
 
 	iniciar_logger();
 	leer_config();
+
+	/*
 	pthread_mutex_init(&MUTEX_BITMAP, NULL);
 	sem_init(&MUTEX_MENSAJES_GB,0,1);
 	sem_init(&MUTEX_SUB,0,1);
 	sem_init(&MUTEX_PRUEBA,0,0);
 
-	/* Funciona la suscripcion y la recepcion de los mensajes del GameBoy, otro dia hago lo del envio a Broker
+	 Funciona la suscripcion y la recepcion de los mensajes del GameBoy, otro dia hago lo del envio a Broker
 	suscribirse_globalmente(1);
 	suscribirse_globalmente(3);
 	suscribirse_globalmente(5);
 	iniciar_espera_mensajes();
 	// Hay que hacerlo con hilos para que pueda recibir mensajes mientras hace otras cosas
-	*/
+
 
 //	pthread_create(&hilo_gameboy, NULL, iniciar_espera_mensajes_Gameboy, NULL);
 //	pthread_detach(hilo_gameboy);
@@ -36,10 +38,19 @@ int main(void) {
 
 	sem_wait(&MUTEX_PRUEBA);
 
+	*/
+
 	char* punto_montaje = obtener_punto_montaje();
 	inicializar_file_system(punto_montaje);
 
 	mostrar_contenido_bitmap();
+
+	new_pokemon("Charmander",0,0);
+	t_list* lista_datos = obtener_datos_bloques("/home/utnso/Documentos/Prueba_GameCard/TALL_GRASS/Files/Charmander");
+	agregar_linea(lista_datos, "1-9=1");
+	char* datos = obtener_datos_en_string(lista_datos);
+	almacenar_datos(datos, "/home/utnso/Documentos/Prueba_GameCard/TALL_GRASS/Files/Charmander");
+	mostrar_contenido_lista(lista_datos);
 
 	return 0;
 
@@ -61,6 +72,9 @@ void inicializar_file_system(char* punto_montaje){
 		mkdir(path_metadata, 0777);
 		inicializar_metadata(path_metadata, 64, 16);
 	}
+	actualizar_path_metadata(path_metadata);
+	leer_metadata_tall_grass(path_metadata);
+
 
 	//CREA BLOQUES
 	char* path_bloques = string_new();
@@ -70,29 +84,30 @@ void inicializar_file_system(char* punto_montaje){
 		mkdir(path_bloques, 0777);
 		inicializar_bloques(path_bloques);
 	}
+	actualizar_path_bloques(path_bloques);
 
-	//inicializa bitmap luego de crear los bloques
-	char* path_archivo_bitmap = string_new();
-	string_append(&path_archivo_bitmap,path_metadata);
-	string_append(&path_archivo_bitmap,"/bitmap.bin");
-	crear_bitmap(path_archivo_bitmap);
 
 	//CREA FILES
 	char* path_files = string_new();
 	string_append(&path_files, path_tall_grass);
 	string_append(&path_files, "/Files");
-	if(existe_file(path_bloques)==-1){
+	if(existe_file(path_files)==-1){
 		mkdir(path_files, 0777);
 		inicializar_files(path_files);
-
 	}
-
-	actualizar_paths_config(path_files, path_bloques, path_metadata );
-
+	actualizar_path_files(path_files);
 
 
 
+	//inicializa bitmap luego de crear los bloques y actualizar los paths
+		char* path_archivo_bitmap = string_new();
+		string_append(&path_archivo_bitmap,path_metadata);
+		string_append(&path_archivo_bitmap,"/bitmap.bin");
+		crear_bitmap(path_archivo_bitmap);
 
+	free(path_files);
+	free(path_bloques);
+	free(path_metadata);
 	//obtener_bloque_pokemon("Charmander", path_files);
 
 	//agregar_pokemon("Charmander",1,1,2, path_files); //Funciona
@@ -138,8 +153,6 @@ void inicializar_metadata(char* path_metadata, int block_size, int cant_bloques)
 			free(sentencia_tamanio_bloques);
 			free(sentencia_cantidad_bloques);
 
-
-	leer_metadata_tall_grass(path_metadata);
 	free(path_archivo_metadata);
 
 
@@ -206,7 +219,6 @@ void crear_bloques(char* path_bloques){
 	    free(numero_bloque);
 	    free(aux);
 	}
-	free(path_bloques);
 }
 
 

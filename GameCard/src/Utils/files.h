@@ -11,6 +11,6 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-void agregar_pokemon(char* pokemon,int posX,int posY);
+void new_pokemon(char* pokemon,int posX,int posY);
 
 #endif /* UTILS_FILES_H_ */
