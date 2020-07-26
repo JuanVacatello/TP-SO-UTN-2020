@@ -77,7 +77,7 @@ void reenviar_mensaje_a_suscriptores(void* a_enviar, int tamanio_paquete, t_list
 void guardar_mensaje_en_cola(t_list* lista_mensajes, t_mensaje_guardado* mensaje_en_memoria, uint32_t tamanio_buffer, uint32_t id_mensaje_correlativo, char* pokemon, t_list* lista_de_suscriptores);
 
 void recibir_ack(int socket_cliente);
-void eliminar_suscriptor_que_ya_ack(uint32_t mensaje_id_recibido, int socket_cliente);
+void eliminar_suscriptor_que_ya_ack(uint32_t mensaje_id_recibido, uint32_t proceso_id);
 
 // AUXILIAR
 void* serializar_paquete(t_paquete* paquete, int bytes);

@@ -76,8 +76,8 @@ void log_envio_mensaje(int socket_suscriptor, int cola){
 }
 
 // 5. Confirmación de recepción de un suscriptor al envío de un mensaje previo.
-void log_confirmacion(int socket_suscriptor, int mensaje_id){
-	char* log = string_from_format("El suscriptor de socket %d confirmó la recepción del mensaje con id %d.", socket_suscriptor, mensaje_id);
+void log_confirmacion(uint32_t id_proceso, uint32_t mensaje_id){
+	char* log = string_from_format("El suscriptor de id %d confirmó la recepción del mensaje con id %d.", id_proceso, mensaje_id);
 	completar_logger(log,"BROKER", LOG_LEVEL_INFO);
 	free(log);
 }

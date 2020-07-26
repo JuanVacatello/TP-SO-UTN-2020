@@ -33,7 +33,7 @@ t_mensaje_guardado* guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria
 
 void aplicar_timestamp_e_id(t_mensaje_guardado* mensaje_nuevo){
 	sem_wait(&MUTEX_TIMESTAMP);
-	timestamp++;
+	timestamp+=10;
 	mensaje_nuevo->ultima_referencia = timestamp;
 	sem_post(&MUTEX_TIMESTAMP);
 

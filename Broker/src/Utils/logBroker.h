@@ -19,7 +19,7 @@ void log_conexion(int socket_proceso);
 void log_mensaje_nuevo(int cola_de_mensajes);
 void log_suscripcion_nueva(int socket_suscriptor, int id_suscriptor, int cola_mensaje);
 void log_envio_mensaje(int socket_suscriptor, int cola);
-void log_confirmacion(int socket_suscriptor, int mensaje_id);
+void log_confirmacion(uint32_t id_proceso, uint32_t mensaje_id);
 void log_almacenar_mensaje(int posicion_mensaje);
 void log_particion_eliminada(int posicion_liberada);
 void log_compactacion(void);

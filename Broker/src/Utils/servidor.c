@@ -65,7 +65,7 @@ void serve_client(int* socket_proceso)
 
 void process_request(op_code cod_op, int socket_cliente) {
 
-	if(cod_op != 0){
+	if(cod_op != 0 && cod_op != 7){
 		log_mensaje_nuevo(cod_op);
 	}
 
@@ -249,7 +249,7 @@ void enviar_mensajes_al_nuevo_suscriptor_NP(t_list* mensajes_de_dicha_cola, int 
 		mensaje_a_enviar = list_get(mensajes_de_dicha_cola, i);
 
 		sem_wait(&MUTEX_TIMESTAMP);
-		timestamp++;
+		timestamp+=10;
 		mensaje_a_enviar->ubicacion_mensaje->ultima_referencia = timestamp;
 		sem_post(&MUTEX_TIMESTAMP);
 
@@ -323,7 +323,7 @@ void enviar_mensajes_al_nuevo_suscriptor_AP(t_list* mensajes_de_dicha_cola, int 
 		mensaje_a_enviar = list_get(mensajes_de_dicha_cola, i);
 
 		sem_wait(&MUTEX_TIMESTAMP);
-		timestamp++;
+		timestamp+=10;
 		mensaje_a_enviar->ubicacion_mensaje->ultima_referencia = timestamp; // Aumento el timestamp
 		sem_post(&MUTEX_TIMESTAMP);
 
@@ -392,7 +392,7 @@ void enviar_mensajes_al_nuevo_suscriptor_CATP(t_list* mensajes_de_dicha_cola, in
 		mensaje_a_enviar = list_get(mensajes_de_dicha_cola, i);
 
 		sem_wait(&MUTEX_TIMESTAMP);
-		timestamp++;
+		timestamp+=10;
 		mensaje_a_enviar->ubicacion_mensaje->ultima_referencia = timestamp; // Aumento el timestamp
 		sem_post(&MUTEX_TIMESTAMP);
 
@@ -463,7 +463,7 @@ void enviar_mensajes_al_nuevo_suscriptor_CAUP(t_list* mensajes_de_dicha_cola, in
 		mensaje_a_enviar = list_get(mensajes_de_dicha_cola, i);
 
 		sem_wait(&MUTEX_TIMESTAMP);
-		timestamp++;
+		timestamp+=10;
 		mensaje_a_enviar->ubicacion_mensaje->ultima_referencia = timestamp; // Aumento el timestamp
 		sem_post(&MUTEX_TIMESTAMP);
 
@@ -514,7 +514,7 @@ void enviar_mensajes_al_nuevo_suscriptor_GP(t_list* mensajes_de_dicha_cola, int 
 		mensaje_a_enviar = list_get(mensajes_de_dicha_cola, i);
 
 		sem_wait(&MUTEX_TIMESTAMP);
-		timestamp++;
+		timestamp+=10;
 		mensaje_a_enviar->ubicacion_mensaje->ultima_referencia = timestamp; // Aumento el timestamp
 		sem_post(&MUTEX_TIMESTAMP);
 
@@ -570,7 +570,7 @@ void enviar_mensajes_al_nuevo_suscriptor_LP(t_list* mensajes_de_dicha_cola, int 
 		mensaje_a_enviar = list_get(mensajes_de_dicha_cola, i);
 
 		sem_wait(&MUTEX_TIMESTAMP);
-		timestamp++;
+		timestamp+=10;
 		mensaje_a_enviar->ubicacion_mensaje->ultima_referencia = timestamp; // Aumento el timestamp
 		sem_post(&MUTEX_TIMESTAMP);
 
@@ -1137,7 +1137,7 @@ void recibir_localized_pokemon(int socket_cliente){
 void guardar_mensaje_en_cola(t_list* lista_mensajes, t_mensaje_guardado* mensaje_en_memoria, uint32_t tamanio_buffer, uint32_t id_mensaje_correlativo, char* pokemon, t_list* lista_de_suscriptores){
 
 	t_mensaje_en_cola* nuevo_mensaje = malloc(sizeof(t_mensaje_en_cola));
-	nuevo_mensaje->suscriptores_ack = lista_de_suscriptores;
+	nuevo_mensaje->suscriptores_que_no_enviaron_ack = lista_de_suscriptores;
 	nuevo_mensaje->tamanio_buffer = tamanio_buffer;
 	nuevo_mensaje->ubicacion_mensaje = mensaje_en_memoria;
 	nuevo_mensaje->id_mensaje_correlativo = id_mensaje_correlativo;
@@ -1179,13 +1179,15 @@ void recibir_ack(int socket_cliente){
 	uint32_t mensaje_id_recibido;
 	recv(socket_cliente, &mensaje_id_recibido, sizeof(uint32_t), MSG_WAITALL);
 
-	log_confirmacion(socket_cliente, mensaje_id_recibido);
+	uint32_t proceso_id;
+	recv(socket_cliente, &proceso_id, sizeof(uint32_t), MSG_WAITALL);
 
-	eliminar_suscriptor_que_ya_ack(mensaje_id_recibido, socket_cliente);
+	log_confirmacion(proceso_id, mensaje_id_recibido);
 
+	eliminar_suscriptor_que_ya_ack(mensaje_id_recibido, proceso_id);
 }
 
-void eliminar_suscriptor_que_ya_ack(uint32_t mensaje_id_recibido, int socket_cliente){
+void eliminar_suscriptor_que_ya_ack(uint32_t mensaje_id_recibido, uint32_t proceso_id){
 	t_mensaje_en_cola* mensaje_a_leer;
 	for(int i=0; i<(list_size(lista_de_todos_los_mensajes)); i++){
 		mensaje_a_leer = list_get(lista_de_todos_los_mensajes, i);
@@ -1219,12 +1221,12 @@ void eliminar_suscriptor_que_ya_ack(uint32_t mensaje_id_recibido, int socket_cli
 				mensaje_a_leer = list_get(lista_correspondiente, j);
 
 				if(mensaje_a_leer->ubicacion_mensaje->id == mensaje_id_recibido){
-					t_list* suscriptores_que_no_ack = mensaje_a_leer->suscriptores_ack;
+					t_list* suscriptores_que_no_ack = mensaje_a_leer->suscriptores_que_no_enviaron_ack;
 
 					for(int k=0; k<(list_size(suscriptores_que_no_ack)); k++){
 						proceso* suscriptor_ack = list_get(suscriptores_que_no_ack, k);
 
-						if(suscriptor_ack->socket_cliente == socket_cliente){
+						if(suscriptor_ack->id == proceso_id){
 							suscriptor_ack = list_remove(suscriptores_que_no_ack, k);
 							break;
 						}

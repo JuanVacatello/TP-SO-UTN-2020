@@ -45,7 +45,7 @@ typedef struct
 typedef struct {
 
 	uint32_t id_mensaje_correlativo;
-	t_list* suscriptores_ack;
+	t_list* suscriptores_que_no_enviaron_ack;
 	uint32_t tamanio_buffer;
 	t_mensaje_guardado* ubicacion_mensaje;
 	char* pokemon;
