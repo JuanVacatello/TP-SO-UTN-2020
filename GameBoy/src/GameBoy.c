@@ -8,7 +8,7 @@ int main(int argc, char* argv[]) {
 	leer_config();
 	uint32_t process_id = process_getpid();
 	char* process_id_string = string_itoa(process_id);
-	config_set_value(configGameBoy, "PROCESS_ID", process_id_string);
+	config_set_value(configGameBoy, "PROCESO_ID", process_id_string);
 
 	const char* proceso = argv[1];
 
@@ -42,8 +42,8 @@ int main(int argc, char* argv[]) {
 		pthread_detach(hilo_recibir);
 
 		while(1){
-			recibir_mensaje(socket_conexion);
-
+			uint32_t mensaje_id = recibir_mensaje(socket_conexion);
+			enviar_ACK(socket_conexion, "ACK", mensaje_id);
 		}
 	}
 	return 0;

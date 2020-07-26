@@ -78,12 +78,12 @@ void* iniciar_paquete_serializado_CatchPokemonGC(int* tamanio_paquete,char* argv
 void* iniciar_paquete_serializado_GetPokemonGC(int* tamanio_paquete,char* argv[]);
 
 // Recepcion de mensajes
-void recibir_mensaje(int socket_cliente);
-void recibir_new_pokemon(int socket_cliente);
-void recibir_appeared_pokemon(int socket_cliente);
-void recibir_catch_pokemon(int socket_cliente);
-void recibir_caught_pokemon(int socket_cliente);
-void recibir_get_pokemon(int socket_cliente);
+uint32_t recibir_mensaje(int socket_cliente);
+uint32_t recibir_new_pokemon(int socket_cliente);
+uint32_t recibir_appeared_pokemon(int socket_cliente);
+uint32_t recibir_catch_pokemon(int socket_cliente);
+uint32_t recibir_caught_pokemon(int socket_cliente);
+uint32_t recibir_get_pokemon(int socket_cliente);
 
 // Auxiliares
 void* serializar_paquete(t_paquete* paquete , int *bytes);

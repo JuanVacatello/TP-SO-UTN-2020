@@ -88,7 +88,6 @@ void enviar_mensaje_a_broker(int socket_cliente, op_code codigo_operacion, char*
 
 	free(a_enviar);
 
-//fflush(stdout);
 }
 
 // BROKER - SUSCRIPTOR
@@ -101,7 +100,7 @@ void* suscribirse_a_cola(int* tamanio_paquete,char* argv[]){
 
 	uint32_t proccess_id = obtener_id_propio(); //getpid();
 	char* cola_leida = argv[2];
-	uint cola = cola_a_suscribirse(cola_leida);
+	uint32_t cola = cola_a_suscribirse(cola_leida);
 	uint32_t tiempo_de_suscripcion;
 	sscanf(argv[3], "%d", &tiempo_de_suscripcion);
 	paquete->buffer->size = sizeof(uint32_t)+sizeof(uint32_t)+sizeof(uint32_t);
@@ -617,7 +616,7 @@ void* iniciar_paquete_serializado_GetPokemonGC(int* tamanio_paquete,char* argv[]
 
 // RECIBIR MENSAJE
 
-void recibir_mensaje(int socket_cliente){
+uint32_t recibir_mensaje(int socket_cliente){
 
 	op_code codigo_de_operacion;
 	recv(socket_cliente, &codigo_de_operacion, sizeof(op_code), MSG_WAITALL);
@@ -633,33 +632,32 @@ void recibir_mensaje(int socket_cliente){
 	char* mensaje2 = string_from_format("El tamanio del buffer es: %d.", buffer_size);
 	puts(mensaje2);
 
-
 	char* logger = string_new();
 	char* cola_en_string = string_new();
+	uint32_t mensaje_id;
 
 	switch(codigo_de_operacion){
 	case 0:
 		break;
 	case 1:
-		recibir_new_pokemon(socket_cliente);
+		mensaje_id = recibir_new_pokemon(socket_cliente);
 		cola_en_string = "NEW_POKEMON";
 		break;
 	case 2:
-		recibir_appeared_pokemon(socket_cliente);
+		mensaje_id = recibir_appeared_pokemon(socket_cliente);
 		cola_en_string = "APPEARED_POKEMON";
 		break;
 	case 3:
-		recibir_catch_pokemon(socket_cliente);
+		mensaje_id = recibir_catch_pokemon(socket_cliente);
 		cola_en_string = "CATCH_POKEMON";
 		break;
 	case 4:
-		recibir_caught_pokemon(socket_cliente);
+		mensaje_id = recibir_caught_pokemon(socket_cliente);
 		cola_en_string = "CAUGHT_POKEMON";
 		break;
 	case 5:
-		recibir_get_pokemon(socket_cliente);
+		mensaje_id = recibir_get_pokemon(socket_cliente);
 		cola_en_string = "GET_POKEMON";
-
 		break;
 	case 6:
 		break;
@@ -680,42 +678,10 @@ void recibir_mensaje(int socket_cliente){
 		log_mensaje_nuevo(cola_en_string);
 	}
 
+	return mensaje_id;
 }
 
-void enviar_ACK(int socket_broker, char* mensaje, uint32_t id_mensaje){
-
-	t_paquete* paquete = malloc(sizeof(t_paquete));
-	paquete->codigo_operacion = 7;
-	paquete->buffer = malloc(sizeof(t_buffer));
-
-	int caracteres = strlen(mensaje)+1;
-	paquete->buffer->size = sizeof(uint32_t) + sizeof(uint32_t) + caracteres;
-	void* stream = malloc(paquete->buffer->size);
-	int offset = 0;
-
-	memcpy(stream + offset, &caracteres, sizeof(uint32_t));
-	offset += sizeof(uint32_t);
-
-	memcpy(stream + offset, mensaje, caracteres);
-	offset += caracteres;
-
-	memcpy(stream + offset, &id_mensaje, sizeof(uint32_t));
-
-	paquete->buffer->stream = mensaje;
-
-	int tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
-	void* a_enviar = serializar_paquete(paquete,&tamanio_paquete);
-
-	if(send(socket_broker,a_enviar,tamanio_paquete,0) == -1){
-		completar_logger("Error en enviar por el socket","GAMEBOY", LOG_LEVEL_INFO);
-		exit(3);
-	}
-
-	free(paquete->buffer);
-	free(paquete);
-}
-
-void recibir_new_pokemon(int socket_cliente){
+uint32_t recibir_new_pokemon(int socket_cliente){
 
 	uint32_t mensaje_id;
 	recv(socket_cliente, &mensaje_id, sizeof(uint32_t), MSG_WAITALL);
@@ -758,12 +724,10 @@ void recibir_new_pokemon(int socket_cliente){
 
 	free(pokemon);
 
-	char* cola_en_string = "NEW_POKEMON";
-
-	enviar_ACK(socket_cliente, "ACK", mensaje_id);
+	return mensaje_id;
 }
 
-void recibir_appeared_pokemon(int socket_cliente){
+uint32_t recibir_appeared_pokemon(int socket_cliente){
 
 	uint32_t id_mensaje;
 	recv(socket_cliente, &id_mensaje, sizeof(uint32_t), MSG_WAITALL);
@@ -801,10 +765,10 @@ void recibir_appeared_pokemon(int socket_cliente){
 
 	free(pokemon);
 
-	enviar_ACK(socket_cliente, "ACK", id_mensaje);
+	return id_mensaje;
 }
 
-void recibir_catch_pokemon(int socket_cliente){
+uint32_t recibir_catch_pokemon(int socket_cliente){
 
 	uint32_t mensaje_id;
 	recv(socket_cliente, &mensaje_id, sizeof(uint32_t), MSG_WAITALL);
@@ -841,10 +805,10 @@ void recibir_catch_pokemon(int socket_cliente){
 
 	free(pokemon);
 
-	enviar_ACK(socket_cliente, "ACK", mensaje_id);
+	return mensaje_id;
 }
 
-void recibir_caught_pokemon(int socket_cliente){
+uint32_t recibir_caught_pokemon(int socket_cliente){
 
 	uint32_t mensaje_id;
 	recv(socket_cliente, &mensaje_id, sizeof(uint32_t), MSG_WAITALL);
@@ -852,7 +816,7 @@ void recibir_caught_pokemon(int socket_cliente){
 	uint32_t id_mensaje_correlativo;
 	recv(socket_cliente, &id_mensaje_correlativo, sizeof(uint32_t), MSG_WAITALL);
 
-	uint32_t se_pudo_atrapar;
+ 	uint32_t se_pudo_atrapar;
 	recv(socket_cliente, &se_pudo_atrapar, sizeof(uint32_t), MSG_WAITALL);
 
 	// Como funciona todo, esto se puede borrar:
@@ -865,13 +829,10 @@ void recibir_caught_pokemon(int socket_cliente){
 	loggear = string_from_format("El id de mensaje correlativo es es: %d.", id_mensaje_correlativo);
 	puts(loggear);
 
-	loggear = string_from_format("Se pudo atrapar es: %d.", se_pudo_atrapar);
-	puts(loggear);
-
-	enviar_ACK(socket_cliente, "ACK", mensaje_id);
+	return mensaje_id;
 }
 
-void recibir_get_pokemon(int socket_cliente){
+uint32_t recibir_get_pokemon(int socket_cliente){
 
 	uint32_t mensaje_id;
 	recv(socket_cliente, &mensaje_id, sizeof(uint32_t), MSG_WAITALL);
@@ -894,8 +855,50 @@ void recibir_get_pokemon(int socket_cliente){
 
 	printf("El pokemon es %s\n", pokemon);
 
-	enviar_ACK(socket_cliente, "ACK", mensaje_id);
+	return mensaje_id;
 }
+
+void enviar_ACK(int socket_broker, char* mensaje, uint32_t id_mensaje){
+
+	//char* puerto = obtener_puerto_broker();
+	//char* ip = obtener_ip_broker();
+	//int socket_conexion = crear_conexion(ip,puerto);
+
+	t_paquete* paquete = malloc(sizeof(t_paquete));
+	paquete->codigo_operacion = 7;
+	paquete->buffer = malloc(sizeof(t_buffer));
+
+	uint32_t caracteres = strlen(mensaje)+1;
+	paquete->buffer->size = sizeof(uint32_t) + sizeof(uint32_t) + caracteres + sizeof(uint32_t);
+	void* stream = malloc(paquete->buffer->size);
+	int offset = 0;
+
+	memcpy(stream + offset, &caracteres, sizeof(uint32_t));
+	offset += sizeof(uint32_t);
+
+	memcpy(stream + offset, mensaje, caracteres);
+	offset += caracteres;
+
+	memcpy(stream + offset, &id_mensaje, sizeof(uint32_t));
+	offset += sizeof(uint32_t);
+
+	uint32_t proceso_id = obtener_id_propio();
+	memcpy(stream + offset, &proceso_id, sizeof(uint32_t));
+
+	paquete->buffer->stream = stream;
+
+	int tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
+	void* a_enviar = serializar_paquete(paquete,&tamanio_paquete);
+
+	if(send(socket_broker,a_enviar,tamanio_paquete,0) == -1){
+		completar_logger("Error en enviar por el socket","GAMEBOY", LOG_LEVEL_INFO);
+		exit(3);
+	}
+
+	free(paquete->buffer);
+	free(paquete);
+}
+
 
 void liberar_conexion(int socket_cliente)
 {
