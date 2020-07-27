@@ -3,7 +3,7 @@
 
 void iniciar_logger(){
 	//char* file = obtener_log_file();
-	if((logger = log_create("GameBoy.log","GAMEBOY",1,LOG_LEVEL_INFO )) == NULL){
+	if((logger = log_create("/home/utnso/Documentos/Delibird/GameBoy/tp-2020-1c-wRAPPERS/GameBoy/GameBoy.log","GAMEBOY",1,LOG_LEVEL_INFO )) == NULL){
 		printf("No se pudo crear el log del Gameboy.");
 		exit(1);
 	}
@@ -53,7 +53,7 @@ void log_suscripcion(char* cola){
 void log_mensaje_nuevo(char* cola){
 	char* log = string_from_format("Llegada de un nuevo mensaje a la cola de mensajes %s.", cola);
 	completar_logger(log, "GAMEBOY", LOG_LEVEL_INFO);
-	free(log);
+	//free(log);
 }
 
 

@@ -406,7 +406,7 @@ void* iniciar_paquete_serializado_AppearedPokemonTeam(int* tamanio_paquete,char*
 	uint32_t id_mensaje = random();
 
 							//INT CARACTERES + POKEMON + POSX + POSY
-	paquete->buffer->size = sizeof(uint32_t) + caracteresPokemon +sizeof(uint32_t)+sizeof(uint32_t);
+	paquete->buffer->size = sizeof(uint32_t) + caracteresPokemon +sizeof(uint32_t)+sizeof(uint32_t)+sizeof(uint32_t);
 	void* stream = malloc(paquete->buffer->size);
 	int offset = 0;
 
@@ -432,8 +432,9 @@ void* iniciar_paquete_serializado_AppearedPokemonTeam(int* tamanio_paquete,char*
 	void* a_enviar = serializar_paquete(paquete, tamanio_paquete);
 
 	free(stream);
-	free(paquete->buffer);
 	free(paquete);
+	free(paquete->buffer);
+
 
 	return a_enviar;
 }
@@ -632,7 +633,7 @@ uint32_t recibir_mensaje(int socket_cliente){
 	char* mensaje2 = string_from_format("El tamanio del buffer es: %d.", buffer_size);
 	puts(mensaje2);
 
-	char* logger = string_new();
+	char* log = string_new();
 	char* cola_en_string = string_new();
 	uint32_t mensaje_id;
 
@@ -663,14 +664,15 @@ uint32_t recibir_mensaje(int socket_cliente){
 		break;
 	case 7:
 		if(buffer_size == 4){
-			uint32_t mensaje_id;
-			recv(socket_cliente, &mensaje_id, buffer_size, MSG_WAITALL);
-			printf("El id del mensaje enviado es %d \n", mensaje_id);
+			uint32_t id_mensaje;
+			recv(socket_cliente, &id_mensaje, buffer_size, MSG_WAITALL);
+			printf("El id del mensaje enviado es %d \n", id_mensaje);
 
 		}else{
 			recv(socket_cliente, logger, buffer_size, MSG_WAITALL);
-			puts(logger);
+			puts(log);
 		}
+		mensaje_id = -1;
 		break;
 	}
 
@@ -859,10 +861,6 @@ uint32_t recibir_get_pokemon(int socket_cliente){
 }
 
 void enviar_ACK(int socket_broker, char* mensaje, uint32_t id_mensaje){
-
-	//char* puerto = obtener_puerto_broker();
-	//char* ip = obtener_ip_broker();
-	//int socket_conexion = crear_conexion(ip,puerto);
 
 	t_paquete* paquete = malloc(sizeof(t_paquete));
 	paquete->codigo_operacion = 7;
