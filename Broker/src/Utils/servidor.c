@@ -18,7 +18,7 @@ void iniciar_servidor(void)
         if ((socket_servidor = socket(p->ai_family, p->ai_socktype, p->ai_protocol)) == -1)
             continue;
 
-        if (bind(socket_servidor, p->ai_addr, p->ai_addrlen) == -1) {
+        if (bind(socket_servidor, p->ai_addr, p->ai_addrlen) == -1){
             close(socket_servidor);
             continue;
         }
@@ -33,8 +33,7 @@ void iniciar_servidor(void)
     freeaddrinfo(servinfo);
 
     while(1)
-
-    	esperar_cliente(socket_servidor); //
+    	esperar_cliente(socket_servidor);
 }
 
 void esperar_cliente(int socket_servidor)
@@ -65,7 +64,7 @@ void serve_client(int* socket_proceso)
 
 void process_request(op_code cod_op, int socket_cliente) {
 
-	if(cod_op != 0 && cod_op != 7){
+	if(cod_op != 0){
 		log_mensaje_nuevo(cod_op);
 	}
 
@@ -98,10 +97,6 @@ void process_request(op_code cod_op, int socket_cliente) {
 		case 6:
 			pthread_create(&hilo_localizedPokemon, NULL, recibir_localized_pokemon, socket_cliente);
 			pthread_detach(hilo_localizedPokemon);
-			break;
-		case 7:
-			pthread_create(&hilo_ack, NULL, recibir_ack, socket_cliente);
-			pthread_detach(hilo_ack);
 			break;
 	}
 }
@@ -307,6 +302,10 @@ void enviar_mensajes_al_nuevo_suscriptor_NP(t_list* mensajes_de_dicha_cola, int 
 
 		log_envio_mensaje(socket_suscriptor, 1);
 
+		pthread_t hilo_ack;
+		pthread_create(&hilo_ack, NULL, recibir_ack, socket_suscriptor);
+		pthread_detach(hilo_ack);
+
 		free(paquete);
 		free(paquete->buffer);
 		free(stream);
@@ -375,6 +374,10 @@ void enviar_mensajes_al_nuevo_suscriptor_AP(t_list* mensajes_de_dicha_cola, int 
 		}
 
 		log_envio_mensaje(socket_suscriptor,2);
+
+		pthread_t hilo_ack;
+		pthread_create(&hilo_ack, NULL, recibir_ack, socket_suscriptor);
+		pthread_detach(hilo_ack);
 
 		free(paquete);
 		free(paquete->buffer);
@@ -446,6 +449,10 @@ void enviar_mensajes_al_nuevo_suscriptor_CATP(t_list* mensajes_de_dicha_cola, in
 
 		log_envio_mensaje(socket_suscriptor,3);
 
+		pthread_t hilo_ack;
+		pthread_create(&hilo_ack, NULL, recibir_ack, socket_suscriptor);
+		pthread_detach(hilo_ack);
+
 		free(paquete);
 		free(paquete->buffer);
 		free(stream);
@@ -498,6 +505,10 @@ void enviar_mensajes_al_nuevo_suscriptor_CAUP(t_list* mensajes_de_dicha_cola, in
 		}
 
 		log_envio_mensaje(socket_suscriptor,4);
+
+		pthread_t hilo_ack;
+		pthread_create(&hilo_ack, NULL, recibir_ack, socket_suscriptor);
+		pthread_detach(hilo_ack);
 
 		free(paquete);
 		free(paquete->buffer);
@@ -553,6 +564,10 @@ void enviar_mensajes_al_nuevo_suscriptor_GP(t_list* mensajes_de_dicha_cola, int 
 		}
 
 		log_envio_mensaje(socket_suscriptor,5);
+
+		pthread_t hilo_ack;
+		pthread_create(&hilo_ack, NULL, recibir_ack, socket_suscriptor);
+		pthread_detach(hilo_ack);
 
 		free(paquete);
 		free(paquete->buffer);
@@ -642,6 +657,10 @@ void enviar_mensajes_al_nuevo_suscriptor_LP(t_list* mensajes_de_dicha_cola, int 
 		}
 
 		log_envio_mensaje(socket_suscriptor,6);
+
+		pthread_t hilo_ack;
+		pthread_create(&hilo_ack, NULL, recibir_ack, socket_suscriptor);
+		pthread_detach(hilo_ack);
 
 		free(paquete);
 		free(paquete->buffer);
@@ -827,6 +846,8 @@ void recibir_appeared_pokemon(int socket_cliente){
 	guardar_mensaje_en_cola(mensajes_de_cola_appeared_pokemon, mensaje_nuevo, tamanio_buffer_sin_id, NULL, pokemon, suscriptores_appeared_pokemon);
 
 	free(bloque_a_agregar_en_memoria);
+
+
 }
 
 void recibir_catch_pokemon(int socket_cliente){
@@ -1162,10 +1183,16 @@ void reenviar_mensaje_a_suscriptores(void* a_enviar, int tamanio_paquete, t_list
 		}
 
 		log_envio_mensaje(socket_suscriptor,cola);
+
+		pthread_t hilo_ack;
+		pthread_create(&hilo_ack, NULL, recibir_ack, socket_suscriptor);
+		pthread_detach(hilo_ack);
 	}
 }
 
 void recibir_ack(int socket_cliente){
+	op_code cod_op;
+	recv(socket_cliente, &cod_op, sizeof(op_code), MSG_WAITALL);
 
 	uint32_t tamanio_buffer;
 	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);

@@ -94,7 +94,7 @@ pthread_t hilo_catchPokemon;
 pthread_t hilo_caughtPokemon;
 pthread_t hilo_getPokemon;
 pthread_t hilo_localizedPokemon;
-pthread_t hilo_ack;
+//pthread_t hilo_ack;
 
 pthread_mutex_t mutex_suscripcion;
 
