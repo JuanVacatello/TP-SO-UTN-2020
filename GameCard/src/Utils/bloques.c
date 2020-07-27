@@ -184,6 +184,10 @@ void guardar_data_en_bloque(char* data, char* path_bloque){
 		stat(path_bloque,&st);
 		int tamanio_bloque = st.st_size;
 
+		file = fopen(path_bloque,"w");
+		fclose(file);
+
+
 		if(tamanio_bloque == 1){ // NO SE SI ES UTIL
 			file = fopen(path_bloque,"r");
 			fread(aux, tamanio_bloque ,1,file);
@@ -197,7 +201,7 @@ void guardar_data_en_bloque(char* data, char* path_bloque){
 
 		FILE *file2;
 		file2 = txt_open_for_append(path_bloque);
-		txt_write_in_file(file2, data); //1-2=12\n
+		txt_write_in_file(file2, data);
 		txt_close_file(file2);
 		free(aux);
 	}
@@ -205,10 +209,13 @@ void guardar_data_en_bloque(char* data, char* path_bloque){
 
 
 void almacenar_datos(char *data, char* path_pokemon){
+	mostrar_paths_generados("adentro funcion antes de leer");
+	 leer_config(); //prueba
+	 mostrar_paths_generados("adentro funcion despues de leer");
 	 char* path_bloques = obtener_path_bloques();
 	 char** bloques = obtener_bloques_pokemon(path_pokemon);
 	 char* bloques_string = obtener_bloques_pokemon_string(path_pokemon);
-	 int tamanio_bloques = 25; // CAMBIAAAAAAAAAAAAAARRRRRRR!!!!  obtener_tamanio_bloques();
+	 int tamanio_bloques = 30; // CAMBIAAAAAAAAAAAAAARRRRRRR!!!!  obtener_tamanio_bloques();
 
 
 	 //ME FIJO CUANTOS BLOQUES VOY A NECESITAR PARA ALMACENAR TODA LA DATA QUE LEVANTE
@@ -230,6 +237,7 @@ void almacenar_datos(char *data, char* path_pokemon){
 			bloques = string_get_string_as_array(bloques_string);
 		}
 
+		 //hacer un if() utilizando un flag de bloques agregados/sustraidos
 	modificar_campo_bloques_metadata(path_pokemon,bloques_string);// MODIFICO EL ARCHIVO METADATA AL FINAL PARA NO HACER ESCRITURAS EN DISCO
 																  // INNECESARIAS
 
@@ -337,4 +345,76 @@ void mostrar_contenido_lista(t_list* datos){
 		printf("%s", list_get(datos, i));
 	}
 
+}
+
+char* generar_linea_a_insertar(int posX, int posY, int cantidad){
+	char* linea = string_new();
+
+	char* posX_string = string_new();
+	posX_string = string_itoa(posY);
+
+	char* posY_string = string_new();
+	posY_string = string_itoa(posY);
+
+	char* cantidad_string = string_new();
+	cantidad_string = string_itoa(cantidad);
+
+	string_append(&linea,posX_string);
+	string_append(&linea,"-");
+	string_append(&linea,posY_string);
+	string_append(&linea,"=");
+	string_append(&linea,cantidad_string);
+	string_append(&linea,"\n");
+
+	free(posX_string);
+	free(posY_string);
+	free(cantidad_string);
+
+	return linea;
+}
+
+int existe_posicion_lista(t_list* lista, int posX, int posY){ //funciona
+
+	char* posX_string = string_itoa(posX);
+    char* posY_string = string_itoa(posY);
+	char* digito_actual_X;
+	char* digito_actual_Y;
+	int tamanio_lista = list_size(lista);
+	int k = 0;
+	int i =0;
+	char* linea;
+
+	      while(k < tamanio_lista){ //BUSCO EL PRIMER DIGITO
+
+	    	  linea = list_get(lista, k);
+	    	  char* posicion_final_X = string_new();
+	    	  char* posicion_final_Y = string_new();
+
+	    	  while(linea[i] != '-'){
+	    		  digito_actual_X =  string_from_format("%c",linea[i]);
+	    		  string_append(&posicion_final_X,digito_actual_X);
+	    		  i++;
+
+	    		  }
+	    	  if(string_equals_ignore_case(posicion_final_X,posX_string)){
+	    		i++;
+
+	       while(linea[i] != '='){// BUSCO SEGUNDO DIGITO
+	    		  digito_actual_Y =  string_from_format("%c",linea[i]);
+	    		  string_append(&posicion_final_Y,digito_actual_Y);
+	    		  i++;
+	    	  }
+	    	  if(string_equals_ignore_case(posicion_final_Y,posY_string)){
+	    		  //ENCUENTRO LA POSICION DESEADA
+	    		  printf("encontre en el indice %d", k);
+
+	    		 return k; //devuelvo el indice en la lista
+	    	  	  }
+	    	  }
+	    	  	  k++;
+	    	  	  i=0;
+
+	  	  	  }
+
+	      return -1; //no lo encontro
 }

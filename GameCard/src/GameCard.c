@@ -43,15 +43,27 @@ int main(void) {
 	char* punto_montaje = obtener_punto_montaje();
 	inicializar_file_system(punto_montaje);
 
-	mostrar_contenido_bitmap();
+	//mostrar_paths_generados();
+	//mostrar_contenido_bitmap();
+	//mostrar_paths_generados("1");
 
-	new_pokemon("Charmander",0,0);
+	//new_pokemon("Charmander",0,0);
+	//mostrar_paths_generados("2");
+
 	t_list* lista_datos = obtener_datos_bloques("/home/utnso/Documentos/Prueba_GameCard/TALL_GRASS/Files/Charmander");
-	agregar_linea(lista_datos, "1-9=1");
-	char* datos = obtener_datos_en_string(lista_datos);
-	almacenar_datos(datos, "/home/utnso/Documentos/Prueba_GameCard/TALL_GRASS/Files/Charmander");
-	mostrar_contenido_lista(lista_datos);
+	//mostrar_paths_generados("3");
+    int indice = existe_posicion_lista(lista_datos,5,7 );
+    if(indice == -1){
+    	puts("no se encuentra en la lista");
+    }
 
+
+/*
+    agregar_linea(lista_datos, "1-9=1");
+	char* datos = obtener_datos_en_string(lista_datos);
+	almacenar_datos(datos, "/home/utnso/Documentos/Prueba_GameCard/TALL_GRASS/Files/Charmander");// ULTRA MODIFICADA CON HARDCODEO, ARREGLAR
+	mostrar_contenido_lista(lista_datos);
+*/
 	return 0;
 
 }
@@ -64,7 +76,7 @@ void inicializar_file_system(char* punto_montaje){
 	string_append(&path_tall_grass, "/TALL_GRASS");
 	mkdir(path_tall_grass, 0777);
 
-	//CREA METADATA//FALTA
+	//CREA METADATA
 	char* path_metadata = string_new();
 	string_append(&path_metadata, path_tall_grass);
 	string_append(&path_metadata, "/Metadata");
@@ -108,13 +120,6 @@ void inicializar_file_system(char* punto_montaje){
 	free(path_files);
 	free(path_bloques);
 	free(path_metadata);
-	//obtener_bloque_pokemon("Charmander", path_files);
-
-	//agregar_pokemon("Charmander",1,1,2, path_files); //Funciona
-
-	//int a = existe_bloque(path_bloques,"1");
-	//printf("%d",a);
-	//obtener_bloque_pokemon( "Pikachu", path_files);
 }
 
 void inicializar_metadata(char* path_metadata, int block_size, int cant_bloques){
@@ -222,7 +227,13 @@ void crear_bloques(char* path_bloques){
 }
 
 
+void mostrar_paths_generados(char* iteracion){
 
+	printf("iteracion numero: %s \n", iteracion);
+	printf("el path metadata es: %s \n", obtener_path_metadata());
+	printf("el path files es: %s \n", obtener_path_files());
+	printf("el path bloques es: %s \n", obtener_path_bloques());
+}
 
 
 
