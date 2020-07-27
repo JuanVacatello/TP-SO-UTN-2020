@@ -91,7 +91,7 @@ void serve_client(int* socket)
 
 // ATENDER AL CLIENTE
 
-void process_request(op_code cod_op, int socket_cliente) {
+void process_request(op_code cod_op, int socket_cliente) {//	H KEAR
 
 	if(cod_op != 0){
 		completar_logger("Llegó un nuevo mensaje a la cola de mensajes", "TEAM", LOG_LEVEL_INFO); // LOG OBLIGATORIO
@@ -465,7 +465,7 @@ void recibir_AppearedPokemon(int socket_broker){
 		uint32_t posY;
 		recv(socket_broker, &posY, sizeof(uint32_t), MSG_WAITALL);
 
-		responder_ack(mensajeid);
+		//responder_ack(socket_broker,mensajeid);
 
 		if(es_pokemon_requerido(pokemon)){
 			sem_wait(&CONTADOR_ENTRENADORES);
@@ -493,7 +493,6 @@ void recibir_CaughtPokemon(int socket_broker){
 		uint32_t pudoAtraparlo;
 		recv(socket_broker, &pudoAtraparlo, sizeof(uint32_t), MSG_WAITALL);
 
-
 		t_entrenador* entrenador = buscar_entrenador_por_id_catch(id_correlativo);
 
 		if(entrenador != NULL){
@@ -502,7 +501,7 @@ void recibir_CaughtPokemon(int socket_broker){
 			atrapar_pokemon(entrenador);
 		}
 
-		responder_ack(mensajeid);
+		responder_ack(socket_broker,mensajeid);
 }
 
 //	POKEMON	ID CANT	POSICIONES
@@ -552,7 +551,7 @@ void recibir_LocalizedPokemon(int socket_broker){
 				}
 			}
 		}
-		responder_ack(mensajeid);
+		responder_ack(socket_broker,mensajeid);
 }
 
 
@@ -609,11 +608,7 @@ void* enviar_ACK(int socket_broker, int* tamanio, uint32_t mensaje_id){
 	return a_enviar;
 }
 
-void responder_ack(uint32_t mensaje_id){
-	char* puerto_broker = obtener_puerto();
-	char* ip_broker = obtener_ip();
-
-	int socket_ack = crear_conexion(ip_broker,puerto_broker);
+void responder_ack(int socket_ack,uint32_t mensaje_id){
 
 	int tamanio = 0;
 	void* a_enviar = enviar_ACK(socket_ack, &tamanio, mensaje_id);

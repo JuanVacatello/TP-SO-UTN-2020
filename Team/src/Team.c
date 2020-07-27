@@ -291,6 +291,10 @@ void finalizoTeam(){
 
 	liberar_team();
 
+	free(mensajeCiclosTotales);
+	free(mensajeCambiosDeContexto);
+	free(mensajeDeadlockProducidos);
+	free(mensajeDeadlockResueltos);
 }
 
 void liberar_entrenador(t_entrenador* entrenador){
@@ -314,11 +318,10 @@ void liberar_team(){
 	list_destroy(lista_ids_getPokemon);
 	//dictionary_destroy_and_destroy_elements(atrapados_global,free);
 	//dictionary_destroy_and_destroy_elements(objetivo_global,free);
-	free(atrapados_global);
-	free(objetivo_global);
+	dictionary_destroy(atrapados_global);
+	dictionary_destroy(objetivo_global);
 	log_destroy(logger);
 	config_destroy(config);
-
 }
 
 

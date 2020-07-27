@@ -53,7 +53,7 @@ t_entrenador* armar_entrenador(int indice){
 			flagListaAtrapados = 1;
 		}
 	}
-	//}
+
 	entrenador->atrapados = atrapado;
 
 	//COLA DE ACCIONES
@@ -78,6 +78,9 @@ t_entrenador* armar_entrenador(int indice){
 	//POSICION_INTERCAMBIO
 	entrenador->posicionIntercambio.x = NULL;
 	entrenador->posicionIntercambio.y = NULL;
+
+	//PUDO_ATRAPAR_POKEMON
+	entrenador->pudo_atrapar_pokemon = NULL;
 
 	return entrenador;
 }
@@ -232,8 +235,6 @@ void intentar_atrapar_pokemon(t_entrenador* entrenador){
 		pthread_create(&hilo_entrenador_esperando, NULL, recibir_CaughtPokemon, entrenador);
 		pthread_detach(hilo_entrenador_esperando);
 	}
-
-
 
 	sem_post(&MUTEX_ENTRENADORES);
 

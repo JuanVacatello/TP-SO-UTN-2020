@@ -6,7 +6,7 @@ void planificar_fifo(void){
 
 	t_entrenador* entrenador;
 
-	while (1){
+	while(!terminoTeam()){
 
 		pthread_mutex_lock(&mutex_planificador);
 
@@ -60,7 +60,7 @@ void planificar_sjf_sd(void){
 	t_entrenador* entrenador_aux;
 	t_entrenador* entrenador;
 
-	while(1){
+	while(!terminoTeam()){
 
 		pthread_mutex_lock(&mutex_planificador);
 
@@ -121,7 +121,7 @@ void planificar_sjf_cd(void){
 	t_entrenador* entrenador_aux;
 	t_entrenador* entrenador;
 
-	while(1){
+	while(!terminoTeam()){
 
 		pthread_mutex_lock(&mutex_planificador);
 
@@ -246,7 +246,7 @@ void planificar_rr(void){
 	t_accion* accion_aux;
 	puts("aca entra4");
 
-	while (1){
+	while(!terminoTeam()){
 
 
 		pthread_mutex_lock(&mutex_planificador);
