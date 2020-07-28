@@ -59,7 +59,13 @@ char* obtener_ip_broker(void){
 	return ip_b;
 }
 
-char obtener_log_file(void){
+char* obtener_dump_file(void){
+	char* ruta_dump;
+	ruta_dump = config_get_string_value(configBroker, "PATH_ARCHIVO_DUMP");
+	return ruta_dump;
+}
+
+char* obtener_log_file(void){
 	char* ruta_log;
 	ruta_log = config_get_string_value(configBroker, "LOG_FILE");
 	return ruta_log;

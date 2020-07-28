@@ -1,7 +1,7 @@
 #include "logBroker.h"
 
 void iniciar_logger(){
-	char* file = "Broker.log"; //obtener_log_file();
+	char* file = "Broker.log";//obtener_log_file();
 	if((logger = log_create(file,"BROKER",1,LOG_LEVEL_INFO )) == NULL){
 		printf("No se pudo crear el log");
 		exit(1);

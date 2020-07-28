@@ -18,6 +18,7 @@ char* obtener_algoritmo_memoria(void);
 char* obtener_algoritmo_reemplazo(void);
 char* obtener_algoritmo_particion_libre(void);
 char* obtener_ip_broker(void);
-char obtener_log_file(void); // en el ejemplo no aparece pero bueno
+char* obtener_dump_file(void);
+char* obtener_log_file(void); // en el ejemplo no aparece pero bueno
 
 #endif /* CONFIGBROKER_H_ */

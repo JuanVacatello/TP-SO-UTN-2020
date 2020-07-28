@@ -925,7 +925,7 @@ void actualizar_dump_cache(int senial){
 
 	if(senial == SIGUSR1){
 		FILE *dump;
-		char* path = "/home/utnso/Documentos/Delibird/Broker/tp-2020-1c-wRAPPERS/Broker/Broker.dump";
+		char* path = obtener_dump_file();
 		dump = fopen(path, "a");
 		fclose(dump);
 
