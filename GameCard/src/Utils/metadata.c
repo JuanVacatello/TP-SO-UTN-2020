@@ -141,19 +141,18 @@ t_config* leer_metadata_file(char* path_file){
 }
 
 
-void modificar_campo_bloques_metadata(char * path,char* bloques){
+void modificar_campo_bloques_metadata(char * path_pokemon,char* bloques){
 
 	pthread_mutex_lock(&MUTEX_ELSOLUCIONES);
-		t_config *metadata = config_create(path);
-		config_set_value(metadata,"BLOCKS",bloques);
-		config_save(metadata);
-		config_destroy(metadata);
-		pthread_mutex_unlock(&MUTEX_ELSOLUCIONES);
-
+	t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
+	config_set_value(metadata_pokemon,"BLOCKS",bloques);
+	config_save(metadata_pokemon);
+	config_destroy(metadata_pokemon);
+	pthread_mutex_unlock(&MUTEX_ELSOLUCIONES);
 }
 
 
-int tamanio_array_en_string(char* array){
+int tamanio_array_en_string(char* array){ //falopa
 	int largo = strlen(array);
 	int comas = (largo-2)/2;
 	int cantidad_elementos = largo - comas -2;

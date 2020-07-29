@@ -28,14 +28,6 @@ void actualizar_valores_pokemon(char* path_metadata_pokemon,int posX,int posY,in
 		}
 }
 
- char* obtener_path_bloque(char* bloque){
- 	char* path = string_new();
- 	string_append(&path, obtener_path_bloques());
- 	string_append(&path, "/");
- 	string_append(&path, bloque);
- 	string_append(&path, ".bin");
- 	return path;
- }
 
  int diferente_largo(char* numero1,char * numero2){
  	int largo1 = strlen(numero1);
@@ -50,7 +42,9 @@ void actualizar_valores_pokemon(char* path_metadata_pokemon,int posX,int posY,in
 
 
  int tamanio_libre_bloque(char* bloque){
- 	char* path = obtener_path_bloque(bloque);
+
+	int numero_bloque = atoi(bloque);
+ 	char* path = obtener_path_bloque_individual(numero_bloque);
 
  	struct stat st;
  	stat(path,&st);
@@ -65,7 +59,7 @@ void actualizar_valores_pokemon(char* path_metadata_pokemon,int posX,int posY,in
  int bloque_esta_vacio(int bloque){
 	 char* bloque_en_string = string_itoa(bloque);
 
-	 char* path = obtener_path_bloque(bloque_en_string);
+	 char* path = obtener_path_bloque_individual(bloque);
 
 	  	struct stat st;
 	  	stat(path,&st);
@@ -215,7 +209,7 @@ void almacenar_datos(char *data, char* path_pokemon){
 	 char* path_bloques = obtener_path_bloques();
 	 char** bloques = obtener_bloques_pokemon(path_pokemon);
 	 char* bloques_string = obtener_bloques_pokemon_string(path_pokemon);
-	 int tamanio_bloques = 30; // CAMBIAAAAAAAAAAAAAARRRRRRR!!!!  obtener_tamanio_bloques();
+	 int tamanio_bloques = obtener_tamanio_bloques();
 
 
 	 //ME FIJO CUANTOS BLOQUES VOY A NECESITAR PARA ALMACENAR TODA LA DATA QUE LEVANTE
@@ -305,6 +299,20 @@ char* asignar_bloque(char* bloques){
  	return vector_bloques;
  }
 
+char* asignar_primer_bloque(){
+
+	char* bloques = string_new();
+	int nuevo_bloque = obtener_nuevo_bloque();
+	char* bloque = string_itoa(nuevo_bloque);
+	string_append(&bloques,"[");
+	string_append(&bloques,bloque);
+	string_append(&bloques,"]");
+
+	return bloques;
+
+}
+
+
 char* liberar_ultimo_bloque(char* bloques){
 
 	char** array_bloques = string_get_string_as_array(bloques);
@@ -347,33 +355,8 @@ void mostrar_contenido_lista(t_list* datos){
 
 }
 
-char* generar_linea_a_insertar(int posX, int posY, int cantidad){
-	char* linea = string_new();
 
-	char* posX_string = string_new();
-	posX_string = string_itoa(posY);
-
-	char* posY_string = string_new();
-	posY_string = string_itoa(posY);
-
-	char* cantidad_string = string_new();
-	cantidad_string = string_itoa(cantidad);
-
-	string_append(&linea,posX_string);
-	string_append(&linea,"-");
-	string_append(&linea,posY_string);
-	string_append(&linea,"=");
-	string_append(&linea,cantidad_string);
-	string_append(&linea,"\n");
-
-	free(posX_string);
-	free(posY_string);
-	free(cantidad_string);
-
-	return linea;
-}
-
-int existe_posicion_lista(t_list* lista, int posX, int posY){ //funciona
+int existe_posicion_en_lista(t_list* lista, int posX, int posY){ //funciona
 
 	char* posX_string = string_itoa(posX);
     char* posY_string = string_itoa(posY);

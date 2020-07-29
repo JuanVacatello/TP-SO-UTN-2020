@@ -43,6 +43,13 @@ int main(void) {
 	char* punto_montaje = obtener_punto_montaje();
 	inicializar_file_system(punto_montaje);
 
+	char* bloques="[]";
+	char** array_bloques = string_get_string_as_array(bloques);
+	puts(array_bloques[0]);
+
+
+
+	/*
 	//mostrar_paths_generados();
 	//mostrar_contenido_bitmap();
 	//mostrar_paths_generados("1");
@@ -52,10 +59,11 @@ int main(void) {
 
 	t_list* lista_datos = obtener_datos_bloques("/home/utnso/Documentos/Prueba_GameCard/TALL_GRASS/Files/Charmander");
 	//mostrar_paths_generados("3");
-    int indice = existe_posicion_lista(lista_datos,5,7 );
+    int indice = existe_posicion_en_lista(lista_datos,5,7 );
     if(indice == -1){
     	puts("no se encuentra en la lista");
     }
+    */
 
 
 /*
@@ -235,7 +243,75 @@ void mostrar_paths_generados(char* iteracion){
 	printf("el path bloques es: %s \n", obtener_path_bloques());
 }
 
+void new_pokemon(char* pokemon,int posX,int posY){ //funciona
 
+	char* path_pokemon =obtener_path_pokemon(pokemon);
+	char* path_files = obtener_path_files();
+
+
+		if(existe_file(path_pokemon)==0){
+
+			char* bloques_en_string = obtener_bloques_pokemon_string(path_pokemon);
+			if(strlen(bloques_en_string) == 2){ // si no tiene bloques asignados
+				bloques_en_string = asignar_primer_bloque();
+				modificar_campo_bloques_metadata(path_pokemon,bloques_en_string);
+				insertar_nueva_linea(path_pokemon,posX,posY);
+			}
+			else{
+
+				t_list* lista_datos = obtener_datos_bloques(path_pokemon);
+							int indice = existe_posicion_en_lista(lista_datos,posX,posY);
+
+							if(indice == -1){
+								char* linea = generar_linea_a_insertar(posX, posY, 1);
+								agregar_linea(lista_datos, linea);
+								char* datos = obtener_datos_en_string(lista_datos);
+								almacenar_datos(datos, path_pokemon);
+							}
+
+							else{
+								char* linea_a_modificar = list_get(lista_datos, indice);
+								char* linea_modificada = aumentar_cantidad_linea(linea_a_modificar);
+								list_replace(lista_datos,indice,linea_modificada);
+								char* datos = obtener_datos_en_string(lista_datos);
+								almacenar_datos(datos, path_pokemon);
+
+
+							}
+
+			puts("existe");
+			}
+
+
+		}
+		else{
+			puts("no existe");
+			mkdir(path_pokemon, 0777);
+			string_append(&path_pokemon,"/");
+			string_append(&path_pokemon,"Metadata.bin");
+
+
+			FILE* metadata = txt_open_for_append(path_pokemon);
+
+			txt_write_in_file(metadata, "DIRECTORY=N\n");
+			txt_write_in_file(metadata, "SIZE=\n");
+
+			int nuevo_bloque = obtener_nuevo_bloque();
+			char* bloque_string = string_itoa(nuevo_bloque);
+			txt_write_in_file(metadata, "BLOCKS=[");
+			txt_write_in_file(metadata, bloque_string);
+			txt_write_in_file(metadata, "]\n");
+
+			txt_write_in_file(metadata, "OPEN=N");
+			txt_close_file(metadata);
+
+			insertar_nueva_linea(path_pokemon,posX,posY);
+
+		}
+
+		free(path_pokemon);
+		free(path_files);
+}
 
 
 

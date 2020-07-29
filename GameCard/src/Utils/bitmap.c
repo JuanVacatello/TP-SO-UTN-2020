@@ -76,10 +76,10 @@ int obtener_nuevo_bloque(){
 
 		pthread_mutex_lock(&MUTEX_BITMAP);
 
-		int bloques = obtener_cantidad_bloques();
+		int cantidad_bloques = obtener_cantidad_bloques();
 		int i;
 
-		for(i = 0; i < bloques; i++){
+		for(i = 0; i < cantidad_bloques; i++){
 			if(!bitarray_test_bit(bitarray,i)){ // CHEQUEAR QUE EL INDICE DE BITMAP FUNCIONE ASI CON i=1
 				bitarray_set_bit(bitarray,i);
 

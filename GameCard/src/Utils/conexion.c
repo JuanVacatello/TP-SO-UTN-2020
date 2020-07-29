@@ -287,7 +287,7 @@ void recibir_new_pokemon(int socket_cliente){	//RECIBE TODO PERFECTO (NO MUEVAN 
 
 		printf("La cantidad es %d \n", cantidad);
 
-	//agregar_pokemon(pokemon, posX, posY, -1); // Holi no quiero tocar nada pero pasan 4 parametros pero la funcion es de 3
+	//new_pokemon(pokemon, posX, posY, -1); // Holi no quiero tocar nada pero pasan 4 parametros pero la funcion es de 3
 
 	//responder_ack(mensaje_id);
 }

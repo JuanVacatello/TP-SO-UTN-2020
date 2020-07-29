@@ -6,47 +6,120 @@
  */
 #include "files.h"
 
-void new_pokemon(char* pokemon,int posX,int posY){ //funciona
+char* obtener_path_pokemon(char * pokemon){
 
 	char* path_pokemon = string_new();
-	char* path_files = obtener_path_files();
-		string_append(&path_pokemon, path_files);
-		string_append(&path_pokemon, "/");
-		string_append(&path_pokemon, pokemon);
+		char* path_files = obtener_path_files();
+			string_append(&path_pokemon, path_files);
+			string_append(&path_pokemon, "/");
+			string_append(&path_pokemon, pokemon);
 
-
-		if(existe_file(path_pokemon)==0){
-			//actualizar_valores_pokemon(path_pokemon,posX,posY,1); //FALTA IMPLEMENTAR, TENDRIA QUE FUNCIONAR TANTO PARA SUMAR COMO RESTAR
-			puts("existe");
-		}
-		else{
-			puts("no existe");
-			mkdir(path_pokemon, 0777);
-			string_append(&path_pokemon,"/");
-			string_append(&path_pokemon,"Metadata.bin");
-
-
-			FILE* metadata = txt_open_for_append(path_pokemon);
-
-			txt_write_in_file(metadata, "DIRECTORY=N\n");
-			txt_write_in_file(metadata, "SIZE=\n");
-
-			char* sentencia_blocks = string_new();
-			string_append(&sentencia_blocks,"BLOCKS=");
-			//char* bloque_asignado = obtener_siguiente_bloque_libre(); //FALTA IMPLEMENTAR.OBTENER PROX BLOQUE FORMATO:[]
-			//string_append(&sentencia_blocks,bloque_asignado);
-			//txt_write_in_file(metadata, sentencia_blocks);
-			txt_write_in_file(metadata, "BLOCKS=\n");
-
-			txt_write_in_file(metadata, "OPEN=N");
-			txt_close_file(metadata);
-
-			//actualizar_valores_pokemon(path_metadata_pokemon,posX,posY,cantidad);
-
-			free(sentencia_blocks);
-		}
-
-		free(path_pokemon);
-		free(path_files);
+		return path_pokemon;
 }
+
+int existe_posicion_pokemon(char* pokemon, int posX, int posY){
+	char* path_pokemon = obtener_path_pokemon(pokemon);
+	t_list* lista_datos = obtener_datos_bloques(path_pokemon);
+	int indice = existe_posicion_en_lista(lista_datos,5,7);
+	return indice;
+}
+
+void insertar_nueva_linea(char* path_pokemon, int posX, int posY){
+
+	char* linea = generar_linea_a_insertar(posX, posY, 1);
+	almacenar_datos(linea, path_pokemon);
+
+}
+
+char* generar_linea_a_insertar(int posX, int posY, int cantidad){
+	char* linea = string_new();
+
+	char* posX_string = string_new();
+	posX_string = string_itoa(posX);
+
+	char* posY_string = string_new();
+	posY_string = string_itoa(posY);
+
+	char* cantidad_string = string_new();
+	cantidad_string = string_itoa(cantidad);
+
+	string_append(&linea,posX_string);
+	string_append(&linea,"-");
+	string_append(&linea,posY_string);
+	string_append(&linea,"=");
+	string_append(&linea,cantidad_string);
+	string_append(&linea,"\n");
+
+	free(posX_string);
+	free(posY_string);
+	free(cantidad_string);
+
+	return linea;
+}
+
+
+
+char* aumentar_cantidad_linea(char* linea_a_modifcar){
+
+	int valor_modificado;
+	char* digito;
+	int i = 0;
+	int pos_signo_igual;
+	char* fusion = string_new();
+
+	while(linea_a_modifcar[i] != '='){ // avanzo hasta el =
+		i++;
+	}
+	pos_signo_igual = i;
+	i++;
+
+	while(linea_a_modifcar[i] != '\n'){ //LEO EL VALOR EN STRING
+	digito = string_from_format("%c",linea_a_modifcar[i]);
+	string_append(&fusion,digito);
+ 	i++;
+    	}
+
+	valor_modificado = atoi(fusion)+1; // CONVIERTO A INT, AUMENTO, CONVIERTO A STRING
+	char* valor_aumentado_string = string_itoa(valor_modificado);
+
+	char* aux = string_new();
+	//string_append(&aux, string_substring_until(linea_a_modifcar,pos_signo_igual+1));
+	string_append(&aux,valor_aumentado_string );
+	string_append(&aux,"\n" );
+
+	return aux;
+}
+
+char* disminuir_cantidad_linea(char* linea_a_modifcar){
+
+	int valor_modificado;
+	char* digito;
+	int i = 0;
+	int pos_signo_igual;
+	char* fusion = string_new();
+
+	while(linea_a_modifcar[i] != '='){ // avanzo hasta el =
+		i++;
+	}
+	pos_signo_igual = i;
+	i++;
+
+	while(linea_a_modifcar[i] != '\n'){ //LEO EL VALOR EN STRING
+	digito = string_from_format("%c",linea_a_modifcar[i]);
+	string_append(&fusion,digito);
+ 	i++;
+    	}
+
+	valor_modificado = atoi(fusion)-1; // CONVIERTO A INT, AUMENTO, CONVIERTO A STRING
+	char* valor_aumentado_string = string_itoa(valor_modificado);
+
+	char* aux = string_new();
+	//string_append(&aux, string_substring_until(linea_a_modifcar,pos_signo_igual+1));
+	string_append(&aux,valor_aumentado_string );
+	string_append(&aux,"\n" );
+
+	return aux;
+}
+
+
 
