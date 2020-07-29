@@ -65,10 +65,11 @@ int suscribirse_globalmente(op_code cola_a_suscribirse);
 void* suscribirse_a_cola(int socket_broker, uint32_t cola_a_suscribirse, int* tamanio_paquete);
 
 // Recibir mensajes de GameBoy y Broker
-void recibir_new_pokemon(int socket_cliente);
-void recibir_catch_pokemon(int socket_cliente);
-void recibir_get_pokemon(int socket_cliente);
-void enviar_mensaje_a_broker(int socket_cliente, op_code codigo_operacion, char* argv[]);
+void recibir_new_pokemon(int socket_broker);
+void recibir_catch_pokemon(int socket_broker);
+void recibir_get_pokemon(int socket_broker);
+void enviar_mensaje_a_broker(int socket_broker, op_code codigo_operacion, char* argv[]);
+void responder_ack(uint32_t mensaje_id, int socket_broker);
 
 // Enviar mensaje a Broker
 void enviar_appeared_pokemon(void);
@@ -80,8 +81,6 @@ void* iniciar_paquete_serializado_LocalizedPokemon(int* tamanio_paquete, uint32_
 
 // Auxiliares
 void* serializar_paquete(t_paquete* paquete, int *bytes);
-void* enviar_ACK(int socket_broker, int* tamanio, uint32_t mensaje_id);
-void responder_ack(uint32_t mensaje_id);
 char* recibir_mensaje(int socket_broker);
 
 #endif /* UTILS_CONEXION_H_ */
