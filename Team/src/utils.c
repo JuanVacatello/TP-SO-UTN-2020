@@ -16,7 +16,7 @@ void iniciar_vg(){
 	lista_ids_getPokemon = list_create();
 	lista_pokemonesNoRequeridos_enElMapa = list_create();
 
-	//informar_pokemones_a_atrapar();
+	informar_pokemones_a_atrapar();
 
 	ciclosCpuTotales = 0;
 	cambiosDeContexto = 0;

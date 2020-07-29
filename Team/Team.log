@@ -1970,3 +1970,1708 @@
 [INFO] 17:25:16:530 TEAM/(9875:9884): El entrenador C ejecutó 12 ciclos de cpu
 [INFO] 17:25:16:531 TEAM/(9875:9884): Se produjeron 2 deadlocks
 [INFO] 17:25:16:531 TEAM/(9875:9884): Se resolvieron 2 deadlocks
+[INFO] 18:34:53:14 TEAM/(12663:12663): Llego un mensaje LOCALIZED_POKEMON:
+ ID_MENSAJE: 1. 
+ ID_CORRELATIVO: 2.
+ POKEMON: Pikachu. 
+ CANTIDAD: 3. 
+ POSICION EN X: 1. 
+ POSICION EN Y: 2. 
+POSICION EN X: 3. 
+ POSICION EN Y: 4. 
+POSICION EN X: 5. 
+ POSICION EN Y: 6. 
+
+[INFO] 18:36:18:540 TEAM/(12805:12805): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 1. 
+ID_CORRELATIVO: 2.
+POKEMON: Pikachu. 
+CANTIDAD: 3. 
+ POSICION EN X: 1. 
+POSICION EN Y: 2. 
+POSICION EN X: 3. 
+POSICION EN Y: 4. 
+POSICION EN X: 5. 
+POSICION EN Y: 6. 
+
+[INFO] 18:36:37:346 TEAM/(12842:12842): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 1. 
+ID_CORRELATIVO: 2.
+POKEMON: Pikachu. 
+CANTIDAD: 3. 
+POSICION EN X: 1. 
+POSICION EN Y: 2. 
+POSICION EN X: 3. 
+POSICION EN Y: 4. 
+POSICION EN X: 5. 
+POSICION EN Y: 6. 
+
+[INFO] 18:43:08:267 TEAM/(13056:13064): NO se logró conectar con el BROKER
+[INFO] 18:43:08:268 TEAM/(13056:13064): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 18:43:38:271 TEAM/(13056:13064): NO se logró conectar con el BROKER
+[INFO] 18:43:38:271 TEAM/(13056:13064): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 18:43:39:376 TEAM/(13056:13190): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Pikachu. 
+POSICION EN X: 9. 
+POSICION EN Y: 9.
+[INFO] 18:43:39:379 TEAM/(13056:13193): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 18:43:39:381 TEAM/(13056:13195): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Onix. 
+POSICION EN X: 2. 
+POSICION EN Y: 8.
+[INFO] 18:43:40:378 TEAM/(13056:13192): El entrenador B se movió a la posicion 3|3.
+[INFO] 18:43:41:383 TEAM/(13056:13199): El entrenador B se movió a la posicion 4|3.
+[INFO] 18:43:41:383 TEAM/(13056:13065): Se cambio al entrenador B debido a fin de quantum
+[INFO] 18:43:42:386 TEAM/(13056:13200): El entrenador C se movió a la posicion 4|2.
+[INFO] 18:43:43:388 TEAM/(13056:13201): El entrenador C se movió a la posicion 5|2.
+[INFO] 18:43:43:389 TEAM/(13056:13065): Se cambio al entrenador C debido a fin de quantum
+[INFO] 18:43:44:389 TEAM/(13056:13202): El entrenador A se movió a la posicion 2|3.
+[INFO] 18:43:45:391 TEAM/(13056:13203): El entrenador A se movió a la posicion 2|4.
+[INFO] 18:43:45:392 TEAM/(13056:13065): Se cambio al entrenador A debido a fin de quantum
+[INFO] 18:43:46:393 TEAM/(13056:13204): El entrenador B se movió a la posicion 5|3.
+[INFO] 18:43:47:395 TEAM/(13056:13205): El entrenador B se movió a la posicion 6|3.
+[INFO] 18:43:47:396 TEAM/(13056:13065): Se cambio al entrenador B debido a fin de quantum
+[INFO] 18:43:47:396 TEAM/(13056:13206): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 18:43:47:396 TEAM/(13056:13197): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Gengar. 
+POSICION EN X: 6. 
+POSICION EN Y: 6.
+[INFO] 18:44:00:944 TEAM/(13213:13222): NO se logró conectar con el BROKER
+[INFO] 18:44:00:945 TEAM/(13213:13222): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 18:44:02:711 TEAM/(13213:13226): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Pikachu. 
+POSICION EN X: 9. 
+POSICION EN Y: 9.
+[INFO] 18:44:02:713 TEAM/(13213:13229): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 18:44:02:715 TEAM/(13213:13231): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Onix. 
+POSICION EN X: 2. 
+POSICION EN Y: 8.
+[INFO] 18:44:03:713 TEAM/(13213:13228): El entrenador B se movió a la posicion 3|3.
+[INFO] 18:44:04:723 TEAM/(13213:13235): El entrenador B se movió a la posicion 4|3.
+[INFO] 18:44:05:724 TEAM/(13213:13236): El entrenador B se movió a la posicion 5|3.
+[INFO] 18:44:06:725 TEAM/(13213:13237): El entrenador B se movió a la posicion 6|3.
+[INFO] 18:44:07:727 TEAM/(13213:13238): El entrenador B se movió a la posicion 7|3.
+[INFO] 18:44:08:728 TEAM/(13213:13239): El entrenador B se movió a la posicion 8|3.
+[INFO] 18:44:09:729 TEAM/(13213:13240): El entrenador B se movió a la posicion 9|3.
+[INFO] 18:44:10:730 TEAM/(13213:13241): El entrenador B se movió a la posicion 9|4.
+[INFO] 18:44:11:731 TEAM/(13213:13242): El entrenador B se movió a la posicion 9|5.
+[INFO] 18:44:12:732 TEAM/(13213:13243): El entrenador B se movió a la posicion 9|6.
+[INFO] 18:44:13:734 TEAM/(13213:13244): El entrenador B se movió a la posicion 9|7.
+[INFO] 18:44:14:740 TEAM/(13213:13245): El entrenador B se movió a la posicion 9|8.
+[INFO] 18:44:15:742 TEAM/(13213:13246): El entrenador B se movió a la posicion 9|9.
+[INFO] 18:44:15:742 TEAM/(13213:13247): El entrenador B atrapó un Pikachu en la posicion 9|9.
+[INFO] 18:44:15:742 TEAM/(13213:13233): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Gengar. 
+POSICION EN X: 6. 
+POSICION EN Y: 6.
+[INFO] 18:44:16:743 TEAM/(13213:13223): Se cambio al entrenador C debido a que terminó de ejecutar
+[INFO] 18:44:17:746 TEAM/(13213:13249): El entrenador C se movió a la posicion 4|2.
+[INFO] 18:44:18:747 TEAM/(13213:13250): El entrenador C se movió a la posicion 5|2.
+[INFO] 18:44:18:754 TEAM/(13213:13251): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 18:44:18:755 TEAM/(13213:13248): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 5.
+[INFO] 18:44:19:765 TEAM/(13213:13223): Se cambio al entrenador A debido a que terminó de ejecutar
+[INFO] 18:44:20:766 TEAM/(13213:13252): El entrenador A se movió a la posicion 2|3.
+[INFO] 18:44:21:770 TEAM/(13213:13253): El entrenador A se movió a la posicion 2|4.
+[INFO] 18:44:22:773 TEAM/(13213:13254): El entrenador A se movió a la posicion 2|5.
+[INFO] 18:44:23:773 TEAM/(13213:13255): El entrenador A se movió a la posicion 2|6.
+[INFO] 18:44:24:774 TEAM/(13213:13257): El entrenador A se movió a la posicion 2|7.
+[INFO] 18:44:25:775 TEAM/(13213:13258): El entrenador A se movió a la posicion 2|8.
+[INFO] 18:44:25:779 TEAM/(13213:13259): El entrenador A atrapó un Onix en la posicion 2|8.
+[INFO] 18:44:26:779 TEAM/(13213:13223): Se cambio al entrenador B debido a que terminó de ejecutar
+[INFO] 18:44:27:780 TEAM/(13213:13260): El entrenador B se movió a la posicion 8|9.
+[INFO] 18:44:28:781 TEAM/(13213:13261): El entrenador B se movió a la posicion 7|9.
+[INFO] 18:44:29:782 TEAM/(13213:13262): El entrenador B se movió a la posicion 6|9.
+[INFO] 18:44:30:783 TEAM/(13213:13263): El entrenador B se movió a la posicion 6|8.
+[INFO] 18:44:30:945 TEAM/(13213:13222): NO se logró conectar con el BROKER
+[INFO] 18:44:30:946 TEAM/(13213:13222): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 18:44:31:785 TEAM/(13213:13266): El entrenador B se movió a la posicion 6|7.
+[INFO] 18:44:32:788 TEAM/(13213:13267): El entrenador B se movió a la posicion 6|6.
+[INFO] 18:44:32:789 TEAM/(13213:13268): El entrenador B atrapó un Gengar en la posicion 6|6.
+[INFO] 18:44:33:791 TEAM/(13213:13223): Se cambio al entrenador C debido a que terminó de ejecutar
+[INFO] 18:44:34:791 TEAM/(13213:13269): El entrenador C se movió a la posicion 5|3.
+[INFO] 18:44:35:795 TEAM/(13213:13270): El entrenador C se movió a la posicion 5|4.
+[INFO] 18:44:36:796 TEAM/(13213:13271): El entrenador C se movió a la posicion 5|5.
+[INFO] 18:44:36:797 TEAM/(13213:13272): El entrenador C atrapó un Squirtle en la posicion 5|5.
+[INFO] 18:46:00:312 TEAM/(13320:13326): NO se logró conectar con el BROKER
+[INFO] 18:46:00:315 TEAM/(13320:13326): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 18:46:01:188 TEAM/(13320:13333): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Pikachu. 
+POSICION EN X: 9. 
+POSICION EN Y: 9.
+[INFO] 18:46:01:194 TEAM/(13320:13336): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 18:46:01:198 TEAM/(13320:13338): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Onix. 
+POSICION EN X: 2. 
+POSICION EN Y: 8.
+[INFO] 18:46:02:192 TEAM/(13320:13335): El entrenador B se movió a la posicion 3|3.
+[INFO] 18:46:03:193 TEAM/(13320:13342): El entrenador B se movió a la posicion 4|3.
+[INFO] 18:46:04:194 TEAM/(13320:13343): El entrenador B se movió a la posicion 5|3.
+[INFO] 18:46:05:202 TEAM/(13320:13345): El entrenador B se movió a la posicion 6|3.
+[INFO] 18:46:06:204 TEAM/(13320:13346): El entrenador B se movió a la posicion 7|3.
+[INFO] 18:46:07:204 TEAM/(13320:13347): El entrenador B se movió a la posicion 8|3.
+[INFO] 18:46:08:206 TEAM/(13320:13348): El entrenador B se movió a la posicion 9|3.
+[INFO] 18:46:09:208 TEAM/(13320:13349): El entrenador B se movió a la posicion 9|4.
+[INFO] 18:46:10:212 TEAM/(13320:13350): El entrenador B se movió a la posicion 9|5.
+[INFO] 18:46:11:216 TEAM/(13320:13351): El entrenador B se movió a la posicion 9|6.
+[INFO] 18:46:12:218 TEAM/(13320:13352): El entrenador B se movió a la posicion 9|7.
+[INFO] 18:46:13:218 TEAM/(13320:13353): El entrenador B se movió a la posicion 9|8.
+[INFO] 18:46:14:221 TEAM/(13320:13354): El entrenador B se movió a la posicion 9|9.
+[INFO] 18:46:14:222 TEAM/(13320:13355): El entrenador B atrapó un Pikachu en la posicion 9|9.
+[INFO] 18:46:14:222 TEAM/(13320:13340): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Gengar. 
+POSICION EN X: 6. 
+POSICION EN Y: 6.
+[INFO] 18:46:15:223 TEAM/(13320:13329): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 18:46:16:228 TEAM/(13320:13357): El entrenador C se movió a la posicion 4|2.
+[INFO] 18:46:17:229 TEAM/(13320:13358): El entrenador C se movió a la posicion 5|2.
+[INFO] 18:46:17:239 TEAM/(13320:13364): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 18:46:17:239 TEAM/(13320:13356): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 5.
+[INFO] 18:46:18:240 TEAM/(13320:13329): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 18:46:19:241 TEAM/(13320:13365): El entrenador A se movió a la posicion 2|3.
+[INFO] 18:46:20:257 TEAM/(13320:13366): El entrenador A se movió a la posicion 2|4.
+[INFO] 18:46:21:259 TEAM/(13320:13367): El entrenador A se movió a la posicion 2|5.
+[INFO] 18:46:22:260 TEAM/(13320:13368): El entrenador A se movió a la posicion 2|6.
+[INFO] 18:46:23:261 TEAM/(13320:13369): El entrenador A se movió a la posicion 2|7.
+[INFO] 18:46:24:266 TEAM/(13320:13370): El entrenador A se movió a la posicion 2|8.
+[INFO] 18:46:24:266 TEAM/(13320:13371): El entrenador A atrapó un Onix en la posicion 2|8.
+[INFO] 18:46:25:266 TEAM/(13320:13329): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 18:46:26:276 TEAM/(13320:13372): El entrenador B se movió a la posicion 8|9.
+[INFO] 18:46:27:278 TEAM/(13320:13373): El entrenador B se movió a la posicion 7|9.
+[INFO] 18:46:28:279 TEAM/(13320:13374): El entrenador B se movió a la posicion 6|9.
+[INFO] 18:46:29:281 TEAM/(13320:13375): El entrenador B se movió a la posicion 6|8.
+[INFO] 18:46:30:282 TEAM/(13320:13376): El entrenador B se movió a la posicion 6|7.
+[INFO] 18:46:30:316 TEAM/(13320:13326): NO se logró conectar con el BROKER
+[INFO] 18:46:30:316 TEAM/(13320:13326): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 18:46:31:282 TEAM/(13320:13377): El entrenador B se movió a la posicion 6|6.
+[INFO] 18:46:31:283 TEAM/(13320:13380): El entrenador B atrapó un Gengar en la posicion 6|6.
+[INFO] 18:46:32:284 TEAM/(13320:13329): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 18:46:33:286 TEAM/(13320:13381): El entrenador C se movió a la posicion 5|3.
+[INFO] 18:46:34:291 TEAM/(13320:13382): El entrenador C se movió a la posicion 5|4.
+[INFO] 18:46:35:292 TEAM/(13320:13383): El entrenador C se movió a la posicion 5|5.
+[INFO] 18:46:35:292 TEAM/(13320:13384): El entrenador C atrapó un Squirtle en la posicion 5|5.
+[INFO] 18:48:02:25 TEAM/(13436:13444): NO se logró conectar con el BROKER
+[INFO] 18:48:02:26 TEAM/(13436:13444): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 18:48:04:446 TEAM/(13436:13449): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Pikachu. 
+POSICION EN X: 9. 
+POSICION EN Y: 9.
+[INFO] 18:48:04:447 TEAM/(13436:13452): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 18:48:04:454 TEAM/(13436:13454): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Onix. 
+POSICION EN X: 2. 
+POSICION EN Y: 8.
+[INFO] 18:48:05:448 TEAM/(13436:13451): El entrenador B se movió a la posicion 3|3.
+[INFO] 18:48:06:456 TEAM/(13436:13458): El entrenador B se movió a la posicion 4|3.
+[INFO] 18:48:07:457 TEAM/(13436:13459): El entrenador B se movió a la posicion 5|3.
+[INFO] 18:48:08:464 TEAM/(13436:13460): El entrenador B se movió a la posicion 6|3.
+[INFO] 18:48:09:465 TEAM/(13436:13461): El entrenador B se movió a la posicion 7|3.
+[INFO] 18:48:10:468 TEAM/(13436:13462): El entrenador B se movió a la posicion 8|3.
+[INFO] 18:48:11:470 TEAM/(13436:13463): El entrenador B se movió a la posicion 9|3.
+[INFO] 18:48:12:470 TEAM/(13436:13464): El entrenador B se movió a la posicion 9|4.
+[INFO] 18:48:13:472 TEAM/(13436:13465): El entrenador B se movió a la posicion 9|5.
+[INFO] 18:48:14:472 TEAM/(13436:13466): El entrenador B se movió a la posicion 9|6.
+[INFO] 18:48:15:474 TEAM/(13436:13467): El entrenador B se movió a la posicion 9|7.
+[INFO] 18:48:16:476 TEAM/(13436:13468): El entrenador B se movió a la posicion 9|8.
+[INFO] 18:48:17:477 TEAM/(13436:13469): El entrenador B se movió a la posicion 9|9.
+[INFO] 18:48:17:478 TEAM/(13436:13470): El entrenador B atrapó un Pikachu en la posicion 9|9.
+[INFO] 18:48:17:478 TEAM/(13436:13456): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Gengar. 
+POSICION EN X: 6. 
+POSICION EN Y: 6.
+[INFO] 18:48:18:478 TEAM/(13436:13445): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 18:48:19:480 TEAM/(13436:13472): El entrenador C se movió a la posicion 4|2.
+[INFO] 18:48:20:480 TEAM/(13436:13473): El entrenador C se movió a la posicion 5|2.
+[INFO] 18:48:20:484 TEAM/(13436:13474): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 18:48:20:484 TEAM/(13436:13471): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 5.
+[INFO] 18:48:21:484 TEAM/(13436:13445): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 18:48:22:485 TEAM/(13436:13475): El entrenador A se movió a la posicion 2|3.
+[INFO] 18:48:23:487 TEAM/(13436:13476): El entrenador A se movió a la posicion 2|4.
+[INFO] 18:48:24:488 TEAM/(13436:13477): El entrenador A se movió a la posicion 2|5.
+[INFO] 18:48:25:490 TEAM/(13436:13478): El entrenador A se movió a la posicion 2|6.
+[INFO] 18:48:26:492 TEAM/(13436:13479): El entrenador A se movió a la posicion 2|7.
+[INFO] 18:48:27:494 TEAM/(13436:13480): El entrenador A se movió a la posicion 2|8.
+[INFO] 18:48:27:495 TEAM/(13436:13481): El entrenador A atrapó un Onix en la posicion 2|8.
+[INFO] 18:48:28:496 TEAM/(13436:13445): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 18:48:29:496 TEAM/(13436:13482): El entrenador B se movió a la posicion 8|9.
+[INFO] 18:48:30:497 TEAM/(13436:13483): El entrenador B se movió a la posicion 7|9.
+[INFO] 18:48:31:498 TEAM/(13436:13484): El entrenador B se movió a la posicion 6|9.
+[INFO] 18:48:32:26 TEAM/(13436:13444): NO se logró conectar con el BROKER
+[INFO] 18:48:32:27 TEAM/(13436:13444): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 18:48:32:499 TEAM/(13436:13492): El entrenador B se movió a la posicion 6|8.
+[INFO] 18:48:33:500 TEAM/(13436:13493): El entrenador B se movió a la posicion 6|7.
+[INFO] 18:48:34:501 TEAM/(13436:13494): El entrenador B se movió a la posicion 6|6.
+[INFO] 18:48:34:502 TEAM/(13436:13495): El entrenador B atrapó un Gengar en la posicion 6|6.
+[INFO] 18:48:35:502 TEAM/(13436:13445): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 18:48:36:503 TEAM/(13436:13496): El entrenador C se movió a la posicion 5|3.
+[INFO] 18:48:37:504 TEAM/(13436:13497): El entrenador C se movió a la posicion 5|4.
+[INFO] 18:48:38:505 TEAM/(13436:13498): El entrenador C se movió a la posicion 5|5.
+[INFO] 18:48:38:507 TEAM/(13436:13499): El entrenador C atrapó un Squirtle en la posicion 5|5.
+[INFO] 18:48:39:508 TEAM/(13436:13445): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 18:48:39:508 TEAM/(13436:13445): Se detecto que hay situacion de deadlock
+[INFO] 18:48:40:508 TEAM/(13436:13505): El entrenador A se movió a la posicion 3|8.
+[INFO] 18:48:41:511 TEAM/(13436:13506): El entrenador A se movió a la posicion 4|8.
+[INFO] 18:48:42:511 TEAM/(13436:13507): El entrenador A se movió a la posicion 5|8.
+[INFO] 18:48:43:512 TEAM/(13436:13508): El entrenador A se movió a la posicion 5|7.
+[INFO] 18:48:44:514 TEAM/(13436:13509): El entrenador A se movió a la posicion 5|6.
+[INFO] 18:48:45:515 TEAM/(13436:13511): El entrenador A se movió a la posicion 5|5.
+[INFO] 18:48:50:517 TEAM/(13436:13512): El entrenador A intercambio un Onix por un Squirtle del entrenador C
+[INFO] 18:48:50:518 TEAM/(13436:13445): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 18:48:50:519 TEAM/(13436:13445): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 18:48:50:519 TEAM/(13436:13445): No se detecto situacion de deadlock
+[INFO] 18:48:50:519 TEAM/(13436:13445): Finalizo el TEAM
+[INFO] 18:48:50:519 TEAM/(13436:13445): Se ejecutaron 51 ciclos de cpu
+[INFO] 18:48:50:519 TEAM/(13436:13445): Ocurrieron 6 cambios de contexto durante todo el team
+[INFO] 18:48:50:519 TEAM/(13436:13445): El entrenador A ejecutó 18 ciclos de cpu
+[INFO] 18:48:50:519 TEAM/(13436:13445): El entrenador B ejecutó 21 ciclos de cpu
+[INFO] 18:48:50:519 TEAM/(13436:13445): El entrenador C ejecutó 7 ciclos de cpu
+[INFO] 18:48:50:519 TEAM/(13436:13445): Se produjeron 1 deadlocks
+[INFO] 18:48:50:519 TEAM/(13436:13445): Se resolvieron 1 deadlocks
+[INFO] 18:49:32:414 TEAM/(13525:13533): NO se logró conectar con el BROKER
+[INFO] 18:49:32:414 TEAM/(13525:13533): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 18:49:33:799 TEAM/(13525:13538): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Pikachu. 
+POSICION EN X: 9. 
+POSICION EN Y: 9.
+[INFO] 18:49:33:816 TEAM/(13525:13541): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 18:49:33:823 TEAM/(13525:13543): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Onix. 
+POSICION EN X: 2. 
+POSICION EN Y: 8.
+[INFO] 18:49:34:819 TEAM/(13525:13540): El entrenador B se movió a la posicion 3|3.
+[INFO] 18:49:35:828 TEAM/(13525:13547): El entrenador B se movió a la posicion 4|3.
+[INFO] 18:49:36:837 TEAM/(13525:13548): El entrenador B se movió a la posicion 5|3.
+[INFO] 18:49:37:838 TEAM/(13525:13549): El entrenador B se movió a la posicion 6|3.
+[INFO] 18:49:38:841 TEAM/(13525:13550): El entrenador B se movió a la posicion 7|3.
+[INFO] 18:49:39:843 TEAM/(13525:13551): El entrenador B se movió a la posicion 8|3.
+[INFO] 18:49:40:851 TEAM/(13525:13552): El entrenador B se movió a la posicion 9|3.
+[INFO] 18:49:41:852 TEAM/(13525:13553): El entrenador B se movió a la posicion 9|4.
+[INFO] 18:49:42:855 TEAM/(13525:13554): El entrenador B se movió a la posicion 9|5.
+[INFO] 18:49:43:856 TEAM/(13525:13555): El entrenador B se movió a la posicion 9|6.
+[INFO] 18:49:44:858 TEAM/(13525:13556): El entrenador B se movió a la posicion 9|7.
+[INFO] 18:49:45:859 TEAM/(13525:13557): El entrenador B se movió a la posicion 9|8.
+[INFO] 18:49:46:863 TEAM/(13525:13558): El entrenador B se movió a la posicion 9|9.
+[INFO] 18:49:46:864 TEAM/(13525:13559): El entrenador B atrapó un Pikachu en la posicion 9|9.
+[INFO] 18:49:46:864 TEAM/(13525:13545): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Gengar. 
+POSICION EN X: 6. 
+POSICION EN Y: 6.
+[INFO] 18:49:47:864 TEAM/(13525:13534): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 18:49:48:865 TEAM/(13525:13561): El entrenador C se movió a la posicion 4|2.
+[INFO] 18:49:49:869 TEAM/(13525:13562): El entrenador C se movió a la posicion 5|2.
+[INFO] 18:49:49:870 TEAM/(13525:13563): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 18:49:49:870 TEAM/(13525:13560): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 5.
+[INFO] 18:49:50:871 TEAM/(13525:13534): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 18:49:51:872 TEAM/(13525:13564): El entrenador C se movió a la posicion 5|3.
+[INFO] 18:49:52:874 TEAM/(13525:13565): El entrenador C se movió a la posicion 5|4.
+[INFO] 18:49:53:874 TEAM/(13525:13566): El entrenador C se movió a la posicion 5|5.
+[INFO] 18:49:53:877 TEAM/(13525:13567): El entrenador C atrapó un Squirtle en la posicion 5|5.
+[INFO] 18:49:54:878 TEAM/(13525:13534): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 18:49:55:879 TEAM/(13525:13568): El entrenador A se movió a la posicion 2|3.
+[INFO] 18:49:56:882 TEAM/(13525:13569): El entrenador A se movió a la posicion 2|4.
+[INFO] 18:49:57:884 TEAM/(13525:13570): El entrenador A se movió a la posicion 2|5.
+[INFO] 18:49:58:885 TEAM/(13525:13571): El entrenador A se movió a la posicion 2|6.
+[INFO] 18:49:59:885 TEAM/(13525:13572): El entrenador A se movió a la posicion 2|7.
+[INFO] 18:50:00:887 TEAM/(13525:13573): El entrenador A se movió a la posicion 2|8.
+[INFO] 18:50:00:889 TEAM/(13525:13574): El entrenador A atrapó un Onix en la posicion 2|8.
+[INFO] 18:50:01:890 TEAM/(13525:13534): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 18:50:02:415 TEAM/(13525:13533): NO se logró conectar con el BROKER
+[INFO] 18:50:02:415 TEAM/(13525:13533): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 18:50:02:891 TEAM/(13525:13575): El entrenador B se movió a la posicion 8|9.
+[INFO] 18:50:03:904 TEAM/(13525:13576): El entrenador B se movió a la posicion 7|9.
+[INFO] 18:50:04:904 TEAM/(13525:13577): El entrenador B se movió a la posicion 6|9.
+[INFO] 18:50:05:905 TEAM/(13525:13578): El entrenador B se movió a la posicion 6|8.
+[INFO] 18:50:06:906 TEAM/(13525:13579): El entrenador B se movió a la posicion 6|7.
+[INFO] 18:50:07:908 TEAM/(13525:13580): El entrenador B se movió a la posicion 6|6.
+[INFO] 18:50:07:909 TEAM/(13525:13581): El entrenador B atrapó un Gengar en la posicion 6|6.
+[INFO] 18:50:08:909 TEAM/(13525:13534): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 18:50:08:910 TEAM/(13525:13534): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 18:50:08:910 TEAM/(13525:13534): Se detecto que hay situacion de deadlock
+[INFO] 18:50:09:910 TEAM/(13525:13582): El entrenador C se movió a la posicion 4|5.
+[INFO] 18:50:10:911 TEAM/(13525:13583): El entrenador C se movió a la posicion 3|5.
+[INFO] 18:50:11:914 TEAM/(13525:13584): El entrenador C se movió a la posicion 2|5.
+[INFO] 18:50:12:915 TEAM/(13525:13585): El entrenador C se movió a la posicion 2|6.
+[INFO] 18:50:13:916 TEAM/(13525:13586): El entrenador C se movió a la posicion 2|7.
+[INFO] 18:50:14:918 TEAM/(13525:13587): El entrenador C se movió a la posicion 2|8.
+[INFO] 18:50:19:920 TEAM/(13525:13588): El entrenador C intercambio un Squirtle por un Onix del entrenador A
+[INFO] 18:50:19:921 TEAM/(13525:13534): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 18:50:19:921 TEAM/(13525:13534): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 18:50:19:921 TEAM/(13525:13534): No se detecto situacion de deadlock
+[INFO] 18:50:19:921 TEAM/(13525:13534): Finalizo el TEAM
+[INFO] 18:50:19:921 TEAM/(13525:13534): Se ejecutaron 51 ciclos de cpu
+[INFO] 18:50:19:921 TEAM/(13525:13534): Ocurrieron 6 cambios de contexto durante todo el team
+[INFO] 18:50:19:921 TEAM/(13525:13534): El entrenador A ejecutó 7 ciclos de cpu
+[INFO] 18:50:19:921 TEAM/(13525:13534): El entrenador B ejecutó 21 ciclos de cpu
+[INFO] 18:50:19:921 TEAM/(13525:13534): El entrenador C ejecutó 18 ciclos de cpu
+[INFO] 18:50:19:921 TEAM/(13525:13534): Se produjeron 1 deadlocks
+[INFO] 18:50:19:921 TEAM/(13525:13534): Se resolvieron 1 deadlocks
+[INFO] 18:51:32:366 TEAM/(13640:13647): NO se logró conectar con el BROKER
+[INFO] 18:51:32:367 TEAM/(13640:13647): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 18:51:32:960 TEAM/(13640:13653): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Pikachu. 
+POSICION EN X: 9. 
+POSICION EN Y: 9.
+[INFO] 18:51:32:962 TEAM/(13640:13656): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 18:51:32:972 TEAM/(13640:13658): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Onix. 
+POSICION EN X: 2. 
+POSICION EN Y: 8.
+[INFO] 18:51:33:963 TEAM/(13640:13655): El entrenador B se movió a la posicion 3|3.
+[INFO] 18:51:34:965 TEAM/(13640:13662): El entrenador B se movió a la posicion 4|3.
+[INFO] 18:51:35:966 TEAM/(13640:13663): El entrenador B se movió a la posicion 5|3.
+[INFO] 18:51:36:967 TEAM/(13640:13664): El entrenador B se movió a la posicion 6|3.
+[INFO] 18:51:37:973 TEAM/(13640:13665): El entrenador B se movió a la posicion 7|3.
+[INFO] 18:51:38:975 TEAM/(13640:13666): El entrenador B se movió a la posicion 8|3.
+[INFO] 18:51:39:976 TEAM/(13640:13667): El entrenador B se movió a la posicion 9|3.
+[INFO] 18:51:40:976 TEAM/(13640:13668): El entrenador B se movió a la posicion 9|4.
+[INFO] 18:51:41:983 TEAM/(13640:13669): El entrenador B se movió a la posicion 9|5.
+[INFO] 18:51:42:984 TEAM/(13640:13670): El entrenador B se movió a la posicion 9|6.
+[INFO] 18:51:43:991 TEAM/(13640:13671): El entrenador B se movió a la posicion 9|7.
+[INFO] 18:51:44:993 TEAM/(13640:13672): El entrenador B se movió a la posicion 9|8.
+[INFO] 18:51:45:999 TEAM/(13640:13673): El entrenador B se movió a la posicion 9|9.
+[INFO] 18:51:45:0 TEAM/(13640:13674): El entrenador B atrapó un Pikachu en la posicion 9|9.
+[INFO] 18:51:45:1 TEAM/(13640:13660): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Gengar. 
+POSICION EN X: 6. 
+POSICION EN Y: 6.
+[INFO] 18:51:47:10 TEAM/(13640:13650): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 18:51:48:13 TEAM/(13640:13676): El entrenador C se movió a la posicion 4|2.
+[INFO] 18:51:49:14 TEAM/(13640:13677): El entrenador C se movió a la posicion 5|2.
+[INFO] 18:51:49:15 TEAM/(13640:13678): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 18:51:49:15 TEAM/(13640:13675): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 5.
+[INFO] 18:51:50:16 TEAM/(13640:13650): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 18:51:51:18 TEAM/(13640:13679): El entrenador C se movió a la posicion 5|3.
+[INFO] 18:51:52:23 TEAM/(13640:13680): El entrenador C se movió a la posicion 5|4.
+[INFO] 18:51:53:25 TEAM/(13640:13681): El entrenador C se movió a la posicion 5|5.
+[INFO] 18:51:53:25 TEAM/(13640:13682): El entrenador C atrapó un Squirtle en la posicion 5|5.
+[INFO] 18:51:54:25 TEAM/(13640:13650): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 18:51:55:26 TEAM/(13640:13683): El entrenador A se movió a la posicion 2|3.
+[INFO] 18:51:56:27 TEAM/(13640:13684): El entrenador A se movió a la posicion 2|4.
+[INFO] 18:51:57:28 TEAM/(13640:13685): El entrenador A se movió a la posicion 2|5.
+[INFO] 18:51:58:35 TEAM/(13640:13691): El entrenador A se movió a la posicion 2|6.
+[INFO] 18:51:59:35 TEAM/(13640:13692): El entrenador A se movió a la posicion 2|7.
+[INFO] 18:52:00:37 TEAM/(13640:13693): El entrenador A se movió a la posicion 2|8.
+[INFO] 18:52:00:38 TEAM/(13640:13694): El entrenador A atrapó un Onix en la posicion 2|8.
+[INFO] 18:52:01:39 TEAM/(13640:13650): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 18:52:02:39 TEAM/(13640:13695): El entrenador B se movió a la posicion 8|9.
+[INFO] 18:52:02:367 TEAM/(13640:13647): NO se logró conectar con el BROKER
+[INFO] 18:52:02:367 TEAM/(13640:13647): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 18:52:03:41 TEAM/(13640:13696): El entrenador B se movió a la posicion 7|9.
+[INFO] 18:52:04:42 TEAM/(13640:13697): El entrenador B se movió a la posicion 6|9.
+[INFO] 18:52:05:43 TEAM/(13640:13698): El entrenador B se movió a la posicion 6|8.
+[INFO] 18:52:46:474 TEAM/(13731:13739): NO se logró conectar con el BROKER
+[INFO] 18:52:46:474 TEAM/(13731:13739): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 18:52:48:863 TEAM/(13731:13744): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Pikachu. 
+POSICION EN X: 9. 
+POSICION EN Y: 9.
+[INFO] 18:52:48:866 TEAM/(13731:13747): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 18:52:48:869 TEAM/(13731:13749): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Onix. 
+POSICION EN X: 2. 
+POSICION EN Y: 8.
+[INFO] 18:52:49:866 TEAM/(13731:13746): El entrenador B se movió a la posicion 3|3.
+[INFO] 18:52:50:871 TEAM/(13731:13753): El entrenador B se movió a la posicion 4|3.
+[INFO] 18:52:51:877 TEAM/(13731:13754): El entrenador B se movió a la posicion 5|3.
+[INFO] 18:52:52:878 TEAM/(13731:13755): El entrenador B se movió a la posicion 6|3.
+[INFO] 18:52:53:888 TEAM/(13731:13756): El entrenador B se movió a la posicion 7|3.
+[INFO] 18:52:54:889 TEAM/(13731:13757): El entrenador B se movió a la posicion 8|3.
+[INFO] 18:52:55:890 TEAM/(13731:13758): El entrenador B se movió a la posicion 9|3.
+[INFO] 18:52:56:893 TEAM/(13731:13764): El entrenador B se movió a la posicion 9|4.
+[INFO] 18:52:57:894 TEAM/(13731:13765): El entrenador B se movió a la posicion 9|5.
+[INFO] 18:52:58:902 TEAM/(13731:13766): El entrenador B se movió a la posicion 9|6.
+[INFO] 18:52:59:906 TEAM/(13731:13767): El entrenador B se movió a la posicion 9|7.
+[INFO] 18:53:00:907 TEAM/(13731:13768): El entrenador B se movió a la posicion 9|8.
+[INFO] 18:53:01:909 TEAM/(13731:13769): El entrenador B se movió a la posicion 9|9.
+[INFO] 18:53:01:910 TEAM/(13731:13770): El entrenador B atrapó un Pikachu en la posicion 9|9.
+[INFO] 18:53:01:910 TEAM/(13731:13751): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Gengar. 
+POSICION EN X: 6. 
+POSICION EN Y: 6.
+[INFO] 18:53:02:911 TEAM/(13731:13740): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 18:53:03:912 TEAM/(13731:13772): El entrenador C se movió a la posicion 4|2.
+[INFO] 18:53:04:914 TEAM/(13731:13774): El entrenador C se movió a la posicion 5|2.
+[INFO] 18:53:04:915 TEAM/(13731:13775): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 18:53:04:915 TEAM/(13731:13771): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 5.
+[INFO] 18:53:05:915 TEAM/(13731:13740): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 18:53:06:916 TEAM/(13731:13776): El entrenador C se movió a la posicion 5|3.
+[INFO] 18:53:07:916 TEAM/(13731:13777): El entrenador C se movió a la posicion 5|4.
+[INFO] 18:53:08:918 TEAM/(13731:13778): El entrenador C se movió a la posicion 5|5.
+[INFO] 18:53:08:919 TEAM/(13731:13779): El entrenador C atrapó un Squirtle en la posicion 5|5.
+[INFO] 18:53:09:919 TEAM/(13731:13740): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 18:53:10:920 TEAM/(13731:13780): El entrenador A se movió a la posicion 2|3.
+[INFO] 18:53:11:921 TEAM/(13731:13781): El entrenador A se movió a la posicion 2|4.
+[INFO] 18:53:12:922 TEAM/(13731:13782): El entrenador A se movió a la posicion 2|5.
+[INFO] 18:53:13:923 TEAM/(13731:13783): El entrenador A se movió a la posicion 2|6.
+[INFO] 18:53:14:924 TEAM/(13731:13784): El entrenador A se movió a la posicion 2|7.
+[INFO] 18:53:15:926 TEAM/(13731:13785): El entrenador A se movió a la posicion 2|8.
+[INFO] 18:53:15:927 TEAM/(13731:13786): El entrenador A atrapó un Onix en la posicion 2|8.
+[INFO] 18:53:16:475 TEAM/(13731:13739): NO se logró conectar con el BROKER
+[INFO] 18:53:16:476 TEAM/(13731:13739): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 18:53:16:928 TEAM/(13731:13740): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 18:53:17:929 TEAM/(13731:13787): El entrenador B se movió a la posicion 8|9.
+[INFO] 18:53:18:930 TEAM/(13731:13788): El entrenador B se movió a la posicion 7|9.
+[INFO] 18:53:19:931 TEAM/(13731:13789): El entrenador B se movió a la posicion 6|9.
+[INFO] 18:53:20:932 TEAM/(13731:13790): El entrenador B se movió a la posicion 6|8.
+[INFO] 18:53:21:934 TEAM/(13731:13791): El entrenador B se movió a la posicion 6|7.
+[INFO] 18:53:22:936 TEAM/(13731:13792): El entrenador B se movió a la posicion 6|6.
+[INFO] 18:53:22:938 TEAM/(13731:13793): El entrenador B atrapó un Gengar en la posicion 6|6.
+[INFO] 18:53:23:939 TEAM/(13731:13740): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 18:53:23:940 TEAM/(13731:13740): Se detecto que hay situacion de deadlock
+[INFO] 18:53:24:942 TEAM/(13731:13794): El entrenador C se movió a la posicion 4|5.
+[INFO] 18:53:25:946 TEAM/(13731:13795): El entrenador C se movió a la posicion 3|5.
+[INFO] 18:53:26:949 TEAM/(13731:13796): El entrenador C se movió a la posicion 2|5.
+[INFO] 18:53:27:950 TEAM/(13731:13797): El entrenador C se movió a la posicion 2|6.
+[INFO] 18:53:28:951 TEAM/(13731:13798): El entrenador C se movió a la posicion 2|7.
+[INFO] 18:53:29:953 TEAM/(13731:13799): El entrenador C se movió a la posicion 2|8.
+[INFO] 18:53:34:954 TEAM/(13731:13800): El entrenador C intercambio un Squirtle por un Onix del entrenador A
+[INFO] 18:53:34:954 TEAM/(13731:13740): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 18:53:34:954 TEAM/(13731:13740): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 18:53:34:954 TEAM/(13731:13740): No se detecto situacion de deadlock
+[INFO] 18:53:34:954 TEAM/(13731:13740): Finalizo el TEAM
+[INFO] 18:53:34:954 TEAM/(13731:13740): Se ejecutaron 51 ciclos de cpu
+[INFO] 18:53:34:954 TEAM/(13731:13740): Ocurrieron 6 cambios de contexto durante todo el team
+[INFO] 18:53:34:954 TEAM/(13731:13740): El entrenador A ejecutó 7 ciclos de cpu
+[INFO] 18:53:34:954 TEAM/(13731:13740): El entrenador B ejecutó 21 ciclos de cpu
+[INFO] 18:53:34:954 TEAM/(13731:13740): El entrenador C ejecutó 18 ciclos de cpu
+[INFO] 18:53:34:954 TEAM/(13731:13740): Se produjeron 1 deadlocks
+[INFO] 18:53:34:954 TEAM/(13731:13740): Se resolvieron 1 deadlocks
+[INFO] 18:55:21:678 TEAM/(13839:13845): NO se logró conectar con el BROKER
+[INFO] 18:55:21:679 TEAM/(13839:13845): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 18:55:28:810 TEAM/(13839:13853): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Pikachu. 
+POSICION EN X: 9. 
+POSICION EN Y: 9.
+[INFO] 18:55:28:812 TEAM/(13839:13856): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 18:55:28:815 TEAM/(13839:13858): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Onix. 
+POSICION EN X: 2. 
+POSICION EN Y: 8.
+[INFO] 18:55:29:814 TEAM/(13839:13855): El entrenador B se movió a la posicion 3|3.
+[INFO] 18:55:30:815 TEAM/(13839:13862): El entrenador B se movió a la posicion 4|3.
+[INFO] 18:55:31:820 TEAM/(13839:13863): El entrenador B se movió a la posicion 5|3.
+[INFO] 18:55:32:821 TEAM/(13839:13866): El entrenador B se movió a la posicion 6|3.
+[INFO] 18:55:33:821 TEAM/(13839:13867): El entrenador B se movió a la posicion 7|3.
+[INFO] 18:55:34:826 TEAM/(13839:13868): El entrenador B se movió a la posicion 8|3.
+[INFO] 18:55:35:827 TEAM/(13839:13869): El entrenador B se movió a la posicion 9|3.
+[INFO] 18:55:36:828 TEAM/(13839:13870): El entrenador B se movió a la posicion 9|4.
+[INFO] 18:55:37:829 TEAM/(13839:13871): El entrenador B se movió a la posicion 9|5.
+[INFO] 18:55:38:832 TEAM/(13839:13872): El entrenador B se movió a la posicion 9|6.
+[INFO] 18:55:39:833 TEAM/(13839:13873): El entrenador B se movió a la posicion 9|7.
+[INFO] 18:55:40:838 TEAM/(13839:13874): El entrenador B se movió a la posicion 9|8.
+[INFO] 18:55:41:840 TEAM/(13839:13875): El entrenador B se movió a la posicion 9|9.
+[INFO] 18:55:41:841 TEAM/(13839:13876): El entrenador B atrapó un Pikachu en la posicion 9|9.
+[INFO] 18:55:41:842 TEAM/(13839:13860): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Gengar. 
+POSICION EN X: 6. 
+POSICION EN Y: 6.
+[INFO] 18:55:42:842 TEAM/(13839:13848): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 18:55:43:843 TEAM/(13839:13878): El entrenador C se movió a la posicion 4|2.
+[INFO] 18:55:44:844 TEAM/(13839:13879): El entrenador C se movió a la posicion 5|2.
+[INFO] 18:55:44:845 TEAM/(13839:13880): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 18:55:44:845 TEAM/(13839:13877): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 5.
+[INFO] 18:55:45:845 TEAM/(13839:13848): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 18:55:46:846 TEAM/(13839:13881): El entrenador C se movió a la posicion 5|3.
+[INFO] 18:55:47:847 TEAM/(13839:13887): El entrenador C se movió a la posicion 5|4.
+[INFO] 18:55:48:848 TEAM/(13839:13888): El entrenador C se movió a la posicion 5|5.
+[INFO] 18:55:48:849 TEAM/(13839:13889): El entrenador C atrapó un Squirtle en la posicion 5|5.
+[INFO] 18:55:49:850 TEAM/(13839:13848): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 18:55:50:852 TEAM/(13839:13890): El entrenador A se movió a la posicion 2|3.
+[INFO] 18:55:51:680 TEAM/(13839:13845): NO se logró conectar con el BROKER
+[INFO] 18:55:51:680 TEAM/(13839:13845): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 18:55:51:852 TEAM/(13839:13891): El entrenador A se movió a la posicion 2|4.
+[INFO] 18:55:52:854 TEAM/(13839:13892): El entrenador A se movió a la posicion 2|5.
+[INFO] 18:55:53:854 TEAM/(13839:13893): El entrenador A se movió a la posicion 2|6.
+[INFO] 18:55:54:857 TEAM/(13839:13894): El entrenador A se movió a la posicion 2|7.
+[INFO] 18:55:55:857 TEAM/(13839:13895): El entrenador A se movió a la posicion 2|8.
+[INFO] 18:55:55:858 TEAM/(13839:13896): El entrenador A atrapó un Onix en la posicion 2|8.
+[INFO] 18:55:56:858 TEAM/(13839:13848): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 18:55:57:860 TEAM/(13839:13897): El entrenador B se movió a la posicion 8|9.
+[INFO] 18:55:58:861 TEAM/(13839:13898): El entrenador B se movió a la posicion 7|9.
+[INFO] 18:55:59:866 TEAM/(13839:13899): El entrenador B se movió a la posicion 6|9.
+[INFO] 18:56:00:867 TEAM/(13839:13900): El entrenador B se movió a la posicion 6|8.
+[INFO] 18:56:01:867 TEAM/(13839:13901): El entrenador B se movió a la posicion 6|7.
+[INFO] 18:56:02:869 TEAM/(13839:13902): El entrenador B se movió a la posicion 6|6.
+[INFO] 18:56:02:869 TEAM/(13839:13903): El entrenador B atrapó un Gengar en la posicion 6|6.
+[INFO] 18:56:03:870 TEAM/(13839:13848): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 18:56:03:870 TEAM/(13839:13848): Se detecto que hay situacion de deadlock
+[INFO] 18:56:03:870 TEAM/(13839:13848): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 18:56:04:873 TEAM/(13839:13904): El entrenador C se movió a la posicion 4|5.
+[INFO] 18:56:05:874 TEAM/(13839:13905): El entrenador C se movió a la posicion 3|5.
+[INFO] 18:56:06:877 TEAM/(13839:13906): El entrenador C se movió a la posicion 2|5.
+[INFO] 18:56:07:879 TEAM/(13839:13907): El entrenador C se movió a la posicion 2|6.
+[INFO] 18:56:08:882 TEAM/(13839:13908): El entrenador C se movió a la posicion 2|7.
+[INFO] 18:56:09:883 TEAM/(13839:13909): El entrenador C se movió a la posicion 2|8.
+[INFO] 18:56:14:885 TEAM/(13839:13910): El entrenador C intercambio un Squirtle por un Onix del entrenador A
+[INFO] 18:56:14:885 TEAM/(13839:13848): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 18:56:14:885 TEAM/(13839:13848): No se detecto situacion de deadlock
+[INFO] 18:56:14:885 TEAM/(13839:13848): Finalizo el TEAM
+[INFO] 18:56:14:885 TEAM/(13839:13848): Se ejecutaron 51 ciclos de cpu
+[INFO] 18:56:14:885 TEAM/(13839:13848): Ocurrieron 6 cambios de contexto durante todo el team
+[INFO] 18:56:14:885 TEAM/(13839:13848): El entrenador A ejecutó 7 ciclos de cpu
+[INFO] 18:56:14:885 TEAM/(13839:13848): El entrenador B ejecutó 21 ciclos de cpu
+[INFO] 18:56:14:885 TEAM/(13839:13848): El entrenador C ejecutó 18 ciclos de cpu
+[INFO] 18:56:14:885 TEAM/(13839:13848): Se produjeron 1 deadlocks
+[INFO] 18:56:14:885 TEAM/(13839:13848): Se resolvieron 1 deadlocks
+[INFO] 19:07:05:890 TEAM/(14187:14196): NO se logró conectar con el BROKER
+[INFO] 19:07:05:891 TEAM/(14187:14196): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 19:07:06:743 TEAM/(14187:14200): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Pikachu. 
+POSICION EN X: 9. 
+POSICION EN Y: 9.
+[INFO] 19:07:06:763 TEAM/(14187:14203): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 19:07:06:764 TEAM/(14187:14205): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Onix. 
+POSICION EN X: 2. 
+POSICION EN Y: 8.
+[INFO] 19:07:07:753 TEAM/(14187:14202): El entrenador B se movió a la posicion 3|3.
+[INFO] 19:07:08:758 TEAM/(14187:14209): El entrenador B se movió a la posicion 4|3.
+[INFO] 19:07:09:760 TEAM/(14187:14210): El entrenador B se movió a la posicion 5|3.
+[INFO] 19:07:10:760 TEAM/(14187:14211): El entrenador B se movió a la posicion 6|3.
+[INFO] 19:07:11:763 TEAM/(14187:14212): El entrenador B se movió a la posicion 7|3.
+[INFO] 19:07:12:765 TEAM/(14187:14213): El entrenador B se movió a la posicion 8|3.
+[INFO] 19:07:13:766 TEAM/(14187:14214): El entrenador B se movió a la posicion 9|3.
+[INFO] 19:07:14:770 TEAM/(14187:14215): El entrenador B se movió a la posicion 9|4.
+[INFO] 19:07:15:770 TEAM/(14187:14216): El entrenador B se movió a la posicion 9|5.
+[INFO] 19:07:16:771 TEAM/(14187:14217): El entrenador B se movió a la posicion 9|6.
+[INFO] 19:07:17:772 TEAM/(14187:14218): El entrenador B se movió a la posicion 9|7.
+[INFO] 19:07:18:776 TEAM/(14187:14219): El entrenador B se movió a la posicion 9|8.
+[INFO] 19:07:19:777 TEAM/(14187:14220): El entrenador B se movió a la posicion 9|9.
+[INFO] 19:07:19:778 TEAM/(14187:14221): El entrenador B atrapó un Pikachu en la posicion 9|9.
+[INFO] 19:07:19:778 TEAM/(14187:14207): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Gengar. 
+POSICION EN X: 6. 
+POSICION EN Y: 6.
+[INFO] 19:07:20:779 TEAM/(14187:14197): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 19:07:21:780 TEAM/(14187:14223): El entrenador C se movió a la posicion 4|2.
+[INFO] 19:07:22:781 TEAM/(14187:14224): El entrenador C se movió a la posicion 5|2.
+[INFO] 19:07:22:782 TEAM/(14187:14225): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 19:07:22:782 TEAM/(14187:14222): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 5.
+[INFO] 19:07:23:783 TEAM/(14187:14197): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 19:07:24:784 TEAM/(14187:14226): El entrenador A se movió a la posicion 2|3.
+[INFO] 19:07:25:788 TEAM/(14187:14227): El entrenador A se movió a la posicion 2|4.
+[INFO] 19:07:26:789 TEAM/(14187:14228): El entrenador A se movió a la posicion 2|5.
+[INFO] 19:07:27:791 TEAM/(14187:14229): El entrenador A se movió a la posicion 2|6.
+[INFO] 19:07:28:792 TEAM/(14187:14230): El entrenador A se movió a la posicion 2|7.
+[INFO] 19:07:29:794 TEAM/(14187:14231): El entrenador A se movió a la posicion 2|8.
+[INFO] 19:07:29:794 TEAM/(14187:14232): El entrenador A atrapó un Onix en la posicion 2|8.
+[INFO] 19:07:30:795 TEAM/(14187:14197): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 19:07:31:797 TEAM/(14187:14233): El entrenador B se movió a la posicion 8|9.
+[INFO] 19:07:32:798 TEAM/(14187:14234): El entrenador B se movió a la posicion 7|9.
+[INFO] 19:07:33:799 TEAM/(14187:14237): El entrenador B se movió a la posicion 6|9.
+[INFO] 19:07:34:801 TEAM/(14187:14238): El entrenador B se movió a la posicion 6|8.
+[INFO] 19:07:35:804 TEAM/(14187:14239): El entrenador B se movió a la posicion 6|7.
+[INFO] 19:07:35:891 TEAM/(14187:14196): NO se logró conectar con el BROKER
+[INFO] 19:07:35:892 TEAM/(14187:14196): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 19:07:36:807 TEAM/(14187:14240): El entrenador B se movió a la posicion 6|6.
+[INFO] 19:07:36:808 TEAM/(14187:14241): El entrenador B atrapó un Gengar en la posicion 6|6.
+[INFO] 19:07:37:809 TEAM/(14187:14197): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 19:07:38:809 TEAM/(14187:14242): El entrenador C se movió a la posicion 5|3.
+[INFO] 19:07:39:810 TEAM/(14187:14243): El entrenador C se movió a la posicion 5|4.
+[INFO] 19:07:40:811 TEAM/(14187:14244): El entrenador C se movió a la posicion 5|5.
+[INFO] 19:07:40:811 TEAM/(14187:14245): El entrenador C atrapó un Squirtle en la posicion 5|5.
+[INFO] 19:07:41:813 TEAM/(14187:14197): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 19:07:41:814 TEAM/(14187:14197): Se detecto que hay situacion de deadlock
+[INFO] 19:07:42:815 TEAM/(14187:14246): El entrenador A se movió a la posicion 3|8.
+[INFO] 19:07:43:817 TEAM/(14187:14247): El entrenador A se movió a la posicion 4|8.
+[INFO] 19:07:44:817 TEAM/(14187:14248): El entrenador A se movió a la posicion 5|8.
+[INFO] 19:07:45:819 TEAM/(14187:14249): El entrenador A se movió a la posicion 5|7.
+[INFO] 19:07:46:820 TEAM/(14187:14250): El entrenador A se movió a la posicion 5|6.
+[INFO] 19:07:47:822 TEAM/(14187:14251): El entrenador A se movió a la posicion 5|5.
+[INFO] 19:07:52:823 TEAM/(14187:14252): El entrenador A intercambio un Onix por un Squirtle del entrenador C
+[INFO] 19:07:52:824 TEAM/(14187:14197): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 19:07:52:824 TEAM/(14187:14197): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 19:07:52:824 TEAM/(14187:14197): No se detecto situacion de deadlock
+[INFO] 19:07:52:825 TEAM/(14187:14197): Finalizo el TEAM
+[INFO] 19:07:52:825 TEAM/(14187:14197): Se ejecutaron 51 ciclos de cpu
+[INFO] 19:07:52:825 TEAM/(14187:14197): Ocurrieron 6 cambios de contexto durante todo el team
+[INFO] 19:07:52:825 TEAM/(14187:14197): El entrenador A ejecutó 18 ciclos de cpu
+[INFO] 19:07:52:825 TEAM/(14187:14197): El entrenador B ejecutó 21 ciclos de cpu
+[INFO] 19:07:52:825 TEAM/(14187:14197): El entrenador C ejecutó 7 ciclos de cpu
+[INFO] 19:07:52:825 TEAM/(14187:14197): Se produjeron 1 deadlocks
+[INFO] 19:07:52:825 TEAM/(14187:14197): Se resolvieron 1 deadlocks
+[INFO] 19:09:06:263 TEAM/(14286:14294): NO se logró conectar con el BROKER
+[INFO] 19:09:06:264 TEAM/(14286:14294): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 19:09:08:814 TEAM/(14286:14299): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Pikachu. 
+POSICION EN X: 9. 
+POSICION EN Y: 9.
+[INFO] 19:09:08:818 TEAM/(14286:14302): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 19:09:08:831 TEAM/(14286:14304): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Onix. 
+POSICION EN X: 2. 
+POSICION EN Y: 8.
+[INFO] 19:09:09:818 TEAM/(14286:14301): El entrenador B se movió a la posicion 3|3.
+[INFO] 19:09:10:819 TEAM/(14286:14308): El entrenador B se movió a la posicion 4|3.
+[INFO] 19:09:11:820 TEAM/(14286:14309): El entrenador B se movió a la posicion 5|3.
+[INFO] 19:09:12:828 TEAM/(14286:14310): El entrenador B se movió a la posicion 6|3.
+[INFO] 19:09:13:830 TEAM/(14286:14311): El entrenador B se movió a la posicion 7|3.
+[INFO] 19:09:14:834 TEAM/(14286:14312): El entrenador B se movió a la posicion 8|3.
+[INFO] 19:09:15:838 TEAM/(14286:14313): El entrenador B se movió a la posicion 9|3.
+[INFO] 19:09:16:839 TEAM/(14286:14314): El entrenador B se movió a la posicion 9|4.
+[INFO] 19:09:17:841 TEAM/(14286:14315): El entrenador B se movió a la posicion 9|5.
+[INFO] 19:09:18:842 TEAM/(14286:14316): El entrenador B se movió a la posicion 9|6.
+[INFO] 19:09:19:843 TEAM/(14286:14317): El entrenador B se movió a la posicion 9|7.
+[INFO] 19:09:20:845 TEAM/(14286:14318): El entrenador B se movió a la posicion 9|8.
+[INFO] 19:09:21:846 TEAM/(14286:14319): El entrenador B se movió a la posicion 9|9.
+[INFO] 19:09:21:847 TEAM/(14286:14320): El entrenador B atrapó un Pikachu en la posicion 9|9.
+[INFO] 19:09:21:847 TEAM/(14286:14306): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Gengar. 
+POSICION EN X: 6. 
+POSICION EN Y: 6.
+[INFO] 19:09:22:848 TEAM/(14286:14295): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 19:09:23:848 TEAM/(14286:14322): El entrenador C se movió a la posicion 4|2.
+[INFO] 19:09:24:850 TEAM/(14286:14323): El entrenador C se movió a la posicion 5|2.
+[INFO] 19:09:24:850 TEAM/(14286:14324): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 19:09:24:850 TEAM/(14286:14321): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 5.
+[INFO] 19:09:25:855 TEAM/(14286:14295): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 19:09:26:861 TEAM/(14286:14325): El entrenador C se movió a la posicion 5|3.
+[INFO] 19:09:27:862 TEAM/(14286:14326): El entrenador C se movió a la posicion 5|4.
+[INFO] 19:09:28:863 TEAM/(14286:14327): El entrenador C se movió a la posicion 5|5.
+[INFO] 19:09:28:865 TEAM/(14286:14328): El entrenador C atrapó un Squirtle en la posicion 5|5.
+[INFO] 19:09:29:866 TEAM/(14286:14295): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 19:09:30:867 TEAM/(14286:14329): El entrenador A se movió a la posicion 2|3.
+[INFO] 19:09:31:868 TEAM/(14286:14330): El entrenador A se movió a la posicion 2|4.
+[INFO] 19:09:32:870 TEAM/(14286:14331): El entrenador A se movió a la posicion 2|5.
+[INFO] 19:09:33:872 TEAM/(14286:14334): El entrenador A se movió a la posicion 2|6.
+[INFO] 19:09:34:874 TEAM/(14286:14335): El entrenador A se movió a la posicion 2|7.
+[INFO] 19:09:35:875 TEAM/(14286:14336): El entrenador A se movió a la posicion 2|8.
+[INFO] 19:09:35:875 TEAM/(14286:14337): El entrenador A atrapó un Onix en la posicion 2|8.
+[INFO] 19:09:36:266 TEAM/(14286:14294): NO se logró conectar con el BROKER
+[INFO] 19:09:36:266 TEAM/(14286:14294): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 19:09:36:875 TEAM/(14286:14295): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 19:09:37:878 TEAM/(14286:14338): El entrenador B se movió a la posicion 8|9.
+[INFO] 19:09:38:880 TEAM/(14286:14339): El entrenador B se movió a la posicion 7|9.
+[INFO] 19:09:39:881 TEAM/(14286:14340): El entrenador B se movió a la posicion 6|9.
+[INFO] 19:09:40:883 TEAM/(14286:14341): El entrenador B se movió a la posicion 6|8.
+[INFO] 19:09:41:884 TEAM/(14286:14342): El entrenador B se movió a la posicion 6|7.
+[INFO] 19:09:42:885 TEAM/(14286:14343): El entrenador B se movió a la posicion 6|6.
+[INFO] 19:09:42:886 TEAM/(14286:14344): El entrenador B atrapó un Gengar en la posicion 6|6.
+[INFO] 19:09:43:886 TEAM/(14286:14295): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 19:09:43:886 TEAM/(14286:14295): Se detecto que hay situacion de deadlock
+[INFO] 19:09:43:886 TEAM/(14286:14295): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 19:09:44:887 TEAM/(14286:14345): El entrenador C se movió a la posicion 4|5.
+[INFO] 19:09:45:887 TEAM/(14286:14346): El entrenador C se movió a la posicion 3|5.
+[INFO] 19:09:46:889 TEAM/(14286:14347): El entrenador C se movió a la posicion 2|5.
+[INFO] 19:09:47:892 TEAM/(14286:14348): El entrenador C se movió a la posicion 2|6.
+[INFO] 19:09:48:893 TEAM/(14286:14349): El entrenador C se movió a la posicion 2|7.
+[INFO] 19:09:49:895 TEAM/(14286:14350): El entrenador C se movió a la posicion 2|8.
+[INFO] 19:09:54:896 TEAM/(14286:14351): El entrenador C intercambio un Squirtle por un Onix del entrenador A
+[INFO] 19:09:54:897 TEAM/(14286:14295): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 19:09:54:897 TEAM/(14286:14295): No se detecto situacion de deadlock
+[INFO] 19:09:54:897 TEAM/(14286:14295): Finalizo el TEAM
+[INFO] 19:09:54:897 TEAM/(14286:14295): Se ejecutaron 51 ciclos de cpu
+[INFO] 19:09:54:897 TEAM/(14286:14295): Ocurrieron 6 cambios de contexto durante todo el team
+[INFO] 19:09:54:897 TEAM/(14286:14295): El entrenador A ejecutó 7 ciclos de cpu
+[INFO] 19:09:54:897 TEAM/(14286:14295): El entrenador B ejecutó 21 ciclos de cpu
+[INFO] 19:09:54:897 TEAM/(14286:14295): El entrenador C ejecutó 18 ciclos de cpu
+[INFO] 19:09:54:897 TEAM/(14286:14295): Se produjeron 1 deadlocks
+[INFO] 19:09:54:897 TEAM/(14286:14295): Se resolvieron 1 deadlocks
+[INFO] 19:10:47:468 TEAM/(14369:14378): NO se logró conectar con el BROKER
+[INFO] 19:10:47:468 TEAM/(14369:14378): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 19:10:48:361 TEAM/(14369:14382): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Pikachu. 
+POSICION EN X: 9. 
+POSICION EN Y: 9.
+[INFO] 19:10:48:378 TEAM/(14369:14385): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 19:10:48:388 TEAM/(14369:14387): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Onix. 
+POSICION EN X: 2. 
+POSICION EN Y: 8.
+[INFO] 19:10:49:367 TEAM/(14369:14384): El entrenador B se movió a la posicion 3|3.
+[INFO] 19:10:49:368 TEAM/(14369:14379): Se cambio al entrenador C debido a que tiene menos trabajo
+[INFO] 19:10:50:378 TEAM/(14369:14391): El entrenador C se movió a la posicion 4|2.
+[INFO] 19:10:51:378 TEAM/(14369:14392): El entrenador C se movió a la posicion 5|2.
+[INFO] 19:10:51:380 TEAM/(14369:14393): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 19:10:51:380 TEAM/(14369:14389): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Gengar. 
+POSICION EN X: 6. 
+POSICION EN Y: 6.
+[INFO] 19:10:52:381 TEAM/(14369:14379): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 19:10:53:381 TEAM/(14369:14395): El entrenador C se movió a la posicion 6|2.
+[INFO] 19:10:54:385 TEAM/(14369:14396): El entrenador C se movió a la posicion 6|3.
+[INFO] 19:10:55:386 TEAM/(14369:14397): El entrenador C se movió a la posicion 6|4.
+[INFO] 19:10:56:387 TEAM/(14369:14398): El entrenador C se movió a la posicion 6|5.
+[INFO] 19:10:57:389 TEAM/(14369:14399): El entrenador C se movió a la posicion 6|6.
+[INFO] 19:10:57:389 TEAM/(14369:14400): El entrenador C atrapó un Gengar en la posicion 6|6.
+[INFO] 19:10:58:389 TEAM/(14369:14379): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 19:10:59:391 TEAM/(14369:14401): El entrenador A se movió a la posicion 2|3.
+[INFO] 19:11:00:393 TEAM/(14369:14402): El entrenador A se movió a la posicion 2|4.
+[INFO] 19:11:01:394 TEAM/(14369:14403): El entrenador A se movió a la posicion 2|5.
+[INFO] 19:11:02:396 TEAM/(14369:14404): El entrenador A se movió a la posicion 2|6.
+[INFO] 19:11:03:397 TEAM/(14369:14405): El entrenador A se movió a la posicion 2|7.
+[INFO] 19:11:04:398 TEAM/(14369:14406): El entrenador A se movió a la posicion 2|8.
+[INFO] 19:11:04:398 TEAM/(14369:14407): El entrenador A atrapó un Onix en la posicion 2|8.
+[INFO] 19:11:05:399 TEAM/(14369:14379): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 19:11:06:401 TEAM/(14369:14408): El entrenador B se movió a la posicion 4|3.
+[INFO] 19:11:07:402 TEAM/(14369:14409): El entrenador B se movió a la posicion 5|3.
+[INFO] 19:11:08:403 TEAM/(14369:14410): El entrenador B se movió a la posicion 6|3.
+[INFO] 19:11:09:405 TEAM/(14369:14411): El entrenador B se movió a la posicion 7|3.
+[INFO] 19:11:10:406 TEAM/(14369:14412): El entrenador B se movió a la posicion 8|3.
+[INFO] 19:11:11:406 TEAM/(14369:14413): El entrenador B se movió a la posicion 9|3.
+[INFO] 19:11:12:408 TEAM/(14369:14414): El entrenador B se movió a la posicion 9|4.
+[INFO] 19:11:13:410 TEAM/(14369:14415): El entrenador B se movió a la posicion 9|5.
+[INFO] 19:11:14:411 TEAM/(14369:14416): El entrenador B se movió a la posicion 9|6.
+[INFO] 19:11:15:412 TEAM/(14369:14417): El entrenador B se movió a la posicion 9|7.
+[INFO] 19:11:16:415 TEAM/(14369:14418): El entrenador B se movió a la posicion 9|8.
+[INFO] 19:11:17:417 TEAM/(14369:14419): El entrenador B se movió a la posicion 9|9.
+[INFO] 19:11:17:417 TEAM/(14369:14420): El entrenador B atrapó un Pikachu en la posicion 9|9.
+[INFO] 19:11:17:417 TEAM/(14369:14394): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 5.
+[INFO] 19:11:17:469 TEAM/(14369:14378): NO se logró conectar con el BROKER
+[INFO] 19:11:17:469 TEAM/(14369:14378): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 19:11:18:419 TEAM/(14369:14379): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 19:11:19:420 TEAM/(14369:14421): El entrenador B se movió a la posicion 8|9.
+[INFO] 19:11:20:421 TEAM/(14369:14422): El entrenador B se movió a la posicion 7|9.
+[INFO] 19:11:21:422 TEAM/(14369:14423): El entrenador B se movió a la posicion 6|9.
+[INFO] 19:11:22:423 TEAM/(14369:14425): El entrenador B se movió a la posicion 5|9.
+[INFO] 19:11:23:424 TEAM/(14369:14426): El entrenador B se movió a la posicion 5|8.
+[INFO] 19:11:24:426 TEAM/(14369:14427): El entrenador B se movió a la posicion 5|7.
+[INFO] 19:11:25:426 TEAM/(14369:14429): El entrenador B se movió a la posicion 5|6.
+[INFO] 19:11:26:427 TEAM/(14369:14430): El entrenador B se movió a la posicion 5|5.
+[INFO] 19:11:26:429 TEAM/(14369:14431): El entrenador B atrapó un Squirtle en la posicion 5|5.
+[INFO] 19:11:27:430 TEAM/(14369:14379): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 19:11:27:430 TEAM/(14369:14379): Se detecto que hay situacion de deadlock
+[INFO] 19:11:27:430 TEAM/(14369:14379): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 19:11:28:431 TEAM/(14369:14432): El entrenador C se movió a la posicion 5|6.
+[INFO] 19:11:29:432 TEAM/(14369:14433): El entrenador C se movió a la posicion 4|6.
+[INFO] 19:11:30:433 TEAM/(14369:14434): El entrenador C se movió a la posicion 3|6.
+[INFO] 19:11:31:434 TEAM/(14369:14435): El entrenador C se movió a la posicion 2|6.
+[INFO] 19:11:32:434 TEAM/(14369:14436): El entrenador C se movió a la posicion 2|7.
+[INFO] 19:11:33:436 TEAM/(14369:14439): El entrenador C se movió a la posicion 2|8.
+[INFO] 19:11:38:437 TEAM/(14369:14440): El entrenador C intercambio un Gengar por un Onix del entrenador A
+[INFO] 19:11:38:438 TEAM/(14369:14379): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 19:11:38:438 TEAM/(14369:14379): Se detecto que hay situacion de deadlock
+[INFO] 19:11:38:438 TEAM/(14369:14379): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 19:11:39:438 TEAM/(14369:14441): El entrenador A se movió a la posicion 3|8.
+[INFO] 19:11:40:440 TEAM/(14369:14442): El entrenador A se movió a la posicion 4|8.
+[INFO] 19:11:41:440 TEAM/(14369:14443): El entrenador A se movió a la posicion 5|8.
+[INFO] 19:11:42:441 TEAM/(14369:14444): El entrenador A se movió a la posicion 5|7.
+[INFO] 19:11:43:443 TEAM/(14369:14445): El entrenador A se movió a la posicion 5|6.
+[INFO] 19:11:44:445 TEAM/(14369:14446): El entrenador A se movió a la posicion 5|5.
+[INFO] 19:11:47:471 TEAM/(14369:14378): NO se logró conectar con el BROKER
+[INFO] 19:11:47:471 TEAM/(14369:14378): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 19:11:49:447 TEAM/(14369:14447): El entrenador A intercambio un Gengar por un Squirtle del entrenador B
+[INFO] 19:11:49:447 TEAM/(14369:14379): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 19:11:49:448 TEAM/(14369:14379): No se detecto situacion de deadlock
+[INFO] 19:11:49:448 TEAM/(14369:14379): Finalizo el TEAM
+[INFO] 19:11:49:448 TEAM/(14369:14379): Se ejecutaron 66 ciclos de cpu
+[INFO] 19:11:49:448 TEAM/(14369:14379): Ocurrieron 8 cambios de contexto durante todo el team
+[INFO] 19:11:49:448 TEAM/(14369:14379): El entrenador A ejecutó 18 ciclos de cpu
+[INFO] 19:11:49:448 TEAM/(14369:14379): El entrenador B ejecutó 23 ciclos de cpu
+[INFO] 19:11:49:448 TEAM/(14369:14379): El entrenador C ejecutó 20 ciclos de cpu
+[INFO] 19:11:49:448 TEAM/(14369:14379): Se produjeron 2 deadlocks
+[INFO] 19:11:49:448 TEAM/(14369:14379): Se resolvieron 2 deadlocks
+[INFO] 19:14:10:914 TEAM/(14461:14469): NO se logró conectar con el BROKER
+[INFO] 19:14:10:916 TEAM/(14461:14469): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 19:14:11:608 TEAM/(14461:14474): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Pikachu. 
+POSICION EN X: 9. 
+POSICION EN Y: 9.
+[INFO] 19:14:11:610 TEAM/(14461:14477): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 19:14:11:611 TEAM/(14461:14479): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Onix. 
+POSICION EN X: 2. 
+POSICION EN Y: 8.
+[INFO] 19:14:12:610 TEAM/(14461:14476): El entrenador B se movió a la posicion 3|3.
+[INFO] 19:14:13:623 TEAM/(14461:14483): El entrenador B se movió a la posicion 4|3.
+[INFO] 19:14:14:626 TEAM/(14461:14484): El entrenador B se movió a la posicion 5|3.
+[INFO] 19:14:15:630 TEAM/(14461:14485): El entrenador B se movió a la posicion 6|3.
+[INFO] 19:14:16:631 TEAM/(14461:14486): El entrenador B se movió a la posicion 7|3.
+[INFO] 19:14:17:632 TEAM/(14461:14487): El entrenador B se movió a la posicion 8|3.
+[INFO] 19:14:18:634 TEAM/(14461:14488): El entrenador B se movió a la posicion 9|3.
+[INFO] 19:14:19:635 TEAM/(14461:14489): El entrenador B se movió a la posicion 9|4.
+[INFO] 19:14:20:636 TEAM/(14461:14490): El entrenador B se movió a la posicion 9|5.
+[INFO] 19:14:21:638 TEAM/(14461:14491): El entrenador B se movió a la posicion 9|6.
+[INFO] 19:14:22:640 TEAM/(14461:14492): El entrenador B se movió a la posicion 9|7.
+[INFO] 19:14:23:641 TEAM/(14461:14493): El entrenador B se movió a la posicion 9|8.
+[INFO] 19:14:24:643 TEAM/(14461:14494): El entrenador B se movió a la posicion 9|9.
+[INFO] 19:14:24:646 TEAM/(14461:14495): El entrenador B atrapó un Pikachu en la posicion 9|9.
+[INFO] 19:14:24:646 TEAM/(14461:14481): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Gengar. 
+POSICION EN X: 6. 
+POSICION EN Y: 6.
+[INFO] 19:14:25:647 TEAM/(14461:14470): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 19:14:26:647 TEAM/(14461:14497): El entrenador C se movió a la posicion 4|2.
+[INFO] 19:14:27:648 TEAM/(14461:14498): El entrenador C se movió a la posicion 5|2.
+[INFO] 19:14:27:649 TEAM/(14461:14499): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 19:14:27:649 TEAM/(14461:14496): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 5.
+[INFO] 19:14:28:650 TEAM/(14461:14470): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 19:14:29:650 TEAM/(14461:14500): El entrenador C se movió a la posicion 5|3.
+[INFO] 19:14:30:654 TEAM/(14461:14501): El entrenador C se movió a la posicion 5|4.
+[INFO] 19:14:31:655 TEAM/(14461:14502): El entrenador C se movió a la posicion 5|5.
+[INFO] 19:14:31:655 TEAM/(14461:14503): El entrenador C atrapó un Squirtle en la posicion 5|5.
+[INFO] 19:14:32:656 TEAM/(14461:14470): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 19:14:33:657 TEAM/(14461:14506): El entrenador A se movió a la posicion 2|3.
+[INFO] 19:14:34:660 TEAM/(14461:14507): El entrenador A se movió a la posicion 2|4.
+[INFO] 19:14:35:661 TEAM/(14461:14508): El entrenador A se movió a la posicion 2|5.
+[INFO] 19:14:36:662 TEAM/(14461:14509): El entrenador A se movió a la posicion 2|6.
+[INFO] 19:14:37:663 TEAM/(14461:14510): El entrenador A se movió a la posicion 2|7.
+[INFO] 19:14:38:665 TEAM/(14461:14511): El entrenador A se movió a la posicion 2|8.
+[INFO] 19:14:38:665 TEAM/(14461:14512): El entrenador A atrapó un Onix en la posicion 2|8.
+[INFO] 19:14:39:666 TEAM/(14461:14470): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 19:14:40:666 TEAM/(14461:14513): El entrenador B se movió a la posicion 8|9.
+[INFO] 19:14:40:916 TEAM/(14461:14469): NO se logró conectar con el BROKER
+[INFO] 19:14:40:917 TEAM/(14461:14469): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 19:14:41:666 TEAM/(14461:14514): El entrenador B se movió a la posicion 7|9.
+[INFO] 19:14:42:667 TEAM/(14461:14515): El entrenador B se movió a la posicion 6|9.
+[INFO] 19:14:43:669 TEAM/(14461:14516): El entrenador B se movió a la posicion 6|8.
+[INFO] 19:14:44:670 TEAM/(14461:14517): El entrenador B se movió a la posicion 6|7.
+[INFO] 19:14:45:671 TEAM/(14461:14518): El entrenador B se movió a la posicion 6|6.
+[INFO] 19:14:45:672 TEAM/(14461:14519): El entrenador B atrapó un Gengar en la posicion 6|6.
+[INFO] 19:14:46:673 TEAM/(14461:14470): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 19:14:46:673 TEAM/(14461:14470): Se detecto que hay situacion de deadlock
+[INFO] 19:14:46:673 TEAM/(14461:14470): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 19:14:47:674 TEAM/(14461:14520): El entrenador C se movió a la posicion 4|5.
+[INFO] 19:14:48:675 TEAM/(14461:14521): El entrenador C se movió a la posicion 3|5.
+[INFO] 19:14:49:676 TEAM/(14461:14522): El entrenador C se movió a la posicion 2|5.
+[INFO] 19:14:50:676 TEAM/(14461:14523): El entrenador C se movió a la posicion 2|6.
+[INFO] 19:14:51:678 TEAM/(14461:14524): El entrenador C se movió a la posicion 2|7.
+[INFO] 19:14:52:679 TEAM/(14461:14525): El entrenador C se movió a la posicion 2|8.
+[INFO] 19:14:57:681 TEAM/(14461:14526): El entrenador C intercambio un Squirtle por un Onix del entrenador A
+[INFO] 19:14:57:681 TEAM/(14461:14470): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 19:14:57:681 TEAM/(14461:14470): No se detecto situacion de deadlock
+[INFO] 19:14:57:681 TEAM/(14461:14470): Finalizo el TEAM
+[INFO] 19:14:57:681 TEAM/(14461:14470): Se ejecutaron 51 ciclos de cpu
+[INFO] 19:14:57:681 TEAM/(14461:14470): Ocurrieron 6 cambios de contexto durante todo el team
+[INFO] 19:14:57:681 TEAM/(14461:14470): El entrenador A ejecutó 7 ciclos de cpu
+[INFO] 19:14:57:681 TEAM/(14461:14470): El entrenador B ejecutó 21 ciclos de cpu
+[INFO] 19:14:57:681 TEAM/(14461:14470): El entrenador C ejecutó 18 ciclos de cpu
+[INFO] 19:14:57:681 TEAM/(14461:14470): Se produjeron 1 deadlocks
+[INFO] 19:14:57:681 TEAM/(14461:14470): Se resolvieron 1 deadlocks
+[INFO] 19:15:59:376 TEAM/(14541:14547): NO se logró conectar con el BROKER
+[INFO] 19:15:59:376 TEAM/(14541:14547): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 19:15:59:523 TEAM/(14541:14554): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Pikachu. 
+POSICION EN X: 9. 
+POSICION EN Y: 9.
+[INFO] 19:15:59:525 TEAM/(14541:14557): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 19:15:59:526 TEAM/(14541:14559): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Onix. 
+POSICION EN X: 2. 
+POSICION EN Y: 8.
+[INFO] 19:16:00:526 TEAM/(14541:14556): El entrenador B se movió a la posicion 3|3.
+[INFO] 19:16:01:530 TEAM/(14541:14563): El entrenador B se movió a la posicion 4|3.
+[INFO] 19:16:01:530 TEAM/(14541:14550): Se cambio al entrenador B debido a fin de quantum
+[INFO] 19:16:02:531 TEAM/(14541:14564): El entrenador C se movió a la posicion 4|2.
+[INFO] 19:16:03:535 TEAM/(14541:14565): El entrenador C se movió a la posicion 5|2.
+[INFO] 19:16:03:535 TEAM/(14541:14550): Se cambio al entrenador C debido a fin de quantum
+[INFO] 19:16:04:536 TEAM/(14541:14590): El entrenador A se movió a la posicion 2|3.
+[INFO] 19:16:05:536 TEAM/(14541:14629): El entrenador A se movió a la posicion 2|4.
+[INFO] 19:16:05:537 TEAM/(14541:14550): Se cambio al entrenador A debido a fin de quantum
+[INFO] 19:16:06:542 TEAM/(14541:14630): El entrenador B se movió a la posicion 5|3.
+[INFO] 19:16:07:545 TEAM/(14541:14631): El entrenador B se movió a la posicion 6|3.
+[INFO] 19:16:07:545 TEAM/(14541:14550): Se cambio al entrenador B debido a fin de quantum
+[INFO] 19:16:07:545 TEAM/(14541:14632): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 19:16:07:545 TEAM/(14541:14561): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Gengar. 
+POSICION EN X: 6. 
+POSICION EN Y: 6.
+[INFO] 19:16:08:546 TEAM/(14541:14550): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 19:16:09:549 TEAM/(14541:14634): El entrenador A se movió a la posicion 2|5.
+[INFO] 19:16:09:549 TEAM/(14541:14550): Se cambio al entrenador A debido a fin de quantum
+[INFO] 19:16:10:550 TEAM/(14541:14635): El entrenador B se movió a la posicion 7|3.
+[INFO] 19:16:11:552 TEAM/(14541:14636): El entrenador B se movió a la posicion 8|3.
+[INFO] 19:16:11:553 TEAM/(14541:14550): Se cambio al entrenador B debido a fin de quantum
+[INFO] 19:16:12:554 TEAM/(14541:14637): El entrenador C se movió a la posicion 6|2.
+[INFO] 19:16:13:556 TEAM/(14541:14638): El entrenador C se movió a la posicion 6|3.
+[INFO] 19:16:13:557 TEAM/(14541:14550): Se cambio al entrenador C debido a fin de quantum
+[INFO] 19:16:14:558 TEAM/(14541:14639): El entrenador A se movió a la posicion 2|6.
+[INFO] 19:16:15:559 TEAM/(14541:14640): El entrenador A se movió a la posicion 2|7.
+[INFO] 19:16:15:559 TEAM/(14541:14550): Se cambio al entrenador A debido a fin de quantum
+[INFO] 19:16:16:559 TEAM/(14541:14641): El entrenador B se movió a la posicion 9|3.
+[INFO] 19:16:17:560 TEAM/(14541:14642): El entrenador B se movió a la posicion 9|4.
+[INFO] 19:16:17:561 TEAM/(14541:14550): Se cambio al entrenador B debido a fin de quantum
+[INFO] 19:16:18:561 TEAM/(14541:14643): El entrenador C se movió a la posicion 6|4.
+[INFO] 19:16:19:563 TEAM/(14541:14644): El entrenador C se movió a la posicion 6|5.
+[INFO] 19:16:19:564 TEAM/(14541:14550): Se cambio al entrenador C debido a fin de quantum
+[INFO] 19:16:20:565 TEAM/(14541:14645): El entrenador A se movió a la posicion 2|8.
+[INFO] 19:16:20:567 TEAM/(14541:14646): El entrenador A atrapó un Onix en la posicion 2|8.
+[INFO] 19:16:21:568 TEAM/(14541:14550): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 19:16:22:570 TEAM/(14541:14647): El entrenador B se movió a la posicion 9|5.
+[INFO] 19:16:23:570 TEAM/(14541:14648): El entrenador B se movió a la posicion 9|6.
+[INFO] 19:16:23:571 TEAM/(14541:14550): Se cambio al entrenador B debido a fin de quantum
+[INFO] 19:16:24:572 TEAM/(14541:14649): El entrenador C se movió a la posicion 6|6.
+[INFO] 19:16:24:572 TEAM/(14541:14650): El entrenador C atrapó un Gengar en la posicion 6|6.
+[INFO] 19:16:25:573 TEAM/(14541:14550): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 19:16:26:574 TEAM/(14541:14651): El entrenador B se movió a la posicion 9|7.
+[INFO] 19:16:27:576 TEAM/(14541:14652): El entrenador B se movió a la posicion 9|8.
+[INFO] 19:16:28:577 TEAM/(14541:14653): El entrenador B se movió a la posicion 9|9.
+[INFO] 19:16:28:582 TEAM/(14541:14654): El entrenador B atrapó un Pikachu en la posicion 9|9.
+[INFO] 19:16:28:583 TEAM/(14541:14633): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 5.
+[INFO] 19:16:29:378 TEAM/(14541:14547): NO se logró conectar con el BROKER
+[INFO] 19:16:29:378 TEAM/(14541:14547): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 19:16:29:584 TEAM/(14541:14550): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 19:16:30:586 TEAM/(14541:14655): El entrenador B se movió a la posicion 8|9.
+[INFO] 19:16:31:590 TEAM/(14541:14718): El entrenador B se movió a la posicion 7|9.
+[INFO] 19:16:32:591 TEAM/(14541:14719): El entrenador B se movió a la posicion 6|9.
+[INFO] 19:16:33:594 TEAM/(14541:14720): El entrenador B se movió a la posicion 5|9.
+[INFO] 19:16:34:596 TEAM/(14541:14723): El entrenador B se movió a la posicion 5|8.
+[INFO] 19:16:35:598 TEAM/(14541:14724): El entrenador B se movió a la posicion 5|7.
+[INFO] 19:16:36:600 TEAM/(14541:14725): El entrenador B se movió a la posicion 5|6.
+[INFO] 19:16:37:601 TEAM/(14541:14726): El entrenador B se movió a la posicion 5|5.
+[INFO] 19:16:37:606 TEAM/(14541:14727): El entrenador B atrapó un Squirtle en la posicion 5|5.
+[INFO] 19:16:38:606 TEAM/(14541:14550): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 19:16:38:607 TEAM/(14541:14550): Se detecto que hay situacion de deadlock
+[INFO] 19:16:39:607 TEAM/(14541:14728): El entrenador A se movió a la posicion 3|8.
+[INFO] 19:16:40:608 TEAM/(14541:14729): El entrenador A se movió a la posicion 4|8.
+[INFO] 19:16:41:608 TEAM/(14541:14730): El entrenador A se movió a la posicion 5|8.
+[INFO] 19:16:42:609 TEAM/(14541:14731): El entrenador A se movió a la posicion 5|7.
+[INFO] 19:16:43:610 TEAM/(14541:14732): El entrenador A se movió a la posicion 5|6.
+[INFO] 19:16:44:612 TEAM/(14541:14733): El entrenador A se movió a la posicion 5|5.
+[INFO] 19:16:49:614 TEAM/(14541:14734): El entrenador A intercambio un Onix por un Squirtle del entrenador B
+[INFO] 19:16:49:615 TEAM/(14541:14550): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 19:16:49:615 TEAM/(14541:14550): Se detecto que hay situacion de deadlock
+[INFO] 19:16:50:615 TEAM/(14541:14735): El entrenador C se movió a la posicion 5|6.
+[INFO] 19:16:51:616 TEAM/(14541:14736): El entrenador C se movió a la posicion 5|5.
+[INFO] 19:16:56:617 TEAM/(14541:14737): El entrenador C intercambio un Gengar por un Onix del entrenador B
+[INFO] 19:16:56:617 TEAM/(14541:14550): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 19:16:56:617 TEAM/(14541:14550): No se detecto situacion de deadlock
+[INFO] 19:16:56:617 TEAM/(14541:14550): Finalizo el TEAM
+[INFO] 19:16:56:617 TEAM/(14541:14550): Se ejecutaron 55 ciclos de cpu
+[INFO] 19:16:56:617 TEAM/(14541:14550): Ocurrieron 15 cambios de contexto durante todo el team
+[INFO] 19:16:56:617 TEAM/(14541:14550): El entrenador A ejecutó 15 ciclos de cpu
+[INFO] 19:16:56:617 TEAM/(14541:14550): El entrenador B ejecutó 23 ciclos de cpu
+[INFO] 19:16:56:617 TEAM/(14541:14550): El entrenador C ejecutó 12 ciclos de cpu
+[INFO] 19:16:56:618 TEAM/(14541:14550): Se produjeron 2 deadlocks
+[INFO] 19:16:56:618 TEAM/(14541:14550): Se resolvieron 2 deadlocks
+[INFO] 19:43:19:57 TEAM/(15312:15320): NO se logró conectar con el BROKER
+[INFO] 19:43:19:61 TEAM/(15312:15320): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 19:43:21:428 TEAM/(15312:15325): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Pikachu. 
+POSICION EN X: 9. 
+POSICION EN Y: 9.
+[INFO] 19:43:21:434 TEAM/(15312:15328): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 19:43:21:454 TEAM/(15312:15330): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Onix. 
+POSICION EN X: 2. 
+POSICION EN Y: 8.
+[INFO] 19:43:22:429 TEAM/(15312:15327): El entrenador B se movió a la posicion 3|3.
+[INFO] 19:43:23:434 TEAM/(15312:15334): El entrenador B se movió a la posicion 4|3.
+[INFO] 19:43:23:435 TEAM/(15312:15321): Se cambio al entrenador C debido a fin de quantum
+[INFO] 19:43:24:437 TEAM/(15312:15335): El entrenador B se movió a la posicion 5|3.
+[INFO] 19:43:25:437 TEAM/(15312:15336): El entrenador B se movió a la posicion 6|3.
+[INFO] 19:43:25:438 TEAM/(15312:15321): Se cambio al entrenador A debido a fin de quantum
+[INFO] 19:43:26:438 TEAM/(15312:15337): El entrenador B se movió a la posicion 7|3.
+[INFO] 19:43:27:439 TEAM/(15312:15338): El entrenador B se movió a la posicion 8|3.
+[INFO] 19:43:27:442 TEAM/(15312:15321): Se cambio al entrenador C debido a fin de quantum
+[INFO] 19:43:28:442 TEAM/(15312:15339): El entrenador B se movió a la posicion 9|3.
+[INFO] 19:43:29:443 TEAM/(15312:15340): El entrenador B se movió a la posicion 9|4.
+[INFO] 19:43:29:444 TEAM/(15312:15321): Se cambio al entrenador A debido a fin de quantum
+[INFO] 19:43:30:444 TEAM/(15312:15341): El entrenador B se movió a la posicion 9|5.
+[INFO] 19:43:31:445 TEAM/(15312:15342): El entrenador B se movió a la posicion 9|6.
+[INFO] 19:43:31:445 TEAM/(15312:15321): Se cambio al entrenador C debido a fin de quantum
+[INFO] 19:43:32:446 TEAM/(15312:15343): El entrenador B se movió a la posicion 9|7.
+[INFO] 19:43:33:447 TEAM/(15312:15344): El entrenador B se movió a la posicion 9|8.
+[INFO] 19:43:33:447 TEAM/(15312:15321): Se cambio al entrenador A debido a fin de quantum
+[INFO] 19:43:34:448 TEAM/(15312:15345): El entrenador B se movió a la posicion 9|9.
+[INFO] 19:43:34:448 TEAM/(15312:15348): El entrenador B atrapó un Pikachu en la posicion 9|9.
+[INFO] 19:43:34:449 TEAM/(15312:15332): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Gengar. 
+POSICION EN X: 6. 
+POSICION EN Y: 6.
+[INFO] 19:43:35:450 TEAM/(15312:15321): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 19:43:36:452 TEAM/(15312:15350): El entrenador C se movió a la posicion 4|2.
+[INFO] 19:43:37:453 TEAM/(15312:15351): El entrenador C se movió a la posicion 5|2.
+[INFO] 19:43:37:454 TEAM/(15312:15321): Se cambio al entrenador A debido a fin de quantum
+[INFO] 19:43:37:454 TEAM/(15312:15352): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 19:43:37:454 TEAM/(15312:15349): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 5.
+[INFO] 19:43:38:454 TEAM/(15312:15321): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 19:43:39:455 TEAM/(15312:15353): El entrenador B se movió a la posicion 8|9.
+[INFO] 19:43:39:455 TEAM/(15312:15321): Se cambio al entrenador A debido a fin de quantum
+[INFO] 19:43:40:457 TEAM/(15312:15354): El entrenador B se movió a la posicion 7|9.
+[INFO] 19:43:41:459 TEAM/(15312:15355): El entrenador B se movió a la posicion 6|9.
+[INFO] 19:43:41:459 TEAM/(15312:15321): Se cambio al entrenador C debido a fin de quantum
+[INFO] 19:43:42:460 TEAM/(15312:15356): El entrenador B se movió a la posicion 6|8.
+[INFO] 19:43:43:462 TEAM/(15312:15357): El entrenador B se movió a la posicion 6|7.
+[INFO] 19:43:43:463 TEAM/(15312:15321): Se cambio al entrenador A debido a fin de quantum
+[INFO] 19:43:44:463 TEAM/(15312:15358): El entrenador B se movió a la posicion 6|6.
+[INFO] 19:43:44:464 TEAM/(15312:15359): El entrenador B atrapó un Gengar en la posicion 6|6.
+[INFO] 19:43:45:464 TEAM/(15312:15321): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 19:43:46:465 TEAM/(15312:15360): El entrenador C se movió a la posicion 5|3.
+[INFO] 19:43:47:466 TEAM/(15312:15361): El entrenador C se movió a la posicion 5|4.
+[INFO] 19:43:47:467 TEAM/(15312:15321): Se cambio al entrenador A debido a fin de quantum
+[INFO] 19:43:48:468 TEAM/(15312:15362): El entrenador C se movió a la posicion 5|5.
+[INFO] 19:43:48:468 TEAM/(15312:15363): El entrenador C atrapó un Squirtle en la posicion 5|5.
+[INFO] 19:43:49:61 TEAM/(15312:15320): NO se logró conectar con el BROKER
+[INFO] 19:43:49:62 TEAM/(15312:15320): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 19:43:49:468 TEAM/(15312:15321): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 19:43:50:469 TEAM/(15312:15364): El entrenador A se movió a la posicion 2|3.
+[INFO] 19:43:51:470 TEAM/(15312:15365): El entrenador A se movió a la posicion 2|4.
+[INFO] 19:43:52:472 TEAM/(15312:15366): El entrenador A se movió a la posicion 2|5.
+[INFO] 19:43:53:473 TEAM/(15312:15367): El entrenador A se movió a la posicion 2|6.
+[INFO] 19:43:54:474 TEAM/(15312:15368): El entrenador A se movió a la posicion 2|7.
+[INFO] 19:43:55:475 TEAM/(15312:15369): El entrenador A se movió a la posicion 2|8.
+[INFO] 19:43:55:475 TEAM/(15312:15370): El entrenador A atrapó un Onix en la posicion 2|8.
+[INFO] 19:43:56:476 TEAM/(15312:15321): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 19:43:56:477 TEAM/(15312:15321): Se detecto que hay situacion de deadlock
+[INFO] 19:43:57:478 TEAM/(15312:15371): El entrenador C se movió a la posicion 4|5.
+[INFO] 19:43:58:480 TEAM/(15312:15372): El entrenador C se movió a la posicion 3|5.
+[INFO] 19:43:59:481 TEAM/(15312:15373): El entrenador C se movió a la posicion 2|5.
+[INFO] 19:44:00:482 TEAM/(15312:15374): El entrenador C se movió a la posicion 2|6.
+[INFO] 19:44:01:483 TEAM/(15312:15375): El entrenador C se movió a la posicion 2|7.
+[INFO] 19:44:02:485 TEAM/(15312:15376): El entrenador C se movió a la posicion 2|8.
+[INFO] 19:44:07:486 TEAM/(15312:15377): El entrenador C intercambio un Squirtle por un Onix del entrenador A
+[INFO] 19:44:07:487 TEAM/(15312:15321): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 19:44:07:487 TEAM/(15312:15321): No se detecto situacion de deadlock
+[INFO] 19:44:07:487 TEAM/(15312:15321): Finalizo el TEAM
+[INFO] 19:44:07:487 TEAM/(15312:15321): Se ejecutaron 48 ciclos de cpu
+[INFO] 19:44:07:487 TEAM/(15312:15321): Ocurrieron 15 cambios de contexto durante todo el team
+[INFO] 19:44:07:487 TEAM/(15312:15321): El entrenador A ejecutó 7 ciclos de cpu
+[INFO] 19:44:07:487 TEAM/(15312:15321): El entrenador B ejecutó 21 ciclos de cpu
+[INFO] 19:44:07:487 TEAM/(15312:15321): El entrenador C ejecutó 15 ciclos de cpu
+[INFO] 19:44:07:487 TEAM/(15312:15321): Se produjeron 1 deadlocks
+[INFO] 19:44:07:487 TEAM/(15312:15321): Se resolvieron 1 deadlocks
+[INFO] 19:48:23:37 TEAM/(15507:15513): NO se logró conectar con el BROKER
+[INFO] 19:48:23:39 TEAM/(15507:15513): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 19:48:26:663 TEAM/(15507:15520): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Pikachu. 
+POSICION EN X: 9. 
+POSICION EN Y: 9.
+[INFO] 19:48:26:667 TEAM/(15507:15523): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 19:48:26:668 TEAM/(15507:15525): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Onix. 
+POSICION EN X: 2. 
+POSICION EN Y: 8.
+[INFO] 19:48:27:666 TEAM/(15507:15522): El entrenador B se movió a la posicion 3|3.
+[INFO] 19:48:28:670 TEAM/(15507:15529): El entrenador B se movió a la posicion 4|3.
+[INFO] 19:48:28:670 TEAM/(15507:15516): Se cambio al entrenador C debido a fin de quantum
+[INFO] 19:48:29:672 TEAM/(15507:15530): El entrenador C se movió a la posicion 4|2.
+[INFO] 19:48:30:673 TEAM/(15507:15531): El entrenador C se movió a la posicion 5|2.
+[INFO] 19:48:30:673 TEAM/(15507:15516): Se cambio al entrenador A debido a fin de quantum
+[INFO] 19:48:31:674 TEAM/(15507:15532): El entrenador A se movió a la posicion 2|3.
+[INFO] 19:48:32:675 TEAM/(15507:15533): El entrenador A se movió a la posicion 2|4.
+[INFO] 19:48:32:675 TEAM/(15507:15516): Se cambio al entrenador C debido a fin de quantum
+[INFO] 19:48:32:676 TEAM/(15507:15534): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 19:48:32:676 TEAM/(15507:15527): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Gengar. 
+POSICION EN X: 6. 
+POSICION EN Y: 6.
+[INFO] 19:48:33:676 TEAM/(15507:15516): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 19:48:34:679 TEAM/(15507:15536): El entrenador A se movió a la posicion 2|5.
+[INFO] 19:48:34:679 TEAM/(15507:15516): Se cambio al entrenador C debido a fin de quantum
+[INFO] 19:48:35:680 TEAM/(15507:15539): El entrenador C se movió a la posicion 6|2.
+[INFO] 19:48:36:681 TEAM/(15507:15540): El entrenador C se movió a la posicion 6|3.
+[INFO] 19:48:36:682 TEAM/(15507:15516): Se cambio al entrenador C debido a fin de quantum
+[INFO] 19:48:37:683 TEAM/(15507:15541): El entrenador C se movió a la posicion 6|4.
+[INFO] 19:48:38:685 TEAM/(15507:15542): El entrenador C se movió a la posicion 6|5.
+[INFO] 19:48:38:686 TEAM/(15507:15516): Se cambio al entrenador C debido a fin de quantum
+[INFO] 19:48:39:687 TEAM/(15507:15543): El entrenador C se movió a la posicion 6|6.
+[INFO] 19:48:39:687 TEAM/(15507:15544): El entrenador C atrapó un Gengar en la posicion 6|6.
+[INFO] 19:48:40:689 TEAM/(15507:15516): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 19:48:53:40 TEAM/(15507:15513): NO se logró conectar con el BROKER
+[INFO] 19:48:53:42 TEAM/(15507:15513): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 19:49:23:43 TEAM/(15507:15513): NO se logró conectar con el BROKER
+[INFO] 19:49:23:43 TEAM/(15507:15513): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 19:50:11:137 TEAM/(15582:15590): NO se logró conectar con el BROKER
+[INFO] 19:50:11:139 TEAM/(15582:15590): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 19:50:14:265 TEAM/(15582:15595): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Pikachu. 
+POSICION EN X: 9. 
+POSICION EN Y: 9.
+[INFO] 19:50:14:267 TEAM/(15582:15598): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 19:50:14:269 TEAM/(15582:15600): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Onix. 
+POSICION EN X: 2. 
+POSICION EN Y: 8.
+[INFO] 19:50:15:268 TEAM/(15582:15597): El entrenador B se movió a la posicion 3|3.
+[INFO] 19:50:16:284 TEAM/(15582:15604): El entrenador B se movió a la posicion 4|3.
+[INFO] 19:50:16:285 TEAM/(15582:15591): Se cambio al entrenador C debido a fin de quantum
+[INFO] 19:50:17:286 TEAM/(15582:15605): El entrenador C se movió a la posicion 4|2.
+[INFO] 19:50:18:288 TEAM/(15582:15606): El entrenador C se movió a la posicion 5|2.
+[INFO] 19:50:18:288 TEAM/(15582:15591): Se cambio al entrenador A debido a fin de quantum
+[INFO] 19:50:19:289 TEAM/(15582:15607): El entrenador A se movió a la posicion 2|3.
+[INFO] 19:50:20:290 TEAM/(15582:15608): El entrenador A se movió a la posicion 2|4.
+[INFO] 19:50:20:290 TEAM/(15582:15591): Se cambio al entrenador B debido a fin de quantum
+[INFO] 19:50:21:299 TEAM/(15582:15609): El entrenador B se movió a la posicion 5|3.
+[INFO] 19:50:22:301 TEAM/(15582:15610): El entrenador B se movió a la posicion 6|3.
+[INFO] 19:50:22:301 TEAM/(15582:15591): Se cambio al entrenador C debido a fin de quantum
+[INFO] 19:50:22:301 TEAM/(15582:15616): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 19:50:22:301 TEAM/(15582:15602): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Gengar. 
+POSICION EN X: 6. 
+POSICION EN Y: 6.
+[INFO] 19:50:23:302 TEAM/(15582:15591): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 19:50:24:303 TEAM/(15582:15618): El entrenador A se movió a la posicion 2|5.
+[INFO] 19:50:24:303 TEAM/(15582:15591): Se cambio al entrenador B debido a fin de quantum
+[INFO] 19:50:25:304 TEAM/(15582:15619): El entrenador B se movió a la posicion 7|3.
+[INFO] 19:50:26:306 TEAM/(15582:15620): El entrenador B se movió a la posicion 8|3.
+[INFO] 19:50:26:307 TEAM/(15582:15591): Se cambio al entrenador C debido a fin de quantum
+[INFO] 19:50:27:309 TEAM/(15582:15621): El entrenador C se movió a la posicion 6|2.
+[INFO] 19:50:28:311 TEAM/(15582:15622): El entrenador C se movió a la posicion 6|3.
+[INFO] 19:50:28:311 TEAM/(15582:15591): Se cambio al entrenador A debido a fin de quantum
+[INFO] 19:50:29:314 TEAM/(15582:15623): El entrenador A se movió a la posicion 2|6.
+[INFO] 19:50:30:314 TEAM/(15582:15624): El entrenador A se movió a la posicion 2|7.
+[INFO] 19:50:30:315 TEAM/(15582:15591): Se cambio al entrenador B debido a fin de quantum
+[INFO] 19:50:31:316 TEAM/(15582:15625): El entrenador B se movió a la posicion 9|3.
+[INFO] 19:50:32:317 TEAM/(15582:15626): El entrenador B se movió a la posicion 9|4.
+[INFO] 19:50:32:320 TEAM/(15582:15591): Se cambio al entrenador C debido a fin de quantum
+[INFO] 19:50:33:322 TEAM/(15582:15627): El entrenador C se movió a la posicion 6|4.
+[INFO] 19:50:34:323 TEAM/(15582:15628): El entrenador C se movió a la posicion 6|5.
+[INFO] 19:50:34:324 TEAM/(15582:15591): Se cambio al entrenador A debido a fin de quantum
+[INFO] 19:50:35:325 TEAM/(15582:15629): El entrenador A se movió a la posicion 2|8.
+[INFO] 19:50:35:326 TEAM/(15582:15632): El entrenador A atrapó un Onix en la posicion 2|8.
+[INFO] 19:50:36:327 TEAM/(15582:15591): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 19:50:37:327 TEAM/(15582:15633): El entrenador B se movió a la posicion 9|5.
+[INFO] 19:50:38:330 TEAM/(15582:15634): El entrenador B se movió a la posicion 9|6.
+[INFO] 19:50:38:330 TEAM/(15582:15591): Se cambio al entrenador C debido a fin de quantum
+[INFO] 19:50:39:331 TEAM/(15582:15635): El entrenador C se movió a la posicion 6|6.
+[INFO] 19:50:39:334 TEAM/(15582:15636): El entrenador C atrapó un Gengar en la posicion 6|6.
+[INFO] 19:50:40:335 TEAM/(15582:15591): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 19:50:41:140 TEAM/(15582:15590): NO se logró conectar con el BROKER
+[INFO] 19:50:41:140 TEAM/(15582:15590): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 19:50:41:338 TEAM/(15582:15637): El entrenador B se movió a la posicion 9|7.
+[INFO] 19:50:42:339 TEAM/(15582:15638): El entrenador B se movió a la posicion 9|8.
+[INFO] 19:50:43:343 TEAM/(15582:15639): El entrenador B se movió a la posicion 9|9.
+[INFO] 19:50:43:344 TEAM/(15582:15640): El entrenador B atrapó un Pikachu en la posicion 9|9.
+[INFO] 19:50:43:344 TEAM/(15582:15617): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 5.
+[INFO] 19:50:44:345 TEAM/(15582:15591): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 19:50:45:346 TEAM/(15582:15641): El entrenador B se movió a la posicion 8|9.
+[INFO] 19:50:46:348 TEAM/(15582:15642): El entrenador B se movió a la posicion 7|9.
+[INFO] 19:50:47:350 TEAM/(15582:15648): El entrenador B se movió a la posicion 6|9.
+[INFO] 19:50:48:353 TEAM/(15582:15649): El entrenador B se movió a la posicion 5|9.
+[INFO] 19:50:49:353 TEAM/(15582:15650): El entrenador B se movió a la posicion 5|8.
+[INFO] 19:50:50:359 TEAM/(15582:15651): El entrenador B se movió a la posicion 5|7.
+[INFO] 19:50:51:364 TEAM/(15582:15652): El entrenador B se movió a la posicion 5|6.
+[INFO] 19:50:52:366 TEAM/(15582:15653): El entrenador B se movió a la posicion 5|5.
+[INFO] 19:50:52:367 TEAM/(15582:15654): El entrenador B atrapó un Squirtle en la posicion 5|5.
+[INFO] 19:50:53:369 TEAM/(15582:15591): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 19:50:53:369 TEAM/(15582:15591): Se detecto que hay situacion de deadlock
+[INFO] 19:50:54:371 TEAM/(15582:15655): El entrenador A se movió a la posicion 3|8.
+[INFO] 19:50:55:372 TEAM/(15582:15656): El entrenador A se movió a la posicion 4|8.
+[INFO] 19:50:56:374 TEAM/(15582:15679): El entrenador A se movió a la posicion 5|8.
+[INFO] 19:50:57:375 TEAM/(15582:15690): El entrenador A se movió a la posicion 5|7.
+[INFO] 19:50:58:379 TEAM/(15582:15691): El entrenador A se movió a la posicion 5|6.
+[INFO] 19:50:59:380 TEAM/(15582:15692): El entrenador A se movió a la posicion 5|5.
+[INFO] 19:51:04:381 TEAM/(15582:15693): El entrenador A intercambio un Onix por un Squirtle del entrenador B
+[INFO] 19:51:04:381 TEAM/(15582:15591): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 19:51:04:381 TEAM/(15582:15591): Se detecto que hay situacion de deadlock
+[INFO] 19:51:05:391 TEAM/(15582:15694): El entrenador C se movió a la posicion 5|6.
+[INFO] 19:51:06:392 TEAM/(15582:15695): El entrenador C se movió a la posicion 5|5.
+[INFO] 19:51:11:141 TEAM/(15582:15590): NO se logró conectar con el BROKER
+[INFO] 19:51:11:141 TEAM/(15582:15590): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 19:51:11:393 TEAM/(15582:15696): El entrenador C intercambio un Gengar por un Onix del entrenador B
+[INFO] 19:51:11:395 TEAM/(15582:15591): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 19:51:11:395 TEAM/(15582:15591): No se detecto situacion de deadlock
+[INFO] 19:51:11:395 TEAM/(15582:15591): Finalizo el TEAM
+[INFO] 19:51:11:395 TEAM/(15582:15591): Se ejecutaron 55 ciclos de cpu
+[INFO] 19:51:11:395 TEAM/(15582:15591): Ocurrieron 15 cambios de contexto durante todo el team
+[INFO] 19:51:11:395 TEAM/(15582:15591): El entrenador A ejecutó 15 ciclos de cpu
+[INFO] 19:51:11:395 TEAM/(15582:15591): El entrenador B ejecutó 23 ciclos de cpu
+[INFO] 19:51:11:395 TEAM/(15582:15591): El entrenador C ejecutó 12 ciclos de cpu
+[INFO] 19:51:11:395 TEAM/(15582:15591): Se produjeron 2 deadlocks
+[INFO] 19:51:11:395 TEAM/(15582:15591): Se resolvieron 2 deadlocks
+[INFO] 19:54:29:843 TEAM/(15770:15776): NO se logró conectar con el BROKER
+[INFO] 19:54:29:844 TEAM/(15770:15776): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 19:54:32:838 TEAM/(15770:15783): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Pikachu. 
+POSICION EN X: 9. 
+POSICION EN Y: 9.
+[INFO] 19:54:32:840 TEAM/(15770:15786): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 19:54:32:841 TEAM/(15770:15788): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Onix. 
+POSICION EN X: 2. 
+POSICION EN Y: 8.
+[INFO] 19:54:33:839 TEAM/(15770:15785): El entrenador B se movió a la posicion 3|3.
+[INFO] 19:54:34:844 TEAM/(15770:15792): El entrenador B se movió a la posicion 4|3.
+[INFO] 19:54:34:845 TEAM/(15770:15779): Se cambio al entrenador C debido a fin de quantum
+[INFO] 19:54:35:846 TEAM/(15770:15793): El entrenador C se movió a la posicion 4|2.
+[INFO] 19:54:36:847 TEAM/(15770:15796): El entrenador C se movió a la posicion 5|2.
+[INFO] 19:54:36:848 TEAM/(15770:15779): Se cambio al entrenador A debido a fin de quantum
+[INFO] 19:54:37:849 TEAM/(15770:15797): El entrenador A se movió a la posicion 2|3.
+[INFO] 19:54:38:854 TEAM/(15770:15798): El entrenador A se movió a la posicion 2|4.
+[INFO] 19:54:38:854 TEAM/(15770:15779): Se cambio al entrenador B debido a fin de quantum
+[INFO] 19:54:39:855 TEAM/(15770:15799): El entrenador B se movió a la posicion 5|3.
+[INFO] 19:54:40:856 TEAM/(15770:15800): El entrenador B se movió a la posicion 6|3.
+[INFO] 19:54:40:856 TEAM/(15770:15779): Se cambio al entrenador C debido a fin de quantum
+[INFO] 19:54:40:858 TEAM/(15770:15801): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 19:54:40:858 TEAM/(15770:15790): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Gengar. 
+POSICION EN X: 6. 
+POSICION EN Y: 6.
+[INFO] 19:54:41:858 TEAM/(15770:15779): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 19:54:42:859 TEAM/(15770:15803): El entrenador A se movió a la posicion 2|5.
+[INFO] 19:54:42:860 TEAM/(15770:15779): Se cambio al entrenador B debido a fin de quantum
+[INFO] 19:54:43:861 TEAM/(15770:15804): El entrenador B se movió a la posicion 7|3.
+[INFO] 19:54:44:861 TEAM/(15770:15805): El entrenador B se movió a la posicion 8|3.
+[INFO] 19:54:44:862 TEAM/(15770:15779): Se cambio al entrenador C debido a fin de quantum
+[INFO] 19:54:45:863 TEAM/(15770:15807): El entrenador C se movió a la posicion 6|2.
+[INFO] 19:54:46:865 TEAM/(15770:15808): El entrenador C se movió a la posicion 6|3.
+[INFO] 19:54:46:866 TEAM/(15770:15779): Se cambio al entrenador A debido a fin de quantum
+[INFO] 19:54:47:867 TEAM/(15770:15809): El entrenador A se movió a la posicion 2|6.
+[INFO] 19:54:48:868 TEAM/(15770:15810): El entrenador A se movió a la posicion 2|7.
+[INFO] 19:54:48:868 TEAM/(15770:15779): Se cambio al entrenador B debido a fin de quantum
+[INFO] 19:54:49:870 TEAM/(15770:15811): El entrenador B se movió a la posicion 9|3.
+[INFO] 19:54:50:873 TEAM/(15770:15812): El entrenador B se movió a la posicion 9|4.
+[INFO] 19:54:50:873 TEAM/(15770:15779): Se cambio al entrenador C debido a fin de quantum
+[INFO] 19:54:51:873 TEAM/(15770:15813): El entrenador C se movió a la posicion 6|4.
+[INFO] 19:54:52:874 TEAM/(15770:15814): El entrenador C se movió a la posicion 6|5.
+[INFO] 19:54:52:874 TEAM/(15770:15779): Se cambio al entrenador A debido a fin de quantum
+[INFO] 19:54:53:875 TEAM/(15770:15815): El entrenador A se movió a la posicion 2|8.
+[INFO] 19:54:53:882 TEAM/(15770:15816): El entrenador A atrapó un Onix en la posicion 2|8.
+[INFO] 19:54:54:883 TEAM/(15770:15779): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 19:54:55:885 TEAM/(15770:15817): El entrenador B se movió a la posicion 9|5.
+[INFO] 19:54:56:887 TEAM/(15770:15818): El entrenador B se movió a la posicion 9|6.
+[INFO] 19:54:56:887 TEAM/(15770:15779): Se cambio al entrenador C debido a fin de quantum
+[INFO] 19:54:57:887 TEAM/(15770:15819): El entrenador C se movió a la posicion 6|6.
+[INFO] 19:54:57:891 TEAM/(15770:15820): El entrenador C atrapó un Gengar en la posicion 6|6.
+[INFO] 19:54:58:892 TEAM/(15770:15779): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 19:54:59:845 TEAM/(15770:15776): NO se logró conectar con el BROKER
+[INFO] 19:54:59:845 TEAM/(15770:15776): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 19:54:59:893 TEAM/(15770:15821): El entrenador B se movió a la posicion 9|7.
+[INFO] 19:55:00:896 TEAM/(15770:15822): El entrenador B se movió a la posicion 9|8.
+[INFO] 19:55:01:897 TEAM/(15770:15823): El entrenador B se movió a la posicion 9|9.
+[INFO] 19:55:01:897 TEAM/(15770:15824): El entrenador B atrapó un Pikachu en la posicion 9|9.
+[INFO] 19:55:01:897 TEAM/(15770:15802): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 5.
+[INFO] 19:55:02:898 TEAM/(15770:15779): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 19:55:03:900 TEAM/(15770:15825): El entrenador B se movió a la posicion 8|9.
+[INFO] 19:55:04:902 TEAM/(15770:15826): El entrenador B se movió a la posicion 7|9.
+[INFO] 19:55:05:903 TEAM/(15770:15827): El entrenador B se movió a la posicion 6|9.
+[INFO] 19:55:06:905 TEAM/(15770:15828): El entrenador B se movió a la posicion 5|9.
+[INFO] 19:55:07:906 TEAM/(15770:15829): El entrenador B se movió a la posicion 5|8.
+[INFO] 19:55:08:906 TEAM/(15770:15830): El entrenador B se movió a la posicion 5|7.
+[INFO] 19:55:09:908 TEAM/(15770:15831): El entrenador B se movió a la posicion 5|6.
+[INFO] 19:55:10:908 TEAM/(15770:15832): El entrenador B se movió a la posicion 5|5.
+[INFO] 19:55:10:909 TEAM/(15770:15833): El entrenador B atrapó un Squirtle en la posicion 5|5.
+[INFO] 19:55:11:910 TEAM/(15770:15779): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 19:55:11:911 TEAM/(15770:15779): Se detecto que hay situacion de deadlock
+[INFO] 19:55:11:911 TEAM/(15770:15779): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 19:55:12:914 TEAM/(15770:15834): El entrenador A se movió a la posicion 3|8.
+[INFO] 19:55:12:915 TEAM/(15770:15779): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 19:55:13:916 TEAM/(15770:15835): El entrenador A se movió a la posicion 4|8.
+[INFO] 19:55:14:920 TEAM/(15770:15837): El entrenador A se movió a la posicion 5|8.
+[INFO] 19:55:14:921 TEAM/(15770:15779): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 19:55:15:924 TEAM/(15770:15838): El entrenador A se movió a la posicion 5|7.
+[INFO] 19:55:16:930 TEAM/(15770:15839): El entrenador A se movió a la posicion 5|6.
+[INFO] 19:55:16:931 TEAM/(15770:15779): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 19:55:17:934 TEAM/(15770:15840): El entrenador A se movió a la posicion 5|5.
+[INFO] 19:55:17:935 TEAM/(15770:15779): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 19:55:17:935 TEAM/(15770:15779): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 19:55:22:935 TEAM/(15770:15841): El entrenador A intercambio un Onix por un Squirtle del entrenador B
+[INFO] 19:55:22:936 TEAM/(15770:15779): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 19:55:22:936 TEAM/(15770:15779): Se detecto que hay situacion de deadlock
+[INFO] 19:55:22:936 TEAM/(15770:15779): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 19:55:23:940 TEAM/(15770:15842): El entrenador C se movió a la posicion 5|6.
+[INFO] 19:55:24:941 TEAM/(15770:15843): El entrenador C se movió a la posicion 5|5.
+[INFO] 19:55:24:941 TEAM/(15770:15779): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 19:55:24:941 TEAM/(15770:15779): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 19:55:24:941 TEAM/(15770:15779): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 19:55:29:846 TEAM/(15770:15776): NO se logró conectar con el BROKER
+[INFO] 19:55:29:846 TEAM/(15770:15776): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 19:55:29:942 TEAM/(15770:15844): El entrenador C intercambio un Gengar por un Onix del entrenador B
+[INFO] 19:55:29:942 TEAM/(15770:15779): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 19:55:29:942 TEAM/(15770:15779): No se detecto situacion de deadlock
+[INFO] 19:55:29:943 TEAM/(15770:15779): Finalizo el TEAM
+[INFO] 19:55:29:943 TEAM/(15770:15779): Se ejecutaron 55 ciclos de cpu
+[INFO] 19:55:29:943 TEAM/(15770:15779): Ocurrieron 25 cambios de contexto durante todo el team
+[INFO] 19:55:29:943 TEAM/(15770:15779): El entrenador A ejecutó 15 ciclos de cpu
+[INFO] 19:55:29:943 TEAM/(15770:15779): El entrenador B ejecutó 23 ciclos de cpu
+[INFO] 19:55:29:943 TEAM/(15770:15779): El entrenador C ejecutó 12 ciclos de cpu
+[INFO] 19:55:29:943 TEAM/(15770:15779): Se produjeron 2 deadlocks
+[INFO] 19:55:29:943 TEAM/(15770:15779): Se resolvieron 2 deadlocks
+[INFO] 20:07:45:452 TEAM/(16102:16110): NO se logró conectar con el BROKER
+[INFO] 20:07:45:457 TEAM/(16102:16110): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 20:07:46:401 TEAM/(16102:16115): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Pikachu. 
+POSICION EN X: 9. 
+POSICION EN Y: 9.
+[INFO] 20:07:46:407 TEAM/(16102:16118): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 20:07:46:418 TEAM/(16102:16120): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Onix. 
+POSICION EN X: 2. 
+POSICION EN Y: 8.
+[INFO] 20:07:47:404 TEAM/(16102:16117): El entrenador B se movió a la posicion 3|3.
+[INFO] 20:07:48:413 TEAM/(16102:16124): El entrenador B se movió a la posicion 4|3.
+[INFO] 20:07:48:415 TEAM/(16102:16111): Se cambio al entrenador C debido a fin de quantum
+[INFO] 20:07:49:415 TEAM/(16102:16125): El entrenador C se movió a la posicion 4|2.
+[INFO] 20:07:50:416 TEAM/(16102:16126): El entrenador C se movió a la posicion 5|2.
+[INFO] 20:07:50:416 TEAM/(16102:16111): Se cambio al entrenador A debido a fin de quantum
+[INFO] 20:07:51:417 TEAM/(16102:16127): El entrenador A se movió a la posicion 2|3.
+[INFO] 20:07:52:418 TEAM/(16102:16133): El entrenador A se movió a la posicion 2|4.
+[INFO] 20:07:52:418 TEAM/(16102:16111): Se cambio al entrenador B debido a fin de quantum
+[INFO] 20:07:53:418 TEAM/(16102:16134): El entrenador B se movió a la posicion 5|3.
+[INFO] 20:07:54:420 TEAM/(16102:16135): El entrenador B se movió a la posicion 6|3.
+[INFO] 20:07:54:421 TEAM/(16102:16111): Se cambio al entrenador C debido a fin de quantum
+[INFO] 20:07:54:426 TEAM/(16102:16136): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 20:07:54:426 TEAM/(16102:16122): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Gengar. 
+POSICION EN X: 6. 
+POSICION EN Y: 6.
+[INFO] 20:07:55:427 TEAM/(16102:16111): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 20:07:56:428 TEAM/(16102:16138): El entrenador A se movió a la posicion 2|5.
+[INFO] 20:07:56:429 TEAM/(16102:16111): Se cambio al entrenador B debido a fin de quantum
+[INFO] 20:07:57:430 TEAM/(16102:16139): El entrenador B se movió a la posicion 7|3.
+[INFO] 20:07:58:431 TEAM/(16102:16140): El entrenador B se movió a la posicion 8|3.
+[INFO] 20:07:58:432 TEAM/(16102:16111): Se cambio al entrenador C debido a fin de quantum
+[INFO] 20:07:59:433 TEAM/(16102:16141): El entrenador C se movió a la posicion 6|2.
+[INFO] 20:08:00:434 TEAM/(16102:16142): El entrenador C se movió a la posicion 6|3.
+[INFO] 20:08:00:434 TEAM/(16102:16111): Se cambio al entrenador A debido a fin de quantum
+[INFO] 20:08:01:435 TEAM/(16102:16143): El entrenador A se movió a la posicion 2|6.
+[INFO] 20:08:02:437 TEAM/(16102:16144): El entrenador A se movió a la posicion 2|7.
+[INFO] 20:08:02:438 TEAM/(16102:16111): Se cambio al entrenador B debido a fin de quantum
+[INFO] 20:08:03:439 TEAM/(16102:16145): El entrenador B se movió a la posicion 9|3.
+[INFO] 20:08:04:442 TEAM/(16102:16146): El entrenador B se movió a la posicion 9|4.
+[INFO] 20:08:04:442 TEAM/(16102:16111): Se cambio al entrenador C debido a fin de quantum
+[INFO] 20:08:05:444 TEAM/(16102:16148): El entrenador C se movió a la posicion 6|4.
+[INFO] 20:08:06:445 TEAM/(16102:16149): El entrenador C se movió a la posicion 6|5.
+[INFO] 20:08:06:445 TEAM/(16102:16111): Se cambio al entrenador A debido a fin de quantum
+[INFO] 20:08:07:446 TEAM/(16102:16150): El entrenador A se movió a la posicion 2|8.
+[INFO] 20:08:07:447 TEAM/(16102:16151): El entrenador A atrapó un Onix en la posicion 2|8.
+[INFO] 20:08:08:448 TEAM/(16102:16111): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 20:08:09:449 TEAM/(16102:16152): El entrenador B se movió a la posicion 9|5.
+[INFO] 20:08:10:450 TEAM/(16102:16153): El entrenador B se movió a la posicion 9|6.
+[INFO] 20:08:10:450 TEAM/(16102:16111): Se cambio al entrenador C debido a fin de quantum
+[INFO] 20:08:11:452 TEAM/(16102:16154): El entrenador C se movió a la posicion 6|6.
+[INFO] 20:08:11:452 TEAM/(16102:16155): El entrenador C atrapó un Gengar en la posicion 6|6.
+[INFO] 20:08:12:454 TEAM/(16102:16111): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 20:08:13:455 TEAM/(16102:16156): El entrenador B se movió a la posicion 9|7.
+[INFO] 20:08:14:457 TEAM/(16102:16157): El entrenador B se movió a la posicion 9|8.
+[INFO] 20:08:15:458 TEAM/(16102:16110): NO se logró conectar con el BROKER
+[INFO] 20:08:15:458 TEAM/(16102:16110): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 20:08:15:458 TEAM/(16102:16158): El entrenador B se movió a la posicion 9|9.
+[INFO] 20:08:15:459 TEAM/(16102:16159): El entrenador B atrapó un Pikachu en la posicion 9|9.
+[INFO] 20:08:15:459 TEAM/(16102:16137): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 5.
+[INFO] 20:08:16:459 TEAM/(16102:16111): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 20:08:17:460 TEAM/(16102:16160): El entrenador B se movió a la posicion 8|9.
+[INFO] 20:08:18:461 TEAM/(16102:16161): El entrenador B se movió a la posicion 7|9.
+[INFO] 20:08:19:462 TEAM/(16102:16162): El entrenador B se movió a la posicion 6|9.
+[INFO] 20:08:20:462 TEAM/(16102:16163): El entrenador B se movió a la posicion 5|9.
+[INFO] 20:08:21:463 TEAM/(16102:16164): El entrenador B se movió a la posicion 5|8.
+[INFO] 20:08:22:464 TEAM/(16102:16165): El entrenador B se movió a la posicion 5|7.
+[INFO] 20:08:23:466 TEAM/(16102:16166): El entrenador B se movió a la posicion 5|6.
+[INFO] 20:08:24:467 TEAM/(16102:16167): El entrenador B se movió a la posicion 5|5.
+[INFO] 20:08:24:468 TEAM/(16102:16168): El entrenador B atrapó un Squirtle en la posicion 5|5.
+[INFO] 20:08:25:469 TEAM/(16102:16111): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 20:08:25:470 TEAM/(16102:16111): Se detecto que hay situacion de deadlock
+[INFO] 20:08:25:470 TEAM/(16102:16111): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 20:08:26:470 TEAM/(16102:16169): El entrenador A se movió a la posicion 3|8.
+[INFO] 20:08:27:471 TEAM/(16102:16170): El entrenador A se movió a la posicion 4|8.
+[INFO] 20:08:28:472 TEAM/(16102:16171): El entrenador A se movió a la posicion 5|8.
+[INFO] 20:08:29:473 TEAM/(16102:16172): El entrenador A se movió a la posicion 5|7.
+[INFO] 20:08:30:475 TEAM/(16102:16173): El entrenador A se movió a la posicion 5|6.
+[INFO] 20:08:31:476 TEAM/(16102:16174): El entrenador A se movió a la posicion 5|5.
+[INFO] 20:08:36:478 TEAM/(16102:16175): El entrenador A intercambio un Onix por un Squirtle del entrenador B
+[INFO] 20:08:36:478 TEAM/(16102:16111): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 20:08:36:478 TEAM/(16102:16111): Se detecto que hay situacion de deadlock
+[INFO] 20:08:36:478 TEAM/(16102:16111): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 20:08:37:479 TEAM/(16102:16178): El entrenador C se movió a la posicion 5|6.
+[INFO] 20:08:38:481 TEAM/(16102:16179): El entrenador C se movió a la posicion 5|5.
+[INFO] 20:08:43:483 TEAM/(16102:16180): El entrenador C intercambio un Gengar por un Onix del entrenador B
+[INFO] 20:08:43:483 TEAM/(16102:16111): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 20:08:43:483 TEAM/(16102:16111): No se detecto situacion de deadlock
+[INFO] 20:08:43:483 TEAM/(16102:16111): Finalizo el TEAM
+[INFO] 20:08:43:483 TEAM/(16102:16111): Se ejecutaron 55 ciclos de cpu
+[INFO] 20:08:43:483 TEAM/(16102:16111): Ocurrieron 17 cambios de contexto durante todo el team
+[INFO] 20:08:43:483 TEAM/(16102:16111): El entrenador A ejecutó 15 ciclos de cpu
+[INFO] 20:08:43:483 TEAM/(16102:16111): El entrenador B ejecutó 23 ciclos de cpu
+[INFO] 20:08:43:483 TEAM/(16102:16111): El entrenador C ejecutó 12 ciclos de cpu
+[INFO] 20:08:43:483 TEAM/(16102:16111): Se produjeron 2 deadlocks
+[INFO] 20:08:43:483 TEAM/(16102:16111): Se resolvieron 2 deadlocks
+[INFO] 20:09:31:269 TEAM/(16192:16200): NO se logró conectar con el BROKER
+[INFO] 20:09:31:271 TEAM/(16192:16200): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 20:09:32:301 TEAM/(16192:16205): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Pikachu. 
+POSICION EN X: 9. 
+POSICION EN Y: 9.
+[INFO] 20:09:32:323 TEAM/(16192:16208): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 20:09:32:325 TEAM/(16192:16210): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Onix. 
+POSICION EN X: 2. 
+POSICION EN Y: 8.
+[INFO] 20:09:33:312 TEAM/(16192:16207): El entrenador B se movió a la posicion 3|3.
+[INFO] 20:09:34:319 TEAM/(16192:16214): El entrenador B se movió a la posicion 4|3.
+[INFO] 20:09:35:325 TEAM/(16192:16215): El entrenador B se movió a la posicion 5|3.
+[INFO] 20:09:36:327 TEAM/(16192:16216): El entrenador B se movió a la posicion 6|3.
+[INFO] 20:09:37:330 TEAM/(16192:16219): El entrenador B se movió a la posicion 7|3.
+[INFO] 20:09:38:332 TEAM/(16192:16220): El entrenador B se movió a la posicion 8|3.
+[INFO] 20:09:39:334 TEAM/(16192:16221): El entrenador B se movió a la posicion 9|3.
+[INFO] 20:09:40:334 TEAM/(16192:16222): El entrenador B se movió a la posicion 9|4.
+[INFO] 20:09:41:336 TEAM/(16192:16223): El entrenador B se movió a la posicion 9|5.
+[INFO] 20:09:42:336 TEAM/(16192:16224): El entrenador B se movió a la posicion 9|6.
+[INFO] 20:09:43:338 TEAM/(16192:16225): El entrenador B se movió a la posicion 9|7.
+[INFO] 20:09:44:340 TEAM/(16192:16226): El entrenador B se movió a la posicion 9|8.
+[INFO] 20:09:45:341 TEAM/(16192:16227): El entrenador B se movió a la posicion 9|9.
+[INFO] 20:09:45:341 TEAM/(16192:16228): El entrenador B atrapó un Pikachu en la posicion 9|9.
+[INFO] 20:09:45:341 TEAM/(16192:16212): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Gengar. 
+POSICION EN X: 6. 
+POSICION EN Y: 6.
+[INFO] 20:09:46:342 TEAM/(16192:16201): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 20:09:47:343 TEAM/(16192:16230): El entrenador C se movió a la posicion 4|2.
+[INFO] 20:09:48:345 TEAM/(16192:16231): El entrenador C se movió a la posicion 5|2.
+[INFO] 20:09:48:346 TEAM/(16192:16232): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 20:09:48:346 TEAM/(16192:16229): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 5.
+[INFO] 20:09:49:347 TEAM/(16192:16201): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 20:09:50:349 TEAM/(16192:16233): El entrenador A se movió a la posicion 2|3.
+[INFO] 20:09:51:351 TEAM/(16192:16234): El entrenador A se movió a la posicion 2|4.
+[INFO] 20:09:52:353 TEAM/(16192:16235): El entrenador A se movió a la posicion 2|5.
+[INFO] 20:09:53:355 TEAM/(16192:16236): El entrenador A se movió a la posicion 2|6.
+[INFO] 20:09:54:357 TEAM/(16192:16237): El entrenador A se movió a la posicion 2|7.
+[INFO] 20:09:55:358 TEAM/(16192:16238): El entrenador A se movió a la posicion 2|8.
+[INFO] 20:09:55:358 TEAM/(16192:16239): El entrenador A atrapó un Onix en la posicion 2|8.
+[INFO] 20:09:56:359 TEAM/(16192:16201): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 20:09:57:362 TEAM/(16192:16240): El entrenador B se movió a la posicion 8|9.
+[INFO] 20:09:58:363 TEAM/(16192:16241): El entrenador B se movió a la posicion 7|9.
+[INFO] 20:09:59:364 TEAM/(16192:16242): El entrenador B se movió a la posicion 6|9.
+[INFO] 20:10:00:365 TEAM/(16192:16243): El entrenador B se movió a la posicion 6|8.
+[INFO] 20:10:01:271 TEAM/(16192:16200): NO se logró conectar con el BROKER
+[INFO] 20:10:01:272 TEAM/(16192:16200): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 20:10:01:366 TEAM/(16192:16244): El entrenador B se movió a la posicion 6|7.
+[INFO] 20:10:02:366 TEAM/(16192:16245): El entrenador B se movió a la posicion 6|6.
+[INFO] 20:10:02:367 TEAM/(16192:16246): El entrenador B atrapó un Gengar en la posicion 6|6.
+[INFO] 20:10:03:367 TEAM/(16192:16201): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 20:10:04:368 TEAM/(16192:16247): El entrenador C se movió a la posicion 5|3.
+[INFO] 20:10:05:369 TEAM/(16192:16248): El entrenador C se movió a la posicion 5|4.
+[INFO] 20:10:06:369 TEAM/(16192:16249): El entrenador C se movió a la posicion 5|5.
+[INFO] 20:10:06:370 TEAM/(16192:16250): El entrenador C atrapó un Squirtle en la posicion 5|5.
+[INFO] 20:10:07:371 TEAM/(16192:16201): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 20:10:07:371 TEAM/(16192:16201): Se detecto que hay situacion de deadlock
+[INFO] 20:10:07:371 TEAM/(16192:16201): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 20:10:08:372 TEAM/(16192:16251): El entrenador A se movió a la posicion 3|8.
+[INFO] 20:10:09:374 TEAM/(16192:16252): El entrenador A se movió a la posicion 4|8.
+[INFO] 20:10:10:375 TEAM/(16192:16253): El entrenador A se movió a la posicion 5|8.
+[INFO] 20:10:11:376 TEAM/(16192:16254): El entrenador A se movió a la posicion 5|7.
+[INFO] 20:10:12:377 TEAM/(16192:16255): El entrenador A se movió a la posicion 5|6.
+[INFO] 20:10:13:382 TEAM/(16192:16256): El entrenador A se movió a la posicion 5|5.
+[INFO] 20:10:18:384 TEAM/(16192:16257): El entrenador A intercambio un Onix por un Squirtle del entrenador C
+[INFO] 20:10:18:385 TEAM/(16192:16201): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 20:10:18:385 TEAM/(16192:16201): No se detecto situacion de deadlock
+[INFO] 20:10:18:385 TEAM/(16192:16201): Finalizo el TEAM
+[INFO] 20:10:18:385 TEAM/(16192:16201): Se ejecutaron 51 ciclos de cpu
+[INFO] 20:10:18:385 TEAM/(16192:16201): Ocurrieron 6 cambios de contexto durante todo el team
+[INFO] 20:10:18:386 TEAM/(16192:16201): El entrenador A ejecutó 18 ciclos de cpu
+[INFO] 20:10:18:386 TEAM/(16192:16201): El entrenador B ejecutó 21 ciclos de cpu
+[INFO] 20:10:18:386 TEAM/(16192:16201): El entrenador C ejecutó 7 ciclos de cpu
+[INFO] 20:10:18:386 TEAM/(16192:16201): Se produjeron 1 deadlocks
+[INFO] 20:10:18:386 TEAM/(16192:16201): Se resolvieron 1 deadlocks
+[INFO] 20:10:52:262 TEAM/(16295:16295): No se encontraron pokemones de la especie Pikachu en el mapa
+[INFO] 20:10:53:265 TEAM/(16295:16295): No se encontraron pokemones de la especie Squirtle en el mapa
+[INFO] 20:10:54:266 TEAM/(16295:16295): No se encontraron pokemones de la especie Gengar en el mapa
+[INFO] 20:10:55:268 TEAM/(16295:16295): No se encontraron pokemones de la especie Onix en el mapa
+[INFO] 20:10:56:270 TEAM/(16295:16310): NO se logró conectar con el BROKER
+[INFO] 20:10:56:270 TEAM/(16295:16310): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 20:11:00:907 TEAM/(16295:16314): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Pikachu. 
+POSICION EN X: 9. 
+POSICION EN Y: 9.
+[INFO] 20:11:00:910 TEAM/(16295:16317): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 20:11:00:919 TEAM/(16295:16319): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Onix. 
+POSICION EN X: 2. 
+POSICION EN Y: 8.
+[INFO] 20:11:01:907 TEAM/(16295:16316): El entrenador B se movió a la posicion 3|3.
+[INFO] 20:11:02:908 TEAM/(16295:16323): El entrenador B se movió a la posicion 4|3.
+[INFO] 20:11:03:908 TEAM/(16295:16324): El entrenador B se movió a la posicion 5|3.
+[INFO] 20:11:04:909 TEAM/(16295:16325): El entrenador B se movió a la posicion 6|3.
+[INFO] 20:11:05:910 TEAM/(16295:16326): El entrenador B se movió a la posicion 7|3.
+[INFO] 20:11:06:912 TEAM/(16295:16327): El entrenador B se movió a la posicion 8|3.
+[INFO] 20:11:07:913 TEAM/(16295:16328): El entrenador B se movió a la posicion 9|3.
+[INFO] 20:11:08:914 TEAM/(16295:16329): El entrenador B se movió a la posicion 9|4.
+[INFO] 20:11:09:917 TEAM/(16295:16330): El entrenador B se movió a la posicion 9|5.
+[INFO] 20:11:10:918 TEAM/(16295:16331): El entrenador B se movió a la posicion 9|6.
