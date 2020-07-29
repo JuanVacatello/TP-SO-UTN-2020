@@ -30,7 +30,7 @@ fi
 mkdir Documentos
 
 cd tp-2020-1c-wRAPPERS
-git checkout Team
+git checkout Team --
 cd ..
 cp -r tp-2020-1c-wRAPPERS/ /home/utnso/Documentos/tp-2020-1c-wRAPPERS
 
