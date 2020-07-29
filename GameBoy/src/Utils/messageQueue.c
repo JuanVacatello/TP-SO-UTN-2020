@@ -669,7 +669,7 @@ uint32_t recibir_mensaje(int socket_cliente){
 			printf("El id del mensaje enviado es %d \n", id_mensaje);
 
 		}else{
-			recv(socket_cliente, logger, buffer_size, MSG_WAITALL);
+			recv(socket_cliente, log, buffer_size, MSG_WAITALL);
 			puts(log);
 		}
 		mensaje_id = -1;
