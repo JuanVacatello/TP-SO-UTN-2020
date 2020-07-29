@@ -847,3 +847,21 @@
 [INFO] 20:00:52:735 TEAM/(12783:12837): El entrenador A se movió a la posicion 2|8.
 [INFO] 20:00:52:738 TEAM/(12783:12838): el socket de conexion es: 14.
 [INFO] 20:00:53:751 TEAM/(12783:12792): Se cambio al entrenador A debido a que terminó de ejecutar
+[INFO] 16:15:02:608 TEAM/(6120:6128): NO se logró conectar con el BROKER
+[INFO] 16:15:02:617 TEAM/(6120:6128): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 16:15:08:114 TEAM/(6120:6134): El codigo de operacion es: 2.
+[INFO] 16:15:08:121 TEAM/(6120:6134): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 16:15:08:174 TEAM/(6120:6136): El codigo de operacion es: 2.
+[INFO] 16:15:08:176 TEAM/(6120:6136): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 16:16:54:834 TEAM/(6172:6187): NO se logró conectar con el BROKER
+[INFO] 16:16:54:837 TEAM/(6172:6187): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 16:17:05:637 TEAM/(6172:6206): El codigo de operacion es: 2.
+[INFO] 16:17:05:642 TEAM/(6172:6206): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 16:17:05:722 TEAM/(6172:6208): El codigo de operacion es: 2.
+[INFO] 16:17:05:724 TEAM/(6172:6208): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 16:21:12:827 TEAM/(6250:6259): NO se logró conectar con el BROKER
+[INFO] 16:21:12:841 TEAM/(6250:6259): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 16:21:21:73 TEAM/(6250:6265): El codigo de operacion es: 2.
+[INFO] 16:21:21:103 TEAM/(6250:6265): Llegó un nuevo mensaje a la cola de mensajes
+[INFO] 16:21:21:208 TEAM/(6250:6267): El codigo de operacion es: 2.
+[INFO] 16:21:21:215 TEAM/(6250:6267): Llegó un nuevo mensaje a la cola de mensajes

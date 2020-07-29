@@ -391,7 +391,7 @@ bool termino_con_pokemon(t_entrenador* entrenador, char* pokemon){
 	}
 }
 
-t_entrenador* preparar_intercambio(){
+void preparar_intercambio(){
 	t_entrenador* entrenador1 = list_get(lista_de_entrenadores_deadlock,0);
 	t_entrenador* entrenador2 = obtener_entrenador_con_pokemon_del_entrenador1(entrenador1);
 
@@ -411,7 +411,6 @@ t_entrenador* preparar_intercambio(){
 
 	list_add(lista_de_entrenadores_ready, entrenador1);
 
-	return entrenador1;
 }
 
 
