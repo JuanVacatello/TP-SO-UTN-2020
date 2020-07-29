@@ -30,7 +30,7 @@ fi
 mkdir Documentos
 
 cd tp-2020-1c-wRAPPERS
-git checkout Broker --
+git checkout prueba
 cd ..
 cp -r tp-2020-1c-wRAPPERS/ /home/utnso/Documentos/tp-2020-1c-wRAPPERS
 
@@ -46,7 +46,14 @@ if test -e GameBoy.config; then
 	rm GameBoy.config
 fi
 
-echo -e "IP_BROKER=\nIP_TEAM=\nIP_GAMECARD=\nPUERTO_BROKER=\nPUERTO_TEAM=\nPUERTO_GAMECARD=\nLOG_FILE=/home/utnso/Documentos/Delibird/GameBoy/tp-2020-1c-wRAPPERS/GameBoy/GameBoy.log" >> GameBoy.config
+echo -e "IP_BROKER=127.0.0.1\n
+IP_TEAM=127.0.0.2\n
+IP_GAMECARD=127.0.0.4\n
+PUERTO_BROKER=4444\n
+PUERTO_TEAM=5555\n
+PUERTO_GAMECARD=7777\n
+PROCESS_ID=1425
+LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/GameBoy/GameBoy.log" >> GameBoy.config
 
 cd Debug
 make clean
@@ -54,6 +61,7 @@ make all
 
 #FIN DE GAMEBOY
 
+cd
 
 #INICIO BROKER
 
@@ -92,6 +100,8 @@ cd ../../Debug
 make clean
 make all
 
+cd
+
 #Configuro Broker consolidacion Particiones dinamicas -LRU
 
 cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-CONSOLIDACION-LRU
@@ -114,6 +124,8 @@ PUERTO_BROKER=\n">> Broker.config
 cd ../../Debug
 make clean
 make all
+
+cd
 
 #Configuro Broker compactacion Particiones Dinamicas
 
@@ -138,6 +150,8 @@ cd ../../Debug
 make clean
 make all
 
+cd
+
 cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-COMPACTACION-PD-LRU
 
 if test -e Broker.config; then
@@ -158,6 +172,8 @@ PUERTO_BROKER=\n">> Broker.config
 cd ../../Debug
 make clean
 make all
+
+cd
 
 #Configuro Broker Buddy System
 
@@ -181,6 +197,8 @@ PUERTO_BROKER=\n">> Broker.config
 cd ../../Debug
 make clean
 make all
+
+cd
 
 cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-BUDDY-SYSTEM-LRU
 
