@@ -171,7 +171,7 @@ void log_llego_mensaje_nuevo_appeared_pokemon(char* pokemon, int posX, int posY)
 //CAUGHT POKEMON
 void log_llego_mensaje_nuevo_caught_pokemon(t_entrenador* entrenador, int pudoAtrapar){
 
-	char* mensaje = string_from_format("");
+	char* mensaje = string_from_format("Llego un mensaje CAUGHT_POKEMON:\n ");
 
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
 	free(mensaje);

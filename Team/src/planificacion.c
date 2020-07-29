@@ -339,8 +339,6 @@ void planificar_rr(void){
 
 			while(!list_is_empty(lista_de_entrenadores_ready)){//, entrenador2= 2 acciones  entrenador 1 = 1 acciones
 
-						sem_wait(&MUTEX_ENTRENADORES);
-
 						if(quantum_remanente == 0){
 							quantum_remanente = obtener_quantum();
 						}
@@ -352,14 +350,24 @@ void planificar_rr(void){
 				accion_aux = list_get(entrenador->cola_de_acciones,0);
 
 				if(list_size(entrenador->cola_de_acciones) == 1){
-					ejecutar_entrenador(entrenador);
-					quantum_remanente-= accion_aux->ciclo_cpu;
+					if(accion_aux->ciclo_cpu <= quantum_remanente){
+						ejecutar_entrenador(entrenador);
+						quantum_remanente-= accion_aux->ciclo_cpu;
+						remover_entrenador_ready(entrenador);
 
-					if(!list_is_empty(lista_de_entrenadores_ready)){
-						entrenador = list_get(lista_de_entrenadores_ready, 0);
-						cambiosDeContexto++;
-						log_cambio_de_entrenador_termino_anterior(entrenador);
+						if(!list_is_empty(lista_de_entrenadores_ready)){
+							entrenador = list_get(lista_de_entrenadores_ready, 0);
+							cambiosDeContexto++;
+							log_cambio_de_entrenador_termino_anterior(entrenador);
+						}
 					}
+					else{
+						accion_aux->ciclo_cpu -= quantum_remanente;
+						list_replace_and_destroy_element(entrenador->cola_de_acciones, 0, accion_aux, destruir_accion);
+						quantum_remanente = 0;
+
+					}
+
 				}
 
 				else{
@@ -369,7 +377,7 @@ void planificar_rr(void){
 						}
 						else{
 							accion_aux->ciclo_cpu -= quantum_remanente;
-							list_replace_and_destroy_element(entrenador->cola_de_acciones, 0, accion_aux, free);
+							list_replace_and_destroy_element(entrenador->cola_de_acciones, 0, accion_aux, destruir_accion);
 
 							quantum_remanente = 0;
 									//termina en -1 cuando tenemos acciones grandes
@@ -396,7 +404,8 @@ void planificar_rr(void){
 	}
 }
 
-//void destruir_accion(t_accion* accion){}	//NO BORRAR
+void destruir_accion(t_accion* accion){   	//NO BORRAR
+}
 
 
 
