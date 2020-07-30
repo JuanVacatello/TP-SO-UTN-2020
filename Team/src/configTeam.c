@@ -4,12 +4,12 @@
 
 void leer_config(void)
 {
-	if(config_create("../Team.config") == NULL){
+	if(config_create("Team.config") == NULL){
 			printf("No se pudo leer el archivo de configuración del Team.");
 			exit(2);
 
 	}
-	config = config_create("../Team.config");
+	config = config_create("Team.config");
 }
 
 char* obtener_ip(void){
