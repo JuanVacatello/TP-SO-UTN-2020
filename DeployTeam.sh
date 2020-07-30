@@ -95,7 +95,7 @@ make all
 cd
 #Configuro Team con RR -> Quantum = 2
 
-cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team-RR
+cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team-RR/
 
 if test -e Team.config; then
 	rm Team.config
@@ -117,7 +117,8 @@ PROCESS_ID=1235\n
 IP_TEAM=127.0.0.2\n
 PUERTO_TEAM=5555\n" >> Team.config
 
-cd ../../Debug
+cd Debug
+
 make clean
 make all
 
@@ -146,7 +147,7 @@ PROCESS_ID=1236\n
 IP_TEAM=127.0.0.2\n
 PUERTO_TEAM=5555\n" >> Team.config
 
-cd ../../Debug
+cd Debug
 make clean
 make all
 
@@ -175,7 +176,7 @@ PROCESS_ID=1237\n
 IP_TEAM=127.0.0.2\n
 PUERTO_TEAM=5555\n" >> Team.config
 
-cd ../../Debug
+cd Debug
 make clean
 make all
 
