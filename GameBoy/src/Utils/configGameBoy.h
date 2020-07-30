@@ -14,6 +14,8 @@ char* obtener_puerto_broker(void);
 char* obtener_ip_broker(void);
 char* obtener_puerto_team(void);
 char* obtener_ip_team(void);
+char* obtener_puerto_gameboy(void);
+char* obtener_ip_gameboy(void);
 char* obtener_puerto_gamecard(void);
 char* obtener_ip_gamecard(void);
 char* obtener_log_file(void);

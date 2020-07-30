@@ -2,7 +2,7 @@
 
 void leer_config(void)
 {
-	configGameBoy = config_create("/home/utnso/Documentos/Delibird/GameBoy/tp-2020-1c-wRAPPERS/GameBoy/GameBoy.config");
+	configGameBoy = config_create("GameBoy.config");
 
 	if(configGameBoy == NULL){
 		printf("No se pudo leer el archivo de configuración del GameBoy.");
@@ -34,6 +34,19 @@ char* obtener_ip_team(void){
 	char* ip_t;
 	ip_t = config_get_string_value(configGameBoy, "IP_TEAM");
 	return ip_t;
+}
+
+char* obtener_puerto_gameboy(void){
+	int puerto_gb;
+	puerto_gb = config_get_int_value(configGameBoy, "PUERTO_GAMEBOY");
+	char* puerto_en_string = string_itoa(puerto_gb);
+	return puerto_en_string;
+}
+
+char* obtener_ip_gameboy(void){
+	char* ip_gb;
+	ip_gb = config_get_string_value(configGameBoy, "IP_GAMEBOY");
+	return ip_gb;
 }
 
 char* obtener_puerto_gamecard(void){
