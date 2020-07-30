@@ -2,7 +2,7 @@
 
 void leer_config(void)
 {
-	configGameBoy = config_create("GameBoy.config");
+	configGameBoy = config_create("../GameBoy.config");
 
 	if(configGameBoy == NULL){
 		printf("No se pudo leer el archivo de configuración del GameBoy.");
