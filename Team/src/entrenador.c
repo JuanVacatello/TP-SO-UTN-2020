@@ -217,17 +217,13 @@ void ejecutar_entrenador(t_entrenador* entrenador){
 		pthread_create(&hilo_entrenador, NULL , (accion_a_ejecutar->accion) , entrenador);
 		pthread_join(hilo_entrenador,NULL);
 
-	//free(accion_a_ejecutar->accion);
-	//free(accion_a_ejecutar->ciclo_cpu);
-	//free(accion_a_ejecutar);
-
 }
 
 
 void intentar_atrapar_pokemon(t_entrenador* entrenador){
 
 	entrenador->estado = BLOCKED;
-	enviar_CatchPokemon_a_broker(3, entrenador); //hardcodear cod_op adentro de la funcion
+	enviar_CatchPokemon_a_broker(3, entrenador);
 	efectuar_ciclo_cpu(entrenador, 1);
 	remover_entrenador_ready(entrenador);
 
@@ -236,6 +232,8 @@ void intentar_atrapar_pokemon(t_entrenador* entrenador){
 		pthread_detach(hilo_entrenador_esperando);
 	}
 
+
+
 	sem_post(&MUTEX_ENTRENADORES);
 
 }
@@ -243,7 +241,7 @@ void intentar_atrapar_pokemon(t_entrenador* entrenador){
 void atrapar_pokemon(t_entrenador* entrenador){
 	int cantidad_pokemon = 0;
 
-	if(entrenador->pudo_atrapar_pokemon == 0){
+	if(entrenador->pudo_atrapar_pokemon == -1){
 		log_operacion_de_atrapar_fallida(entrenador);	//NO ATRAPÓ AL POKEMON
 
 		if(dictionary_has_key(atrapados_global, entrenador->pokemon_a_atrapar->especie)){
@@ -391,7 +389,7 @@ bool termino_con_pokemon(t_entrenador* entrenador, char* pokemon){
 	}
 }
 
-t_entrenador* preparar_intercambio(){
+void preparar_intercambio(){
 	t_entrenador* entrenador1 = list_get(lista_de_entrenadores_deadlock,0);
 	t_entrenador* entrenador2 = obtener_entrenador_con_pokemon_del_entrenador1(entrenador1);
 
@@ -411,7 +409,6 @@ t_entrenador* preparar_intercambio(){
 
 	list_add(lista_de_entrenadores_ready, entrenador1);
 
-	return entrenador1;
 }
 
 

@@ -22,7 +22,10 @@ void planificar_fifo(void){
 				if(list_size(entrenador->cola_de_acciones) == 1){
 					ejecutar_entrenador(entrenador);
 					cambiosDeContexto++;
-					log_cambio_de_entrenador_termino_anterior(entrenador);
+					if(!list_is_empty(lista_de_entrenadores_ready)){
+						entrenador = list_get(lista_de_entrenadores_ready,0);
+						log_cambio_de_entrenador_termino_anterior(entrenador);
+					}
 					break;
 				}
 				else{
@@ -32,8 +35,9 @@ void planificar_fifo(void){
 		}
 
 		while(deteccion_de_deadlock()){
-			entrenador = preparar_intercambio();
+			preparar_intercambio();
 			entrenador = list_remove(lista_de_entrenadores_ready,0);
+			log_cambio_de_entrenador_termino_anterior(entrenador);
 			entrenador->estado = EXEC;
 			cambiosDeContexto++;
 
@@ -41,7 +45,7 @@ void planificar_fifo(void){
 				ejecutar_entrenador(entrenador);
 			}
 
-			log_cambio_de_entrenador_termino_anterior(entrenador);
+
 
 		}
 
@@ -85,7 +89,10 @@ void planificar_sjf_sd(void){
 			while(list_size(entrenador->cola_de_acciones) > 0){
 				if(list_size(entrenador->cola_de_acciones) == 1){
 					ejecutar_entrenador(entrenador);
-					log_cambio_de_entrenador_termino_anterior(entrenador);
+					if(!list_is_empty(lista_de_entrenadores_ready)){
+						entrenador = entrenador_con_menor_cpu();
+						log_cambio_de_entrenador_termino_anterior(entrenador);
+					}
 					break;
 				}
 				else{
@@ -95,15 +102,19 @@ void planificar_sjf_sd(void){
 		}
 
 		while(deteccion_de_deadlock()){
-			entrenador = preparar_intercambio();
-			entrenador = list_remove(lista_de_entrenadores_ready,0);
+
+			preparar_intercambio();
+			entrenador = entrenador_con_menor_cpu();
+			log_cambio_de_entrenador_termino_anterior(entrenador);
+			remover_entrenador_ready(entrenador);
+
 			entrenador->estado = EXEC;
 			cambiosDeContexto++;
 
 			while(list_size(entrenador->cola_de_acciones) > 0){
 				ejecutar_entrenador(entrenador);
 			}
-			log_cambio_de_entrenador_termino_anterior(entrenador);
+
 		}
 
 		if(terminoTeam()){
@@ -152,7 +163,10 @@ void planificar_sjf_cd(void){
 
 					remover_entrenador_ready(entrenador);
 					list_add(lista_de_entrenadores_ready, entrenador);
-					log_cambio_de_entrenador_por_trabajo_mas_corto(entrenador);
+					if(!list_is_empty(lista_de_entrenadores_ready)){
+						entrenador = entrenador_con_menor_cpu();
+						log_cambio_de_entrenador_por_trabajo_mas_corto(entrenador);
+					}
 					sem_post(&MUTEX_ENTRENADORES);
 					break;
 
@@ -160,7 +174,10 @@ void planificar_sjf_cd(void){
 
 				if(list_size(entrenador->cola_de_acciones) == 1){
 					ejecutar_entrenador(entrenador);
-					log_cambio_de_entrenador_termino_anterior(entrenador);
+					if(!list_is_empty(lista_de_entrenadores_ready)){
+						entrenador = entrenador_con_menor_cpu();
+						log_cambio_de_entrenador_termino_anterior(entrenador);
+					}
 					break;
 				}
 				else{
@@ -170,16 +187,43 @@ void planificar_sjf_cd(void){
 		}
 
 			while(deteccion_de_deadlock()){
-				entrenador = preparar_intercambio();
-				entrenador = list_remove(lista_de_entrenadores_ready,0);
-				entrenador->estado = EXEC;
-				cambiosDeContexto++;
+				preparar_intercambio();
+				entrenador = entrenador_con_menor_cpu();
+				log_cambio_de_entrenador_termino_anterior(entrenador);
 
+				for(int i =0 ; i<list_size(lista_de_entrenadores_ready); i++){
+					entrenador = list_get(lista_de_entrenadores_ready,i);
+					if(entrenador->ID_entrenador == entrenador_aux->ID_entrenador){
+					entrenador = list_get(lista_de_entrenadores_ready,i);
+					break;
+					}
+				}
+
+					entrenador->rafaga_anterior = 0;
+					entrenador->estado = EXEC;
+					cambiosDeContexto++;
 
 				while(list_size(entrenador->cola_de_acciones) > 0){
-					ejecutar_entrenador(entrenador);
+					entrenador_aux = entrenador_con_menor_cpu();
+
+					if(entrenador_aux->ID_entrenador != entrenador->ID_entrenador){
+						entrenador->estado = READY;
+
+						remover_entrenador_ready(entrenador);
+						list_add(lista_de_entrenadores_ready, entrenador);
+						log_cambio_de_entrenador_por_trabajo_mas_corto(entrenador);
+						break;
+					}
+
+					if(list_size(entrenador->cola_de_acciones) == 1){
+						ejecutar_entrenador(entrenador);
+						remover_entrenador_ready(entrenador);
+						break;
+					}
+					else{
+						ejecutar_entrenador(entrenador);
+					}
 				}
-				log_cambio_de_entrenador_termino_anterior(entrenador);
 			}
 
 			if(terminoTeam()){
@@ -187,6 +231,136 @@ void planificar_sjf_cd(void){
 				exit(10);
 			}
 		}
+}
+
+
+
+void planificar_rr(void){
+
+	t_entrenador* entrenador;
+	int quantum_remanente = obtener_quantum();
+	t_accion* accion_aux;
+
+	while(!terminoTeam()){
+
+
+		pthread_mutex_lock(&mutex_planificador);
+															//quantum = 0
+		while(!list_is_empty(lista_de_entrenadores_ready)){//, entrenador2= 2 acciones  entrenador 1 = 1 acciones
+
+			sem_wait(&MUTEX_ENTRENADORES);
+
+			if(quantum_remanente == 0){
+				quantum_remanente = obtener_quantum();
+			}
+			entrenador = list_get(lista_de_entrenadores_ready,0);
+			entrenador->estado = EXEC;
+
+
+			while(list_size(entrenador->cola_de_acciones) > 0 && quantum_remanente > 0){
+				accion_aux = list_get(entrenador->cola_de_acciones,0);
+
+				if(list_size(entrenador->cola_de_acciones) == 1){
+					ejecutar_entrenador(entrenador);
+					quantum_remanente-= accion_aux->ciclo_cpu;
+
+					if(!list_is_empty(lista_de_entrenadores_ready)){
+						entrenador = list_get(lista_de_entrenadores_ready, 0);
+						log_cambio_de_entrenador_termino_anterior(entrenador);
+						cambiosDeContexto++;
+					}
+				}
+				else{
+					if(accion_aux->ciclo_cpu <= quantum_remanente){
+							ejecutar_entrenador(entrenador);
+							quantum_remanente-= accion_aux->ciclo_cpu;
+					}
+					else{
+						accion_aux->ciclo_cpu -= quantum_remanente;
+						list_replace_and_destroy_element(entrenador->cola_de_acciones, 0, accion_aux, destruir_accion);
+						quantum_remanente = 0;
+					}
+
+					if(list_size(entrenador->cola_de_acciones) > 0 && quantum_remanente == 0){
+						entrenador->estado = READY;
+
+						if(list_size(lista_de_entrenadores_ready) > 1){
+							entrenador = list_get(lista_de_entrenadores_ready,1);
+							log_cambio_de_entrenador_por_fin_de_quantum(entrenador);
+							cambiosDeContexto++;
+						}
+						entrenador = list_get(lista_de_entrenadores_ready,0);
+						remover_entrenador_ready(entrenador);
+						list_add(lista_de_entrenadores_ready, entrenador);
+						sem_post(&MUTEX_ENTRENADORES);
+					}
+				}
+			}
+		}
+
+		while(deteccion_de_deadlock()){
+
+			preparar_intercambio();
+
+			entrenador = list_get(lista_de_entrenadores_ready,0);
+			entrenador->estado = EXEC;
+			log_cambio_de_entrenador_termino_anterior(entrenador);
+			cambiosDeContexto++;
+
+			while(!list_is_empty(lista_de_entrenadores_ready)){//, entrenador2= 2 acciones  entrenador 1 = 1 acciones
+
+				if(quantum_remanente == 0){
+					quantum_remanente = obtener_quantum();
+				}
+
+			while(list_size(entrenador->cola_de_acciones) > 0 && quantum_remanente > 0){
+				accion_aux = list_get(entrenador->cola_de_acciones,0);
+
+				if(list_size(entrenador->cola_de_acciones) == 1){
+					if(accion_aux->ciclo_cpu <= quantum_remanente){
+						ejecutar_entrenador(entrenador);
+						quantum_remanente-= accion_aux->ciclo_cpu;
+						remover_entrenador_ready(entrenador);
+
+					}
+					else{
+						accion_aux->ciclo_cpu -= quantum_remanente;
+						list_replace_and_destroy_element(entrenador->cola_de_acciones, 0, accion_aux, destruir_accion);
+						quantum_remanente = 0;
+					}
+
+				}
+
+				else{
+					if(accion_aux->ciclo_cpu <= quantum_remanente){
+						ejecutar_entrenador(entrenador);
+						quantum_remanente-= accion_aux->ciclo_cpu;
+						}
+						else{
+							accion_aux->ciclo_cpu -= quantum_remanente;
+							list_replace_and_destroy_element(entrenador->cola_de_acciones, 0, accion_aux, destruir_accion);
+							quantum_remanente = 0;
+							}
+
+				if(list_size(entrenador->cola_de_acciones) > 0 && quantum_remanente == 0){
+					entrenador->estado = READY;
+						if(list_size(lista_de_entrenadores_ready) != 1){
+							cambiosDeContexto++;
+							log_cambio_de_entrenador_por_fin_de_quantum(entrenador);
+						}
+					remover_entrenador_ready(entrenador);
+					list_add(lista_de_entrenadores_ready, entrenador);
+					}
+				}
+			}
+		}
+	}
+
+		if(terminoTeam()){
+			finalizoTeam();
+			exit(10);
+		}
+	}
 }
 
 // Ti = T(i­-1) * a + R(i­-1) * (1 -­ a) , donde a = obtener_alpha()
@@ -239,92 +413,8 @@ int ciclos_rafaga_a_ejecutar(t_entrenador* entrenador){
 }
 
 
-void planificar_rr(void){
-
-	t_entrenador* entrenador;
-	int quantum_remanente = obtener_quantum();
-	t_accion* accion_aux;
-	puts("aca entra4");
-
-	while(!terminoTeam()){
-
-
-		pthread_mutex_lock(&mutex_planificador);
-
-		puts("aca entra10");
-															//quantum = 0
-		while(!list_is_empty(lista_de_entrenadores_ready)){//, entrenador2= 2 acciones  entrenador 1 = 1 acciones
-
-			sem_wait(&MUTEX_ENTRENADORES);
-
-			if(quantum_remanente == 0){
-				quantum_remanente = obtener_quantum();
-			}
-			entrenador = list_get(lista_de_entrenadores_ready,0);
-			entrenador->estado = EXEC;
-
-
-			while(list_size(entrenador->cola_de_acciones) > 0 && quantum_remanente > 0){
-				accion_aux = list_get(entrenador->cola_de_acciones,0);
-
-				if(list_size(entrenador->cola_de_acciones) == 1){
-					ejecutar_entrenador(entrenador);
-					quantum_remanente-= accion_aux->ciclo_cpu;
-
-					if(!list_is_empty(lista_de_entrenadores_ready)){
-						entrenador = list_get(lista_de_entrenadores_ready, 0);
-						cambiosDeContexto++;
-						log_cambio_de_entrenador_termino_anterior(entrenador);
-					}
-				}
-				else{
-					if(accion_aux->ciclo_cpu <= quantum_remanente){
-							ejecutar_entrenador(entrenador);
-							quantum_remanente-= accion_aux->ciclo_cpu;
-					}
-					else{
-						accion_aux->ciclo_cpu -= quantum_remanente;
-						list_replace_and_destroy_element(entrenador->cola_de_acciones, 0, accion_aux, free);
-
-						quantum_remanente = 0;
-						//termina en -1 cuando tenemos acciones grandes
-					}
-
-					if(list_size(entrenador->cola_de_acciones) > 0 && quantum_remanente == 0){
-						entrenador->estado = READY;
-						if(list_size(lista_de_entrenadores_ready) != 1){
-							cambiosDeContexto++;
-							log_cambio_de_entrenador_por_fin_de_quantum(entrenador);
-						}
-						remover_entrenador_ready(entrenador);
-						list_add(lista_de_entrenadores_ready, entrenador);
-						sem_post(&MUTEX_ENTRENADORES);
-					}
-				}
-			}
-		}
-
-		while(deteccion_de_deadlock()){
-			entrenador = preparar_intercambio();
-			entrenador = list_remove(lista_de_entrenadores_ready,0);
-			entrenador->estado = EXEC;
-			cambiosDeContexto++;
-
-			while(list_size(entrenador->cola_de_acciones) > 0){
-				ejecutar_entrenador(entrenador);
-			}
-
-			log_cambio_de_entrenador_termino_anterior(entrenador);
-		}
-
-		if(terminoTeam()){
-			finalizoTeam();
-			exit(10);
-		}
-	}
+void destruir_accion(t_accion* accion){   	//NO BORRAR
 }
-
-//void destruir_accion(t_accion* accion){}	//NO BORRAR
 
 
 

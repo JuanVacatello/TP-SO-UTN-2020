@@ -251,107 +251,105 @@ void* suscribirse_a_cola(int socket_broker, uint32_t cola_a_suscribirse, int* ta
 
 // Recibir mensajes de GameBoy y Broker
 
-void recibir_new_pokemon(int socket_cliente){	//RECIBE TODO PERFECTO (NO MUEVAN EL ORDEN DE LAS COSAS BOE)
+void recibir_new_pokemon(int socket_broker){	//RECIBE TODO PERFECTO (NO MUEVAN EL ORDEN DE LAS COSAS BOE)
 	uint32_t tamanio_buffer;
-	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
+	recv(socket_broker, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
 		printf("El tamaño del buffer es %d \n", tamanio_buffer);
 
 	uint32_t mensaje_id;  // Hola chicos este mismo id lo van a tener que poner en el id_mensaje_correlativo del appeared correspondiente a este new salu2
-	recv(socket_cliente, &mensaje_id, sizeof(uint32_t), MSG_WAITALL);
+	recv(socket_broker, &mensaje_id, sizeof(uint32_t), MSG_WAITALL);
 
 		printf("El mensaje_id es %d \n", mensaje_id);
 
 	uint32_t caracteresPokemon;
-	recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
+	recv(socket_broker, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
 
 		printf("El largo del pokemon es %d \n", caracteresPokemon);
 
 	char* pokemon = malloc(caracteresPokemon);
-	recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
+	recv(socket_broker, pokemon, caracteresPokemon, MSG_WAITALL);
 
 		printf("El pokemon es %s \n", pokemon);
 
 	uint32_t posX;
-	recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
+	recv(socket_broker, &posX, sizeof(uint32_t), MSG_WAITALL);
 
 		printf("La posicion en x es %d \n", posX);
 
 	uint32_t posY;
-	recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
+	recv(socket_broker, &posY, sizeof(uint32_t), MSG_WAITALL);
 
 		printf("La posicion en Y %d \n", posY);
 
 	uint32_t cantidad;
-	recv(socket_cliente, &cantidad, sizeof(uint32_t), MSG_WAITALL);
+	recv(socket_broker, &cantidad, sizeof(uint32_t), MSG_WAITALL);
 
 		printf("La cantidad es %d \n", cantidad);
 
 	//new_pokemon(pokemon, posX, posY, -1); // Holi no quiero tocar nada pero pasan 4 parametros pero la funcion es de 3
 
-	//responder_ack(mensaje_id);
+	responder_ack(mensaje_id, socket_broker);
 }
 
-void recibir_catch_pokemon(int socket_cliente){//RECIBE TODO PERFECTO (NO MUEVAN EL ORDEN DE LAS COSAS BOE)
+void recibir_catch_pokemon(int socket_broker){//RECIBE TODO PERFECTO (NO MUEVAN EL ORDEN DE LAS COSAS BOE)
 
 	uint32_t tamanio_buffer;
-	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
+	recv(socket_broker, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
-	printf("El tamaño del buffer es %d \n", tamanio_buffer);
+		printf("El tamaño del buffer es %d \n", tamanio_buffer);
 
 	uint32_t mensaje_id;
-	recv(socket_cliente, &mensaje_id, sizeof(uint32_t), MSG_WAITALL);
+	recv(socket_broker, &mensaje_id, sizeof(uint32_t), MSG_WAITALL);
 
-	printf("El mensaje_id es %d \n", mensaje_id);
+		printf("El mensaje_id es %d \n", mensaje_id);
 
 	uint32_t caracteresPokemon;
-	recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
+	recv(socket_broker, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
 
-	printf("El largo del pokemon es %d \n", caracteresPokemon);
+		printf("El largo del pokemon es %d \n", caracteresPokemon);
 
 	char* pokemon = (char*)malloc(caracteresPokemon);
-	recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
+	recv(socket_broker, pokemon, caracteresPokemon, MSG_WAITALL);
 
-	printf("El pokemon es %s \n", pokemon);
+		printf("El pokemon es %s \n", pokemon);
 
 	uint32_t posX;
-	recv(socket_cliente, &posX, sizeof(uint32_t), MSG_WAITALL);
+	recv(socket_broker, &posX, sizeof(uint32_t), MSG_WAITALL);
 
-	printf("La posicion en x es %d \n", posX);
+		printf("La posicion en x es %d \n", posX);
 
 	uint32_t posY;
-	recv(socket_cliente, &posY, sizeof(uint32_t), MSG_WAITALL);
+	recv(socket_broker, &posY, sizeof(uint32_t), MSG_WAITALL);
 
-	printf("La posicion en Y %d \n", posY);
+		printf("La posicion en Y %d \n", posY);
 
-
-	responder_ack(mensaje_id);
-
+	responder_ack(mensaje_id, socket_broker);
 }
 
-void recibir_get_pokemon(int socket_cliente){//RECIBE TODO PERFECTO (NO MUEVAN EL ORDEN DE LAS COSAS BOE)
+void recibir_get_pokemon(int socket_broker){//RECIBE TODO PERFECTO (NO MUEVAN EL ORDEN DE LAS COSAS BOE)
 
 	uint32_t tamanio_buffer;
-	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
+	recv(socket_broker, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
-	printf("El tamaño del buffer es %d \n", tamanio_buffer);
+		printf("El tamaño del buffer es %d \n", tamanio_buffer);
 
 	uint32_t mensaje_id;
-	recv(socket_cliente, &mensaje_id, sizeof(uint32_t), MSG_WAITALL);
+	recv(socket_broker, &mensaje_id, sizeof(uint32_t), MSG_WAITALL);
 
-	printf("El mensaje_id es %d \n", mensaje_id);
+		printf("El mensaje_id es %d \n", mensaje_id);
 
 	uint32_t caracteresPokemon;
-	recv(socket_cliente, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
+	recv(socket_broker, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
 
-	printf("El largo del pokemon es %d \n", caracteresPokemon);
+		printf("El largo del pokemon es %d \n", caracteresPokemon);
 
 	char* pokemon = (char*)malloc(caracteresPokemon);
-	recv(socket_cliente, pokemon, caracteresPokemon, MSG_WAITALL);
+	recv(socket_broker, pokemon, caracteresPokemon, MSG_WAITALL);
 
-	printf("El pokemon es %s \n", pokemon);
+		printf("El pokemon es %s \n", pokemon);
 
-	//responder_ack(mensaje_id);
+	responder_ack(mensaje_id, socket_broker);
 }
 
 // Enviar mensaje a Broker
@@ -514,46 +512,42 @@ void* iniciar_paquete_serializado_LocalizedPokemon(int* tamanio_paquete, uint32_
 
 // ACK
 
-void responder_ack(uint32_t mensaje_id){
-	char* puerto_broker = obtener_puerto_broker();
-	char* ip_broker = obtener_ip_broker();
-
-	int socket_ack = crear_conexion(ip_broker,puerto_broker);
-
-	int tamanio = 0;
-	void* a_enviar = enviar_ACK(socket_ack, &tamanio, mensaje_id);
-	send(socket_ack,a_enviar,tamanio,0);
-
-	free(a_enviar);
-}
-
-void* enviar_ACK(int socket_broker, int* tamanio, uint32_t mensaje_id){
+void responder_ack(uint32_t mensaje_id, int socket_broker){
 
 	t_paquete* paquete = malloc(sizeof(t_paquete));
 	paquete->codigo_operacion = 7;
 	paquete->buffer = malloc(sizeof(t_buffer));
 
 	char* mensaje = "ACK";
-	uint32_t caracteres_mensaje = strlen(mensaje) + 1;
-	paquete->buffer->size = sizeof(uint32_t) + sizeof(uint32_t) + caracteres_mensaje;
+	uint32_t caracteres = strlen(mensaje)+1;
+	paquete->buffer->size = sizeof(uint32_t) + sizeof(uint32_t) + caracteres + sizeof(uint32_t);
 	void* stream = malloc(paquete->buffer->size);
 	int offset = 0;
 
-	memcpy(stream + offset, &caracteres_mensaje, sizeof(uint32_t));
+	memcpy(stream + offset, &caracteres, sizeof(uint32_t));
 	offset += sizeof(uint32_t);
 
-	memcpy(stream + offset, mensaje, caracteres_mensaje);
-	offset += caracteres_mensaje;
+	memcpy(stream + offset, mensaje, caracteres);
+	offset += caracteres;
 
 	memcpy(stream + offset, &mensaje_id, sizeof(uint32_t));
 	offset += sizeof(uint32_t);
 
+	uint32_t proceso_id = obtener_id_propio();
+	memcpy(stream + offset, &proceso_id, sizeof(uint32_t));
+
 	paquete->buffer->stream = stream;
 
-	*tamanio = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
-	void* a_enviar = serializar_paquete(paquete,tamanio);
+	int tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
+	void* a_enviar = serializar_paquete(paquete,&tamanio_paquete);
 
-	return a_enviar;
+	if(send(socket_broker,a_enviar,tamanio_paquete,0) == -1){
+		completar_logger("Error en enviar por el socket","GAMEBOY", LOG_LEVEL_INFO);
+		exit(3);
+	}
+
+	free(paquete->buffer);
+	free(paquete);
 }
 
 char* recibir_mensaje(int socket_broker){

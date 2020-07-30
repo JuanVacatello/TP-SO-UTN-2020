@@ -84,10 +84,10 @@ uint32_t recibir_appeared_pokemon(int socket_cliente);
 uint32_t recibir_catch_pokemon(int socket_cliente);
 uint32_t recibir_caught_pokemon(int socket_cliente);
 uint32_t recibir_get_pokemon(int socket_cliente);
+void enviar_ACK(int socket_broker, char* mensaje, uint32_t id_mensaje);
 
 // Auxiliares
 void* serializar_paquete(t_paquete* paquete , int *bytes);
-void enviar_ACK(int socket_broker, char* mensaje, uint32_t id_mensaje);
 void liberar_conexion(int socket_cliente);
 
 #endif /* MSGQ_H_ */

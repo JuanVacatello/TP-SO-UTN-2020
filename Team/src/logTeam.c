@@ -47,7 +47,7 @@ void completar_logger(char* mensaje, char* programa, t_log_level log_level)
 void log_cambio_de_entrenador_termino_anterior(t_entrenador* entrenador){
 	char idEntrenador = entrenador->ID_entrenador;
 
-	char* mensaje = string_from_format("Se cambio al entrenador %c debido a que terminó de ejecutar",idEntrenador);
+	char* mensaje = string_from_format("Se cambio al entrenador %c debido a que terminó de ejecutar el anterior",idEntrenador);
 
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
 	free(mensaje);
@@ -160,27 +160,41 @@ void log_deadlock_no_detectado(){
 
 //7. Llegada de un mensaje (indicando el tipo del mismo y sus datos). FALTA VER
 //APPEARED POKEMON
-void log_llego_mensaje_nuevo_appeared_pokemon(char* pokemon, int posX, int posY){
+void log_llego_mensaje_nuevo_appeared_pokemon(int id_mensaje, char* pokemon, int posX, int posY){
 
-	char* mensaje = string_from_format("Llegó un mensaje APPEARED_POKEMON:\n Pokemon: %s. \n Posicion en X: %d. \n Posicion en Y: %d.", pokemon, posX, posY);
+	char* mensaje = string_from_format("Llegó un mensaje APPEARED_POKEMON con:\nID_MENSAJE: %d. \nPOKEMON: %s. \nPOSICION EN X: %d. \nPOSICION EN Y: %d.",id_mensaje, pokemon, posX, posY);
 
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
 	free(mensaje);
 }
 
 //CAUGHT POKEMON
-void log_llego_mensaje_nuevo_caught_pokemon(t_entrenador* entrenador, int pudoAtrapar){
-
-	char* mensaje = string_from_format("");
-
-	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+void log_llego_mensaje_nuevo_caught_pokemon(int id_mensaje, int id_correlativo, int pudoAtraparlo ){
+	char* mensaje = string_new();
+	if(pudoAtraparlo == -1){
+		mensaje = string_from_format("Llego un mensaje CAUGHT_POKEMON:\nID_MENSAJE: %d.\nID_CORRELATIVO: %d.\nRESULTADO CATCH: FAIL.", id_mensaje, id_correlativo);
+		completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+	}
+	else{
+		mensaje = string_from_format("Llego un mensaje CAUGHT_POKEMON:\nID_MENSAJE: %d. \nID_CORRELATIVO: %d.\nRESULTADO CATCH: OK.", id_mensaje, id_correlativo);
+		completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
+	}
 	free(mensaje);
 }
 
 //LOCALIZED POKEMON
-void log_llego_mensaje_nuevo_localized_pokemon(char* pokemon, int posX, int posY){
+void log_llego_mensaje_nuevo_localized_pokemon(int id_mensaje, int id_correlativo, char* pokemon, int cantidad, t_list* posicionesX, t_list* posicionesY){
 
-	char* mensaje = string_from_format("");
+	char* mensaje = string_from_format("Llego un mensaje LOCALIZED_POKEMON:\nID_MENSAJE: %d. \nID_CORRELATIVO: %d.\nPOKEMON: %s. \nCANTIDAD: %d. \n", id_mensaje, id_correlativo, pokemon, cantidad);
+
+	for(int i = 0; i<cantidad; i++){
+		int posX = list_get(posicionesX, i);
+		int posY = list_get(posicionesY, i);
+
+		char* posiciones = string_new();
+		posiciones = string_from_format("POSICION EN X: %d. \nPOSICION EN Y: %d. \n", posX, posY);
+		string_append(&mensaje, posiciones);
+	}
 
 	completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
 	free(mensaje);

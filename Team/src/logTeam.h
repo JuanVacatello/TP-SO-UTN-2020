@@ -21,9 +21,9 @@ void log_operacion_de_intercambio(t_entrenador* entrenador1, t_entrenador* entre
 void log_inicio_deteccion_deadlock();
 void log_deadlock_detectado();
 void log_deadlock_no_detectado();
-void log_llego_mensaje_nuevo_appeared_pokemon(char* pokemon, int posX, int posY);
-void log_llego_mensaje_nuevo_caught_pokemon(t_entrenador* entrenador, int pudoAtrapar);
-void log_llego_mensaje_nuevo_localized_pokemon(char* pokemon, int posX, int posY);
+void log_llego_mensaje_nuevo_appeared_pokemon(int id_mensaje,char* pokemon, int posX, int posY);
+void log_llego_mensaje_nuevo_caught_pokemon(int id_mensaje, int id_correlativo, int pudoAtrapar);
+void log_llego_mensaje_nuevo_localized_pokemon(int id_mensaje, int id_correlativo, char* pokemon, int cantidad, t_list* posicionesX, t_list* posicionesY);
 void log_intento_reintento_comunicacion_broker();
 void log_intento_comunicacion_Broker_exitoso();
 void log_reintento_comunicacion_Broker_fallido();

@@ -3,9 +3,8 @@
 int main(int argc, char* argv[]) {
 
 	controlar_cant_argumentos(argc);
-	iniciar_logger();
-
 	leer_config();
+	iniciar_logger();
 
 	const char* proceso = argv[1];
 
@@ -104,11 +103,11 @@ void enviarMensajeTeam(int argc, char *argv[]){
 	char* codigo_mensaje = argv[2];
 
 	if(!(strcmp(codigo_mensaje, "APPEARED_POKEMON"))){
-
 		cumple_cant_parametros(argc, 6);
 		enviar_mensaje_a_team(socket_conexion, 2, argv); // 2 es el op_code de APPEARED_POKEMON
-
 	}
+
+	recibir_mensaje(socket_conexion); // Para recibir el ack
 }
 
 void enviarMensajeGameCard(int argc, char *argv[]){
@@ -135,6 +134,8 @@ void enviarMensajeGameCard(int argc, char *argv[]){
 		cumple_cant_parametros(argc, 5);
 		enviar_mensaje_a_gamecard(socket_conexion, 5, argv); // 5 es el op_code de GET_POKEMON
 	}
+
+	recibir_mensaje(socket_conexion); // Para recibir el ack
 }
 
 void cumple_cant_parametros(int argc, int cantidad_necesaria){
