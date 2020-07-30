@@ -98,7 +98,7 @@ LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker/Broker_log.log\n
 IP_BROKER=\n
 PUERTO_BROKER=\n">> Broker.config
 
-cd ../../Debug
+cd Debug
 make clean
 make all
 
@@ -123,7 +123,7 @@ LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-CONSOLIDACION-LRU/Bro
 IP_BROKER=\n
 PUERTO_BROKER=\n">> Broker.config
 
-cd ../../Debug
+cd Debug
 make clean
 make all
 
@@ -148,7 +148,7 @@ LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-COMPACTACION-PD-FIFO/
 IP_BROKER=\n
 PUERTO_BROKER=\n">> Broker.config
 
-cd ../../Debug
+cd Debug
 make clean
 make all
 
@@ -171,7 +171,7 @@ LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-COMPACTACION-PD-LRU/B
 IP_BROKER=\n
 PUERTO_BROKER=\n">> Broker.config
 
-cd ../../Debug
+cd Debug
 make clean
 make all
 
@@ -196,7 +196,7 @@ LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-BUDDY-SYSTEM-FIFO/Bro
 IP_BROKER=\n
 PUERTO_BROKER=\n">> Broker.config
 
-cd ../../Debug
+cd Debug
 make clean
 make all
 
@@ -219,7 +219,7 @@ LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-BUDDY-SYSTEM-LRU/Brok
 IP_BROKER=\n
 PUERTO_BROKER=\n">> Broker.config
 
-cd ../../Debug
+cd Debug
 make clean
 make all
 
