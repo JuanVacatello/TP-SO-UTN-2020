@@ -45,7 +45,10 @@ void iniciar_espera_mensajes_Gameboy(void){
     hints.ai_socktype = SOCK_STREAM;
     hints.ai_flags = AI_PASSIVE;
 
-    getaddrinfo(IP, PUERTO, &hints, &servinfo);
+    char* ip = obtener_ip_gamecard();
+    char* puerto = obtener_puerto_gamecard();
+
+    getaddrinfo(ip, puerto, &hints, &servinfo);
 
     for (p=servinfo; p != NULL; p = p->ai_next){
         if ((socket_servidor = socket(p->ai_family, p->ai_socktype, p->ai_protocol)) == -1)

@@ -4,8 +4,7 @@
 
 void leer_config(void)
 {
-	// El path es este pero no m anda entonces lo cambie: /home/utnso/Documentos/Delibird/GameCard/tp-2020-1c-wRAPPERS/GameCard/
-	configGameCard = config_create("/home/utnso/Documentos/Delibird/GameCard/tp-2020-1c-wRAPPERS/GameCard/GameCard.config");
+	configGameCard = config_create("GameCard.config");
 
 	if(configGameCard == NULL){
 		printf("No se pudo leer el archivo de configuración de la GameCard.");
@@ -97,3 +96,21 @@ char* obtener_path_metadata(){
 	return path_metadata;
 }
 
+char* obtener_log_file(void){
+	char* ruta_log;
+	ruta_log = config_get_string_value(configGameCard, "LOG_FILE");
+	return ruta_log;
+}
+
+char* obtener_puerto_gamecard(void){
+	int puerto_g;
+	puerto_g = config_get_int_value(configGameCard, "PUERTO_GAMECARD");
+	char* puerto_en_string = string_itoa(puerto_g);
+	return puerto_en_string;
+}
+
+char* obtener_ip_gamecard(void){
+	char* ip_g;
+	ip_g = config_get_string_value(configGameCard, "IP_GAMECARD");
+	return ip_g;
+}

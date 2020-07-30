@@ -17,9 +17,6 @@
 #include"configGameCard.h"
 #include"logGameCard.h"
 
-#define IP "127.0.0.4"
-#define PUERTO "7777"
-
 typedef enum{
 	SUSCRIPTOR=0,
 	NEW_POKEMON=1,

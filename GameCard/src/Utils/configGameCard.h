@@ -27,5 +27,7 @@ void actualizar_path_bloques(char* path_bloques);
 char* obtener_path_files();
 char* obtener_path_bloques();
 char* obtener_path_metadata();
+char* obtener_puerto_gamecard(void);
+char* obtener_ip_gamecard(void);
 
 #endif /* CONFIGGAMEBOY_H_ */
