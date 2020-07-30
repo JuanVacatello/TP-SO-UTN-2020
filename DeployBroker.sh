@@ -95,8 +95,8 @@ ALGORITMO_PARTICION_LIBRE=FF\n
 FRECUENCIA_COMPACTACION=10\n
 PATH_ARCHIVO_DUMP=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker/Broker_dump.dump\n
 LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker/Broker_log.log\n
-IP_BROKER=\n
-PUERTO_BROKER=\n">> Broker.config
+IP_BROKER=127.0.0.1\n
+PUERTO_BROKER=4444\n">> Broker.config
 
 cd Debug
 make clean
@@ -120,8 +120,8 @@ ALGORITMO_PARTICION_LIBRE=FF\n
 FRECUENCIA_COMPACTACION=10\n
 PATH_ARCHIVO_DUMP=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-CONSOLIDACION-LRU/Broker_dump.dump\n
 LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-CONSOLIDACION-LRU/Broker_log.log\n
-IP_BROKER=\n
-PUERTO_BROKER=\n">> Broker.config
+IP_BROKER=127.0.0.1\n
+PUERTO_BROKER=4444\n">> Broker.config
 
 cd Debug
 make clean
@@ -145,8 +145,8 @@ ALGORITMO_PARTICION_LIBRE=FF\n
 FRECUENCIA_COMPACTACION=1\n
 PATH_ARCHIVO_DUMP=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-COMPACTACION-PD-FIFO/Broker_dump.dump\n
 LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-COMPACTACION-PD-FIFO/Broker_log.log\n
-IP_BROKER=\n
-PUERTO_BROKER=\n">> Broker.config
+IP_BROKER=127.0.0.1\n
+PUERTO_BROKER=4444\n">> Broker.config
 
 cd Debug
 make clean
@@ -168,8 +168,8 @@ ALGORITMO_PARTICION_LIBRE=FF\n
 FRECUENCIA_COMPACTACION=1\n
 PATH_ARCHIVO_DUMP=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-COMPACTACION-PD-LRU/Broker_dump.dump\n
 LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-COMPACTACION-PD-LRU/Broker_log.log\n
-IP_BROKER=\n
-PUERTO_BROKER=\n">> Broker.config
+IP_BROKER=127.0.0.1\n
+PUERTO_BROKER=4444\n">> Broker.config
 
 cd Debug
 make clean
@@ -193,8 +193,8 @@ ALGORITMO_PARTICION_LIBRE=FF\n
 FRECUENCIA_COMPACTACION=1\n
 PATH_ARCHIVO_DUMP=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-BUDDY-SYSTEM-FIFO/Broker_dump.dump\n
 LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-BUDDY-SYSTEM-FIFO/Broker_log.log\n
-IP_BROKER=\n
-PUERTO_BROKER=\n">> Broker.config
+IP_BROKER=127.0.0.1\n
+PUERTO_BROKER=4444\n">> Broker.config
 
 cd Debug
 make clean
@@ -216,8 +216,8 @@ ALGORITMO_PARTICION_LIBRE=FF\n
 FRECUENCIA_COMPACTACION=1\n
 PATH_ARCHIVO_DUMP=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-BUDDY-SYSTEM-LRU/Broker_dump.dump\n
 LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-BUDDY-SYSTEM-LRU/Broker_log.log\n
-IP_BROKER=\n
-PUERTO_BROKER=\n">> Broker.config
+IP_BROKER=127.0.0.1\n
+PUERTO_BROKER=4444\n">> Broker.config
 
 cd Debug
 make clean
