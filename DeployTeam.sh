@@ -30,7 +30,7 @@ fi
 mkdir Documentos
 
 cd tp-2020-1c-wRAPPERS
-git checkout Team --
+git checkout prueba --
 cd ..
 cp -r tp-2020-1c-wRAPPERS/ /home/utnso/Documentos/tp-2020-1c-wRAPPERS
 
@@ -46,14 +46,14 @@ if test -e GameBoy.config; then
 	rm GameBoy.config
 fi
 
-echo -e "IP_BROKER=\nIP_TEAM=\nIP_GAMECARD=\nPUERTO_BROKER=\nPUERTO_TEAM=\nPUERTO_GAMECARD=\nLOG_FILE=/home/utnso/Documentos/Delibird/GameBoy/tp-2020-1c-wRAPPERS/GameBoy/GameBoy.log" >> GameBoy.config
+echo -e "IP_BROKER=127.0.0.1\nIP_TEAM=127.0.0.2\nIP_GAMECARD=127.0.0.4\nPUERTO_BROKER=4444\nPUERTO_TEAM=5555\nPUERTO_GAMECARD=7777\nLOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/GameBoy/GameBoy.log" >> GameBoy.config
 
 cd Debug
 make clean
 make all
 
 #FIN DE GAMEBOY
-
+cd
 #CREO TEAMS
 
 cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS/
@@ -63,7 +63,7 @@ cp -r Team/ Team-SJF-SD
 cp -r Team/ Team-SJF-CD
 
 #CONFIGURO LOS TEAMS
-
+cd
 #Configuro Team con FIFO
 
 cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team
@@ -85,13 +85,14 @@ IP_BROKER=127.0.0.1\n
 PUERTO_BROKER=4444\n
 LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team/Team_FIFO.log\n
 PROCESS_ID=1234\n
-IP_TEAM=\n
-PUERTO_TEAM=\n" >> Team.config
+IP_TEAM=127.0.0.2\n
+PUERTO_TEAM=5555\n" >> Team.config
 
 cd Debug
 make clean
 make all
 
+cd
 #Configuro Team con RR -> Quantum = 2
 
 cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team-RR
@@ -113,13 +114,14 @@ IP_BROKER=127.0.0.1\n
 PUERTO_BROKER=4444\n
 LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team/Team_RR.log\n
 PROCESS_ID=1235\n
-IP_TEAM=\n
-PUERTO_TEAM=\n" >> Team.config
+IP_TEAM=127.0.0.2\n
+PUERTO_TEAM=5555\n" >> Team.config
 
 cd ../../Debug
 make clean
 make all
 
+cd
 #Configuro Team con SJF - SD
 
 cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team-SJF-SD
@@ -141,13 +143,14 @@ IP_BROKER=127.0.0.1\n
 PUERTO_BROKER=4444\n
 LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team/Team_SJF_SD.log\n
 PROCESS_ID=1236\n
-IP_TEAM=\n
-PUERTO_TEAM=\n" >> Team.config
+IP_TEAM=127.0.0.2\n
+PUERTO_TEAM=5555\n" >> Team.config
 
 cd ../../Debug
 make clean
 make all
 
+cd
 #Configuro Team con SJF - CD
 
 cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team-SJF-CD
@@ -169,8 +172,8 @@ IP_BROKER=127.0.0.1\n
 PUERTO_BROKER=4444\n
 LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team/Team_SJF_CD.log\n
 PROCESS_ID=1237\n
-IP_TEAM=\n
-PUERTO_TEAM=\n" >> Team.config
+IP_TEAM=127.0.0.2\n
+PUERTO_TEAM=5555\n" >> Team.config
 
 cd ../../Debug
 make clean

@@ -76,7 +76,7 @@ cp -r Broker/ Broker-BUDDY-SYSTEM-FIFO
 cp -r Broker/ Broker-BUDDY-SYSTEM-LRU
 
 #CONFIGURO BROKERS
-
+cd
 #Configuramos Broker consolidacion Particiones dinamicas FIFO
 
 cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker
