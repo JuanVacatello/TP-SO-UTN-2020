@@ -2,7 +2,7 @@
 
 void leer_config(void)
 {
-	configBroker = config_create("/home/utnso/Documentos/Delibird/Broker/tp-2020-1c-wRAPPERS/Broker/Broker.config");
+	configBroker = config_create("Broker.config");
 
 	if(configBroker == NULL){
 		printf("No se pudo leer el archivo de configuración del Broker.");
