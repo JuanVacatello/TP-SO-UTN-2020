@@ -17,8 +17,6 @@
 #include "configTeam.h"
 #include "logTeam.h"
 
-#define IP "127.0.0.2"
-#define PUERTO "5555"
 
 typedef struct
 {

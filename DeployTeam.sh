@@ -48,7 +48,7 @@ fi
 
 echo -e "IP_BROKER=127.0.0.1\nIP_TEAM=127.0.0.2\nIP_GAMECARD=127.0.0.4\nPUERTO_BROKER=4444\nPUERTO_TEAM=5555\nPUERTO_GAMECARD=7777\nLOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/GameBoy/GameBoy.log" >> GameBoy.config
 
-cd ../Debug/GameBoy/Debug
+cd Debug
 make clean
 make all
 
@@ -88,7 +88,7 @@ PROCESS_ID=1234\n
 IP_TEAM=127.0.0.2\n
 PUERTO_TEAM=5555\n" >> Team.config
 
-cd ../Debug/Team/Debug
+cd Debug
 make clean
 make all
 
@@ -117,7 +117,7 @@ PROCESS_ID=1235\n
 IP_TEAM=127.0.0.2\n
 PUERTO_TEAM=5555\n" >> Team.config
 
-cd ../Debug/Team/Debug
+cd Debug
 
 make clean
 make all
@@ -147,7 +147,7 @@ PROCESS_ID=1236\n
 IP_TEAM=127.0.0.2\n
 PUERTO_TEAM=5555\n" >> Team.config
 
-cd ../Debug/Team/Debug
+cd Debug
 make clean
 make all
 
@@ -176,7 +176,7 @@ PROCESS_ID=1237\n
 IP_TEAM=127.0.0.2\n
 PUERTO_TEAM=5555\n" >> Team.config
 
-cd ../Debug/Team/Debug
+cd Debug
 make clean
 make all
 

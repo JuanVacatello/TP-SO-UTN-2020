@@ -14,8 +14,6 @@
 #include"memoria.h"
 #include"logBroker.h"
 
-#define IP "127.0.0.1"
-#define PUERTO "4444"
 
 typedef struct
 {
@@ -94,7 +92,6 @@ pthread_t hilo_catchPokemon;
 pthread_t hilo_caughtPokemon;
 pthread_t hilo_getPokemon;
 pthread_t hilo_localizedPokemon;
-//pthread_t hilo_ack;
 
 pthread_mutex_t mutex_suscripcion;
 

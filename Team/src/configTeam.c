@@ -4,12 +4,12 @@
 
 void leer_config(void)
 {
-	if(config_create("/home/utnso/Documentos/Delibird/Team/tp-2020-1c-wRAPPERS/Team/Team.config") == NULL){
+	if(config_create("Team.config") == NULL){
 			printf("No se pudo leer el archivo de configuración del Team.");
 			exit(2);
 
 	}
-	config = config_create("/home/utnso/Documentos/Delibird/Team/tp-2020-1c-wRAPPERS/Team/Team.config");
+	config = config_create("Team.config");
 }
 
 char* obtener_ip(void){
@@ -100,6 +100,16 @@ int obtener_id_propio(void){
 	int process_id;
 	process_id = config_get_int_value(config, "PROCESS_ID");
 	return process_id;
+}
+char* obtener_ip_team(void){
+	char* ip;
+	ip = config_get_string_value(config, "IP_TEAM");
+	return ip;
+}
+char* obtener_puerto_team(void){
+	char* puertoT;
+	puertoT = config_get_string_value(config, "PUERTO_TEAM");
+	return puertoT;
 }
 
 
