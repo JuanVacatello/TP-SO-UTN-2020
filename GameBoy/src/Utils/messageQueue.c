@@ -633,7 +633,7 @@ uint32_t recibir_mensaje(int socket_cliente){
 	char* mensaje2 = string_from_format("El tamanio del buffer es: %d.", buffer_size);
 	puts(mensaje2);
 
-	char* log = string_new();
+	char* log = malloc(buffer_size);
 	char* cola_en_string = string_new();
 	uint32_t mensaje_id;
 
