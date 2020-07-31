@@ -1,8 +1,5 @@
 # tp-2020-1c-wRAPPERS
 
-cd tp-2020-1c-wRAPPERS
-git checkout prueba
-
 cd
 
 #INICIO DE COMMONS
@@ -32,8 +29,9 @@ fi
 
 mkdir Documentos
 
-
-cd 
+cd tp-2020-1c-wRAPPERS
+git checkout prueba --
+cd ..
 cp -r tp-2020-1c-wRAPPERS/ /home/utnso/Documentos/tp-2020-1c-wRAPPERS
 
 #FIN DE COPIAR CARPETA
@@ -48,22 +46,15 @@ if test -e GameBoy.config; then
 	rm GameBoy.config
 fi
 
-echo -e "IP_BROKER=127.0.0.1\n
-IP_TEAM=127.0.0.2\n
-IP_GAMECARD=127.0.0.4\n
-PUERTO_BROKER=4444\n
-PUERTO_TEAM=5555\n
-PUERTO_GAMECARD=7777\n
-PROCESS_ID=1425
-LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/GameBoy/GameBoy.log" >> GameBoy.config
+echo -e "IP_BROKER=127.0.0.1\nIP_TEAM=127.0.0.2\nIP_GAMECARD=127.0.0.4\nPUERTO_BROKER=4444\nPUERTO_TEAM=5555\nPUERTO_GAMECARD=7777\nLOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/GameBoy/GameBoy.log" >> GameBoy.config
 
 cd Debug
 make clean
 make all
 
-#FIN DE GAMEBOY
-
 cd
+
+#FIN DE GAMEBOY
 
 #INICIO BROKER
 
