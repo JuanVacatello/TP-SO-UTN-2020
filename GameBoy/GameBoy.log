@@ -1,0 +1,21 @@
+[INFO] 22:39:50:736 GAMEBOY/(10137:10137): GameBoy se conectó exitosamente al proceso Team.
+[INFO] 22:39:50:738 GAMEBOY/(10139:10139): GameBoy se conectó exitosamente al proceso Team.
+[INFO] 22:39:50:739 GAMEBOY/(10142:10142): GameBoy se conectó exitosamente al proceso Team.
+[INFO] 22:39:50:740 GAMEBOY/(10144:10144): GameBoy se conectó exitosamente al proceso Team.
+[INFO] 22:39:50:741 GAMEBOY/(10146:10146): GameBoy se conectó exitosamente al proceso Team.
+[INFO] 16:21:16:261 GAMEBOY/(4571:4571): GameBoy se conectó exitosamente al proceso Broker.
+[INFO] 16:21:16:269 GAMEBOY/(4574:4574): GameBoy se conectó exitosamente al proceso Broker.
+[INFO] 16:21:16:270 GAMEBOY/(4577:4577): GameBoy se conectó exitosamente al proceso Broker.
+[INFO] 16:21:16:271 GAMEBOY/(4580:4580): GameBoy se conectó exitosamente al proceso Broker.
+[INFO] 16:21:16:272 GAMEBOY/(4583:4583): GameBoy se conectó exitosamente al proceso Broker.
+[INFO] 16:21:16:273 GAMEBOY/(4586:4586): GameBoy se suscribió exitosamente a la cola CAUGHT_POKEMON.
+[INFO] 16:21:16:279 GAMEBOY/(4586:4586): Llegada de un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON.
+[INFO] 16:21:16:279 GAMEBOY/(4586:4586): Llegada de un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON.
+[INFO] 16:21:26:281 GAMEBOY/(4593:4593): GameBoy se conectó exitosamente al proceso Broker.
+[INFO] 16:23:06:720 GAMEBOY/(4786:4786): GameBoy se conectó exitosamente al proceso Broker.
+[INFO] 16:23:06:721 GAMEBOY/(4789:4789): GameBoy se conectó exitosamente al proceso Broker.
+[INFO] 16:23:06:723 GAMEBOY/(4792:4792): GameBoy se conectó exitosamente al proceso Broker.
+[INFO] 16:23:06:725 GAMEBOY/(4795:4795): GameBoy se conectó exitosamente al proceso Broker.
+[INFO] 16:23:06:726 GAMEBOY/(4798:4798): GameBoy se conectó exitosamente al proceso Broker.
+[INFO] 16:23:06:727 GAMEBOY/(4801:4801): GameBoy se suscribió exitosamente a la cola CAUGHT_POKEMON.
+[INFO] 16:23:16:729 GAMEBOY/(4806:4806): GameBoy se conectó exitosamente al proceso Broker.
