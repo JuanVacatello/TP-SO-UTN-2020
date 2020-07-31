@@ -1,5 +1,5 @@
 # tp-2020-1c-wRAPPERS
-
+# PRUEBAS INDIVIDUALES
 cd
 
 #INICIO DE COMMONS
@@ -215,5 +215,135 @@ make clean
 make all
 
 #FIN DE BROKER
+
+cd
+
+#CREO TEAMS
+
+cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS/
+
+cp -r Team/ Team-RR
+cp -r Team/ Team-SJF-SD
+cp -r Team/ Team-SJF-CD
+
+#CONFIGURO LOS TEAMS
+cd
+#Configuro Team con FIFO
+
+cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team
+
+if test -e Team.config; then
+	rm Team.config
+fi
+
+echo -e "POSICIONES_ENTRENADORES=[1|3,2|3,3|2]\n
+POKEMON_ENTRENADORES=[Pikachu]\n
+OBJETIVOS_ENTRENADORES=[Pikachu|Squirtle,Pikachu|Gengar,Squirtle|Onix]\n
+TIEMPO_RECONEXION=30\n
+RETARDO_CICLO_CPU=5\n
+ALGORITMO_PLANIFICACION=FIFO\n
+QUANTUM=2\n
+ALPHA=0.5\n
+ESTIMACION_INICIAL=5\n
+IP_BROKER=127.0.0.1\n
+PUERTO_BROKER=4444\n
+LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team/Team_FIFO.log\n
+PROCESS_ID=1234\n
+IP_TEAM=127.0.0.2\n
+PUERTO_TEAM=5555\n" >> Team.config
+
+cd Debug
+make clean
+make all
+
+cd
+#Configuro Team con RR -> Quantum = 2
+
+cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team-RR/
+
+if test -e Team.config; then
+	rm Team.config
+fi
+
+echo -e "POSICIONES_ENTRENADORES=[1|3,2|3,3|2]\n
+POKEMON_ENTRENADORES=[Pikachu]\n
+OBJETIVOS_ENTRENADORES=[Pikachu|Squirtle,Pikachu|Gengar,Squirtle|Onix]\n
+TIEMPO_RECONEXION=30\n
+RETARDO_CICLO_CPU=5\n
+ALGORITMO_PLANIFICACION=RR\n
+QUANTUM=2\n
+ALPHA=0.5\n
+ESTIMACION_INICIAL=5\n
+IP_BROKER=127.0.0.1\n
+PUERTO_BROKER=4444\n
+LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team/Team_RR.log\n
+PROCESS_ID=1235\n
+IP_TEAM=127.0.0.2\n
+PUERTO_TEAM=5555\n" >> Team.config
+
+cd Debug
+
+make clean
+make all
+
+cd
+#Configuro Team con SJF - SD
+
+cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team-SJF-SD
+
+if test -e Team.config; then
+	rm Team.config
+fi
+
+echo -e "POSICIONES_ENTRENADORES=[1|3,2|3,3|2]\n
+POKEMON_ENTRENADORES=[Pikachu]\n
+OBJETIVOS_ENTRENADORES=[Pikachu|Squirtle,Pikachu|Gengar,Squirtle|Onix]\n
+TIEMPO_RECONEXION=30\n
+RETARDO_CICLO_CPU=5\n
+ALGORITMO_PLANIFICACION=SJF-SD\n
+QUANTUM=2\n
+ALPHA=0.5\n
+ESTIMACION_INICIAL=5\n
+IP_BROKER=127.0.0.1\n
+PUERTO_BROKER=4444\n
+LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team/Team_SJF_SD.log\n
+PROCESS_ID=1236\n
+IP_TEAM=127.0.0.2\n
+PUERTO_TEAM=5555\n" >> Team.config
+
+cd Debug
+make clean
+make all
+
+cd
+#Configuro Team con SJF - CD
+
+cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team-SJF-CD
+
+if test -e Team.config; then
+	rm Team.config
+fi
+
+echo -e "POSICIONES_ENTRENADORES=[1|3,2|3,3|2]\n
+POKEMON_ENTRENADORES=[Pikachu]\n
+OBJETIVOS_ENTRENADORES=[Pikachu|Squirtle,Pikachu|Gengar,Squirtle|Onix]\n
+TIEMPO_RECONEXION=30\n
+RETARDO_CICLO_CPU=5\n
+ALGORITMO_PLANIFICACION=SJF-CD\n
+QUANTUM=2\n
+ALPHA=0.5\n
+ESTIMACION_INICIAL=5\n
+IP_BROKER=127.0.0.1\n
+PUERTO_BROKER=4444\n
+LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team/Team_SJF_CD.log\n
+PROCESS_ID=1237\n
+IP_TEAM=127.0.0.2\n
+PUERTO_TEAM=5555\n" >> Team.config
+
+cd Debug
+make clean
+make all
+
+#FIN DE TEAM
 
 cd
