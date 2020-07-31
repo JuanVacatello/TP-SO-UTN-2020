@@ -46,7 +46,7 @@ void log_conexion(char* proceso){
 void log_suscripcion(char* cola){
 	char* log = string_from_format("GameBoy se suscribió exitosamente a la cola %s.", cola);
 	completar_logger(log, "BROKER", LOG_LEVEL_INFO);
-	free(log);
+	//free(log);
 }
 
 // 3. Llegada de un nuevo mensaje a una cola de mensajes.
