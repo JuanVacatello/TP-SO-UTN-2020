@@ -290,7 +290,7 @@ void recibir_new_pokemon(int socket_broker){	//RECIBE TODO PERFECTO (NO MUEVAN E
 
 		printf("La cantidad es %d \n", cantidad);
 
-	//new_pokemon(pokemon, posX, posY, -1); // Holi no quiero tocar nada pero pasan 4 parametros pero la funcion es de 3
+	new_pokemon(pokemon, posX, posY);
 
 	responder_ack(mensaje_id, socket_broker);
 }

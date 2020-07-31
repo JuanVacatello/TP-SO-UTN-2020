@@ -27,6 +27,7 @@ int existe_posicion_pokemon(char* pokemon, int posX, int posY){
 void insertar_nueva_linea(char* path_pokemon, int posX, int posY){
 
 	char* linea = generar_linea_a_insertar(posX, posY, 1);
+	///modificar_campo_size_metadata(char * path_pokemon,int tamanio)
 	almacenar_datos(linea, path_pokemon);
 
 }
@@ -59,7 +60,7 @@ char* generar_linea_a_insertar(int posX, int posY, int cantidad){
 
 
 
-char* aumentar_cantidad_linea(char* linea_a_modifcar){
+char* aumentar_cantidad_linea(char* linea_a_modifcar,int* flag_diferente_largo){
 
 	int valor_modificado;
 	char* digito;
@@ -82,10 +83,14 @@ char* aumentar_cantidad_linea(char* linea_a_modifcar){
 	valor_modificado = atoi(fusion)+1; // CONVIERTO A INT, AUMENTO, CONVIERTO A STRING
 	char* valor_aumentado_string = string_itoa(valor_modificado);
 
+	if(strlen(fusion) != strlen(valor_aumentado_string)){
+		*flag_diferente_largo = 1;
+	}
 	char* aux = string_new();
-	//string_append(&aux, string_substring_until(linea_a_modifcar,pos_signo_igual+1));
+	string_append(&aux, string_substring_until(linea_a_modifcar,pos_signo_igual+1));
 	string_append(&aux,valor_aumentado_string );
 	string_append(&aux,"\n" );
+
 
 	return aux;
 }

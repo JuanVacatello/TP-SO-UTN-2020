@@ -29,18 +29,6 @@ void actualizar_valores_pokemon(char* path_metadata_pokemon,int posX,int posY,in
 }
 
 
- int diferente_largo(char* numero1,char * numero2){
- 	int largo1 = strlen(numero1);
- 	int largo2 = strlen(numero2);
-
- 	if(largo1 != largo2){
-
- 		return 1;
- 	}
- 	return 0;
- }
-
-
  int tamanio_libre_bloque(char* bloque){
 
 	int numero_bloque = atoi(bloque);
@@ -59,7 +47,7 @@ void actualizar_valores_pokemon(char* path_metadata_pokemon,int posX,int posY,in
  int bloque_esta_vacio(int bloque){
 	 char* bloque_en_string = string_itoa(bloque);
 
-	 char* path = obtener_path_bloque_individual(bloque);
+	 char* path = obtener_path_bloque_individual(bloque_en_string);
 
 	  	struct stat st;
 	  	stat(path,&st);
@@ -97,13 +85,15 @@ t_list* obtener_datos_bloques(char* path_pokemon ){
 		t_list *lista_datos = list_create();
 		char** bloques = obtener_bloques_pokemon(path_pokemon);
 
-
 		char * datos = string_new();
 		char *path_bloque_individual; // url de cada block particular
 		char *path_bloques = obtener_path_bloques(); //url absoluta de donde estan los bloques
 		char *aux;
 		struct stat st;
-		for(int i = 0; i<tamanio_array(bloques); i++)
+
+		int cantidad_bloques =tamanio_array(bloques);
+
+		for(int i = 0; i<cantidad_bloques; i++)
 		{
 			path_bloque_individual = string_new();
 			string_append(&path_bloque_individual,path_bloques);
@@ -237,9 +227,9 @@ void almacenar_datos(char *data, char* path_pokemon){
 
 	int ultima_pos_insertada = 0;
 
-	for(int i =1; i <= tamanio_array(bloques);i++){ // ESCRIBE BLOQUE A BLOQUE, SABIENDO QUE YA TENGO LOS BLOQUES NECESARIOS
+	for(int i =0; i < tamanio_array(bloques);i++){ // ESCRIBE BLOQUE A BLOQUE, SABIENDO QUE YA TENGO LOS BLOQUES NECESARIOS
 
-		char* path_bloque = obtener_path_bloque_individual(i);
+		char* path_bloque = obtener_path_bloque_individual(bloques[i]);
 		char* a_insertar = string_substring(data, ultima_pos_insertada, tamanio_bloques);
 		ultima_pos_insertada += tamanio_bloques;
 		guardar_data_en_bloque(a_insertar, path_bloque);
@@ -260,12 +250,12 @@ int tamanio_array(char **array){
 	return i;
 }
 
-char* obtener_path_bloque_individual(int numero_bloque){
+char* obtener_path_bloque_individual(char* bloque){
 
 	char* path_bloque = string_new();
 	string_append(&path_bloque, obtener_path_bloques());
 	string_append(&path_bloque, "/");
-	string_append(&path_bloque, string_itoa(numero_bloque));
+	string_append(&path_bloque, bloque);
 	string_append(&path_bloque, ".bin");
 	return path_bloque;
 }

@@ -3,8 +3,9 @@
 
 int main(void) {
 
-	iniciar_logger();
 	leer_config();
+	iniciar_logger();
+
 
 	/*
 	pthread_mutex_init(&MUTEX_BITMAP, NULL);
@@ -43,18 +44,14 @@ int main(void) {
 	char* punto_montaje = obtener_punto_montaje();
 	inicializar_file_system(punto_montaje);
 
-	char* bloques="[]";
-	char** array_bloques = string_get_string_as_array(bloques);
-	puts(array_bloques[0]);
-
-
+	new_pokemon("Picachu",100,2);
 
 	/*
 	//mostrar_paths_generados();
 	//mostrar_contenido_bitmap();
 	//mostrar_paths_generados("1");
 
-	//new_pokemon("Charmander",0,0);
+
 	//mostrar_paths_generados("2");
 
 	t_list* lista_datos = obtener_datos_bloques("/home/utnso/Documentos/Prueba_GameCard/TALL_GRASS/Files/Charmander");
@@ -243,7 +240,7 @@ void mostrar_paths_generados(char* iteracion){
 	printf("el path bloques es: %s \n", obtener_path_bloques());
 }
 
-void new_pokemon(char* pokemon,int posX,int posY){ //funciona
+void new_pokemon(char* pokemon,int posX,int posY){ //funciona, HAY QUE IMPLEMENTAR CONTROL DE "OPEN=N"
 
 	char* path_pokemon =obtener_path_pokemon(pokemon);
 	char* path_files = obtener_path_files();
@@ -252,28 +249,37 @@ void new_pokemon(char* pokemon,int posX,int posY){ //funciona
 		if(existe_file(path_pokemon)==0){
 
 			char* bloques_en_string = obtener_bloques_pokemon_string(path_pokemon);
-			if(strlen(bloques_en_string) == 2){ // si no tiene bloques asignados
+			if(strlen(bloques_en_string) == 2){ // si no tiene bloques asignados, asigno 1 y agrego linea
 				bloques_en_string = asignar_primer_bloque();
 				modificar_campo_bloques_metadata(path_pokemon,bloques_en_string);
-				insertar_nueva_linea(path_pokemon,posX,posY);
+
+				char* linea = generar_linea_a_insertar(posX, posY, 1);
+				modificar_campo_size_metadata(path_pokemon,strlen(linea));
+				almacenar_datos(linea, path_pokemon);
 			}
-			else{
+			else{ // si tiene bloques asignados
 
 				t_list* lista_datos = obtener_datos_bloques(path_pokemon);
 							int indice = existe_posicion_en_lista(lista_datos,posX,posY);
 
-							if(indice == -1){
+							if(indice == -1){ // si no existe la posicion indice == -1
 								char* linea = generar_linea_a_insertar(posX, posY, 1);
 								agregar_linea(lista_datos, linea);
 								char* datos = obtener_datos_en_string(lista_datos);
+								modificar_campo_size_metadata(path_pokemon,strlen(datos));
 								almacenar_datos(datos, path_pokemon);
 							}
 
-							else{
+							else{ // si existe la posicion
+								int flag_cambio_longitud = 0;
 								char* linea_a_modificar = list_get(lista_datos, indice);
-								char* linea_modificada = aumentar_cantidad_linea(linea_a_modificar);
+								char* linea_modificada = aumentar_cantidad_linea(linea_a_modificar, &flag_cambio_longitud);
 								list_replace(lista_datos,indice,linea_modificada);
 								char* datos = obtener_datos_en_string(lista_datos);
+								if(flag_cambio_longitud == 1 ){// si la longitud de la palabra cambio, actualizo el tamaño del pokemon
+									modificar_campo_size_metadata(path_pokemon,strlen(datos));
+								}
+
 								almacenar_datos(datos, path_pokemon);
 
 
@@ -284,14 +290,16 @@ void new_pokemon(char* pokemon,int posX,int posY){ //funciona
 
 
 		}
-		else{
+		else{ // si no existe el pokemon en el filesystem
 			puts("no existe");
 			mkdir(path_pokemon, 0777);
-			string_append(&path_pokemon,"/");
-			string_append(&path_pokemon,"Metadata.bin");
+			char* path_metadata_pokemon = string_new();
+			string_append(&path_metadata_pokemon,path_pokemon);
+			string_append(&path_metadata_pokemon,"/");
+			string_append(&path_metadata_pokemon,"Metadata.bin");
 
 
-			FILE* metadata = txt_open_for_append(path_pokemon);
+			FILE* metadata = txt_open_for_append(path_metadata_pokemon);
 
 			txt_write_in_file(metadata, "DIRECTORY=N\n");
 			txt_write_in_file(metadata, "SIZE=\n");
@@ -305,7 +313,9 @@ void new_pokemon(char* pokemon,int posX,int posY){ //funciona
 			txt_write_in_file(metadata, "OPEN=N");
 			txt_close_file(metadata);
 
-			insertar_nueva_linea(path_pokemon,posX,posY);
+			char* linea = generar_linea_a_insertar(posX, posY, 1);
+			modificar_campo_size_metadata(path_pokemon,strlen(linea));
+			almacenar_datos(linea, path_pokemon);
 
 		}
 

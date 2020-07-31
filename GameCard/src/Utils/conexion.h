@@ -16,6 +16,7 @@
 
 #include"configGameCard.h"
 #include"logGameCard.h"
+//#include"GameCard.h"
 
 typedef enum{
 	SUSCRIPTOR=0,
