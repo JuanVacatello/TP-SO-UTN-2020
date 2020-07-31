@@ -46,7 +46,7 @@ if test -e GameBoy.config; then
 	rm GameBoy.config
 fi
 
-echo -e "IP_BROKER=127.0.0.1\nIP_TEAM=127.0.0.2\nIP_GAMECARD=127.0.0.4\nPUERTO_BROKER=4444\nPUERTO_TEAM=5555\nPUERTO_GAMECARD=7777\nLOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/GameBoy/GameBoy.log" >> GameBoy.config
+echo -e "IP_BROKER=127.0.0.1\nIP_TEAM=127.0.0.2\nIP_GAMECARD=127.0.0.4\nPUERTO_BROKER=4444\nPUERTO_TEAM=5555\nPUERTO_GAMECARD=7777\nLOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/GameBoy/GameBoy.log\nPROCESS_ID=2808" >> GameBoy.config
 
 cd Debug
 make clean
@@ -84,8 +84,8 @@ ALGORITMO_MEMORIA=PARTICIONES\n
 ALGORITMO_REEMPLAZO=FIFO\n
 ALGORITMO_PARTICION_LIBRE=FF\n
 FRECUENCIA_COMPACTACION=10\n
-PATH_ARCHIVO_DUMP=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker/Broker_dump.dump\n
-LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker/Broker_log.log\n
+PATH_ARCHIVO_DUMP=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker/Broker.dump\n
+LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker/Broker.log\n
 IP_BROKER=127.0.0.1\n
 PUERTO_BROKER=4444\n">> Broker.config
 
@@ -109,8 +109,8 @@ ALGORITMO_MEMORIA=PARTICIONES\n
 ALGORITMO_REEMPLAZO=LRU\n
 ALGORITMO_PARTICION_LIBRE=FF\n
 FRECUENCIA_COMPACTACION=10\n
-PATH_ARCHIVO_DUMP=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-CONSOLIDACION-LRU/Broker_dump.dump\n
-LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-CONSOLIDACION-LRU/Broker_log.log\n
+PATH_ARCHIVO_DUMP=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-CONSOLIDACION-LRU/Broker.dump\n
+LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-CONSOLIDACION-LRU/Broker.log\n
 IP_BROKER=127.0.0.1\n
 PUERTO_BROKER=4444\n">> Broker.config
 
@@ -134,8 +134,8 @@ ALGORITMO_MEMORIA=PARTICIONES\n
 ALGORITMO_REEMPLAZO=FIFO\n
 ALGORITMO_PARTICION_LIBRE=FF\n
 FRECUENCIA_COMPACTACION=1\n
-PATH_ARCHIVO_DUMP=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-COMPACTACION-PD-FIFO/Broker_dump.dump\n
-LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-COMPACTACION-PD-FIFO/Broker_log.log\n
+PATH_ARCHIVO_DUMP=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-COMPACTACION-PD-FIFO/Broker.dump\n
+LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-COMPACTACION-PD-FIFO/Broker.log\n
 IP_BROKER=127.0.0.1\n
 PUERTO_BROKER=4444\n">> Broker.config
 
@@ -157,8 +157,8 @@ ALGORITMO_MEMORIA=PARTICIONES\n
 ALGORITMO_REEMPLAZO=LRU\n
 ALGORITMO_PARTICION_LIBRE=FF\n
 FRECUENCIA_COMPACTACION=1\n
-PATH_ARCHIVO_DUMP=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-COMPACTACION-PD-LRU/Broker_dump.dump\n
-LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-COMPACTACION-PD-LRU/Broker_log.log\n
+PATH_ARCHIVO_DUMP=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-COMPACTACION-PD-LRU/Broker.dump\n
+LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-COMPACTACION-PD-LRU/Broker.log\n
 IP_BROKER=127.0.0.1\n
 PUERTO_BROKER=4444\n">> Broker.config
 
@@ -182,8 +182,8 @@ ALGORITMO_MEMORIA=BS\n
 ALGORITMO_REEMPLAZO=FIFO\n
 ALGORITMO_PARTICION_LIBRE=FF\n
 FRECUENCIA_COMPACTACION=1\n
-PATH_ARCHIVO_DUMP=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-BUDDY-SYSTEM-FIFO/Broker_dump.dump\n
-LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-BUDDY-SYSTEM-FIFO/Broker_log.log\n
+PATH_ARCHIVO_DUMP=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-BUDDY-SYSTEM-FIFO/Broker.dump\n
+LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-BUDDY-SYSTEM-FIFO/Broker.log\n
 IP_BROKER=127.0.0.1\n
 PUERTO_BROKER=4444\n">> Broker.config
 
@@ -205,8 +205,8 @@ ALGORITMO_MEMORIA=BS\n
 ALGORITMO_REEMPLAZO=LRU\n
 ALGORITMO_PARTICION_LIBRE=FF\n
 FRECUENCIA_COMPACTACION=1\n
-PATH_ARCHIVO_DUMP=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-BUDDY-SYSTEM-LRU/Broker_dump.dump\n
-LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-BUDDY-SYSTEM-LRU/Broker_log.log\n
+PATH_ARCHIVO_DUMP=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-BUDDY-SYSTEM-LRU/Broker.dump\n
+LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-BUDDY-SYSTEM-LRU/Broker.log\n
 IP_BROKER=127.0.0.1\n
 PUERTO_BROKER=4444\n">> Broker.config
 
