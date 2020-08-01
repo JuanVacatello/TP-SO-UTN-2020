@@ -10,6 +10,10 @@
 
 #include<commons/string.h>
 
+char* path_bloques_global;
+char* path_metadata_global;
+char* path_files_global;
+
 t_config* configGameCard;
 
 void leer_config(void);

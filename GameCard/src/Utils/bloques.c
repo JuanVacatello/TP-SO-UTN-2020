@@ -110,7 +110,7 @@ t_list* obtener_datos_bloques(char* path_pokemon ){
 		}
 
 		insertar_datos_a_lista(datos,lista_datos); //parsea el char *inserts por \n y los mete en la lista
-		free(datos); free(path_bloques);
+		free(datos);
 
 		free(bloques);
 		return lista_datos;
@@ -182,9 +182,9 @@ void guardar_data_en_bloque(char* data, char* path_bloque){
 
 
 void almacenar_datos(char *data, char* path_pokemon){
-	mostrar_paths_generados("adentro funcion antes de leer");
+	//mostrar_paths_generados("adentro funcion antes de leer");
 	 leer_config(); //prueba
-	 mostrar_paths_generados("adentro funcion despues de leer");
+	// mostrar_paths_generados("adentro funcion despues de leer");
 	 char* path_bloques = obtener_path_bloques();
 	 char** bloques = obtener_bloques_pokemon(path_pokemon);
 	 char* bloques_string = obtener_bloques_pokemon_string(path_pokemon);
@@ -392,4 +392,26 @@ void liberar_bloques_pokemon(char* path_pokemon){
 		int numero_bloque = atoi(bloques[i]);
 		bitmap_liberar_bloque(numero_bloque);
 	}
+}
+
+void limpiar_bloques_pokemon(char* path_pokemon){
+	char** bloques = obtener_bloques_pokemon(path_pokemon);
+
+	char* path_bloques = obtener_path_bloques();
+
+
+	for(int i = 0 ; i < tamanio_array(bloques); i++){
+
+
+		char* aux = string_new();
+		string_append(&aux, path_bloques);
+		string_append(&aux, "/");
+		string_append(&aux,bloques[i]);
+		string_append(&aux, ".bin");
+
+		FILE *f = fopen(aux,"w");
+		fclose(f);
+
+		free(aux);
+		}
 }

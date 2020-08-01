@@ -46,11 +46,18 @@ int main(void) {
 	new_pokemon("Pikachu",5,2,1);
 	new_pokemon("Pikachu",4,2,2);
 	new_pokemon("Pikachu",6,2,2);
-*/
+
+
 	catch_pokemon("Pikachu",10,2);
 	int respuesta = catch_pokemon("Pikachu",5,2);
 	printf("%d", respuesta);
 
+	char* path = obtener_path_pokemon("Pikachu");
+	cerrar_archivo_pokemon(path);
+*/
+	char* path = obtener_path_pokemon("Pikachu");
+	//new_pokemon("Pikachu",10,2,1);
+	catch_pokemon("Pikachu",10,2);
 
 	return 0;
 
@@ -72,7 +79,8 @@ void inicializar_file_system(char* punto_montaje){
 		mkdir(path_metadata, 0777);
 		inicializar_metadata(path_metadata, 64, 16);
 	}
-	actualizar_path_metadata(path_metadata);
+	path_metadata_global = path_metadata;
+	//actualizar_path_metadata(path_metadata);
 	leer_metadata_tall_grass(path_metadata);
 
 
@@ -84,7 +92,8 @@ void inicializar_file_system(char* punto_montaje){
 		mkdir(path_bloques, 0777);
 		inicializar_bloques(path_bloques);
 	}
-	actualizar_path_bloques(path_bloques);
+	path_bloques_global= path_bloques;
+	//actualizar_path_bloques(path_bloques);
 
 
 	//CREA FILES
@@ -95,7 +104,8 @@ void inicializar_file_system(char* punto_montaje){
 		mkdir(path_files, 0777);
 		inicializar_files(path_files);
 	}
-	actualizar_path_files(path_files);
+	path_files_global = path_files;
+	//actualizar_path_files(path_files);
 
 
 
@@ -105,9 +115,6 @@ void inicializar_file_system(char* punto_montaje){
 		string_append(&path_archivo_bitmap,"/bitmap.bin");
 		crear_bitmap(path_archivo_bitmap);
 
-	free(path_files);
-	free(path_bloques);
-	free(path_metadata);
 }
 
 void inicializar_metadata(char* path_metadata, int block_size, int cant_bloques){
@@ -195,12 +202,15 @@ void crear_bloques(char* path_bloques){
 	int cantidad_bloques = obtener_cantidad_bloques();
 	int tamanio_bloques = obtener_tamanio_bloques();
 
+	char* numero_bloque = string_new();
+
+
 	for(int i = 0 ; i < cantidad_bloques ; i++){
 
-		char* numero_bloque = string_new();
-		numero_bloque = string_itoa(i+1);
 
+		numero_bloque = string_itoa(i+1);
 		char* aux = string_new();
+
 		string_append(&aux, path_bloques);
 		string_append(&aux, "/");
 		string_append(&aux,numero_bloque);
@@ -208,10 +218,12 @@ void crear_bloques(char* path_bloques){
 
 		FILE *f = fopen(aux,"w");
 		fclose(f);
+		free(aux);
 
-	    free(numero_bloque);
-	    free(aux);
+
 	}
+	free(numero_bloque);
+
 }
 
 
@@ -325,7 +337,6 @@ void new_pokemon(char* pokemon,int posX,int posY, int cantidad){ //funciona
 		}
 
 		free(path_pokemon);
-		free(path_files);
 }
 
 int catch_pokemon(char* pokemon,int posX,int posY){
@@ -364,8 +375,16 @@ int catch_pokemon(char* pokemon,int posX,int posY){
 									list_remove_and_destroy_element(lista_datos,indice, free);
 
 									if(list_size(lista_datos) == 0){
+
+										limpiar_bloques_pokemon(path_pokemon);
 										liberar_bloques_pokemon(path_pokemon);
 										modificar_campo_bloques_metadata(path_pokemon,"[]");
+										modificar_campo_size_metadata(path_pokemon,0);
+
+										int tiempo_retardo = tiempo_retardo_operacion();
+										sleep(tiempo_retardo);
+										cerrar_archivo_pokemon(path_pokemon);
+										return 1;
 									}
 								}
 								else{
@@ -396,7 +415,6 @@ int catch_pokemon(char* pokemon,int posX,int posY){
 		}
 
 		free(path_pokemon);
-		free(path_files);
 }
 
 

@@ -79,21 +79,30 @@ void actualizar_path_bloques(char* path_bloques){
 }
 
 char* obtener_path_files(){
+
+	/*
 	char* path_files;
 	path_files = config_get_string_value(configGameCard, "PATH_FILES");
-	return path_files;
+	*/
+	return path_files_global;
 }
 
 char* obtener_path_bloques(){
+	char* aux = string_new();
+	/*
 	char* path_bloques;
 	path_bloques = config_get_string_value(configGameCard, "PATH_BLOQUES");
-	return path_bloques;
+	*/
+	return path_bloques_global;
 }
 
 char* obtener_path_metadata(){
-	char* path_metadata;
+
+	/*
+	 char* path_metadata;
 	path_metadata = config_get_string_value(configGameCard, "PATH_METADATA");
-	return path_metadata;
+	*/
+	return path_metadata_global;
 }
 
 char* obtener_log_file(void){
