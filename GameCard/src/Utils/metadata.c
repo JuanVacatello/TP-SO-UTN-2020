@@ -113,6 +113,24 @@ int archivo_pokemon_esta_abierto(char* path_pokemon){
 	}
 }
 
+void cerrar_archivo_pokemon(path_pokemon){
+	t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
+	config_set_value(metadata_pokemon,"OPEN","N");
+		config_save(metadata_pokemon);
+		config_destroy(metadata_pokemon);
+
+}
+
+
+void abrir_archivo_pokemon(path_pokemon){
+	t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
+	config_set_value(metadata_pokemon,"OPEN","Y");
+		config_save(metadata_pokemon);
+		config_destroy(metadata_pokemon);
+
+}
+
+
 int obtener_tamanio_archivo(char* path_pokemon){
 	t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
 	int tamanio;
@@ -143,7 +161,7 @@ t_config* leer_metadata_file(char* path_file){
 
 void modificar_campo_bloques_metadata(char * path_pokemon,char* bloques){
 
-	pthread_mutex_lock(&MUTEX_ELSOLUCIONES); //???
+	pthread_mutex_lock(&MUTEX_ELSOLUCIONES); // Si estoy adentro del chequeo de "open" voy a estar solo yo, no necesito otros semafotros
 	t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
 	config_set_value(metadata_pokemon,"BLOCKS",bloques);
 	config_save(metadata_pokemon);
@@ -153,7 +171,7 @@ void modificar_campo_bloques_metadata(char * path_pokemon,char* bloques){
 
 void modificar_campo_size_metadata(char * path_pokemon,int tamanio){
 
-	pthread_mutex_lock(&MUTEX_ELSOLUCIONES);// ???
+	pthread_mutex_lock(&MUTEX_ELSOLUCIONES);// Si estoy adentro del chequeo de "open" voy a estar solo yo, no necesito otros semafotros
 	char* tamanio_string = string_itoa(tamanio);
 	t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
 	config_set_value(metadata_pokemon,"SIZE",tamanio_string);

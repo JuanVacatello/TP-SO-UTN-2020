@@ -60,7 +60,7 @@ char* generar_linea_a_insertar(int posX, int posY, int cantidad){
 
 
 
-char* aumentar_cantidad_linea(char* linea_a_modifcar,int* flag_diferente_largo){
+char* aumentar_cantidad_linea(char* linea_a_modifcar,int cantidad,int* flag_diferente_largo ){
 
 	int valor_modificado;
 	char* digito;
@@ -80,7 +80,7 @@ char* aumentar_cantidad_linea(char* linea_a_modifcar,int* flag_diferente_largo){
  	i++;
     	}
 
-	valor_modificado = atoi(fusion)+1; // CONVIERTO A INT, AUMENTO, CONVIERTO A STRING
+	valor_modificado = atoi(fusion)+cantidad; // CONVIERTO A INT, AUMENTO, CONVIERTO A STRING
 	char* valor_aumentado_string = string_itoa(valor_modificado);
 
 	if(strlen(fusion) != strlen(valor_aumentado_string)){
@@ -95,7 +95,7 @@ char* aumentar_cantidad_linea(char* linea_a_modifcar,int* flag_diferente_largo){
 	return aux;
 }
 
-char* disminuir_cantidad_linea(char* linea_a_modifcar){
+char* disminuir_cantidad_linea(char* linea_a_modificar,int* flag_diferente_largo ){
 
 	int valor_modificado;
 	char* digito;
@@ -103,27 +103,55 @@ char* disminuir_cantidad_linea(char* linea_a_modifcar){
 	int pos_signo_igual;
 	char* fusion = string_new();
 
-	while(linea_a_modifcar[i] != '='){ // avanzo hasta el =
+	while(linea_a_modificar[i] != '='){ // avanzo hasta el =
 		i++;
 	}
 	pos_signo_igual = i;
 	i++;
 
-	while(linea_a_modifcar[i] != '\n'){ //LEO EL VALOR EN STRING
-	digito = string_from_format("%c",linea_a_modifcar[i]);
+	while(linea_a_modificar[i] != '\n'){ //LEO EL VALOR EN STRING
+	digito = string_from_format("%c",linea_a_modificar[i]);
 	string_append(&fusion,digito);
  	i++;
     	}
 
-	valor_modificado = atoi(fusion)-1; // CONVIERTO A INT, AUMENTO, CONVIERTO A STRING
-	char* valor_aumentado_string = string_itoa(valor_modificado);
+	valor_modificado = atoi(fusion)-1; // CONVIERTO A INT, RESTO, CONVIERTO A STRING
+	char* valor_disminuido_string = string_itoa(valor_modificado);
+
+	if(strlen(fusion) != strlen(valor_disminuido_string)){
+			*flag_diferente_largo = 1;
+		}
 
 	char* aux = string_new();
-	//string_append(&aux, string_substring_until(linea_a_modifcar,pos_signo_igual+1));
-	string_append(&aux,valor_aumentado_string );
+	string_append(&aux, string_substring_until(linea_a_modificar,pos_signo_igual+1));
+	string_append(&aux,valor_disminuido_string );
 	string_append(&aux,"\n" );
 
 	return aux;
+}
+
+int cantidad_igual_cero(char* linea){
+
+		char* digito;
+		int i = 0;
+		int pos_signo_igual;
+		char* fusion = string_new();
+
+		while(linea[i] != '='){ // avanzo hasta el =
+			i++;
+		}
+		i++;
+
+		while(linea[i] != '\n'){ //LEO EL VALOR EN STRING
+			digito = string_from_format("%c",linea[i]);
+			string_append(&fusion,digito);
+		 	i++;
+		    	}
+		if(string_equals_ignore_case(fusion, "0")){
+			return 1;
+		}
+		else
+			return 0;
 }
 
 

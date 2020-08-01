@@ -40,7 +40,7 @@ pthread_mutex_t MUTEX_BITMAP;
 
 void crear_bitmap(char* path_bitmap);
 void eliminar_bitmap();
-void bitmap_liberar_bloque(int bloque, int bitmap);
+void bitmap_liberar_bloque(int bloque);
 int obtener_nuevo_bloque();
 
 #endif /* UTILS_BITMAP_H_ */

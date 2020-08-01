@@ -44,7 +44,7 @@ int tiempo_de_reintento_operacion(){
 
 int tiempo_retardo_operacion(){
 	int tiempore;
-	tiempore = config_get_int_value(configGameCard, "TIEMPO_DE_RETARDO_OPERACION");
+	tiempore = config_get_int_value(configGameCard, "TIEMPO_RETARDO_OPERACION");
 	return tiempore;
 }
 

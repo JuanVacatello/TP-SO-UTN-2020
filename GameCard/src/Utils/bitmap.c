@@ -62,7 +62,7 @@ void eliminar_bitmap(){
 
 
 
-void bitmap_liberar_bloque(int bloque, int bitmap){
+void bitmap_liberar_bloque(int bloque){
 
 		pthread_mutex_lock(&MUTEX_BITMAP);
 

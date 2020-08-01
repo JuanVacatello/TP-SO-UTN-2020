@@ -18,6 +18,7 @@
 #include"Utils/conexion.h"
 #include"Utils/bitmap.h"
 #include"Utils/logGameCard.h"
+#include"Utils/bloques.h"
 
 pthread_t hilo_gameboy;
 pthread_t hilo_new_pokemon;

@@ -16,17 +16,6 @@ int existe_file(char* path){
 	return stat(path,&buffer);
 }
 
-void actualizar_valores_pokemon(char* path_metadata_pokemon,int posX,int posY,int cantidad){
-
-	t_config* metadata = leer_metadata_pokemon(path_metadata_pokemon);
-
-	char** bloques_pokemon = obtener_bloques_pokemon(metadata);
-	int cantidad_bloques = obtener_cantidad_bloques_pokemon(metadata);
-
-	for(int i =0; i<cantidad_bloques ; i++){
-		//actualizar_valores_bloque(bloques_pokemon[i],)
-		}
-}
 
 
  int tamanio_libre_bloque(char* bloque){
@@ -314,7 +303,9 @@ char* liberar_ultimo_bloque(char* bloques){
 	 }
 	 free(array_bloques);
 
-	 list_remove(lista_bloques, cantidad_bloques - 1);
+	 char* bloque = list_remove(lista_bloques, cantidad_bloques - 1);
+	 int numero_bloque = atoi(bloque);
+	 bitmap_liberar_bloque(numero_bloque); // libero el bloque en el bitmap
 
 	 char *vector_bloques = string_new();
 	  	string_append(&vector_bloques, "[");
@@ -390,4 +381,15 @@ int existe_posicion_en_lista(t_list* lista, int posX, int posY){ //funciona
 	  	  	  }
 
 	      return -1; //no lo encontro
+}
+
+void liberar_bloques_pokemon(char* path_pokemon){
+
+	char** bloques = obtener_bloques_pokemon(path_pokemon);
+
+	for(int i = 0 ; i < tamanio_array(bloques); i++){
+
+		int numero_bloque = atoi(bloques[i]);
+		bitmap_liberar_bloque(numero_bloque);
+	}
 }

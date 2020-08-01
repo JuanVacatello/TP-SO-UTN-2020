@@ -22,7 +22,7 @@ int main(void) {
 	iniciar_espera_mensajes();
 	// Hay que hacerlo con hilos para que pueda recibir mensajes mientras hace otras cosas
 */
-///*
+/*
 	pthread_create(&hilo_gameboy, NULL, iniciar_espera_mensajes_Gameboy, NULL);
 	pthread_detach(hilo_gameboy);
 
@@ -40,31 +40,18 @@ int main(void) {
 //	pthread_join(HILO_PRINCIPAL,NULL);
 
 	sem_wait(&MUTEX_PRUEBA);
-	//new_pokemon("Picachu",1000000,2);
 
-	/*
-	//mostrar_paths_generados();
-	//mostrar_contenido_bitmap();
-	//mostrar_paths_generados("1");
-
-
-	//mostrar_paths_generados("2");
-
-	t_list* lista_datos = obtener_datos_bloques("/home/utnso/Documentos/Prueba_GameCard/TALL_GRASS/Files/Charmander");
-	//mostrar_paths_generados("3");
-    int indice = existe_posicion_en_lista(lista_datos,5,7 );
-    if(indice == -1){
-    	puts("no se encuentra en la lista");
-    }
-    */
-
-
-/*
-    agregar_linea(lista_datos, "1-9=1");
-	char* datos = obtener_datos_en_string(lista_datos);
-	almacenar_datos(datos, "/home/utnso/Documentos/Prueba_GameCard/TALL_GRASS/Files/Charmander");// ULTRA MODIFICADA CON HARDCODEO, ARREGLAR
-	mostrar_contenido_lista(lista_datos);
+	new_pokemon("Pikachu",10,2,2);
+	new_pokemon("Pikachu",10,2,2);
+	new_pokemon("Pikachu",5,2,1);
+	new_pokemon("Pikachu",4,2,2);
+	new_pokemon("Pikachu",6,2,2);
 */
+	catch_pokemon("Pikachu",10,2);
+	int respuesta = catch_pokemon("Pikachu",5,2);
+	printf("%d", respuesta);
+
+
 	return 0;
 
 }
@@ -236,13 +223,21 @@ void mostrar_paths_generados(char* iteracion){
 	printf("el path bloques es: %s \n", obtener_path_bloques());
 }
 
-void new_pokemon(char* pokemon,int posX,int posY){ //funciona, HAY QUE IMPLEMENTAR CONTROL DE "OPEN=N"
+void new_pokemon(char* pokemon,int posX,int posY, int cantidad){ //funciona
 
 	char* path_pokemon = obtener_path_pokemon(pokemon);
 	char* path_files = obtener_path_files();
 
 
+
+
 		if(existe_file(path_pokemon)==0){
+
+			while(archivo_pokemon_esta_abierto(path_pokemon) ==1){
+					int tiempo_reintento_operacion = tiempo_de_reintento_operacion();
+					sleep(tiempo_reintento_operacion);
+				}
+			abrir_archivo_pokemon(path_pokemon);
 
 			char* bloques_en_string = obtener_bloques_pokemon_string(path_pokemon);
 			if(strlen(bloques_en_string) == 2){ // si no tiene bloques asignados, asigno 1 y agrego linea
@@ -252,6 +247,10 @@ void new_pokemon(char* pokemon,int posX,int posY){ //funciona, HAY QUE IMPLEMENT
 				char* linea = generar_linea_a_insertar(posX, posY, 1);
 				modificar_campo_size_metadata(path_pokemon,strlen(linea));
 				almacenar_datos(linea, path_pokemon);
+
+				int tiempo_retardo = tiempo_retardo_operacion();
+				sleep(tiempo_retardo);
+				cerrar_archivo_pokemon(path_pokemon);
 			}
 			else{ // si tiene bloques asignados
 
@@ -259,17 +258,21 @@ void new_pokemon(char* pokemon,int posX,int posY){ //funciona, HAY QUE IMPLEMENT
 							int indice = existe_posicion_en_lista(lista_datos,posX,posY);
 
 							if(indice == -1){ // si no existe la posicion indice == -1
-								char* linea = generar_linea_a_insertar(posX, posY, 1);
+								char* linea = generar_linea_a_insertar(posX, posY, cantidad);
 								agregar_linea(lista_datos, linea);
 								char* datos = obtener_datos_en_string(lista_datos);
 								modificar_campo_size_metadata(path_pokemon,strlen(datos));
 								almacenar_datos(datos, path_pokemon);
+
+								int tiempo_retardo = tiempo_retardo_operacion();
+								sleep(tiempo_retardo);
+								cerrar_archivo_pokemon(path_pokemon);
 							}
 
 							else{ // si existe la posicion
 								int flag_cambio_longitud = 0;
 								char* linea_a_modificar = list_get(lista_datos, indice);
-								char* linea_modificada = aumentar_cantidad_linea(linea_a_modificar, &flag_cambio_longitud);
+								char* linea_modificada = aumentar_cantidad_linea(linea_a_modificar,cantidad, &flag_cambio_longitud);
 								list_replace(lista_datos,indice,linea_modificada);
 								char* datos = obtener_datos_en_string(lista_datos);
 								if(flag_cambio_longitud == 1 ){// si la longitud de la palabra cambio, actualizo el tamaño del pokemon
@@ -278,16 +281,16 @@ void new_pokemon(char* pokemon,int posX,int posY){ //funciona, HAY QUE IMPLEMENT
 
 								almacenar_datos(datos, path_pokemon);
 
+								int tiempo_retardo = tiempo_retardo_operacion();
+								sleep(tiempo_retardo);
+								cerrar_archivo_pokemon(path_pokemon);
 
 							}
-
-			puts("existe");
 			}
 
 
 		}
 		else{ // si no existe el pokemon en el filesystem
-			puts("no existe");
 			mkdir(path_pokemon, 0777);
 			char* path_metadata_pokemon = string_new();
 			string_append(&path_metadata_pokemon,path_pokemon);
@@ -306,12 +309,18 @@ void new_pokemon(char* pokemon,int posX,int posY){ //funciona, HAY QUE IMPLEMENT
 			txt_write_in_file(metadata, bloque_string);
 			txt_write_in_file(metadata, "]\n");
 
-			txt_write_in_file(metadata, "OPEN=N");
+			txt_write_in_file(metadata, "OPEN=Y");
 			txt_close_file(metadata);
 
-			char* linea = generar_linea_a_insertar(posX, posY, 1);
+			char* linea = generar_linea_a_insertar(posX, posY, cantidad);
 			modificar_campo_size_metadata(path_pokemon,strlen(linea));
 			almacenar_datos(linea, path_pokemon);
+
+
+			leer_config();
+			int tiempo_retardo = tiempo_retardo_operacion();
+			sleep(tiempo_retardo);
+			cerrar_archivo_pokemon(path_pokemon);
 
 		}
 
@@ -319,7 +328,76 @@ void new_pokemon(char* pokemon,int posX,int posY){ //funciona, HAY QUE IMPLEMENT
 		free(path_files);
 }
 
+int catch_pokemon(char* pokemon,int posX,int posY){
 
+	char* path_pokemon = obtener_path_pokemon(pokemon);
+	char* path_files = obtener_path_files();
+
+
+		if(existe_file(path_pokemon)==0){
+
+			while(archivo_pokemon_esta_abierto(path_pokemon) ==1){
+					int tiempo_reintento_operacion = tiempo_de_reintento_operacion();
+					sleep(tiempo_reintento_operacion);
+				}
+			abrir_archivo_pokemon(path_pokemon);
+
+			char* bloques_en_string = obtener_bloques_pokemon_string(path_pokemon);
+			if(strlen(bloques_en_string) == 2){ //si no tiene bloques asignados
+				return -1;
+			}
+			else{ // si tiene bloques asignados
+
+				t_list* lista_datos = obtener_datos_bloques(path_pokemon);
+							int indice = existe_posicion_en_lista(lista_datos,posX,posY);
+
+							if(indice == -1){ // si no existe la posicion
+								return -1;
+							}
+
+							else{ // si existe la posicion
+								int flag_cambio_longitud = 0;
+								char* linea_a_modificar = list_get(lista_datos, indice);
+								char* linea_modificada = disminuir_cantidad_linea(linea_a_modificar, &flag_cambio_longitud);
+
+								if(cantidad_igual_cero(linea_modificada) == 1){
+									list_remove_and_destroy_element(lista_datos,indice, free);
+
+									if(list_size(lista_datos) == 0){
+										liberar_bloques_pokemon(path_pokemon);
+										modificar_campo_bloques_metadata(path_pokemon,"[]");
+									}
+								}
+								else{
+									list_replace(lista_datos,indice,linea_modificada);
+								}
+
+
+
+								char* datos = obtener_datos_en_string(lista_datos);
+								if(flag_cambio_longitud == 1 ){// si la longitud de la palabra cambio, actualizo el tamaño del pokemon
+									modificar_campo_size_metadata(path_pokemon,strlen(datos));
+								}
+
+								almacenar_datos(datos, path_pokemon);
+
+								int tiempo_retardo = tiempo_retardo_operacion();
+								sleep(tiempo_retardo);
+								cerrar_archivo_pokemon(path_pokemon);
+								return 1;
+
+							}
+			}
+
+
+		}
+		else{ //si no existe
+			return -1;
+		}
+
+		free(path_pokemon);
+		free(path_files);
+}
 
 
 
