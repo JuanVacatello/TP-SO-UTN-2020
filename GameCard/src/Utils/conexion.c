@@ -143,10 +143,6 @@ void new_pokemon_broker(){
 		recv(socket_broker, &cod_op, sizeof(op_code), MSG_WAITALL);
 
 		if(cod_op == NEW_POKEMON){
-
-			//char* mensaje = string_from_format("El codigo de operacion es: %d.", cod_op);
-			//completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
-
 			recibir_new_pokemon(socket_broker);
 		}
 	}
@@ -254,45 +250,42 @@ void* suscribirse_a_cola(int socket_broker, uint32_t cola_a_suscribirse, int* ta
 
 // Recibir mensajes de GameBoy y Broker
 
-void recibir_new_pokemon(int socket_broker){	//RECIBE TODO PERFECTO (NO MUEVAN EL ORDEN DE LAS COSAS BOE)
+void recibir_new_pokemon(int socket_broker){
 	uint32_t tamanio_buffer;
 	recv(socket_broker, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
-		printf("El tamaño del buffer es %d \n", tamanio_buffer);
-
-	uint32_t mensaje_id;  // Hola chicos este mismo id lo van a tener que poner en el id_mensaje_correlativo del appeared correspondiente a este new salu2
+	uint32_t mensaje_id;
 	recv(socket_broker, &mensaje_id, sizeof(uint32_t), MSG_WAITALL);
-
-		printf("El mensaje_id es %d \n", mensaje_id);
 
 	uint32_t caracteresPokemon;
 	recv(socket_broker, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
 
-		printf("El largo del pokemon es %d \n", caracteresPokemon);
-
 	char* pokemon = malloc(caracteresPokemon);
 	recv(socket_broker, pokemon, caracteresPokemon, MSG_WAITALL);
-
-		printf("El pokemon es %s \n", pokemon);
 
 	uint32_t posX;
 	recv(socket_broker, &posX, sizeof(uint32_t), MSG_WAITALL);
 
-		printf("La posicion en x es %d \n", posX);
-
 	uint32_t posY;
 	recv(socket_broker, &posY, sizeof(uint32_t), MSG_WAITALL);
-
-		printf("La posicion en Y %d \n", posY);
 
 	uint32_t cantidad;
 	recv(socket_broker, &cantidad, sizeof(uint32_t), MSG_WAITALL);
 
+		// Una vez chequeado que funciona todo se puede borrar esto:
+		printf("El tamaño del buffer es %d \n", tamanio_buffer);
+		printf("El mensaje_id es %d \n", mensaje_id);
+		printf("El largo del pokemon es %d \n", caracteresPokemon);
+		printf("El pokemon es %s \n", pokemon);
+		printf("La posicion en x es %d \n", posX);
+		printf("La posicion en Y %d \n", posY);
 		printf("La cantidad es %d \n", cantidad);
 
+	responder_ack(mensaje_id, socket_broker);
 	new_pokemon(pokemon, posX, posY);
 
-	responder_ack(mensaje_id, socket_broker);
+	uint32_t id_mensaje_correlativo = mensaje_id;
+	enviar_appeared_pokemon(socket_broker, pokemon, posX, posY, id_mensaje_correlativo);
 }
 
 void recibir_catch_pokemon(int socket_broker){//RECIBE TODO PERFECTO (NO MUEVAN EL ORDEN DE LAS COSAS BOE)
@@ -357,11 +350,14 @@ void recibir_get_pokemon(int socket_broker){//RECIBE TODO PERFECTO (NO MUEVAN EL
 
 // Enviar mensaje a Broker
 
-void enviar_appeared_pokemon(){
+void enviar_appeared_pokemon(int socket_broker, char* pokemon, uint32_t posX, uint32_t posY, uint32_t id_mensaje_correlativo){
+
+	/* Me parece que con usar el mismo socket es suficiente
 	char* puerto_broker = obtener_puerto_broker();
 	char* ip_broker = obtener_ip_broker();
-
 	int socket_broker = crear_conexion(ip_broker,puerto_broker);
+	*/
+
 	if(socket_broker == -1){
 		// Comportamiento default en caso de que no se pueda conectar a Broker
 		// Segun lo poco que lei en el enunciado solo hay que avisarlo por logs y seguir la ejecucion pero no se quizas
@@ -369,10 +365,6 @@ void enviar_appeared_pokemon(){
 	}
 
 	int tamanio_paquete = 0;
-	char* pokemon; // = no se de donde lo sacan pero igualen al pokemon
-	uint32_t posX; // = idem
-	uint32_t posY; // = idem
-	uint32_t id_mensaje_correlativo; // = id mensaje que venia en el new_pokemon
 	void* a_enviar = iniciar_paquete_serializado_AppearedPokemon(&tamanio_paquete, pokemon, posX, posY, id_mensaje_correlativo);
 
 	if(send(socket_broker,a_enviar,tamanio_paquete,0) == -1){

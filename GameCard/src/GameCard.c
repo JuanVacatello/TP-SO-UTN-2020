@@ -6,6 +6,8 @@ int main(void) {
 	leer_config();
 	iniciar_logger();
 
+	char* punto_montaje = obtener_punto_montaje();
+	inicializar_file_system(punto_montaje);
 
 	/*
 	pthread_mutex_init(&MUTEX_BITMAP, NULL);
@@ -19,10 +21,10 @@ int main(void) {
 	suscribirse_globalmente(5);
 	iniciar_espera_mensajes();
 	// Hay que hacerlo con hilos para que pueda recibir mensajes mientras hace otras cosas
-
-
-//	pthread_create(&hilo_gameboy, NULL, iniciar_espera_mensajes_Gameboy, NULL);
-//	pthread_detach(hilo_gameboy);
+*/
+///*
+	pthread_create(&hilo_gameboy, NULL, iniciar_espera_mensajes_Gameboy, NULL);
+	pthread_detach(hilo_gameboy);
 
 	pthread_create(&hilo_new_pokemon, NULL, new_pokemon_broker, NULL);
 	pthread_detach(hilo_new_pokemon);
@@ -38,13 +40,7 @@ int main(void) {
 //	pthread_join(HILO_PRINCIPAL,NULL);
 
 	sem_wait(&MUTEX_PRUEBA);
-
-	*/
-
-	char* punto_montaje = obtener_punto_montaje();
-	inicializar_file_system(punto_montaje);
-
-	new_pokemon("Picachu",100,2);
+	//new_pokemon("Picachu",1000000,2);
 
 	/*
 	//mostrar_paths_generados();
@@ -242,7 +238,7 @@ void mostrar_paths_generados(char* iteracion){
 
 void new_pokemon(char* pokemon,int posX,int posY){ //funciona, HAY QUE IMPLEMENTAR CONTROL DE "OPEN=N"
 
-	char* path_pokemon =obtener_path_pokemon(pokemon);
+	char* path_pokemon = obtener_path_pokemon(pokemon);
 	char* path_files = obtener_path_files();
 
 
