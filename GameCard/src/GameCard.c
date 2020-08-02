@@ -9,30 +9,29 @@ int main(void) {
 	char* punto_montaje = obtener_punto_montaje();
 	inicializar_file_system(punto_montaje);
 
+	sem_init(&MUTEX_MENSAJES_GB,0,1);
+
+	iniciar_espera_mensajes_Gameboy();
+
 	/*
 	pthread_mutex_init(&MUTEX_BITMAP, NULL);
-	sem_init(&MUTEX_MENSAJES_GB,0,1);
+
 	sem_init(&MUTEX_SUB,0,1);
 	sem_init(&MUTEX_PRUEBA,0,0);
 
-	 Funciona la suscripcion y la recepcion de los mensajes del GameBoy, otro dia hago lo del envio a Broker
-	suscribirse_globalmente(1);
-	suscribirse_globalmente(3);
-	suscribirse_globalmente(5);
-	iniciar_espera_mensajes();
-	// Hay que hacerlo con hilos para que pueda recibir mensajes mientras hace otras cosas
-*/
-/*
-	pthread_create(&hilo_gameboy, NULL, iniciar_espera_mensajes_Gameboy, NULL);
-	pthread_detach(hilo_gameboy);
+	while(1){
+		pthread_create(&hilo_gameboy, NULL, iniciar_espera_mensajes_Gameboy, NULL);
+		pthread_detach(hilo_gameboy);
+	}
 
+	/*
 	pthread_create(&hilo_new_pokemon, NULL, new_pokemon_broker, NULL);
 	pthread_detach(hilo_new_pokemon);
 
-	pthread_create(&hilo_catch_pokemon, NULL , catch_pokemon_broker, NULL);
+	pthread_create(&hilo_catch_pokemon, NULL, catch_pokemon_broker, NULL);
 	pthread_detach(hilo_catch_pokemon);
 
-	pthread_create(&hilo_get_pokemon, NULL , get_pokemon_broker, NULL);
+	pthread_create(&hilo_get_pokemon, NULL, get_pokemon_broker, NULL);
 	pthread_detach(hilo_get_pokemon);
 
 
@@ -46,8 +45,6 @@ int main(void) {
 	new_pokemon("Pikachu",5,2,1);
 	new_pokemon("Pikachu",4,2,2);
 	new_pokemon("Pikachu",6,2,2);
-
-
 	catch_pokemon("Pikachu",10,2);
 	int respuesta = catch_pokemon("Pikachu",5,2);
 	printf("%d", respuesta);
@@ -56,8 +53,8 @@ int main(void) {
 
 	//new_pokemon("Pikachu",10,2,1);
 	//catch_pokemon("Pikachu",6,7);
-
-	void* respuesta = get_pokemon("Pikachu");
+	//uint32_t tamanio_void = 0;
+	//void* respuesta = get_pokemon("Pikachu", &tamanio_void);
 
 	return 0;
 
@@ -77,7 +74,7 @@ void inicializar_file_system(char* punto_montaje){
 	string_append(&path_metadata, "/Metadata");
 	if(existe_file(path_metadata)==-1){
 		mkdir(path_metadata, 0777);
-		inicializar_metadata(path_metadata, 64, 16);
+		inicializar_metadata(path_metadata, obtener_tamanio_bloques(), obtener_cantidad_bloques());
 	}
 	path_metadata_global = path_metadata;
 	//actualizar_path_metadata(path_metadata);
@@ -240,100 +237,95 @@ void new_pokemon(char* pokemon,int posX,int posY, int cantidad){ //funciona
 	char* path_pokemon = obtener_path_pokemon(pokemon);
 	char* path_files = obtener_path_files();
 
-		if(existe_file(path_pokemon)==0){
+	if(existe_file(path_pokemon)==0){
 
-			while(archivo_pokemon_esta_abierto(path_pokemon) ==1){
-					int tiempo_reintento_operacion = tiempo_de_reintento_operacion();
-					sleep(tiempo_reintento_operacion);
-				}
-			abrir_archivo_pokemon(path_pokemon);
+		while(archivo_pokemon_esta_abierto(path_pokemon) ==1){
+			int tiempo_reintento_operacion = tiempo_de_reintento_operacion();
+			sleep(tiempo_reintento_operacion);
+		}
+		abrir_archivo_pokemon(path_pokemon);
 
-			char* bloques_en_string = obtener_bloques_pokemon_string(path_pokemon);
-			if(strlen(bloques_en_string) == 2){ // si no tiene bloques asignados, asigno 1 y agrego linea
-				bloques_en_string = asignar_primer_bloque();
-				modificar_campo_bloques_metadata(path_pokemon,bloques_en_string);
+		char* bloques_en_string = obtener_bloques_pokemon_string(path_pokemon);
+		if(strlen(bloques_en_string) == 2){ // si no tiene bloques asignados, asigno 1 y agrego linea
+			bloques_en_string = asignar_primer_bloque();
+			modificar_campo_bloques_metadata(path_pokemon,bloques_en_string);
+			char* linea = generar_linea_a_insertar(posX, posY, 1);
+			modificar_campo_size_metadata(path_pokemon,strlen(linea));
+			almacenar_datos(linea, path_pokemon);
+			int tiempo_retardo = tiempo_retardo_operacion();
+			sleep(tiempo_retardo);
+			cerrar_archivo_pokemon(path_pokemon);
+		}
+		else{ // si tiene bloques asignados
 
-				char* linea = generar_linea_a_insertar(posX, posY, 1);
-				modificar_campo_size_metadata(path_pokemon,strlen(linea));
-				almacenar_datos(linea, path_pokemon);
+			t_list* lista_datos = obtener_datos_bloques(path_pokemon);
+			int indice = existe_posicion_en_lista(lista_datos,posX,posY);
+
+			if(indice == -1){ // si no existe la posicion indice == -1
+				char* linea = generar_linea_a_insertar(posX, posY, cantidad);
+				agregar_linea(lista_datos, linea);
+				char* datos = obtener_datos_en_string(lista_datos);
+
+				modificar_campo_size_metadata(path_pokemon,strlen(datos));
+				almacenar_datos(datos, path_pokemon);
 
 				int tiempo_retardo = tiempo_retardo_operacion();
 				sleep(tiempo_retardo);
 				cerrar_archivo_pokemon(path_pokemon);
 			}
-			else{ // si tiene bloques asignados
 
-				t_list* lista_datos = obtener_datos_bloques(path_pokemon);
-							int indice = existe_posicion_en_lista(lista_datos,posX,posY);
+			else{ // si existe la posicion
+				int flag_cambio_longitud = 0;
+				char* linea_a_modificar = list_get(lista_datos, indice);
+				char* linea_modificada = aumentar_cantidad_linea(linea_a_modificar,cantidad, &flag_cambio_longitud);
+				list_replace(lista_datos,indice,linea_modificada);
+				char* datos = obtener_datos_en_string(lista_datos);
 
-							if(indice == -1){ // si no existe la posicion indice == -1
-								char* linea = generar_linea_a_insertar(posX, posY, cantidad);
-								agregar_linea(lista_datos, linea);
-								char* datos = obtener_datos_en_string(lista_datos);
-								modificar_campo_size_metadata(path_pokemon,strlen(datos));
-								almacenar_datos(datos, path_pokemon);
+				if(flag_cambio_longitud == 1 ){// si la longitud de la palabra cambio, actualizo el tamaño del pokemon
+					modificar_campo_size_metadata(path_pokemon,strlen(datos));
+				}
 
-								int tiempo_retardo = tiempo_retardo_operacion();
-								sleep(tiempo_retardo);
-								cerrar_archivo_pokemon(path_pokemon);
-							}
+				almacenar_datos(datos, path_pokemon);
 
-							else{ // si existe la posicion
-								int flag_cambio_longitud = 0;
-								char* linea_a_modificar = list_get(lista_datos, indice);
-								char* linea_modificada = aumentar_cantidad_linea(linea_a_modificar,cantidad, &flag_cambio_longitud);
-								list_replace(lista_datos,indice,linea_modificada);
-								char* datos = obtener_datos_en_string(lista_datos);
-								if(flag_cambio_longitud == 1 ){// si la longitud de la palabra cambio, actualizo el tamaño del pokemon
-									modificar_campo_size_metadata(path_pokemon,strlen(datos));
-								}
+				int tiempo_retardo = tiempo_retardo_operacion();
+				sleep(tiempo_retardo);
+				cerrar_archivo_pokemon(path_pokemon);
 
-								almacenar_datos(datos, path_pokemon);
-
-								int tiempo_retardo = tiempo_retardo_operacion();
-								sleep(tiempo_retardo);
-								cerrar_archivo_pokemon(path_pokemon);
-
-							}
 			}
-
-
 		}
-		else{ // si no existe el pokemon en el filesystem
-			mkdir(path_pokemon, 0777);
-			char* path_metadata_pokemon = string_new();
-			string_append(&path_metadata_pokemon,path_pokemon);
-			string_append(&path_metadata_pokemon,"/");
-			string_append(&path_metadata_pokemon,"Metadata.bin");
+	}
+	else{ // si no existe el pokemon en el filesystem
+		mkdir(path_pokemon, 0777);
+		char* path_metadata_pokemon = string_new();
+		string_append(&path_metadata_pokemon,path_pokemon);
+		string_append(&path_metadata_pokemon,"/");
+		string_append(&path_metadata_pokemon,"Metadata.bin");
 
+		FILE* metadata = txt_open_for_append(path_metadata_pokemon);
 
-			FILE* metadata = txt_open_for_append(path_metadata_pokemon);
+		txt_write_in_file(metadata, "DIRECTORY=N\n");
+		txt_write_in_file(metadata, "SIZE=\n");
 
-			txt_write_in_file(metadata, "DIRECTORY=N\n");
-			txt_write_in_file(metadata, "SIZE=\n");
+		int nuevo_bloque = obtener_nuevo_bloque();
+		char* bloque_string = string_itoa(nuevo_bloque);
+		txt_write_in_file(metadata, "BLOCKS=[");
+		txt_write_in_file(metadata, bloque_string);
+		txt_write_in_file(metadata, "]\n");
 
-			int nuevo_bloque = obtener_nuevo_bloque();
-			char* bloque_string = string_itoa(nuevo_bloque);
-			txt_write_in_file(metadata, "BLOCKS=[");
-			txt_write_in_file(metadata, bloque_string);
-			txt_write_in_file(metadata, "]\n");
+		txt_write_in_file(metadata, "OPEN=Y");
+		txt_close_file(metadata);
 
-			txt_write_in_file(metadata, "OPEN=Y");
-			txt_close_file(metadata);
+		char* linea = generar_linea_a_insertar(posX, posY, cantidad);
+		modificar_campo_size_metadata(path_pokemon,strlen(linea));
+		almacenar_datos(linea, path_pokemon);
 
-			char* linea = generar_linea_a_insertar(posX, posY, cantidad);
-			modificar_campo_size_metadata(path_pokemon,strlen(linea));
-			almacenar_datos(linea, path_pokemon);
+		leer_config();
+		int tiempo_retardo = tiempo_retardo_operacion();
+		sleep(tiempo_retardo);
+		cerrar_archivo_pokemon(path_pokemon);
+	}
 
-
-			leer_config();
-			int tiempo_retardo = tiempo_retardo_operacion();
-			sleep(tiempo_retardo);
-			cerrar_archivo_pokemon(path_pokemon);
-
-		}
-
-		free(path_pokemon);
+	free(path_pokemon);
 }
 
 int catch_pokemon(char* pokemon,int posX,int posY){
@@ -412,12 +404,11 @@ int catch_pokemon(char* pokemon,int posX,int posY){
 	free(path_pokemon);
 }
 
-void* get_pokemon(char* pokemon){
+void* get_pokemon(char* pokemon, uint32_t *tamanio_void){
 
 	char* path_pokemon = obtener_path_pokemon(pokemon);
 	char* path_files = obtener_path_files();
 	uint32_t cantidad_posiciones;
-
 
 	if(existe_file(path_pokemon)==0){
 
@@ -430,16 +421,18 @@ void* get_pokemon(char* pokemon){
 		char* bloques_en_string = obtener_bloques_pokemon_string(path_pokemon);
 
 		if(strlen(bloques_en_string) == 2){ //si no tiene bloques asignados, entonces no tiene posiciones
+
 			cantidad_posiciones = 0;
 			void* respuesta = malloc(sizeof(uint32_t));
 			memcpy(respuesta, &cantidad_posiciones, sizeof(uint32_t));
+			*tamanio_void = sizeof(uint32_t);
 
 			int tiempo_retardo = tiempo_retardo_operacion();
 			sleep(tiempo_retardo);
 			cerrar_archivo_pokemon(path_pokemon);
 
 			return respuesta;
-				}
+		}
 
 		t_list* lista_datos = obtener_datos_bloques(path_pokemon);
 		cantidad_posiciones = list_size(lista_datos);
@@ -447,16 +440,15 @@ void* get_pokemon(char* pokemon){
 		printf("hay %d posiciones \n",cantidad_posiciones);
 
 		void* respuesta = malloc((cantidad_posiciones*8) + sizeof(uint32_t));
+		*tamanio_void = (cantidad_posiciones*8) + sizeof(uint32_t);
 		int offset = 0;
 
 		memcpy(respuesta + offset, &cantidad_posiciones, sizeof(uint32_t));
 		offset += sizeof(uint32_t);
 
-
-
 		char* digito_actual_X;
 		char* digito_actual_Y;
-		int k=0;
+		int k;
 
 
 		for(int i=0; i<cantidad_posiciones; i++){
@@ -464,21 +456,22 @@ void* get_pokemon(char* pokemon){
 			k=0;
 
 			char* linea = list_get(lista_datos, i);
-
 			char* valor_final_X = string_new();
 			char* valor_final_Y = string_new();
 
-				while(linea[k] != '-'){ // BUSCO POSICION X
-				   digito_actual_X =  string_from_format("%c",linea[k]);
-				   string_append(&valor_final_X,digito_actual_X);
-				    		  k++;
+			while(linea[k] != '-'){ // BUSCO POSICION X
+				digito_actual_X =  string_from_format("%c",linea[k]);
+				string_append(&valor_final_X,digito_actual_X);
+				k++;
+			}
 
-				    		  }
-				 while(linea[i] != '='){// BUSCO POSICION Y
-					 digito_actual_Y =  string_from_format("%c",linea[k]);
-					 string_append(&valor_final_Y,digito_actual_Y);
-					 k++;
-					    	  }
+			k++;
+
+			while(linea[k] != '='){// BUSCO POSICION Y
+				digito_actual_Y =  string_from_format("%c",linea[k]);
+				string_append(&valor_final_Y,digito_actual_Y);
+				k++;
+			}
 
 			uint32_t posX = atoi(valor_final_X); // TRANSFORMO EN UINT_32 AMBAS POSICIONES
 			uint32_t posY = atoi(valor_final_Y);
@@ -493,6 +486,7 @@ void* get_pokemon(char* pokemon){
 			memcpy(respuesta + offset, &posY, sizeof(uint32_t));
 			offset += sizeof(uint32_t);
 		}
+
 		int tiempo_retardo = tiempo_retardo_operacion();
 		sleep(tiempo_retardo);
 		cerrar_archivo_pokemon(path_pokemon);
@@ -504,6 +498,7 @@ void* get_pokemon(char* pokemon){
 		cantidad_posiciones = 0;
 		void* respuesta = malloc(sizeof(uint32_t));
 		memcpy(respuesta, &cantidad_posiciones, sizeof(uint32_t));
+		*tamanio_void = sizeof(uint32_t);
 		return respuesta;
 	}
 

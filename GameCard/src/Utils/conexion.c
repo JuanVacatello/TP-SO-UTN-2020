@@ -68,13 +68,12 @@ void iniciar_espera_mensajes_Gameboy(void){
 
     freeaddrinfo(servinfo);
 
-    while(1)
-
+    while(1){
     	esperar_gameboy(socket_servidor);
+    }
 }
 
-void esperar_gameboy(int socket_servidor)
-{
+void esperar_gameboy(int socket_servidor){
 	struct sockaddr_in dir_cliente;
 
 	int tam_direccion = sizeof(struct sockaddr_in);
@@ -85,15 +84,13 @@ void esperar_gameboy(int socket_servidor)
 	pthread_detach(thread);
 }
 
-void serve_client(int* socket)
-{
+void serve_client(int* socket){
 	op_code cod_op;
 	if(recv(*socket, &cod_op, sizeof(op_code), MSG_WAITALL) == -1)
 		pthread_exit(NULL);
 
 	char* mensaje = string_from_format("El codigo de operacion es: %d.", cod_op);
 	completar_logger(mensaje, "GAMECARD", LOG_LEVEL_INFO);
-
 
 	process_request(cod_op, *socket);
 }
@@ -143,7 +140,8 @@ void new_pokemon_broker(){
 		recv(socket_broker, &cod_op, sizeof(op_code), MSG_WAITALL);
 
 		if(cod_op == NEW_POKEMON){
-			recibir_new_pokemon(socket_broker);
+			pthread_create(&hilo_new_pokemon_gameboy, NULL, recibir_new_pokemon, NULL);
+			pthread_detach(hilo_new_pokemon_gameboy);
 		}
 	}
 }
@@ -157,11 +155,8 @@ void catch_pokemon_broker(){
 		recv(socket_broker, &cod_op, sizeof(op_code), MSG_WAITALL);
 
 		if(cod_op == CATCH_POKEMON){
-
-			//char* mensaje = string_from_format("El codigo de operacion es: %d.", cod_op);
-			//completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
-
-			recibir_catch_pokemon(socket_broker);
+			pthread_create(&hilo_catch_pokemon_gameboy, NULL, recibir_catch_pokemon, socket_broker);
+			pthread_detach(hilo_catch_pokemon_gameboy);
 		}
 	}
 }
@@ -175,11 +170,8 @@ void get_pokemon_broker(){
 		recv(socket_broker, &cod_op, sizeof(op_code), MSG_WAITALL);
 
 		if(cod_op == GET_POKEMON){
-
-			//char* mensaje = string_from_format("El codigo de operacion es: %d.", cod_op);
-			//completar_logger(mensaje, "TEAM", LOG_LEVEL_INFO);
-
-			recibir_get_pokemon(socket_broker);
+			pthread_create(&hilo_get_pokemon_gameboy, NULL, recibir_get_pokemon, socket_broker);
+			pthread_detach(hilo_get_pokemon_gameboy);
 		}
 	}
 }
@@ -282,10 +274,12 @@ void recibir_new_pokemon(int socket_broker){
 		printf("La cantidad es %d \n", cantidad);
 
 	responder_ack(mensaje_id, socket_broker);
-	new_pokemon(pokemon, posX, posY);
 
+	new_pokemon(pokemon, posX, posY, cantidad);
+/*
 	uint32_t id_mensaje_correlativo = mensaje_id;
 	enviar_appeared_pokemon(socket_broker, pokemon, posX, posY, id_mensaje_correlativo);
+	*/
 }
 
 void recibir_catch_pokemon(int socket_broker){//RECIBE TODO PERFECTO (NO MUEVAN EL ORDEN DE LAS COSAS BOE)
@@ -316,11 +310,14 @@ void recibir_catch_pokemon(int socket_broker){//RECIBE TODO PERFECTO (NO MUEVAN 
 		printf("La posicion en x es %d \n", posX);
 		printf("La posicion en Y %d \n", posY);
 
-	responder_ack(mensaje_id, socket_broker);
+		responder_ack(mensaje_id, socket_broker);
 
-	uint32_t se_pudo_encontrar = catch_pokemon(pokemon, posX, posY);
+		uint32_t se_pudo_encontrar = catch_pokemon(pokemon, posX, posY);
 
+
+	/*
 	enviar_caught_pokemon(socket_broker, mensaje_id, se_pudo_encontrar);
+	*/
 }
 
 void recibir_get_pokemon(int socket_broker){//RECIBE TODO PERFECTO (NO MUEVAN EL ORDEN DE LAS COSAS BOE)
@@ -328,25 +325,29 @@ void recibir_get_pokemon(int socket_broker){//RECIBE TODO PERFECTO (NO MUEVAN EL
 	uint32_t tamanio_buffer;
 	recv(socket_broker, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
-		printf("El tamaño del buffer es %d \n", tamanio_buffer);
-
 	uint32_t mensaje_id;
 	recv(socket_broker, &mensaje_id, sizeof(uint32_t), MSG_WAITALL);
-
-		printf("El mensaje_id es %d \n", mensaje_id);
 
 	uint32_t caracteresPokemon;
 	recv(socket_broker, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
 
-		printf("El largo del pokemon es %d \n", caracteresPokemon);
-
 	char* pokemon = (char*)malloc(caracteresPokemon);
 	recv(socket_broker, pokemon, caracteresPokemon, MSG_WAITALL);
 
+		// Una vez chequeado que funciona todo se puede borrar esto:
+		printf("El tamaño del buffer es %d \n", tamanio_buffer);
+		printf("El mensaje_id es %d \n", mensaje_id);
+		printf("El largo del pokemon es %d \n", caracteresPokemon);
 		printf("El pokemon es %s \n", pokemon);
 
-	responder_ack(mensaje_id, socket_broker);
-	void* respuesta = get_pokemon(pokemon);
+
+		responder_ack(mensaje_id, socket_broker);
+		uint32_t tamanio_void = 0;
+		void* respuesta = get_pokemon(pokemon, &tamanio_void);
+
+		/*
+	enviar_localized_pokemon(socket_broker, respuesta, tamanio_void, pokemon, mensaje_id);
+	*/
 }
 
 // Enviar mensaje a Broker
@@ -448,11 +449,13 @@ void* iniciar_paquete_serializado_CaughtPokemon(int* tamanio_paquete, uint32_t i
 	return a_enviar;
 }
 
-void enviar_localized_pokemon(){
+void enviar_localized_pokemon(int socket_broker, void* cantidad_y_posiciones, uint32_t tamanio_void, char* pokemon, uint32_t id_mensaje_correlativo){
+	/*
 	char* puerto_broker = obtener_puerto_broker();
 	char* ip_broker = obtener_ip_broker();
-
 	int socket_broker = crear_conexion(ip_broker,puerto_broker);
+	*/
+
 	if(socket_broker == -1){
 		// Comportamiento default en caso de que no se pueda conectar a Broker
 		// Segun lo poco que lei en el enunciado solo hay que avisarlo por logs y seguir la ejecucion pero no se quizas
@@ -460,10 +463,7 @@ void enviar_localized_pokemon(){
 	}
 
 	int tamanio_paquete = 0;
-		uint32_t id_mensaje_correlativo; // = id mensaje que venia en el new_pokemon
-		char* pokemon; // = a lo que sea que tengan que mandar
-		uint32_t cantidad_de_posiciones; // idem
-		void* a_enviar = iniciar_paquete_serializado_LocalizedPokemon(&tamanio_paquete, id_mensaje_correlativo, pokemon, cantidad_de_posiciones);
+	void* a_enviar = iniciar_paquete_serializado_LocalizedPokemon(&tamanio_paquete, id_mensaje_correlativo, pokemon, cantidad_y_posiciones, tamanio_void);
 
 	if(send(socket_broker,a_enviar,tamanio_paquete,0) == -1){
 		printf("Error en enviar por el socket");
@@ -471,14 +471,14 @@ void enviar_localized_pokemon(){
 	}
 }
 
-void* iniciar_paquete_serializado_LocalizedPokemon(int* tamanio_paquete, uint32_t id_mensaje_correlativo, char* pokemon, uint32_t cantidad_de_posiciones){
+void* iniciar_paquete_serializado_LocalizedPokemon(int* tamanio_paquete, uint32_t id_mensaje_correlativo, char* pokemon, void* cantidad_y_posiciones, uint32_t tamanio_void){
 
 	t_paquete* paquete = malloc(sizeof(t_paquete));
 	paquete->codigo_operacion = 1;
 	paquete->buffer = malloc(sizeof(t_buffer));
 	uint32_t caracteres_pokemon = strlen(pokemon)+1;
 							// ID CORRELATIVO + CARACTERES + POKEMON + CANTIDAD + (POSX+POSY)*CANTIDAD
-	paquete->buffer->size = sizeof(uint32_t) + sizeof(uint32_t) + caracteres_pokemon + sizeof(uint32_t) + (2*sizeof(uint32_t)*cantidad_de_posiciones);
+	paquete->buffer->size = sizeof(uint32_t) + sizeof(uint32_t) + caracteres_pokemon + tamanio_void;
 
 	void* stream = malloc(paquete->buffer->size);
 	int desplazamiento = 0;
@@ -492,15 +492,12 @@ void* iniciar_paquete_serializado_LocalizedPokemon(int* tamanio_paquete, uint32_
 	memcpy(stream + desplazamiento, pokemon, caracteres_pokemon);
 	desplazamiento += caracteres_pokemon;
 
-	memcpy(stream + desplazamiento, &cantidad_de_posiciones, sizeof(uint32_t));
-	desplazamiento += sizeof(uint32_t);
-
-	// memcpy(stream + desplazamiento, posxposy, tam_posxposy);
-	// La logica de las posiciones en las q se encuentra la hacemos otro dia juntos porque depende de como lo lean y etc
+	memcpy(stream + desplazamiento, cantidad_y_posiciones, tamanio_void);
+	desplazamiento += tamanio_void;
 
 	paquete->buffer->stream = stream;
 
-	tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
+	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
 	void* a_enviar = serializar_paquete(paquete, tamanio_paquete);
 	return a_enviar;
 }

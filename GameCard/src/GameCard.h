@@ -37,6 +37,6 @@ void crear_bloques(char* path_bloques);
 
 void new_pokemon(char* pokemon,int posX,int posY, int cantidad);
 int catch_pokemon(char* pokemon,int posX,int posY);
-void* get_pokemon(char* pokemon);
+void* get_pokemon(char* pokemon, uint32_t* tamanio_void);
 
 #endif /* GAMECARD_H_ */

@@ -123,3 +123,15 @@ char* obtener_ip_gamecard(void){
 	ip_g = config_get_string_value(configGameCard, "IP_GAMECARD");
 	return ip_g;
 }
+
+int obtener_tamanio_bloques(void){
+	int tamanio_bloques;
+	tamanio_bloques = config_get_int_value(configGameCard, "BLOCK_SIZE");
+	return tamanio_bloques;
+}
+
+char* obtener_cantidad_bloques(void){
+	int cantidad_bloques;
+	cantidad_bloques = config_get_int_value(configGameCard, "BLOCKS");
+	return cantidad_bloques;
+}
