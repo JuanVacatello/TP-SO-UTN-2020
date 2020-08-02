@@ -22,21 +22,6 @@ void leer_metadata_tall_grass(char * path_metadata){
 		}
 }
 
-
-int obtener_cantidad_bloques(){
-	int cantidad;
-	cantidad = config_get_int_value(metadata_tall_grass,"BLOCKS");
-	return cantidad;
-}
-
-int obtener_tamanio_bloques(){
-	int tamanio;
-	tamanio = config_get_int_value(metadata_tall_grass,"BLOCK_SIZE");
-	return tamanio;
-}
-
-
-
 //leer metadata pokemon
 t_config* leer_metadata_pokemon(char* path_pokemon){
 

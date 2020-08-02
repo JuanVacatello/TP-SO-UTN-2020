@@ -130,7 +130,7 @@ int obtener_tamanio_bloques(void){
 	return tamanio_bloques;
 }
 
-char* obtener_cantidad_bloques(void){
+int obtener_cantidad_bloques(void){
 	int cantidad_bloques;
 	cantidad_bloques = config_get_int_value(configGameCard, "BLOCKS");
 	return cantidad_bloques;

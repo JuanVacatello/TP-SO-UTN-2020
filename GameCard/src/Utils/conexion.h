@@ -43,6 +43,9 @@ pthread_t thread;
 pthread_t hilo_new_pokemon_gameboy;
 pthread_t hilo_catch_pokemon_gameboy;
 pthread_t hilo_get_pokemon_gameboy;
+pthread_t hilo_new_pokemon_broker;
+pthread_t hilo_catch_pokemon_broker;
+pthread_t hilo_get_pokemon_broker;
 
 sem_t MUTEX_MENSAJES_GB;
 sem_t MUTEX_SUB;
@@ -67,17 +70,16 @@ int suscribirse_globalmente(op_code cola_a_suscribirse);
 void* suscribirse_a_cola(int socket_broker, uint32_t cola_a_suscribirse, int* tamanio_paquete);
 
 // Recibir mensajes de GameBoy y Broker
-void recibir_new_pokemon(int socket_broker);
-void recibir_catch_pokemon(int socket_broker);
-void recibir_get_pokemon(int socket_broker);
-void enviar_mensaje_a_broker(int socket_broker, op_code codigo_operacion, char* argv[]);
+void recibir_new_pokemon(int socket_cliente);
+void recibir_catch_pokemon(int socket_cliente);
+void recibir_get_pokemon(int socket_cliente);
 void responder_ack(uint32_t mensaje_id, int socket_broker);
 // Enviar mensaje a Broker
-void enviar_appeared_pokemon(int socket_broker, char* pokemon, uint32_t posX, uint32_t posY, uint32_t id_mensaje_correlativo);
+void enviar_appeared_pokemon(char* pokemon, uint32_t posX, uint32_t posY, uint32_t id_mensaje_correlativo);
 void* iniciar_paquete_serializado_AppearedPokemon(int* tamanio_paquete, char* pokemon, uint32_t posX, uint32_t posY, uint32_t id_mensaje_correlativo);
-void enviar_caught_pokemon(int socket_broker, uint32_t id_mensaje_correlativo, uint32_t se_pudo_atrapar);
+void enviar_caught_pokemon(uint32_t id_mensaje_correlativo, uint32_t se_pudo_atrapar);
 void* iniciar_paquete_serializado_CaughtPokemon(int* tamanio_paquete, uint32_t id_mensaje_correlativo, uint32_t se_pudo_atrapar);
-void enviar_localized_pokemon(int socket_broker, void* cantidad_y_posiciones, uint32_t tamanio_void, char* pokemon, uint32_t id_mensaje_correlativo);
+void enviar_localized_pokemon(void* cantidad_y_posiciones, uint32_t tamanio_void, char* pokemon, uint32_t id_mensaje_correlativo);
 void* iniciar_paquete_serializado_LocalizedPokemon(int* tamanio_paquete, uint32_t id_mensaje_correlativo, char* pokemon, void* cantidad_y_posiciones, uint32_t tamanio_void);
 
 // Auxiliares

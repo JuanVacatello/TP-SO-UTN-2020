@@ -33,5 +33,7 @@ char* obtener_path_bloques();
 char* obtener_path_metadata();
 char* obtener_puerto_gamecard(void);
 char* obtener_ip_gamecard(void);
+int obtener_tamanio_bloques(void);
+int obtener_cantidad_bloques(void);
 
 #endif /* CONFIGGAMEBOY_H_ */
