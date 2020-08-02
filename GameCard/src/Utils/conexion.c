@@ -293,34 +293,34 @@ void recibir_catch_pokemon(int socket_broker){//RECIBE TODO PERFECTO (NO MUEVAN 
 	uint32_t tamanio_buffer;
 	recv(socket_broker, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
-		printf("El tamaño del buffer es %d \n", tamanio_buffer);
-
 	uint32_t mensaje_id;
 	recv(socket_broker, &mensaje_id, sizeof(uint32_t), MSG_WAITALL);
-
-		printf("El mensaje_id es %d \n", mensaje_id);
 
 	uint32_t caracteresPokemon;
 	recv(socket_broker, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
 
-		printf("El largo del pokemon es %d \n", caracteresPokemon);
-
 	char* pokemon = (char*)malloc(caracteresPokemon);
 	recv(socket_broker, pokemon, caracteresPokemon, MSG_WAITALL);
-
-		printf("El pokemon es %s \n", pokemon);
 
 	uint32_t posX;
 	recv(socket_broker, &posX, sizeof(uint32_t), MSG_WAITALL);
 
-		printf("La posicion en x es %d \n", posX);
-
 	uint32_t posY;
 	recv(socket_broker, &posY, sizeof(uint32_t), MSG_WAITALL);
 
+		// Una vez chequeado que funciona todo se puede borrar esto:
+		printf("El tamaño del buffer es %d \n", tamanio_buffer);
+		printf("El mensaje_id es %d \n", mensaje_id);
+		printf("El largo del pokemon es %d \n", caracteresPokemon);
+		printf("El pokemon es %s \n", pokemon);
+		printf("La posicion en x es %d \n", posX);
 		printf("La posicion en Y %d \n", posY);
 
 	responder_ack(mensaje_id, socket_broker);
+
+	uint32_t se_pudo_encontrar = catch_pokemon(pokemon, posX, posY);
+
+	enviar_caught_pokemon(socket_broker, mensaje_id, se_pudo_encontrar);
 }
 
 void recibir_get_pokemon(int socket_broker){//RECIBE TODO PERFECTO (NO MUEVAN EL ORDEN DE LAS COSAS BOE)
@@ -346,6 +346,7 @@ void recibir_get_pokemon(int socket_broker){//RECIBE TODO PERFECTO (NO MUEVAN EL
 		printf("El pokemon es %s \n", pokemon);
 
 	responder_ack(mensaje_id, socket_broker);
+	void* respuesta = get_pokemon(pokemon);
 }
 
 // Enviar mensaje a Broker
@@ -405,11 +406,12 @@ void* iniciar_paquete_serializado_AppearedPokemon(int* tamanio_paquete, char* po
 	return a_enviar;
 }
 
-void enviar_caught_pokemon(){
+void enviar_caught_pokemon(int socket_broker, uint32_t id_mensaje_correlativo, uint32_t se_pudo_atrapar){
+	/*
 	char* puerto_broker = obtener_puerto_broker();
 	char* ip_broker = obtener_ip_broker();
-
 	int socket_broker = crear_conexion(ip_broker,puerto_broker);
+	*/
 	if(socket_broker == -1){
 		// Comportamiento default en caso de que no se pueda conectar a Broker
 		// Segun lo poco que lei en el enunciado solo hay que avisarlo por logs y seguir la ejecucion pero no se quizas
@@ -417,8 +419,6 @@ void enviar_caught_pokemon(){
 	}
 
 	int tamanio_paquete = 0;
-	uint32_t id_mensaje_correlativo; // = id mensaje que venia en el new_pokemon
-	uint32_t se_pudo_atrapar; // No se de donde sacan esto pero recuerden que si se pudo, hay que mandar un 1 y sino un -1
 	void* a_enviar = iniciar_paquete_serializado_CaughtPokemon(&tamanio_paquete, id_mensaje_correlativo, se_pudo_atrapar);
 
 	if(send(socket_broker,a_enviar,tamanio_paquete,0) == -1){

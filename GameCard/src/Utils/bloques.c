@@ -307,6 +307,8 @@ char* liberar_ultimo_bloque(char* bloques){
 	 int numero_bloque = atoi(bloque);
 	 bitmap_liberar_bloque(numero_bloque); // libero el bloque en el bitmap
 
+	 limpiar_bloque(bloque);
+
 	 char *vector_bloques = string_new();
 	  	string_append(&vector_bloques, "[");
 	  	for(int k = 0; k < list_size(lista_bloques); k++){
@@ -403,15 +405,21 @@ void limpiar_bloques_pokemon(char* path_pokemon){
 	for(int i = 0 ; i < tamanio_array(bloques); i++){
 
 
-		char* aux = string_new();
-		string_append(&aux, path_bloques);
-		string_append(&aux, "/");
-		string_append(&aux,bloques[i]);
-		string_append(&aux, ".bin");
-
-		FILE *f = fopen(aux,"w");
-		fclose(f);
-
-		free(aux);
+		limpiar_bloque(bloques[i]);
 		}
+}
+
+void limpiar_bloque(char* bloque){
+	char* path_bloques = obtener_path_bloques();
+
+	char* aux = string_new();
+			string_append(&aux, path_bloques);
+			string_append(&aux, "/");
+			string_append(&aux,bloque);
+			string_append(&aux, ".bin");
+
+			FILE *f = fopen(aux,"w");
+			fclose(f);
+
+			free(aux);
 }

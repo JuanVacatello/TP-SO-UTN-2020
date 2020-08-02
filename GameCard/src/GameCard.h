@@ -35,5 +35,8 @@ void inicializar_bloques(char* path_bloques);
 void completar_metadata_directorio(char* path_directorio);
 void crear_bloques(char* path_bloques);
 
+void new_pokemon(char* pokemon,int posX,int posY, int cantidad);
+int catch_pokemon(char* pokemon,int posX,int posY);
+void* get_pokemon(char* pokemon);
 
 #endif /* GAMECARD_H_ */

@@ -64,15 +64,13 @@ void eliminar_bitmap(){
 
 void bitmap_liberar_bloque(int bloque){
 
-		pthread_mutex_lock(&MUTEX_BITMAP);
+	//	pthread_mutex_lock(&MUTEX_BITMAP);
 
 		bitarray_clean_bit(bitarray,bloque);
 
 		flag_bloques_libres = 1;
 
-		pthread_mutex_unlock(&MUTEX_BITMAP);
-
-
+	//	pthread_mutex_unlock(&MUTEX_BITMAP);
 }
 
 

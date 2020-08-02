@@ -71,7 +71,7 @@ void responder_ack(uint32_t mensaje_id, int socket_broker);
 // Enviar mensaje a Broker
 void enviar_appeared_pokemon(int socket_broker, char* pokemon, uint32_t posX, uint32_t posY, uint32_t id_mensaje_correlativo);
 void* iniciar_paquete_serializado_AppearedPokemon(int* tamanio_paquete, char* pokemon, uint32_t posX, uint32_t posY, uint32_t id_mensaje_correlativo);
-void enviar_caught_pokemon(void);
+void enviar_caught_pokemon(int socket_broker, uint32_t id_mensaje_correlativo, uint32_t se_pudo_atrapar);
 void* iniciar_paquete_serializado_CaughtPokemon(int* tamanio_paquete, uint32_t id_mensaje_correlativo, uint32_t se_pudo_atrapar);
 void enviar_localized_pokemon();
 void* iniciar_paquete_serializado_LocalizedPokemon(int* tamanio_paquete, uint32_t id_mensaje_correlativo, char* pokemon, uint32_t cantidad_de_posiciones);
