@@ -16,6 +16,7 @@
 #include "Utils/configGameBoy.h"
 #include "Utils/logGameBoy.h"
 
+void suscribirse_y_recibir_mensajes(int argc, char* argv[]);
 void enviarMensajeBroker(int argc,char* argv[]);
 void enviarMensajeTeam(int argc, char *argv[]);
 void enviarMensajeGameCard(int argc, char *argv[]);
