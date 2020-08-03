@@ -49,29 +49,20 @@ char** obtener_bloques_pokemon(char* path_pokemon){ //DEVUELVE EN FORMATO: ["1",
 	bloques_string = config_get_string_value(metadata_pokemon, "BLOCKS");
 
 	char** bloques = string_get_string_as_array(bloques_string);
-	//config_destroy(metadata_pokemon); ROMPE EL BLOQUES_STRING
+	config_destroy(metadata_pokemon);
 	return bloques;
 
-	/*
-	for(int i =0; i<obtener_cantidad_bloques_pokemon() ; i++){
-	printf("%s,",array_bloques[i]);
-	}
-	*/
 }
 
 char* obtener_bloques_pokemon_string(char* path_pokemon){
 
 	t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
-	char* bloques_string;
-	bloques_string = config_get_string_value(metadata_pokemon, "BLOCKS");
-	//config_destroy(metadata_pokemon); ROMPE EL BLOQUES_STRING
+	char* aux;
+	aux = config_get_string_value(metadata_pokemon, "BLOCKS");
+	char* bloques_string =string_duplicate(bloques_string);
+	config_destroy(metadata_pokemon);
 	return bloques_string;
 
-	/*
-	for(int i =0; i<obtener_cantidad_bloques_pokemon() ; i++){
-	printf("%s,",array_bloques[i]);
-	}
-	*/
 }
 
 
