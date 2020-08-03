@@ -35,5 +35,6 @@ char* obtener_puerto_gamecard(void);
 char* obtener_ip_gamecard(void);
 int obtener_tamanio_bloques(void);
 int obtener_cantidad_bloques(void);
+char* obtener_magic_number(void);
 
 #endif /* CONFIGGAMEBOY_H_ */

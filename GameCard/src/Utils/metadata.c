@@ -20,6 +20,8 @@ void leer_metadata_tall_grass(char * path_metadata){
 			printf("No se pudo leer el archivo metadata.");
 			exit(2);
 		}
+
+	free(path_metadata_tall_grass);
 }
 
 //leer metadata pokemon
@@ -32,13 +34,14 @@ t_config* leer_metadata_pokemon(char* path_pokemon){
 	string_append(&path_archivo_metadata, path_pokemon);
 	string_append(&path_archivo_metadata, "/Metadata.bin");
 
-
 	metadata = config_create(path_archivo_metadata);
 
 		if(metadata == NULL){
 			printf("No se pudo leer el archivo metadata.");
 			exit(2);
 		}
+
+	free(path_archivo_metadata);
 	return metadata;
 }
 
@@ -49,7 +52,8 @@ char** obtener_bloques_pokemon(char* path_pokemon){ //DEVUELVE EN FORMATO: ["1",
 	bloques_string = config_get_string_value(metadata_pokemon, "BLOCKS");
 
 	char** bloques = string_get_string_as_array(bloques_string);
-	//config_destroy(metadata_pokemon);
+	free(bloques_string);
+	config_destroy(metadata_pokemon);
 	return bloques;
 
 }
@@ -57,14 +61,10 @@ char** obtener_bloques_pokemon(char* path_pokemon){ //DEVUELVE EN FORMATO: ["1",
 char* obtener_bloques_pokemon_string(char* path_pokemon){
 
 	t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
-	char* aux;
-	aux = config_get_string_value(metadata_pokemon, "BLOCKS");
-	char* bloques_string =string_duplicate(aux);
+	char* bloques_string = config_get_string_value(metadata_pokemon, "BLOCKS");
 	config_destroy(metadata_pokemon);
 	return bloques_string;
-
 }
-
 
 int obtener_cantidad_bloques_pokemon(char* path_pokemon){
 
@@ -94,20 +94,16 @@ int archivo_pokemon_esta_abierto(char* path_pokemon){
 void cerrar_archivo_pokemon(path_pokemon){
 	t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
 	config_set_value(metadata_pokemon,"OPEN","N");
-		config_save(metadata_pokemon);
-		config_destroy(metadata_pokemon);
-
+	config_save(metadata_pokemon);
+	config_destroy(metadata_pokemon);
 }
-
 
 void abrir_archivo_pokemon(path_pokemon){
 	t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
 	config_set_value(metadata_pokemon,"OPEN","Y");
-		config_save(metadata_pokemon);
-		config_destroy(metadata_pokemon);
-
+	config_save(metadata_pokemon);
+	config_destroy(metadata_pokemon);
 }
-
 
 int obtener_tamanio_archivo(char* path_pokemon){
 	t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
@@ -116,23 +112,21 @@ int obtener_tamanio_archivo(char* path_pokemon){
 	return tamanio;
 }
 
-
 t_config* leer_metadata_file(char* path_file){
+
 	t_config* metadata;
+	char* path_archivo_metadata = string_new();
+	string_append(&path_archivo_metadata, path_file);
+	string_append(&path_archivo_metadata, "/Metadata.bin");
 
-		char* path_archivo_metadata = string_new();
-		string_append(&path_archivo_metadata, path_file);
-		string_append(&path_archivo_metadata, "/Metadata.bin");
+	metadata = config_create(path_archivo_metadata);
 
+	if(metadata == NULL){
+		printf("No se pudo leer el archivo metadata.");
+		exit(2);
+	}
 
-		metadata = config_create(path_archivo_metadata);
-
-			if(metadata == NULL){
-				printf("No se pudo leer el archivo metadata.");
-				exit(2);
-			}
-		return metadata;
-
+	return metadata;
 }
 
 
@@ -155,8 +149,8 @@ void modificar_campo_size_metadata(char * path_pokemon,int tamanio){
 	config_save(metadata_pokemon);
 	config_destroy(metadata_pokemon);
 	pthread_mutex_unlock(&MUTEX_ELSOLUCIONES);
+	free(tamanio_string);
 }
-
 
 int tamanio_array_en_string(char* array){ //falopa
 	int largo = strlen(array);

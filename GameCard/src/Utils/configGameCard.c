@@ -4,10 +4,10 @@
 
 void leer_config(void)
 {
-	configGameCard = config_create("GameCard.config"); // "../GameCard.config"
+	configGameCard = config_create("../GameCard.config"); // "../GameCard.config"
 
 	if(configGameCard == NULL){
-		printf("No se pudo leer el archivo de configuración de la GameCard.");
+		printf("No se pudo leer el archivo de configuración de la GameCard.\n");
 		exit(2);
 	}
 }
@@ -134,4 +134,10 @@ int obtener_cantidad_bloques(void){
 	int cantidad_bloques;
 	cantidad_bloques = config_get_int_value(configGameCard, "BLOCKS");
 	return cantidad_bloques;
+}
+
+char* obtener_magic_number(void){
+	char* magic_number;
+	magic_number = config_get_string_value(configGameCard, "MAGIC_NUMBER");
+	return magic_number;
 }
