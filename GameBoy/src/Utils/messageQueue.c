@@ -696,7 +696,7 @@ void recibir_mensajes_varios(int socket_cliente, uint32_t buffer_size){
 		uint32_t proceso_id;
 		recv(socket_cliente, &proceso_id, sizeof(uint32_t), MSG_WAITALL);
 
-		printf("El proceso de id %d confirmó la recepción del mensaje cuyo id es %d", proceso_id, mensaje_id_recibido);
+		printf("El proceso de id %d confirmó la recepción del mensaje cuyo id es %d \n", proceso_id, mensaje_id_recibido);
 	}
 
 	else{
