@@ -3,12 +3,16 @@
 
 
 void crear_bitmap(char* path_bitmap){
-	pthread_mutex_lock(&MUTEX_BITMAP);
+
+	//pthread_mutex_lock(&MUTEX_BITMAP);
+	sem_wait(&semaforo_bitmap);
+
 	int bloques = obtener_cantidad_bloques();
 
 	if(bloques==0){
 		//log_error(logger,"El sistema no puede inicializar con 0 bloques");
-		pthread_mutex_unlock(&MUTEX_BITMAP);
+	//pthread_mutex_unlock(&MUTEX_BITMAP); CHEQUEAR SEMAFORO GENERICO O SEMAFORO DE HILO
+	sem_post(&semaforo_bitmap);
 		return;
 	}
 
@@ -22,7 +26,8 @@ void crear_bitmap(char* path_bitmap){
 
 			free(path_bitmap);
 
-			pthread_mutex_unlock(&MUTEX_BITMAP);
+		//pthread_mutex_unlock(&MUTEX_BITMAP);
+			sem_post(&semaforo_bitmap);
 			return;
 		}
 

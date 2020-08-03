@@ -33,6 +33,8 @@ char *bitarrayContent;
 
 pthread_mutex_t MUTEX_BITMAP;
 
+sem_t semaforo_bitmap;
+
 
 
 #ifndef UTILS_BITMAP_H_

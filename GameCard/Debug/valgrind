@@ -1,0 +1,344 @@
+==6390== Memcheck, a memory error detector
+==6390== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==6390== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==6390== Command: ./GameCard
+==6390== Parent PID: 5804
+==6390== 
+--6390-- 
+--6390-- Valgrind options:
+--6390--    --show-leak-kinds=all
+--6390--    --leak-check=full
+--6390--    -v
+--6390--    --log-file=valgrind
+--6390-- Contents of /proc/version:
+--6390--   Linux version 4.4.0-116-generic (buildd@lgw01-amd64-023) (gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.9) ) #140-Ubuntu SMP Mon Feb 12 21:22:43 UTC 2018
+--6390-- 
+--6390-- Arch and hwcaps: X86, LittleEndian, x86-mmxext-sse1-sse2-sse3-lzcnt
+--6390-- Page sizes: currently 4096, max supported 4096
+--6390-- Valgrind library directory: /usr/lib/valgrind
+--6390-- Reading syms from /lib/i386-linux-gnu/ld-2.23.so
+--6390--   Considering /lib/i386-linux-gnu/ld-2.23.so ..
+--6390--   .. CRC mismatch (computed 596cb2b8 wanted 417b32cc)
+--6390--   Considering /usr/lib/debug/lib/i386-linux-gnu/ld-2.23.so ..
+--6390--   .. CRC is valid
+--6390-- Reading syms from /home/utnso/Documentos/Delibird/GameCard/tp-2020-1c-wrappers/GameCard/Debug/GameCard
+--6390-- Reading syms from /usr/lib/valgrind/memcheck-x86-linux
+--6390--   Considering /usr/lib/valgrind/memcheck-x86-linux ..
+--6390--   .. CRC mismatch (computed 6036da3f wanted 652e483f)
+--6390--    object doesn't have a symbol table
+--6390--    object doesn't have a dynamic symbol table
+--6390-- Scheduler: using generic scheduler lock implementation.
+--6390-- Reading suppressions file: /usr/lib/valgrind/default.supp
+==6390== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-6390-by-utnso-on-???
+==6390== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-6390-by-utnso-on-???
+==6390== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-6390-by-utnso-on-???
+==6390== 
+==6390== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==6390== don't want to do, unless you know exactly what you're doing,
+==6390== or are doing some strange experiment):
+==6390==   /usr/lib/valgrind/../../bin/vgdb --pid=6390 ...command...
+==6390== 
+==6390== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==6390==   /path/to/gdb ./GameCard
+==6390== and then give GDB the following command
+==6390==   target remote | /usr/lib/valgrind/../../bin/vgdb --pid=6390
+==6390== --pid is optional if only one valgrind process is running
+==6390== 
+--6390-- REDIR: 0x4018eb0 (ld-linux.so.2:strlen) redirected to 0x380490f2 (???)
+--6390-- REDIR: 0x4018c70 (ld-linux.so.2:index) redirected to 0x380490cd (???)
+--6390-- Reading syms from /usr/lib/valgrind/vgpreload_core-x86-linux.so
+--6390--   Considering /usr/lib/valgrind/vgpreload_core-x86-linux.so ..
+--6390--   .. CRC mismatch (computed 5b95c0c4 wanted 39e79efa)
+--6390--    object doesn't have a symbol table
+--6390-- Reading syms from /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so
+--6390--   Considering /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so ..
+--6390--   .. CRC mismatch (computed 4d5a1526 wanted 33571d5b)
+--6390--    object doesn't have a symbol table
+==6390== WARNING: new redirection conflicts with existing -- ignoring it
+--6390--     old: 0x04018eb0 (strlen              ) R-> (0000.0) 0x380490f2 ???
+--6390--     new: 0x04018eb0 (strlen              ) R-> (2007.0) 0x0402f410 strlen
+--6390-- Reading syms from /usr/lib/libcommons.so
+--6390-- Reading syms from /lib/i386-linux-gnu/libpthread-2.23.so
+--6390--   Considering /usr/lib/debug/.build-id/12/78da59ecc0791dce5c44d8b8756a0480be3a5b.debug ..
+--6390--   .. build-id is valid
+--6390-- Reading syms from /lib/i386-linux-gnu/libc-2.23.so
+--6390--   Considering /lib/i386-linux-gnu/libc-2.23.so ..
+--6390--   .. CRC mismatch (computed af9c0474 wanted a5de3f2a)
+--6390--   Considering /usr/lib/debug/lib/i386-linux-gnu/libc-2.23.so ..
+--6390--   .. CRC is valid
+--6390-- REDIR: 0x40ef4b0 (libc.so.6:strncasecmp) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--6390-- REDIR: 0x40f6140 (libc.so.6:memrchr) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--6390-- REDIR: 0x4108b20 (libc.so.6:wcslen) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--6390-- REDIR: 0x40ee350 (libc.so.6:strstr) redirected to 0x4033700 (strstr)
+--6390-- REDIR: 0x40ed7e0 (libc.so.6:__GI_strrchr) redirected to 0x402ee00 (__GI_strrchr)
+--6390-- REDIR: 0x40e8f00 (libc.so.6:malloc) redirected to 0x402c110 (malloc)
+--6390-- REDIR: 0x40ed5c0 (libc.so.6:__GI_strlen) redirected to 0x402f390 (__GI_strlen)
+--6390-- REDIR: 0x40ef680 (libc.so.6:__GI_memcpy) redirected to 0x4030fb0 (__GI_memcpy)
+--6390-- REDIR: 0x40e9810 (libc.so.6:calloc) redirected to 0x402e010 (calloc)
+--6390-- REDIR: 0x40e9520 (libc.so.6:realloc) redirected to 0x402e250 (realloc)
+--6390-- REDIR: 0x40e9470 (libc.so.6:free) redirected to 0x402d2f0 (free)
+--6390-- REDIR: 0x40ed580 (libc.so.6:strlen) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--6390-- REDIR: 0x40f6440 (libc.so.6:__strlen_sse2_bsf) redirected to 0x402f370 (strlen)
+--6390-- REDIR: 0x40ed700 (libc.so.6:strncmp) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--6390-- REDIR: 0x41ad5c0 (libc.so.6:__strncmp_ssse3) redirected to 0x402fab0 (strncmp)
+--6390-- REDIR: 0x40ecae0 (libc.so.6:strcat) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--6390-- REDIR: 0x4101b30 (libc.so.6:__strcat_ssse3) redirected to 0x402f030 (strcat)
+--6390-- REDIR: 0x40f1280 (libc.so.6:strchrnul) redirected to 0x40330b0 (strchrnul)
+--6390-- REDIR: 0x40ef0d0 (libc.so.6:__GI_mempcpy) redirected to 0x40332c0 (__GI_mempcpy)
+==6390== 
+==6390== Process terminating with default action of signal 2 (SIGINT)
+==6390==    at 0x4069026: futex_abstimed_wait_cancelable (futex-internal.h:205)
+==6390==    by 0x4069026: do_futex_wait.constprop.2 (sem_waitcommon.c:115)
+==6390==    by 0x4069116: __new_sem_wait_slow.constprop.1 (sem_waitcommon.c:282)
+==6390==    by 0x804963D: crear_bitmap (bitmap.c:8)
+==6390==    by 0x804CE97: inicializar_file_system (GameCard.c:116)
+==6390==    by 0x804CC5C: main (GameCard.c:10)
+==6390== 
+==6390== HEAP SUMMARY:
+==6390==     in use at exit: 5,436 bytes in 1,089 blocks
+==6390==   total heap usage: 9,436 allocs, 8,347 frees, 639,734 bytes allocated
+==6390== 
+==6390== Searching for pointers to 1,089 not-freed blocks
+==6390== Checked 72,904 bytes
+==6390== 
+==6390== 1 bytes in 1 blocks are definitely lost in loss record 1 of 28
+==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==6390==    by 0x40ED2C5: strdup (strdup.c:42)
+==6390==    by 0x405409A: string_duplicate (in /usr/lib/libcommons.so)
+==6390==    by 0x405412F: string_new (in /usr/lib/libcommons.so)
+==6390==    by 0x804CF0D: inicializar_metadata (GameCard.c:129)
+==6390==    by 0x804CD66: inicializar_file_system (GameCard.c:80)
+==6390==    by 0x804CC5C: main (GameCard.c:10)
+==6390== 
+==6390== 1 bytes in 1 blocks are definitely lost in loss record 2 of 28
+==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==6390==    by 0x40ED2C5: strdup (strdup.c:42)
+==6390==    by 0x405409A: string_duplicate (in /usr/lib/libcommons.so)
+==6390==    by 0x405412F: string_new (in /usr/lib/libcommons.so)
+==6390==    by 0x804CF26: inicializar_metadata (GameCard.c:132)
+==6390==    by 0x804CD66: inicializar_file_system (GameCard.c:80)
+==6390==    by 0x804CC5C: main (GameCard.c:10)
+==6390== 
+==6390== 1 bytes in 1 blocks are definitely lost in loss record 3 of 28
+==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==6390==    by 0x40ED2C5: strdup (strdup.c:42)
+==6390==    by 0x405409A: string_duplicate (in /usr/lib/libcommons.so)
+==6390==    by 0x405412F: string_new (in /usr/lib/libcommons.so)
+==6390==    by 0x804D154: crear_bloques (GameCard.c:205)
+==6390==    by 0x804D096: inicializar_bloques (GameCard.c:184)
+==6390==    by 0x804CDE3: inicializar_file_system (GameCard.c:93)
+==6390==    by 0x804CC5C: main (GameCard.c:10)
+==6390== 
+==6390== 8 bytes in 1 blocks are still reachable in loss record 4 of 28
+==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==6390==    by 0x4056393: config_create (in /usr/lib/libcommons.so)
+==6390==    by 0x804BD02: leer_config (configGameCard.c:7)
+==6390==    by 0x804CC44: main (GameCard.c:6)
+==6390== 
+==6390== 8 bytes in 1 blocks are still reachable in loss record 5 of 28
+==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==6390==    by 0x4056393: config_create (in /usr/lib/libcommons.so)
+==6390==    by 0x804C79E: leer_metadata_tall_grass (metadata.c:17)
+==6390==    by 0x804CD7D: inicializar_file_system (GameCard.c:84)
+==6390==    by 0x804CC5C: main (GameCard.c:10)
+==6390== 
+==6390== 9 bytes in 1 blocks are still reachable in loss record 6 of 28
+==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==6390==    by 0x40ED2C5: strdup (strdup.c:42)
+==6390==    by 0x405409A: string_duplicate (in /usr/lib/libcommons.so)
+==6390==    by 0x4053C49: log_create (in /usr/lib/libcommons.so)
+==6390==    by 0x804C547: iniciar_logger (logGameCard.c:6)
+==6390==    by 0x804CC49: main (GameCard.c:7)
+==6390== 
+==6390== 16 bytes in 1 blocks are still reachable in loss record 7 of 28
+==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==6390==    by 0x40559F7: dictionary_create (in /usr/lib/libcommons.so)
+==6390==    by 0x40563B6: config_create (in /usr/lib/libcommons.so)
+==6390==    by 0x804BD02: leer_config (configGameCard.c:7)
+==6390==    by 0x804CC44: main (GameCard.c:6)
+==6390== 
+==6390== 16 bytes in 1 blocks are still reachable in loss record 8 of 28
+==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==6390==    by 0x40559F7: dictionary_create (in /usr/lib/libcommons.so)
+==6390==    by 0x40563B6: config_create (in /usr/lib/libcommons.so)
+==6390==    by 0x804C79E: leer_metadata_tall_grass (metadata.c:17)
+==6390==    by 0x804CD7D: inicializar_file_system (GameCard.c:84)
+==6390==    by 0x804CC5C: main (GameCard.c:10)
+==6390== 
+==6390== 19 bytes in 1 blocks are still reachable in loss record 9 of 28
+==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==6390==    by 0x40ED2C5: strdup (strdup.c:42)
+==6390==    by 0x40563A7: config_create (in /usr/lib/libcommons.so)
+==6390==    by 0x804BD02: leer_config (configGameCard.c:7)
+==6390==    by 0x804CC44: main (GameCard.c:6)
+==6390== 
+==6390== 19 bytes in 3 blocks are still reachable in loss record 10 of 28
+==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==6390==    by 0x40ED2C5: strdup (strdup.c:42)
+==6390==    by 0x405409A: string_duplicate (in /usr/lib/libcommons.so)
+==6390==    by 0x4054BA9: _string_split (in /usr/lib/libcommons.so)
+==6390==    by 0x40546AF: string_n_split (in /usr/lib/libcommons.so)
+==6390==    by 0x40562B0: add_cofiguration.2909 (in /usr/lib/libcommons.so)
+==6390==    by 0x4054846: string_iterate_lines (in /usr/lib/libcommons.so)
+==6390==    by 0x4056444: config_create (in /usr/lib/libcommons.so)
+==6390==    by 0x804C79E: leer_metadata_tall_grass (metadata.c:17)
+==6390==    by 0x804CD7D: inicializar_file_system (GameCard.c:84)
+==6390==    by 0x804CC5C: main (GameCard.c:10)
+==6390== 
+==6390== 20 bytes in 1 blocks are still reachable in loss record 11 of 28
+==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==6390==    by 0x4053BA3: log_create (in /usr/lib/libcommons.so)
+==6390==    by 0x804C547: iniciar_logger (logGameCard.c:6)
+==6390==    by 0x804CC49: main (GameCard.c:7)
+==6390== 
+==6390== 31 bytes in 3 blocks are still reachable in loss record 12 of 28
+==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==6390==    by 0x40ED2C5: strdup (strdup.c:42)
+==6390==    by 0x4055B2D: dictionary_put (in /usr/lib/libcommons.so)
+==6390==    by 0x40562D3: add_cofiguration.2909 (in /usr/lib/libcommons.so)
+==6390==    by 0x4054846: string_iterate_lines (in /usr/lib/libcommons.so)
+==6390==    by 0x4056444: config_create (in /usr/lib/libcommons.so)
+==6390==    by 0x804C79E: leer_metadata_tall_grass (metadata.c:17)
+==6390==    by 0x804CD7D: inicializar_file_system (GameCard.c:84)
+==6390==    by 0x804CC5C: main (GameCard.c:10)
+==6390== 
+==6390== 48 bytes in 3 blocks are still reachable in loss record 13 of 28
+==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==6390==    by 0x4056004: dictionary_create_element (in /usr/lib/libcommons.so)
+==6390==    by 0x4055B3F: dictionary_put (in /usr/lib/libcommons.so)
+==6390==    by 0x40562D3: add_cofiguration.2909 (in /usr/lib/libcommons.so)
+==6390==    by 0x4054846: string_iterate_lines (in /usr/lib/libcommons.so)
+==6390==    by 0x4056444: config_create (in /usr/lib/libcommons.so)
+==6390==    by 0x804C79E: leer_metadata_tall_grass (metadata.c:17)
+==6390==    by 0x804CD7D: inicializar_file_system (GameCard.c:84)
+==6390==    by 0x804CC5C: main (GameCard.c:10)
+==6390== 
+==6390== 50 bytes in 1 blocks are still reachable in loss record 14 of 28
+==6390==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==6390==    by 0x40540E7: string_append (in /usr/lib/libcommons.so)
+==6390==    by 0x804CCDC: inicializar_file_system (GameCard.c:71)
+==6390==    by 0x804CC5C: main (GameCard.c:10)
+==6390== 
+==6390== 56 bytes in 1 blocks are still reachable in loss record 15 of 28
+==6390==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==6390==    by 0x40540E7: string_append (in /usr/lib/libcommons.so)
+==6390==    by 0x804CE1A: inicializar_file_system (GameCard.c:102)
+==6390==    by 0x804CC5C: main (GameCard.c:10)
+==6390== 
+==6390== 58 bytes in 1 blocks are still reachable in loss record 16 of 28
+==6390==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==6390==    by 0x40540E7: string_append (in /usr/lib/libcommons.so)
+==6390==    by 0x804CDAC: inicializar_file_system (GameCard.c:90)
+==6390==    by 0x804CC5C: main (GameCard.c:10)
+==6390== 
+==6390== 59 bytes in 1 blocks are still reachable in loss record 17 of 28
+==6390==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==6390==    by 0x40540E7: string_append (in /usr/lib/libcommons.so)
+==6390==    by 0x804CD1F: inicializar_file_system (GameCard.c:77)
+==6390==    by 0x804CC5C: main (GameCard.c:10)
+==6390== 
+==6390== 69 bytes in 1 blocks are definitely lost in loss record 18 of 28
+==6390==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==6390==    by 0x40540E7: string_append (in /usr/lib/libcommons.so)
+==6390==    by 0x804D0DE: completar_metadata_directorio (GameCard.c:192)
+==6390==    by 0x804D071: inicializar_files (GameCard.c:175)
+==6390==    by 0x804CE51: inicializar_file_system (GameCard.c:105)
+==6390==    by 0x804CC5C: main (GameCard.c:10)
+==6390== 
+==6390== 70 bytes in 1 blocks are still reachable in loss record 19 of 28
+==6390==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==6390==    by 0x40540E7: string_append (in /usr/lib/libcommons.so)
+==6390==    by 0x804CE88: inicializar_file_system (GameCard.c:115)
+==6390==    by 0x804CC5C: main (GameCard.c:10)
+==6390== 
+==6390== 71 bytes in 1 blocks are definitely lost in loss record 20 of 28
+==6390==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==6390==    by 0x40540E7: string_append (in /usr/lib/libcommons.so)
+==6390==    by 0x804D0DE: completar_metadata_directorio (GameCard.c:192)
+==6390==    by 0x804D088: inicializar_bloques (GameCard.c:183)
+==6390==    by 0x804CDE3: inicializar_file_system (GameCard.c:93)
+==6390==    by 0x804CC5C: main (GameCard.c:10)
+==6390== 
+==6390== 72 bytes in 1 blocks are still reachable in loss record 21 of 28
+==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==6390==    by 0x40ED2C5: strdup (strdup.c:42)
+==6390==    by 0x40563A7: config_create (in /usr/lib/libcommons.so)
+==6390==    by 0x804C79E: leer_metadata_tall_grass (metadata.c:17)
+==6390==    by 0x804CD7D: inicializar_file_system (GameCard.c:84)
+==6390==    by 0x804CC5C: main (GameCard.c:10)
+==6390== 
+==6390== 72 bytes in 1 blocks are definitely lost in loss record 22 of 28
+==6390==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==6390==    by 0x40540E7: string_append (in /usr/lib/libcommons.so)
+==6390==    by 0x804C78F: leer_metadata_tall_grass (metadata.c:15)
+==6390==    by 0x804CD7D: inicializar_file_system (GameCard.c:84)
+==6390==    by 0x804CC5C: main (GameCard.c:10)
+==6390== 
+==6390== 80 bytes in 1 blocks are still reachable in loss record 23 of 28
+==6390==    at 0x402E0B8: calloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==6390==    by 0x4055A18: dictionary_create (in /usr/lib/libcommons.so)
+==6390==    by 0x40563B6: config_create (in /usr/lib/libcommons.so)
+==6390==    by 0x804BD02: leer_config (configGameCard.c:7)
+==6390==    by 0x804CC44: main (GameCard.c:6)
+==6390== 
+==6390== 80 bytes in 1 blocks are still reachable in loss record 24 of 28
+==6390==    at 0x402E0B8: calloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==6390==    by 0x4055A18: dictionary_create (in /usr/lib/libcommons.so)
+==6390==    by 0x40563B6: config_create (in /usr/lib/libcommons.so)
+==6390==    by 0x804C79E: leer_metadata_tall_grass (metadata.c:17)
+==6390==    by 0x804CD7D: inicializar_file_system (GameCard.c:84)
+==6390==    by 0x804CC5C: main (GameCard.c:10)
+==6390== 
+==6390== 100 bytes in 12 blocks are still reachable in loss record 25 of 28
+==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==6390==    by 0x40ED2C5: strdup (strdup.c:42)
+==6390==    by 0x405409A: string_duplicate (in /usr/lib/libcommons.so)
+==6390==    by 0x4054BA9: _string_split (in /usr/lib/libcommons.so)
+==6390==    by 0x40546AF: string_n_split (in /usr/lib/libcommons.so)
+==6390==    by 0x40562B0: add_cofiguration.2909 (in /usr/lib/libcommons.so)
+==6390==    by 0x4054846: string_iterate_lines (in /usr/lib/libcommons.so)
+==6390==    by 0x4056444: config_create (in /usr/lib/libcommons.so)
+==6390==    by 0x804BD02: leer_config (configGameCard.c:7)
+==6390==    by 0x804CC44: main (GameCard.c:6)
+==6390== 
+==6390== 192 bytes in 12 blocks are still reachable in loss record 26 of 28
+==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==6390==    by 0x4056004: dictionary_create_element (in /usr/lib/libcommons.so)
+==6390==    by 0x4055B3F: dictionary_put (in /usr/lib/libcommons.so)
+==6390==    by 0x40562D3: add_cofiguration.2909 (in /usr/lib/libcommons.so)
+==6390==    by 0x4054846: string_iterate_lines (in /usr/lib/libcommons.so)
+==6390==    by 0x4056444: config_create (in /usr/lib/libcommons.so)
+==6390==    by 0x804BD02: leer_config (configGameCard.c:7)
+==6390==    by 0x804CC44: main (GameCard.c:6)
+==6390== 
+==6390== 202 bytes in 12 blocks are still reachable in loss record 27 of 28
+==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==6390==    by 0x40ED2C5: strdup (strdup.c:42)
+==6390==    by 0x4055B2D: dictionary_put (in /usr/lib/libcommons.so)
+==6390==    by 0x40562D3: add_cofiguration.2909 (in /usr/lib/libcommons.so)
+==6390==    by 0x4054846: string_iterate_lines (in /usr/lib/libcommons.so)
+==6390==    by 0x4056444: config_create (in /usr/lib/libcommons.so)
+==6390==    by 0x804BD02: leer_config (configGameCard.c:7)
+==6390==    by 0x804CC44: main (GameCard.c:6)
+==6390== 
+==6390== 4,008 bytes in 1,023 blocks are definitely lost in loss record 28 of 28
+==6390==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==6390==    by 0x40540E7: string_append (in /usr/lib/libcommons.so)
+==6390==    by 0x4054A5E: _string_append_with_format_list (in /usr/lib/libcommons.so)
+==6390==    by 0x40541D3: string_from_vformat (in /usr/lib/libcommons.so)
+==6390==    by 0x4054171: string_from_format (in /usr/lib/libcommons.so)
+==6390==    by 0x4054214: string_itoa (in /usr/lib/libcommons.so)
+==6390==    by 0x804D172: crear_bloques (GameCard.c:211)
+==6390==    by 0x804D096: inicializar_bloques (GameCard.c:184)
+==6390==    by 0x804CDE3: inicializar_file_system (GameCard.c:93)
+==6390==    by 0x804CC5C: main (GameCard.c:10)
+==6390== 
+==6390== LEAK SUMMARY:
+==6390==    definitely lost: 4,223 bytes in 1,029 blocks
+==6390==    indirectly lost: 0 bytes in 0 blocks
+==6390==      possibly lost: 0 bytes in 0 blocks
+==6390==    still reachable: 1,213 bytes in 60 blocks
+==6390==         suppressed: 0 bytes in 0 blocks
+==6390== 
+==6390== ERROR SUMMARY: 7 errors from 7 contexts (suppressed: 0 from 0)
+==6390== ERROR SUMMARY: 7 errors from 7 contexts (suppressed: 0 from 0)

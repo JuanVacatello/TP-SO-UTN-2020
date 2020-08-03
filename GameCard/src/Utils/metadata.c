@@ -82,9 +82,11 @@ int archivo_pokemon_esta_abierto(char* path_pokemon){
 	t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
 	char* open = config_get_string_value(metadata_pokemon, "OPEN");
 	if(string_equals_ignore_case(open, "Y")){
+		config_destroy(metadata_pokemon);
 		return 1;
 	}
 	else {
+		config_destroy(metadata_pokemon);
 		return 0;
 	}
 }

@@ -10,14 +10,17 @@ int main(void) {
 	inicializar_file_system(punto_montaje);
 
 	sem_init(&MUTEX_MENSAJES_GB,0,1);
+	sem_init(&semaforo_bitmap,0,1);
 
 	iniciar_espera_mensajes_Gameboy();
+
 
 	/*
 	pthread_mutex_init(&MUTEX_BITMAP, NULL);
 
 	sem_init(&MUTEX_SUB,0,1);
 	sem_init(&MUTEX_PRUEBA,0,0);
+
 
 	while(1){
 		pthread_create(&hilo_gameboy, NULL, iniciar_espera_mensajes_Gameboy, NULL);

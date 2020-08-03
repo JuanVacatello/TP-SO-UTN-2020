@@ -38,21 +38,23 @@ int existe_file(char* path){
 
 	 char* path = obtener_path_bloque_individual(bloque_en_string);
 
-	  	struct stat st;
-	  	stat(path,&st);
+	 struct stat st;
+	 stat(path,&st);
 
-	  	int tamanio_actual = st.st_size;
+	 int tamanio_actual = st.st_size;
 
 	 /*
 	 int tamanio_libre = tamanio_libre_bloque(bloque_en_string);
 	 if(tamanio_libre == obtener_tamanio_bloques()){
 	 */
-	  	if(tamanio_actual==0){
-		 free(bloque_en_string);
+	 if(tamanio_actual==0){
+	  free(bloque_en_string);
+	  free(path);
 		 return 1;
 	 }
 	 else{
 	free(bloque_en_string);
+	free(path);
 	 return 0;
 
 	 }
@@ -182,9 +184,7 @@ void guardar_data_en_bloque(char* data, char* path_bloque){
 
 
 void almacenar_datos(char *data, char* path_pokemon){
-	//mostrar_paths_generados("adentro funcion antes de leer");
-	 leer_config(); //prueba
-	// mostrar_paths_generados("adentro funcion despues de leer");
+
 	 char* path_bloques = obtener_path_bloques();
 	 char** bloques = obtener_bloques_pokemon(path_pokemon);
 	 char* bloques_string = obtener_bloques_pokemon_string(path_pokemon);
