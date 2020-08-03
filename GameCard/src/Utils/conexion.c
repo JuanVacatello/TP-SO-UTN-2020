@@ -77,7 +77,7 @@ void esperar_gameboy(int socket_servidor){
 	struct sockaddr_in dir_cliente;
 
 	int tam_direccion = sizeof(struct sockaddr_in);
-	//sem_wait(&MUTEX_MENSAJES_GB);
+	sem_wait(&MUTEX_MENSAJES_GB);
 	int socket_cliente = accept(socket_servidor, (void*) &dir_cliente, &tam_direccion);
 
 	pthread_create(&thread,NULL,(void*)serve_client,&socket_cliente);
@@ -99,19 +99,19 @@ void process_request(op_code cod_op, int socket_cliente) {
 
 	switch(cod_op){
 		case 1:
-			pthread_create(&hilo_new_pokemon_gameboy, NULL, recibir_new_pokemon, socket_cliente);
-			pthread_detach(hilo_new_pokemon_gameboy);
+			recibir_new_pokemon(socket_cliente);//pthread_create(&hilo_new_pokemon_gameboy, NULL, recibir_new_pokemon, socket_cliente);
+			//pthread_detach(hilo_new_pokemon_gameboy);
 			break;
 		case 3:
-			pthread_create(&hilo_catch_pokemon_gameboy, NULL, recibir_catch_pokemon, socket_cliente);
-			pthread_detach(hilo_catch_pokemon_gameboy);
+			recibir_catch_pokemon(socket_cliente);//pthread_create(&hilo_catch_pokemon_gameboy, NULL, recibir_catch_pokemon, socket_cliente);
+			//pthread_detach(hilo_catch_pokemon_gameboy);
 			break;
 		case 5:
-			pthread_create(&hilo_get_pokemon_gameboy, NULL, recibir_get_pokemon, socket_cliente);
-			pthread_detach(hilo_get_pokemon_gameboy);
+			recibir_get_pokemon(socket_cliente);//pthread_create(&hilo_get_pokemon_gameboy, NULL, recibir_get_pokemon, socket_cliente);
+			//pthread_detach(hilo_get_pokemon_gameboy);
 			break;
 	}
-	//sem_post(&MUTEX_MENSAJES_GB);
+	sem_post(&MUTEX_MENSAJES_GB);
 }
 
 // SERIALIZAR PAQUETE

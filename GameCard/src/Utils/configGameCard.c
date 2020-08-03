@@ -88,7 +88,7 @@ char* obtener_path_files(){
 }
 
 char* obtener_path_bloques(){
-	char* aux = string_new();
+	//char* aux = string_new();
 	/*
 	char* path_bloques;
 	path_bloques = config_get_string_value(configGameCard, "PATH_BLOQUES");

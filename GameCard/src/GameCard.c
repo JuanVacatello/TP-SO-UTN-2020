@@ -6,11 +6,13 @@ int main(void) {
 	leer_config();
 	iniciar_logger();
 
+	sem_init(&MUTEX_MENSAJES_GB,0,1);
+	sem_init(&semaforo_bitmap,0,1);
+
 	char* punto_montaje = obtener_punto_montaje();
 	inicializar_file_system(punto_montaje);
 
-	sem_init(&MUTEX_MENSAJES_GB,0,1);
-	sem_init(&semaforo_bitmap,0,1);
+
 
 	iniciar_espera_mensajes_Gameboy();
 
@@ -328,7 +330,7 @@ void new_pokemon(char* pokemon,int posX,int posY, int cantidad){ //funciona
 		cerrar_archivo_pokemon(path_pokemon);
 	}
 
-	free(path_pokemon);
+	//free(path_pokemon);
 }
 
 int catch_pokemon(char* pokemon,int posX,int posY){

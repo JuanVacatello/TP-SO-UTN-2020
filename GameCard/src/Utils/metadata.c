@@ -49,7 +49,7 @@ char** obtener_bloques_pokemon(char* path_pokemon){ //DEVUELVE EN FORMATO: ["1",
 	bloques_string = config_get_string_value(metadata_pokemon, "BLOCKS");
 
 	char** bloques = string_get_string_as_array(bloques_string);
-	config_destroy(metadata_pokemon);
+	//config_destroy(metadata_pokemon);
 	return bloques;
 
 }
@@ -59,7 +59,7 @@ char* obtener_bloques_pokemon_string(char* path_pokemon){
 	t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
 	char* aux;
 	aux = config_get_string_value(metadata_pokemon, "BLOCKS");
-	char* bloques_string =string_duplicate(bloques_string);
+	char* bloques_string =string_duplicate(aux);
 	config_destroy(metadata_pokemon);
 	return bloques_string;
 
@@ -119,7 +119,6 @@ int obtener_tamanio_archivo(char* path_pokemon){
 
 t_config* leer_metadata_file(char* path_file){
 	t_config* metadata;
-
 
 		char* path_archivo_metadata = string_new();
 		string_append(&path_archivo_metadata, path_file);

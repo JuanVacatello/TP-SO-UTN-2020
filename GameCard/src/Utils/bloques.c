@@ -371,8 +371,6 @@ int existe_posicion_en_lista(t_list* lista, int posX, int posY){ //funciona
 	    		  i++;
 	    	  }
 	    	  if(string_equals_ignore_case(posicion_final_Y,posY_string)){
-	    		  //ENCUENTRO LA POSICION DESEADA
-	    		  printf("encontre en el indice %d", k);
 
 	    		 return k; //devuelvo el indice en la lista
 	    	  	  }

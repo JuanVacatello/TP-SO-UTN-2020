@@ -1,344 +1,2495 @@
-==6390== Memcheck, a memory error detector
-==6390== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
-==6390== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
-==6390== Command: ./GameCard
-==6390== Parent PID: 5804
-==6390== 
---6390-- 
---6390-- Valgrind options:
---6390--    --show-leak-kinds=all
---6390--    --leak-check=full
---6390--    -v
---6390--    --log-file=valgrind
---6390-- Contents of /proc/version:
---6390--   Linux version 4.4.0-116-generic (buildd@lgw01-amd64-023) (gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.9) ) #140-Ubuntu SMP Mon Feb 12 21:22:43 UTC 2018
---6390-- 
---6390-- Arch and hwcaps: X86, LittleEndian, x86-mmxext-sse1-sse2-sse3-lzcnt
---6390-- Page sizes: currently 4096, max supported 4096
---6390-- Valgrind library directory: /usr/lib/valgrind
---6390-- Reading syms from /lib/i386-linux-gnu/ld-2.23.so
---6390--   Considering /lib/i386-linux-gnu/ld-2.23.so ..
---6390--   .. CRC mismatch (computed 596cb2b8 wanted 417b32cc)
---6390--   Considering /usr/lib/debug/lib/i386-linux-gnu/ld-2.23.so ..
---6390--   .. CRC is valid
---6390-- Reading syms from /home/utnso/Documentos/Delibird/GameCard/tp-2020-1c-wrappers/GameCard/Debug/GameCard
---6390-- Reading syms from /usr/lib/valgrind/memcheck-x86-linux
---6390--   Considering /usr/lib/valgrind/memcheck-x86-linux ..
---6390--   .. CRC mismatch (computed 6036da3f wanted 652e483f)
---6390--    object doesn't have a symbol table
---6390--    object doesn't have a dynamic symbol table
---6390-- Scheduler: using generic scheduler lock implementation.
---6390-- Reading suppressions file: /usr/lib/valgrind/default.supp
-==6390== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-6390-by-utnso-on-???
-==6390== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-6390-by-utnso-on-???
-==6390== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-6390-by-utnso-on-???
-==6390== 
-==6390== TO CONTROL THIS PROCESS USING vgdb (which you probably
-==6390== don't want to do, unless you know exactly what you're doing,
-==6390== or are doing some strange experiment):
-==6390==   /usr/lib/valgrind/../../bin/vgdb --pid=6390 ...command...
-==6390== 
-==6390== TO DEBUG THIS PROCESS USING GDB: start GDB like this
-==6390==   /path/to/gdb ./GameCard
-==6390== and then give GDB the following command
-==6390==   target remote | /usr/lib/valgrind/../../bin/vgdb --pid=6390
-==6390== --pid is optional if only one valgrind process is running
-==6390== 
---6390-- REDIR: 0x4018eb0 (ld-linux.so.2:strlen) redirected to 0x380490f2 (???)
---6390-- REDIR: 0x4018c70 (ld-linux.so.2:index) redirected to 0x380490cd (???)
---6390-- Reading syms from /usr/lib/valgrind/vgpreload_core-x86-linux.so
---6390--   Considering /usr/lib/valgrind/vgpreload_core-x86-linux.so ..
---6390--   .. CRC mismatch (computed 5b95c0c4 wanted 39e79efa)
---6390--    object doesn't have a symbol table
---6390-- Reading syms from /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so
---6390--   Considering /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so ..
---6390--   .. CRC mismatch (computed 4d5a1526 wanted 33571d5b)
---6390--    object doesn't have a symbol table
-==6390== WARNING: new redirection conflicts with existing -- ignoring it
---6390--     old: 0x04018eb0 (strlen              ) R-> (0000.0) 0x380490f2 ???
---6390--     new: 0x04018eb0 (strlen              ) R-> (2007.0) 0x0402f410 strlen
---6390-- Reading syms from /usr/lib/libcommons.so
---6390-- Reading syms from /lib/i386-linux-gnu/libpthread-2.23.so
---6390--   Considering /usr/lib/debug/.build-id/12/78da59ecc0791dce5c44d8b8756a0480be3a5b.debug ..
---6390--   .. build-id is valid
---6390-- Reading syms from /lib/i386-linux-gnu/libc-2.23.so
---6390--   Considering /lib/i386-linux-gnu/libc-2.23.so ..
---6390--   .. CRC mismatch (computed af9c0474 wanted a5de3f2a)
---6390--   Considering /usr/lib/debug/lib/i386-linux-gnu/libc-2.23.so ..
---6390--   .. CRC is valid
---6390-- REDIR: 0x40ef4b0 (libc.so.6:strncasecmp) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
---6390-- REDIR: 0x40f6140 (libc.so.6:memrchr) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
---6390-- REDIR: 0x4108b20 (libc.so.6:wcslen) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
---6390-- REDIR: 0x40ee350 (libc.so.6:strstr) redirected to 0x4033700 (strstr)
---6390-- REDIR: 0x40ed7e0 (libc.so.6:__GI_strrchr) redirected to 0x402ee00 (__GI_strrchr)
---6390-- REDIR: 0x40e8f00 (libc.so.6:malloc) redirected to 0x402c110 (malloc)
---6390-- REDIR: 0x40ed5c0 (libc.so.6:__GI_strlen) redirected to 0x402f390 (__GI_strlen)
---6390-- REDIR: 0x40ef680 (libc.so.6:__GI_memcpy) redirected to 0x4030fb0 (__GI_memcpy)
---6390-- REDIR: 0x40e9810 (libc.so.6:calloc) redirected to 0x402e010 (calloc)
---6390-- REDIR: 0x40e9520 (libc.so.6:realloc) redirected to 0x402e250 (realloc)
---6390-- REDIR: 0x40e9470 (libc.so.6:free) redirected to 0x402d2f0 (free)
---6390-- REDIR: 0x40ed580 (libc.so.6:strlen) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
---6390-- REDIR: 0x40f6440 (libc.so.6:__strlen_sse2_bsf) redirected to 0x402f370 (strlen)
---6390-- REDIR: 0x40ed700 (libc.so.6:strncmp) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
---6390-- REDIR: 0x41ad5c0 (libc.so.6:__strncmp_ssse3) redirected to 0x402fab0 (strncmp)
---6390-- REDIR: 0x40ecae0 (libc.so.6:strcat) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
---6390-- REDIR: 0x4101b30 (libc.so.6:__strcat_ssse3) redirected to 0x402f030 (strcat)
---6390-- REDIR: 0x40f1280 (libc.so.6:strchrnul) redirected to 0x40330b0 (strchrnul)
---6390-- REDIR: 0x40ef0d0 (libc.so.6:__GI_mempcpy) redirected to 0x40332c0 (__GI_mempcpy)
-==6390== 
-==6390== Process terminating with default action of signal 2 (SIGINT)
-==6390==    at 0x4069026: futex_abstimed_wait_cancelable (futex-internal.h:205)
-==6390==    by 0x4069026: do_futex_wait.constprop.2 (sem_waitcommon.c:115)
-==6390==    by 0x4069116: __new_sem_wait_slow.constprop.1 (sem_waitcommon.c:282)
-==6390==    by 0x804963D: crear_bitmap (bitmap.c:8)
-==6390==    by 0x804CE97: inicializar_file_system (GameCard.c:116)
-==6390==    by 0x804CC5C: main (GameCard.c:10)
-==6390== 
-==6390== HEAP SUMMARY:
-==6390==     in use at exit: 5,436 bytes in 1,089 blocks
-==6390==   total heap usage: 9,436 allocs, 8,347 frees, 639,734 bytes allocated
-==6390== 
-==6390== Searching for pointers to 1,089 not-freed blocks
-==6390== Checked 72,904 bytes
-==6390== 
-==6390== 1 bytes in 1 blocks are definitely lost in loss record 1 of 28
-==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6390==    by 0x40ED2C5: strdup (strdup.c:42)
-==6390==    by 0x405409A: string_duplicate (in /usr/lib/libcommons.so)
-==6390==    by 0x405412F: string_new (in /usr/lib/libcommons.so)
-==6390==    by 0x804CF0D: inicializar_metadata (GameCard.c:129)
-==6390==    by 0x804CD66: inicializar_file_system (GameCard.c:80)
-==6390==    by 0x804CC5C: main (GameCard.c:10)
-==6390== 
-==6390== 1 bytes in 1 blocks are definitely lost in loss record 2 of 28
-==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6390==    by 0x40ED2C5: strdup (strdup.c:42)
-==6390==    by 0x405409A: string_duplicate (in /usr/lib/libcommons.so)
-==6390==    by 0x405412F: string_new (in /usr/lib/libcommons.so)
-==6390==    by 0x804CF26: inicializar_metadata (GameCard.c:132)
-==6390==    by 0x804CD66: inicializar_file_system (GameCard.c:80)
-==6390==    by 0x804CC5C: main (GameCard.c:10)
-==6390== 
-==6390== 1 bytes in 1 blocks are definitely lost in loss record 3 of 28
-==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6390==    by 0x40ED2C5: strdup (strdup.c:42)
-==6390==    by 0x405409A: string_duplicate (in /usr/lib/libcommons.so)
-==6390==    by 0x405412F: string_new (in /usr/lib/libcommons.so)
-==6390==    by 0x804D154: crear_bloques (GameCard.c:205)
-==6390==    by 0x804D096: inicializar_bloques (GameCard.c:184)
-==6390==    by 0x804CDE3: inicializar_file_system (GameCard.c:93)
-==6390==    by 0x804CC5C: main (GameCard.c:10)
-==6390== 
-==6390== 8 bytes in 1 blocks are still reachable in loss record 4 of 28
-==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6390==    by 0x4056393: config_create (in /usr/lib/libcommons.so)
-==6390==    by 0x804BD02: leer_config (configGameCard.c:7)
-==6390==    by 0x804CC44: main (GameCard.c:6)
-==6390== 
-==6390== 8 bytes in 1 blocks are still reachable in loss record 5 of 28
-==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6390==    by 0x4056393: config_create (in /usr/lib/libcommons.so)
-==6390==    by 0x804C79E: leer_metadata_tall_grass (metadata.c:17)
-==6390==    by 0x804CD7D: inicializar_file_system (GameCard.c:84)
-==6390==    by 0x804CC5C: main (GameCard.c:10)
-==6390== 
-==6390== 9 bytes in 1 blocks are still reachable in loss record 6 of 28
-==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6390==    by 0x40ED2C5: strdup (strdup.c:42)
-==6390==    by 0x405409A: string_duplicate (in /usr/lib/libcommons.so)
-==6390==    by 0x4053C49: log_create (in /usr/lib/libcommons.so)
-==6390==    by 0x804C547: iniciar_logger (logGameCard.c:6)
-==6390==    by 0x804CC49: main (GameCard.c:7)
-==6390== 
-==6390== 16 bytes in 1 blocks are still reachable in loss record 7 of 28
-==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6390==    by 0x40559F7: dictionary_create (in /usr/lib/libcommons.so)
-==6390==    by 0x40563B6: config_create (in /usr/lib/libcommons.so)
-==6390==    by 0x804BD02: leer_config (configGameCard.c:7)
-==6390==    by 0x804CC44: main (GameCard.c:6)
-==6390== 
-==6390== 16 bytes in 1 blocks are still reachable in loss record 8 of 28
-==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6390==    by 0x40559F7: dictionary_create (in /usr/lib/libcommons.so)
-==6390==    by 0x40563B6: config_create (in /usr/lib/libcommons.so)
-==6390==    by 0x804C79E: leer_metadata_tall_grass (metadata.c:17)
-==6390==    by 0x804CD7D: inicializar_file_system (GameCard.c:84)
-==6390==    by 0x804CC5C: main (GameCard.c:10)
-==6390== 
-==6390== 19 bytes in 1 blocks are still reachable in loss record 9 of 28
-==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6390==    by 0x40ED2C5: strdup (strdup.c:42)
-==6390==    by 0x40563A7: config_create (in /usr/lib/libcommons.so)
-==6390==    by 0x804BD02: leer_config (configGameCard.c:7)
-==6390==    by 0x804CC44: main (GameCard.c:6)
-==6390== 
-==6390== 19 bytes in 3 blocks are still reachable in loss record 10 of 28
-==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6390==    by 0x40ED2C5: strdup (strdup.c:42)
-==6390==    by 0x405409A: string_duplicate (in /usr/lib/libcommons.so)
-==6390==    by 0x4054BA9: _string_split (in /usr/lib/libcommons.so)
-==6390==    by 0x40546AF: string_n_split (in /usr/lib/libcommons.so)
-==6390==    by 0x40562B0: add_cofiguration.2909 (in /usr/lib/libcommons.so)
-==6390==    by 0x4054846: string_iterate_lines (in /usr/lib/libcommons.so)
-==6390==    by 0x4056444: config_create (in /usr/lib/libcommons.so)
-==6390==    by 0x804C79E: leer_metadata_tall_grass (metadata.c:17)
-==6390==    by 0x804CD7D: inicializar_file_system (GameCard.c:84)
-==6390==    by 0x804CC5C: main (GameCard.c:10)
-==6390== 
-==6390== 20 bytes in 1 blocks are still reachable in loss record 11 of 28
-==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6390==    by 0x4053BA3: log_create (in /usr/lib/libcommons.so)
-==6390==    by 0x804C547: iniciar_logger (logGameCard.c:6)
-==6390==    by 0x804CC49: main (GameCard.c:7)
-==6390== 
-==6390== 31 bytes in 3 blocks are still reachable in loss record 12 of 28
-==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6390==    by 0x40ED2C5: strdup (strdup.c:42)
-==6390==    by 0x4055B2D: dictionary_put (in /usr/lib/libcommons.so)
-==6390==    by 0x40562D3: add_cofiguration.2909 (in /usr/lib/libcommons.so)
-==6390==    by 0x4054846: string_iterate_lines (in /usr/lib/libcommons.so)
-==6390==    by 0x4056444: config_create (in /usr/lib/libcommons.so)
-==6390==    by 0x804C79E: leer_metadata_tall_grass (metadata.c:17)
-==6390==    by 0x804CD7D: inicializar_file_system (GameCard.c:84)
-==6390==    by 0x804CC5C: main (GameCard.c:10)
-==6390== 
-==6390== 48 bytes in 3 blocks are still reachable in loss record 13 of 28
-==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6390==    by 0x4056004: dictionary_create_element (in /usr/lib/libcommons.so)
-==6390==    by 0x4055B3F: dictionary_put (in /usr/lib/libcommons.so)
-==6390==    by 0x40562D3: add_cofiguration.2909 (in /usr/lib/libcommons.so)
-==6390==    by 0x4054846: string_iterate_lines (in /usr/lib/libcommons.so)
-==6390==    by 0x4056444: config_create (in /usr/lib/libcommons.so)
-==6390==    by 0x804C79E: leer_metadata_tall_grass (metadata.c:17)
-==6390==    by 0x804CD7D: inicializar_file_system (GameCard.c:84)
-==6390==    by 0x804CC5C: main (GameCard.c:10)
-==6390== 
-==6390== 50 bytes in 1 blocks are still reachable in loss record 14 of 28
-==6390==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6390==    by 0x40540E7: string_append (in /usr/lib/libcommons.so)
-==6390==    by 0x804CCDC: inicializar_file_system (GameCard.c:71)
-==6390==    by 0x804CC5C: main (GameCard.c:10)
-==6390== 
-==6390== 56 bytes in 1 blocks are still reachable in loss record 15 of 28
-==6390==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6390==    by 0x40540E7: string_append (in /usr/lib/libcommons.so)
-==6390==    by 0x804CE1A: inicializar_file_system (GameCard.c:102)
-==6390==    by 0x804CC5C: main (GameCard.c:10)
-==6390== 
-==6390== 58 bytes in 1 blocks are still reachable in loss record 16 of 28
-==6390==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6390==    by 0x40540E7: string_append (in /usr/lib/libcommons.so)
-==6390==    by 0x804CDAC: inicializar_file_system (GameCard.c:90)
-==6390==    by 0x804CC5C: main (GameCard.c:10)
-==6390== 
-==6390== 59 bytes in 1 blocks are still reachable in loss record 17 of 28
-==6390==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6390==    by 0x40540E7: string_append (in /usr/lib/libcommons.so)
-==6390==    by 0x804CD1F: inicializar_file_system (GameCard.c:77)
-==6390==    by 0x804CC5C: main (GameCard.c:10)
-==6390== 
-==6390== 69 bytes in 1 blocks are definitely lost in loss record 18 of 28
-==6390==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6390==    by 0x40540E7: string_append (in /usr/lib/libcommons.so)
-==6390==    by 0x804D0DE: completar_metadata_directorio (GameCard.c:192)
-==6390==    by 0x804D071: inicializar_files (GameCard.c:175)
-==6390==    by 0x804CE51: inicializar_file_system (GameCard.c:105)
-==6390==    by 0x804CC5C: main (GameCard.c:10)
-==6390== 
-==6390== 70 bytes in 1 blocks are still reachable in loss record 19 of 28
-==6390==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6390==    by 0x40540E7: string_append (in /usr/lib/libcommons.so)
-==6390==    by 0x804CE88: inicializar_file_system (GameCard.c:115)
-==6390==    by 0x804CC5C: main (GameCard.c:10)
-==6390== 
-==6390== 71 bytes in 1 blocks are definitely lost in loss record 20 of 28
-==6390==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6390==    by 0x40540E7: string_append (in /usr/lib/libcommons.so)
-==6390==    by 0x804D0DE: completar_metadata_directorio (GameCard.c:192)
-==6390==    by 0x804D088: inicializar_bloques (GameCard.c:183)
-==6390==    by 0x804CDE3: inicializar_file_system (GameCard.c:93)
-==6390==    by 0x804CC5C: main (GameCard.c:10)
-==6390== 
-==6390== 72 bytes in 1 blocks are still reachable in loss record 21 of 28
-==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6390==    by 0x40ED2C5: strdup (strdup.c:42)
-==6390==    by 0x40563A7: config_create (in /usr/lib/libcommons.so)
-==6390==    by 0x804C79E: leer_metadata_tall_grass (metadata.c:17)
-==6390==    by 0x804CD7D: inicializar_file_system (GameCard.c:84)
-==6390==    by 0x804CC5C: main (GameCard.c:10)
-==6390== 
-==6390== 72 bytes in 1 blocks are definitely lost in loss record 22 of 28
-==6390==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6390==    by 0x40540E7: string_append (in /usr/lib/libcommons.so)
-==6390==    by 0x804C78F: leer_metadata_tall_grass (metadata.c:15)
-==6390==    by 0x804CD7D: inicializar_file_system (GameCard.c:84)
-==6390==    by 0x804CC5C: main (GameCard.c:10)
-==6390== 
-==6390== 80 bytes in 1 blocks are still reachable in loss record 23 of 28
-==6390==    at 0x402E0B8: calloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6390==    by 0x4055A18: dictionary_create (in /usr/lib/libcommons.so)
-==6390==    by 0x40563B6: config_create (in /usr/lib/libcommons.so)
-==6390==    by 0x804BD02: leer_config (configGameCard.c:7)
-==6390==    by 0x804CC44: main (GameCard.c:6)
-==6390== 
-==6390== 80 bytes in 1 blocks are still reachable in loss record 24 of 28
-==6390==    at 0x402E0B8: calloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6390==    by 0x4055A18: dictionary_create (in /usr/lib/libcommons.so)
-==6390==    by 0x40563B6: config_create (in /usr/lib/libcommons.so)
-==6390==    by 0x804C79E: leer_metadata_tall_grass (metadata.c:17)
-==6390==    by 0x804CD7D: inicializar_file_system (GameCard.c:84)
-==6390==    by 0x804CC5C: main (GameCard.c:10)
-==6390== 
-==6390== 100 bytes in 12 blocks are still reachable in loss record 25 of 28
-==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6390==    by 0x40ED2C5: strdup (strdup.c:42)
-==6390==    by 0x405409A: string_duplicate (in /usr/lib/libcommons.so)
-==6390==    by 0x4054BA9: _string_split (in /usr/lib/libcommons.so)
-==6390==    by 0x40546AF: string_n_split (in /usr/lib/libcommons.so)
-==6390==    by 0x40562B0: add_cofiguration.2909 (in /usr/lib/libcommons.so)
-==6390==    by 0x4054846: string_iterate_lines (in /usr/lib/libcommons.so)
-==6390==    by 0x4056444: config_create (in /usr/lib/libcommons.so)
-==6390==    by 0x804BD02: leer_config (configGameCard.c:7)
-==6390==    by 0x804CC44: main (GameCard.c:6)
-==6390== 
-==6390== 192 bytes in 12 blocks are still reachable in loss record 26 of 28
-==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6390==    by 0x4056004: dictionary_create_element (in /usr/lib/libcommons.so)
-==6390==    by 0x4055B3F: dictionary_put (in /usr/lib/libcommons.so)
-==6390==    by 0x40562D3: add_cofiguration.2909 (in /usr/lib/libcommons.so)
-==6390==    by 0x4054846: string_iterate_lines (in /usr/lib/libcommons.so)
-==6390==    by 0x4056444: config_create (in /usr/lib/libcommons.so)
-==6390==    by 0x804BD02: leer_config (configGameCard.c:7)
-==6390==    by 0x804CC44: main (GameCard.c:6)
-==6390== 
-==6390== 202 bytes in 12 blocks are still reachable in loss record 27 of 28
-==6390==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6390==    by 0x40ED2C5: strdup (strdup.c:42)
-==6390==    by 0x4055B2D: dictionary_put (in /usr/lib/libcommons.so)
-==6390==    by 0x40562D3: add_cofiguration.2909 (in /usr/lib/libcommons.so)
-==6390==    by 0x4054846: string_iterate_lines (in /usr/lib/libcommons.so)
-==6390==    by 0x4056444: config_create (in /usr/lib/libcommons.so)
-==6390==    by 0x804BD02: leer_config (configGameCard.c:7)
-==6390==    by 0x804CC44: main (GameCard.c:6)
-==6390== 
-==6390== 4,008 bytes in 1,023 blocks are definitely lost in loss record 28 of 28
-==6390==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6390==    by 0x40540E7: string_append (in /usr/lib/libcommons.so)
-==6390==    by 0x4054A5E: _string_append_with_format_list (in /usr/lib/libcommons.so)
-==6390==    by 0x40541D3: string_from_vformat (in /usr/lib/libcommons.so)
-==6390==    by 0x4054171: string_from_format (in /usr/lib/libcommons.so)
-==6390==    by 0x4054214: string_itoa (in /usr/lib/libcommons.so)
-==6390==    by 0x804D172: crear_bloques (GameCard.c:211)
-==6390==    by 0x804D096: inicializar_bloques (GameCard.c:184)
-==6390==    by 0x804CDE3: inicializar_file_system (GameCard.c:93)
-==6390==    by 0x804CC5C: main (GameCard.c:10)
-==6390== 
-==6390== LEAK SUMMARY:
-==6390==    definitely lost: 4,223 bytes in 1,029 blocks
-==6390==    indirectly lost: 0 bytes in 0 blocks
-==6390==      possibly lost: 0 bytes in 0 blocks
-==6390==    still reachable: 1,213 bytes in 60 blocks
-==6390==         suppressed: 0 bytes in 0 blocks
-==6390== 
-==6390== ERROR SUMMARY: 7 errors from 7 contexts (suppressed: 0 from 0)
-==6390== ERROR SUMMARY: 7 errors from 7 contexts (suppressed: 0 from 0)
+==10428== Memcheck, a memory error detector
+==10428== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==10428== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==10428== Command: ./GameCard
+==10428== Parent PID: 4312
+==10428== 
+--10428-- 
+--10428-- Valgrind options:
+--10428--    --show-leak-kinds=all
+--10428--    --leak-check=full
+--10428--    -v
+--10428--    --log-file=valgrind
+--10428-- Contents of /proc/version:
+--10428--   Linux version 4.4.0-177-generic (buildd@lgw01-amd64-031) (gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) ) #207-Ubuntu SMP Mon Mar 16 01:15:50 UTC 2020
+--10428-- 
+--10428-- Arch and hwcaps: X86, LittleEndian, x86-mmxext-sse1-sse2-sse3
+--10428-- Page sizes: currently 4096, max supported 4096
+--10428-- Valgrind library directory: /usr/lib/valgrind
+--10428-- Reading syms from /lib/i386-linux-gnu/ld-2.23.so
+--10428--   Considering /lib/i386-linux-gnu/ld-2.23.so ..
+--10428--   .. CRC mismatch (computed f6bf32f6 wanted cd116314)
+--10428--   Considering /usr/lib/debug/lib/i386-linux-gnu/ld-2.23.so ..
+--10428--   .. CRC is valid
+--10428-- Reading syms from /home/utnso/Documentos/Delibird/GameCard/tp-2020-1c-wRAPPERS/GameCard/Debug/GameCard
+--10428-- Reading syms from /usr/lib/valgrind/memcheck-x86-linux
+--10428--   Considering /usr/lib/valgrind/memcheck-x86-linux ..
+--10428--   .. CRC mismatch (computed 6036da3f wanted 652e483f)
+--10428--    object doesn't have a symbol table
+--10428--    object doesn't have a dynamic symbol table
+--10428-- Scheduler: using generic scheduler lock implementation.
+--10428-- Reading suppressions file: /usr/lib/valgrind/default.supp
+==10428== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-10428-by-utnso-on-???
+==10428== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-10428-by-utnso-on-???
+==10428== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-10428-by-utnso-on-???
+==10428== 
+==10428== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==10428== don't want to do, unless you know exactly what you're doing,
+==10428== or are doing some strange experiment):
+==10428==   /usr/lib/valgrind/../../bin/vgdb --pid=10428 ...command...
+==10428== 
+==10428== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==10428==   /path/to/gdb ./GameCard
+==10428== and then give GDB the following command
+==10428==   target remote | /usr/lib/valgrind/../../bin/vgdb --pid=10428
+==10428== --pid is optional if only one valgrind process is running
+==10428== 
+--10428-- REDIR: 0x4019030 (ld-linux.so.2:strlen) redirected to 0x380490f2 (???)
+--10428-- REDIR: 0x4018df0 (ld-linux.so.2:index) redirected to 0x380490cd (???)
+--10428-- Reading syms from /usr/lib/valgrind/vgpreload_core-x86-linux.so
+--10428--   Considering /usr/lib/valgrind/vgpreload_core-x86-linux.so ..
+--10428--   .. CRC mismatch (computed 5b95c0c4 wanted 39e79efa)
+--10428--    object doesn't have a symbol table
+--10428-- Reading syms from /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so
+--10428--   Considering /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so ..
+--10428--   .. CRC mismatch (computed 4d5a1526 wanted 33571d5b)
+--10428--    object doesn't have a symbol table
+==10428== WARNING: new redirection conflicts with existing -- ignoring it
+--10428--     old: 0x04019030 (strlen              ) R-> (0000.0) 0x380490f2 ???
+--10428--     new: 0x04019030 (strlen              ) R-> (2007.0) 0x0402f410 strlen
+--10428-- Reading syms from /usr/lib/libcommons.so
+--10428-- Reading syms from /lib/i386-linux-gnu/libpthread-2.23.so
+--10428--   Considering /usr/lib/debug/.build-id/51/ddb6090511af5615d5f4af155a4403d2845346.debug ..
+--10428--   .. build-id is valid
+--10428-- Reading syms from /lib/i386-linux-gnu/libc-2.23.so
+--10428--   Considering /lib/i386-linux-gnu/libc-2.23.so ..
+--10428--   .. CRC mismatch (computed 05488cfc wanted a5215580)
+--10428--   Considering /usr/lib/debug/lib/i386-linux-gnu/libc-2.23.so ..
+--10428--   .. CRC is valid
+--10428-- REDIR: 0x40ef4b0 (libc.so.6:strncasecmp) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--10428-- REDIR: 0x40f6140 (libc.so.6:memrchr) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--10428-- REDIR: 0x4108b20 (libc.so.6:wcslen) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--10428-- REDIR: 0x40ee350 (libc.so.6:strstr) redirected to 0x4033700 (strstr)
+--10428-- REDIR: 0x40ed7e0 (libc.so.6:__GI_strrchr) redirected to 0x402ee00 (__GI_strrchr)
+--10428-- REDIR: 0x40e8f00 (libc.so.6:malloc) redirected to 0x402c110 (malloc)
+--10428-- REDIR: 0x40ed5c0 (libc.so.6:__GI_strlen) redirected to 0x402f390 (__GI_strlen)
+--10428-- REDIR: 0x40ef680 (libc.so.6:__GI_memcpy) redirected to 0x4030fb0 (__GI_memcpy)
+--10428-- REDIR: 0x40e9810 (libc.so.6:calloc) redirected to 0x402e010 (calloc)
+--10428-- REDIR: 0x40e9520 (libc.so.6:realloc) redirected to 0x402e250 (realloc)
+--10428-- REDIR: 0x40e9470 (libc.so.6:free) redirected to 0x402d2f0 (free)
+--10428-- REDIR: 0x40ed580 (libc.so.6:strlen) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--10428-- REDIR: 0x40f6440 (libc.so.6:__strlen_sse2_bsf) redirected to 0x402f370 (strlen)
+--10428-- REDIR: 0x40ed700 (libc.so.6:strncmp) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--10428-- REDIR: 0x41ad5c0 (libc.so.6:__strncmp_ssse3) redirected to 0x402fab0 (strncmp)
+--10428-- REDIR: 0x40ecae0 (libc.so.6:strcat) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--10428-- REDIR: 0x4101b30 (libc.so.6:__strcat_ssse3) redirected to 0x402f030 (strcat)
+--10428-- REDIR: 0x40f1280 (libc.so.6:strchrnul) redirected to 0x40330b0 (strchrnul)
+--10428-- REDIR: 0x40eefc0 (libc.so.6:memset) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--10428-- REDIR: 0x419d4d0 (libc.so.6:__memset_sse2) redirected to 0x40327d0 (memset)
+==10428== Thread 2:
+==10428== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==10428==    at 0x406A389: recv (recv.c:35)
+==10428==    by 0x804ACBC: serve_client (conexion.c:89)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x4e30310 is on thread 2's stack
+==10428==  in frame #0, created by recv (recv.c:29)
+==10428== 
+--10428-- REDIR: 0x40ef0d0 (libc.so.6:__GI_mempcpy) redirected to 0x40332c0 (__GI_mempcpy)
+--10428-- REDIR: 0x40eec10 (libc.so.6:__GI_memcmp) redirected to 0x4031ef0 (__GI_memcmp)
+--10428-- REDIR: 0x40f11b0 (libc.so.6:__GI___rawmemchr) redirected to 0x4033110 (__GI___rawmemchr)
+==10428== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==10428==    at 0x406A389: recv (recv.c:35)
+==10428==    by 0x804B18C: recibir_new_pokemon (conexion.c:250)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x4e302a0 is on thread 2's stack
+==10428==  in frame #0, created by recv (recv.c:29)
+==10428== 
+==10428== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==10428==    at 0x406A389: recv (recv.c:35)
+==10428==    by 0x804B1A2: recibir_new_pokemon (conexion.c:253)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x4e302a0 is on thread 2's stack
+==10428==  in frame #0, created by recv (recv.c:29)
+==10428== 
+==10428== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==10428==    at 0x406A389: recv (recv.c:35)
+==10428==    by 0x804B1B8: recibir_new_pokemon (conexion.c:256)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x4e302a0 is on thread 2's stack
+==10428==  in frame #0, created by recv (recv.c:29)
+==10428== 
+==10428== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==10428==    at 0x406A389: recv (recv.c:35)
+==10428==    by 0x804B1E1: recibir_new_pokemon (conexion.c:259)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x4e302a0 is on thread 2's stack
+==10428==  in frame #0, created by recv (recv.c:29)
+==10428== 
+==10428== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==10428==    at 0x406A389: recv (recv.c:35)
+==10428==    by 0x804B1F7: recibir_new_pokemon (conexion.c:262)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x4e302a0 is on thread 2's stack
+==10428==  in frame #0, created by recv (recv.c:29)
+==10428== 
+==10428== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==10428==    at 0x406A389: recv (recv.c:35)
+==10428==    by 0x804B20D: recibir_new_pokemon (conexion.c:265)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x4e302a0 is on thread 2's stack
+==10428==  in frame #0, created by recv (recv.c:29)
+==10428== 
+==10428== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==10428==    at 0x406A389: recv (recv.c:35)
+==10428==    by 0x804B223: recibir_new_pokemon (conexion.c:268)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x4e302a0 is on thread 2's stack
+==10428==  in frame #0, created by recv (recv.c:29)
+==10428== 
+--10428-- REDIR: 0x40ef610 (libc.so.6:memcpy) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--10428-- REDIR: 0x419fb70 (libc.so.6:__memcpy_ssse3) redirected to 0x4030cc0 (memcpy)
+==10428== Syscall param socketcall.send(args) points to uninitialised byte(s)
+==10428==    at 0x406A549: send (send.c:35)
+==10428==    by 0x804BBD0: responder_ack (conexion.c:532)
+==10428==    by 0x804B2C0: recibir_new_pokemon (conexion.c:279)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x4e30250 is on thread 2's stack
+==10428==  in frame #0, created by send (send.c:29)
+==10428== 
+--10428-- REDIR: 0x40ef460 (libc.so.6:strcasecmp) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--10428-- REDIR: 0x41aefb0 (libc.so.6:__strcasecmp_ssse3) redirected to 0x402fcf0 (strcasecmp)
+--10428-- REDIR: 0x40ed750 (libc.so.6:strncpy) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--10428-- REDIR: 0x40f7dc0 (libc.so.6:__strncpy_ssse3) redirected to 0x402f5f0 (strncpy)
+==10428== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==10428==    at 0x406A389: recv (recv.c:35)
+==10428==    by 0x804B318: recibir_catch_pokemon (conexion.c:291)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x56312b0 is on thread 2's stack
+==10428==  in frame #0, created by recv (recv.c:29)
+==10428== 
+==10428== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==10428==    at 0x406A389: recv (recv.c:35)
+==10428==    by 0x804B32E: recibir_catch_pokemon (conexion.c:294)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x56312b0 is on thread 2's stack
+==10428==  in frame #0, created by recv (recv.c:29)
+==10428== 
+==10428== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==10428==    at 0x406A389: recv (recv.c:35)
+==10428==    by 0x804B344: recibir_catch_pokemon (conexion.c:297)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x56312b0 is on thread 2's stack
+==10428==  in frame #0, created by recv (recv.c:29)
+==10428== 
+==10428== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==10428==    at 0x406A389: recv (recv.c:35)
+==10428==    by 0x804B36D: recibir_catch_pokemon (conexion.c:300)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x56312b0 is on thread 2's stack
+==10428==  in frame #0, created by recv (recv.c:29)
+==10428== 
+==10428== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==10428==    at 0x406A389: recv (recv.c:35)
+==10428==    by 0x804B383: recibir_catch_pokemon (conexion.c:303)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x56312b0 is on thread 2's stack
+==10428==  in frame #0, created by recv (recv.c:29)
+==10428== 
+==10428== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==10428==    at 0x406A389: recv (recv.c:35)
+==10428==    by 0x804B399: recibir_catch_pokemon (conexion.c:306)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x56312b0 is on thread 2's stack
+==10428==  in frame #0, created by recv (recv.c:29)
+==10428== 
+==10428== Syscall param socketcall.send(args) points to uninitialised byte(s)
+==10428==    at 0x406A549: send (send.c:35)
+==10428==    by 0x804BBD0: responder_ack (conexion.c:532)
+==10428==    by 0x804B422: recibir_catch_pokemon (conexion.c:316)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x5631260 is on thread 2's stack
+==10428==  in frame #0, created by send (send.c:29)
+==10428== 
+==10428== 
+==10428== Process terminating with default action of signal 2 (SIGINT)
+==10428==    at 0x406A264: accept (accept.c:35)
+==10428==    by 0x804AC4C: esperar_gameboy (conexion.c:81)
+==10428==    by 0x804AC0C: iniciar_espera_mensajes_Gameboy (conexion.c:72)
+==10428==    by 0x804CC75: main (GameCard.c:17)
+==10428== 
+==10428== HEAP SUMMARY:
+==10428==     in use at exit: 19,667 bytes in 2,040 blocks
+==10428==   total heap usage: 16,086 allocs, 14,046 frees, 1,020,994 bytes allocated
+==10428== 
+==10428== Searching for pointers to 2,040 not-freed blocks
+==10428== Checked 76,840 bytes
+==10428== 
+==10428== Thread 1:
+==10428== 1 bytes in 1 blocks are definitely lost in loss record 1 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x405412F: string_new (string.c:51)
+==10428==    by 0x804C091: generar_linea_a_insertar (files.c:38)
+==10428==    by 0x804D3EB: new_pokemon (GameCard.c:270)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 1 bytes in 1 blocks are definitely lost in loss record 2 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x405412F: string_new (string.c:51)
+==10428==    by 0x804C0AA: generar_linea_a_insertar (files.c:41)
+==10428==    by 0x804D3EB: new_pokemon (GameCard.c:270)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 1 bytes in 1 blocks are definitely lost in loss record 3 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x405412F: string_new (string.c:51)
+==10428==    by 0x804C0C3: generar_linea_a_insertar (files.c:44)
+==10428==    by 0x804D3EB: new_pokemon (GameCard.c:270)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 1 bytes in 1 blocks are definitely lost in loss record 4 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x405412F: string_new (string.c:51)
+==10428==    by 0x8049D99: obtener_datos_en_string (bloques.c:125)
+==10428==    by 0x804D40D: new_pokemon (GameCard.c:272)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 1 bytes in 1 blocks are definitely lost in loss record 5 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x405412F: string_new (string.c:51)
+==10428==    by 0x804BEB3: obtener_path_bloques (configGameCard.c:91)
+==10428==    by 0x804A022: almacenar_datos (bloques.c:188)
+==10428==    by 0x804D43E: new_pokemon (GameCard.c:275)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 1 bytes in 1 blocks are definitely lost in loss record 6 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x405412F: string_new (string.c:51)
+==10428==    by 0x804BEB3: obtener_path_bloques (configGameCard.c:91)
+==10428==    by 0x8049B9E: obtener_datos_bloques (bloques.c:81)
+==10428==    by 0x804D76B: catch_pokemon (GameCard.c:358)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 1 bytes in 1 blocks are definitely lost in loss record 7 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x405412F: string_new (string.c:51)
+==10428==    by 0x8049D99: obtener_datos_en_string (bloques.c:125)
+==10428==    by 0x804D8AD: catch_pokemon (GameCard.c:390)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 1 bytes in 1 blocks are definitely lost in loss record 8 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x405412F: string_new (string.c:51)
+==10428==    by 0x804BEB3: obtener_path_bloques (configGameCard.c:91)
+==10428==    by 0x804A022: almacenar_datos (bloques.c:188)
+==10428==    by 0x804D8E6: catch_pokemon (GameCard.c:396)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 1 bytes in 1 blocks are definitely lost in loss record 9 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x405412F: string_new (string.c:51)
+==10428==    by 0x804BEB3: obtener_path_bloques (configGameCard.c:91)
+==10428==    by 0x804A929: limpiar_bloque (bloques.c:413)
+==10428==    by 0x804A585: liberar_ultimo_bloque (bloques.c:310)
+==10428==    by 0x804A0EC: almacenar_datos (bloques.c:209)
+==10428==    by 0x804D8E6: catch_pokemon (GameCard.c:396)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428== 
+==10428== 1 bytes in 1 blocks are definitely lost in loss record 10 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x405412F: string_new (string.c:51)
+==10428==    by 0x804BEB3: obtener_path_bloques (configGameCard.c:91)
+==10428==    by 0x804A218: obtener_path_bloque_individual (bloques.c:245)
+==10428==    by 0x804A151: almacenar_datos (bloques.c:221)
+==10428==    by 0x804D8E6: catch_pokemon (GameCard.c:396)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428== 
+==10428== 2 bytes in 1 blocks are indirectly lost in loss record 11 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x405445E: string_trim_right (string.c:122)
+==10428==    by 0x4054354: string_trim (string.c:99)
+==10428==    by 0x405473D: string_get_string_as_array (string.c:167)
+==10428==    by 0x804C86C: obtener_bloques_pokemon (metadata.c:51)
+==10428==    by 0x804A030: almacenar_datos (bloques.c:189)
+==10428==    by 0x804D43E: new_pokemon (GameCard.c:275)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 2 bytes in 1 blocks are indirectly lost in loss record 12 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x405445E: string_trim_right (string.c:122)
+==10428==    by 0x4054354: string_trim (string.c:99)
+==10428==    by 0x405473D: string_get_string_as_array (string.c:167)
+==10428==    by 0x804A0FD: almacenar_datos (bloques.c:210)
+==10428==    by 0x804D8E6: catch_pokemon (GameCard.c:396)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 2 bytes in 1 blocks are definitely lost in loss record 13 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x4054A5E: _string_append_with_format_list (string.c:246)
+==10428==    by 0x40541D3: string_from_vformat (string.c:65)
+==10428==    by 0x4054171: string_from_format (string.c:58)
+==10428==    by 0x804C34A: disminuir_cantidad_linea (files.c:113)
+==10428==    by 0x804D7D0: catch_pokemon (GameCard.c:368)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 2 bytes in 1 blocks are definitely lost in loss record 14 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804C35F: disminuir_cantidad_linea (files.c:114)
+==10428==    by 0x804D7D0: catch_pokemon (GameCard.c:368)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 2 bytes in 1 blocks are definitely lost in loss record 15 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x4054A5E: _string_append_with_format_list (string.c:246)
+==10428==    by 0x40541D3: string_from_vformat (string.c:65)
+==10428==    by 0x4054171: string_from_format (string.c:58)
+==10428==    by 0x4054214: string_itoa (string.c:70)
+==10428==    by 0x804C395: disminuir_cantidad_linea (files.c:119)
+==10428==    by 0x804D7D0: catch_pokemon (GameCard.c:368)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428== 
+==10428== 2 bytes in 1 blocks are definitely lost in loss record 16 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x4054A5E: _string_append_with_format_list (string.c:246)
+==10428==    by 0x40541D3: string_from_vformat (string.c:65)
+==10428==    by 0x4054171: string_from_format (string.c:58)
+==10428==    by 0x804C490: cantidad_igual_cero (files.c:146)
+==10428==    by 0x804D7E1: catch_pokemon (GameCard.c:370)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 2 bytes in 1 blocks are definitely lost in loss record 17 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804C4A5: cantidad_igual_cero (files.c:147)
+==10428==    by 0x804D7E1: catch_pokemon (GameCard.c:370)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 2 bytes in 1 blocks are definitely lost in loss record 18 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x804A4FA: liberar_ultimo_bloque (bloques.c:301)
+==10428==    by 0x804A0EC: almacenar_datos (bloques.c:209)
+==10428==    by 0x804D8E6: catch_pokemon (GameCard.c:396)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 2 bytes in 2 blocks are definitely lost in loss record 19 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x405412F: string_new (string.c:51)
+==10428==    by 0x804BEB3: obtener_path_bloques (configGameCard.c:91)
+==10428==    by 0x804A218: obtener_path_bloque_individual (bloques.c:245)
+==10428==    by 0x804A151: almacenar_datos (bloques.c:221)
+==10428==    by 0x804D43E: new_pokemon (GameCard.c:275)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428== 
+==10428== 3 bytes in 1 blocks are definitely lost in loss record 20 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x4054A5E: _string_append_with_format_list (string.c:246)
+==10428==    by 0x40541D3: string_from_vformat (string.c:65)
+==10428==    by 0x4054171: string_from_format (string.c:58)
+==10428==    by 0x4054214: string_itoa (string.c:70)
+==10428==    by 0x804CB81: modificar_campo_size_metadata (metadata.c:152)
+==10428==    by 0x804D42D: new_pokemon (GameCard.c:274)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428== 
+==10428== 3 bytes in 1 blocks are definitely lost in loss record 21 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x4054A5E: _string_append_with_format_list (string.c:246)
+==10428==    by 0x40541D3: string_from_vformat (string.c:65)
+==10428==    by 0x4054171: string_from_format (string.c:58)
+==10428==    by 0x4054214: string_itoa (string.c:70)
+==10428==    by 0x804A6EF: existe_posicion_en_lista (bloques.c:345)
+==10428==    by 0x804D782: catch_pokemon (GameCard.c:359)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428== 
+==10428== 3 bytes in 1 blocks are definitely lost in loss record 22 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804A7D3: existe_posicion_en_lista (bloques.c:370)
+==10428==    by 0x804D782: catch_pokemon (GameCard.c:359)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 3 bytes in 1 blocks are definitely lost in loss record 23 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x4054A5E: _string_append_with_format_list (string.c:246)
+==10428==    by 0x40541D3: string_from_vformat (string.c:65)
+==10428==    by 0x4054171: string_from_format (string.c:58)
+==10428==    by 0x4054214: string_itoa (string.c:70)
+==10428==    by 0x804CB81: modificar_campo_size_metadata (metadata.c:152)
+==10428==    by 0x804D8D5: catch_pokemon (GameCard.c:393)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428== 
+==10428== 4 bytes in 2 blocks are indirectly lost in loss record 24 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x405445E: string_trim_right (string.c:122)
+==10428==    by 0x4054354: string_trim (string.c:99)
+==10428==    by 0x405473D: string_get_string_as_array (string.c:167)
+==10428==    by 0x804A0C6: almacenar_datos (bloques.c:206)
+==10428==    by 0x804D43E: new_pokemon (GameCard.c:275)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 4 bytes in 2 blocks are indirectly lost in loss record 25 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x405445E: string_trim_right (string.c:122)
+==10428==    by 0x4054354: string_trim (string.c:99)
+==10428==    by 0x405473D: string_get_string_as_array (string.c:167)
+==10428==    by 0x804C86C: obtener_bloques_pokemon (metadata.c:51)
+==10428==    by 0x804A030: almacenar_datos (bloques.c:189)
+==10428==    by 0x804D8E6: catch_pokemon (GameCard.c:396)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 4 bytes in 1 blocks are definitely lost in loss record 26 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x804C8AF: obtener_bloques_pokemon_string (metadata.c:62)
+==10428==    by 0x804A041: almacenar_datos (bloques.c:190)
+==10428==    by 0x804D43E: new_pokemon (GameCard.c:275)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 4 bytes in 1 blocks are definitely lost in loss record 27 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x4054A5E: _string_append_with_format_list (string.c:246)
+==10428==    by 0x40541D3: string_from_vformat (string.c:65)
+==10428==    by 0x4054171: string_from_format (string.c:58)
+==10428==    by 0x4054214: string_itoa (string.c:70)
+==10428==    by 0x804A6DE: existe_posicion_en_lista (bloques.c:344)
+==10428==    by 0x804D782: catch_pokemon (GameCard.c:359)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428== 
+==10428== 4 bytes in 1 blocks are definitely lost in loss record 28 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804A622: liberar_ultimo_bloque (bloques.c:318)
+==10428==    by 0x804A0EC: almacenar_datos (bloques.c:209)
+==10428==    by 0x804D8E6: catch_pokemon (GameCard.c:396)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 4 bytes in 2 blocks are definitely lost in loss record 29 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x4054A5E: _string_append_with_format_list (string.c:246)
+==10428==    by 0x40541D3: string_from_vformat (string.c:65)
+==10428==    by 0x4054171: string_from_format (string.c:58)
+==10428==    by 0x804A7BE: existe_posicion_en_lista (bloques.c:369)
+==10428==    by 0x804D782: catch_pokemon (GameCard.c:359)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 5 bytes in 1 blocks are still reachable in loss record 30 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x4054A5E: _string_append_with_format_list (string.c:246)
+==10428==    by 0x40541D3: string_from_vformat (string.c:65)
+==10428==    by 0x4054171: string_from_format (string.c:58)
+==10428==    by 0x4054214: string_itoa (string.c:70)
+==10428==    by 0x804BF15: obtener_puerto_gamecard (configGameCard.c:117)
+==10428==    by 0x804AB34: iniciar_espera_mensajes_Gameboy (conexion.c:49)
+==10428==    by 0x804CC75: main (GameCard.c:17)
+==10428== 
+==10428== 6 bytes in 1 blocks are definitely lost in loss record 31 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804A3E4: asignar_bloque (bloques.c:273)
+==10428==    by 0x804A0B5: almacenar_datos (bloques.c:205)
+==10428==    by 0x804D43E: new_pokemon (GameCard.c:275)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 6 bytes in 1 blocks are definitely lost in loss record 32 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x804C8AF: obtener_bloques_pokemon_string (metadata.c:62)
+==10428==    by 0x804D72F: catch_pokemon (GameCard.c:350)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 6 bytes in 1 blocks are definitely lost in loss record 33 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x804C8AF: obtener_bloques_pokemon_string (metadata.c:62)
+==10428==    by 0x804A041: almacenar_datos (bloques.c:190)
+==10428==    by 0x804D8E6: catch_pokemon (GameCard.c:396)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 6 bytes in 6 blocks are definitely lost in loss record 34 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x405412F: string_new (string.c:51)
+==10428==    by 0x804A73A: existe_posicion_en_lista (bloques.c:357)
+==10428==    by 0x804D782: catch_pokemon (GameCard.c:359)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 8 bytes in 1 blocks are still reachable in loss record 35 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4056393: config_create (config.c:36)
+==10428==    by 0x804BCCC: leer_config (configGameCard.c:7)
+==10428==    by 0x804CC2D: main (GameCard.c:6)
+==10428== 
+==10428== 8 bytes in 1 blocks are still reachable in loss record 36 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4056393: config_create (config.c:36)
+==10428==    by 0x804C768: leer_metadata_tall_grass (metadata.c:17)
+==10428==    by 0x804CD66: inicializar_file_system (GameCard.c:86)
+==10428==    by 0x804CC6D: main (GameCard.c:13)
+==10428== 
+==10428== 8 bytes in 1 blocks are indirectly lost in loss record 37 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4055905: list_create_element (list.c:312)
+==10428==    by 0x4054E3D: list_add (list.c:34)
+==10428==    by 0x804A665: agregar_linea (bloques.c:328)
+==10428==    by 0x804D3FF: new_pokemon (GameCard.c:271)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 8 bytes in 1 blocks are definitely lost in loss record 38 of 166
+==10428==    at 0x402E0B8: calloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4054792: string_substring (string.c:176)
+==10428==    by 0x405481E: string_substring_until (string.c:186)
+==10428==    by 0x804C3E1: disminuir_cantidad_linea (files.c:126)
+==10428==    by 0x804D7D0: catch_pokemon (GameCard.c:368)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 8 bytes in 8 blocks are definitely lost in loss record 39 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x405412F: string_new (string.c:51)
+==10428==    by 0x8049D99: obtener_datos_en_string (bloques.c:125)
+==10428==    by 0x804D4BD: new_pokemon (GameCard.c:287)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 8 bytes in 8 blocks are definitely lost in loss record 40 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x405412F: string_new (string.c:51)
+==10428==    by 0x804BEB3: obtener_path_bloques (configGameCard.c:91)
+==10428==    by 0x804A022: almacenar_datos (bloques.c:188)
+==10428==    by 0x804D4F6: new_pokemon (GameCard.c:293)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 9 bytes in 1 blocks are still reachable in loss record 41 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x4053C49: log_create (log.c:77)
+==10428==    by 0x804C511: iniciar_logger (logGameCard.c:6)
+==10428==    by 0x804CC32: main (GameCard.c:7)
+==10428== 
+==10428== 9 bytes in 9 blocks are definitely lost in loss record 42 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x405412F: string_new (string.c:51)
+==10428==    by 0x804BEB3: obtener_path_bloques (configGameCard.c:91)
+==10428==    by 0x8049B9E: obtener_datos_bloques (bloques.c:81)
+==10428==    by 0x804D3B3: new_pokemon (GameCard.c:266)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 10 bytes in 1 blocks are indirectly lost in loss record 43 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804C146: generar_linea_a_insertar (files.c:52)
+==10428==    by 0x804D3EB: new_pokemon (GameCard.c:270)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 10 (8 direct, 2 indirect) bytes in 1 blocks are definitely lost in loss record 44 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4054BC4: _string_split (string.c:277)
+==10428==    by 0x40545F3: string_split (string.c:150)
+==10428==    by 0x4054716: string_get_string_as_array (string.c:163)
+==10428==    by 0x804C86C: obtener_bloques_pokemon (metadata.c:51)
+==10428==    by 0x804A030: almacenar_datos (bloques.c:189)
+==10428==    by 0x804D43E: new_pokemon (GameCard.c:275)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 10 bytes in 1 blocks are definitely lost in loss record 45 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804C417: disminuir_cantidad_linea (files.c:128)
+==10428==    by 0x804D7D0: catch_pokemon (GameCard.c:368)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 10 (8 direct, 2 indirect) bytes in 1 blocks are definitely lost in loss record 46 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4054BC4: _string_split (string.c:277)
+==10428==    by 0x40545F3: string_split (string.c:150)
+==10428==    by 0x4054716: string_get_string_as_array (string.c:163)
+==10428==    by 0x804A0FD: almacenar_datos (bloques.c:210)
+==10428==    by 0x804D8E6: catch_pokemon (GameCard.c:396)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 11 bytes in 4 blocks are indirectly lost in loss record 47 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x4054BA9: _string_split (string.c:273)
+==10428==    by 0x40546AF: string_n_split (string.c:157)
+==10428==    by 0x40562B0: add_cofiguration.2909 (config.c:55)
+==10428==    by 0x4054846: string_iterate_lines (string.c:191)
+==10428==    by 0x4056444: config_create (config.c:61)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x804A030: almacenar_datos (bloques.c:189)
+==10428==    by 0x804D43E: new_pokemon (GameCard.c:275)
+==10428== 
+==10428== 11 bytes in 1 blocks are definitely lost in loss record 48 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x804B353: recibir_catch_pokemon (conexion.c:299)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 12 bytes in 1 blocks are still reachable in loss record 49 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4056A86: bitarray_create_with_mode (bitarray.c:37)
+==10428==    by 0x4056A61: bitarray_create (bitarray.c:33)
+==10428==    by 0x804972A: crear_bitmap (bitmap.c:35)
+==10428==    by 0x804CE80: inicializar_file_system (GameCard.c:118)
+==10428==    by 0x804CC6D: main (GameCard.c:13)
+==10428== 
+==10428== 12 bytes in 12 blocks are definitely lost in loss record 50 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x405412F: string_new (string.c:51)
+==10428==    by 0x804BEB3: obtener_path_bloques (configGameCard.c:91)
+==10428==    by 0x804A218: obtener_path_bloque_individual (bloques.c:245)
+==10428==    by 0x804A151: almacenar_datos (bloques.c:221)
+==10428==    by 0x804D4F6: new_pokemon (GameCard.c:293)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428== 
+==10428== 13 bytes in 4 blocks are indirectly lost in loss record 51 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x4054BA9: _string_split (string.c:273)
+==10428==    by 0x40546AF: string_n_split (string.c:157)
+==10428==    by 0x40562B0: add_cofiguration.2909 (config.c:55)
+==10428==    by 0x4054846: string_iterate_lines (string.c:191)
+==10428==    by 0x4056444: config_create (config.c:61)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x8049B88: obtener_datos_bloques (bloques.c:77)
+==10428==    by 0x804D76B: catch_pokemon (GameCard.c:358)
+==10428== 
+==10428== 13 bytes in 4 blocks are indirectly lost in loss record 52 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x4054BA9: _string_split (string.c:273)
+==10428==    by 0x40546AF: string_n_split (string.c:157)
+==10428==    by 0x40562B0: add_cofiguration.2909 (config.c:55)
+==10428==    by 0x4054846: string_iterate_lines (string.c:191)
+==10428==    by 0x4056444: config_create (config.c:61)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x804A030: almacenar_datos (bloques.c:189)
+==10428==    by 0x804D8E6: catch_pokemon (GameCard.c:396)
+==10428== 
+==10428== 16 bytes in 1 blocks are still reachable in loss record 53 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40559F7: dictionary_create (dictionary.c:38)
+==10428==    by 0x40563B6: config_create (config.c:39)
+==10428==    by 0x804BCCC: leer_config (configGameCard.c:7)
+==10428==    by 0x804CC2D: main (GameCard.c:6)
+==10428== 
+==10428== 16 bytes in 1 blocks are still reachable in loss record 54 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40559F7: dictionary_create (dictionary.c:38)
+==10428==    by 0x40563B6: config_create (config.c:39)
+==10428==    by 0x804C768: leer_metadata_tall_grass (metadata.c:17)
+==10428==    by 0x804CD66: inicializar_file_system (GameCard.c:86)
+==10428==    by 0x804CC6D: main (GameCard.c:13)
+==10428== 
+==10428== 16 bytes in 1 blocks are indirectly lost in loss record 55 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40559F7: dictionary_create (dictionary.c:38)
+==10428==    by 0x40563B6: config_create (config.c:39)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x804A030: almacenar_datos (bloques.c:189)
+==10428==    by 0x804D43E: new_pokemon (GameCard.c:275)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 16 bytes in 1 blocks are indirectly lost in loss record 56 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40559F7: dictionary_create (dictionary.c:38)
+==10428==    by 0x40563B6: config_create (config.c:39)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x8049B88: obtener_datos_bloques (bloques.c:77)
+==10428==    by 0x804D76B: catch_pokemon (GameCard.c:358)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 16 bytes in 1 blocks are indirectly lost in loss record 57 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40559F7: dictionary_create (dictionary.c:38)
+==10428==    by 0x40563B6: config_create (config.c:39)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x804A030: almacenar_datos (bloques.c:189)
+==10428==    by 0x804D8E6: catch_pokemon (GameCard.c:396)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 16 (12 direct, 4 indirect) bytes in 1 blocks are definitely lost in loss record 58 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4054BC4: _string_split (string.c:277)
+==10428==    by 0x40545F3: string_split (string.c:150)
+==10428==    by 0x4054716: string_get_string_as_array (string.c:163)
+==10428==    by 0x804A0C6: almacenar_datos (bloques.c:206)
+==10428==    by 0x804D43E: new_pokemon (GameCard.c:275)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 16 bytes in 1 blocks are definitely lost in loss record 59 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x804BB1C: responder_ack (conexion.c:512)
+==10428==    by 0x804B422: recibir_catch_pokemon (conexion.c:316)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 16 (12 direct, 4 indirect) bytes in 1 blocks are definitely lost in loss record 60 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4054BC4: _string_split (string.c:277)
+==10428==    by 0x40545F3: string_split (string.c:150)
+==10428==    by 0x4054716: string_get_string_as_array (string.c:163)
+==10428==    by 0x804C86C: obtener_bloques_pokemon (metadata.c:51)
+==10428==    by 0x804A030: almacenar_datos (bloques.c:189)
+==10428==    by 0x804D8E6: catch_pokemon (GameCard.c:396)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 19 bytes in 1 blocks are still reachable in loss record 61 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x40563A7: config_create (config.c:38)
+==10428==    by 0x804BCCC: leer_config (configGameCard.c:7)
+==10428==    by 0x804CC2D: main (GameCard.c:6)
+==10428== 
+==10428== 19 bytes in 3 blocks are still reachable in loss record 62 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x4054BA9: _string_split (string.c:273)
+==10428==    by 0x40546AF: string_n_split (string.c:157)
+==10428==    by 0x40562B0: add_cofiguration.2909 (config.c:55)
+==10428==    by 0x4054846: string_iterate_lines (string.c:191)
+==10428==    by 0x4056444: config_create (config.c:61)
+==10428==    by 0x804C768: leer_metadata_tall_grass (metadata.c:17)
+==10428==    by 0x804CD66: inicializar_file_system (GameCard.c:86)
+==10428==    by 0x804CC6D: main (GameCard.c:13)
+==10428== 
+==10428== 20 bytes in 1 blocks are still reachable in loss record 63 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4053BA3: log_create (log.c:54)
+==10428==    by 0x804C511: iniciar_logger (logGameCard.c:6)
+==10428==    by 0x804CC32: main (GameCard.c:7)
+==10428== 
+==10428== 22 bytes in 22 blocks are definitely lost in loss record 64 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x405412F: string_new (string.c:51)
+==10428==    by 0x804A73A: existe_posicion_en_lista (bloques.c:357)
+==10428==    by 0x804D3CA: new_pokemon (GameCard.c:267)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 24 bytes in 12 blocks are indirectly lost in loss record 65 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x405445E: string_trim_right (string.c:122)
+==10428==    by 0x4054354: string_trim (string.c:99)
+==10428==    by 0x405473D: string_get_string_as_array (string.c:167)
+==10428==    by 0x804C86C: obtener_bloques_pokemon (metadata.c:51)
+==10428==    by 0x804A030: almacenar_datos (bloques.c:189)
+==10428==    by 0x804D4F6: new_pokemon (GameCard.c:293)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 24 bytes in 1 blocks are definitely lost in loss record 66 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x804AD92: serializar_paquete (conexion.c:121)
+==10428==    by 0x804BBB9: responder_ack (conexion.c:530)
+==10428==    by 0x804B422: recibir_catch_pokemon (conexion.c:316)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 24 bytes in 7 blocks are definitely lost in loss record 67 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804A770: existe_posicion_en_lista (bloques.c:361)
+==10428==    by 0x804D782: catch_pokemon (GameCard.c:359)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 24 bytes in 8 blocks are definitely lost in loss record 68 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804A7D3: existe_posicion_en_lista (bloques.c:370)
+==10428==    by 0x804D3CA: new_pokemon (GameCard.c:267)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 26 bytes in 8 blocks are definitely lost in loss record 69 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804C208: aumentar_cantidad_linea (files.c:79)
+==10428==    by 0x804D498: new_pokemon (GameCard.c:285)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 26 bytes in 8 blocks are definitely lost in loss record 70 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x4054A5E: _string_append_with_format_list (string.c:246)
+==10428==    by 0x40541D3: string_from_vformat (string.c:65)
+==10428==    by 0x4054171: string_from_format (string.c:58)
+==10428==    by 0x4054214: string_itoa (string.c:70)
+==10428==    by 0x804C242: aumentar_cantidad_linea (files.c:84)
+==10428==    by 0x804D498: new_pokemon (GameCard.c:285)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428== 
+==10428== 27 bytes in 4 blocks are indirectly lost in loss record 71 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x4055B2D: dictionary_put (dictionary.c:73)
+==10428==    by 0x40562D3: add_cofiguration.2909 (config.c:56)
+==10428==    by 0x4054846: string_iterate_lines (string.c:191)
+==10428==    by 0x4056444: config_create (config.c:61)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x804A030: almacenar_datos (bloques.c:189)
+==10428==    by 0x804D43E: new_pokemon (GameCard.c:275)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428== 
+==10428== 27 bytes in 4 blocks are indirectly lost in loss record 72 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x4055B2D: dictionary_put (dictionary.c:73)
+==10428==    by 0x40562D3: add_cofiguration.2909 (config.c:56)
+==10428==    by 0x4054846: string_iterate_lines (string.c:191)
+==10428==    by 0x4056444: config_create (config.c:61)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x8049B88: obtener_datos_bloques (bloques.c:77)
+==10428==    by 0x804D76B: catch_pokemon (GameCard.c:358)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428== 
+==10428== 27 bytes in 4 blocks are indirectly lost in loss record 73 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x4055B2D: dictionary_put (dictionary.c:73)
+==10428==    by 0x40562D3: add_cofiguration.2909 (config.c:56)
+==10428==    by 0x4054846: string_iterate_lines (string.c:191)
+==10428==    by 0x4056444: config_create (config.c:61)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x804A030: almacenar_datos (bloques.c:189)
+==10428==    by 0x804D8E6: catch_pokemon (GameCard.c:396)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428== 
+==10428== 27 bytes in 9 blocks are definitely lost in loss record 74 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x4054A5E: _string_append_with_format_list (string.c:246)
+==10428==    by 0x40541D3: string_from_vformat (string.c:65)
+==10428==    by 0x4054171: string_from_format (string.c:58)
+==10428==    by 0x4054214: string_itoa (string.c:70)
+==10428==    by 0x804A6EF: existe_posicion_en_lista (bloques.c:345)
+==10428==    by 0x804D3CA: new_pokemon (GameCard.c:267)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428== 
+==10428== 28 bytes in 9 blocks are definitely lost in loss record 75 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x4054A5E: _string_append_with_format_list (string.c:246)
+==10428==    by 0x40541D3: string_from_vformat (string.c:65)
+==10428==    by 0x4054171: string_from_format (string.c:58)
+==10428==    by 0x4054214: string_itoa (string.c:70)
+==10428==    by 0x804A6DE: existe_posicion_en_lista (bloques.c:344)
+==10428==    by 0x804D3CA: new_pokemon (GameCard.c:267)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428== 
+==10428== 31 bytes in 3 blocks are still reachable in loss record 76 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x4055B2D: dictionary_put (dictionary.c:73)
+==10428==    by 0x40562D3: add_cofiguration.2909 (config.c:56)
+==10428==    by 0x4054846: string_iterate_lines (string.c:191)
+==10428==    by 0x4056444: config_create (config.c:61)
+==10428==    by 0x804C768: leer_metadata_tall_grass (metadata.c:17)
+==10428==    by 0x804CD66: inicializar_file_system (GameCard.c:86)
+==10428==    by 0x804CC6D: main (GameCard.c:13)
+==10428== 
+==10428== 32 bytes in 16 blocks are definitely lost in loss record 77 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x4054A5E: _string_append_with_format_list (string.c:246)
+==10428==    by 0x40541D3: string_from_vformat (string.c:65)
+==10428==    by 0x4054171: string_from_format (string.c:58)
+==10428==    by 0x804A7BE: existe_posicion_en_lista (bloques.c:369)
+==10428==    by 0x804D3CA: new_pokemon (GameCard.c:267)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 34 bytes in 17 blocks are definitely lost in loss record 78 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x4054A5E: _string_append_with_format_list (string.c:246)
+==10428==    by 0x40541D3: string_from_vformat (string.c:65)
+==10428==    by 0x4054171: string_from_format (string.c:58)
+==10428==    by 0x804A75B: existe_posicion_en_lista (bloques.c:360)
+==10428==    by 0x804D782: catch_pokemon (GameCard.c:359)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 36 bytes in 18 blocks are definitely lost in loss record 79 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x4054A5E: _string_append_with_format_list (string.c:246)
+==10428==    by 0x40541D3: string_from_vformat (string.c:65)
+==10428==    by 0x4054171: string_from_format (string.c:58)
+==10428==    by 0x804C1F3: aumentar_cantidad_linea (files.c:78)
+==10428==    by 0x804D498: new_pokemon (GameCard.c:285)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 40 bytes in 8 blocks are definitely lost in loss record 80 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x804C8AF: obtener_bloques_pokemon_string (metadata.c:62)
+==10428==    by 0x804A041: almacenar_datos (bloques.c:190)
+==10428==    by 0x804D4F6: new_pokemon (GameCard.c:293)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 44 bytes in 9 blocks are definitely lost in loss record 81 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x804C8AF: obtener_bloques_pokemon_string (metadata.c:62)
+==10428==    by 0x804D304: new_pokemon (GameCard.c:253)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 48 bytes in 3 blocks are still reachable in loss record 82 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4056004: dictionary_create_element (dictionary.c:231)
+==10428==    by 0x4055B3F: dictionary_put (dictionary.c:73)
+==10428==    by 0x40562D3: add_cofiguration.2909 (config.c:56)
+==10428==    by 0x4054846: string_iterate_lines (string.c:191)
+==10428==    by 0x4056444: config_create (config.c:61)
+==10428==    by 0x804C768: leer_metadata_tall_grass (metadata.c:17)
+==10428==    by 0x804CD66: inicializar_file_system (GameCard.c:86)
+==10428==    by 0x804CC6D: main (GameCard.c:13)
+==10428== 
+==10428== 48 bytes in 6 blocks are indirectly lost in loss record 83 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4055905: list_create_element (list.c:312)
+==10428==    by 0x4054E3D: list_add (list.c:34)
+==10428==    by 0x8049E7A: insertar_datos_a_lista (bloques.c:147)
+==10428==    by 0x8049D2B: obtener_datos_bloques (bloques.c:114)
+==10428==    by 0x804D76B: catch_pokemon (GameCard.c:358)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 50 bytes in 1 blocks are definitely lost in loss record 84 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804CCC5: inicializar_file_system (GameCard.c:73)
+==10428==    by 0x804CC6D: main (GameCard.c:13)
+==10428== 
+==10428== 56 bytes in 1 blocks are still reachable in loss record 85 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804CE03: inicializar_file_system (GameCard.c:104)
+==10428==    by 0x804CC6D: main (GameCard.c:13)
+==10428== 
+==10428== 56 bytes in 8 blocks are definitely lost in loss record 86 of 166
+==10428==    at 0x402E0B8: calloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4054792: string_substring (string.c:176)
+==10428==    by 0x405481E: string_substring_until (string.c:186)
+==10428==    by 0x804C28E: aumentar_cantidad_linea (files.c:90)
+==10428==    by 0x804D498: new_pokemon (GameCard.c:285)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 58 bytes in 1 blocks are still reachable in loss record 87 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804CD95: inicializar_file_system (GameCard.c:92)
+==10428==    by 0x804CC6D: main (GameCard.c:13)
+==10428== 
+==10428== 59 bytes in 1 blocks are still reachable in loss record 88 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804CD08: inicializar_file_system (GameCard.c:79)
+==10428==    by 0x804CC6D: main (GameCard.c:13)
+==10428== 
+==10428== 62 bytes in 1 blocks are definitely lost in loss record 89 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x8049DC8: obtener_datos_en_string (bloques.c:130)
+==10428==    by 0x804D8AD: catch_pokemon (GameCard.c:390)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 64 bytes in 4 blocks are indirectly lost in loss record 90 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4056004: dictionary_create_element (dictionary.c:231)
+==10428==    by 0x4055B3F: dictionary_put (dictionary.c:73)
+==10428==    by 0x40562D3: add_cofiguration.2909 (config.c:56)
+==10428==    by 0x4054846: string_iterate_lines (string.c:191)
+==10428==    by 0x4056444: config_create (config.c:61)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x804A030: almacenar_datos (bloques.c:189)
+==10428==    by 0x804D43E: new_pokemon (GameCard.c:275)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428== 
+==10428== 64 bytes in 4 blocks are indirectly lost in loss record 91 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4056004: dictionary_create_element (dictionary.c:231)
+==10428==    by 0x4055B3F: dictionary_put (dictionary.c:73)
+==10428==    by 0x40562D3: add_cofiguration.2909 (config.c:56)
+==10428==    by 0x4054846: string_iterate_lines (string.c:191)
+==10428==    by 0x4056444: config_create (config.c:61)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x8049B88: obtener_datos_bloques (bloques.c:77)
+==10428==    by 0x804D76B: catch_pokemon (GameCard.c:358)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428== 
+==10428== 64 bytes in 4 blocks are indirectly lost in loss record 92 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4056004: dictionary_create_element (dictionary.c:231)
+==10428==    by 0x4055B3F: dictionary_put (dictionary.c:73)
+==10428==    by 0x40562D3: add_cofiguration.2909 (config.c:56)
+==10428==    by 0x4054846: string_iterate_lines (string.c:191)
+==10428==    by 0x4056444: config_create (config.c:61)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x804A030: almacenar_datos (bloques.c:189)
+==10428==    by 0x804D8E6: catch_pokemon (GameCard.c:396)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428== 
+==10428== 65 bytes in 1 blocks are definitely lost in loss record 93 of 166
+==10428==    at 0x402E0B8: calloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4054792: string_substring (string.c:176)
+==10428==    by 0x804A168: almacenar_datos (bloques.c:222)
+==10428==    by 0x804D8E6: catch_pokemon (GameCard.c:396)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 67 bytes in 6 blocks are indirectly lost in loss record 94 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x8049E68: insertar_datos_a_lista (bloques.c:146)
+==10428==    by 0x8049D2B: obtener_datos_bloques (bloques.c:114)
+==10428==    by 0x804D76B: catch_pokemon (GameCard.c:358)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 67 bytes in 1 blocks are definitely lost in loss record 95 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804BFE8: obtener_path_pokemon (files.c:15)
+==10428==    by 0x804D6C6: catch_pokemon (GameCard.c:338)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 71 bytes in 1 blocks are definitely lost in loss record 96 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x8049DC8: obtener_datos_en_string (bloques.c:130)
+==10428==    by 0x804D40D: new_pokemon (GameCard.c:272)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 72 bytes in 1 blocks are still reachable in loss record 97 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x40563A7: config_create (config.c:38)
+==10428==    by 0x804C768: leer_metadata_tall_grass (metadata.c:17)
+==10428==    by 0x804CD66: inicializar_file_system (GameCard.c:86)
+==10428==    by 0x804CC6D: main (GameCard.c:13)
+==10428== 
+==10428== 72 bytes in 1 blocks are definitely lost in loss record 98 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804C759: leer_metadata_tall_grass (metadata.c:15)
+==10428==    by 0x804CD66: inicializar_file_system (GameCard.c:86)
+==10428==    by 0x804CC6D: main (GameCard.c:13)
+==10428== 
+==10428== 80 bytes in 1 blocks are still reachable in loss record 99 of 166
+==10428==    at 0x402E0B8: calloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4055A18: dictionary_create (dictionary.c:40)
+==10428==    by 0x40563B6: config_create (config.c:39)
+==10428==    by 0x804BCCC: leer_config (configGameCard.c:7)
+==10428==    by 0x804CC2D: main (GameCard.c:6)
+==10428== 
+==10428== 80 bytes in 1 blocks are still reachable in loss record 100 of 166
+==10428==    at 0x402E0B8: calloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4055A18: dictionary_create (dictionary.c:40)
+==10428==    by 0x40563B6: config_create (config.c:39)
+==10428==    by 0x804C768: leer_metadata_tall_grass (metadata.c:17)
+==10428==    by 0x804CD66: inicializar_file_system (GameCard.c:86)
+==10428==    by 0x804CC6D: main (GameCard.c:13)
+==10428== 
+==10428== 80 bytes in 1 blocks are indirectly lost in loss record 101 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x40563A7: config_create (config.c:38)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x804A030: almacenar_datos (bloques.c:189)
+==10428==    by 0x804D43E: new_pokemon (GameCard.c:275)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 80 bytes in 1 blocks are indirectly lost in loss record 102 of 166
+==10428==    at 0x402E0B8: calloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4055A18: dictionary_create (dictionary.c:40)
+==10428==    by 0x40563B6: config_create (config.c:39)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x804A030: almacenar_datos (bloques.c:189)
+==10428==    by 0x804D43E: new_pokemon (GameCard.c:275)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 80 bytes in 1 blocks are indirectly lost in loss record 103 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x40563A7: config_create (config.c:38)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x8049B88: obtener_datos_bloques (bloques.c:77)
+==10428==    by 0x804D76B: catch_pokemon (GameCard.c:358)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 80 bytes in 1 blocks are indirectly lost in loss record 104 of 166
+==10428==    at 0x402E0B8: calloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4055A18: dictionary_create (dictionary.c:40)
+==10428==    by 0x40563B6: config_create (config.c:39)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x8049B88: obtener_datos_bloques (bloques.c:77)
+==10428==    by 0x804D76B: catch_pokemon (GameCard.c:358)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 80 bytes in 1 blocks are indirectly lost in loss record 105 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x40563A7: config_create (config.c:38)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x804A030: almacenar_datos (bloques.c:189)
+==10428==    by 0x804D8E6: catch_pokemon (GameCard.c:396)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 80 bytes in 1 blocks are indirectly lost in loss record 106 of 166
+==10428==    at 0x402E0B8: calloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4055A18: dictionary_create (dictionary.c:40)
+==10428==    by 0x40563B6: config_create (config.c:39)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x804A030: almacenar_datos (bloques.c:189)
+==10428==    by 0x804D8E6: catch_pokemon (GameCard.c:396)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 80 bytes in 1 blocks are definitely lost in loss record 107 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804C7E9: leer_metadata_pokemon (metadata.c:33)
+==10428==    by 0x804CB92: modificar_campo_size_metadata (metadata.c:153)
+==10428==    by 0x804D42D: new_pokemon (GameCard.c:274)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 80 bytes in 1 blocks are definitely lost in loss record 108 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804C7E9: leer_metadata_pokemon (metadata.c:33)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x804A030: almacenar_datos (bloques.c:189)
+==10428==    by 0x804D43E: new_pokemon (GameCard.c:275)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 80 bytes in 1 blocks are definitely lost in loss record 109 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804C7E9: leer_metadata_pokemon (metadata.c:33)
+==10428==    by 0x804C888: obtener_bloques_pokemon_string (metadata.c:59)
+==10428==    by 0x804A041: almacenar_datos (bloques.c:190)
+==10428==    by 0x804D43E: new_pokemon (GameCard.c:275)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 80 bytes in 1 blocks are definitely lost in loss record 110 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804C7E9: leer_metadata_pokemon (metadata.c:33)
+==10428==    by 0x804CB15: modificar_campo_bloques_metadata (metadata.c:142)
+==10428==    by 0x804A124: almacenar_datos (bloques.c:214)
+==10428==    by 0x804D43E: new_pokemon (GameCard.c:275)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 80 bytes in 1 blocks are definitely lost in loss record 111 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804C7E9: leer_metadata_pokemon (metadata.c:33)
+==10428==    by 0x804C9A9: cerrar_archivo_pokemon (metadata.c:95)
+==10428==    by 0x804D463: new_pokemon (GameCard.c:279)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 80 bytes in 1 blocks are definitely lost in loss record 112 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804C7E9: leer_metadata_pokemon (metadata.c:33)
+==10428==    by 0x804C93A: archivo_pokemon_esta_abierto (metadata.c:82)
+==10428==    by 0x804D70E: catch_pokemon (GameCard.c:344)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 80 bytes in 1 blocks are definitely lost in loss record 113 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804C7E9: leer_metadata_pokemon (metadata.c:33)
+==10428==    by 0x804C9F8: abrir_archivo_pokemon (metadata.c:104)
+==10428==    by 0x804D721: catch_pokemon (GameCard.c:348)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 80 bytes in 1 blocks are definitely lost in loss record 114 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804C7E9: leer_metadata_pokemon (metadata.c:33)
+==10428==    by 0x804C888: obtener_bloques_pokemon_string (metadata.c:59)
+==10428==    by 0x804D72F: catch_pokemon (GameCard.c:350)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 80 bytes in 1 blocks are definitely lost in loss record 115 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804C7E9: leer_metadata_pokemon (metadata.c:33)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x8049B88: obtener_datos_bloques (bloques.c:77)
+==10428==    by 0x804D76B: catch_pokemon (GameCard.c:358)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 80 bytes in 1 blocks are definitely lost in loss record 116 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804C7E9: leer_metadata_pokemon (metadata.c:33)
+==10428==    by 0x804CB92: modificar_campo_size_metadata (metadata.c:153)
+==10428==    by 0x804D8D5: catch_pokemon (GameCard.c:393)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 80 bytes in 1 blocks are definitely lost in loss record 117 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804C7E9: leer_metadata_pokemon (metadata.c:33)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x804A030: almacenar_datos (bloques.c:189)
+==10428==    by 0x804D8E6: catch_pokemon (GameCard.c:396)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 80 bytes in 1 blocks are definitely lost in loss record 118 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804C7E9: leer_metadata_pokemon (metadata.c:33)
+==10428==    by 0x804C888: obtener_bloques_pokemon_string (metadata.c:59)
+==10428==    by 0x804A041: almacenar_datos (bloques.c:190)
+==10428==    by 0x804D8E6: catch_pokemon (GameCard.c:396)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 80 bytes in 1 blocks are definitely lost in loss record 119 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804C7E9: leer_metadata_pokemon (metadata.c:33)
+==10428==    by 0x804CB15: modificar_campo_bloques_metadata (metadata.c:142)
+==10428==    by 0x804A124: almacenar_datos (bloques.c:214)
+==10428==    by 0x804D8E6: catch_pokemon (GameCard.c:396)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 80 bytes in 1 blocks are definitely lost in loss record 120 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804C7E9: leer_metadata_pokemon (metadata.c:33)
+==10428==    by 0x804C9A9: cerrar_archivo_pokemon (metadata.c:95)
+==10428==    by 0x804D90B: catch_pokemon (GameCard.c:400)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 82 bytes in 8 blocks are indirectly lost in loss record 121 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804C2C4: aumentar_cantidad_linea (files.c:92)
+==10428==    by 0x804D498: new_pokemon (GameCard.c:285)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 82 bytes in 8 blocks are definitely lost in loss record 122 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x8049E68: insertar_datos_a_lista (bloques.c:146)
+==10428==    by 0x8049D2B: obtener_datos_bloques (bloques.c:114)
+==10428==    by 0x804D3B3: new_pokemon (GameCard.c:266)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 93 bytes in 9 blocks are definitely lost in loss record 123 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x804B1C7: recibir_new_pokemon (conexion.c:258)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 93 bytes in 30 blocks are definitely lost in loss record 124 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804A770: existe_posicion_en_lista (bloques.c:361)
+==10428==    by 0x804D3CA: new_pokemon (GameCard.c:267)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 96 bytes in 32 blocks are indirectly lost in loss record 125 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x4054BA9: _string_split (string.c:273)
+==10428==    by 0x40546AF: string_n_split (string.c:157)
+==10428==    by 0x40562B0: add_cofiguration.2909 (config.c:55)
+==10428==    by 0x4054846: string_iterate_lines (string.c:191)
+==10428==    by 0x4056444: config_create (config.c:61)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x804A030: almacenar_datos (bloques.c:189)
+==10428==    by 0x804D4F6: new_pokemon (GameCard.c:293)
+==10428== 
+==10428== 100 bytes in 12 blocks are still reachable in loss record 126 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x4054BA9: _string_split (string.c:273)
+==10428==    by 0x40546AF: string_n_split (string.c:157)
+==10428==    by 0x40562B0: add_cofiguration.2909 (config.c:55)
+==10428==    by 0x4054846: string_iterate_lines (string.c:191)
+==10428==    by 0x4056444: config_create (config.c:61)
+==10428==    by 0x804BCCC: leer_config (configGameCard.c:7)
+==10428==    by 0x804CC2D: main (GameCard.c:6)
+==10428== 
+==10428== 104 (80 direct, 24 indirect) bytes in 8 blocks are definitely lost in loss record 127 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4054BC4: _string_split (string.c:277)
+==10428==    by 0x40545F3: string_split (string.c:150)
+==10428==    by 0x4054716: string_get_string_as_array (string.c:163)
+==10428==    by 0x804C86C: obtener_bloques_pokemon (metadata.c:51)
+==10428==    by 0x804A030: almacenar_datos (bloques.c:189)
+==10428==    by 0x804D4F6: new_pokemon (GameCard.c:293)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 107 bytes in 36 blocks are indirectly lost in loss record 128 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x4054BA9: _string_split (string.c:273)
+==10428==    by 0x40546AF: string_n_split (string.c:157)
+==10428==    by 0x40562B0: add_cofiguration.2909 (config.c:55)
+==10428==    by 0x4054846: string_iterate_lines (string.c:191)
+==10428==    by 0x4056444: config_create (config.c:61)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x8049B88: obtener_datos_bloques (bloques.c:77)
+==10428==    by 0x804D3B3: new_pokemon (GameCard.c:266)
+==10428== 
+==10428== 123 (8 direct, 115 indirect) bytes in 1 blocks are definitely lost in loss record 129 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4054E01: list_create (list.c:27)
+==10428==    by 0x8049B77: obtener_datos_bloques (bloques.c:76)
+==10428==    by 0x804D76B: catch_pokemon (GameCard.c:358)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 126 bytes in 63 blocks are definitely lost in loss record 130 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x4054A5E: _string_append_with_format_list (string.c:246)
+==10428==    by 0x40541D3: string_from_vformat (string.c:65)
+==10428==    by 0x4054171: string_from_format (string.c:58)
+==10428==    by 0x804A75B: existe_posicion_en_lista (bloques.c:360)
+==10428==    by 0x804D3CA: new_pokemon (GameCard.c:267)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 128 bytes in 8 blocks are indirectly lost in loss record 131 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40559F7: dictionary_create (dictionary.c:38)
+==10428==    by 0x40563B6: config_create (config.c:39)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x804A030: almacenar_datos (bloques.c:189)
+==10428==    by 0x804D4F6: new_pokemon (GameCard.c:293)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 130 bytes in 2 blocks are definitely lost in loss record 132 of 166
+==10428==    at 0x402E0B8: calloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4054792: string_substring (string.c:176)
+==10428==    by 0x804A168: almacenar_datos (bloques.c:222)
+==10428==    by 0x804D43E: new_pokemon (GameCard.c:275)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 144 bytes in 9 blocks are indirectly lost in loss record 133 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40559F7: dictionary_create (dictionary.c:38)
+==10428==    by 0x40563B6: config_create (config.c:39)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x8049B88: obtener_datos_bloques (bloques.c:77)
+==10428==    by 0x804D3B3: new_pokemon (GameCard.c:266)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 144 bytes in 9 blocks are definitely lost in loss record 134 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x804BB1C: responder_ack (conexion.c:512)
+==10428==    by 0x804B2C0: recibir_new_pokemon (conexion.c:279)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 192 bytes in 12 blocks are still reachable in loss record 135 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4056004: dictionary_create_element (dictionary.c:231)
+==10428==    by 0x4055B3F: dictionary_put (dictionary.c:73)
+==10428==    by 0x40562D3: add_cofiguration.2909 (config.c:56)
+==10428==    by 0x4054846: string_iterate_lines (string.c:191)
+==10428==    by 0x4056444: config_create (config.c:61)
+==10428==    by 0x804BCCC: leer_config (configGameCard.c:7)
+==10428==    by 0x804CC2D: main (GameCard.c:6)
+==10428== 
+==10428== 202 bytes in 12 blocks are still reachable in loss record 136 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x4055B2D: dictionary_put (dictionary.c:73)
+==10428==    by 0x40562D3: add_cofiguration.2909 (config.c:56)
+==10428==    by 0x4054846: string_iterate_lines (string.c:191)
+==10428==    by 0x4056444: config_create (config.c:61)
+==10428==    by 0x804BCCC: leer_config (configGameCard.c:7)
+==10428==    by 0x804CC2D: main (GameCard.c:6)
+==10428== 
+==10428== 216 bytes in 32 blocks are indirectly lost in loss record 137 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x4055B2D: dictionary_put (dictionary.c:73)
+==10428==    by 0x40562D3: add_cofiguration.2909 (config.c:56)
+==10428==    by 0x4054846: string_iterate_lines (string.c:191)
+==10428==    by 0x4056444: config_create (config.c:61)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x804A030: almacenar_datos (bloques.c:189)
+==10428==    by 0x804D4F6: new_pokemon (GameCard.c:293)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428== 
+==10428== 216 bytes in 9 blocks are definitely lost in loss record 138 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x804AD92: serializar_paquete (conexion.c:121)
+==10428==    by 0x804BBB9: responder_ack (conexion.c:530)
+==10428==    by 0x804B2C0: recibir_new_pokemon (conexion.c:279)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 243 bytes in 36 blocks are indirectly lost in loss record 139 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x4055B2D: dictionary_put (dictionary.c:73)
+==10428==    by 0x40562D3: add_cofiguration.2909 (config.c:56)
+==10428==    by 0x4054846: string_iterate_lines (string.c:191)
+==10428==    by 0x4056444: config_create (config.c:61)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x8049B88: obtener_datos_bloques (bloques.c:77)
+==10428==    by 0x804D3B3: new_pokemon (GameCard.c:266)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428== 
+==10428== 286 (8 direct, 278 indirect) bytes in 1 blocks are definitely lost in loss record 140 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4056393: config_create (config.c:36)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x804A030: almacenar_datos (bloques.c:189)
+==10428==    by 0x804D43E: new_pokemon (GameCard.c:275)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 288 (8 direct, 280 indirect) bytes in 1 blocks are definitely lost in loss record 141 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4056393: config_create (config.c:36)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x8049B88: obtener_datos_bloques (bloques.c:77)
+==10428==    by 0x804D76B: catch_pokemon (GameCard.c:358)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 288 (8 direct, 280 indirect) bytes in 1 blocks are definitely lost in loss record 142 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4056393: config_create (config.c:36)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x804A030: almacenar_datos (bloques.c:189)
+==10428==    by 0x804D8E6: catch_pokemon (GameCard.c:396)
+==10428==    by 0x804B438: recibir_catch_pokemon (conexion.c:318)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 300 bytes in 10 blocks are definitely lost in loss record 143 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x4054A5E: _string_append_with_format_list (string.c:246)
+==10428==    by 0x40541D3: string_from_vformat (string.c:65)
+==10428==    by 0x4054171: string_from_format (string.c:58)
+==10428==    by 0x804ACDF: serve_client (conexion.c:92)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 400 bytes in 50 blocks are indirectly lost in loss record 144 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4055905: list_create_element (list.c:312)
+==10428==    by 0x4054E3D: list_add (list.c:34)
+==10428==    by 0x8049E7A: insertar_datos_a_lista (bloques.c:147)
+==10428==    by 0x8049D2B: obtener_datos_bloques (bloques.c:114)
+==10428==    by 0x804D3B3: new_pokemon (GameCard.c:266)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 436 bytes in 8 blocks are definitely lost in loss record 145 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x8049DC8: obtener_datos_en_string (bloques.c:130)
+==10428==    by 0x804D4BD: new_pokemon (GameCard.c:287)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 457 bytes in 42 blocks are indirectly lost in loss record 146 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x8049E68: insertar_datos_a_lista (bloques.c:146)
+==10428==    by 0x8049D2B: obtener_datos_bloques (bloques.c:114)
+==10428==    by 0x804D3B3: new_pokemon (GameCard.c:266)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 512 bytes in 32 blocks are indirectly lost in loss record 147 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4056004: dictionary_create_element (dictionary.c:231)
+==10428==    by 0x4055B3F: dictionary_put (dictionary.c:73)
+==10428==    by 0x40562D3: add_cofiguration.2909 (config.c:56)
+==10428==    by 0x4054846: string_iterate_lines (string.c:191)
+==10428==    by 0x4056444: config_create (config.c:61)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x804A030: almacenar_datos (bloques.c:189)
+==10428==    by 0x804D4F6: new_pokemon (GameCard.c:293)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428== 
+==10428== 576 bytes in 36 blocks are indirectly lost in loss record 148 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4056004: dictionary_create_element (dictionary.c:231)
+==10428==    by 0x4055B3F: dictionary_put (dictionary.c:73)
+==10428==    by 0x40562D3: add_cofiguration.2909 (config.c:56)
+==10428==    by 0x4054846: string_iterate_lines (string.c:191)
+==10428==    by 0x4056444: config_create (config.c:61)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x8049B88: obtener_datos_bloques (bloques.c:77)
+==10428==    by 0x804D3B3: new_pokemon (GameCard.c:266)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428== 
+==10428== 597 bytes in 9 blocks are definitely lost in loss record 149 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804BFE8: obtener_path_pokemon (files.c:15)
+==10428==    by 0x804D29B: new_pokemon (GameCard.c:242)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 634 bytes in 8 blocks are indirectly lost in loss record 150 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x40563A7: config_create (config.c:38)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x804A030: almacenar_datos (bloques.c:189)
+==10428==    by 0x804D4F6: new_pokemon (GameCard.c:293)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 634 bytes in 8 blocks are definitely lost in loss record 151 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804C7E9: leer_metadata_pokemon (metadata.c:33)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x804A030: almacenar_datos (bloques.c:189)
+==10428==    by 0x804D4F6: new_pokemon (GameCard.c:293)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 634 bytes in 8 blocks are definitely lost in loss record 152 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804C7E9: leer_metadata_pokemon (metadata.c:33)
+==10428==    by 0x804C888: obtener_bloques_pokemon_string (metadata.c:59)
+==10428==    by 0x804A041: almacenar_datos (bloques.c:190)
+==10428==    by 0x804D4F6: new_pokemon (GameCard.c:293)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 634 bytes in 8 blocks are definitely lost in loss record 153 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804C7E9: leer_metadata_pokemon (metadata.c:33)
+==10428==    by 0x804CB15: modificar_campo_bloques_metadata (metadata.c:142)
+==10428==    by 0x804A124: almacenar_datos (bloques.c:214)
+==10428==    by 0x804D4F6: new_pokemon (GameCard.c:293)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 634 bytes in 8 blocks are definitely lost in loss record 154 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804C7E9: leer_metadata_pokemon (metadata.c:33)
+==10428==    by 0x804C9A9: cerrar_archivo_pokemon (metadata.c:95)
+==10428==    by 0x804D51B: new_pokemon (GameCard.c:297)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 640 bytes in 8 blocks are indirectly lost in loss record 155 of 166
+==10428==    at 0x402E0B8: calloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4055A18: dictionary_create (dictionary.c:40)
+==10428==    by 0x40563B6: config_create (config.c:39)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x804A030: almacenar_datos (bloques.c:189)
+==10428==    by 0x804D4F6: new_pokemon (GameCard.c:293)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 714 bytes in 9 blocks are indirectly lost in loss record 156 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x40563A7: config_create (config.c:38)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x8049B88: obtener_datos_bloques (bloques.c:77)
+==10428==    by 0x804D3B3: new_pokemon (GameCard.c:266)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 714 bytes in 9 blocks are definitely lost in loss record 157 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804C7E9: leer_metadata_pokemon (metadata.c:33)
+==10428==    by 0x804C93A: archivo_pokemon_esta_abierto (metadata.c:82)
+==10428==    by 0x804D2E3: new_pokemon (GameCard.c:247)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 714 bytes in 9 blocks are definitely lost in loss record 158 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804C7E9: leer_metadata_pokemon (metadata.c:33)
+==10428==    by 0x804C9F8: abrir_archivo_pokemon (metadata.c:104)
+==10428==    by 0x804D2F6: new_pokemon (GameCard.c:251)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 714 bytes in 9 blocks are definitely lost in loss record 159 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804C7E9: leer_metadata_pokemon (metadata.c:33)
+==10428==    by 0x804C888: obtener_bloques_pokemon_string (metadata.c:59)
+==10428==    by 0x804D304: new_pokemon (GameCard.c:253)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 714 bytes in 9 blocks are definitely lost in loss record 160 of 166
+==10428==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40540E7: string_append (string.c:46)
+==10428==    by 0x804C7E9: leer_metadata_pokemon (metadata.c:33)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x8049B88: obtener_datos_bloques (bloques.c:77)
+==10428==    by 0x804D3B3: new_pokemon (GameCard.c:266)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 720 bytes in 9 blocks are indirectly lost in loss record 161 of 166
+==10428==    at 0x402E0B8: calloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4055A18: dictionary_create (dictionary.c:40)
+==10428==    by 0x40563B6: config_create (config.c:39)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x8049B88: obtener_datos_bloques (bloques.c:77)
+==10428==    by 0x804D3B3: new_pokemon (GameCard.c:266)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 780 bytes in 12 blocks are definitely lost in loss record 162 of 166
+==10428==    at 0x402E0B8: calloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4054792: string_substring (string.c:176)
+==10428==    by 0x804A168: almacenar_datos (bloques.c:222)
+==10428==    by 0x804D4F6: new_pokemon (GameCard.c:293)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 1,024 bytes in 1,024 blocks are definitely lost in loss record 163 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x40ED2C5: strdup (strdup.c:42)
+==10428==    by 0x405409A: string_duplicate (string.c:42)
+==10428==    by 0x405412F: string_new (string.c:51)
+==10428==    by 0x804BEB3: obtener_path_bloques (configGameCard.c:91)
+==10428==    by 0x804A218: obtener_path_bloque_individual (bloques.c:245)
+==10428==    by 0x8049AB4: bloque_esta_vacio (bloques.c:39)
+==10428==    by 0x804975F: crear_bitmap (bitmap.c:42)
+==10428==    by 0x804CE80: inicializar_file_system (GameCard.c:118)
+==10428==    by 0x804CC6D: main (GameCard.c:13)
+==10428== 
+==10428== 1,029 (72 direct, 957 indirect) bytes in 9 blocks are definitely lost in loss record 164 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4054E01: list_create (list.c:27)
+==10428==    by 0x8049B77: obtener_datos_bloques (bloques.c:76)
+==10428==    by 0x804D3B3: new_pokemon (GameCard.c:266)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 2,290 (64 direct, 2,226 indirect) bytes in 8 blocks are definitely lost in loss record 165 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4056393: config_create (config.c:36)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x804A030: almacenar_datos (bloques.c:189)
+==10428==    by 0x804D4F6: new_pokemon (GameCard.c:293)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== 2,576 (72 direct, 2,504 indirect) bytes in 9 blocks are definitely lost in loss record 166 of 166
+==10428==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==10428==    by 0x4056393: config_create (config.c:36)
+==10428==    by 0x804C7F8: leer_metadata_pokemon (metadata.c:36)
+==10428==    by 0x804C845: obtener_bloques_pokemon (metadata.c:47)
+==10428==    by 0x8049B88: obtener_datos_bloques (bloques.c:77)
+==10428==    by 0x804D3B3: new_pokemon (GameCard.c:266)
+==10428==    by 0x804B2D7: recibir_new_pokemon (conexion.c:281)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428== 
+==10428== LEAK SUMMARY:
+==10428==    definitely lost: 11,881 bytes in 1,548 blocks
+==10428==    indirectly lost: 6,676 bytes in 432 blocks
+==10428==      possibly lost: 0 bytes in 0 blocks
+==10428==    still reachable: 1,110 bytes in 60 blocks
+==10428==         suppressed: 0 bytes in 0 blocks
+==10428== 
+==10428== Use --track-origins=yes to see where uninitialised values come from
+==10428== ERROR SUMMARY: 192 errors from 119 contexts (suppressed: 0 from 0)
+==10428== 
+==10428== 1 errors in context 1 of 119:
+==10428== Thread 2:
+==10428== Syscall param socketcall.send(args) points to uninitialised byte(s)
+==10428==    at 0x406A549: send (send.c:35)
+==10428==    by 0x804BBD0: responder_ack (conexion.c:532)
+==10428==    by 0x804B422: recibir_catch_pokemon (conexion.c:316)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x5631260 is on thread 2's stack
+==10428==  in frame #0, created by send (send.c:29)
+==10428== 
+==10428== 
+==10428== 1 errors in context 2 of 119:
+==10428== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==10428==    at 0x406A389: recv (recv.c:35)
+==10428==    by 0x804B399: recibir_catch_pokemon (conexion.c:306)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x56312b0 is on thread 2's stack
+==10428==  in frame #0, created by recv (recv.c:29)
+==10428== 
+==10428== 
+==10428== 1 errors in context 3 of 119:
+==10428== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==10428==    at 0x406A389: recv (recv.c:35)
+==10428==    by 0x804B383: recibir_catch_pokemon (conexion.c:303)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x56312b0 is on thread 2's stack
+==10428==  in frame #0, created by recv (recv.c:29)
+==10428== 
+==10428== 
+==10428== 1 errors in context 4 of 119:
+==10428== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==10428==    at 0x406A389: recv (recv.c:35)
+==10428==    by 0x804B36D: recibir_catch_pokemon (conexion.c:300)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x56312b0 is on thread 2's stack
+==10428==  in frame #0, created by recv (recv.c:29)
+==10428== 
+==10428== 
+==10428== 1 errors in context 5 of 119:
+==10428== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==10428==    at 0x406A389: recv (recv.c:35)
+==10428==    by 0x804B344: recibir_catch_pokemon (conexion.c:297)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x56312b0 is on thread 2's stack
+==10428==  in frame #0, created by recv (recv.c:29)
+==10428== 
+==10428== 
+==10428== 1 errors in context 6 of 119:
+==10428== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==10428==    at 0x406A389: recv (recv.c:35)
+==10428==    by 0x804B32E: recibir_catch_pokemon (conexion.c:294)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x56312b0 is on thread 2's stack
+==10428==  in frame #0, created by recv (recv.c:29)
+==10428== 
+==10428== 
+==10428== 1 errors in context 7 of 119:
+==10428== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==10428==    at 0x406A389: recv (recv.c:35)
+==10428==    by 0x804B318: recibir_catch_pokemon (conexion.c:291)
+==10428==    by 0x804AD56: process_request (conexion.c:106)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x56312b0 is on thread 2's stack
+==10428==  in frame #0, created by recv (recv.c:29)
+==10428== 
+==10428== 
+==10428== 9 errors in context 8 of 119:
+==10428== Syscall param socketcall.send(args) points to uninitialised byte(s)
+==10428==    at 0x406A549: send (send.c:35)
+==10428==    by 0x804BBD0: responder_ack (conexion.c:532)
+==10428==    by 0x804B2C0: recibir_new_pokemon (conexion.c:279)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x4e30250 is on thread 2's stack
+==10428==  in frame #0, created by send (send.c:29)
+==10428== 
+==10428== 
+==10428== 9 errors in context 9 of 119:
+==10428== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==10428==    at 0x406A389: recv (recv.c:35)
+==10428==    by 0x804B223: recibir_new_pokemon (conexion.c:268)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x4e302a0 is on thread 2's stack
+==10428==  in frame #0, created by recv (recv.c:29)
+==10428== 
+==10428== 
+==10428== 9 errors in context 10 of 119:
+==10428== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==10428==    at 0x406A389: recv (recv.c:35)
+==10428==    by 0x804B20D: recibir_new_pokemon (conexion.c:265)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x4e302a0 is on thread 2's stack
+==10428==  in frame #0, created by recv (recv.c:29)
+==10428== 
+==10428== 
+==10428== 9 errors in context 11 of 119:
+==10428== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==10428==    at 0x406A389: recv (recv.c:35)
+==10428==    by 0x804B1F7: recibir_new_pokemon (conexion.c:262)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x4e302a0 is on thread 2's stack
+==10428==  in frame #0, created by recv (recv.c:29)
+==10428== 
+==10428== 
+==10428== 9 errors in context 12 of 119:
+==10428== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==10428==    at 0x406A389: recv (recv.c:35)
+==10428==    by 0x804B1E1: recibir_new_pokemon (conexion.c:259)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x4e302a0 is on thread 2's stack
+==10428==  in frame #0, created by recv (recv.c:29)
+==10428== 
+==10428== 
+==10428== 9 errors in context 13 of 119:
+==10428== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==10428==    at 0x406A389: recv (recv.c:35)
+==10428==    by 0x804B1B8: recibir_new_pokemon (conexion.c:256)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x4e302a0 is on thread 2's stack
+==10428==  in frame #0, created by recv (recv.c:29)
+==10428== 
+==10428== 
+==10428== 9 errors in context 14 of 119:
+==10428== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==10428==    at 0x406A389: recv (recv.c:35)
+==10428==    by 0x804B1A2: recibir_new_pokemon (conexion.c:253)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x4e302a0 is on thread 2's stack
+==10428==  in frame #0, created by recv (recv.c:29)
+==10428== 
+==10428== 
+==10428== 9 errors in context 15 of 119:
+==10428== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==10428==    at 0x406A389: recv (recv.c:35)
+==10428==    by 0x804B18C: recibir_new_pokemon (conexion.c:250)
+==10428==    by 0x804AD46: process_request (conexion.c:102)
+==10428==    by 0x804AD0C: serve_client (conexion.c:95)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x4e302a0 is on thread 2's stack
+==10428==  in frame #0, created by recv (recv.c:29)
+==10428== 
+==10428== 
+==10428== 10 errors in context 16 of 119:
+==10428== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==10428==    at 0x406A389: recv (recv.c:35)
+==10428==    by 0x804ACBC: serve_client (conexion.c:89)
+==10428==    by 0x4061294: start_thread (pthread_create.c:333)
+==10428==    by 0x415F0AD: clone (clone.S:114)
+==10428==  Address 0x4e30310 is on thread 2's stack
+==10428==  in frame #0, created by recv (recv.c:29)
+==10428== 
+==10428== ERROR SUMMARY: 192 errors from 119 contexts (suppressed: 0 from 0)
