@@ -281,7 +281,7 @@ void recibir_new_pokemon(int socket_cliente){
 	new_pokemon(pokemon, posX, posY, cantidad);
 
 	uint32_t id_mensaje_correlativo = mensaje_id;
-	enviar_appeared_pokemon(pokemon, posX, posY, id_mensaje_correlativo);
+	//enviar_appeared_pokemon(pokemon, posX, posY, id_mensaje_correlativo);
 
 }
 
@@ -317,7 +317,7 @@ void recibir_catch_pokemon(int socket_cliente){//RECIBE TODO PERFECTO (NO MUEVAN
 
 	uint32_t se_pudo_encontrar = catch_pokemon(pokemon, posX, posY);
 
-	enviar_caught_pokemon(mensaje_id, se_pudo_encontrar);
+	//enviar_caught_pokemon(mensaje_id, se_pudo_encontrar);
 }
 
 void recibir_get_pokemon(int socket_cliente){//RECIBE TODO PERFECTO (NO MUEVAN EL ORDEN DE LAS COSAS BOE)
@@ -346,7 +346,7 @@ void recibir_get_pokemon(int socket_cliente){//RECIBE TODO PERFECTO (NO MUEVAN E
 	uint32_t tamanio_void = 0;
 	void* respuesta = get_pokemon(pokemon, &tamanio_void);
 
-	enviar_localized_pokemon(respuesta, tamanio_void, pokemon, mensaje_id);
+	//enviar_localized_pokemon(respuesta, tamanio_void, pokemon, mensaje_id);
 }
 
 // Enviar mensaje a Broker
