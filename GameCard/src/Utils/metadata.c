@@ -64,6 +64,7 @@ char* obtener_bloques_pokemon_string(char* path_pokemon){
 	char* aux = config_get_string_value(metadata_pokemon, "BLOCKS");
 	char* bloques_string = string_duplicate(aux);
 	//config_destroy(metadata_pokemon);
+	free(aux);
 	return bloques_string;
 }
 
@@ -137,7 +138,7 @@ void modificar_campo_bloques_metadata(char * path_pokemon,char* bloques){
 	t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
 	config_set_value(metadata_pokemon,"BLOCKS",bloques);
 	config_save(metadata_pokemon);
-	//config_destroy(metadata_pokemon);
+	config_destroy(metadata_pokemon);
 	pthread_mutex_unlock(&MUTEX_ELSOLUCIONES);
 }
 
@@ -148,7 +149,7 @@ void modificar_campo_size_metadata(char * path_pokemon,int tamanio){
 	t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
 	config_set_value(metadata_pokemon,"SIZE",tamanio_string);
 	config_save(metadata_pokemon);
-	//config_destroy(metadata_pokemon);
+	config_destroy(metadata_pokemon);
 	//pthread_mutex_unlock(&MUTEX_ELSOLUCIONES);
 	free(tamanio_string);
 }
