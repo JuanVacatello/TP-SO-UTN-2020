@@ -1,1229 +1,1867 @@
-==12755== Memcheck, a memory error detector
-==12755== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
-==12755== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
-==12755== Command: ./Broker
-==12755== Parent PID: 11189
-==12755== 
---12755-- 
---12755-- Valgrind options:
---12755--    --show-leak-kinds=all
---12755--    --leak-check=full
---12755--    -v
---12755--    --log-file=valgrind
---12755-- Contents of /proc/version:
---12755--   Linux version 4.4.0-177-generic (buildd@lgw01-amd64-031) (gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) ) #207-Ubuntu SMP Mon Mar 16 01:15:50 UTC 2020
---12755-- 
---12755-- Arch and hwcaps: X86, LittleEndian, x86-mmxext-sse1-sse2-sse3
---12755-- Page sizes: currently 4096, max supported 4096
---12755-- Valgrind library directory: /usr/lib/valgrind
---12755-- Reading syms from /lib/i386-linux-gnu/ld-2.23.so
---12755--   Considering /lib/i386-linux-gnu/ld-2.23.so ..
---12755--   .. CRC mismatch (computed f6bf32f6 wanted cd116314)
---12755--   Considering /usr/lib/debug/lib/i386-linux-gnu/ld-2.23.so ..
---12755--   .. CRC is valid
---12755-- Reading syms from /home/utnso/Documentos/Delibird/Broker/tp-2020-1c-wRAPPERS/Broker/Debug/Broker
---12755-- Reading syms from /usr/lib/valgrind/memcheck-x86-linux
---12755--   Considering /usr/lib/valgrind/memcheck-x86-linux ..
---12755--   .. CRC mismatch (computed 6036da3f wanted 652e483f)
---12755--    object doesn't have a symbol table
---12755--    object doesn't have a dynamic symbol table
---12755-- Scheduler: using generic scheduler lock implementation.
---12755-- Reading suppressions file: /usr/lib/valgrind/default.supp
-==12755== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-12755-by-utnso-on-???
-==12755== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-12755-by-utnso-on-???
-==12755== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-12755-by-utnso-on-???
-==12755== 
-==12755== TO CONTROL THIS PROCESS USING vgdb (which you probably
-==12755== don't want to do, unless you know exactly what you're doing,
-==12755== or are doing some strange experiment):
-==12755==   /usr/lib/valgrind/../../bin/vgdb --pid=12755 ...command...
-==12755== 
-==12755== TO DEBUG THIS PROCESS USING GDB: start GDB like this
-==12755==   /path/to/gdb ./Broker
-==12755== and then give GDB the following command
-==12755==   target remote | /usr/lib/valgrind/../../bin/vgdb --pid=12755
-==12755== --pid is optional if only one valgrind process is running
-==12755== 
---12755-- REDIR: 0x4019030 (ld-linux.so.2:strlen) redirected to 0x380490f2 (???)
---12755-- REDIR: 0x4018df0 (ld-linux.so.2:index) redirected to 0x380490cd (???)
---12755-- Reading syms from /usr/lib/valgrind/vgpreload_core-x86-linux.so
---12755--   Considering /usr/lib/valgrind/vgpreload_core-x86-linux.so ..
---12755--   .. CRC mismatch (computed 5b95c0c4 wanted 39e79efa)
---12755--    object doesn't have a symbol table
---12755-- Reading syms from /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so
---12755--   Considering /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so ..
---12755--   .. CRC mismatch (computed 4d5a1526 wanted 33571d5b)
---12755--    object doesn't have a symbol table
-==12755== WARNING: new redirection conflicts with existing -- ignoring it
---12755--     old: 0x04019030 (strlen              ) R-> (0000.0) 0x380490f2 ???
---12755--     new: 0x04019030 (strlen              ) R-> (2007.0) 0x0402f410 strlen
---12755-- Reading syms from /usr/lib/libcommons.so
---12755-- Reading syms from /lib/i386-linux-gnu/libpthread-2.23.so
---12755--   Considering /usr/lib/debug/.build-id/51/ddb6090511af5615d5f4af155a4403d2845346.debug ..
---12755--   .. build-id is valid
---12755-- Reading syms from /lib/i386-linux-gnu/libc-2.23.so
---12755--   Considering /lib/i386-linux-gnu/libc-2.23.so ..
---12755--   .. CRC mismatch (computed 05488cfc wanted a5215580)
---12755--   Considering /usr/lib/debug/lib/i386-linux-gnu/libc-2.23.so ..
---12755--   .. CRC is valid
---12755-- REDIR: 0x40ef4b0 (libc.so.6:strncasecmp) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
---12755-- REDIR: 0x40f6140 (libc.so.6:memrchr) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
---12755-- REDIR: 0x4108b20 (libc.so.6:wcslen) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
---12755-- REDIR: 0x40ee350 (libc.so.6:strstr) redirected to 0x4033700 (strstr)
---12755-- REDIR: 0x40ed7e0 (libc.so.6:__GI_strrchr) redirected to 0x402ee00 (__GI_strrchr)
---12755-- REDIR: 0x40e8f00 (libc.so.6:malloc) redirected to 0x402c110 (malloc)
---12755-- REDIR: 0x40ed5c0 (libc.so.6:__GI_strlen) redirected to 0x402f390 (__GI_strlen)
---12755-- REDIR: 0x40ef680 (libc.so.6:__GI_memcpy) redirected to 0x4030fb0 (__GI_memcpy)
---12755-- REDIR: 0x40e9810 (libc.so.6:calloc) redirected to 0x402e010 (calloc)
---12755-- REDIR: 0x40e9520 (libc.so.6:realloc) redirected to 0x402e250 (realloc)
---12755-- REDIR: 0x40e9470 (libc.so.6:free) redirected to 0x402d2f0 (free)
---12755-- REDIR: 0x40ed580 (libc.so.6:strlen) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
---12755-- REDIR: 0x40f6440 (libc.so.6:__strlen_sse2_bsf) redirected to 0x402f370 (strlen)
---12755-- REDIR: 0x40ed700 (libc.so.6:strncmp) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
---12755-- REDIR: 0x41ad5c0 (libc.so.6:__strncmp_ssse3) redirected to 0x402fab0 (strncmp)
---12755-- REDIR: 0x40eefc0 (libc.so.6:memset) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
---12755-- REDIR: 0x419d4d0 (libc.so.6:__memset_sse2) redirected to 0x40327d0 (memset)
---12755-- REDIR: 0x40ecee0 (libc.so.6:strcmp) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
---12755-- REDIR: 0x41ac150 (libc.so.6:__strcmp_ssse3) redirected to 0x4030450 (strcmp)
---12755-- REDIR: 0x40f1280 (libc.so.6:strchrnul) redirected to 0x40330b0 (strchrnul)
---12755-- REDIR: 0x40ef0d0 (libc.so.6:__GI_mempcpy) redirected to 0x40332c0 (__GI_mempcpy)
---12755-- REDIR: 0x40ecae0 (libc.so.6:strcat) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
---12755-- REDIR: 0x4101b30 (libc.so.6:__strcat_ssse3) redirected to 0x402f030 (strcat)
---12755-- REDIR: 0x40eec10 (libc.so.6:__GI_memcmp) redirected to 0x4031ef0 (__GI_memcmp)
---12755-- REDIR: 0x40f11b0 (libc.so.6:__GI___rawmemchr) redirected to 0x4033110 (__GI___rawmemchr)
-==12755== Thread 2:
-==12755== Syscall param socketcall.recv(args) points to uninitialised byte(s)
-==12755==    at 0x406A389: recv (recv.c:35)
-==12755==    by 0x804C6FF: serve_client (servidor.c:56)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755==  Address 0x4e30310 is on thread 2's stack
-==12755==  in frame #0, created by recv (recv.c:29)
-==12755== 
-==12755== Thread 3:
-==12755== Syscall param socketcall.recv(args) points to uninitialised byte(s)
-==12755==    at 0x406A389: recv (recv.c:35)
-==12755==    by 0x804F388: recibir_tamanio_buffer (servidor.c:1289)
-==12755==    by 0x804C8CD: atender_suscripcion (servidor.c:110)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755==  Address 0x56312f0 is on thread 3's stack
-==12755==  in frame #0, created by recv (recv.c:29)
-==12755== 
-==12755== Syscall param socketcall.recv(args) points to uninitialised byte(s)
-==12755==    at 0x406A389: recv (recv.c:35)
-==12755==    by 0x804C924: modelar_proceso (servidor.c:121)
-==12755==    by 0x804C8DE: atender_suscripcion (servidor.c:112)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755==  Address 0x56312f0 is on thread 3's stack
-==12755==  in frame #0, created by recv (recv.c:29)
-==12755== 
-==12755== Syscall param socketcall.recv(args) points to uninitialised byte(s)
-==12755==    at 0x406A389: recv (recv.c:35)
-==12755==    by 0x804C95F: suscribirse_a_cola (servidor.c:131)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755==  Address 0x56312d0 is on thread 3's stack
-==12755==  in frame #0, created by recv (recv.c:29)
-==12755== 
---12755-- REDIR: 0x40ef610 (libc.so.6:memcpy) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
---12755-- REDIR: 0x419fb70 (libc.so.6:__memcpy_ssse3) redirected to 0x4030cc0 (memcpy)
-==12755== Thread 2:
-==12755== Syscall param socketcall.send(args) points to uninitialised byte(s)
-==12755==    at 0x406A549: send (send.c:35)
-==12755==    by 0x804F42E: enviar_mensaje (servidor.c:1305)
-==12755==    by 0x804C7A7: process_request (servidor.c:75)
-==12755==    by 0x804C723: serve_client (servidor.c:60)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755==  Address 0x4e302c0 is on thread 2's stack
-==12755==  in frame #0, created by send (send.c:29)
-==12755== 
-==12755== Thread 3:
-==12755== Use of uninitialised value of size 4
-==12755==    at 0x40B724B: _itoa_word (_itoa.c:179)
-==12755==    by 0x40BB221: vfprintf (vfprintf.c:1631)
-==12755==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
-==12755==    by 0x4054A1B: _string_append_with_format_list (string.c:239)
-==12755==    by 0x40541D3: string_from_vformat (string.c:65)
-==12755==    by 0x4054171: string_from_format (string.c:58)
-==12755==    by 0x8049682: log_suscripcion_nueva (logBroker.c:56)
-==12755==    by 0x804CB16: suscribirse_a_cola (servidor.c:163)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== Conditional jump or move depends on uninitialised value(s)
-==12755==    at 0x40B7253: _itoa_word (_itoa.c:179)
-==12755==    by 0x40BB221: vfprintf (vfprintf.c:1631)
-==12755==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
-==12755==    by 0x4054A1B: _string_append_with_format_list (string.c:239)
-==12755==    by 0x40541D3: string_from_vformat (string.c:65)
-==12755==    by 0x4054171: string_from_format (string.c:58)
-==12755==    by 0x8049682: log_suscripcion_nueva (logBroker.c:56)
-==12755==    by 0x804CB16: suscribirse_a_cola (servidor.c:163)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== Conditional jump or move depends on uninitialised value(s)
-==12755==    at 0x40BA7A4: vfprintf (vfprintf.c:1631)
-==12755==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
-==12755==    by 0x4054A1B: _string_append_with_format_list (string.c:239)
-==12755==    by 0x40541D3: string_from_vformat (string.c:65)
-==12755==    by 0x4054171: string_from_format (string.c:58)
-==12755==    by 0x8049682: log_suscripcion_nueva (logBroker.c:56)
-==12755==    by 0x804CB16: suscribirse_a_cola (servidor.c:163)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== Conditional jump or move depends on uninitialised value(s)
-==12755==    at 0x40BACBD: vfprintf (vfprintf.c:1631)
-==12755==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
-==12755==    by 0x4054A1B: _string_append_with_format_list (string.c:239)
-==12755==    by 0x40541D3: string_from_vformat (string.c:65)
-==12755==    by 0x4054171: string_from_format (string.c:58)
-==12755==    by 0x8049682: log_suscripcion_nueva (logBroker.c:56)
-==12755==    by 0x804CB16: suscribirse_a_cola (servidor.c:163)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== Conditional jump or move depends on uninitialised value(s)
-==12755==    at 0x40BAB04: vfprintf (vfprintf.c:1631)
-==12755==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
-==12755==    by 0x4054A1B: _string_append_with_format_list (string.c:239)
-==12755==    by 0x40541D3: string_from_vformat (string.c:65)
-==12755==    by 0x4054171: string_from_format (string.c:58)
-==12755==    by 0x8049682: log_suscripcion_nueva (logBroker.c:56)
-==12755==    by 0x804CB16: suscribirse_a_cola (servidor.c:163)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== Conditional jump or move depends on uninitialised value(s)
-==12755==    at 0x40BAB4D: vfprintf (vfprintf.c:1631)
-==12755==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
-==12755==    by 0x4054A1B: _string_append_with_format_list (string.c:239)
-==12755==    by 0x40541D3: string_from_vformat (string.c:65)
-==12755==    by 0x4054171: string_from_format (string.c:58)
-==12755==    by 0x8049682: log_suscripcion_nueva (logBroker.c:56)
-==12755==    by 0x804CB16: suscribirse_a_cola (servidor.c:163)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== Use of uninitialised value of size 4
-==12755==    at 0x40B724B: _itoa_word (_itoa.c:179)
-==12755==    by 0x40BB221: vfprintf (vfprintf.c:1631)
-==12755==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
-==12755==    by 0x4054A4D: _string_append_with_format_list (string.c:244)
-==12755==    by 0x40541D3: string_from_vformat (string.c:65)
-==12755==    by 0x4054171: string_from_format (string.c:58)
-==12755==    by 0x8049682: log_suscripcion_nueva (logBroker.c:56)
-==12755==    by 0x804CB16: suscribirse_a_cola (servidor.c:163)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== Conditional jump or move depends on uninitialised value(s)
-==12755==    at 0x40B7253: _itoa_word (_itoa.c:179)
-==12755==    by 0x40BB221: vfprintf (vfprintf.c:1631)
-==12755==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
-==12755==    by 0x4054A4D: _string_append_with_format_list (string.c:244)
-==12755==    by 0x40541D3: string_from_vformat (string.c:65)
-==12755==    by 0x4054171: string_from_format (string.c:58)
-==12755==    by 0x8049682: log_suscripcion_nueva (logBroker.c:56)
-==12755==    by 0x804CB16: suscribirse_a_cola (servidor.c:163)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== Conditional jump or move depends on uninitialised value(s)
-==12755==    at 0x40BA7A4: vfprintf (vfprintf.c:1631)
-==12755==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
-==12755==    by 0x4054A4D: _string_append_with_format_list (string.c:244)
-==12755==    by 0x40541D3: string_from_vformat (string.c:65)
-==12755==    by 0x4054171: string_from_format (string.c:58)
-==12755==    by 0x8049682: log_suscripcion_nueva (logBroker.c:56)
-==12755==    by 0x804CB16: suscribirse_a_cola (servidor.c:163)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== Conditional jump or move depends on uninitialised value(s)
-==12755==    at 0x40BACBD: vfprintf (vfprintf.c:1631)
-==12755==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
-==12755==    by 0x4054A4D: _string_append_with_format_list (string.c:244)
-==12755==    by 0x40541D3: string_from_vformat (string.c:65)
-==12755==    by 0x4054171: string_from_format (string.c:58)
-==12755==    by 0x8049682: log_suscripcion_nueva (logBroker.c:56)
-==12755==    by 0x804CB16: suscribirse_a_cola (servidor.c:163)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== Conditional jump or move depends on uninitialised value(s)
-==12755==    at 0x40BAB04: vfprintf (vfprintf.c:1631)
-==12755==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
-==12755==    by 0x4054A4D: _string_append_with_format_list (string.c:244)
-==12755==    by 0x40541D3: string_from_vformat (string.c:65)
-==12755==    by 0x4054171: string_from_format (string.c:58)
-==12755==    by 0x8049682: log_suscripcion_nueva (logBroker.c:56)
-==12755==    by 0x804CB16: suscribirse_a_cola (servidor.c:163)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== Conditional jump or move depends on uninitialised value(s)
-==12755==    at 0x40BAB4D: vfprintf (vfprintf.c:1631)
-==12755==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
-==12755==    by 0x4054A4D: _string_append_with_format_list (string.c:244)
-==12755==    by 0x40541D3: string_from_vformat (string.c:65)
-==12755==    by 0x4054171: string_from_format (string.c:58)
-==12755==    by 0x8049682: log_suscripcion_nueva (logBroker.c:56)
-==12755==    by 0x804CB16: suscribirse_a_cola (servidor.c:163)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== Thread 2:
-==12755== Invalid read of size 4
-==12755==    at 0x804F443: enviar_mensaje (servidor.c:1308)
-==12755==    by 0x804C7A7: process_request (servidor.c:75)
-==12755==    by 0x804C723: serve_client (servidor.c:60)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755==  Address 0x42365ac is 4 bytes inside a block of size 8 free'd
-==12755==    at 0x402D358: free (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x804F43C: enviar_mensaje (servidor.c:1307)
-==12755==    by 0x804C7A7: process_request (servidor.c:75)
-==12755==    by 0x804C723: serve_client (servidor.c:60)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755==  Block was alloc'd at
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x804F3B2: enviar_mensaje (servidor.c:1296)
-==12755==    by 0x804C7A7: process_request (servidor.c:75)
-==12755==    by 0x804C723: serve_client (servidor.c:60)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== Thread 3:
-==12755== Syscall param socketcall.recv(args) points to uninitialised byte(s)
-==12755==    at 0x406A389: recv (recv.c:35)
-==12755==    by 0x804E51E: recibir_catch_pokemon (servidor.c:856)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755==  Address 0x56312f0 is on thread 3's stack
-==12755==  in frame #0, created by recv (recv.c:29)
-==12755== 
-==12755== Syscall param socketcall.recv(args) points to uninitialised byte(s)
-==12755==    at 0x406A389: recv (recv.c:35)
-==12755==    by 0x804E534: recibir_catch_pokemon (servidor.c:859)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755==  Address 0x56312f0 is on thread 3's stack
-==12755==  in frame #0, created by recv (recv.c:29)
-==12755== 
-==12755== Syscall param socketcall.recv(args) points to uninitialised byte(s)
-==12755==    at 0x406A389: recv (recv.c:35)
-==12755==    by 0x804E55D: recibir_catch_pokemon (servidor.c:862)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755==  Address 0x56312f0 is on thread 3's stack
-==12755==  in frame #0, created by recv (recv.c:29)
-==12755== 
-==12755== Syscall param socketcall.recv(args) points to uninitialised byte(s)
-==12755==    at 0x406A389: recv (recv.c:35)
-==12755==    by 0x804E573: recibir_catch_pokemon (servidor.c:865)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755==  Address 0x56312f0 is on thread 3's stack
-==12755==  in frame #0, created by recv (recv.c:29)
-==12755== 
-==12755== Syscall param socketcall.recv(args) points to uninitialised byte(s)
-==12755==    at 0x406A389: recv (recv.c:35)
-==12755==    by 0x804E589: recibir_catch_pokemon (servidor.c:868)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755==  Address 0x56312f0 is on thread 3's stack
-==12755==  in frame #0, created by recv (recv.c:29)
-==12755== 
-==12755== Syscall param socketcall.send(args) points to uninitialised byte(s)
-==12755==    at 0x406A549: send (send.c:35)
-==12755==    by 0x804F4F5: enviar_id_mensaje (servidor.c:1326)
-==12755==    by 0x804E63C: recibir_catch_pokemon (servidor.c:892)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755==  Address 0x56312c0 is on thread 3's stack
-==12755==  in frame #0, created by send (send.c:29)
-==12755== 
-==12755== 
-==12755== Process terminating with default action of signal 2 (SIGINT)
-==12755==    at 0x406A264: accept (accept.c:35)
-==12755==    by 0x804C67E: esperar_cliente (servidor.c:45)
-==12755==    by 0x804C64E: iniciar_servidor (servidor.c:36)
-==12755==    by 0x804F55C: main (Broker.c:7)
-==12755== 
-==12755== HEAP SUMMARY:
-==12755==     in use at exit: 1,924 bytes in 115 blocks
-==12755==   total heap usage: 480 allocs, 365 frees, 31,000 bytes allocated
-==12755== 
-==12755== Searching for pointers to 115 not-freed blocks
-==12755== Checked 72,916 bytes
-==12755== 
-==12755== Thread 1:
-==12755== 1 bytes in 1 blocks are definitely lost in loss record 1 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x40ED2C5: strdup (strdup.c:42)
-==12755==    by 0x405409A: string_duplicate (string.c:42)
-==12755==    by 0x405412F: string_new (string.c:51)
-==12755==    by 0x80498FA: cola_referida (logBroker.c:129)
-==12755==    by 0x8049669: log_suscripcion_nueva (logBroker.c:55)
-==12755==    by 0x804CB16: suscribirse_a_cola (servidor.c:163)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 1 bytes in 1 blocks are definitely lost in loss record 2 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x40ED2C5: strdup (strdup.c:42)
-==12755==    by 0x405409A: string_duplicate (string.c:42)
-==12755==    by 0x405412F: string_new (string.c:51)
-==12755==    by 0x80498FA: cola_referida (logBroker.c:129)
-==12755==    by 0x8049669: log_suscripcion_nueva (logBroker.c:55)
-==12755==    by 0x804CA83: suscribirse_a_cola (servidor.c:153)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 1 bytes in 1 blocks are definitely lost in loss record 3 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x40ED2C5: strdup (strdup.c:42)
-==12755==    by 0x405409A: string_duplicate (string.c:42)
-==12755==    by 0x405412F: string_new (string.c:51)
-==12755==    by 0x80498FA: cola_referida (logBroker.c:129)
-==12755==    by 0x8049669: log_suscripcion_nueva (logBroker.c:55)
-==12755==    by 0x804C9ED: suscribirse_a_cola (servidor.c:143)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 3 bytes in 3 blocks are definitely lost in loss record 4 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x40ED2C5: strdup (strdup.c:42)
-==12755==    by 0x405409A: string_duplicate (string.c:42)
-==12755==    by 0x405412F: string_new (string.c:51)
-==12755==    by 0x80498FA: cola_referida (logBroker.c:129)
-==12755==    by 0x80496BF: log_mensaje_nuevo (logBroker.c:64)
-==12755==    by 0x804C752: process_request (servidor.c:68)
-==12755==    by 0x804C723: serve_client (servidor.c:60)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 7 bytes in 1 blocks are still reachable in loss record 5 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x40ED2C5: strdup (strdup.c:42)
-==12755==    by 0x405409A: string_duplicate (string.c:42)
-==12755==    by 0x4053C49: log_create (log.c:77)
-==12755==    by 0x804953E: iniciar_logger (logBroker.c:5)
-==12755==    by 0x804F57F: inicializacion_de_variables_globales (Broker.c:17)
-==12755==    by 0x804F557: main (Broker.c:5)
-==12755== 
-==12755== 8 bytes in 1 blocks are still reachable in loss record 6 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4056393: config_create (config.c:36)
-==12755==    by 0x804939D: leer_config (configBroker.c:5)
-==12755==    by 0x804F57A: inicializacion_de_variables_globales (Broker.c:16)
-==12755==    by 0x804F557: main (Broker.c:5)
-==12755== 
-==12755== 8 bytes in 1 blocks are still reachable in loss record 7 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4054E01: list_create (list.c:27)
-==12755==    by 0x804F5E5: inicializacion_de_variables_globales (Broker.c:29)
-==12755==    by 0x804F557: main (Broker.c:5)
-==12755== 
-==12755== 8 bytes in 1 blocks are still reachable in loss record 8 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4054E01: list_create (list.c:27)
-==12755==    by 0x804F606: inicializacion_de_variables_globales (Broker.c:32)
-==12755==    by 0x804F557: main (Broker.c:5)
-==12755== 
-==12755== 8 bytes in 1 blocks are still reachable in loss record 9 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4054E01: list_create (list.c:27)
-==12755==    by 0x804F658: inicializacion_de_variables_globales (Broker.c:40)
-==12755==    by 0x804F557: main (Broker.c:5)
-==12755== 
-==12755== 8 bytes in 1 blocks are still reachable in loss record 10 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4054E01: list_create (list.c:27)
-==12755==    by 0x804F662: inicializacion_de_variables_globales (Broker.c:41)
-==12755==    by 0x804F557: main (Broker.c:5)
-==12755== 
-==12755== 8 bytes in 1 blocks are still reachable in loss record 11 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4054E01: list_create (list.c:27)
-==12755==    by 0x804F66C: inicializacion_de_variables_globales (Broker.c:42)
-==12755==    by 0x804F557: main (Broker.c:5)
-==12755== 
-==12755== 8 bytes in 1 blocks are still reachable in loss record 12 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4054E01: list_create (list.c:27)
-==12755==    by 0x804F676: inicializacion_de_variables_globales (Broker.c:43)
-==12755==    by 0x804F557: main (Broker.c:5)
-==12755== 
-==12755== 8 bytes in 1 blocks are still reachable in loss record 13 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4054E01: list_create (list.c:27)
-==12755==    by 0x804F680: inicializacion_de_variables_globales (Broker.c:44)
-==12755==    by 0x804F557: main (Broker.c:5)
-==12755== 
-==12755== 8 bytes in 1 blocks are still reachable in loss record 14 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4054E01: list_create (list.c:27)
-==12755==    by 0x804F68A: inicializacion_de_variables_globales (Broker.c:45)
-==12755==    by 0x804F557: main (Broker.c:5)
-==12755== 
-==12755== 8 bytes in 1 blocks are still reachable in loss record 15 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4054E01: list_create (list.c:27)
-==12755==    by 0x804F694: inicializacion_de_variables_globales (Broker.c:47)
-==12755==    by 0x804F557: main (Broker.c:5)
-==12755== 
-==12755== 8 bytes in 1 blocks are still reachable in loss record 16 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4054E01: list_create (list.c:27)
-==12755==    by 0x804F69E: inicializacion_de_variables_globales (Broker.c:48)
-==12755==    by 0x804F557: main (Broker.c:5)
-==12755== 
-==12755== 8 bytes in 1 blocks are still reachable in loss record 17 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4054E01: list_create (list.c:27)
-==12755==    by 0x804F6A8: inicializacion_de_variables_globales (Broker.c:49)
-==12755==    by 0x804F557: main (Broker.c:5)
-==12755== 
-==12755== 8 bytes in 1 blocks are still reachable in loss record 18 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4054E01: list_create (list.c:27)
-==12755==    by 0x804F6B2: inicializacion_de_variables_globales (Broker.c:50)
-==12755==    by 0x804F557: main (Broker.c:5)
-==12755== 
-==12755== 8 bytes in 1 blocks are still reachable in loss record 19 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4054E01: list_create (list.c:27)
-==12755==    by 0x804F6BC: inicializacion_de_variables_globales (Broker.c:51)
-==12755==    by 0x804F557: main (Broker.c:5)
-==12755== 
-==12755== 8 bytes in 1 blocks are still reachable in loss record 20 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4054E01: list_create (list.c:27)
-==12755==    by 0x804F6C6: inicializacion_de_variables_globales (Broker.c:52)
-==12755==    by 0x804F557: main (Broker.c:5)
-==12755== 
-==12755== 8 bytes in 1 blocks are still reachable in loss record 21 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4054E01: list_create (list.c:27)
-==12755==    by 0x804F6D0: inicializacion_de_variables_globales (Broker.c:54)
-==12755==    by 0x804F557: main (Broker.c:5)
-==12755== 
-==12755== 8 bytes in 1 blocks are still reachable in loss record 22 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4055905: list_create_element (list.c:312)
-==12755==    by 0x4054E3D: list_add (list.c:34)
-==12755==    by 0x804CAFC: suscribirse_a_cola (servidor.c:162)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 8 bytes in 1 blocks are still reachable in loss record 23 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4055905: list_create_element (list.c:312)
-==12755==    by 0x4054E3D: list_add (list.c:34)
-==12755==    by 0x804CA69: suscribirse_a_cola (servidor.c:152)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 8 bytes in 1 blocks are still reachable in loss record 24 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4055905: list_create_element (list.c:312)
-==12755==    by 0x4054E3D: list_add (list.c:34)
-==12755==    by 0x804C9D3: suscribirse_a_cola (servidor.c:142)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 8 bytes in 1 blocks are still reachable in loss record 25 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4055905: list_create_element (list.c:312)
-==12755==    by 0x4054E3D: list_add (list.c:34)
-==12755==    by 0x804B428: crear_nueva_particion (memoria.c:918)
-==12755==    by 0x804ACAE: particionar_buddy_system (memoria.c:660)
-==12755==    by 0x804A8D5: eliminar_y_consolidar_hasta_encontrar (memoria.c:545)
-==12755==    by 0x804A799: administracion_de_memoria_buddy_system (memoria.c:503)
-==12755==    by 0x80499D4: guardar_mensaje_en_memoria (memoria.c:21)
-==12755==    by 0x804E624: recibir_catch_pokemon (servidor.c:888)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 8 bytes in 1 blocks are indirectly lost in loss record 26 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4055905: list_create_element (list.c:312)
-==12755==    by 0x4054E3D: list_add (list.c:34)
-==12755==    by 0x4054EBE: _add_in_list.2211 (list.c:47)
-==12755==    by 0x4055148: list_iterate (list.c:107)
-==12755==    by 0x4054F2D: list_add_all (list.c:50)
-==12755==    by 0x4055873: list_duplicate (list.c:285)
-==12755==    by 0x8049E4B: reemplazar_segun_LRU (memoria.c:176)
-==12755==    by 0x8049C26: ejecutar_algoritmo_reemplazo (memoria.c:100)
-==12755==    by 0x804A7E5: eliminar_y_consolidar_hasta_encontrar (memoria.c:517)
-==12755==    by 0x804A799: administracion_de_memoria_buddy_system (memoria.c:503)
-==12755==    by 0x80499D4: guardar_mensaje_en_memoria (memoria.c:21)
-==12755== 
-==12755== 8 bytes in 1 blocks are indirectly lost in loss record 27 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4055905: list_create_element (list.c:312)
-==12755==    by 0x4054E3D: list_add (list.c:34)
-==12755==    by 0x4054EBE: _add_in_list.2211 (list.c:47)
-==12755==    by 0x4055148: list_iterate (list.c:107)
-==12755==    by 0x4054F2D: list_add_all (list.c:50)
-==12755==    by 0x4055873: list_duplicate (list.c:285)
-==12755==    by 0x804ADBB: for_first_fit_BS (memoria.c:698)
-==12755==    by 0x804A823: eliminar_y_consolidar_hasta_encontrar (memoria.c:528)
-==12755==    by 0x804A799: administracion_de_memoria_buddy_system (memoria.c:503)
-==12755==    by 0x80499D4: guardar_mensaje_en_memoria (memoria.c:21)
-==12755==    by 0x804E624: recibir_catch_pokemon (servidor.c:888)
-==12755== 
-==12755== 12 bytes in 1 blocks are still reachable in loss record 28 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x804B3F7: crear_nueva_particion (memoria.c:914)
-==12755==    by 0x804ACAE: particionar_buddy_system (memoria.c:660)
-==12755==    by 0x804A8D5: eliminar_y_consolidar_hasta_encontrar (memoria.c:545)
-==12755==    by 0x804A799: administracion_de_memoria_buddy_system (memoria.c:503)
-==12755==    by 0x80499D4: guardar_mensaje_en_memoria (memoria.c:21)
-==12755==    by 0x804E624: recibir_catch_pokemon (servidor.c:888)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 12 bytes in 1 blocks are indirectly lost in loss record 29 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x804B3F7: crear_nueva_particion (memoria.c:914)
-==12755==    by 0x804ACAE: particionar_buddy_system (memoria.c:660)
-==12755==    by 0x804A72C: administracion_de_memoria_buddy_system (memoria.c:482)
-==12755==    by 0x80499D4: guardar_mensaje_en_memoria (memoria.c:21)
-==12755==    by 0x804E624: recibir_catch_pokemon (servidor.c:888)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 12 bytes in 1 blocks are definitely lost in loss record 30 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x804AC28: particionar_buddy_system (memoria.c:645)
-==12755==    by 0x804A72C: administracion_de_memoria_buddy_system (memoria.c:482)
-==12755==    by 0x80499D4: guardar_mensaje_en_memoria (memoria.c:21)
-==12755==    by 0x804E624: recibir_catch_pokemon (servidor.c:888)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 12 bytes in 1 blocks are definitely lost in loss record 31 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x804AC28: particionar_buddy_system (memoria.c:645)
-==12755==    by 0x804A8D5: eliminar_y_consolidar_hasta_encontrar (memoria.c:545)
-==12755==    by 0x804A799: administracion_de_memoria_buddy_system (memoria.c:503)
-==12755==    by 0x80499D4: guardar_mensaje_en_memoria (memoria.c:21)
-==12755==    by 0x804E624: recibir_catch_pokemon (servidor.c:888)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 12 bytes in 3 blocks are definitely lost in loss record 32 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x804F4A8: enviar_id_mensaje (servidor.c:1318)
-==12755==    by 0x804E63C: recibir_catch_pokemon (servidor.c:892)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 16 bytes in 1 blocks are still reachable in loss record 33 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x40559F7: dictionary_create (dictionary.c:38)
-==12755==    by 0x40563B6: config_create (config.c:39)
-==12755==    by 0x804939D: leer_config (configBroker.c:5)
-==12755==    by 0x804F57A: inicializacion_de_variables_globales (Broker.c:16)
-==12755==    by 0x804F557: main (Broker.c:5)
-==12755== 
-==12755== 16 bytes in 2 blocks are still reachable in loss record 34 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4055905: list_create_element (list.c:312)
-==12755==    by 0x4054E3D: list_add (list.c:34)
-==12755==    by 0x8049A02: guardar_mensaje_en_memoria (memoria.c:27)
-==12755==    by 0x804E624: recibir_catch_pokemon (servidor.c:888)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 16 bytes in 2 blocks are still reachable in loss record 35 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4055905: list_create_element (list.c:312)
-==12755==    by 0x4054E3D: list_add (list.c:34)
-==12755==    by 0x804EF93: guardar_mensaje_en_cola (servidor.c:1167)
-==12755==    by 0x804E77C: recibir_catch_pokemon (servidor.c:927)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 16 bytes in 2 blocks are indirectly lost in loss record 36 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4055905: list_create_element (list.c:312)
-==12755==    by 0x4054E3D: list_add (list.c:34)
-==12755==    by 0x4054EBE: _add_in_list.2211 (list.c:47)
-==12755==    by 0x4055148: list_iterate (list.c:107)
-==12755==    by 0x4054F2D: list_add_all (list.c:50)
-==12755==    by 0x4055873: list_duplicate (list.c:285)
-==12755==    by 0x804ADBB: for_first_fit_BS (memoria.c:698)
-==12755==    by 0x804A67A: administracion_de_memoria_buddy_system (memoria.c:461)
-==12755==    by 0x80499D4: guardar_mensaje_en_memoria (memoria.c:21)
-==12755==    by 0x804E624: recibir_catch_pokemon (servidor.c:888)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755== 
-==12755== 16 (8 direct, 8 indirect) bytes in 1 blocks are definitely lost in loss record 37 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4054E01: list_create (list.c:27)
-==12755==    by 0x4055862: list_duplicate (list.c:284)
-==12755==    by 0x8049E4B: reemplazar_segun_LRU (memoria.c:176)
-==12755==    by 0x8049C26: ejecutar_algoritmo_reemplazo (memoria.c:100)
-==12755==    by 0x804A7E5: eliminar_y_consolidar_hasta_encontrar (memoria.c:517)
-==12755==    by 0x804A799: administracion_de_memoria_buddy_system (memoria.c:503)
-==12755==    by 0x80499D4: guardar_mensaje_en_memoria (memoria.c:21)
-==12755==    by 0x804E624: recibir_catch_pokemon (servidor.c:888)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 16 (8 direct, 8 indirect) bytes in 1 blocks are definitely lost in loss record 38 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4054E01: list_create (list.c:27)
-==12755==    by 0x4055862: list_duplicate (list.c:284)
-==12755==    by 0x804ADBB: for_first_fit_BS (memoria.c:698)
-==12755==    by 0x804A823: eliminar_y_consolidar_hasta_encontrar (memoria.c:528)
-==12755==    by 0x804A799: administracion_de_memoria_buddy_system (memoria.c:503)
-==12755==    by 0x80499D4: guardar_mensaje_en_memoria (memoria.c:21)
-==12755==    by 0x804E624: recibir_catch_pokemon (servidor.c:888)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 16 bytes in 1 blocks are definitely lost in loss record 39 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x804A909: eliminar_y_consolidar_hasta_encontrar (memoria.c:552)
-==12755==    by 0x804A799: administracion_de_memoria_buddy_system (memoria.c:503)
-==12755==    by 0x80499D4: guardar_mensaje_en_memoria (memoria.c:21)
-==12755==    by 0x804E624: recibir_catch_pokemon (servidor.c:888)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 20 bytes in 1 blocks are still reachable in loss record 40 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4053BA3: log_create (log.c:54)
-==12755==    by 0x804953E: iniciar_logger (logBroker.c:5)
-==12755==    by 0x804F57F: inicializacion_de_variables_globales (Broker.c:17)
-==12755==    by 0x804F557: main (Broker.c:5)
-==12755== 
-==12755== 20 bytes in 1 blocks are still reachable in loss record 41 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x804B224: guardar_en_posicion (memoria.c:856)
-==12755==    by 0x804A77E: administracion_de_memoria_buddy_system (memoria.c:497)
-==12755==    by 0x80499D4: guardar_mensaje_en_memoria (memoria.c:21)
-==12755==    by 0x804E624: recibir_catch_pokemon (servidor.c:888)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 20 bytes in 1 blocks are still reachable in loss record 42 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x804B224: guardar_en_posicion (memoria.c:856)
-==12755==    by 0x804A927: eliminar_y_consolidar_hasta_encontrar (memoria.c:556)
-==12755==    by 0x804A799: administracion_de_memoria_buddy_system (memoria.c:503)
-==12755==    by 0x80499D4: guardar_mensaje_en_memoria (memoria.c:21)
-==12755==    by 0x804E624: recibir_catch_pokemon (servidor.c:888)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 22 bytes in 3 blocks are still reachable in loss record 43 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x804E543: recibir_catch_pokemon (servidor.c:861)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 24 bytes in 3 blocks are still reachable in loss record 44 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x804C90B: modelar_proceso (servidor.c:119)
-==12755==    by 0x804C8DE: atender_suscripcion (servidor.c:112)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 24 bytes in 3 blocks are still reachable in loss record 45 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4055905: list_create_element (list.c:312)
-==12755==    by 0x4054E3D: list_add (list.c:34)
-==12755==    by 0x804EFA7: guardar_mensaje_en_cola (servidor.c:1168)
-==12755==    by 0x804E77C: recibir_catch_pokemon (servidor.c:927)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 24 bytes in 3 blocks are indirectly lost in loss record 46 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x804E662: recibir_catch_pokemon (servidor.c:898)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 36 bytes in 3 blocks are definitely lost in loss record 47 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x804F2F3: serializar_paquete (servidor.c:1273)
-==12755==    by 0x804F4DE: enviar_id_mensaje (servidor.c:1324)
-==12755==    by 0x804E63C: recibir_catch_pokemon (servidor.c:892)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 52 (24 direct, 28 indirect) bytes in 3 blocks are definitely lost in loss record 48 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4054E01: list_create (list.c:27)
-==12755==    by 0x4055862: list_duplicate (list.c:284)
-==12755==    by 0x804ADBB: for_first_fit_BS (memoria.c:698)
-==12755==    by 0x804A67A: administracion_de_memoria_buddy_system (memoria.c:461)
-==12755==    by 0x80499D4: guardar_mensaje_en_memoria (memoria.c:21)
-==12755==    by 0x804E624: recibir_catch_pokemon (servidor.c:888)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 60 bytes in 3 blocks are still reachable in loss record 49 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x804EF53: guardar_mensaje_en_cola (servidor.c:1160)
-==12755==    by 0x804E77C: recibir_catch_pokemon (servidor.c:927)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 64 bytes in 1 blocks are still reachable in loss record 50 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x804F597: inicializacion_de_variables_globales (Broker.c:20)
-==12755==    by 0x804F557: main (Broker.c:5)
-==12755== 
-==12755== 64 bytes in 2 blocks are definitely lost in loss record 51 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x804B319: crear_fragmentacion_interna (memoria.c:887)
-==12755==    by 0x804A74C: administracion_de_memoria_buddy_system (memoria.c:489)
-==12755==    by 0x80499D4: guardar_mensaje_en_memoria (memoria.c:21)
-==12755==    by 0x804E624: recibir_catch_pokemon (servidor.c:888)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 70 bytes in 3 blocks are indirectly lost in loss record 52 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x804E68C: recibir_catch_pokemon (servidor.c:901)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 72 bytes in 3 blocks are definitely lost in loss record 53 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x804F2F3: serializar_paquete (servidor.c:1273)
-==12755==    by 0x804F417: enviar_mensaje (servidor.c:1303)
-==12755==    by 0x804C7A7: process_request (servidor.c:75)
-==12755==    by 0x804C723: serve_client (servidor.c:60)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 80 bytes in 1 blocks are still reachable in loss record 54 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x40ED2C5: strdup (strdup.c:42)
-==12755==    by 0x40563A7: config_create (config.c:38)
-==12755==    by 0x804939D: leer_config (configBroker.c:5)
-==12755==    by 0x804F57A: inicializacion_de_variables_globales (Broker.c:16)
-==12755==    by 0x804F557: main (Broker.c:5)
-==12755== 
-==12755== 80 bytes in 1 blocks are still reachable in loss record 55 of 61
-==12755==    at 0x402E0B8: calloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4055A18: dictionary_create (dictionary.c:40)
-==12755==    by 0x40563B6: config_create (config.c:39)
-==12755==    by 0x804939D: leer_config (configBroker.c:5)
-==12755==    by 0x804F57A: inicializacion_de_variables_globales (Broker.c:16)
-==12755==    by 0x804F557: main (Broker.c:5)
-==12755== 
-==12755== 94 bytes in 3 blocks are definitely lost in loss record 56 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x804F2F3: serializar_paquete (servidor.c:1273)
-==12755==    by 0x804E73F: recibir_catch_pokemon (servidor.c:922)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 109 bytes in 9 blocks are still reachable in loss record 57 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x40ED2C5: strdup (strdup.c:42)
-==12755==    by 0x405409A: string_duplicate (string.c:42)
-==12755==    by 0x4054BA9: _string_split (string.c:273)
-==12755==    by 0x40546AF: string_n_split (string.c:157)
-==12755==    by 0x40562B0: add_cofiguration.2909 (config.c:55)
-==12755==    by 0x4054846: string_iterate_lines (string.c:191)
-==12755==    by 0x4056444: config_create (config.c:61)
-==12755==    by 0x804939D: leer_config (configBroker.c:5)
-==12755==    by 0x804F57A: inicializacion_de_variables_globales (Broker.c:16)
-==12755==    by 0x804F557: main (Broker.c:5)
-==12755== 
-==12755== 118 (24 direct, 94 indirect) bytes in 3 blocks are definitely lost in loss record 58 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x804E649: recibir_catch_pokemon (servidor.c:896)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 144 bytes in 9 blocks are still reachable in loss record 59 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x4056004: dictionary_create_element (dictionary.c:231)
-==12755==    by 0x4055B3F: dictionary_put (dictionary.c:73)
-==12755==    by 0x40562D3: add_cofiguration.2909 (config.c:56)
-==12755==    by 0x4054846: string_iterate_lines (string.c:191)
-==12755==    by 0x4056444: config_create (config.c:61)
-==12755==    by 0x804939D: leer_config (configBroker.c:5)
-==12755==    by 0x804F57A: inicializacion_de_variables_globales (Broker.c:16)
-==12755==    by 0x804F557: main (Broker.c:5)
-==12755== 
-==12755== 160 bytes in 9 blocks are still reachable in loss record 60 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x40ED2C5: strdup (strdup.c:42)
-==12755==    by 0x4055B2D: dictionary_put (dictionary.c:73)
-==12755==    by 0x40562D3: add_cofiguration.2909 (config.c:56)
-==12755==    by 0x4054846: string_iterate_lines (string.c:191)
-==12755==    by 0x4056444: config_create (config.c:61)
-==12755==    by 0x804939D: leer_config (configBroker.c:5)
-==12755==    by 0x804F57A: inicializacion_de_variables_globales (Broker.c:16)
-==12755==    by 0x804F557: main (Broker.c:5)
-==12755== 
-==12755== 344 bytes in 1 blocks are still reachable in loss record 61 of 61
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x40D6359: __fopen_internal (iofopen.c:69)
-==12755==    by 0x40D641D: fopen@@GLIBC_2.1 (iofopen.c:97)
-==12755==    by 0x4053ADA: txt_open_for_append (txt.c:23)
-==12755==    by 0x4053BE3: log_create (log.c:64)
-==12755==    by 0x804953E: iniciar_logger (logBroker.c:5)
-==12755==    by 0x804F57F: inicializacion_de_variables_globales (Broker.c:17)
-==12755==    by 0x804F557: main (Broker.c:5)
-==12755== 
-==12755== LEAK SUMMARY:
-==12755==    definitely lost: 388 bytes in 31 blocks
-==12755==    indirectly lost: 138 bytes in 11 blocks
-==12755==      possibly lost: 0 bytes in 0 blocks
-==12755==    still reachable: 1,398 bytes in 73 blocks
-==12755==         suppressed: 0 bytes in 0 blocks
-==12755== 
-==12755== Use --track-origins=yes to see where uninitialised values come from
-==12755== ERROR SUMMARY: 163 errors from 40 contexts (suppressed: 0 from 0)
-==12755== 
-==12755== 3 errors in context 1 of 40:
-==12755== Thread 3:
-==12755== Syscall param socketcall.send(args) points to uninitialised byte(s)
-==12755==    at 0x406A549: send (send.c:35)
-==12755==    by 0x804F4F5: enviar_id_mensaje (servidor.c:1326)
-==12755==    by 0x804E63C: recibir_catch_pokemon (servidor.c:892)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755==  Address 0x56312c0 is on thread 3's stack
-==12755==  in frame #0, created by send (send.c:29)
-==12755== 
-==12755== 
-==12755== 3 errors in context 2 of 40:
-==12755== Syscall param socketcall.recv(args) points to uninitialised byte(s)
-==12755==    at 0x406A389: recv (recv.c:35)
-==12755==    by 0x804E589: recibir_catch_pokemon (servidor.c:868)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755==  Address 0x56312f0 is on thread 3's stack
-==12755==  in frame #0, created by recv (recv.c:29)
-==12755== 
-==12755== 
-==12755== 3 errors in context 3 of 40:
-==12755== Syscall param socketcall.recv(args) points to uninitialised byte(s)
-==12755==    at 0x406A389: recv (recv.c:35)
-==12755==    by 0x804E573: recibir_catch_pokemon (servidor.c:865)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755==  Address 0x56312f0 is on thread 3's stack
-==12755==  in frame #0, created by recv (recv.c:29)
-==12755== 
-==12755== 
-==12755== 3 errors in context 4 of 40:
-==12755== Syscall param socketcall.recv(args) points to uninitialised byte(s)
-==12755==    at 0x406A389: recv (recv.c:35)
-==12755==    by 0x804E55D: recibir_catch_pokemon (servidor.c:862)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755==  Address 0x56312f0 is on thread 3's stack
-==12755==  in frame #0, created by recv (recv.c:29)
-==12755== 
-==12755== 
-==12755== 3 errors in context 5 of 40:
-==12755== Syscall param socketcall.recv(args) points to uninitialised byte(s)
-==12755==    at 0x406A389: recv (recv.c:35)
-==12755==    by 0x804E534: recibir_catch_pokemon (servidor.c:859)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755==  Address 0x56312f0 is on thread 3's stack
-==12755==  in frame #0, created by recv (recv.c:29)
-==12755== 
-==12755== 
-==12755== 3 errors in context 6 of 40:
-==12755== Syscall param socketcall.recv(args) points to uninitialised byte(s)
-==12755==    at 0x406A389: recv (recv.c:35)
-==12755==    by 0x804E51E: recibir_catch_pokemon (servidor.c:856)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755==  Address 0x56312f0 is on thread 3's stack
-==12755==  in frame #0, created by recv (recv.c:29)
-==12755== 
-==12755== 
-==12755== 3 errors in context 7 of 40:
-==12755== Syscall param socketcall.recv(args) points to uninitialised byte(s)
-==12755==    at 0x406A389: recv (recv.c:35)
-==12755==    by 0x804C95F: suscribirse_a_cola (servidor.c:131)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755==  Address 0x56312d0 is on thread 3's stack
-==12755==  in frame #0, created by recv (recv.c:29)
-==12755== 
-==12755== 
-==12755== 3 errors in context 8 of 40:
-==12755== Syscall param socketcall.recv(args) points to uninitialised byte(s)
-==12755==    at 0x406A389: recv (recv.c:35)
-==12755==    by 0x804C924: modelar_proceso (servidor.c:121)
-==12755==    by 0x804C8DE: atender_suscripcion (servidor.c:112)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755==  Address 0x56312f0 is on thread 3's stack
-==12755==  in frame #0, created by recv (recv.c:29)
-==12755== 
-==12755== 
-==12755== 3 errors in context 9 of 40:
-==12755== Syscall param socketcall.recv(args) points to uninitialised byte(s)
-==12755==    at 0x406A389: recv (recv.c:35)
-==12755==    by 0x804F388: recibir_tamanio_buffer (servidor.c:1289)
-==12755==    by 0x804C8CD: atender_suscripcion (servidor.c:110)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755==  Address 0x56312f0 is on thread 3's stack
-==12755==  in frame #0, created by recv (recv.c:29)
-==12755== 
-==12755== 
-==12755== 3 errors in context 10 of 40:
-==12755== Thread 2:
-==12755== Invalid read of size 4
-==12755==    at 0x804F443: enviar_mensaje (servidor.c:1308)
-==12755==    by 0x804C7A7: process_request (servidor.c:75)
-==12755==    by 0x804C723: serve_client (servidor.c:60)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755==  Address 0x42365ac is 4 bytes inside a block of size 8 free'd
-==12755==    at 0x402D358: free (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x804F43C: enviar_mensaje (servidor.c:1307)
-==12755==    by 0x804C7A7: process_request (servidor.c:75)
-==12755==    by 0x804C723: serve_client (servidor.c:60)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755==  Block was alloc'd at
-==12755==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==12755==    by 0x804F3B2: enviar_mensaje (servidor.c:1296)
-==12755==    by 0x804C7A7: process_request (servidor.c:75)
-==12755==    by 0x804C723: serve_client (servidor.c:60)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 
-==12755== 3 errors in context 11 of 40:
-==12755== Syscall param socketcall.send(args) points to uninitialised byte(s)
-==12755==    at 0x406A549: send (send.c:35)
-==12755==    by 0x804F42E: enviar_mensaje (servidor.c:1305)
-==12755==    by 0x804C7A7: process_request (servidor.c:75)
-==12755==    by 0x804C723: serve_client (servidor.c:60)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755==  Address 0x4e302c0 is on thread 2's stack
-==12755==  in frame #0, created by send (send.c:29)
-==12755== 
-==12755== 
-==12755== 6 errors in context 12 of 40:
-==12755== Syscall param socketcall.recv(args) points to uninitialised byte(s)
-==12755==    at 0x406A389: recv (recv.c:35)
-==12755==    by 0x804C6FF: serve_client (servidor.c:56)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755==  Address 0x4e30310 is on thread 2's stack
-==12755==  in frame #0, created by recv (recv.c:29)
-==12755== 
-==12755== 
-==12755== 8 errors in context 13 of 40:
-==12755== Thread 3:
-==12755== Conditional jump or move depends on uninitialised value(s)
-==12755==    at 0x40BAB4D: vfprintf (vfprintf.c:1631)
-==12755==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
-==12755==    by 0x4054A4D: _string_append_with_format_list (string.c:244)
-==12755==    by 0x40541D3: string_from_vformat (string.c:65)
-==12755==    by 0x4054171: string_from_format (string.c:58)
-==12755==    by 0x8049682: log_suscripcion_nueva (logBroker.c:56)
-==12755==    by 0x804CB16: suscribirse_a_cola (servidor.c:163)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 
-==12755== 8 errors in context 14 of 40:
-==12755== Conditional jump or move depends on uninitialised value(s)
-==12755==    at 0x40BAB04: vfprintf (vfprintf.c:1631)
-==12755==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
-==12755==    by 0x4054A4D: _string_append_with_format_list (string.c:244)
-==12755==    by 0x40541D3: string_from_vformat (string.c:65)
-==12755==    by 0x4054171: string_from_format (string.c:58)
-==12755==    by 0x8049682: log_suscripcion_nueva (logBroker.c:56)
-==12755==    by 0x804CB16: suscribirse_a_cola (servidor.c:163)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 
-==12755== 8 errors in context 15 of 40:
-==12755== Conditional jump or move depends on uninitialised value(s)
-==12755==    at 0x40BACBD: vfprintf (vfprintf.c:1631)
-==12755==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
-==12755==    by 0x4054A4D: _string_append_with_format_list (string.c:244)
-==12755==    by 0x40541D3: string_from_vformat (string.c:65)
-==12755==    by 0x4054171: string_from_format (string.c:58)
-==12755==    by 0x8049682: log_suscripcion_nueva (logBroker.c:56)
-==12755==    by 0x804CB16: suscribirse_a_cola (servidor.c:163)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 
-==12755== 8 errors in context 16 of 40:
-==12755== Conditional jump or move depends on uninitialised value(s)
-==12755==    at 0x40BA7A4: vfprintf (vfprintf.c:1631)
-==12755==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
-==12755==    by 0x4054A4D: _string_append_with_format_list (string.c:244)
-==12755==    by 0x40541D3: string_from_vformat (string.c:65)
-==12755==    by 0x4054171: string_from_format (string.c:58)
-==12755==    by 0x8049682: log_suscripcion_nueva (logBroker.c:56)
-==12755==    by 0x804CB16: suscribirse_a_cola (servidor.c:163)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 
-==12755== 8 errors in context 17 of 40:
-==12755== Conditional jump or move depends on uninitialised value(s)
-==12755==    at 0x40BAB4D: vfprintf (vfprintf.c:1631)
-==12755==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
-==12755==    by 0x4054A1B: _string_append_with_format_list (string.c:239)
-==12755==    by 0x40541D3: string_from_vformat (string.c:65)
-==12755==    by 0x4054171: string_from_format (string.c:58)
-==12755==    by 0x8049682: log_suscripcion_nueva (logBroker.c:56)
-==12755==    by 0x804CB16: suscribirse_a_cola (servidor.c:163)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 
-==12755== 8 errors in context 18 of 40:
-==12755== Conditional jump or move depends on uninitialised value(s)
-==12755==    at 0x40BAB04: vfprintf (vfprintf.c:1631)
-==12755==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
-==12755==    by 0x4054A1B: _string_append_with_format_list (string.c:239)
-==12755==    by 0x40541D3: string_from_vformat (string.c:65)
-==12755==    by 0x4054171: string_from_format (string.c:58)
-==12755==    by 0x8049682: log_suscripcion_nueva (logBroker.c:56)
-==12755==    by 0x804CB16: suscribirse_a_cola (servidor.c:163)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 
-==12755== 8 errors in context 19 of 40:
-==12755== Conditional jump or move depends on uninitialised value(s)
-==12755==    at 0x40BACBD: vfprintf (vfprintf.c:1631)
-==12755==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
-==12755==    by 0x4054A1B: _string_append_with_format_list (string.c:239)
-==12755==    by 0x40541D3: string_from_vformat (string.c:65)
-==12755==    by 0x4054171: string_from_format (string.c:58)
-==12755==    by 0x8049682: log_suscripcion_nueva (logBroker.c:56)
-==12755==    by 0x804CB16: suscribirse_a_cola (servidor.c:163)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 
-==12755== 8 errors in context 20 of 40:
-==12755== Conditional jump or move depends on uninitialised value(s)
-==12755==    at 0x40BA7A4: vfprintf (vfprintf.c:1631)
-==12755==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
-==12755==    by 0x4054A1B: _string_append_with_format_list (string.c:239)
-==12755==    by 0x40541D3: string_from_vformat (string.c:65)
-==12755==    by 0x4054171: string_from_format (string.c:58)
-==12755==    by 0x8049682: log_suscripcion_nueva (logBroker.c:56)
-==12755==    by 0x804CB16: suscribirse_a_cola (servidor.c:163)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 
-==12755== 11 errors in context 21 of 40:
-==12755== Conditional jump or move depends on uninitialised value(s)
-==12755==    at 0x40B7253: _itoa_word (_itoa.c:179)
-==12755==    by 0x40BB221: vfprintf (vfprintf.c:1631)
-==12755==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
-==12755==    by 0x4054A4D: _string_append_with_format_list (string.c:244)
-==12755==    by 0x40541D3: string_from_vformat (string.c:65)
-==12755==    by 0x4054171: string_from_format (string.c:58)
-==12755==    by 0x8049682: log_suscripcion_nueva (logBroker.c:56)
-==12755==    by 0x804CB16: suscribirse_a_cola (servidor.c:163)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 
-==12755== 11 errors in context 22 of 40:
-==12755== Use of uninitialised value of size 4
-==12755==    at 0x40B724B: _itoa_word (_itoa.c:179)
-==12755==    by 0x40BB221: vfprintf (vfprintf.c:1631)
-==12755==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
-==12755==    by 0x4054A4D: _string_append_with_format_list (string.c:244)
-==12755==    by 0x40541D3: string_from_vformat (string.c:65)
-==12755==    by 0x4054171: string_from_format (string.c:58)
-==12755==    by 0x8049682: log_suscripcion_nueva (logBroker.c:56)
-==12755==    by 0x804CB16: suscribirse_a_cola (servidor.c:163)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 
-==12755== 11 errors in context 23 of 40:
-==12755== Conditional jump or move depends on uninitialised value(s)
-==12755==    at 0x40B7253: _itoa_word (_itoa.c:179)
-==12755==    by 0x40BB221: vfprintf (vfprintf.c:1631)
-==12755==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
-==12755==    by 0x4054A1B: _string_append_with_format_list (string.c:239)
-==12755==    by 0x40541D3: string_from_vformat (string.c:65)
-==12755==    by 0x4054171: string_from_format (string.c:58)
-==12755==    by 0x8049682: log_suscripcion_nueva (logBroker.c:56)
-==12755==    by 0x804CB16: suscribirse_a_cola (servidor.c:163)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== 
-==12755== 11 errors in context 24 of 40:
-==12755== Use of uninitialised value of size 4
-==12755==    at 0x40B724B: _itoa_word (_itoa.c:179)
-==12755==    by 0x40BB221: vfprintf (vfprintf.c:1631)
-==12755==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
-==12755==    by 0x4054A1B: _string_append_with_format_list (string.c:239)
-==12755==    by 0x40541D3: string_from_vformat (string.c:65)
-==12755==    by 0x4054171: string_from_format (string.c:58)
-==12755==    by 0x8049682: log_suscripcion_nueva (logBroker.c:56)
-==12755==    by 0x804CB16: suscribirse_a_cola (servidor.c:163)
-==12755==    by 0x804C8F5: atender_suscripcion (servidor.c:114)
-==12755==    by 0x4061294: start_thread (pthread_create.c:333)
-==12755==    by 0x415F0AD: clone (clone.S:114)
-==12755== 
-==12755== ERROR SUMMARY: 163 errors from 40 contexts (suppressed: 0 from 0)
+==9187== Memcheck, a memory error detector
+==9187== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==9187== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==9187== Command: ./Broker
+==9187== Parent PID: 7854
+==9187== 
+--9187-- 
+--9187-- Valgrind options:
+--9187--    --show-leak-kinds=all
+--9187--    --leak-check=full
+--9187--    -v
+--9187--    --log-file=valgrind
+--9187-- Contents of /proc/version:
+--9187--   Linux version 4.4.0-116-generic (buildd@lgw01-amd64-023) (gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.9) ) #140-Ubuntu SMP Mon Feb 12 21:22:43 UTC 2018
+--9187-- 
+--9187-- Arch and hwcaps: X86, LittleEndian, x86-mmxext-sse1-sse2-sse3-lzcnt
+--9187-- Page sizes: currently 4096, max supported 4096
+--9187-- Valgrind library directory: /usr/lib/valgrind
+--9187-- Reading syms from /lib/i386-linux-gnu/ld-2.23.so
+--9187--   Considering /lib/i386-linux-gnu/ld-2.23.so ..
+--9187--   .. CRC mismatch (computed 596cb2b8 wanted 417b32cc)
+--9187--   Considering /usr/lib/debug/lib/i386-linux-gnu/ld-2.23.so ..
+--9187--   .. CRC is valid
+--9187-- Reading syms from /home/utnso/Documentos/Delibird/Broker/tp-2020-1c-wRAPPERS/Broker/Debug/Broker
+--9187-- Reading syms from /usr/lib/valgrind/memcheck-x86-linux
+--9187--   Considering /usr/lib/valgrind/memcheck-x86-linux ..
+--9187--   .. CRC mismatch (computed 6036da3f wanted 652e483f)
+--9187--    object doesn't have a symbol table
+--9187--    object doesn't have a dynamic symbol table
+--9187-- Scheduler: using generic scheduler lock implementation.
+--9187-- Reading suppressions file: /usr/lib/valgrind/default.supp
+==9187== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-9187-by-utnso-on-???
+==9187== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-9187-by-utnso-on-???
+==9187== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-9187-by-utnso-on-???
+==9187== 
+==9187== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==9187== don't want to do, unless you know exactly what you're doing,
+==9187== or are doing some strange experiment):
+==9187==   /usr/lib/valgrind/../../bin/vgdb --pid=9187 ...command...
+==9187== 
+==9187== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==9187==   /path/to/gdb ./Broker
+==9187== and then give GDB the following command
+==9187==   target remote | /usr/lib/valgrind/../../bin/vgdb --pid=9187
+==9187== --pid is optional if only one valgrind process is running
+==9187== 
+--9187-- REDIR: 0x4018eb0 (ld-linux.so.2:strlen) redirected to 0x380490f2 (???)
+--9187-- REDIR: 0x4018c70 (ld-linux.so.2:index) redirected to 0x380490cd (???)
+--9187-- Reading syms from /usr/lib/valgrind/vgpreload_core-x86-linux.so
+--9187--   Considering /usr/lib/valgrind/vgpreload_core-x86-linux.so ..
+--9187--   .. CRC mismatch (computed 5b95c0c4 wanted 39e79efa)
+--9187--    object doesn't have a symbol table
+--9187-- Reading syms from /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so
+--9187--   Considering /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so ..
+--9187--   .. CRC mismatch (computed 4d5a1526 wanted 33571d5b)
+--9187--    object doesn't have a symbol table
+==9187== WARNING: new redirection conflicts with existing -- ignoring it
+--9187--     old: 0x04018eb0 (strlen              ) R-> (0000.0) 0x380490f2 ???
+--9187--     new: 0x04018eb0 (strlen              ) R-> (2007.0) 0x0402f410 strlen
+--9187-- Reading syms from /usr/lib/libcommons.so
+--9187-- Reading syms from /lib/i386-linux-gnu/libpthread-2.23.so
+--9187--   Considering /usr/lib/debug/.build-id/12/78da59ecc0791dce5c44d8b8756a0480be3a5b.debug ..
+--9187--   .. build-id is valid
+--9187-- Reading syms from /lib/i386-linux-gnu/libc-2.23.so
+--9187--   Considering /lib/i386-linux-gnu/libc-2.23.so ..
+--9187--   .. CRC mismatch (computed af9c0474 wanted a5de3f2a)
+--9187--   Considering /usr/lib/debug/lib/i386-linux-gnu/libc-2.23.so ..
+--9187--   .. CRC is valid
+--9187-- REDIR: 0x40ef4b0 (libc.so.6:strncasecmp) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--9187-- REDIR: 0x40f6140 (libc.so.6:memrchr) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--9187-- REDIR: 0x4108b20 (libc.so.6:wcslen) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--9187-- REDIR: 0x40ee350 (libc.so.6:strstr) redirected to 0x4033700 (strstr)
+--9187-- REDIR: 0x40ed7e0 (libc.so.6:__GI_strrchr) redirected to 0x402ee00 (__GI_strrchr)
+--9187-- REDIR: 0x40e8f00 (libc.so.6:malloc) redirected to 0x402c110 (malloc)
+--9187-- REDIR: 0x40ed5c0 (libc.so.6:__GI_strlen) redirected to 0x402f390 (__GI_strlen)
+--9187-- REDIR: 0x40ef680 (libc.so.6:__GI_memcpy) redirected to 0x4030fb0 (__GI_memcpy)
+--9187-- REDIR: 0x40e9810 (libc.so.6:calloc) redirected to 0x402e010 (calloc)
+--9187-- REDIR: 0x40e9520 (libc.so.6:realloc) redirected to 0x402e250 (realloc)
+--9187-- REDIR: 0x40e9470 (libc.so.6:free) redirected to 0x402d2f0 (free)
+--9187-- REDIR: 0x40ed580 (libc.so.6:strlen) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--9187-- REDIR: 0x40f6440 (libc.so.6:__strlen_sse2_bsf) redirected to 0x402f370 (strlen)
+--9187-- REDIR: 0x40ed700 (libc.so.6:strncmp) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--9187-- REDIR: 0x41ad5c0 (libc.so.6:__strncmp_ssse3) redirected to 0x402fab0 (strncmp)
+--9187-- REDIR: 0x40eefc0 (libc.so.6:memset) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--9187-- REDIR: 0x419d4d0 (libc.so.6:__memset_sse2) redirected to 0x40327d0 (memset)
+--9187-- REDIR: 0x40ecee0 (libc.so.6:strcmp) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--9187-- REDIR: 0x41ac150 (libc.so.6:__strcmp_ssse3) redirected to 0x4030450 (strcmp)
+--9187-- REDIR: 0x40f1280 (libc.so.6:strchrnul) redirected to 0x40330b0 (strchrnul)
+--9187-- REDIR: 0x40ecae0 (libc.so.6:strcat) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--9187-- REDIR: 0x4101b30 (libc.so.6:__strcat_ssse3) redirected to 0x402f030 (strcat)
+--9187-- REDIR: 0x40ef0d0 (libc.so.6:__GI_mempcpy) redirected to 0x40332c0 (__GI_mempcpy)
+==9187== Thread 2:
+==9187== Use of uninitialised value of size 4
+==9187==    at 0x40B724B: _itoa_word (_itoa.c:179)
+==9187==    by 0x40BB221: vfprintf (vfprintf.c:1631)
+==9187==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==9187==    by 0x4054A1B: _string_append_with_format_list (in /usr/lib/libcommons.so)
+==9187==    by 0x40541D3: string_from_vformat (in /usr/lib/libcommons.so)
+==9187==    by 0x4054171: string_from_format (in /usr/lib/libcommons.so)
+==9187==    by 0x8049651: log_conexion (logBroker.c:48)
+==9187==    by 0x804C718: serve_client (servidor.c:56)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== Conditional jump or move depends on uninitialised value(s)
+==9187==    at 0x40B7253: _itoa_word (_itoa.c:179)
+==9187==    by 0x40BB221: vfprintf (vfprintf.c:1631)
+==9187==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==9187==    by 0x4054A1B: _string_append_with_format_list (in /usr/lib/libcommons.so)
+==9187==    by 0x40541D3: string_from_vformat (in /usr/lib/libcommons.so)
+==9187==    by 0x4054171: string_from_format (in /usr/lib/libcommons.so)
+==9187==    by 0x8049651: log_conexion (logBroker.c:48)
+==9187==    by 0x804C718: serve_client (servidor.c:56)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== Conditional jump or move depends on uninitialised value(s)
+==9187==    at 0x40BA7A4: vfprintf (vfprintf.c:1631)
+==9187==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==9187==    by 0x4054A1B: _string_append_with_format_list (in /usr/lib/libcommons.so)
+==9187==    by 0x40541D3: string_from_vformat (in /usr/lib/libcommons.so)
+==9187==    by 0x4054171: string_from_format (in /usr/lib/libcommons.so)
+==9187==    by 0x8049651: log_conexion (logBroker.c:48)
+==9187==    by 0x804C718: serve_client (servidor.c:56)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== Conditional jump or move depends on uninitialised value(s)
+==9187==    at 0x40BACBD: vfprintf (vfprintf.c:1631)
+==9187==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==9187==    by 0x4054A1B: _string_append_with_format_list (in /usr/lib/libcommons.so)
+==9187==    by 0x40541D3: string_from_vformat (in /usr/lib/libcommons.so)
+==9187==    by 0x4054171: string_from_format (in /usr/lib/libcommons.so)
+==9187==    by 0x8049651: log_conexion (logBroker.c:48)
+==9187==    by 0x804C718: serve_client (servidor.c:56)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== Conditional jump or move depends on uninitialised value(s)
+==9187==    at 0x40BAB04: vfprintf (vfprintf.c:1631)
+==9187==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==9187==    by 0x4054A1B: _string_append_with_format_list (in /usr/lib/libcommons.so)
+==9187==    by 0x40541D3: string_from_vformat (in /usr/lib/libcommons.so)
+==9187==    by 0x4054171: string_from_format (in /usr/lib/libcommons.so)
+==9187==    by 0x8049651: log_conexion (logBroker.c:48)
+==9187==    by 0x804C718: serve_client (servidor.c:56)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== Conditional jump or move depends on uninitialised value(s)
+==9187==    at 0x40BAB4D: vfprintf (vfprintf.c:1631)
+==9187==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==9187==    by 0x4054A1B: _string_append_with_format_list (in /usr/lib/libcommons.so)
+==9187==    by 0x40541D3: string_from_vformat (in /usr/lib/libcommons.so)
+==9187==    by 0x4054171: string_from_format (in /usr/lib/libcommons.so)
+==9187==    by 0x8049651: log_conexion (logBroker.c:48)
+==9187==    by 0x804C718: serve_client (servidor.c:56)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== Use of uninitialised value of size 4
+==9187==    at 0x40B724B: _itoa_word (_itoa.c:179)
+==9187==    by 0x40BB221: vfprintf (vfprintf.c:1631)
+==9187==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==9187==    by 0x4054A4D: _string_append_with_format_list (in /usr/lib/libcommons.so)
+==9187==    by 0x40541D3: string_from_vformat (in /usr/lib/libcommons.so)
+==9187==    by 0x4054171: string_from_format (in /usr/lib/libcommons.so)
+==9187==    by 0x8049651: log_conexion (logBroker.c:48)
+==9187==    by 0x804C718: serve_client (servidor.c:56)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== Conditional jump or move depends on uninitialised value(s)
+==9187==    at 0x40B7253: _itoa_word (_itoa.c:179)
+==9187==    by 0x40BB221: vfprintf (vfprintf.c:1631)
+==9187==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==9187==    by 0x4054A4D: _string_append_with_format_list (in /usr/lib/libcommons.so)
+==9187==    by 0x40541D3: string_from_vformat (in /usr/lib/libcommons.so)
+==9187==    by 0x4054171: string_from_format (in /usr/lib/libcommons.so)
+==9187==    by 0x8049651: log_conexion (logBroker.c:48)
+==9187==    by 0x804C718: serve_client (servidor.c:56)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== Conditional jump or move depends on uninitialised value(s)
+==9187==    at 0x40BA7A4: vfprintf (vfprintf.c:1631)
+==9187==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==9187==    by 0x4054A4D: _string_append_with_format_list (in /usr/lib/libcommons.so)
+==9187==    by 0x40541D3: string_from_vformat (in /usr/lib/libcommons.so)
+==9187==    by 0x4054171: string_from_format (in /usr/lib/libcommons.so)
+==9187==    by 0x8049651: log_conexion (logBroker.c:48)
+==9187==    by 0x804C718: serve_client (servidor.c:56)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== Conditional jump or move depends on uninitialised value(s)
+==9187==    at 0x40BACBD: vfprintf (vfprintf.c:1631)
+==9187==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==9187==    by 0x4054A4D: _string_append_with_format_list (in /usr/lib/libcommons.so)
+==9187==    by 0x40541D3: string_from_vformat (in /usr/lib/libcommons.so)
+==9187==    by 0x4054171: string_from_format (in /usr/lib/libcommons.so)
+==9187==    by 0x8049651: log_conexion (logBroker.c:48)
+==9187==    by 0x804C718: serve_client (servidor.c:56)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== Conditional jump or move depends on uninitialised value(s)
+==9187==    at 0x40BAB04: vfprintf (vfprintf.c:1631)
+==9187==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==9187==    by 0x4054A4D: _string_append_with_format_list (in /usr/lib/libcommons.so)
+==9187==    by 0x40541D3: string_from_vformat (in /usr/lib/libcommons.so)
+==9187==    by 0x4054171: string_from_format (in /usr/lib/libcommons.so)
+==9187==    by 0x8049651: log_conexion (logBroker.c:48)
+==9187==    by 0x804C718: serve_client (servidor.c:56)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== Conditional jump or move depends on uninitialised value(s)
+==9187==    at 0x40BAB4D: vfprintf (vfprintf.c:1631)
+==9187==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==9187==    by 0x4054A4D: _string_append_with_format_list (in /usr/lib/libcommons.so)
+==9187==    by 0x40541D3: string_from_vformat (in /usr/lib/libcommons.so)
+==9187==    by 0x4054171: string_from_format (in /usr/lib/libcommons.so)
+==9187==    by 0x8049651: log_conexion (logBroker.c:48)
+==9187==    by 0x804C718: serve_client (servidor.c:56)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+--9187-- REDIR: 0x40eec10 (libc.so.6:__GI_memcmp) redirected to 0x4031ef0 (__GI_memcmp)
+--9187-- REDIR: 0x40f11b0 (libc.so.6:__GI___rawmemchr) redirected to 0x4033110 (__GI___rawmemchr)
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804C731: serve_client (servidor.c:59)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e30310 is on thread 2's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== Thread 3:
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804E7F8: recibir_caught_pokemon (servidor.c:938)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x56312f0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804E80E: recibir_caught_pokemon (servidor.c:941)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x56312f0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804E824: recibir_caught_pokemon (servidor.c:944)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x56312f0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+--9187-- REDIR: 0x40ef610 (libc.so.6:memcpy) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--9187-- REDIR: 0x419fb70 (libc.so.6:__memcpy_ssse3) redirected to 0x4030cc0 (memcpy)
+==9187== Syscall param socketcall.send(args) points to uninitialised byte(s)
+==9187==    at 0x406A549: send (send.c:35)
+==9187==    by 0x804F527: enviar_id_mensaje (servidor.c:1329)
+==9187==    by 0x804E881: recibir_caught_pokemon (servidor.c:961)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x56312c0 is on thread 3's stack
+==9187==  in frame #0, created by send (send.c:29)
+==9187== 
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804DF7D: recibir_new_pokemon (servidor.c:680)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302e0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804DF93: recibir_new_pokemon (servidor.c:683)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302e0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804DFBC: recibir_new_pokemon (servidor.c:686)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302e0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804DFD2: recibir_new_pokemon (servidor.c:689)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302e0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804DFE8: recibir_new_pokemon (servidor.c:692)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302e0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804DFFE: recibir_new_pokemon (servidor.c:695)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302e0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== Syscall param socketcall.send(args) points to uninitialised byte(s)
+==9187==    at 0x406A549: send (send.c:35)
+==9187==    by 0x804F527: enviar_id_mensaje (servidor.c:1329)
+==9187==    by 0x804E0C7: recibir_new_pokemon (servidor.c:723)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302b0 is on thread 3's stack
+==9187==  in frame #0, created by send (send.c:29)
+==9187== 
+==9187== Invalid read of size 4
+==9187==    at 0x804E240: recibir_new_pokemon (servidor.c:766)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x423a98c is 4 bytes inside a block of size 8 free'd
+==9187==    at 0x402D358: free (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804E239: recibir_new_pokemon (servidor.c:765)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Block was alloc'd at
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804E0D4: recibir_new_pokemon (servidor.c:727)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804E550: recibir_catch_pokemon (servidor.c:859)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302f0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804E566: recibir_catch_pokemon (servidor.c:862)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302f0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804E58F: recibir_catch_pokemon (servidor.c:865)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302f0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804E5A5: recibir_catch_pokemon (servidor.c:868)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302f0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804E5BB: recibir_catch_pokemon (servidor.c:871)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302f0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== Syscall param socketcall.send(args) points to uninitialised byte(s)
+==9187==    at 0x406A549: send (send.c:35)
+==9187==    by 0x804F527: enviar_id_mensaje (servidor.c:1329)
+==9187==    by 0x804E66E: recibir_catch_pokemon (servidor.c:895)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302c0 is on thread 3's stack
+==9187==  in frame #0, created by send (send.c:29)
+==9187== 
+==9187== Thread 2:
+==9187== Syscall param socketcall.send(args) points to uninitialised byte(s)
+==9187==    at 0x406A549: send (send.c:35)
+==9187==    by 0x804F460: enviar_mensaje (servidor.c:1308)
+==9187==    by 0x804C7D9: process_request (servidor.c:78)
+==9187==    by 0x804C755: serve_client (servidor.c:63)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x56312c0 is on thread 2's stack
+==9187==  in frame #0, created by send (send.c:29)
+==9187== 
+==9187== Invalid read of size 4
+==9187==    at 0x804F475: enviar_mensaje (servidor.c:1311)
+==9187==    by 0x804C7D9: process_request (servidor.c:78)
+==9187==    by 0x804C755: serve_client (servidor.c:63)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x423c81c is 4 bytes inside a block of size 8 free'd
+==9187==    at 0x402D358: free (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804F46E: enviar_mensaje (servidor.c:1310)
+==9187==    by 0x804C7D9: process_request (servidor.c:78)
+==9187==    by 0x804C755: serve_client (servidor.c:63)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Block was alloc'd at
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804F3E4: enviar_mensaje (servidor.c:1299)
+==9187==    by 0x804C7D9: process_request (servidor.c:78)
+==9187==    by 0x804C755: serve_client (servidor.c:63)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== Thread 3:
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804F3BA: recibir_tamanio_buffer (servidor.c:1292)
+==9187==    by 0x804C8FF: atender_suscripcion (servidor.c:113)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302f0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804C956: modelar_proceso (servidor.c:124)
+==9187==    by 0x804C910: atender_suscripcion (servidor.c:115)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302f0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804C991: suscribirse_a_cola (servidor.c:134)
+==9187==    by 0x804C927: atender_suscripcion (servidor.c:117)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302d0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== Syscall param socketcall.send(args) points to uninitialised byte(s)
+==9187==    at 0x406A549: send (send.c:35)
+==9187==    by 0x804D05D: enviar_mensajes_al_nuevo_suscriptor_NP (servidor.c:301)
+==9187==    by 0x804C9EC: suscribirse_a_cola (servidor.c:142)
+==9187==    by 0x804C927: atender_suscripcion (servidor.c:117)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e30250 is on thread 3's stack
+==9187==  in frame #0, created by send (send.c:29)
+==9187== 
+==9187== Invalid read of size 4
+==9187==    at 0x804D0CE: enviar_mensajes_al_nuevo_suscriptor_NP (servidor.c:313)
+==9187==    by 0x804C9EC: suscribirse_a_cola (servidor.c:142)
+==9187==    by 0x804C927: atender_suscripcion (servidor.c:117)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x423d07c is 4 bytes inside a block of size 8 free'd
+==9187==    at 0x402D358: free (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804D0C7: enviar_mensajes_al_nuevo_suscriptor_NP (servidor.c:312)
+==9187==    by 0x804C9EC: suscribirse_a_cola (servidor.c:142)
+==9187==    by 0x804C927: atender_suscripcion (servidor.c:117)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Block was alloc'd at
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804CE8D: enviar_mensajes_al_nuevo_suscriptor_NP (servidor.c:254)
+==9187==    by 0x804C9EC: suscribirse_a_cola (servidor.c:142)
+==9187==    by 0x804C927: atender_suscripcion (servidor.c:117)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804CB7F: suscribirse_a_cola (servidor.c:174)
+==9187==    by 0x804C927: atender_suscripcion (servidor.c:117)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302d0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== Thread 2:
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804F0EF: recibir_ack (servidor.c:1198)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x5631310 is on thread 2's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804F105: recibir_ack (servidor.c:1201)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x5631310 is on thread 2's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804F11B: recibir_ack (servidor.c:1204)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x5631310 is on thread 2's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804F144: recibir_ack (servidor.c:1207)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x5631310 is on thread 2's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804F15A: recibir_ack (servidor.c:1210)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x5631310 is on thread 2's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804F170: recibir_ack (servidor.c:1213)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x5631310 is on thread 2's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== Thread 5:
+==9187== Invalid read of size 4
+==9187==    at 0x8049C9E: eliminar_de_generales (memoria.c:114)
+==9187==    by 0x8049DB9: reemplazar_segun_FIFO (memoria.c:157)
+==9187==    by 0x8049C2C: ejecutar_algoritmo_reemplazo (memoria.c:96)
+==9187==    by 0x804A80A: eliminar_y_consolidar_hasta_encontrar (memoria.c:517)
+==9187==    by 0x804A7BE: administracion_de_memoria_buddy_system (memoria.c:503)
+==9187==    by 0x80499F9: guardar_mensaje_en_memoria (memoria.c:21)
+==9187==    by 0x804E656: recibir_catch_pokemon (servidor.c:891)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x423738c is 4 bytes inside a block of size 20 free'd
+==9187==    at 0x402D358: free (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x8049E54: reemplazar_segun_FIFO (memoria.c:169)
+==9187==    by 0x8049C2C: ejecutar_algoritmo_reemplazo (memoria.c:96)
+==9187==    by 0x804A80A: eliminar_y_consolidar_hasta_encontrar (memoria.c:517)
+==9187==    by 0x804A7BE: administracion_de_memoria_buddy_system (memoria.c:503)
+==9187==    by 0x80499F9: guardar_mensaje_en_memoria (memoria.c:21)
+==9187==    by 0x804E656: recibir_catch_pokemon (servidor.c:891)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Block was alloc'd at
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804B249: guardar_en_posicion (memoria.c:856)
+==9187==    by 0x804A7A3: administracion_de_memoria_buddy_system (memoria.c:497)
+==9187==    by 0x80499F9: guardar_mensaje_en_memoria (memoria.c:21)
+==9187==    by 0x804E869: recibir_caught_pokemon (servidor.c:957)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 
+==9187== Process terminating with default action of signal 2 (SIGINT)
+==9187==    at 0x406A264: accept (accept.c:35)
+==9187==    by 0x804C6B0: esperar_cliente (servidor.c:48)
+==9187==    by 0x804C680: iniciar_servidor (servidor.c:39)
+==9187==    by 0x804F58E: main (Broker.c:7)
+==9187== 
+==9187== HEAP SUMMARY:
+==9187==     in use at exit: 2,309 bytes in 152 blocks
+==9187==   total heap usage: 675 allocs, 523 frees, 38,435 bytes allocated
+==9187== 
+==9187== Searching for pointers to 152 not-freed blocks
+==9187== Checked 72,984 bytes
+==9187== 
+==9187== Thread 1:
+==9187== 1 bytes in 1 blocks are definitely lost in loss record 1 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x40ED2C5: strdup (strdup.c:42)
+==9187==    by 0x405409A: string_duplicate (in /usr/lib/libcommons.so)
+==9187==    by 0x405412F: string_new (in /usr/lib/libcommons.so)
+==9187==    by 0x804991F: cola_referida (logBroker.c:129)
+==9187==    by 0x804968E: log_suscripcion_nueva (logBroker.c:55)
+==9187==    by 0x804C9D4: suscribirse_a_cola (servidor.c:141)
+==9187==    by 0x804C927: atender_suscripcion (servidor.c:117)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 1 bytes in 1 blocks are definitely lost in loss record 2 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x40ED2C5: strdup (strdup.c:42)
+==9187==    by 0x405409A: string_duplicate (in /usr/lib/libcommons.so)
+==9187==    by 0x405412F: string_new (in /usr/lib/libcommons.so)
+==9187==    by 0x804991F: cola_referida (logBroker.c:129)
+==9187==    by 0x8049737: log_envio_mensaje (logBroker.c:72)
+==9187==    by 0x804D093: enviar_mensajes_al_nuevo_suscriptor_NP (servidor.c:306)
+==9187==    by 0x804C9EC: suscribirse_a_cola (servidor.c:142)
+==9187==    by 0x804C927: atender_suscripcion (servidor.c:117)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 4 bytes in 1 blocks are definitely lost in loss record 3 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804F4DA: enviar_id_mensaje (servidor.c:1321)
+==9187==    by 0x804E0C7: recibir_new_pokemon (servidor.c:723)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 4 bytes in 1 blocks are definitely lost in loss record 4 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804F12A: recibir_ack (servidor.c:1206)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 5 bytes in 1 blocks are still reachable in loss record 5 of 82
+==9187==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x40540E7: string_append (in /usr/lib/libcommons.so)
+==9187==    by 0x4054A5E: _string_append_with_format_list (in /usr/lib/libcommons.so)
+==9187==    by 0x40541D3: string_from_vformat (in /usr/lib/libcommons.so)
+==9187==    by 0x4054171: string_from_format (in /usr/lib/libcommons.so)
+==9187==    by 0x4054214: string_itoa (in /usr/lib/libcommons.so)
+==9187==    by 0x804943D: obtener_puerto_broker (configBroker.c:28)
+==9187==    by 0x804C5A8: iniciar_servidor (servidor.c:16)
+==9187==    by 0x804F58E: main (Broker.c:7)
+==9187== 
+==9187== 5 bytes in 5 blocks are definitely lost in loss record 6 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x40ED2C5: strdup (strdup.c:42)
+==9187==    by 0x405409A: string_duplicate (in /usr/lib/libcommons.so)
+==9187==    by 0x405412F: string_new (in /usr/lib/libcommons.so)
+==9187==    by 0x804991F: cola_referida (logBroker.c:129)
+==9187==    by 0x80496E4: log_mensaje_nuevo (logBroker.c:64)
+==9187==    by 0x804C784: process_request (servidor.c:71)
+==9187==    by 0x804C755: serve_client (servidor.c:63)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 7 bytes in 1 blocks are still reachable in loss record 7 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x40ED2C5: strdup (strdup.c:42)
+==9187==    by 0x405409A: string_duplicate (in /usr/lib/libcommons.so)
+==9187==    by 0x4053C49: log_create (in /usr/lib/libcommons.so)
+==9187==    by 0x8049563: iniciar_logger (logBroker.c:5)
+==9187==    by 0x804F5B1: inicializacion_de_variables_globales (Broker.c:17)
+==9187==    by 0x804F589: main (Broker.c:5)
+==9187== 
+==9187== 8 bytes in 1 blocks are still reachable in loss record 8 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4056393: config_create (in /usr/lib/libcommons.so)
+==9187==    by 0x804939D: leer_config (configBroker.c:5)
+==9187==    by 0x804F5AC: inicializacion_de_variables_globales (Broker.c:16)
+==9187==    by 0x804F589: main (Broker.c:5)
+==9187== 
+==9187== 8 bytes in 1 blocks are still reachable in loss record 9 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4054E01: list_create (in /usr/lib/libcommons.so)
+==9187==    by 0x804F617: inicializacion_de_variables_globales (Broker.c:29)
+==9187==    by 0x804F589: main (Broker.c:5)
+==9187== 
+==9187== 8 bytes in 1 blocks are still reachable in loss record 10 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4054E01: list_create (in /usr/lib/libcommons.so)
+==9187==    by 0x804F638: inicializacion_de_variables_globales (Broker.c:32)
+==9187==    by 0x804F589: main (Broker.c:5)
+==9187== 
+==9187== 8 bytes in 1 blocks are still reachable in loss record 11 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4054E01: list_create (in /usr/lib/libcommons.so)
+==9187==    by 0x804F68A: inicializacion_de_variables_globales (Broker.c:40)
+==9187==    by 0x804F589: main (Broker.c:5)
+==9187== 
+==9187== 8 bytes in 1 blocks are still reachable in loss record 12 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4054E01: list_create (in /usr/lib/libcommons.so)
+==9187==    by 0x804F694: inicializacion_de_variables_globales (Broker.c:41)
+==9187==    by 0x804F589: main (Broker.c:5)
+==9187== 
+==9187== 8 bytes in 1 blocks are still reachable in loss record 13 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4054E01: list_create (in /usr/lib/libcommons.so)
+==9187==    by 0x804F69E: inicializacion_de_variables_globales (Broker.c:42)
+==9187==    by 0x804F589: main (Broker.c:5)
+==9187== 
+==9187== 8 bytes in 1 blocks are still reachable in loss record 14 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4054E01: list_create (in /usr/lib/libcommons.so)
+==9187==    by 0x804F6A8: inicializacion_de_variables_globales (Broker.c:43)
+==9187==    by 0x804F589: main (Broker.c:5)
+==9187== 
+==9187== 8 bytes in 1 blocks are still reachable in loss record 15 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4054E01: list_create (in /usr/lib/libcommons.so)
+==9187==    by 0x804F6B2: inicializacion_de_variables_globales (Broker.c:44)
+==9187==    by 0x804F589: main (Broker.c:5)
+==9187== 
+==9187== 8 bytes in 1 blocks are still reachable in loss record 16 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4054E01: list_create (in /usr/lib/libcommons.so)
+==9187==    by 0x804F6BC: inicializacion_de_variables_globales (Broker.c:45)
+==9187==    by 0x804F589: main (Broker.c:5)
+==9187== 
+==9187== 8 bytes in 1 blocks are still reachable in loss record 17 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4054E01: list_create (in /usr/lib/libcommons.so)
+==9187==    by 0x804F6C6: inicializacion_de_variables_globales (Broker.c:47)
+==9187==    by 0x804F589: main (Broker.c:5)
+==9187== 
+==9187== 8 bytes in 1 blocks are still reachable in loss record 18 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4054E01: list_create (in /usr/lib/libcommons.so)
+==9187==    by 0x804F6D0: inicializacion_de_variables_globales (Broker.c:48)
+==9187==    by 0x804F589: main (Broker.c:5)
+==9187== 
+==9187== 8 bytes in 1 blocks are still reachable in loss record 19 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4054E01: list_create (in /usr/lib/libcommons.so)
+==9187==    by 0x804F6DA: inicializacion_de_variables_globales (Broker.c:49)
+==9187==    by 0x804F589: main (Broker.c:5)
+==9187== 
+==9187== 8 bytes in 1 blocks are still reachable in loss record 20 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4054E01: list_create (in /usr/lib/libcommons.so)
+==9187==    by 0x804F6E4: inicializacion_de_variables_globales (Broker.c:50)
+==9187==    by 0x804F589: main (Broker.c:5)
+==9187== 
+==9187== 8 bytes in 1 blocks are still reachable in loss record 21 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4054E01: list_create (in /usr/lib/libcommons.so)
+==9187==    by 0x804F6EE: inicializacion_de_variables_globales (Broker.c:51)
+==9187==    by 0x804F589: main (Broker.c:5)
+==9187== 
+==9187== 8 bytes in 1 blocks are still reachable in loss record 22 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4054E01: list_create (in /usr/lib/libcommons.so)
+==9187==    by 0x804F6F8: inicializacion_de_variables_globales (Broker.c:52)
+==9187==    by 0x804F589: main (Broker.c:5)
+==9187== 
+==9187== 8 bytes in 1 blocks are still reachable in loss record 23 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4054E01: list_create (in /usr/lib/libcommons.so)
+==9187==    by 0x804F702: inicializacion_de_variables_globales (Broker.c:54)
+==9187==    by 0x804F589: main (Broker.c:5)
+==9187== 
+==9187== 8 bytes in 1 blocks are still reachable in loss record 24 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4055905: list_create_element (in /usr/lib/libcommons.so)
+==9187==    by 0x4054E3D: list_add (in /usr/lib/libcommons.so)
+==9187==    by 0x804EFD9: guardar_mensaje_en_cola (servidor.c:1171)
+==9187==    by 0x804E21D: recibir_new_pokemon (servidor.c:762)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 8 bytes in 1 blocks are still reachable in loss record 25 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4055905: list_create_element (in /usr/lib/libcommons.so)
+==9187==    by 0x4054E3D: list_add (in /usr/lib/libcommons.so)
+==9187==    by 0x804B44D: crear_nueva_particion (memoria.c:918)
+==9187==    by 0x804AA66: consolidar_buddy_system (memoria.c:590)
+==9187==    by 0x804A818: eliminar_y_consolidar_hasta_encontrar (memoria.c:521)
+==9187==    by 0x804A7BE: administracion_de_memoria_buddy_system (memoria.c:503)
+==9187==    by 0x80499F9: guardar_mensaje_en_memoria (memoria.c:21)
+==9187==    by 0x804E656: recibir_catch_pokemon (servidor.c:891)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 8 bytes in 1 blocks are definitely lost in loss record 26 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804C93D: modelar_proceso (servidor.c:122)
+==9187==    by 0x804C910: atender_suscripcion (servidor.c:115)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 8 bytes in 1 blocks are definitely lost in loss record 27 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804CF4E: enviar_mensajes_al_nuevo_suscriptor_NP (servidor.c:273)
+==9187==    by 0x804C9EC: suscribirse_a_cola (servidor.c:142)
+==9187==    by 0x804C927: atender_suscripcion (servidor.c:117)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 8 bytes in 2 blocks are definitely lost in loss record 28 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804A785: administracion_de_memoria_buddy_system (memoria.c:491)
+==9187==    by 0x80499F9: guardar_mensaje_en_memoria (memoria.c:21)
+==9187==    by 0x804E869: recibir_caught_pokemon (servidor.c:957)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 8 bytes in 2 blocks are definitely lost in loss record 29 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804F4DA: enviar_id_mensaje (servidor.c:1321)
+==9187==    by 0x804E881: recibir_caught_pokemon (servidor.c:961)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 8 bytes in 2 blocks are definitely lost in loss record 30 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804F4DA: enviar_id_mensaje (servidor.c:1321)
+==9187==    by 0x804E66E: recibir_catch_pokemon (servidor.c:895)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 12 bytes in 1 blocks are still reachable in loss record 31 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804B41C: crear_nueva_particion (memoria.c:914)
+==9187==    by 0x804AA66: consolidar_buddy_system (memoria.c:590)
+==9187==    by 0x804A818: eliminar_y_consolidar_hasta_encontrar (memoria.c:521)
+==9187==    by 0x804A7BE: administracion_de_memoria_buddy_system (memoria.c:503)
+==9187==    by 0x80499F9: guardar_mensaje_en_memoria (memoria.c:21)
+==9187==    by 0x804E656: recibir_catch_pokemon (servidor.c:891)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 12 bytes in 1 blocks are indirectly lost in loss record 32 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804B41C: crear_nueva_particion (memoria.c:914)
+==9187==    by 0x804ACD3: particionar_buddy_system (memoria.c:660)
+==9187==    by 0x804A751: administracion_de_memoria_buddy_system (memoria.c:482)
+==9187==    by 0x80499F9: guardar_mensaje_en_memoria (memoria.c:21)
+==9187==    by 0x804E869: recibir_caught_pokemon (servidor.c:957)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 12 bytes in 1 blocks are definitely lost in loss record 33 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804AC4D: particionar_buddy_system (memoria.c:645)
+==9187==    by 0x804A751: administracion_de_memoria_buddy_system (memoria.c:482)
+==9187==    by 0x80499F9: guardar_mensaje_en_memoria (memoria.c:21)
+==9187==    by 0x804E869: recibir_caught_pokemon (servidor.c:957)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 12 bytes in 1 blocks are definitely lost in loss record 34 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804F325: serializar_paquete (servidor.c:1276)
+==9187==    by 0x804F510: enviar_id_mensaje (servidor.c:1327)
+==9187==    by 0x804E0C7: recibir_new_pokemon (servidor.c:723)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 12 bytes in 1 blocks are definitely lost in loss record 35 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804B41C: crear_nueva_particion (memoria.c:914)
+==9187==    by 0x8049E06: reemplazar_segun_FIFO (memoria.c:162)
+==9187==    by 0x8049C2C: ejecutar_algoritmo_reemplazo (memoria.c:96)
+==9187==    by 0x804A80A: eliminar_y_consolidar_hasta_encontrar (memoria.c:517)
+==9187==    by 0x804A7BE: administracion_de_memoria_buddy_system (memoria.c:503)
+==9187==    by 0x80499F9: guardar_mensaje_en_memoria (memoria.c:21)
+==9187==    by 0x804E656: recibir_catch_pokemon (servidor.c:891)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 12 bytes in 1 blocks are definitely lost in loss record 36 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804B41C: crear_nueva_particion (memoria.c:914)
+==9187==    by 0x804AAFF: consolidar_buddy_system (memoria.c:605)
+==9187==    by 0x804A818: eliminar_y_consolidar_hasta_encontrar (memoria.c:521)
+==9187==    by 0x804A7BE: administracion_de_memoria_buddy_system (memoria.c:503)
+==9187==    by 0x80499F9: guardar_mensaje_en_memoria (memoria.c:21)
+==9187==    by 0x804E656: recibir_catch_pokemon (servidor.c:891)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 16 bytes in 1 blocks are still reachable in loss record 37 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x40559F7: dictionary_create (in /usr/lib/libcommons.so)
+==9187==    by 0x40563B6: config_create (in /usr/lib/libcommons.so)
+==9187==    by 0x804939D: leer_config (configBroker.c:5)
+==9187==    by 0x804F5AC: inicializacion_de_variables_globales (Broker.c:16)
+==9187==    by 0x804F589: main (Broker.c:5)
+==9187== 
+==9187== 16 bytes in 2 blocks are still reachable in loss record 38 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4055905: list_create_element (in /usr/lib/libcommons.so)
+==9187==    by 0x4054E3D: list_add (in /usr/lib/libcommons.so)
+==9187==    by 0x804EFD9: guardar_mensaje_en_cola (servidor.c:1171)
+==9187==    by 0x804E993: recibir_caught_pokemon (servidor.c:990)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 16 bytes in 2 blocks are still reachable in loss record 39 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804E575: recibir_catch_pokemon (servidor.c:864)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 16 bytes in 2 blocks are still reachable in loss record 40 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4055905: list_create_element (in /usr/lib/libcommons.so)
+==9187==    by 0x4054E3D: list_add (in /usr/lib/libcommons.so)
+==9187==    by 0x8049A27: guardar_mensaje_en_memoria (memoria.c:27)
+==9187==    by 0x804E656: recibir_catch_pokemon (servidor.c:891)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 16 bytes in 2 blocks are still reachable in loss record 41 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4055905: list_create_element (in /usr/lib/libcommons.so)
+==9187==    by 0x4054E3D: list_add (in /usr/lib/libcommons.so)
+==9187==    by 0x804EFC5: guardar_mensaje_en_cola (servidor.c:1170)
+==9187==    by 0x804E7AE: recibir_catch_pokemon (servidor.c:930)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 16 bytes in 2 blocks are still reachable in loss record 42 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4055905: list_create_element (in /usr/lib/libcommons.so)
+==9187==    by 0x4054E3D: list_add (in /usr/lib/libcommons.so)
+==9187==    by 0x804EFD9: guardar_mensaje_en_cola (servidor.c:1171)
+==9187==    by 0x804E7AE: recibir_catch_pokemon (servidor.c:930)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 16 bytes in 2 blocks are indirectly lost in loss record 43 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804E8A7: recibir_caught_pokemon (servidor.c:967)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 16 bytes in 2 blocks are indirectly lost in loss record 44 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804E694: recibir_catch_pokemon (servidor.c:901)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 16 bytes in 1 blocks are definitely lost in loss record 45 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804A785: administracion_de_memoria_buddy_system (memoria.c:491)
+==9187==    by 0x80499F9: guardar_mensaje_en_memoria (memoria.c:21)
+==9187==    by 0x804E656: recibir_catch_pokemon (servidor.c:891)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 17 bytes in 1 blocks are still reachable in loss record 46 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x40ED2C5: strdup (strdup.c:42)
+==9187==    by 0x40563A7: config_create (in /usr/lib/libcommons.so)
+==9187==    by 0x804939D: leer_config (configBroker.c:5)
+==9187==    by 0x804F5AC: inicializacion_de_variables_globales (Broker.c:16)
+==9187==    by 0x804F589: main (Broker.c:5)
+==9187== 
+==9187== 19 bytes in 1 blocks are definitely lost in loss record 47 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804F325: serializar_paquete (servidor.c:1276)
+==9187==    by 0x804F449: enviar_mensaje (servidor.c:1306)
+==9187==    by 0x804C7D9: process_request (servidor.c:78)
+==9187==    by 0x804C755: serve_client (servidor.c:63)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 20 bytes in 1 blocks are still reachable in loss record 48 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4053BA3: log_create (in /usr/lib/libcommons.so)
+==9187==    by 0x8049563: iniciar_logger (logBroker.c:5)
+==9187==    by 0x804F5B1: inicializacion_de_variables_globales (Broker.c:17)
+==9187==    by 0x804F589: main (Broker.c:5)
+==9187== 
+==9187== 20 bytes in 1 blocks are still reachable in loss record 49 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804EF85: guardar_mensaje_en_cola (servidor.c:1163)
+==9187==    by 0x804E21D: recibir_new_pokemon (servidor.c:762)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 20 bytes in 1 blocks are still reachable in loss record 50 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804B249: guardar_en_posicion (memoria.c:856)
+==9187==    by 0x804A7A3: administracion_de_memoria_buddy_system (memoria.c:497)
+==9187==    by 0x80499F9: guardar_mensaje_en_memoria (memoria.c:21)
+==9187==    by 0x804E656: recibir_catch_pokemon (servidor.c:891)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 20 bytes in 1 blocks are still reachable in loss record 51 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804B249: guardar_en_posicion (memoria.c:856)
+==9187==    by 0x804A94C: eliminar_y_consolidar_hasta_encontrar (memoria.c:556)
+==9187==    by 0x804A7BE: administracion_de_memoria_buddy_system (memoria.c:503)
+==9187==    by 0x80499F9: guardar_mensaje_en_memoria (memoria.c:21)
+==9187==    by 0x804E656: recibir_catch_pokemon (servidor.c:891)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 24 bytes in 2 blocks are indirectly lost in loss record 52 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804E8D1: recibir_caught_pokemon (servidor.c:970)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 24 bytes in 2 blocks are indirectly lost in loss record 53 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804B41C: crear_nueva_particion (memoria.c:914)
+==9187==    by 0x8049E06: reemplazar_segun_FIFO (memoria.c:162)
+==9187==    by 0x8049C2C: ejecutar_algoritmo_reemplazo (memoria.c:96)
+==9187==    by 0x804A80A: eliminar_y_consolidar_hasta_encontrar (memoria.c:517)
+==9187==    by 0x804A7BE: administracion_de_memoria_buddy_system (memoria.c:503)
+==9187==    by 0x80499F9: guardar_mensaje_en_memoria (memoria.c:21)
+==9187==    by 0x804E656: recibir_catch_pokemon (servidor.c:891)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 24 bytes in 3 blocks are indirectly lost in loss record 54 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4055905: list_create_element (in /usr/lib/libcommons.so)
+==9187==    by 0x4054E3D: list_add (in /usr/lib/libcommons.so)
+==9187==    by 0x4054EBE: _add_in_list.2211 (in /usr/lib/libcommons.so)
+==9187==    by 0x4055148: list_iterate (in /usr/lib/libcommons.so)
+==9187==    by 0x4054F2D: list_add_all (in /usr/lib/libcommons.so)
+==9187==    by 0x4055873: list_duplicate (in /usr/lib/libcommons.so)
+==9187==    by 0x804ADE0: for_first_fit_BS (memoria.c:698)
+==9187==    by 0x804A69F: administracion_de_memoria_buddy_system (memoria.c:461)
+==9187==    by 0x80499F9: guardar_mensaje_en_memoria (memoria.c:21)
+==9187==    by 0x804E0AF: recibir_new_pokemon (servidor.c:719)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187== 
+==9187== 24 bytes in 3 blocks are indirectly lost in loss record 55 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4055905: list_create_element (in /usr/lib/libcommons.so)
+==9187==    by 0x4054E3D: list_add (in /usr/lib/libcommons.so)
+==9187==    by 0x4054EBE: _add_in_list.2211 (in /usr/lib/libcommons.so)
+==9187==    by 0x4055148: list_iterate (in /usr/lib/libcommons.so)
+==9187==    by 0x4054F2D: list_add_all (in /usr/lib/libcommons.so)
+==9187==    by 0x4055873: list_duplicate (in /usr/lib/libcommons.so)
+==9187==    by 0x804ADE0: for_first_fit_BS (memoria.c:698)
+==9187==    by 0x804A69F: administracion_de_memoria_buddy_system (memoria.c:461)
+==9187==    by 0x80499F9: guardar_mensaje_en_memoria (memoria.c:21)
+==9187==    by 0x804E656: recibir_catch_pokemon (servidor.c:891)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187== 
+==9187== 24 bytes in 2 blocks are definitely lost in loss record 56 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804F325: serializar_paquete (servidor.c:1276)
+==9187==    by 0x804F510: enviar_id_mensaje (servidor.c:1327)
+==9187==    by 0x804E881: recibir_caught_pokemon (servidor.c:961)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 24 bytes in 2 blocks are definitely lost in loss record 57 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804F325: serializar_paquete (servidor.c:1276)
+==9187==    by 0x804F510: enviar_id_mensaje (servidor.c:1327)
+==9187==    by 0x804E66E: recibir_catch_pokemon (servidor.c:895)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 28 bytes in 1 blocks are definitely lost in loss record 58 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804E117: recibir_new_pokemon (servidor.c:732)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 32 (8 direct, 24 indirect) bytes in 1 blocks are definitely lost in loss record 59 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4054E01: list_create (in /usr/lib/libcommons.so)
+==9187==    by 0x4055862: list_duplicate (in /usr/lib/libcommons.so)
+==9187==    by 0x804ADE0: for_first_fit_BS (memoria.c:698)
+==9187==    by 0x804A69F: administracion_de_memoria_buddy_system (memoria.c:461)
+==9187==    by 0x80499F9: guardar_mensaje_en_memoria (memoria.c:21)
+==9187==    by 0x804E0AF: recibir_new_pokemon (servidor.c:719)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 32 bytes in 1 blocks are definitely lost in loss record 60 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804B33E: crear_fragmentacion_interna (memoria.c:887)
+==9187==    by 0x804A771: administracion_de_memoria_buddy_system (memoria.c:489)
+==9187==    by 0x80499F9: guardar_mensaje_en_memoria (memoria.c:21)
+==9187==    by 0x804E0AF: recibir_new_pokemon (servidor.c:719)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 32 bytes in 1 blocks are definitely lost in loss record 61 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804B33E: crear_fragmentacion_interna (memoria.c:887)
+==9187==    by 0x804A91A: eliminar_y_consolidar_hasta_encontrar (memoria.c:550)
+==9187==    by 0x804A7BE: administracion_de_memoria_buddy_system (memoria.c:503)
+==9187==    by 0x80499F9: guardar_mensaje_en_memoria (memoria.c:21)
+==9187==    by 0x804E656: recibir_catch_pokemon (servidor.c:891)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 36 bytes in 3 blocks are indirectly lost in loss record 62 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804B41C: crear_nueva_particion (memoria.c:914)
+==9187==    by 0x804AD5B: particionar_buddy_system (memoria.c:677)
+==9187==    by 0x804A751: administracion_de_memoria_buddy_system (memoria.c:482)
+==9187==    by 0x80499F9: guardar_mensaje_en_memoria (memoria.c:21)
+==9187==    by 0x804E869: recibir_caught_pokemon (servidor.c:957)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 36 bytes in 1 blocks are definitely lost in loss record 63 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804F325: serializar_paquete (servidor.c:1276)
+==9187==    by 0x804E1E0: recibir_new_pokemon (servidor.c:756)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 36 bytes in 1 blocks are definitely lost in loss record 64 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804F325: serializar_paquete (servidor.c:1276)
+==9187==    by 0x804D046: enviar_mensajes_al_nuevo_suscriptor_NP (servidor.c:299)
+==9187==    by 0x804C9EC: suscribirse_a_cola (servidor.c:142)
+==9187==    by 0x804C927: atender_suscripcion (servidor.c:117)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 40 bytes in 2 blocks are still reachable in loss record 65 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804EF85: guardar_mensaje_en_cola (servidor.c:1163)
+==9187==    by 0x804E993: recibir_caught_pokemon (servidor.c:990)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 40 bytes in 2 blocks are still reachable in loss record 66 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804EF85: guardar_mensaje_en_cola (servidor.c:1163)
+==9187==    by 0x804E7AE: recibir_catch_pokemon (servidor.c:930)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 40 bytes in 5 blocks are indirectly lost in loss record 67 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4055905: list_create_element (in /usr/lib/libcommons.so)
+==9187==    by 0x4054E3D: list_add (in /usr/lib/libcommons.so)
+==9187==    by 0x4054EBE: _add_in_list.2211 (in /usr/lib/libcommons.so)
+==9187==    by 0x4055148: list_iterate (in /usr/lib/libcommons.so)
+==9187==    by 0x4054F2D: list_add_all (in /usr/lib/libcommons.so)
+==9187==    by 0x4055873: list_duplicate (in /usr/lib/libcommons.so)
+==9187==    by 0x804ADE0: for_first_fit_BS (memoria.c:698)
+==9187==    by 0x804A69F: administracion_de_memoria_buddy_system (memoria.c:461)
+==9187==    by 0x80499F9: guardar_mensaje_en_memoria (memoria.c:21)
+==9187==    by 0x804E869: recibir_caught_pokemon (servidor.c:957)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187== 
+==9187== 40 bytes in 5 blocks are indirectly lost in loss record 68 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4055905: list_create_element (in /usr/lib/libcommons.so)
+==9187==    by 0x4054E3D: list_add (in /usr/lib/libcommons.so)
+==9187==    by 0x4054EBE: _add_in_list.2211 (in /usr/lib/libcommons.so)
+==9187==    by 0x4055148: list_iterate (in /usr/lib/libcommons.so)
+==9187==    by 0x4054F2D: list_add_all (in /usr/lib/libcommons.so)
+==9187==    by 0x4055873: list_duplicate (in /usr/lib/libcommons.so)
+==9187==    by 0x804ADE0: for_first_fit_BS (memoria.c:698)
+==9187==    by 0x804A848: eliminar_y_consolidar_hasta_encontrar (memoria.c:528)
+==9187==    by 0x804A7BE: administracion_de_memoria_buddy_system (memoria.c:503)
+==9187==    by 0x80499F9: guardar_mensaje_en_memoria (memoria.c:21)
+==9187==    by 0x804E656: recibir_catch_pokemon (servidor.c:891)
+==9187== 
+==9187== 40 bytes in 2 blocks are definitely lost in loss record 69 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804F325: serializar_paquete (servidor.c:1276)
+==9187==    by 0x804E955: recibir_caught_pokemon (servidor.c:985)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 40 (16 direct, 24 indirect) bytes in 2 blocks are definitely lost in loss record 70 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4054E01: list_create (in /usr/lib/libcommons.so)
+==9187==    by 0x4055862: list_duplicate (in /usr/lib/libcommons.so)
+==9187==    by 0x804ADE0: for_first_fit_BS (memoria.c:698)
+==9187==    by 0x804A69F: administracion_de_memoria_buddy_system (memoria.c:461)
+==9187==    by 0x80499F9: guardar_mensaje_en_memoria (memoria.c:21)
+==9187==    by 0x804E656: recibir_catch_pokemon (servidor.c:891)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 48 bytes in 2 blocks are indirectly lost in loss record 71 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804E6BE: recibir_catch_pokemon (servidor.c:904)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 56 (16 direct, 40 indirect) bytes in 2 blocks are definitely lost in loss record 72 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804E88E: recibir_caught_pokemon (servidor.c:965)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 64 bytes in 1 blocks are still reachable in loss record 73 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804F5C9: inicializacion_de_variables_globales (Broker.c:20)
+==9187==    by 0x804F589: main (Broker.c:5)
+==9187== 
+==9187== 64 bytes in 2 blocks are definitely lost in loss record 74 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804F325: serializar_paquete (servidor.c:1276)
+==9187==    by 0x804E771: recibir_catch_pokemon (servidor.c:925)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 80 bytes in 1 blocks are still reachable in loss record 75 of 82
+==9187==    at 0x402E0B8: calloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4055A18: dictionary_create (in /usr/lib/libcommons.so)
+==9187==    by 0x40563B6: config_create (in /usr/lib/libcommons.so)
+==9187==    by 0x804939D: leer_config (configBroker.c:5)
+==9187==    by 0x804F5AC: inicializacion_de_variables_globales (Broker.c:16)
+==9187==    by 0x804F589: main (Broker.c:5)
+==9187== 
+==9187== 80 (16 direct, 64 indirect) bytes in 2 blocks are definitely lost in loss record 76 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804E67B: recibir_catch_pokemon (servidor.c:899)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 88 (24 direct, 64 indirect) bytes in 3 blocks are definitely lost in loss record 77 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4054E01: list_create (in /usr/lib/libcommons.so)
+==9187==    by 0x4055862: list_duplicate (in /usr/lib/libcommons.so)
+==9187==    by 0x804ADE0: for_first_fit_BS (memoria.c:698)
+==9187==    by 0x804A848: eliminar_y_consolidar_hasta_encontrar (memoria.c:528)
+==9187==    by 0x804A7BE: administracion_de_memoria_buddy_system (memoria.c:503)
+==9187==    by 0x80499F9: guardar_mensaje_en_memoria (memoria.c:21)
+==9187==    by 0x804E656: recibir_catch_pokemon (servidor.c:891)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 104 (16 direct, 88 indirect) bytes in 2 blocks are definitely lost in loss record 78 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4054E01: list_create (in /usr/lib/libcommons.so)
+==9187==    by 0x4055862: list_duplicate (in /usr/lib/libcommons.so)
+==9187==    by 0x804ADE0: for_first_fit_BS (memoria.c:698)
+==9187==    by 0x804A69F: administracion_de_memoria_buddy_system (memoria.c:461)
+==9187==    by 0x80499F9: guardar_mensaje_en_memoria (memoria.c:21)
+==9187==    by 0x804E869: recibir_caught_pokemon (servidor.c:957)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 160 bytes in 10 blocks are still reachable in loss record 79 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x4056004: dictionary_create_element (in /usr/lib/libcommons.so)
+==9187==    by 0x4055B3F: dictionary_put (in /usr/lib/libcommons.so)
+==9187==    by 0x40562D3: add_cofiguration.2909 (in /usr/lib/libcommons.so)
+==9187==    by 0x4054846: string_iterate_lines (in /usr/lib/libcommons.so)
+==9187==    by 0x4056444: config_create (in /usr/lib/libcommons.so)
+==9187==    by 0x804939D: leer_config (configBroker.c:5)
+==9187==    by 0x804F5AC: inicializacion_de_variables_globales (Broker.c:16)
+==9187==    by 0x804F589: main (Broker.c:5)
+==9187== 
+==9187== 178 bytes in 10 blocks are still reachable in loss record 80 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x40ED2C5: strdup (strdup.c:42)
+==9187==    by 0x4055B2D: dictionary_put (in /usr/lib/libcommons.so)
+==9187==    by 0x40562D3: add_cofiguration.2909 (in /usr/lib/libcommons.so)
+==9187==    by 0x4054846: string_iterate_lines (in /usr/lib/libcommons.so)
+==9187==    by 0x4056444: config_create (in /usr/lib/libcommons.so)
+==9187==    by 0x804939D: leer_config (configBroker.c:5)
+==9187==    by 0x804F5AC: inicializacion_de_variables_globales (Broker.c:16)
+==9187==    by 0x804F589: main (Broker.c:5)
+==9187== 
+==9187== 188 bytes in 10 blocks are still reachable in loss record 81 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x40ED2C5: strdup (strdup.c:42)
+==9187==    by 0x405409A: string_duplicate (in /usr/lib/libcommons.so)
+==9187==    by 0x4054BA9: _string_split (in /usr/lib/libcommons.so)
+==9187==    by 0x40546AF: string_n_split (in /usr/lib/libcommons.so)
+==9187==    by 0x40562B0: add_cofiguration.2909 (in /usr/lib/libcommons.so)
+==9187==    by 0x4054846: string_iterate_lines (in /usr/lib/libcommons.so)
+==9187==    by 0x4056444: config_create (in /usr/lib/libcommons.so)
+==9187==    by 0x804939D: leer_config (configBroker.c:5)
+==9187==    by 0x804F5AC: inicializacion_de_variables_globales (Broker.c:16)
+==9187==    by 0x804F589: main (Broker.c:5)
+==9187== 
+==9187== 344 bytes in 1 blocks are still reachable in loss record 82 of 82
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x40D6359: __fopen_internal (iofopen.c:69)
+==9187==    by 0x40D641D: fopen@@GLIBC_2.1 (iofopen.c:97)
+==9187==    by 0x4053ADA: txt_open_for_append (in /usr/lib/libcommons.so)
+==9187==    by 0x4053BE3: log_create (in /usr/lib/libcommons.so)
+==9187==    by 0x8049563: iniciar_logger (logBroker.c:5)
+==9187==    by 0x804F5B1: inicializacion_de_variables_globales (Broker.c:17)
+==9187==    by 0x804F589: main (Broker.c:5)
+==9187== 
+==9187== LEAK SUMMARY:
+==9187==    definitely lost: 550 bytes in 48 blocks
+==9187==    indirectly lost: 304 bytes in 30 blocks
+==9187==      possibly lost: 0 bytes in 0 blocks
+==9187==    still reachable: 1,455 bytes in 74 blocks
+==9187==         suppressed: 0 bytes in 0 blocks
+==9187== 
+==9187== Use --track-origins=yes to see where uninitialised values come from
+==9187== ERROR SUMMARY: 186 errors from 77 contexts (suppressed: 0 from 0)
+==9187== 
+==9187== 1 errors in context 1 of 77:
+==9187== Thread 2:
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804F170: recibir_ack (servidor.c:1213)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x5631310 is on thread 2's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== 
+==9187== 1 errors in context 2 of 77:
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804F15A: recibir_ack (servidor.c:1210)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x5631310 is on thread 2's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== 
+==9187== 1 errors in context 3 of 77:
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804F144: recibir_ack (servidor.c:1207)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x5631310 is on thread 2's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== 
+==9187== 1 errors in context 4 of 77:
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804F11B: recibir_ack (servidor.c:1204)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x5631310 is on thread 2's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== 
+==9187== 1 errors in context 5 of 77:
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804F105: recibir_ack (servidor.c:1201)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x5631310 is on thread 2's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== 
+==9187== 1 errors in context 6 of 77:
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804F0EF: recibir_ack (servidor.c:1198)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x5631310 is on thread 2's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== 
+==9187== 1 errors in context 7 of 77:
+==9187== Thread 3:
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804CB7F: suscribirse_a_cola (servidor.c:174)
+==9187==    by 0x804C927: atender_suscripcion (servidor.c:117)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302d0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== 
+==9187== 1 errors in context 8 of 77:
+==9187== Invalid read of size 4
+==9187==    at 0x804D0CE: enviar_mensajes_al_nuevo_suscriptor_NP (servidor.c:313)
+==9187==    by 0x804C9EC: suscribirse_a_cola (servidor.c:142)
+==9187==    by 0x804C927: atender_suscripcion (servidor.c:117)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x423d07c is 4 bytes inside a block of size 8 free'd
+==9187==    at 0x402D358: free (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804D0C7: enviar_mensajes_al_nuevo_suscriptor_NP (servidor.c:312)
+==9187==    by 0x804C9EC: suscribirse_a_cola (servidor.c:142)
+==9187==    by 0x804C927: atender_suscripcion (servidor.c:117)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Block was alloc'd at
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804CE8D: enviar_mensajes_al_nuevo_suscriptor_NP (servidor.c:254)
+==9187==    by 0x804C9EC: suscribirse_a_cola (servidor.c:142)
+==9187==    by 0x804C927: atender_suscripcion (servidor.c:117)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 
+==9187== 1 errors in context 9 of 77:
+==9187== Syscall param socketcall.send(args) points to uninitialised byte(s)
+==9187==    at 0x406A549: send (send.c:35)
+==9187==    by 0x804D05D: enviar_mensajes_al_nuevo_suscriptor_NP (servidor.c:301)
+==9187==    by 0x804C9EC: suscribirse_a_cola (servidor.c:142)
+==9187==    by 0x804C927: atender_suscripcion (servidor.c:117)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e30250 is on thread 3's stack
+==9187==  in frame #0, created by send (send.c:29)
+==9187== 
+==9187== 
+==9187== 1 errors in context 10 of 77:
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804C991: suscribirse_a_cola (servidor.c:134)
+==9187==    by 0x804C927: atender_suscripcion (servidor.c:117)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302d0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== 
+==9187== 1 errors in context 11 of 77:
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804C956: modelar_proceso (servidor.c:124)
+==9187==    by 0x804C910: atender_suscripcion (servidor.c:115)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302f0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== 
+==9187== 1 errors in context 12 of 77:
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804F3BA: recibir_tamanio_buffer (servidor.c:1292)
+==9187==    by 0x804C8FF: atender_suscripcion (servidor.c:113)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302f0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== 
+==9187== 1 errors in context 13 of 77:
+==9187== Thread 2:
+==9187== Invalid read of size 4
+==9187==    at 0x804F475: enviar_mensaje (servidor.c:1311)
+==9187==    by 0x804C7D9: process_request (servidor.c:78)
+==9187==    by 0x804C755: serve_client (servidor.c:63)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x423c81c is 4 bytes inside a block of size 8 free'd
+==9187==    at 0x402D358: free (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804F46E: enviar_mensaje (servidor.c:1310)
+==9187==    by 0x804C7D9: process_request (servidor.c:78)
+==9187==    by 0x804C755: serve_client (servidor.c:63)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Block was alloc'd at
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804F3E4: enviar_mensaje (servidor.c:1299)
+==9187==    by 0x804C7D9: process_request (servidor.c:78)
+==9187==    by 0x804C755: serve_client (servidor.c:63)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 
+==9187== 1 errors in context 14 of 77:
+==9187== Syscall param socketcall.send(args) points to uninitialised byte(s)
+==9187==    at 0x406A549: send (send.c:35)
+==9187==    by 0x804F460: enviar_mensaje (servidor.c:1308)
+==9187==    by 0x804C7D9: process_request (servidor.c:78)
+==9187==    by 0x804C755: serve_client (servidor.c:63)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x56312c0 is on thread 2's stack
+==9187==  in frame #0, created by send (send.c:29)
+==9187== 
+==9187== 
+==9187== 1 errors in context 15 of 77:
+==9187== Thread 3:
+==9187== Invalid read of size 4
+==9187==    at 0x804E240: recibir_new_pokemon (servidor.c:766)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x423a98c is 4 bytes inside a block of size 8 free'd
+==9187==    at 0x402D358: free (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804E239: recibir_new_pokemon (servidor.c:765)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Block was alloc'd at
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804E0D4: recibir_new_pokemon (servidor.c:727)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 
+==9187== 1 errors in context 16 of 77:
+==9187== Syscall param socketcall.send(args) points to uninitialised byte(s)
+==9187==    at 0x406A549: send (send.c:35)
+==9187==    by 0x804F527: enviar_id_mensaje (servidor.c:1329)
+==9187==    by 0x804E0C7: recibir_new_pokemon (servidor.c:723)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302b0 is on thread 3's stack
+==9187==  in frame #0, created by send (send.c:29)
+==9187== 
+==9187== 
+==9187== 1 errors in context 17 of 77:
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804DFFE: recibir_new_pokemon (servidor.c:695)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302e0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== 
+==9187== 1 errors in context 18 of 77:
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804DFE8: recibir_new_pokemon (servidor.c:692)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302e0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== 
+==9187== 1 errors in context 19 of 77:
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804DFD2: recibir_new_pokemon (servidor.c:689)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302e0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== 
+==9187== 1 errors in context 20 of 77:
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804DFBC: recibir_new_pokemon (servidor.c:686)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302e0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== 
+==9187== 1 errors in context 21 of 77:
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804DF93: recibir_new_pokemon (servidor.c:683)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302e0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== 
+==9187== 1 errors in context 22 of 77:
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804DF7D: recibir_new_pokemon (servidor.c:680)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302e0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== 
+==9187== 2 errors in context 23 of 77:
+==9187== Syscall param socketcall.send(args) points to uninitialised byte(s)
+==9187==    at 0x406A549: send (send.c:35)
+==9187==    by 0x804F527: enviar_id_mensaje (servidor.c:1329)
+==9187==    by 0x804E66E: recibir_catch_pokemon (servidor.c:895)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302c0 is on thread 3's stack
+==9187==  in frame #0, created by send (send.c:29)
+==9187== 
+==9187== 
+==9187== 2 errors in context 24 of 77:
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804E5BB: recibir_catch_pokemon (servidor.c:871)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302f0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== 
+==9187== 2 errors in context 25 of 77:
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804E5A5: recibir_catch_pokemon (servidor.c:868)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302f0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== 
+==9187== 2 errors in context 26 of 77:
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804E58F: recibir_catch_pokemon (servidor.c:865)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302f0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== 
+==9187== 2 errors in context 27 of 77:
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804E566: recibir_catch_pokemon (servidor.c:862)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302f0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== 
+==9187== 2 errors in context 28 of 77:
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804E550: recibir_catch_pokemon (servidor.c:859)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e302f0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== 
+==9187== 2 errors in context 29 of 77:
+==9187== Syscall param socketcall.send(args) points to uninitialised byte(s)
+==9187==    at 0x406A549: send (send.c:35)
+==9187==    by 0x804F527: enviar_id_mensaje (servidor.c:1329)
+==9187==    by 0x804E881: recibir_caught_pokemon (servidor.c:961)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x56312c0 is on thread 3's stack
+==9187==  in frame #0, created by send (send.c:29)
+==9187== 
+==9187== 
+==9187== 2 errors in context 30 of 77:
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804E824: recibir_caught_pokemon (servidor.c:944)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x56312f0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== 
+==9187== 2 errors in context 31 of 77:
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804E80E: recibir_caught_pokemon (servidor.c:941)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x56312f0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== 
+==9187== 2 errors in context 32 of 77:
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804E7F8: recibir_caught_pokemon (servidor.c:938)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x56312f0 is on thread 3's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== 
+==9187== 3 errors in context 33 of 77:
+==9187== Thread 5:
+==9187== Invalid read of size 4
+==9187==    at 0x8049C9E: eliminar_de_generales (memoria.c:114)
+==9187==    by 0x8049DB9: reemplazar_segun_FIFO (memoria.c:157)
+==9187==    by 0x8049C2C: ejecutar_algoritmo_reemplazo (memoria.c:96)
+==9187==    by 0x804A80A: eliminar_y_consolidar_hasta_encontrar (memoria.c:517)
+==9187==    by 0x804A7BE: administracion_de_memoria_buddy_system (memoria.c:503)
+==9187==    by 0x80499F9: guardar_mensaje_en_memoria (memoria.c:21)
+==9187==    by 0x804E656: recibir_catch_pokemon (servidor.c:891)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x423738c is 4 bytes inside a block of size 20 free'd
+==9187==    at 0x402D358: free (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x8049E54: reemplazar_segun_FIFO (memoria.c:169)
+==9187==    by 0x8049C2C: ejecutar_algoritmo_reemplazo (memoria.c:96)
+==9187==    by 0x804A80A: eliminar_y_consolidar_hasta_encontrar (memoria.c:517)
+==9187==    by 0x804A7BE: administracion_de_memoria_buddy_system (memoria.c:503)
+==9187==    by 0x80499F9: guardar_mensaje_en_memoria (memoria.c:21)
+==9187==    by 0x804E656: recibir_catch_pokemon (servidor.c:891)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Block was alloc'd at
+==9187==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==9187==    by 0x804B249: guardar_en_posicion (memoria.c:856)
+==9187==    by 0x804A7A3: administracion_de_memoria_buddy_system (memoria.c:497)
+==9187==    by 0x80499F9: guardar_mensaje_en_memoria (memoria.c:21)
+==9187==    by 0x804E869: recibir_caught_pokemon (servidor.c:957)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 
+==9187== 6 errors in context 34 of 77:
+==9187== Thread 2:
+==9187== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==9187==    at 0x406A389: recv (recv.c:35)
+==9187==    by 0x804C731: serve_client (servidor.c:59)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187==  Address 0x4e30310 is on thread 2's stack
+==9187==  in frame #0, created by recv (recv.c:29)
+==9187== 
+==9187== 
+==9187== 7 errors in context 35 of 77:
+==9187== Conditional jump or move depends on uninitialised value(s)
+==9187==    at 0x40BAB4D: vfprintf (vfprintf.c:1631)
+==9187==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==9187==    by 0x4054A4D: _string_append_with_format_list (in /usr/lib/libcommons.so)
+==9187==    by 0x40541D3: string_from_vformat (in /usr/lib/libcommons.so)
+==9187==    by 0x4054171: string_from_format (in /usr/lib/libcommons.so)
+==9187==    by 0x8049651: log_conexion (logBroker.c:48)
+==9187==    by 0x804C718: serve_client (servidor.c:56)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 
+==9187== 7 errors in context 36 of 77:
+==9187== Conditional jump or move depends on uninitialised value(s)
+==9187==    at 0x40BAB04: vfprintf (vfprintf.c:1631)
+==9187==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==9187==    by 0x4054A4D: _string_append_with_format_list (in /usr/lib/libcommons.so)
+==9187==    by 0x40541D3: string_from_vformat (in /usr/lib/libcommons.so)
+==9187==    by 0x4054171: string_from_format (in /usr/lib/libcommons.so)
+==9187==    by 0x8049651: log_conexion (logBroker.c:48)
+==9187==    by 0x804C718: serve_client (servidor.c:56)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 
+==9187== 7 errors in context 37 of 77:
+==9187== Conditional jump or move depends on uninitialised value(s)
+==9187==    at 0x40BACBD: vfprintf (vfprintf.c:1631)
+==9187==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==9187==    by 0x4054A4D: _string_append_with_format_list (in /usr/lib/libcommons.so)
+==9187==    by 0x40541D3: string_from_vformat (in /usr/lib/libcommons.so)
+==9187==    by 0x4054171: string_from_format (in /usr/lib/libcommons.so)
+==9187==    by 0x8049651: log_conexion (logBroker.c:48)
+==9187==    by 0x804C718: serve_client (servidor.c:56)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 
+==9187== 7 errors in context 38 of 77:
+==9187== Conditional jump or move depends on uninitialised value(s)
+==9187==    at 0x40BA7A4: vfprintf (vfprintf.c:1631)
+==9187==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==9187==    by 0x4054A4D: _string_append_with_format_list (in /usr/lib/libcommons.so)
+==9187==    by 0x40541D3: string_from_vformat (in /usr/lib/libcommons.so)
+==9187==    by 0x4054171: string_from_format (in /usr/lib/libcommons.so)
+==9187==    by 0x8049651: log_conexion (logBroker.c:48)
+==9187==    by 0x804C718: serve_client (servidor.c:56)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 
+==9187== 7 errors in context 39 of 77:
+==9187== Conditional jump or move depends on uninitialised value(s)
+==9187==    at 0x40BAB4D: vfprintf (vfprintf.c:1631)
+==9187==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==9187==    by 0x4054A1B: _string_append_with_format_list (in /usr/lib/libcommons.so)
+==9187==    by 0x40541D3: string_from_vformat (in /usr/lib/libcommons.so)
+==9187==    by 0x4054171: string_from_format (in /usr/lib/libcommons.so)
+==9187==    by 0x8049651: log_conexion (logBroker.c:48)
+==9187==    by 0x804C718: serve_client (servidor.c:56)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 
+==9187== 7 errors in context 40 of 77:
+==9187== Conditional jump or move depends on uninitialised value(s)
+==9187==    at 0x40BAB04: vfprintf (vfprintf.c:1631)
+==9187==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==9187==    by 0x4054A1B: _string_append_with_format_list (in /usr/lib/libcommons.so)
+==9187==    by 0x40541D3: string_from_vformat (in /usr/lib/libcommons.so)
+==9187==    by 0x4054171: string_from_format (in /usr/lib/libcommons.so)
+==9187==    by 0x8049651: log_conexion (logBroker.c:48)
+==9187==    by 0x804C718: serve_client (servidor.c:56)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 
+==9187== 7 errors in context 41 of 77:
+==9187== Conditional jump or move depends on uninitialised value(s)
+==9187==    at 0x40BACBD: vfprintf (vfprintf.c:1631)
+==9187==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==9187==    by 0x4054A1B: _string_append_with_format_list (in /usr/lib/libcommons.so)
+==9187==    by 0x40541D3: string_from_vformat (in /usr/lib/libcommons.so)
+==9187==    by 0x4054171: string_from_format (in /usr/lib/libcommons.so)
+==9187==    by 0x8049651: log_conexion (logBroker.c:48)
+==9187==    by 0x804C718: serve_client (servidor.c:56)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 
+==9187== 7 errors in context 42 of 77:
+==9187== Conditional jump or move depends on uninitialised value(s)
+==9187==    at 0x40BA7A4: vfprintf (vfprintf.c:1631)
+==9187==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==9187==    by 0x4054A1B: _string_append_with_format_list (in /usr/lib/libcommons.so)
+==9187==    by 0x40541D3: string_from_vformat (in /usr/lib/libcommons.so)
+==9187==    by 0x4054171: string_from_format (in /usr/lib/libcommons.so)
+==9187==    by 0x8049651: log_conexion (logBroker.c:48)
+==9187==    by 0x804C718: serve_client (servidor.c:56)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 
+==9187== 12 errors in context 43 of 77:
+==9187== Conditional jump or move depends on uninitialised value(s)
+==9187==    at 0x40B7253: _itoa_word (_itoa.c:179)
+==9187==    by 0x40BB221: vfprintf (vfprintf.c:1631)
+==9187==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==9187==    by 0x4054A4D: _string_append_with_format_list (in /usr/lib/libcommons.so)
+==9187==    by 0x40541D3: string_from_vformat (in /usr/lib/libcommons.so)
+==9187==    by 0x4054171: string_from_format (in /usr/lib/libcommons.so)
+==9187==    by 0x8049651: log_conexion (logBroker.c:48)
+==9187==    by 0x804C718: serve_client (servidor.c:56)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 
+==9187== 12 errors in context 44 of 77:
+==9187== Use of uninitialised value of size 4
+==9187==    at 0x40B724B: _itoa_word (_itoa.c:179)
+==9187==    by 0x40BB221: vfprintf (vfprintf.c:1631)
+==9187==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==9187==    by 0x4054A4D: _string_append_with_format_list (in /usr/lib/libcommons.so)
+==9187==    by 0x40541D3: string_from_vformat (in /usr/lib/libcommons.so)
+==9187==    by 0x4054171: string_from_format (in /usr/lib/libcommons.so)
+==9187==    by 0x8049651: log_conexion (logBroker.c:48)
+==9187==    by 0x804C718: serve_client (servidor.c:56)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 
+==9187== 12 errors in context 45 of 77:
+==9187== Conditional jump or move depends on uninitialised value(s)
+==9187==    at 0x40B7253: _itoa_word (_itoa.c:179)
+==9187==    by 0x40BB221: vfprintf (vfprintf.c:1631)
+==9187==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==9187==    by 0x4054A1B: _string_append_with_format_list (in /usr/lib/libcommons.so)
+==9187==    by 0x40541D3: string_from_vformat (in /usr/lib/libcommons.so)
+==9187==    by 0x4054171: string_from_format (in /usr/lib/libcommons.so)
+==9187==    by 0x8049651: log_conexion (logBroker.c:48)
+==9187==    by 0x804C718: serve_client (servidor.c:56)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== 
+==9187== 12 errors in context 46 of 77:
+==9187== Use of uninitialised value of size 4
+==9187==    at 0x40B724B: _itoa_word (_itoa.c:179)
+==9187==    by 0x40BB221: vfprintf (vfprintf.c:1631)
+==9187==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==9187==    by 0x4054A1B: _string_append_with_format_list (in /usr/lib/libcommons.so)
+==9187==    by 0x40541D3: string_from_vformat (in /usr/lib/libcommons.so)
+==9187==    by 0x4054171: string_from_format (in /usr/lib/libcommons.so)
+==9187==    by 0x8049651: log_conexion (logBroker.c:48)
+==9187==    by 0x804C718: serve_client (servidor.c:56)
+==9187==    by 0x4061294: start_thread (pthread_create.c:333)
+==9187==    by 0x415F0AD: clone (clone.S:114)
+==9187== 
+==9187== ERROR SUMMARY: 186 errors from 77 contexts (suppressed: 0 from 0)

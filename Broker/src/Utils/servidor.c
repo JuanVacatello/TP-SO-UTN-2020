@@ -75,7 +75,7 @@ void process_request(op_code cod_op, int socket_cliente) {
 		case 0:
 			pthread_create(&hilo_suscripcion, NULL, atender_suscripcion, socket_cliente);
 			pthread_detach(hilo_suscripcion);
-			enviar_mensaje(socket_cliente, "ACK: Suscripto.");
+			enviar_mensaje(socket_cliente, "Suscripto.");
 			break;
 		case 1:
 			pthread_create(&hilo_newPokemon, NULL, recibir_new_pokemon, socket_cliente);
