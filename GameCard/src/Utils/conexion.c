@@ -359,7 +359,7 @@ void new_pokemon(char* pokemon,int posX,int posY, int cantidad){ //funciona
 	char* path_pokemon = obtener_path_pokemon(pokemon);
 	char* path_files = obtener_path_files();
 
-	if(existe_file(path_pokemon)==0){
+	if(existe_file(path_pokemon)==0){ // existe el file del pokemon
 
 		while(archivo_pokemon_esta_abierto(path_pokemon) ==1){
 			int tiempo_reintento_operacion = tiempo_de_reintento_operacion();
@@ -369,11 +369,13 @@ void new_pokemon(char* pokemon,int posX,int posY, int cantidad){ //funciona
 
 		char* bloques_en_string = obtener_bloques_pokemon_string(path_pokemon);
 		if(strlen(bloques_en_string) == 2){ // si no tiene bloques asignados, asigno 1 y agrego linea
+
 			bloques_en_string = asignar_primer_bloque();
 			modificar_campo_bloques_metadata(path_pokemon,bloques_en_string);
 			char* linea = generar_linea_a_insertar(posX, posY, 1);
 			modificar_campo_size_metadata(path_pokemon,strlen(linea));
 			almacenar_datos(linea, path_pokemon);
+
 			int tiempo_retardo = tiempo_retardo_operacion();
 			sleep(tiempo_retardo);
 			cerrar_archivo_pokemon(path_pokemon);
@@ -446,12 +448,13 @@ void new_pokemon(char* pokemon,int posX,int posY, int cantidad){ //funciona
 
 		char* linea = generar_linea_a_insertar(posX, posY, cantidad);
 		modificar_campo_size_metadata(path_pokemon,strlen(linea));
+		char* bloques_string = obtener_bloques_pokemon_string(path_pokemon);
 		almacenar_datos(linea, path_pokemon);
 
-		//leer_config();
 		int tiempo_retardo = tiempo_retardo_operacion();
 		sleep(tiempo_retardo);
 		cerrar_archivo_pokemon(path_pokemon);
+
 		free(path_metadata_pokemon);
 		free(linea);
 	}
@@ -465,7 +468,7 @@ int catch_pokemon(char* pokemon,int posX,int posY){
 	char* path_files = obtener_path_files();
 
 
-	if(existe_file(path_pokemon)==0){
+	if(existe_file(path_pokemon)==0){// si existe el file pokemon
 
 		while(archivo_pokemon_esta_abierto(path_pokemon) ==1){
 			int tiempo_reintento_operacion = tiempo_de_reintento_operacion();
@@ -474,9 +477,10 @@ int catch_pokemon(char* pokemon,int posX,int posY){
 		abrir_archivo_pokemon(path_pokemon);
 
 		char* bloques_en_string = obtener_bloques_pokemon_string(path_pokemon);
-		if(strlen(bloques_en_string) == 2){ //si no tiene bloques asignados
-			// CHEQUEAR SI HAY QUE HACER UN SLEEP DE RETARDO
-			cerrar_archivo_pokemon(path_pokemon);
+
+		if(strlen(bloques_en_string) == 2){ //si no tiene bloques asignados: "[]" // No hay retardo operacion ya que estos simulan el acceso a disco de los bloques
+			cerrar_archivo_pokemon(path_pokemon);								  // y en este caso no se accede a bloques
+			completar_logger("Error: Se trato de hacer un catch a un pokemon que no tiene bloques asignados","GAMECARD", LOG_LEVEL_INFO);
 			free(path_pokemon);
 			return -1;
 		}
@@ -486,8 +490,12 @@ int catch_pokemon(char* pokemon,int posX,int posY){
 			int indice = existe_posicion_en_lista(lista_datos,posX,posY);
 
 			if(indice == -1){ // si no existe la posicion
+				int tiempo_retardo = tiempo_retardo_operacion();// chequear si va un retardo operacion, creo que si porque hay accesos a bloques, solo que no encuentra la pos buscada
+				sleep(tiempo_retardo);
+
 				cerrar_archivo_pokemon(path_pokemon);
 				free(path_pokemon);
+				completar_logger("Error: Se trato de hacer un catch a un pokemon en una posicion en la cual no está","GAMECARD", LOG_LEVEL_INFO);
 				return -1;
 			}
 			else{ // si existe la posicion
@@ -495,11 +503,11 @@ int catch_pokemon(char* pokemon,int posX,int posY){
 				char* linea_a_modificar = list_get(lista_datos, indice);
 				char* linea_modificada = disminuir_cantidad_linea(linea_a_modificar, &flag_cambio_longitud);
 
-				if(cantidad_igual_cero(linea_modificada) == 1){
+				if(cantidad_igual_cero(linea_modificada) == 1){// si la linea modificada tiene como cantidad:0 debo eliminarla, tambien cambia el Size de mi file pokemon
 					list_remove_and_destroy_element(lista_datos,indice, free);
 					flag_cambio_longitud = 1;
 
-					if(list_size(lista_datos) == 0){
+					if(list_size(lista_datos) == 0){ // si ademas con aliminar esa linea la lista de pos queda vacia, libero y limpio los bloques asignados
 						limpiar_bloques_pokemon(path_pokemon);
 						liberar_bloques_pokemon(path_pokemon);
 						modificar_campo_bloques_metadata(path_pokemon,"[]");
@@ -508,19 +516,20 @@ int catch_pokemon(char* pokemon,int posX,int posY){
 						int tiempo_retardo = tiempo_retardo_operacion();
 						sleep(tiempo_retardo);
 						cerrar_archivo_pokemon(path_pokemon);
+
 						list_destroy(lista_datos);
 						free(path_pokemon);
 						free(linea_modificada);
 						return 1;
 					}
 				}
-				else{
+				else{ // si con el catch la cantidad no se hace 0, acualizo el valor decrementado en 1
 					list_replace(lista_datos,indice,linea_modificada);
 				}
 
 				char* datos = obtener_datos_en_string(lista_datos);
 
-				if(flag_cambio_longitud == 1 ){// si la longitud de la palabra cambio, actualizo el tamaño del pokemon
+				if(flag_cambio_longitud == 1 ){// si la longitud de la linea cambio, actualizo el tamaño del pokemon
 					modificar_campo_size_metadata(path_pokemon,strlen(datos));
 				}
 
@@ -528,17 +537,22 @@ int catch_pokemon(char* pokemon,int posX,int posY){
 
 				int tiempo_retardo = tiempo_retardo_operacion();
 				sleep(tiempo_retardo);
+
 				cerrar_archivo_pokemon(path_pokemon);
+
 				free(datos);
 				list_destroy(lista_datos);
 				free(path_pokemon);
 				free(linea_modificada);
+
 				return 1;
 			}
 		}
 	}
 	else{ //si no existe
 		free(path_pokemon);
+		completar_logger("Error: Se trato de hacer un catch a un pokemon inexistente en el filesystem","GAMECARD", LOG_LEVEL_INFO);
+
 		return -1;
 	}
 }
@@ -654,6 +668,8 @@ void enviar_appeared_pokemon(char* pokemon, uint32_t posX, uint32_t posY, uint32
 	int socket_broker = crear_conexion(ip_broker,puerto_broker);
 
 	if(socket_broker == -1){
+
+		completar_logger("Error: No se puede conectar al broker para enviar un appeared, se continua la ejecucion","GAMECARD", LOG_LEVEL_INFO);
 		// Comportamiento default en caso de que no se pueda conectar a Broker
 		// Segun lo poco que lei en el enunciado solo hay que avisarlo por logs y seguir la ejecucion pero no se quizas
 		// hay mas info que esa
@@ -707,6 +723,8 @@ void enviar_caught_pokemon(uint32_t id_mensaje_correlativo, uint32_t se_pudo_atr
 	int socket_broker = crear_conexion(ip_broker,puerto_broker);
 
 	if(socket_broker == -1){
+
+		completar_logger("Error: No se puede conectar al broker para enviar un caught, se continua la ejecucion","GAMECARD", LOG_LEVEL_INFO);
 		// Comportamiento default en caso de que no se pueda conectar a Broker
 		// Segun lo poco que lei en el enunciado solo hay que avisarlo por logs y seguir la ejecucion pero no se quizas
 		// hay mas info que esa
@@ -749,6 +767,8 @@ void enviar_localized_pokemon(void* cantidad_y_posiciones, uint32_t tamanio_void
 	int socket_broker = crear_conexion(ip_broker,puerto_broker);
 
 	if(socket_broker == -1){
+
+		completar_logger("Error: No se puede conectar al broker para enviar un localized, se continua la ejecucion","GAMECARD", LOG_LEVEL_INFO);
 		// Comportamiento default en caso de que no se pueda conectar a Broker
 		// Segun lo poco que lei en el enunciado solo hay que avisarlo por logs y seguir la ejecucion pero no se quizas
 		// hay mas info que esa
@@ -826,7 +846,7 @@ void responder_ack(uint32_t mensaje_id, int socket_broker){
 	void* a_enviar = serializar_paquete(paquete,&tamanio_paquete);
 
 	if(send(socket_broker,a_enviar,tamanio_paquete,0) == -1){
-		completar_logger("Error en enviar por el socket","GAMEBOY", LOG_LEVEL_INFO);
+		completar_logger("Error en enviar por el socket","GAMECARD", LOG_LEVEL_INFO);
 		exit(3);
 	}
 

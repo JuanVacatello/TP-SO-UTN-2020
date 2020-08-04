@@ -186,6 +186,7 @@ void almacenar_datos(char *data, char* path_pokemon){
 	 char** bloques = obtener_bloques_pokemon(path_pokemon);
 	 char* bloques_string = obtener_bloques_pokemon_string(path_pokemon);
 	 int tamanio_bloques = obtener_tamanio_bloques();
+	 int flag_cantidad_bloques_modificada =0;
 
 	 //ME FIJO CUANTOS BLOQUES VOY A NECESITAR PARA ALMACENAR TODA LA DATA QUE LEVANTE
 	 int bloques_necesitados;
@@ -200,16 +201,19 @@ void almacenar_datos(char *data, char* path_pokemon){
 	 while(tamanio_array(bloques) < bloques_necesitados){// SI LA CANT DE BLOQUES QUE TENGO ES MENOR A LO QUE NECESITO, TENGO QUE PEDIR MAS.
 		 bloques_string = asignar_bloque(bloques_string);
 		 bloques = string_get_string_as_array(bloques_string);
+		 flag_cantidad_bloques_modificada = 1;
 	 }
 
 	 while(tamanio_array(bloques) > bloques_necesitados){// SI LA CANT DE BLOQUES QUE TENGO ES MAYOR A LA QUE NECESITO, LIBERO BLOQUES
 		 bloques_string = liberar_ultimo_bloque(bloques_string);
 		 bloques = string_get_string_as_array(bloques_string);
+		 flag_cantidad_bloques_modificada = 1;
 	 }
 
-	 //hacer un if() utilizando un flag de bloques agregados/sustraidos
-	 modificar_campo_bloques_metadata(path_pokemon, bloques_string);// MODIFICO EL ARCHIVO METADATA AL FINAL PARA NO HACER ESCRITURAS EN DISCO
-																  // INNECESARIAS
+	 if(flag_cantidad_bloques_modificada == 1){
+		 modificar_campo_bloques_metadata(path_pokemon, bloques_string);// MODIFICO EL ARCHIVO METADATA AL FINAL PARA NO HACER ESCRITURAS EN DISCO INNECESARIAS
+	 }
+
 	 int ultima_pos_insertada = 0;
 
 	 for(int i =0; i < tamanio_array(bloques);i++){ // ESCRIBE BLOQUE A BLOQUE, SABIENDO QUE YA TENGO LOS BLOQUES NECESARIOS

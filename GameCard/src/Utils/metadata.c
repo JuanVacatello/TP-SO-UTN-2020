@@ -7,7 +7,7 @@
 #include "string.h"
 #include <commons/collections/dictionary.h>
 
-//ñeer metadata tall grass
+//leer metadata tall grass
 void leer_metadata_tall_grass(char * path_metadata){
 
 	char* path_metadata_tall_grass = string_new();
@@ -61,7 +61,8 @@ char** obtener_bloques_pokemon(char* path_pokemon){ //DEVUELVE EN FORMATO: ["1",
 char* obtener_bloques_pokemon_string(char* path_pokemon){
 
 	t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
-	char* bloques_string = config_get_string_value(metadata_pokemon, "BLOCKS");
+	char* aux = config_get_string_value(metadata_pokemon, "BLOCKS");
+	char* bloques_string = string_duplicate(aux);
 	config_destroy(metadata_pokemon);
 	return bloques_string;
 }
@@ -142,13 +143,13 @@ void modificar_campo_bloques_metadata(char * path_pokemon,char* bloques){
 
 void modificar_campo_size_metadata(char * path_pokemon,int tamanio){
 
-	pthread_mutex_lock(&MUTEX_ELSOLUCIONES);// Si estoy adentro del chequeo de "open" voy a estar solo yo, no necesito otros semafotros
+	//pthread_mutex_lock(&MUTEX_ELSOLUCIONES);// Si estoy adentro del chequeo de "open" voy a estar solo yo, no necesito otros semafotros
 	char* tamanio_string = string_itoa(tamanio);
 	t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
 	config_set_value(metadata_pokemon,"SIZE",tamanio_string);
 	config_save(metadata_pokemon);
 	config_destroy(metadata_pokemon);
-	pthread_mutex_unlock(&MUTEX_ELSOLUCIONES);
+	//pthread_mutex_unlock(&MUTEX_ELSOLUCIONES);
 	free(tamanio_string);
 }
 
