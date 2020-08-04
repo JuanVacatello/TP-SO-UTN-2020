@@ -379,7 +379,7 @@ void new_pokemon(char* pokemon,int posX,int posY, int cantidad){ //funciona
 			int tiempo_retardo = tiempo_retardo_operacion();
 			sleep(tiempo_retardo);
 			cerrar_archivo_pokemon(path_pokemon);
-			free(linea);
+			//free(linea);
 		}
 		else{ // si tiene bloques asignados
 
@@ -398,8 +398,8 @@ void new_pokemon(char* pokemon,int posX,int posY, int cantidad){ //funciona
 				sleep(tiempo_retardo);
 				cerrar_archivo_pokemon(path_pokemon);
 				//free(linea);
-				free(datos);
-				list_destroy(lista_datos);
+				//free(datos);
+				//list_destroy(lista_datos);
 			}
 
 			else{ // si existe la posicion
@@ -417,7 +417,7 @@ void new_pokemon(char* pokemon,int posX,int posY, int cantidad){ //funciona
 
 				int tiempo_retardo = tiempo_retardo_operacion();
 				sleep(tiempo_retardo);
-				free(datos);
+				//free(datos);
 				cerrar_archivo_pokemon(path_pokemon);
 
 			}
@@ -444,7 +444,7 @@ void new_pokemon(char* pokemon,int posX,int posY, int cantidad){ //funciona
 		txt_write_in_file(metadata, "OPEN=Y");
 		txt_close_file(metadata);
 
-		free(bloque_string);
+		//free(bloque_string);
 
 		char* linea = generar_linea_a_insertar(posX, posY, cantidad);
 		modificar_campo_size_metadata(path_pokemon,strlen(linea));
@@ -455,11 +455,11 @@ void new_pokemon(char* pokemon,int posX,int posY, int cantidad){ //funciona
 		sleep(tiempo_retardo);
 		cerrar_archivo_pokemon(path_pokemon);
 
-		free(path_metadata_pokemon);
-		free(linea);
+		//free(path_metadata_pokemon);
+		//free(linea);
 	}
 
-	free(path_pokemon);
+	//free(path_pokemon);
 }
 
 int catch_pokemon(char* pokemon,int posX,int posY){

@@ -122,7 +122,7 @@ char* obtener_datos_en_string(t_list* lista_datos){ //para insertar el chorro de
 		char* aux = string_new();
 		aux = list_get(lista_datos, i);
 		string_append(&string_stream, aux);
-		free(aux);
+		//free(aux);
 		// NO SE ESTA LIBERANDO EL AUX PORQUE ME ROMPE A LA MIERDA
 	}
 
@@ -141,11 +141,11 @@ void insertar_datos_a_lista(char *datos, t_list *lista_datos){
 		aux = string_duplicate(array_de_datos[i]);
 		string_append(&aux, "\n");
 		list_add(lista_datos,aux);
-		free(array_de_datos[i]);
-		free(aux);
+		//free(array_de_datos[i]);
+		//free(aux);
 	}
 
-	free(array_de_datos);
+	//free(array_de_datos);
 }
 
 
@@ -222,11 +222,11 @@ void almacenar_datos(char *data, char* path_pokemon){
 		 ultima_pos_insertada += tamanio_bloques;
 		 guardar_data_en_bloque(a_insertar, path_bloque);
 
-		 free(path_bloque);
-		 free(a_insertar);
+		 //free(path_bloque);
+		 //free(a_insertar);
 	 }
 
-	 free(bloques);
+	//free(bloques);
 }
 
 int tamanio_array(char **array){
@@ -359,7 +359,7 @@ int existe_posicion_en_lista(t_list* lista, int posX, int posY){ //funciona
 	    	char* digito_actual_X = string_from_format("%c",linea[i]);
 	    	string_append(&posicion_final_X, digito_actual_X);
 	    	i++;
-	    	free(digito_actual_X);
+	    	//free(digito_actual_X);
 	    }
 
 	    if(string_equals_ignore_case(posicion_final_X, posX_string)){
@@ -369,7 +369,7 @@ int existe_posicion_en_lista(t_list* lista, int posX, int posY){ //funciona
 	    		char* digito_actual_Y =  string_from_format("%c", linea[i]);
 	    		string_append(&posicion_final_Y, digito_actual_Y);
 	    		i++;
-	    		free(digito_actual_Y);
+	    		//free(digito_actual_Y);
 	    	}
 
 	    	if(string_equals_ignore_case(posicion_final_Y, posY_string)){
@@ -380,12 +380,12 @@ int existe_posicion_en_lista(t_list* lista, int posX, int posY){ //funciona
 	    k++;
 	    i=0;
 
-	    free(posicion_final_Y);
-	    free(posicion_final_X);
+	    //free(posicion_final_Y);
+	    //free(posicion_final_X);
 	}
 
-	free(posX_string);
-	free(posY_string);
+	//free(posX_string);
+	//free(posY_string);
 
 	return -1; //no lo encontro
 }

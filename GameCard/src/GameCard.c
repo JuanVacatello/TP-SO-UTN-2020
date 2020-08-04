@@ -12,13 +12,13 @@ int main(void) {
 	char* punto_montaje = obtener_punto_montaje();
 	inicializar_file_system(punto_montaje);
 
-	char* path = obtener_path_pokemon("Pikachu");
+	//char* path = obtener_path_pokemon("Pikachu");
 	//char* bloques_string = obtener_bloques_pokemon_string(path);
 
-	new_pokemon("Pikachu",10,2,1);
-	catch_pokemon("Pikachu",6,7);
+	//new_pokemon("Pikachu",10,2,1);
+	//catch_pokemon("Pikachu",6,7);
 
-	//iniciar_espera_mensajes_Gameboy();
+	iniciar_espera_mensajes_Gameboy();
 
 
 	/*
