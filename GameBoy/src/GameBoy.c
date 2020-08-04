@@ -93,7 +93,7 @@ void enviarMensajeBroker(int argc, char *argv[]){
 		enviar_mensaje_a_broker(socket_conexion, 5, argv); // 5 es el op_code de GET_POKEMON
 	}
 
-	recibir_mensaje(socket_conexion); // Para recibir el id
+	uint32_t recepcion = recibir_mensaje(socket_conexion); // Para recibir el id
 }
 
 void enviarMensajeTeam(int argc, char *argv[]){
@@ -112,7 +112,7 @@ void enviarMensajeTeam(int argc, char *argv[]){
 		enviar_mensaje_a_team(socket_conexion, 2, argv); // 2 es el op_code de APPEARED_POKEMON
 	}
 
-	recibir_mensaje(socket_conexion); // Para recibir el ack
+	uint32_t recepcion = recibir_mensaje(socket_conexion); // Para recibir el ack
 }
 
 void enviarMensajeGameCard(int argc, char *argv[]){
@@ -140,7 +140,7 @@ void enviarMensajeGameCard(int argc, char *argv[]){
 		enviar_mensaje_a_gamecard(socket_conexion, 5, argv); // 5 es el op_code de GET_POKEMON
 	}
 
-	recibir_mensaje(socket_conexion); // Para recibir el ack
+	uint32_t recepcion = recibir_mensaje(socket_conexion); // Para recibir el ack
 }
 
 void cumple_cant_parametros(int argc, int cantidad_necesaria){
