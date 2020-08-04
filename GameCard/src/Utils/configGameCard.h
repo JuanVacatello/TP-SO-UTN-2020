@@ -10,6 +10,10 @@
 
 #include<commons/string.h>
 
+char* path_bloques_global;
+char* path_metadata_global;
+char* path_files_global;
+
 t_config* configGameCard;
 
 void leer_config(void);
@@ -29,5 +33,8 @@ char* obtener_path_bloques();
 char* obtener_path_metadata();
 char* obtener_puerto_gamecard(void);
 char* obtener_ip_gamecard(void);
+int obtener_tamanio_bloques(void);
+int obtener_cantidad_bloques(void);
+char* obtener_magic_number(void);
 
 #endif /* CONFIGGAMEBOY_H_ */

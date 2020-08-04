@@ -21,8 +21,8 @@ void inicializacion_de_variables_globales(void){
 	memset(memoria_principal,0,tamanio_de_memoria);
 
 	contador_fallos = 0;
-	timestamp = 100;
-	mensaje_id = 10;
+	timestamp = 0;
+	mensaje_id = 0;
 
 	char* esquema_de_administracion = obtener_algoritmo_memoria();
 

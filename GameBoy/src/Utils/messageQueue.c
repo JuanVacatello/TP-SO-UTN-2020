@@ -633,7 +633,6 @@ uint32_t recibir_mensaje(int socket_cliente){
 	char* mensaje2 = string_from_format("El tamanio del buffer es: %d.", buffer_size);
 	puts(mensaje2);
 
-	char* log = malloc(buffer_size);
 	char* cola_en_string = string_new();
 	uint32_t mensaje_id;
 
@@ -663,15 +662,7 @@ uint32_t recibir_mensaje(int socket_cliente){
 	case 6:
 		break;
 	case 7:
-		if(buffer_size == 4){
-			uint32_t id_mensaje;
-			recv(socket_cliente, &id_mensaje, buffer_size, MSG_WAITALL);
-			printf("El id del mensaje enviado es %d \n", id_mensaje);
-
-		}else{
-			recv(socket_cliente, log, buffer_size, MSG_WAITALL);
-			puts(log);
-		}
+		recibir_mensajes_varios(socket_cliente, buffer_size);
 		mensaje_id = -1;
 		break;
 	}
@@ -681,6 +672,41 @@ uint32_t recibir_mensaje(int socket_cliente){
 	}
 
 	return mensaje_id;
+}
+
+void recibir_mensajes_varios(int socket_cliente, uint32_t buffer_size){
+
+	if(buffer_size == 4){
+		uint32_t id_mensaje;
+		recv(socket_cliente, &id_mensaje, buffer_size, MSG_WAITALL);
+		printf("El id del mensaje enviado es %d \n", id_mensaje);
+		return;
+	}
+
+	if(buffer_size == 16){
+		uint32_t caracteres_mensaje;
+		recv(socket_cliente, &caracteres_mensaje, sizeof(uint32_t), MSG_WAITALL);
+
+		char* ack = malloc(caracteres_mensaje);
+		recv(socket_cliente, ack, caracteres_mensaje, MSG_WAITALL);
+
+		uint32_t mensaje_id_recibido;
+		recv(socket_cliente, &mensaje_id_recibido, sizeof(uint32_t), MSG_WAITALL);
+
+		uint32_t proceso_id;
+		recv(socket_cliente, &proceso_id, sizeof(uint32_t), MSG_WAITALL);
+
+		printf("El proceso de id %d confirmó la recepción del mensaje cuyo id es %d \n", proceso_id, mensaje_id_recibido);
+
+		return;
+	}
+
+	if(buffer_size != 4 && buffer_size != 16){
+		char* log = malloc(buffer_size);
+		recv(socket_cliente, log, buffer_size, MSG_WAITALL);
+		puts(log);
+		return;
+	}
 }
 
 uint32_t recibir_new_pokemon(int socket_cliente){

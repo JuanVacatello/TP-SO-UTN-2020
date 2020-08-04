@@ -79,6 +79,7 @@ uint32_t recibir_appeared_pokemon(int socket_cliente);
 uint32_t recibir_catch_pokemon(int socket_cliente);
 uint32_t recibir_caught_pokemon(int socket_cliente);
 uint32_t recibir_get_pokemon(int socket_cliente);
+void recibir_mensajes_varios(int socket_cliente, uint32_t buffer_size);
 void enviar_ACK(int socket_broker, char* mensaje, uint32_t id_mensaje);
 
 // Auxiliares

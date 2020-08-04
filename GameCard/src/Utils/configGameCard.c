@@ -4,10 +4,10 @@
 
 void leer_config(void)
 {
-	configGameCard = config_create("../GameCard.config");
+	configGameCard = config_create("../GameCard.config"); // "../GameCard.config"
 
 	if(configGameCard == NULL){
-		printf("No se pudo leer el archivo de configuración de la GameCard.");
+		printf("No se pudo leer el archivo de configuración de la GameCard.\n");
 		exit(2);
 	}
 }
@@ -44,7 +44,7 @@ int tiempo_de_reintento_operacion(){
 
 int tiempo_retardo_operacion(){
 	int tiempore;
-	tiempore = config_get_int_value(configGameCard, "TIEMPO_DE_RETARDO_OPERACION");
+	tiempore = config_get_int_value(configGameCard, "TIEMPO_RETARDO_OPERACION");
 	return tiempore;
 }
 
@@ -79,21 +79,30 @@ void actualizar_path_bloques(char* path_bloques){
 }
 
 char* obtener_path_files(){
+
+	/*
 	char* path_files;
 	path_files = config_get_string_value(configGameCard, "PATH_FILES");
-	return path_files;
+	*/
+	return path_files_global;
 }
 
 char* obtener_path_bloques(){
+	//char* aux = string_new();
+	/*
 	char* path_bloques;
 	path_bloques = config_get_string_value(configGameCard, "PATH_BLOQUES");
-	return path_bloques;
+	*/
+	return path_bloques_global;
 }
 
 char* obtener_path_metadata(){
-	char* path_metadata;
+
+	/*
+	 char* path_metadata;
 	path_metadata = config_get_string_value(configGameCard, "PATH_METADATA");
-	return path_metadata;
+	*/
+	return path_metadata_global;
 }
 
 char* obtener_log_file(void){
@@ -113,4 +122,22 @@ char* obtener_ip_gamecard(void){
 	char* ip_g;
 	ip_g = config_get_string_value(configGameCard, "IP_GAMECARD");
 	return ip_g;
+}
+
+int obtener_tamanio_bloques(void){
+	int tamanio_bloques;
+	tamanio_bloques = config_get_int_value(configGameCard, "BLOCK_SIZE");
+	return tamanio_bloques;
+}
+
+int obtener_cantidad_bloques(void){
+	int cantidad_bloques;
+	cantidad_bloques = config_get_int_value(configGameCard, "BLOCKS");
+	return cantidad_bloques;
+}
+
+char* obtener_magic_number(void){
+	char* magic_number;
+	magic_number = config_get_string_value(configGameCard, "MAGIC_NUMBER");
+	return magic_number;
 }

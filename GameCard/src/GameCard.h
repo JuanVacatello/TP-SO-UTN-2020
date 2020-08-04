@@ -18,6 +18,7 @@
 #include"Utils/conexion.h"
 #include"Utils/bitmap.h"
 #include"Utils/logGameCard.h"
+#include"Utils/bloques.h"
 
 pthread_t hilo_gameboy;
 pthread_t hilo_new_pokemon;
@@ -33,6 +34,5 @@ void inicializar_files(char* path_files);
 void inicializar_bloques(char* path_bloques);
 void completar_metadata_directorio(char* path_directorio);
 void crear_bloques(char* path_bloques);
-
 
 #endif /* GAMECARD_H_ */

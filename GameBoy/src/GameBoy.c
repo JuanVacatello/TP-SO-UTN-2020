@@ -21,30 +21,35 @@ int main(int argc, char* argv[]) {
 	}
 
 	if(!(strcmp(proceso, "SUSCRIPTOR"))){ // no es proceso sino "codigo de operacion" pero bueno
-		cumple_cant_parametros(argc, 4);
+		suscribirse_y_recibir_mensajes(argc, argv);
+	}
 
-		char* puerto = obtener_puerto_broker();
-		char* ip = obtener_ip_broker();
-		int socket_conexion = crear_conexion(ip,puerto);
+	return 0;
+}
 
-		enviar_mensaje_a_broker(socket_conexion, 0, argv); // 0 es el op_code de SUSCRIPTOR
+void suscribirse_y_recibir_mensajes(int argc, char* argv[]){
+	cumple_cant_parametros(argc, 4);
 
-		log_suscripcion(argv[2]);
+	char* puerto = obtener_puerto_broker();
+	char* ip = obtener_ip_broker();
+	int socket_conexion = crear_conexion(ip,puerto);
 
-		uint32_t tiempo_de_suscripcion=0;
-		sscanf(argv[3], "%d", &tiempo_de_suscripcion);
+	enviar_mensaje_a_broker(socket_conexion, 0, argv); // 0 es el op_code de SUSCRIPTOR
 
-		pthread_create(&hilo_recibir, NULL , correr_tiempo_suscripcion ,tiempo_de_suscripcion);
-		pthread_detach(hilo_recibir);
+	log_suscripcion(argv[2]);
 
-		while(1){
-			uint32_t mensaje_id = recibir_mensaje(socket_conexion);
-			if(mensaje_id != -1){
-				enviar_ACK(socket_conexion, "ACK", mensaje_id);
-			}
+	uint32_t tiempo_de_suscripcion=0;
+	sscanf(argv[3], "%d", &tiempo_de_suscripcion);
+
+	pthread_create(&hilo_recibir, NULL , correr_tiempo_suscripcion ,tiempo_de_suscripcion);
+	pthread_detach(hilo_recibir);
+
+	while(1){
+		uint32_t mensaje_id = recibir_mensaje(socket_conexion);
+		if(mensaje_id != -1){
+			enviar_ACK(socket_conexion, "ACK", mensaje_id);
 		}
 	}
-	return 0;
 }
 
 void correr_tiempo_suscripcion(uint32_t tiempo){
@@ -88,7 +93,7 @@ void enviarMensajeBroker(int argc, char *argv[]){
 		enviar_mensaje_a_broker(socket_conexion, 5, argv); // 5 es el op_code de GET_POKEMON
 	}
 
-	recibir_mensaje(socket_conexion); // Para recibir el id
+	uint32_t recepcion = recibir_mensaje(socket_conexion); // Para recibir el id
 }
 
 void enviarMensajeTeam(int argc, char *argv[]){
@@ -107,7 +112,7 @@ void enviarMensajeTeam(int argc, char *argv[]){
 		enviar_mensaje_a_team(socket_conexion, 2, argv); // 2 es el op_code de APPEARED_POKEMON
 	}
 
-	recibir_mensaje(socket_conexion); // Para recibir el ack
+	uint32_t recepcion = recibir_mensaje(socket_conexion); // Para recibir el ack
 }
 
 void enviarMensajeGameCard(int argc, char *argv[]){
@@ -135,7 +140,7 @@ void enviarMensajeGameCard(int argc, char *argv[]){
 		enviar_mensaje_a_gamecard(socket_conexion, 5, argv); // 5 es el op_code de GET_POKEMON
 	}
 
-	recibir_mensaje(socket_conexion); // Para recibir el ack
+	uint32_t recepcion = recibir_mensaje(socket_conexion); // Para recibir el ack
 }
 
 void cumple_cant_parametros(int argc, int cantidad_necesaria){
