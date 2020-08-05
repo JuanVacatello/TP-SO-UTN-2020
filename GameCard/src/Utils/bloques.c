@@ -66,12 +66,12 @@ int tamanio_libre_bloque(char* bloque){
 	 return 0;
 }
 
-t_list* obtener_datos_bloques(char* path_pokemon ){
+t_list* obtener_datos_bloques(t_config* metadata_pokemon){
 
 	FILE *file;
 	int tamanio_archivo;
 	t_list* lista_datos = list_create();
-	char** bloques = obtener_bloques_pokemon(path_pokemon);
+	char** bloques = obtener_bloques_pokemon(metadata_pokemon);
 
 	char * datos = string_new();
 	char *path_bloque_individual; // url de cada block particular
@@ -79,7 +79,7 @@ t_list* obtener_datos_bloques(char* path_pokemon ){
 	char *aux;
 	struct stat st;
 
-	int cantidad_bloques =tamanio_array(bloques);
+	int cantidad_bloques = tamanio_array(bloques);
 
 	for(int i = 0; i<cantidad_bloques; i++){
 
@@ -113,7 +113,7 @@ t_list* obtener_datos_bloques(char* path_pokemon ){
 	return lista_datos;
 }
 
-char* obtener_datos_en_string(t_list* lista_datos){ //para insertar el chorro de string a los bloques con almacenar_datos
+char* obtener_datos_en_string(t_list* lista_datos){ //para insertar el chorro de string a los bloques con almacenar_datos()
 	int cantidad_nodos = list_size(lista_datos);
 	char* string_stream = string_new();
 
@@ -141,11 +141,11 @@ void insertar_datos_a_lista(char *datos, t_list *lista_datos){
 		aux = string_duplicate(array_de_datos[i]);
 		string_append(&aux, "\n");
 		list_add(lista_datos,aux);
-		//free(array_de_datos[i]);
-		//free(aux);
+		free(array_de_datos[i]);
+		free(aux); //creo que rompe porque lo liberarias de la lista
 	}
 
-	//free(array_de_datos);
+	free(array_de_datos);
 }
 
 
@@ -180,11 +180,12 @@ void guardar_data_en_bloque(char* data, char* path_bloque){
 	free(aux);
 }
 
-void almacenar_datos(char *data, char* path_pokemon){
+void almacenar_datos(char *data,t_config* metadata_pokemon){
 
 	 char* path_bloques = obtener_path_bloques();
-	 char** bloques = obtener_bloques_pokemon(path_pokemon);
-	 char* bloques_string = obtener_bloques_pokemon_string(path_pokemon);
+	 char* bloques_string = obtener_bloques_pokemon_string(metadata_pokemon);
+	 char** bloques = string_get_string_as_array(bloques_string);;
+
 	 int tamanio_bloques = obtener_tamanio_bloques();
 	 int flag_cantidad_bloques_modificada =0;
 
@@ -211,7 +212,7 @@ void almacenar_datos(char *data, char* path_pokemon){
 	 }
 
 	 if(flag_cantidad_bloques_modificada == 1){
-		 modificar_campo_bloques_metadata(path_pokemon, bloques_string);// MODIFICO EL ARCHIVO METADATA AL FINAL PARA NO HACER ESCRITURAS EN DISCO INNECESARIAS
+		 modificar_campo_bloques_metadata(metadata_pokemon, bloques_string);// MODIFICO EL ARCHIVO METADATA AL FINAL PARA NO HACER ESCRITURAS EN DISCO INNECESARIAS
 	 }
 
 	 int ultima_pos_insertada = 0;
@@ -222,11 +223,12 @@ void almacenar_datos(char *data, char* path_pokemon){
 		 ultima_pos_insertada += tamanio_bloques;
 		 guardar_data_en_bloque(a_insertar, path_bloque);
 
-		 //free(path_bloque);
-		 //free(a_insertar);
+		 free(path_bloque);
+		 free(a_insertar);
+		 free(bloques[i]);
 	 }
 
-	//free(bloques);
+	free(bloques);
 }
 
 int tamanio_array(char **array){
@@ -251,7 +253,7 @@ char* obtener_path_bloque_individual(char* bloque){
 
 char* asignar_bloque(char* bloques){
 
- 	int nuevo_bloque = obtener_nuevo_bloque(); // IMPLEMENTAR EN BITMAP NASHE
+ 	int nuevo_bloque = obtener_nuevo_bloque(); // le pide al bitmap
  	char** array_bloques = string_get_string_as_array(bloques);
  	t_list *lista_bloques = list_create();
 
@@ -308,7 +310,7 @@ char* liberar_ultimo_bloque(char* bloques){
 	int numero_bloque = atoi(bloque);
 	bitmap_liberar_bloque(numero_bloque); // libero el bloque en el bitmap
 
-	limpiar_bloque(bloque);
+	limpiar_bloque(bloque); // vacio el contenido del bloque
 
 	char *vector_bloques = string_new();
 	string_append(&vector_bloques, "[");
@@ -359,7 +361,7 @@ int existe_posicion_en_lista(t_list* lista, int posX, int posY){ //funciona
 	    	char* digito_actual_X = string_from_format("%c",linea[i]);
 	    	string_append(&posicion_final_X, digito_actual_X);
 	    	i++;
-	    	//free(digito_actual_X);
+	    	free(digito_actual_X);
 	    }
 
 	    if(string_equals_ignore_case(posicion_final_X, posX_string)){
@@ -369,7 +371,7 @@ int existe_posicion_en_lista(t_list* lista, int posX, int posY){ //funciona
 	    		char* digito_actual_Y =  string_from_format("%c", linea[i]);
 	    		string_append(&posicion_final_Y, digito_actual_Y);
 	    		i++;
-	    		//free(digito_actual_Y);
+	    		free(digito_actual_Y);
 	    	}
 
 	    	if(string_equals_ignore_case(posicion_final_Y, posY_string)){
@@ -380,19 +382,19 @@ int existe_posicion_en_lista(t_list* lista, int posX, int posY){ //funciona
 	    k++;
 	    i=0;
 
-	    //free(posicion_final_Y);
-	    //free(posicion_final_X);
+	    free(posicion_final_Y);
+	    free(posicion_final_X);
 	}
 
-	//free(posX_string);
-	//free(posY_string);
+	free(posX_string);
+	free(posY_string);
 
 	return -1; //no lo encontro
 }
 
-void liberar_bloques_pokemon(char* path_pokemon){
+void liberar_bloques_pokemon(t_config* metadata_pokemon){
 
-	char** bloques = obtener_bloques_pokemon(path_pokemon);
+	char** bloques = obtener_bloques_pokemon(metadata_pokemon);
 
 	for(int i = 0 ; i < tamanio_array(bloques); i++){
 
@@ -401,11 +403,10 @@ void liberar_bloques_pokemon(char* path_pokemon){
 	}
 }
 
-void limpiar_bloques_pokemon(char* path_pokemon){
-	char** bloques = obtener_bloques_pokemon(path_pokemon);
+void limpiar_bloques_pokemon(t_config* metadata_pokemon){
 
-	char* path_bloques = obtener_path_bloques();
-
+	char* bloques_string= config_get_string_value(metadata_pokemon, "BLOCKS");
+	char** bloques = string_get_string_as_array(bloques_string);
 
 	for(int i = 0 ; i < tamanio_array(bloques); i++){
 

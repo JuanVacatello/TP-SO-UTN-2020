@@ -54,30 +54,6 @@ int obtener_id_propio(void){
 	return process_id;
 }
 
-void actualizar_path_files(char* path_files){
-
-	config_set_value(configGameCard, "PATH_FILES",path_files);
-	config_save(configGameCard);
-
-	leer_config();
-}
-
-void actualizar_path_metadata(char* path_metadata){
-
-	config_set_value(configGameCard, "PATH_METADATA",path_metadata);
-	config_save(configGameCard);
-
-	leer_config();
-}
-
-void actualizar_path_bloques(char* path_bloques){
-
-	config_set_value(configGameCard, "PATH_BLOQUES",path_bloques);
-	config_save(configGameCard);
-
-	leer_config();
-}
-
 char* obtener_path_files(){
 
 	/*

@@ -361,29 +361,36 @@ void new_pokemon(char* pokemon,int posX,int posY, int cantidad){ //funciona
 
 	if(existe_file(path_pokemon)==0){ // existe el file del pokemon
 
-		while(archivo_pokemon_esta_abierto(path_pokemon) ==1){
+		t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
+
+		while(archivo_pokemon_esta_abierto(metadata_pokemon) ==1){
 			int tiempo_reintento_operacion = tiempo_de_reintento_operacion();
 			sleep(tiempo_reintento_operacion);
 		}
-		abrir_archivo_pokemon(path_pokemon);
+		abrir_archivo_pokemon(metadata_pokemon);
 
-		char* bloques_en_string = obtener_bloques_pokemon_string(path_pokemon);
+		char* bloques_en_string = obtener_bloques_pokemon_string(metadata_pokemon);
 		if(strlen(bloques_en_string) == 2){ // si no tiene bloques asignados, asigno 1 y agrego linea
 
 			bloques_en_string = asignar_primer_bloque();
-			modificar_campo_bloques_metadata(path_pokemon,bloques_en_string);
+			modificar_campo_bloques_metadata(metadata_pokemon,bloques_en_string);
 			char* linea = generar_linea_a_insertar(posX, posY, 1);
-			modificar_campo_size_metadata(path_pokemon,strlen(linea));
-			almacenar_datos(linea, path_pokemon);
+			modificar_campo_size_metadata(metadata_pokemon,strlen(linea));
+			almacenar_datos(linea, metadata_pokemon);
 
-			int tiempo_retardo = tiempo_retardo_operacion();
+			/*
+			int tiempo_retardo = tiempo_retardo_operacion();CREO QUE SIMULA ACCESOS A DISCO, OSEA A BLOQUES, NO A METADATA, CHEQUEAR
 			sleep(tiempo_retardo);
-			cerrar_archivo_pokemon(path_pokemon);
+			*/
+			cerrar_archivo_pokemon(metadata_pokemon);
+
+			config_destroy(metadata_pokemon);
+			free(bloques_en_string);
 			//free(linea);
 		}
 		else{ // si tiene bloques asignados
 
-			t_list* lista_datos = obtener_datos_bloques(path_pokemon);
+			t_list* lista_datos = obtener_datos_bloques(metadata_pokemon);
 			int indice = existe_posicion_en_lista(lista_datos,posX,posY);
 
 			if(indice == -1){ // si no existe la posicion indice == -1
@@ -391,15 +398,17 @@ void new_pokemon(char* pokemon,int posX,int posY, int cantidad){ //funciona
 				agregar_linea(lista_datos, linea);
 				char* datos = obtener_datos_en_string(lista_datos);
 
-				modificar_campo_size_metadata(path_pokemon,strlen(datos));
-				almacenar_datos(datos, path_pokemon);
+				modificar_campo_size_metadata(metadata_pokemon,strlen(datos));
+				almacenar_datos(datos, metadata_pokemon);
 
 				int tiempo_retardo = tiempo_retardo_operacion();
 				sleep(tiempo_retardo);
-				cerrar_archivo_pokemon(path_pokemon);
+				cerrar_archivo_pokemon(metadata_pokemon);
+
 				//free(linea);
 				//free(datos);
-				//list_destroy(lista_datos);
+				config_destroy(metadata_pokemon);
+				list_destroy_and_destroy_elements(lista_datos,free);
 			}
 
 			else{ // si existe la posicion
@@ -413,13 +422,15 @@ void new_pokemon(char* pokemon,int posX,int posY, int cantidad){ //funciona
 					modificar_campo_size_metadata(path_pokemon,strlen(datos));
 				}
 
-				almacenar_datos(datos, path_pokemon);
+				almacenar_datos(datos, metadata_pokemon);
 
 				int tiempo_retardo = tiempo_retardo_operacion();
 				sleep(tiempo_retardo);
 				//free(datos);
-				cerrar_archivo_pokemon(path_pokemon);
+				cerrar_archivo_pokemon(metadata_pokemon);
 
+				list_destroy_and_destroy_elements(lista_datos,free);
+				config_destroy(metadata_pokemon);
 			}
 		}
 	}
@@ -444,58 +455,70 @@ void new_pokemon(char* pokemon,int posX,int posY, int cantidad){ //funciona
 		txt_write_in_file(metadata, "OPEN=Y");
 		txt_close_file(metadata);
 
-		//free(bloque_string);
+		free(bloque_string);
+
+		t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
 
 		char* linea = generar_linea_a_insertar(posX, posY, cantidad);
-		modificar_campo_size_metadata(path_pokemon,strlen(linea));
-		char* bloques_string = obtener_bloques_pokemon_string(path_pokemon);
-		almacenar_datos(linea, path_pokemon);
+		modificar_campo_size_metadata(metadata_pokemon,strlen(linea));
+
+		//char* bloques_string = obtener_bloques_pokemon_string(metadata_pokemon); CREO QUE ESTA AL PEDO
+
+		almacenar_datos(linea, metadata_pokemon);
 
 		int tiempo_retardo = tiempo_retardo_operacion();
 		sleep(tiempo_retardo);
-		cerrar_archivo_pokemon(path_pokemon);
+		cerrar_archivo_pokemon(metadata_pokemon);
 
-		//free(path_metadata_pokemon);
-		//free(linea);
+		config_destroy(metadata_pokemon);
+
+		free(path_metadata_pokemon);
+		free(linea);
 	}
 
-	//free(path_pokemon);
+	free(path_pokemon);
 }
 
 int catch_pokemon(char* pokemon,int posX,int posY){
 
 	char* path_pokemon = obtener_path_pokemon(pokemon);
-	char* path_files = obtener_path_files();
-
+	char* path_files = obtener_path_files(); //AL PEDO CREO
 
 	if(existe_file(path_pokemon)==0){// si existe el file pokemon
 
-		while(archivo_pokemon_esta_abierto(path_pokemon) ==1){
+		t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
+
+		while(archivo_pokemon_esta_abierto(metadata_pokemon) ==1){
 			int tiempo_reintento_operacion = tiempo_de_reintento_operacion();
 			sleep(tiempo_reintento_operacion);
 		}
-		abrir_archivo_pokemon(path_pokemon);
+		abrir_archivo_pokemon(metadata_pokemon);
 
-		char* bloques_en_string = obtener_bloques_pokemon_string(path_pokemon);
+		char* bloques_en_string = obtener_bloques_pokemon_string(metadata_pokemon);
 
 		if(strlen(bloques_en_string) == 2){ //si no tiene bloques asignados: "[]" // No hay retardo operacion ya que estos simulan el acceso a disco de los bloques
-			cerrar_archivo_pokemon(path_pokemon);								  // y en este caso no se accede a bloques
+			cerrar_archivo_pokemon(metadata_pokemon);							  // y en este caso no se accede a bloques
 			completar_logger("Error: Se trato de hacer un catch a un pokemon que no tiene bloques asignados","GAMECARD", LOG_LEVEL_INFO);
+
 			free(path_pokemon);
+			config_destroy(metadata_pokemon);
 			return -1;
 		}
 		else{ // si tiene bloques asignados
 
-			t_list* lista_datos = obtener_datos_bloques(path_pokemon);
+			t_list* lista_datos = obtener_datos_bloques(metadata_pokemon);
 			int indice = existe_posicion_en_lista(lista_datos,posX,posY);
 
 			if(indice == -1){ // si no existe la posicion
 				int tiempo_retardo = tiempo_retardo_operacion();// chequear si va un retardo operacion, creo que si porque hay accesos a bloques, solo que no encuentra la pos buscada
 				sleep(tiempo_retardo);
 
-				cerrar_archivo_pokemon(path_pokemon);
-				free(path_pokemon);
+				cerrar_archivo_pokemon(metadata_pokemon);
 				completar_logger("Error: Se trato de hacer un catch a un pokemon en una posicion en la cual no está","GAMECARD", LOG_LEVEL_INFO);
+
+				free(path_pokemon);
+				list_destroy_and_destroy_elements(lista_datos,free);
+				config_destroy(metadata_pokemon);
 				return -1;
 			}
 			else{ // si existe la posicion
@@ -507,19 +530,21 @@ int catch_pokemon(char* pokemon,int posX,int posY){
 					list_remove_and_destroy_element(lista_datos,indice, free);
 					flag_cambio_longitud = 1;
 
-					if(list_size(lista_datos) == 0){ // si ademas con aliminar esa linea la lista de pos queda vacia, libero y limpio los bloques asignados
-						limpiar_bloques_pokemon(path_pokemon);
-						liberar_bloques_pokemon(path_pokemon);
-						modificar_campo_bloques_metadata(path_pokemon,"[]");
-						modificar_campo_size_metadata(path_pokemon,0);
+					if(list_size(lista_datos) == 0){ // si ademas con eliminar esa linea, la lista de pos queda vacia, libero y limpio los bloques asignados
+
+						limpiar_bloques_pokemon(metadata_pokemon); // limpio el contenido del bloque
+						liberar_bloques_pokemon(metadata_pokemon); // libero el bloque en el bitmap
+						modificar_campo_bloques_metadata(metadata_pokemon,"[]"); // modifico el campo bloques del pokemon
+						modificar_campo_size_metadata(metadata_pokemon,0);	// modifico el size a 0
 
 						int tiempo_retardo = tiempo_retardo_operacion();
 						sleep(tiempo_retardo);
-						cerrar_archivo_pokemon(path_pokemon);
+						cerrar_archivo_pokemon(metadata_pokemon);
 
-						list_destroy(lista_datos);
+						list_destroy_and_destroy_elements(lista_datos,free);
 						free(path_pokemon);
 						free(linea_modificada);
+						config_destroy(metadata_pokemon);
 						return 1;
 					}
 				}
@@ -530,20 +555,21 @@ int catch_pokemon(char* pokemon,int posX,int posY){
 				char* datos = obtener_datos_en_string(lista_datos);
 
 				if(flag_cambio_longitud == 1 ){// si la longitud de la linea cambio, actualizo el tamaño del pokemon
-					modificar_campo_size_metadata(path_pokemon,strlen(datos));
+					modificar_campo_size_metadata(metadata_pokemon,strlen(datos));
 				}
 
-				almacenar_datos(datos, path_pokemon);
+				almacenar_datos(datos, metadata_pokemon);
 
 				int tiempo_retardo = tiempo_retardo_operacion();
 				sleep(tiempo_retardo);
 
-				cerrar_archivo_pokemon(path_pokemon);
+				cerrar_archivo_pokemon(metadata_pokemon);
 
 				free(datos);
-				list_destroy(lista_datos);
+				list_destroy_and_destroy_elements(lista_datos,free);
 				free(path_pokemon);
-				free(linea_modificada);
+				//free(linea_modificada); //ESTE EL HIJO DE PUTA QUE ROMPE TE ODIOOOOO
+				config_destroy(metadata_pokemon);
 
 				return 1;
 			}
@@ -565,13 +591,15 @@ void* get_pokemon(char* pokemon, uint32_t *tamanio_void){
 
 	if(existe_file(path_pokemon)==0){
 
-		while(archivo_pokemon_esta_abierto(path_pokemon) ==1){
+		t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
+
+		while(archivo_pokemon_esta_abierto(metadata_pokemon) ==1){
 			int tiempo_reintento_operacion = tiempo_de_reintento_operacion();
 			sleep(tiempo_reintento_operacion);
 		}
-		abrir_archivo_pokemon(path_pokemon);
+		abrir_archivo_pokemon(metadata_pokemon);
 
-		char* bloques_en_string = obtener_bloques_pokemon_string(path_pokemon);
+		char* bloques_en_string = obtener_bloques_pokemon_string(metadata_pokemon);
 
 		if(strlen(bloques_en_string) == 2){ //si no tiene bloques asignados, entonces no tiene posiciones
 
@@ -582,13 +610,15 @@ void* get_pokemon(char* pokemon, uint32_t *tamanio_void){
 
 			int tiempo_retardo = tiempo_retardo_operacion();
 			sleep(tiempo_retardo);
-			cerrar_archivo_pokemon(path_pokemon);
+			cerrar_archivo_pokemon(metadata_pokemon);
+
 			free(path_pokemon);
+			config_destroy(metadata_pokemon);
 
 			return respuesta;
 		}
 
-		t_list* lista_datos = obtener_datos_bloques(path_pokemon);
+		t_list* lista_datos = obtener_datos_bloques(metadata_pokemon);
 		cantidad_posiciones = list_size(lista_datos);
 
 		printf("hay %d posiciones \n",cantidad_posiciones);
@@ -643,13 +673,14 @@ void* get_pokemon(char* pokemon, uint32_t *tamanio_void){
 
 		int tiempo_retardo = tiempo_retardo_operacion();
 		sleep(tiempo_retardo);
-		cerrar_archivo_pokemon(path_pokemon);
+		cerrar_archivo_pokemon(metadata_pokemon);
 
-		list_destroy(lista_datos);
-		free(path_pokemon);
+		list_destroy_and_destroy_elements(lista_datos,free);
+		config_destroy(metadata_pokemon);
+
 		return respuesta;
 	}
-	else{
+	else{ // file pokemon no existe
 		cantidad_posiciones = 0;
 		void* respuesta = malloc(sizeof(uint32_t));
 		memcpy(respuesta, &cantidad_posiciones, sizeof(uint32_t));
@@ -850,6 +881,7 @@ void responder_ack(uint32_t mensaje_id, int socket_broker){
 		exit(3);
 	}
 
+	free(a_enviar); // PEDRO ESTUVO AQUI
 	free(stream);
 	free(paquete->buffer);
 	free(paquete);

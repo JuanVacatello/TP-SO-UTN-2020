@@ -15,8 +15,11 @@
 #include<semaphore.h>
 
 #include"configGameCard.h"
+#include"metadata.h"
+#include"conexion.h"
+#include"bitmap.h"
 #include"logGameCard.h"
-//#include"GameCard.h"
+#include"bloques.h"
 
 typedef enum{
 	SUSCRIPTOR=0,

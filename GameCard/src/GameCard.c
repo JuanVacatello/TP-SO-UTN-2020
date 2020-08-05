@@ -12,13 +12,42 @@ int main(void) {
 	char* punto_montaje = obtener_punto_montaje();
 	inicializar_file_system(punto_montaje);
 
-	//char* path = obtener_path_pokemon("Pikachu");
-	//char* bloques_string = obtener_bloques_pokemon_string(path);
+	/*
+	//new_pokemon("Pikachu",7,2,1);
+	new_pokemon("Pikachu",7,2,5);
 
-	//new_pokemon("Pikachu",10,2,1);
-	//catch_pokemon("Pikachu",6,7);
+	catch_pokemon("Pikachu",7,2);
+	catch_pokemon("Pikachu",7,2);
+	catch_pokemon("Pikachu",7,2);
+	catch_pokemon("Pikachu",7,2);
+	catch_pokemon("Pikachu",7,2);
+
+
+	new_pokemon("Pikachu",10,2,1);
+	new_pokemon("Pikachu",1,2,6);
+	new_pokemon("Pikachu",200,2,3);
+	new_pokemon("Pikachu",10000000,2,1000000);
+	new_pokemon("Pikachu",5,2,2);
+	new_pokemon("Pikachu",11,9,2);
+	new_pokemon("Pikachu",15,21,23);
+	new_pokemon("Pikachu",7,2,2);
+	new_pokemon("Pikachu",7,8,2);
+
+	catch_pokemon("Pikachu",10,2);
+
+	new_pokemon("Pikachu",10,2,1);
+
+	catch_pokemon("Pikachu",10,2);
+
+	catch_pokemon("Pikachu",6,7);
+	*/
+
+
+	//uint32_t tamanio_void;
+	//get_pokemon("Charmander", &tamanio_void);
 
 	iniciar_espera_mensajes_Gameboy();
+
 
 
 	/*
@@ -87,7 +116,6 @@ void inicializar_file_system(char* punto_montaje){
 		inicializar_metadata(path_metadata, obtener_tamanio_bloques(), obtener_cantidad_bloques());
 	}
 	path_metadata_global = path_metadata;
-	//actualizar_path_metadata(path_metadata);
 	leer_metadata_tall_grass(path_metadata);
 
 
@@ -100,7 +128,6 @@ void inicializar_file_system(char* punto_montaje){
 		inicializar_bloques(path_bloques);
 	}
 	path_bloques_global = path_bloques;
-	//actualizar_path_bloques(path_bloques);
 
 
 	//CREA FILES
@@ -112,7 +139,6 @@ void inicializar_file_system(char* punto_montaje){
 		inicializar_files(path_files);
 	}
 	path_files_global = path_files;
-	//actualizar_path_files(path_files);
 
 	//inicializa bitmap luego de crear los bloques y actualizar los paths
 	char* path_archivo_bitmap = string_new();
