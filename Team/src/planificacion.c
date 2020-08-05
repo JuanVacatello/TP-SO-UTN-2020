@@ -277,6 +277,7 @@ void planificar_rr(void){
 					}
 					else{
 						accion_aux->ciclo_cpu -= quantum_remanente;
+						entrenador->ciclos_de_cpu_totales += quantum_remanente;  //CHEQUEAR ESTOO
 						list_replace_and_destroy_element(entrenador->cola_de_acciones, 0, accion_aux, destruir_accion);
 						quantum_remanente = 0;
 					}
@@ -325,6 +326,7 @@ void planificar_rr(void){
 					}
 					else{
 						accion_aux->ciclo_cpu -= quantum_remanente;
+						entrenador->ciclos_de_cpu_totales += quantum_remanente;  //CHEQUEAR ESTOO
 						list_replace_and_destroy_element(entrenador->cola_de_acciones, 0, accion_aux, destruir_accion);
 						quantum_remanente = 0;
 					}
@@ -336,11 +338,12 @@ void planificar_rr(void){
 						ejecutar_entrenador(entrenador);
 						quantum_remanente-= accion_aux->ciclo_cpu;
 						}
-						else{
-							accion_aux->ciclo_cpu -= quantum_remanente;
-							list_replace_and_destroy_element(entrenador->cola_de_acciones, 0, accion_aux, destruir_accion);
-							quantum_remanente = 0;
-							}
+					else{
+						accion_aux->ciclo_cpu -= quantum_remanente;
+						entrenador->ciclos_de_cpu_totales += quantum_remanente;	//CHEQUEAR ESTA LINEA
+						list_replace_and_destroy_element(entrenador->cola_de_acciones, 0, accion_aux, destruir_accion);
+						quantum_remanente = 0;
+						}
 
 				if(list_size(entrenador->cola_de_acciones) > 0 && quantum_remanente == 0){
 					entrenador->estado = READY;
