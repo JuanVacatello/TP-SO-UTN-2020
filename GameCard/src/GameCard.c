@@ -3,14 +3,20 @@
 
 int main(void) {
 
-	leer_config();
-	iniciar_logger();
+	inicializar_variables_globales();
 
-	sem_init(&MUTEX_MENSAJES_GB,0,1);
-	sem_init(&semaforo_bitmap,0,1);
+	pthread_create(&hilo_new_pokemon, NULL, new_pokemon_broker, NULL);
+	pthread_detach(hilo_new_pokemon);
 
-	char* punto_montaje = obtener_punto_montaje();
-	inicializar_file_system(punto_montaje);
+	pthread_create(&hilo_catch_pokemon, NULL, catch_pokemon_broker, NULL);
+	pthread_detach(hilo_catch_pokemon);
+
+	pthread_create(&hilo_get_pokemon, NULL, get_pokemon_broker, NULL);
+	pthread_detach(hilo_get_pokemon);
+
+	iniciar_espera_mensajes_Gameboy();
+
+	return 0;
 
 	/*
 	//new_pokemon("Pikachu",7,2,1);
@@ -46,7 +52,7 @@ int main(void) {
 	//uint32_t tamanio_void;
 	//get_pokemon("Charmander", &tamanio_void);
 
-	iniciar_espera_mensajes_Gameboy();
+
 
 
 
@@ -55,22 +61,6 @@ int main(void) {
 
 	sem_init(&MUTEX_SUB,0,1);
 	sem_init(&MUTEX_PRUEBA,0,0);
-
-
-	while(1){
-		pthread_create(&hilo_gameboy, NULL, iniciar_espera_mensajes_Gameboy, NULL);
-		pthread_detach(hilo_gameboy);
-	}
-
-	/*
-	pthread_create(&hilo_new_pokemon, NULL, new_pokemon_broker, NULL);
-	pthread_detach(hilo_new_pokemon);
-
-	pthread_create(&hilo_catch_pokemon, NULL, catch_pokemon_broker, NULL);
-	pthread_detach(hilo_catch_pokemon);
-
-	pthread_create(&hilo_get_pokemon, NULL, get_pokemon_broker, NULL);
-	pthread_detach(hilo_get_pokemon);
 
 
 //	pthread_create(&HILO_PRINCIPAL, NULL , FUNCION_PRINCIPAL_GAMECARD (?) ,NULL);
@@ -92,9 +82,17 @@ int main(void) {
 
 	//uint32_t tamanio_void = 0;
 	//void* respuesta = get_pokemon("Pikachu", &tamanio_void);
+}
 
-	return 0;
+void inicializar_variables_globales(){
+	leer_config();
+	iniciar_logger();
 
+	sem_init(&MUTEX_MENSAJES_GB,0,1);
+	sem_init(&semaforo_bitmap,0,1);
+
+	char* punto_montaje = obtener_punto_montaje();
+	inicializar_file_system(punto_montaje);
 }
 
 

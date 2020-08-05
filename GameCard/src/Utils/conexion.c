@@ -17,7 +17,6 @@ int crear_conexion(char* ip, char* puerto)
 
 	if((socket_cliente = socket(server_info->ai_family, server_info->ai_socktype, server_info->ai_protocol)) == -1){
 		printf("Error en crear socket.");
-		exit(1);
 	}
 
 	if(connect(socket_cliente, server_info->ai_addr, server_info->ai_addrlen) == -1){
@@ -96,16 +95,13 @@ void process_request(op_code cod_op, int socket_cliente) {
 
 	switch(cod_op){
 		case 1:
-			recibir_new_pokemon(socket_cliente);//pthread_create(&hilo_new_pokemon_gameboy, NULL, recibir_new_pokemon, socket_cliente);
-			//pthread_detach(hilo_new_pokemon_gameboy);
+			recibir_new_pokemon(socket_cliente);
 			break;
 		case 3:
-			recibir_catch_pokemon(socket_cliente);//pthread_create(&hilo_catch_pokemon_gameboy, NULL, recibir_catch_pokemon, socket_cliente);
-			//pthread_detach(hilo_catch_pokemon_gameboy);
+			recibir_catch_pokemon(socket_cliente);
 			break;
 		case 5:
-			recibir_get_pokemon(socket_cliente);//pthread_create(&hilo_get_pokemon_gameboy, NULL, recibir_get_pokemon, socket_cliente);
-			//pthread_detach(hilo_get_pokemon_gameboy);
+			recibir_get_pokemon(socket_cliente);
 			break;
 	}
 	sem_post(&MUTEX_MENSAJES_GB);
@@ -140,8 +136,7 @@ void new_pokemon_broker(){
 		recv(socket_broker, &cod_op, sizeof(op_code), MSG_WAITALL);
 
 		if(cod_op == NEW_POKEMON){
-			pthread_create(&hilo_new_pokemon_broker, NULL, recibir_new_pokemon, NULL);
-			pthread_detach(hilo_new_pokemon_broker);
+			recibir_new_pokemon(socket_broker);
 		}
 	}
 }
@@ -155,8 +150,7 @@ void catch_pokemon_broker(){
 		recv(socket_broker, &cod_op, sizeof(op_code), MSG_WAITALL);
 
 		if(cod_op == CATCH_POKEMON){
-			pthread_create(&hilo_catch_pokemon_broker, NULL, recibir_catch_pokemon, socket_broker);
-			pthread_detach(hilo_catch_pokemon_broker);
+			recibir_catch_pokemon(socket_broker);
 		}
 	}
 }
@@ -170,8 +164,7 @@ void get_pokemon_broker(){
 		recv(socket_broker, &cod_op, sizeof(op_code), MSG_WAITALL);
 
 		if(cod_op == GET_POKEMON){
-			pthread_create(&hilo_get_pokemon_broker, NULL, recibir_get_pokemon, socket_broker);
-			pthread_detach(hilo_get_pokemon_broker);
+			recibir_get_pokemon(socket_broker);
 		}
 	}
 }
@@ -279,7 +272,7 @@ void recibir_new_pokemon(int socket_cliente){
 
 	uint32_t id_mensaje_correlativo = mensaje_id;
 
-	//enviar_appeared_pokemon(pokemon, posX, posY, id_mensaje_correlativo);
+	enviar_appeared_pokemon(pokemon, posX, posY, id_mensaje_correlativo);
 
 	free(pokemon);
 
@@ -317,7 +310,7 @@ void recibir_catch_pokemon(int socket_cliente){//RECIBE TODO PERFECTO (NO MUEVAN
 
 	uint32_t se_pudo_encontrar = catch_pokemon(pokemon, posX, posY);
 
-	//enviar_caught_pokemon(mensaje_id, se_pudo_encontrar);
+	enviar_caught_pokemon(mensaje_id, se_pudo_encontrar);
 
 	free(pokemon);
 }
@@ -347,7 +340,7 @@ void recibir_get_pokemon(int socket_cliente){//RECIBE TODO PERFECTO (NO MUEVAN E
 	uint32_t tamanio_void = 0;
 	void* respuesta = get_pokemon(pokemon, &tamanio_void);
 
-	//enviar_localized_pokemon(respuesta, tamanio_void, pokemon, mensaje_id);
+	enviar_localized_pokemon(respuesta, tamanio_void, pokemon, mensaje_id);
 
 	free(pokemon);
 }
@@ -699,11 +692,7 @@ void enviar_appeared_pokemon(char* pokemon, uint32_t posX, uint32_t posY, uint32
 	int socket_broker = crear_conexion(ip_broker,puerto_broker);
 
 	if(socket_broker == -1){
-
 		completar_logger("Error: No se puede conectar al broker para enviar un appeared, se continua la ejecucion","GAMECARD", LOG_LEVEL_INFO);
-		// Comportamiento default en caso de que no se pueda conectar a Broker
-		// Segun lo poco que lei en el enunciado solo hay que avisarlo por logs y seguir la ejecucion pero no se quizas
-		// hay mas info que esa
 	}
 
 	int tamanio_paquete = 0;
@@ -711,7 +700,6 @@ void enviar_appeared_pokemon(char* pokemon, uint32_t posX, uint32_t posY, uint32
 
 	if(send(socket_broker,a_enviar,tamanio_paquete,0) == -1){
 		printf("Error en enviar por el socket");
-		exit(3);
 	}
 }
 
@@ -754,11 +742,7 @@ void enviar_caught_pokemon(uint32_t id_mensaje_correlativo, uint32_t se_pudo_atr
 	int socket_broker = crear_conexion(ip_broker,puerto_broker);
 
 	if(socket_broker == -1){
-
 		completar_logger("Error: No se puede conectar al broker para enviar un caught, se continua la ejecucion","GAMECARD", LOG_LEVEL_INFO);
-		// Comportamiento default en caso de que no se pueda conectar a Broker
-		// Segun lo poco que lei en el enunciado solo hay que avisarlo por logs y seguir la ejecucion pero no se quizas
-		// hay mas info que esa
 	}
 
 	int tamanio_paquete = 0;
@@ -766,7 +750,6 @@ void enviar_caught_pokemon(uint32_t id_mensaje_correlativo, uint32_t se_pudo_atr
 
 	if(send(socket_broker,a_enviar,tamanio_paquete,0) == -1){
 		printf("Error en enviar por el socket");
-		exit(3);
 	}
 }
 
@@ -798,11 +781,7 @@ void enviar_localized_pokemon(void* cantidad_y_posiciones, uint32_t tamanio_void
 	int socket_broker = crear_conexion(ip_broker,puerto_broker);
 
 	if(socket_broker == -1){
-
 		completar_logger("Error: No se puede conectar al broker para enviar un localized, se continua la ejecucion","GAMECARD", LOG_LEVEL_INFO);
-		// Comportamiento default en caso de que no se pueda conectar a Broker
-		// Segun lo poco que lei en el enunciado solo hay que avisarlo por logs y seguir la ejecucion pero no se quizas
-		// hay mas info que esa
 	}
 
 	int tamanio_paquete = 0;
@@ -810,14 +789,13 @@ void enviar_localized_pokemon(void* cantidad_y_posiciones, uint32_t tamanio_void
 
 	if(send(socket_broker,a_enviar,tamanio_paquete,0) == -1){
 		printf("Error en enviar por el socket");
-		exit(3);
 	}
 }
 
 void* iniciar_paquete_serializado_LocalizedPokemon(int* tamanio_paquete, uint32_t id_mensaje_correlativo, char* pokemon, void* cantidad_y_posiciones, uint32_t tamanio_void){
 
 	t_paquete* paquete = malloc(sizeof(t_paquete));
-	paquete->codigo_operacion = 1;
+	paquete->codigo_operacion = 6;
 	paquete->buffer = malloc(sizeof(t_buffer));
 	uint32_t caracteres_pokemon = strlen(pokemon)+1;
 							// ID CORRELATIVO + CARACTERES + POKEMON + CANTIDAD + (POSX+POSY)*CANTIDAD
@@ -878,7 +856,6 @@ void responder_ack(uint32_t mensaje_id, int socket_broker){
 
 	if(send(socket_broker,a_enviar,tamanio_paquete,0) == -1){
 		completar_logger("Error en enviar por el socket","GAMECARD", LOG_LEVEL_INFO);
-		exit(3);
 	}
 
 	free(a_enviar); // PEDRO ESTUVO AQUI

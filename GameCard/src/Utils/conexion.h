@@ -43,12 +43,6 @@ typedef struct{
 } t_paquete;
 
 pthread_t thread;
-pthread_t hilo_new_pokemon_gameboy;
-pthread_t hilo_catch_pokemon_gameboy;
-pthread_t hilo_get_pokemon_gameboy;
-pthread_t hilo_new_pokemon_broker;
-pthread_t hilo_catch_pokemon_broker;
-pthread_t hilo_get_pokemon_broker;
 
 sem_t MUTEX_MENSAJES_GB;
 sem_t MUTEX_SUB;
