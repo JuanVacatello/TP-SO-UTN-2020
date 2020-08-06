@@ -1,0 +1,154 @@
+[INFO] 20:28:23:974 BROKER/(5253:5279): Se conectó proceso de socket 5 al Broker.
+[INFO] 20:28:23:981 BROKER/(5253:5281): Se conectó proceso de socket 6 al Broker.
+[INFO] 20:28:23:992 BROKER/(5253:5283): Se conectó proceso de socket 7 al Broker.
+[INFO] 20:28:23:994 BROKER/(5253:5280): Se suscribió el proceso con socket 5 y con id 5273 a la cola de mensajes GET_POKEMON.
+[INFO] 20:28:23:996 BROKER/(5253:5282): Se suscribió el proceso con socket 6 y con id 5273 a la cola de mensajes CATCH_POKEMON.
+[INFO] 20:28:23:997 BROKER/(5253:5284): Se suscribió el proceso con socket 7 y con id 5273 a la cola de mensajes NEW_POKEMON.
+[INFO] 20:28:35:88 BROKER/(5253:5287): Se conectó proceso de socket 8 al Broker.
+[INFO] 20:28:35:102 BROKER/(5253:5287): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 20:28:35:113 BROKER/(5253:5288): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 20:28:35:120 BROKER/(5253:5288): Se le envió un mensaje al suscriptor de socket 7, a través de la cola NEW_POKEMON.
+[INFO] 20:28:35:123 BROKER/(5253:5290): El suscriptor de id 5678 confirmó la recepción del mensaje con id 1.
+[INFO] 20:28:35:146 BROKER/(5253:5291): Se conectó proceso de socket 9 al Broker.
+[INFO] 20:28:35:146 BROKER/(5253:5291): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 20:28:35:166 BROKER/(5253:5292): Se almacenó un mensaje en la posición 23 de la memoria principal.
+[INFO] 20:28:35:167 BROKER/(5253:5292): Se le envió un mensaje al suscriptor de socket 7, a través de la cola NEW_POKEMON.
+[INFO] 20:28:35:182 BROKER/(5253:5295): Se conectó proceso de socket 10 al Broker.
+[INFO] 20:28:35:186 BROKER/(5253:5295): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 20:28:35:193 BROKER/(5253:5296): Se compactó la memoria ya que la frecuencia de compactación es 1.
+[INFO] 20:28:35:194 BROKER/(5253:5296): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 20:28:35:194 BROKER/(5253:5296): Se compactó la memoria ya que la frecuencia de compactación es 1.
+[INFO] 20:28:35:194 BROKER/(5253:5296): Se almacenó un mensaje en la posición 24 de la memoria principal.
+[INFO] 20:28:35:201 BROKER/(5253:5296): Se le envió un mensaje al suscriptor de socket 7, a través de la cola NEW_POKEMON.
+[INFO] 20:28:35:209 BROKER/(5253:5299): Se conectó proceso de socket 11 al Broker.
+[INFO] 20:28:35:209 BROKER/(5253:5299): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 20:28:35:210 BROKER/(5253:5300): Se compactó la memoria ya que la frecuencia de compactación es 1.
+[INFO] 20:28:35:210 BROKER/(5253:5300): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 20:28:35:210 BROKER/(5253:5300): Se compactó la memoria ya que la frecuencia de compactación es 1.
+[INFO] 20:28:35:210 BROKER/(5253:5300): Se almacenó un mensaje en la posición 23 de la memoria principal.
+[INFO] 20:28:35:233 BROKER/(5253:5300): Se le envió un mensaje al suscriptor de socket 7, a través de la cola NEW_POKEMON.
+[INFO] 20:28:36:153 BROKER/(5253:5294): El suscriptor de id 5678 confirmó la recepción del mensaje con id 2.
+[INFO] 20:28:36:158 BROKER/(5253:5302): Se conectó proceso de socket 12 al Broker.
+[INFO] 20:28:36:159 BROKER/(5253:5302): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 20:28:36:167 BROKER/(5253:5303): Se almacenó un mensaje en la posición 46 de la memoria principal.
+[INFO] 20:28:37:196 BROKER/(5253:5298): El suscriptor de id 5678 confirmó la recepción del mensaje con id 3.
+[INFO] 20:28:37:199 BROKER/(5253:5304): Se conectó proceso de socket 13 al Broker.
+[INFO] 20:28:37:200 BROKER/(5253:5304): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 20:28:37:213 BROKER/(5253:5305): Se compactó la memoria ya que la frecuencia de compactación es 1.
+[INFO] 20:28:37:214 BROKER/(5253:5305): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 20:28:37:214 BROKER/(5253:5305): Se compactó la memoria ya que la frecuencia de compactación es 1.
+[INFO] 20:28:37:229 BROKER/(5253:5305): Se almacenó un mensaje en la posición 42 de la memoria principal.
+[INFO] 20:28:38:209 BROKER/(5253:5301): El suscriptor de id 5678 confirmó la recepción del mensaje con id 4.
+[INFO] 20:28:38:212 BROKER/(5253:5306): Se conectó proceso de socket 14 al Broker.
+[INFO] 20:28:38:213 BROKER/(5253:5306): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 20:28:38:214 BROKER/(5253:5307): Se compactó la memoria ya que la frecuencia de compactación es 1.
+[INFO] 20:28:38:215 BROKER/(5253:5307): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 20:28:38:216 BROKER/(5253:5307): Se compactó la memoria ya que la frecuencia de compactación es 1.
+[INFO] 20:28:38:227 BROKER/(5253:5307): Se almacenó un mensaje en la posición 39 de la memoria principal.
+[INFO] 20:28:39:230 BROKER/(5253:5308): Se conectó proceso de socket 15 al Broker.
+[INFO] 20:28:39:232 BROKER/(5253:5308): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 20:28:39:232 BROKER/(5253:5309): Se compactó la memoria ya que la frecuencia de compactación es 1.
+[INFO] 20:28:39:232 BROKER/(5253:5309): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 20:28:39:234 BROKER/(5253:5309): Se compactó la memoria ya que la frecuencia de compactación es 1.
+[INFO] 20:28:39:234 BROKER/(5253:5309): Se almacenó un mensaje en la posición 39 de la memoria principal.
+[INFO] 20:29:04:167 BROKER/(5253:5317): Se conectó proceso de socket 16 al Broker.
+[INFO] 20:29:04:179 BROKER/(5253:5319): Se conectó proceso de socket 17 al Broker.
+[INFO] 20:29:04:181 BROKER/(5253:5321): Se conectó proceso de socket 18 al Broker.
+[INFO] 20:29:04:182 BROKER/(5253:5318): Se suscribió el proceso con socket 16 y con id 1234 a la cola de mensajes APPEARED_POKEMON.
+[INFO] 20:29:04:183 BROKER/(5253:5318): Se le envió un mensaje al suscriptor de socket 16, a través de la cola APPEARED_POKEMON.
+[INFO] 20:29:04:183 BROKER/(5253:5323): Se conectó proceso de socket 19 al Broker.
+[INFO] 20:29:04:183 BROKER/(5253:5323): Llegó un nuevo mensaje a la cola de mensajes GET_POKEMON
+[INFO] 20:29:04:184 BROKER/(5253:5318): Se le envió un mensaje al suscriptor de socket 16, a través de la cola APPEARED_POKEMON.
+[INFO] 20:29:04:185 BROKER/(5253:5320): Se suscribió el proceso con socket 17 y con id 1234 a la cola de mensajes LOCALIZED_POKEMON.
+[INFO] 20:29:04:185 BROKER/(5253:5318): Se le envió un mensaje al suscriptor de socket 16, a través de la cola APPEARED_POKEMON.
+[INFO] 20:29:04:190 BROKER/(5253:5322): Se suscribió el proceso con socket 18 y con id 1234 a la cola de mensajes CAUGHT_POKEMON.
+[INFO] 20:29:04:191 BROKER/(5253:5326): El suscriptor de id 1234 confirmó la recepción del mensaje con id 6.
+[INFO] 20:29:04:191 BROKER/(5253:5324): El suscriptor de id 1234 confirmó la recepción del mensaje con id 7.
+[INFO] 20:29:04:191 BROKER/(5253:5327): El suscriptor de id 1234 confirmó la recepción del mensaje con id 8.
+[INFO] 20:29:04:192 BROKER/(5253:5325): Se compactó la memoria ya que la frecuencia de compactación es 1.
+[INFO] 20:29:04:192 BROKER/(5253:5325): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 20:29:04:192 BROKER/(5253:5325): Se compactó la memoria ya que la frecuencia de compactación es 1.
+[INFO] 20:29:04:192 BROKER/(5253:5325): Se almacenó un mensaje en la posición 38 de la memoria principal.
+[INFO] 20:29:04:194 BROKER/(5253:5325): Se le envió un mensaje al suscriptor de socket 5, a través de la cola GET_POKEMON.
+[INFO] 20:29:04:195 BROKER/(5253:5328): El suscriptor de id 5678 confirmó la recepción del mensaje con id 9.
+[INFO] 20:29:05:197 BROKER/(5253:5334): Se conectó proceso de socket 21 al Broker.
+[INFO] 20:29:05:198 BROKER/(5253:5334): Llegó un nuevo mensaje a la cola de mensajes LOCALIZED_POKEMON
+[INFO] 20:29:05:198 BROKER/(5253:5335): Se conectó proceso de socket 21 al Broker.
+[INFO] 20:29:05:198 BROKER/(5253:5335): Llegó un nuevo mensaje a la cola de mensajes 
+[INFO] 20:31:05:197 BROKER/(5380:5398): Se conectó proceso de socket 5 al Broker.
+[INFO] 20:31:05:229 BROKER/(5380:5399): Se suscribió el proceso con socket 5 y con id 5392 a la cola de mensajes GET_POKEMON.
+[INFO] 20:31:05:236 BROKER/(5380:5400): Se conectó proceso de socket 6 al Broker.
+[INFO] 20:31:05:243 BROKER/(5380:5401): Se suscribió el proceso con socket 6 y con id 5392 a la cola de mensajes CATCH_POKEMON.
+[INFO] 20:31:05:247 BROKER/(5380:5402): Se conectó proceso de socket 7 al Broker.
+[INFO] 20:31:05:269 BROKER/(5380:5403): Se suscribió el proceso con socket 7 y con id 5392 a la cola de mensajes NEW_POKEMON.
+[INFO] 20:31:11:341 BROKER/(5380:5406): Se conectó proceso de socket 8 al Broker.
+[INFO] 20:31:11:354 BROKER/(5380:5406): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 20:31:11:383 BROKER/(5380:5407): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 20:31:11:401 BROKER/(5380:5407): Se le envió un mensaje al suscriptor de socket 7, a través de la cola NEW_POKEMON.
+[INFO] 20:31:11:435 BROKER/(5380:5409): El suscriptor de id 5678 confirmó la recepción del mensaje con id 1.
+[INFO] 20:31:11:438 BROKER/(5380:5410): Se conectó proceso de socket 9 al Broker.
+[INFO] 20:31:11:443 BROKER/(5380:5410): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 20:31:11:462 BROKER/(5380:5411): Se almacenó un mensaje en la posición 23 de la memoria principal.
+[INFO] 20:31:11:471 BROKER/(5380:5411): Se le envió un mensaje al suscriptor de socket 7, a través de la cola NEW_POKEMON.
+[INFO] 20:31:11:478 BROKER/(5380:5414): Se conectó proceso de socket 10 al Broker.
+[INFO] 20:31:11:491 BROKER/(5380:5414): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 20:31:11:498 BROKER/(5380:5415): Se compactó la memoria ya que la frecuencia de compactación es 1.
+[INFO] 20:31:11:499 BROKER/(5380:5415): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 20:31:11:499 BROKER/(5380:5415): Se compactó la memoria ya que la frecuencia de compactación es 1.
+[INFO] 20:31:11:499 BROKER/(5380:5415): Se almacenó un mensaje en la posición 24 de la memoria principal.
+[INFO] 20:31:11:499 BROKER/(5380:5415): Se le envió un mensaje al suscriptor de socket 7, a través de la cola NEW_POKEMON.
+[INFO] 20:31:11:506 BROKER/(5380:5418): Se conectó proceso de socket 11 al Broker.
+[INFO] 20:31:11:506 BROKER/(5380:5418): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 20:31:11:510 BROKER/(5380:5419): Se compactó la memoria ya que la frecuencia de compactación es 1.
+[INFO] 20:31:11:510 BROKER/(5380:5419): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 20:31:11:510 BROKER/(5380:5419): Se compactó la memoria ya que la frecuencia de compactación es 1.
+[INFO] 20:31:11:510 BROKER/(5380:5419): Se almacenó un mensaje en la posición 23 de la memoria principal.
+[INFO] 20:31:11:523 BROKER/(5380:5419): Se le envió un mensaje al suscriptor de socket 7, a través de la cola NEW_POKEMON.
+[INFO] 20:31:12:434 BROKER/(5380:5413): El suscriptor de id 5678 confirmó la recepción del mensaje con id 2.
+[INFO] 20:31:12:459 BROKER/(5380:5421): Se conectó proceso de socket 12 al Broker.
+[INFO] 20:31:12:459 BROKER/(5380:5421): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 20:31:12:474 BROKER/(5380:5422): Se almacenó un mensaje en la posición 46 de la memoria principal.
+[INFO] 20:31:13:489 BROKER/(5380:5417): El suscriptor de id 5678 confirmó la recepción del mensaje con id 3.
+[INFO] 20:31:13:510 BROKER/(5380:5423): Se conectó proceso de socket 13 al Broker.
+[INFO] 20:31:13:511 BROKER/(5380:5423): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 20:31:13:529 BROKER/(5380:5424): Se compactó la memoria ya que la frecuencia de compactación es 1.
+[INFO] 20:31:13:538 BROKER/(5380:5424): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 20:31:13:539 BROKER/(5380:5424): Se compactó la memoria ya que la frecuencia de compactación es 1.
+[INFO] 20:31:13:539 BROKER/(5380:5424): Se almacenó un mensaje en la posición 42 de la memoria principal.
+[INFO] 20:31:14:500 BROKER/(5380:5420): El suscriptor de id 5678 confirmó la recepción del mensaje con id 4.
+[INFO] 20:31:14:525 BROKER/(5380:5425): Se conectó proceso de socket 14 al Broker.
+[INFO] 20:31:14:526 BROKER/(5380:5425): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 20:31:14:543 BROKER/(5380:5426): Se compactó la memoria ya que la frecuencia de compactación es 1.
+[INFO] 20:31:14:544 BROKER/(5380:5426): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 20:31:14:550 BROKER/(5380:5426): Se compactó la memoria ya que la frecuencia de compactación es 1.
+[INFO] 20:31:14:552 BROKER/(5380:5426): Se almacenó un mensaje en la posición 39 de la memoria principal.
+[INFO] 20:31:15:516 BROKER/(5380:5428): Se conectó proceso de socket 15 al Broker.
+[INFO] 20:31:15:516 BROKER/(5380:5428): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 20:31:15:526 BROKER/(5380:5429): Se compactó la memoria ya que la frecuencia de compactación es 1.
+[INFO] 20:31:15:527 BROKER/(5380:5429): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 20:31:15:532 BROKER/(5380:5429): Se compactó la memoria ya que la frecuencia de compactación es 1.
+[INFO] 20:31:15:533 BROKER/(5380:5429): Se almacenó un mensaje en la posición 39 de la memoria principal.
+[INFO] 20:31:26:456 BROKER/(5380:5435): Se conectó proceso de socket 16 al Broker.
+[INFO] 20:31:26:471 BROKER/(5380:5436): Se suscribió el proceso con socket 16 y con id 1234 a la cola de mensajes APPEARED_POKEMON.
+[INFO] 20:31:26:472 BROKER/(5380:5436): Se le envió un mensaje al suscriptor de socket 16, a través de la cola APPEARED_POKEMON.
+[INFO] 20:31:26:483 BROKER/(5380:5436): Se le envió un mensaje al suscriptor de socket 16, a través de la cola APPEARED_POKEMON.
+[INFO] 20:31:26:483 BROKER/(5380:5437): Se conectó proceso de socket 17 al Broker.
+[INFO] 20:31:26:484 BROKER/(5380:5438): El suscriptor de id 1234 confirmó la recepción del mensaje con id 6.
+[INFO] 20:31:26:488 BROKER/(5380:5436): Se le envió un mensaje al suscriptor de socket 16, a través de la cola APPEARED_POKEMON.
+[INFO] 20:31:26:489 BROKER/(5380:5439): El suscriptor de id 1234 confirmó la recepción del mensaje con id 7.
+[INFO] 20:31:26:496 BROKER/(5380:5440): Se suscribió el proceso con socket 17 y con id 1234 a la cola de mensajes LOCALIZED_POKEMON.
+[INFO] 20:31:26:503 BROKER/(5380:5442): Se conectó proceso de socket 18 al Broker.
+[INFO] 20:31:26:509 BROKER/(5380:5441): El suscriptor de id 1234 confirmó la recepción del mensaje con id 8.
+[INFO] 20:31:26:514 BROKER/(5380:5443): Se suscribió el proceso con socket 18 y con id 1234 a la cola de mensajes CAUGHT_POKEMON.
+[INFO] 20:31:26:519 BROKER/(5380:5444): Se conectó proceso de socket 19 al Broker.
+[INFO] 20:31:26:520 BROKER/(5380:5444): Llegó un nuevo mensaje a la cola de mensajes GET_POKEMON
+[INFO] 20:31:26:539 BROKER/(5380:5445): Se compactó la memoria ya que la frecuencia de compactación es 1.
+[INFO] 20:31:26:539 BROKER/(5380:5445): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 20:31:26:539 BROKER/(5380:5445): Se compactó la memoria ya que la frecuencia de compactación es 1.
+[INFO] 20:31:26:539 BROKER/(5380:5445): Se almacenó un mensaje en la posición 38 de la memoria principal.
+[INFO] 20:31:26:541 BROKER/(5380:5445): Se le envió un mensaje al suscriptor de socket 5, a través de la cola GET_POKEMON.
+[INFO] 20:31:26:547 BROKER/(5380:5446): El suscriptor de id 5678 confirmó la recepción del mensaje con id 9.
+[INFO] 20:31:27:565 BROKER/(5380:5447): Se conectó proceso de socket 21 al Broker.
+[INFO] 20:31:27:569 BROKER/(5380:5447): Llegó un nuevo mensaje a la cola de mensajes LOCALIZED_POKEMON
+[INFO] 20:31:27:606 BROKER/(5380:5448): Se conectó proceso de socket 21 al Broker.
+[INFO] 20:31:27:610 BROKER/(5380:5448): Llegó un nuevo mensaje a la cola de mensajes 

@@ -857,7 +857,8 @@ void recibir_appeared_pokemon(int socket_cliente){
 	guardar_mensaje_en_cola(mensajes_de_cola_appeared_pokemon, mensaje_nuevo, tamanio_buffer_sin_id, NULL, pokemon, suscriptores_appeared_pokemon);
 
 	free(bloque_a_agregar_en_memoria);
-
+	free(paquete->buffer);
+	free(paquete);
 
 }
 
@@ -938,6 +939,8 @@ void recibir_catch_pokemon(int socket_cliente){
 	guardar_mensaje_en_cola(mensajes_de_cola_catch_pokemon, mensaje_nuevo, tamanio_buffer, NULL, pokemon, suscriptores_catch_pokemon);
 
 	free(bloque_a_agregar_en_memoria);
+	free(paquete->buffer);
+	free(paquete);
 }
 
 void recibir_caught_pokemon(int socket_cliente){
@@ -998,6 +1001,8 @@ void recibir_caught_pokemon(int socket_cliente){
 	guardar_mensaje_en_cola(mensajes_de_cola_caught_pokemon, mensaje_nuevo, tamanio_buffer, id_mensaje_correlativo, NULL, suscriptores_caught_pokemon);
 
 	free(bloque_a_agregar_en_memoria);
+	free(paquete->buffer);
+	free(paquete);
 }
 
 void recibir_get_pokemon(int socket_cliente){
@@ -1059,6 +1064,8 @@ void recibir_get_pokemon(int socket_cliente){
 	guardar_mensaje_en_cola(mensajes_de_cola_get_pokemon, mensaje_nuevo, tamanio_buffer, NULL, pokemon, suscriptores_get_pokemon);
 
 	free(bloque_a_agregar_en_memoria);
+	free(paquete->buffer);
+	free(paquete);
 }
 
 void recibir_localized_pokemon(int socket_cliente){

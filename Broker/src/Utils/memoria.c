@@ -236,7 +236,7 @@ void compactar_memoria(void){
 
 		desplazamiento += tamanio_mensaje;
 
-		//free(bloque_a_agregar_en_memoria);
+		free(bloque_a_agregar_en_memoria);
 	}
 
 	memcpy(memoria_principal, memoria_copactada, tamanio_de_memoria);
