@@ -4,7 +4,7 @@
 
 void leer_config(void)
 {
-	configGameCard = config_create("GameCard.config"); // "../GameCard.config"
+	configGameCard = config_create("../GameCard.config"); // "../GameCard.config"
 
 	if(configGameCard == NULL){
 		printf("No se pudo leer el archivo de configuración de la GameCard.\n");

@@ -340,7 +340,10 @@ void recibir_get_pokemon(int socket_cliente){//RECIBE TODO PERFECTO (NO MUEVAN E
 	uint32_t tamanio_void = 0;
 	void* respuesta = get_pokemon(pokemon, &tamanio_void);
 
-	enviar_localized_pokemon(respuesta, tamanio_void, pokemon, mensaje_id);
+	if(tamanio_void != 4){
+		puts("entro al if");
+		enviar_localized_pokemon(respuesta, tamanio_void, pokemon, mensaje_id);
+	}
 
 	free(pokemon);
 }
@@ -815,6 +818,11 @@ void* iniciar_paquete_serializado_LocalizedPokemon(int* tamanio_paquete, uint32_
 
 	memcpy(stream + desplazamiento, cantidad_y_posiciones, tamanio_void);
 	desplazamiento += tamanio_void;
+
+
+	printf("id mensaje corr %d", id_mensaje_correlativo);
+	printf("caracteres %d", caracteres_pokemon);
+	printf("pokemon %d", pokemon);
 
 	paquete->buffer->stream = stream;
 

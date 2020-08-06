@@ -90,6 +90,7 @@ void inicializar_variables_globales(){
 
 	sem_init(&MUTEX_MENSAJES_GB,0,1);
 	sem_init(&semaforo_bitmap,0,1);
+	sem_init(&MUTEX_SUB,0,1);
 
 	char* punto_montaje = obtener_punto_montaje();
 	inicializar_file_system(punto_montaje);
