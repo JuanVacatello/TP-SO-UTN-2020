@@ -341,14 +341,15 @@ void recibir_get_pokemon(int socket_cliente){//RECIBE TODO PERFECTO (NO MUEVAN E
 	void* respuesta = get_pokemon(pokemon, &tamanio_void);
 
 	if(tamanio_void != 4){
-		puts("entro al if");
 		enviar_localized_pokemon(respuesta, tamanio_void, pokemon, mensaje_id);
+	}
+	else{
+		completar_logger("Se envio un get de un Pokemon que no se encuentra en el mapa","GAMECARD", LOG_LEVEL_INFO);
 	}
 
 	free(pokemon);
 }
 
-//
 
 void new_pokemon(char* pokemon,int posX,int posY, int cantidad){ //funciona
 
@@ -380,8 +381,8 @@ void new_pokemon(char* pokemon,int posX,int posY, int cantidad){ //funciona
 			*/
 			cerrar_archivo_pokemon(metadata_pokemon);
 
-			config_destroy(metadata_pokemon);
-			free(bloques_en_string);
+			//config_destroy(metadata_pokemon);
+			//free(bloques_en_string);
 			//free(linea);
 		}
 		else{ // si tiene bloques asignados
@@ -403,8 +404,8 @@ void new_pokemon(char* pokemon,int posX,int posY, int cantidad){ //funciona
 
 				//free(linea);
 				//free(datos);
-				config_destroy(metadata_pokemon);
-				list_destroy_and_destroy_elements(lista_datos,free);
+				//config_destroy(metadata_pokemon);
+				//list_destroy_and_destroy_elements(lista_datos,free);
 			}
 
 			else{ // si existe la posicion
@@ -414,17 +415,18 @@ void new_pokemon(char* pokemon,int posX,int posY, int cantidad){ //funciona
 				list_replace(lista_datos,indice,linea_modificada);
 				char* datos = obtener_datos_en_string(lista_datos);
 
+				int tamanio = strlen(datos);
 				if(flag_cambio_longitud == 1 ){// si la longitud de la palabra cambio, actualizo el tamaño del pokemon
-					modificar_campo_size_metadata(path_pokemon,strlen(datos));
+					modificar_campo_size_metadata(metadata_pokemon,tamanio);
 				}
 
 				almacenar_datos(datos, metadata_pokemon);
 
 				int tiempo_retardo = tiempo_retardo_operacion();
 				sleep(tiempo_retardo);
-				//free(datos);
 				cerrar_archivo_pokemon(metadata_pokemon);
 
+				free(datos);
 				list_destroy_and_destroy_elements(lista_datos,free);
 				config_destroy(metadata_pokemon);
 			}
@@ -451,7 +453,7 @@ void new_pokemon(char* pokemon,int posX,int posY, int cantidad){ //funciona
 		txt_write_in_file(metadata, "OPEN=Y");
 		txt_close_file(metadata);
 
-		free(bloque_string);
+		//free(bloque_string);
 
 		t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
 
@@ -466,10 +468,10 @@ void new_pokemon(char* pokemon,int posX,int posY, int cantidad){ //funciona
 		sleep(tiempo_retardo);
 		cerrar_archivo_pokemon(metadata_pokemon);
 
-		config_destroy(metadata_pokemon);
+		//config_destroy(metadata_pokemon);
 
-		free(path_metadata_pokemon);
-		free(linea);
+		//free(path_metadata_pokemon);
+		//free(linea);
 	}
 
 	free(path_pokemon);
@@ -818,11 +820,6 @@ void* iniciar_paquete_serializado_LocalizedPokemon(int* tamanio_paquete, uint32_
 
 	memcpy(stream + desplazamiento, cantidad_y_posiciones, tamanio_void);
 	desplazamiento += tamanio_void;
-
-
-	printf("id mensaje corr %d", id_mensaje_correlativo);
-	printf("caracteres %d", caracteres_pokemon);
-	printf("pokemon %d", pokemon);
 
 	paquete->buffer->stream = stream;
 

@@ -109,10 +109,13 @@ void modificar_campo_size_metadata(t_config* metadata_pokemon,int tamanio){
 
 	//pthread_mutex_lock(&MUTEX_ELSOLUCIONES);// Si estoy adentro del chequeo de "open" voy a estar solo yo, no necesito otros semafotros
 	char* tamanio_string = string_itoa(tamanio);
-	config_set_value(metadata_pokemon,"SIZE",tamanio_string);
-	config_save(metadata_pokemon);
+	if(config_has_property(metadata_pokemon, "SIZE")){
+		config_set_value(metadata_pokemon,"SIZE",tamanio_string);
+		config_save(metadata_pokemon);
+	}
+
 	//pthread_mutex_unlock(&MUTEX_ELSOLUCIONES);
-	free(tamanio_string);
+	//free(tamanio_string);
 }
 
 int tamanio_array_en_string(char* array){ //falopa

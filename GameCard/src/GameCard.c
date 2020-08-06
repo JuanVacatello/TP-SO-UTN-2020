@@ -19,6 +19,24 @@ int main(void) {
 	return 0;
 
 	/*
+	new_pokemon("Pikachu",7,2,1);
+
+	catch_pokemon("Pikachu",7,2);
+
+	mostrar_contenido_bitmap();
+
+	new_pokemon("Pikachu",10,2,1);
+	new_pokemon("Pikachu",1,2,6);
+	catch_pokemon("Pikachu",7,2);
+	new_pokemon("Pikachu",200,2,3);
+	new_pokemon("Pikachu",10000000,2,1000000);
+	new_pokemon("Pikachu",5,2,2);
+	new_pokemon("Pikachu",11,9,2);
+
+	uint32_t tamanio_void;
+	get_pokemon("Pikachu", &tamanio_void);
+
+
 	//new_pokemon("Pikachu",7,2,1);
 	new_pokemon("Pikachu",7,2,5);
 

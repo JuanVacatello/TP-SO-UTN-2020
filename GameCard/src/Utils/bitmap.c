@@ -71,7 +71,7 @@ void bitmap_liberar_bloque(int bloque){
 
 	//	pthread_mutex_lock(&MUTEX_BITMAP);
 
-		bitarray_clean_bit(bitarray,bloque);
+		bitarray_clean_bit(bitarray,bloque-1); // 1 0 0 0 0 0 0.....
 
 		flag_bloques_libres = 1;
 
@@ -111,9 +111,9 @@ void mostrar_contenido_bitmap(){
 
 	for(int i=0 ; i< tamanio ; i++){
 		if(bitarray_test_bit(bitarray, i))
-			puts("1");
+			printf("el bloque %d tiene un 1 \n",i+1);
 		else
-			puts("0");
+			printf("el bloque %d tiene un 0 \n",i+1);
 	}
 }
 

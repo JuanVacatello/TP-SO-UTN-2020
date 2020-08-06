@@ -100,15 +100,15 @@ t_list* obtener_datos_bloques(t_config* metadata_pokemon){
 
 		//if(strcmp(aux,"&")) //si no es igual a "&" lo agrego a la lista de inserts
 		string_append(&datos,aux);
-		free(bloques[i]);
-		free(aux);
-		free(path_bloque_individual);
+		//free(bloques[i]);
+		//free(aux);
+		//free(path_bloque_individual);
 	}
 
 	insertar_datos_a_lista(datos,lista_datos); //parsea el char *inserts por \n y los mete en la lista
 
-	free(datos);
-	free(bloques);
+	//free(datos);
+	//free(bloques);
 
 	return lista_datos;
 }
@@ -141,8 +141,8 @@ void insertar_datos_a_lista(char *datos, t_list *lista_datos){
 		aux = string_duplicate(array_de_datos[i]);
 		string_append(&aux, "\n");
 		list_add(lista_datos,aux);
-		free(array_de_datos[i]);
-		free(aux); //creo que rompe porque lo liberarias de la lista
+		//free(array_de_datos[i]);
+		//free(aux); //creo que rompe porque lo liberarias de la lista
 	}
 
 	free(array_de_datos);
@@ -223,12 +223,12 @@ void almacenar_datos(char *data,t_config* metadata_pokemon){
 		 ultima_pos_insertada += tamanio_bloques;
 		 guardar_data_en_bloque(a_insertar, path_bloque);
 
-		 free(path_bloque);
-		 free(a_insertar);
-		 free(bloques[i]);
+		 //free(path_bloque);
+		 //free(a_insertar);
+		 //free(bloques[i]);
 	 }
 
-	free(bloques);
+	//free(bloques);
 }
 
 int tamanio_array(char **array){
