@@ -145,6 +145,8 @@ void eliminar_de_generales(int posicion_liberada){
 					break;
 				}
 			}
+
+			mensaje_guardado = list_remove(lista_de_todos_los_mensajes, i);
 			break;
 		}
 	}
@@ -157,7 +159,7 @@ int reemplazar_segun_FIFO(void){
 	int posicion_liberada = mensaje_a_eliminar->byte_comienzo_ocupado;
 	int cantidad_liberada = mensaje_a_eliminar->tamanio_ocupado;
 
-	//eliminar_de_generales(posicion_liberada);
+	eliminar_de_generales(posicion_liberada);
 	mensaje_a_eliminar = list_remove(elementos_en_memoria, 0);
 
 	if(!(strcmp(obtener_algoritmo_memoria(), "BS"))){
