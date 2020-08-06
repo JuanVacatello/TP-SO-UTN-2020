@@ -27,6 +27,7 @@ typedef enum{
 
 } op_planificacion;
 
+sem_t GET;
 
 int cantidad_entrenadores(void);
 void armar_entrenadores(void);

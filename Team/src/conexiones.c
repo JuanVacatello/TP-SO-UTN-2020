@@ -119,6 +119,7 @@ void* serializar_paquete(t_paquete* paquete, int *bytes)
 //----------------------- COLAS A SUSCRIBIRSE -----------------------
 void appeared_pokemon_broker(){
 	int socket_broker = enviar_suscripcion_a_cola(APPEARED_POKEMON);
+	sem_post(&GET);
 
 	while(1){
 
@@ -135,7 +136,7 @@ void appeared_pokemon_broker(){
 
 void caught_pokemon_broker(){
 	int socket_broker = enviar_suscripcion_a_cola(CAUGHT_POKEMON);
-
+	sem_post(&GET);
 	while(1){
 
 		op_code cod_op = 10;
@@ -151,7 +152,7 @@ void caught_pokemon_broker(){
 
 void localized_pokemon_broker(){
 	int socket_broker = enviar_suscripcion_a_cola(LOCALIZED_POKEMON);
-
+	sem_post(&GET);
 	while(1){
 
 		op_code cod_op = 10;
@@ -390,6 +391,7 @@ void* iniciar_paquete_serializado_GetPokemon(int* tamanio_paquete,char* pokemon_
 
 		memcpy(a_enviar + offset, &(paquete->buffer->stream), paquete->buffer->size);
 	*/
+
 	free(stream);
 	free(paquete->buffer);
 	free(paquete);

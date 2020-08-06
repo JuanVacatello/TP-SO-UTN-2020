@@ -108,8 +108,6 @@ void generar_atrapados_global(void){
 void planificacion(){
 	int planificador = obtener_algoritmo_planificacion();
 
-
-
 	switch(planificador){
 		case 1:
 		planificar_fifo();
@@ -217,6 +215,10 @@ bool deteccion_de_deadlock(){
 //pokemonesAAtrapar = [Pikachu,Squirtle,Pikachu,Gengar,Squirtle,Onix]
 
 void informar_pokemones_a_atrapar(){
+	sem_wait(&GET);
+	sem_wait(&GET);
+	sem_wait(&GET);
+
 	t_list* pokemones_aux = list_create();
 	t_list* pokemones_a_atrapar = list_create();
 	t_entrenador* entrenador_aux;
@@ -245,7 +247,9 @@ void informar_pokemones_a_atrapar(){
 
 	for(int indice = 0; indice < list_size(pokemones_a_atrapar); indice++){
 		pokemon = list_get(pokemones_a_atrapar, indice);
-		enviar_GetPokemon_a_broker(GET_POKEMON, pokemon);
+		sem_wait(&GET);
+		enviar_GetPokemon_a_broker(5, pokemon);
+		sem_post(&GET);
 	}
 
 	//free(pokemones_aux);
