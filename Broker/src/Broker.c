@@ -57,6 +57,7 @@ void inicializacion_de_variables_globales(void){
 	sem_init(&MUTEX_TIMESTAMP,0,1);
 	sem_init(&MUTEX_MEM_PRIN,0,1);
 	sem_init(&MUTEX_MENSAJE_ID,0,1);
+	sem_init(&MUTEX_MEMORIA,0,1);
 
 	pthread_mutex_init(&mutex_suscripcion, NULL);
 	pthread_mutex_lock(&mutex_suscripcion);

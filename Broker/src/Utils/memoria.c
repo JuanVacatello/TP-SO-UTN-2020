@@ -3,7 +3,7 @@
 // Guardado de mensaje en memoria
 
 t_mensaje_guardado* guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar, op_code cola){
-
+	sem_wait(&MUTEX_MEMORIA);
 	t_mensaje_guardado* mensaje_nuevo;
 	char* esquema_de_administracion = obtener_algoritmo_memoria();
 	int tamanio_minimo_particion = obtener_tamanio_minimo_particion();
@@ -28,7 +28,10 @@ t_mensaje_guardado* guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria
 
 	log_almacenar_mensaje(mensaje_nuevo->byte_comienzo_ocupado);
 
+	sem_post(&MUTEX_MEMORIA);
+
 	return mensaje_nuevo;
+
 }
 
 void aplicar_timestamp_e_id(t_mensaje_guardado* mensaje_nuevo){
@@ -154,7 +157,7 @@ int reemplazar_segun_FIFO(void){
 	int posicion_liberada = mensaje_a_eliminar->byte_comienzo_ocupado;
 	int cantidad_liberada = mensaje_a_eliminar->tamanio_ocupado;
 
-	eliminar_de_generales(posicion_liberada);
+	//eliminar_de_generales(posicion_liberada);
 	mensaje_a_eliminar = list_remove(elementos_en_memoria, 0);
 
 	if(!(strcmp(obtener_algoritmo_memoria(), "BS"))){
