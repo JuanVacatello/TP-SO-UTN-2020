@@ -1070,6 +1070,12 @@ void recibir_localized_pokemon(int socket_cliente){
 	uint32_t cantidad_de_posiciones;
 	recv(socket_cliente, &cantidad_de_posiciones, sizeof(uint32_t), MSG_WAITALL);
 
+	printf("tamaño buffer = %d", tamanio_buffer);
+	printf("id correlativo = %d", id_mensaje_correlativo);
+	printf("caracteres pokemon = %d", caracteresPokemon);
+	printf("pokemon = %s", pokemon);
+	printf("cantidad de posiciones = %d", cantidad_de_posiciones);
+
 	// Creacion de bloque a guardar en memoria
 
 	int buffer_sin_barra_n_ni_id = tamanio_buffer - 1 - sizeof(uint32_t);
@@ -1102,6 +1108,8 @@ void recibir_localized_pokemon(int socket_cliente){
 
 			memcpy(posxposy + desp_posxposy, &posY, sizeof(uint32_t));
 			desp_posxposy += sizeof(uint32_t);
+
+		printf("La %d° posicion en X es %d y en Y es %d", posX, posY);
 	}
 
 	memcpy(bloque_a_agregar_en_memoria + desplazamiento, posxposy, tam_posxposy);

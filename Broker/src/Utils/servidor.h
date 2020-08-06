@@ -14,7 +14,6 @@
 #include"memoria.h"
 #include"logBroker.h"
 
-
 typedef struct
 {
 	int id;

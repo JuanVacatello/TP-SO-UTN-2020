@@ -1074,6 +1074,7 @@ void llenar_el_dump_para_buddy_system(FILE* dump){
 
 	char* guiones = string_repeat('-', 100);
 	txt_write_in_file(dump, guiones);
+	txt_write_in_file(dump, "\n");
 }
 
 void llenar_el_dump_para_particiones(FILE* dump){
@@ -1145,6 +1146,7 @@ void llenar_el_dump_para_particiones(FILE* dump){
 
 	char* guiones = string_repeat('-', 100);
 	txt_write_in_file(dump, guiones);
+	txt_write_in_file(dump, "\n");
 
 }
 
