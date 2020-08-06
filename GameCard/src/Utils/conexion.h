@@ -47,6 +47,7 @@ pthread_t thread;
 sem_t MUTEX_MENSAJES_GB;
 sem_t MUTEX_SUB;
 sem_t MUTEX_NEW_POKEMON;
+sem_t MUTEX_GET;
 
 // Crear conexion (para Broker)
 int crear_conexion(char* ip, char* puerto);

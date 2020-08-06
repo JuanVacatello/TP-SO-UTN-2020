@@ -316,7 +316,7 @@ void recibir_catch_pokemon(int socket_cliente){//RECIBE TODO PERFECTO (NO MUEVAN
 }
 
 void recibir_get_pokemon(int socket_cliente){//RECIBE TODO PERFECTO (NO MUEVAN EL ORDEN DE LAS COSAS BOE)
-
+	sem_wait(&MUTEX_GET);
 	uint32_t tamanio_buffer;
 	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
@@ -341,6 +341,7 @@ void recibir_get_pokemon(int socket_cliente){//RECIBE TODO PERFECTO (NO MUEVAN E
 	void* respuesta = get_pokemon(pokemon, &tamanio_void);
 
 	if(tamanio_void != 4){
+
 		enviar_localized_pokemon(respuesta, tamanio_void, pokemon, mensaje_id);
 	}
 	else{
@@ -348,6 +349,7 @@ void recibir_get_pokemon(int socket_cliente){//RECIBE TODO PERFECTO (NO MUEVAN E
 	}
 
 	free(pokemon);
+	sem_post(&MUTEX_GET);
 }
 
 

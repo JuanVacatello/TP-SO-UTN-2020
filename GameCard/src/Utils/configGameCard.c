@@ -4,8 +4,8 @@
 
 void leer_config(void)
 {
-	//configGameCard = config_create("GameCard.config"); // PARA CORRER POR ECLIPSE
-	configGameCard = config_create("../GameCard.config"); // PARA CORRER POR CON SOLA
+	configGameCard = config_create("GameCard.config"); // PARA CORRER POR ECLIPSE
+	//configGameCard = config_create("../GameCard.config"); // PARA CORRER POR CON SOLA
 
 	if(configGameCard == NULL){
 		printf("No se pudo leer el archivo de configuración de la GameCard.\n");
