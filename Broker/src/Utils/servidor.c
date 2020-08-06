@@ -71,6 +71,14 @@ void process_request(op_code cod_op, int socket_cliente) {
 		log_mensaje_nuevo(cod_op);
 	}
 
+	pthread_t hilo_suscripcion;
+	pthread_t hilo_newPokemon;
+	pthread_t hilo_appearedPokemon;
+	pthread_t hilo_catchPokemon;
+	pthread_t hilo_caughtPokemon;
+	pthread_t hilo_getPokemon;
+	pthread_t hilo_localizedPokemon;
+
 	switch (cod_op) {
 		case 0:
 			pthread_create(&hilo_suscripcion, NULL, atender_suscripcion, socket_cliente);

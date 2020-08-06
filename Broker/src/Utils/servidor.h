@@ -83,7 +83,7 @@ int recibir_tamanio_buffer(int socket);
 // ENVIAR MENSAJE
 void enviar_mensaje(int socket_cliente, char* mensaje);
 void enviar_id_mensaje(uint32_t id_del_mensaje, int socket_cliente);
-
+/*
 pthread_t hilo_suscripcion;
 pthread_t hilo_newPokemon;
 pthread_t hilo_appearedPokemon;
@@ -91,7 +91,7 @@ pthread_t hilo_catchPokemon;
 pthread_t hilo_caughtPokemon;
 pthread_t hilo_getPokemon;
 pthread_t hilo_localizedPokemon;
-
+*/
 pthread_mutex_t mutex_suscripcion;
 
 #endif
