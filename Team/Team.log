@@ -1,0 +1,83 @@
+[INFO] 17:01:27:168 TEAM/(7324:7324): el socket de conexion es: 4.
+[INFO] 17:02:39:370 TEAM/(7367:7367): el socket de conexion es: 4.
+[INFO] 17:09:09:810 TEAM/(7423:7423): el socket de conexion es: 4.
+[INFO] 17:10:59:896 TEAM/(7454:7454): el socket de conexion es: 4.
+[INFO] 17:11:53:175 TEAM/(7485:7485): No se encontraron pokemones de la especie Pikachu en el mapa
+[INFO] 17:11:54:183 TEAM/(7485:7485): No se encontraron pokemones de la especie Squirtle en el mapa
+[INFO] 17:11:55:198 TEAM/(7485:7485): No se encontraron pokemones de la especie Gengar en el mapa
+[INFO] 17:11:56:217 TEAM/(7485:7485): No se encontraron pokemones de la especie Onix en el mapa
+[INFO] 17:11:57:239 TEAM/(7485:7494): NO se logró conectar con el BROKER
+[INFO] 17:11:57:249 TEAM/(7485:7494): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 17:12:27:255 TEAM/(7485:7494): el socket de conexion es: 11.
+[INFO] 17:12:27:257 TEAM/(7485:7494): Se logró conectar con el BROKER de manera exitosa
+[INFO] 17:12:27:285 TEAM/(7485:7493): el socket de conexion es: 12.
+[INFO] 17:12:27:294 TEAM/(7485:7493): Se logró conectar con el BROKER de manera exitosa
+[INFO] 17:12:27:314 TEAM/(7485:7495): el socket de conexion es: 13.
+[INFO] 17:12:27:319 TEAM/(7485:7495): Se logró conectar con el BROKER de manera exitosa
+[INFO] 18:06:24:957 TEAM/(8760:8760): No se encontraron pokemones de la especie Pikachu en el mapa
+[INFO] 18:06:25:972 TEAM/(8760:8760): No se encontraron pokemones de la especie Squirtle en el mapa
+[INFO] 18:06:26:979 TEAM/(8760:8760): No se encontraron pokemones de la especie Gengar en el mapa
+[INFO] 18:06:27:985 TEAM/(8760:8760): No se encontraron pokemones de la especie Onix en el mapa
+[INFO] 18:07:17:449 TEAM/(8881:8881): el socket de conexion es: 4.
+[INFO] 18:07:33:841 TEAM/(8885:8885): No se encontraron pokemones de la especie Pikachu en el mapa
+[INFO] 18:07:34:862 TEAM/(8885:8885): No se encontraron pokemones de la especie Squirtle en el mapa
+[INFO] 18:07:35:868 TEAM/(8885:8885): No se encontraron pokemones de la especie Gengar en el mapa
+[INFO] 18:07:36:873 TEAM/(8885:8885): No se encontraron pokemones de la especie Onix en el mapa
+[INFO] 18:09:12:177 TEAM/(8901:8901): el socket de conexion es: 4.
+[INFO] 18:12:52:702 TEAM/(8932:8932): el socket de conexion es: 4.
+[INFO] 18:13:08:887 TEAM/(8938:8938): No se encontraron pokemones de la especie Pikachu en el mapa
+[INFO] 18:13:09:914 TEAM/(8938:8938): No se encontraron pokemones de la especie Squirtle en el mapa
+[INFO] 18:13:10:924 TEAM/(8938:8938): No se encontraron pokemones de la especie Gengar en el mapa
+[INFO] 18:13:11:929 TEAM/(8938:8938): No se encontraron pokemones de la especie Onix en el mapa
+[INFO] 18:17:00:412 TEAM/(9002:9002): No se encontraron pokemones de la especie Pikachu en el mapa
+[INFO] 18:17:01:428 TEAM/(9002:9002): No se encontraron pokemones de la especie Squirtle en el mapa
+[INFO] 18:17:02:444 TEAM/(9002:9002): No se encontraron pokemones de la especie Gengar en el mapa
+[INFO] 18:17:03:450 TEAM/(9002:9002): No se encontraron pokemones de la especie Onix en el mapa
+[INFO] 18:18:07:405 TEAM/(9024:9024): No se encontraron pokemones de la especie Pikachu en el mapa
+[INFO] 18:18:08:487 TEAM/(9024:9024): No se encontraron pokemones de la especie Squirtle en el mapa
+[INFO] 18:18:09:491 TEAM/(9024:9024): No se encontraron pokemones de la especie Gengar en el mapa
+[INFO] 18:18:10:508 TEAM/(9024:9024): No se encontraron pokemones de la especie Onix en el mapa
+[INFO] 18:19:41:773 TEAM/(9048:9048): No se encontraron pokemones de la especie Pikachu en el mapa
+[INFO] 18:19:42:792 TEAM/(9048:9048): No se encontraron pokemones de la especie Squirtle en el mapa
+[INFO] 18:19:43:805 TEAM/(9048:9048): No se encontraron pokemones de la especie Gengar en el mapa
+[INFO] 18:19:44:813 TEAM/(9048:9048): No se encontraron pokemones de la especie Onix en el mapa
+[INFO] 19:04:38:163 TEAM/(3963:3963): No se encontraron pokemones de la especie Pikachu en el mapa
+[INFO] 19:04:39:171 TEAM/(3963:3963): No se encontraron pokemones de la especie Squirtle en el mapa
+[INFO] 19:04:40:176 TEAM/(3963:3963): No se encontraron pokemones de la especie Gengar en el mapa
+[INFO] 19:04:41:200 TEAM/(3963:3963): No se encontraron pokemones de la especie Onix en el mapa
+[INFO] 19:04:42:224 TEAM/(3963:3970): NO se logró conectar con el BROKER
+[INFO] 19:04:42:237 TEAM/(3963:3970): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 19:05:12:245 TEAM/(3963:3970): NO se logró conectar con el BROKER
+[INFO] 19:05:12:248 TEAM/(3963:3970): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 19:05:42:257 TEAM/(3963:3970): NO se logró conectar con el BROKER
+[INFO] 19:05:42:265 TEAM/(3963:3970): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 19:06:12:276 TEAM/(3963:3970): NO se logró conectar con el BROKER
+[INFO] 19:06:12:287 TEAM/(3963:3970): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 19:08:06:352 TEAM/(4133:4133): el socket de conexion es: 4.
+[INFO] 19:09:56:895 TEAM/(4219:4219): el socket de conexion es: 4.
+[INFO] 19:12:40:669 TEAM/(4289:4289): el socket de conexion es: 4.
+[INFO] 19:14:21:825 TEAM/(4337:4337): el socket de conexion es: 4.
+[INFO] 20:17:31:3 TEAM/(4658:4658): el socket de conexion es: 4.
+[INFO] 20:19:36:615 TEAM/(4703:4703): No se encontraron pokemones de la especie Pikachu en el mapa
+[INFO] 20:19:37:631 TEAM/(4703:4703): No se encontraron pokemones de la especie Squirtle en el mapa
+[INFO] 20:19:38:636 TEAM/(4703:4703): No se encontraron pokemones de la especie Gengar en el mapa
+[INFO] 20:19:39:648 TEAM/(4703:4703): No se encontraron pokemones de la especie Onix en el mapa
+[INFO] 20:19:40:658 TEAM/(4703:4711): NO se logró conectar con el BROKER
+[INFO] 20:19:40:664 TEAM/(4703:4711): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 20:20:10:681 TEAM/(4703:4711): el socket de conexion es: 11.
+[INFO] 20:20:10:696 TEAM/(4703:4711): Se logró conectar con el BROKER de manera exitosa
+[INFO] 20:20:10:725 TEAM/(4703:4710): el socket de conexion es: 12.
+[INFO] 20:20:10:735 TEAM/(4703:4710): Se logró conectar con el BROKER de manera exitosa
+[INFO] 20:20:10:768 TEAM/(4703:4709): el socket de conexion es: 13.
+[INFO] 20:20:10:795 TEAM/(4703:4709): Se logró conectar con el BROKER de manera exitosa
+[INFO] 20:28:20:834 TEAM/(5010:5010): el socket de conexion es: 4.
+[INFO] 00:10:52:801 TEAM/(3987:3987): el socket de conexion es: 4.
+[INFO] 00:10:53:856 TEAM/(3987:3987): el socket de conexion es: 5.
+[INFO] 00:10:54:883 TEAM/(3987:3987): el socket de conexion es: 6.
+[INFO] 00:10:55:918 TEAM/(3987:3987): el socket de conexion es: 7.
+[INFO] 00:10:56:952 TEAM/(3987:4005): el socket de conexion es: 8.
+[INFO] 00:10:56:956 TEAM/(3987:4005): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:10:56:964 TEAM/(3987:4004): el socket de conexion es: 11.
+[INFO] 00:10:56:973 TEAM/(3987:4004): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:10:56:988 TEAM/(3987:4003): el socket de conexion es: 12.
+[INFO] 00:10:56:990 TEAM/(3987:4003): Se logró conectar con el BROKER de manera exitosa

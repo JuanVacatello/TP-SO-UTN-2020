@@ -378,7 +378,8 @@ void* iniciar_paquete_serializado_GetPokemon(int* tamanio_paquete,char* pokemon_
 						// TAMAÑO STREAM + OP CODE + VARIABLE SIZE
 	*tamanio_paquete = (paquete->buffer->size)+sizeof(op_code)+sizeof(uint32_t);
 
-	void* a_enviar = malloc((*tamanio_paquete));
+	void* a_enviar = serializar_paquete(paquete, tamanio_paquete);
+	/*
 	int offsetDeSerializacion = 0;
 
 		memcpy(a_enviar + offset, &(paquete->codigo_operacion), sizeof(op_code));
@@ -388,7 +389,7 @@ void* iniciar_paquete_serializado_GetPokemon(int* tamanio_paquete,char* pokemon_
 		offsetDeSerializacion +=sizeof(uint32_t);
 
 		memcpy(a_enviar + offset, &(paquete->buffer->stream), paquete->buffer->size);
-
+	*/
 	free(stream);
 	free(paquete->buffer);
 	free(paquete);
@@ -422,7 +423,7 @@ int recibir_id_correlativo(int socket_broker){
 	uint32_t tamanio_buffer;
 	recv(socket_broker, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
-	int id_correlativo = malloc(tamanio_buffer);
+	int id_correlativo;
 	recv(socket_broker, &id_correlativo, tamanio_buffer, MSG_WAITALL);
 
 	return id_correlativo;
