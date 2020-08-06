@@ -95,3 +95,5 @@ make clean
 make all
 
 #FIN DE GAMECARD
+
+cd

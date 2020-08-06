@@ -62,6 +62,7 @@ cd
 
 cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS/
 
+cp -r Broker/ Broker-CONSOLIDACION-FIFO
 cp -r Broker/ Broker-CONSOLIDACION-LRU
 cp -r Broker/ Broker-COMPACTACION-PD-FIFO
 cp -r Broker/ Broker-COMPACTACION-PD-LRU
@@ -72,7 +73,7 @@ cp -r Broker/ Broker-BUDDY-SYSTEM-LRU
 cd
 #Configuramos Broker consolidacion Particiones dinamicas FIFO
 
-cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker
+cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-CONSOLIDACION-FIFO
 
 if test -e Broker.config; then
 	rm Broker.config
@@ -84,8 +85,8 @@ ALGORITMO_MEMORIA=PARTICIONES\n
 ALGORITMO_REEMPLAZO=FIFO\n
 ALGORITMO_PARTICION_LIBRE=FF\n
 FRECUENCIA_COMPACTACION=10\n
-PATH_ARCHIVO_DUMP=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker/Broker.dump\n
-LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker/Broker.log\n
+PATH_ARCHIVO_DUMP=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-CONSOLIDACION-FIFO/Broker.dump\n
+LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Broker-CONSOLIDACION-FIFO/Broker.log\n
 IP_BROKER=127.0.0.1\n
 PUERTO_BROKER=4444\n">> Broker.config
 
@@ -222,6 +223,7 @@ cd
 
 cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS/
 
+cp -r Team/ Team-FIFO
 cp -r Team/ Team-RR
 cp -r Team/ Team-SJF-SD
 cp -r Team/ Team-SJF-CD
@@ -230,7 +232,7 @@ cp -r Team/ Team-SJF-CD
 cd
 #Configuro Team con FIFO
 
-cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team
+cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team-FIFO
 
 if test -e Team.config; then
 	rm Team.config
@@ -247,10 +249,12 @@ ALPHA=0.5\n
 ESTIMACION_INICIAL=5\n
 IP_BROKER=127.0.0.1\n
 PUERTO_BROKER=4444\n
-LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team/Team_FIFO.log\n
+LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team-FIFO/Team_FIFO.log\n
 PROCESS_ID=1234\n
 IP_TEAM=127.0.0.2\n
 PUERTO_TEAM=5555\n" >> Team.config
+
+
 
 cd Debug
 make clean
@@ -276,10 +280,11 @@ ALPHA=0.5\n
 ESTIMACION_INICIAL=5\n
 IP_BROKER=127.0.0.1\n
 PUERTO_BROKER=4444\n
-LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team/Team_RR.log\n
+LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team-RR/Team_RR.log\n
 PROCESS_ID=1235\n
 IP_TEAM=127.0.0.2\n
 PUERTO_TEAM=5555\n" >> Team.config
+
 
 cd Debug
 
@@ -306,7 +311,7 @@ ALPHA=0.5\n
 ESTIMACION_INICIAL=5\n
 IP_BROKER=127.0.0.1\n
 PUERTO_BROKER=4444\n
-LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team/Team_SJF_SD.log\n
+LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team-SJF-SD/Team_SJF_SD.log\n
 PROCESS_ID=1236\n
 IP_TEAM=127.0.0.2\n
 PUERTO_TEAM=5555\n" >> Team.config
@@ -335,7 +340,7 @@ ALPHA=0.5\n
 ESTIMACION_INICIAL=5\n
 IP_BROKER=127.0.0.1\n
 PUERTO_BROKER=4444\n
-LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team/Team_SJF_CD.log\n
+LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS/Team-SJF-CD/Team_SJF_CD.log\n
 PROCESS_ID=1237\n
 IP_TEAM=127.0.0.2\n
 PUERTO_TEAM=5555\n" >> Team.config
