@@ -1,0 +1,14 @@
+---------------------------------------------------------------------------------------------------- 
+Dump:  6/08/2020 12:19:48 
+Partición 1: 0x9f658b8 - 0x9f658bb.     [X]     Size: 4b     LRU: 40   COLA: CAUGHT_POKEMON     ID: 4 
+Partición 2: 0x9f658bc - 0x9f658c6.     [X]     Size: 11b    LRU: 50   COLA: GET_POKEMON        ID: 5 
+Partición 3: 0x9f658c7 - 0x9f658dd.     [X]     Size: 23b    LRU: 60   COLA: LOCALIZED_POKEMON  ID: 6 
+Partición 4: 0x9f658de - 0x9f658e1.     [L]     Size: 4b 
+Partición 5: 0x9f658e2 - 0x9f658f4.     [X]     Size: 19b    LRU: 30   COLA: CATCH_POKEMON      ID: 3 
+Partición 6: 0x9f658f5 - 0x9f658f7.     [L]     Size: 3b 
+----------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------- 
+Dump:  6/08/2020 13:04:29 
+Partición 1: 0x89db8b8 - 0x89db8d6.     [X]     Size: 31b    LRU: 10   COLA: LOCALIZED_POKEMON  ID: 1 
+Partición 2: 0x89db8d7 - 0x89db8f7.     [L]     Size: 33b 
+----------------------------------------------------------------------------------------------------

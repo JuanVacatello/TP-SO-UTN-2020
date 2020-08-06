@@ -107,3 +107,61 @@
 [INFO] 23:04:07:405 BROKER/(9177:9212): Llegó un nuevo mensaje a la cola de mensajes LOCALIZED_POKEMON
 [INFO] 23:04:07:405 BROKER/(9177:9213): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
 [INFO] 23:04:07:405 BROKER/(9177:9213): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 12:13:46:774 BROKER/(9501:9516): Se conectó proceso de socket 5 al Broker.
+[INFO] 12:13:46:777 BROKER/(9501:9518): Se conectó proceso de socket 7 al Broker.
+[INFO] 12:13:46:778 BROKER/(9501:9520): Se conectó proceso de socket 8 al Broker.
+[INFO] 12:13:46:778 BROKER/(9501:9517): Se suscribió el proceso con socket 5 y con id 9507 a la cola de mensajes GET_POKEMON.
+[INFO] 12:13:46:779 BROKER/(9501:9519): Se suscribió el proceso con socket 7 y con id 9507 a la cola de mensajes CATCH_POKEMON.
+[INFO] 12:13:46:782 BROKER/(9501:9521): Se suscribió el proceso con socket 8 y con id 9507 a la cola de mensajes NEW_POKEMON.
+[INFO] 12:17:32:994 BROKER/(9699:9716): Se conectó proceso de socket 5 al Broker.
+[INFO] 12:17:32:996 BROKER/(9699:9718): Se conectó proceso de socket 7 al Broker.
+[INFO] 12:17:32:996 BROKER/(9699:9720): Se conectó proceso de socket 8 al Broker.
+[INFO] 12:17:32:997 BROKER/(9699:9717): Se suscribió el proceso con socket 5 y con id 9705 a la cola de mensajes GET_POKEMON.
+[INFO] 12:17:32:997 BROKER/(9699:9719): Se suscribió el proceso con socket 7 y con id 9705 a la cola de mensajes CATCH_POKEMON.
+[INFO] 12:17:32:997 BROKER/(9699:9721): Se suscribió el proceso con socket 8 y con id 9705 a la cola de mensajes NEW_POKEMON.
+[INFO] 12:17:47:394 BROKER/(9699:9723): Se conectó proceso de socket 9 al Broker.
+[INFO] 12:17:47:395 BROKER/(9699:9723): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 12:17:47:395 BROKER/(9699:9724): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 12:17:47:396 BROKER/(9699:9724): Se le envió un mensaje al suscriptor de socket 8, a través de la cola NEW_POKEMON.
+[INFO] 12:17:47:396 BROKER/(9699:9725): El suscriptor de id 5678 confirmó la recepción del mensaje con id 1.
+[INFO] 12:17:48:398 BROKER/(9699:9726): Se conectó proceso de socket 10 al Broker.
+[INFO] 12:17:48:398 BROKER/(9699:9726): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 12:17:48:398 BROKER/(9699:9727): Se almacenó un mensaje en la posición 23 de la memoria principal.
+[INFO] 12:18:26:803 BROKER/(9699:9748): Se conectó proceso de socket 11 al Broker.
+[INFO] 12:18:26:803 BROKER/(9699:9748): Llegó un nuevo mensaje a la cola de mensajes CATCH_POKEMON
+[INFO] 12:18:26:803 BROKER/(9699:9749): Se almacenó un mensaje en la posición 42 de la memoria principal.
+[INFO] 12:18:26:805 BROKER/(9699:9749): Se le envió un mensaje al suscriptor de socket 7, a través de la cola CATCH_POKEMON.
+[INFO] 12:18:26:805 BROKER/(9699:9751): El suscriptor de id 5678 confirmó la recepción del mensaje con id 3.
+[INFO] 12:18:27:813 BROKER/(9699:9753): Se conectó proceso de socket 12 al Broker.
+[INFO] 12:18:27:813 BROKER/(9699:9753): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 12:18:27:814 BROKER/(9699:9754): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 12:18:27:814 BROKER/(9699:9754): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 12:19:12:283 BROKER/(9699:9771): Se conectó proceso de socket 13 al Broker.
+[INFO] 12:19:12:283 BROKER/(9699:9771): Llegó un nuevo mensaje a la cola de mensajes GET_POKEMON
+[INFO] 12:19:12:283 BROKER/(9699:9772): Se almacenó un mensaje en la posición 4 de la memoria principal.
+[INFO] 12:19:12:285 BROKER/(9699:9772): Se le envió un mensaje al suscriptor de socket 5, a través de la cola GET_POKEMON.
+[INFO] 12:19:12:285 BROKER/(9699:9773): El suscriptor de id 5678 confirmó la recepción del mensaje con id 5.
+[INFO] 12:19:13:286 BROKER/(9699:9774): Se conectó proceso de socket 14 al Broker.
+[INFO] 12:19:13:286 BROKER/(9699:9774): Llegó un nuevo mensaje a la cola de mensajes LOCALIZED_POKEMON
+[INFO] 12:19:13:286 BROKER/(9699:9775): Se eliminó de memoria principal la partición que se encontraba en la posicion 23.
+[INFO] 12:19:13:286 BROKER/(9699:9775): Se almacenó un mensaje en la posición 15 de la memoria principal.
+[INFO] 12:19:48:511 BROKER/(9699:9699): Se ejecutó el Dump de la cache
+[INFO] 12:58:00:66 BROKER/(11346:11347): Se conectó proceso de socket 5 al Broker.
+[INFO] 12:58:00:78 BROKER/(11346:11349): Se conectó proceso de socket 7 al Broker.
+[INFO] 12:58:00:79 BROKER/(11346:11351): Se conectó proceso de socket 8 al Broker.
+[INFO] 12:58:00:79 BROKER/(11346:11348): Se suscribió el proceso con socket 5 y con id 11324 a la cola de mensajes GET_POKEMON.
+[INFO] 12:58:00:79 BROKER/(11346:11350): Se suscribió el proceso con socket 7 y con id 11324 a la cola de mensajes CATCH_POKEMON.
+[INFO] 12:58:00:79 BROKER/(11346:11352): Se suscribió el proceso con socket 8 y con id 11324 a la cola de mensajes NEW_POKEMON.
+[INFO] 12:58:27:457 BROKER/(11346:11356): Se conectó proceso de socket 9 al Broker.
+[INFO] 12:58:27:457 BROKER/(11346:11356): Llegó un nuevo mensaje a la cola de mensajes LOCALIZED_POKEMON
+[INFO] 12:58:27:457 BROKER/(11346:11357): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 13:03:47:359 BROKER/(11479:11480): Se conectó proceso de socket 5 al Broker.
+[INFO] 13:03:47:372 BROKER/(11479:11482): Se conectó proceso de socket 7 al Broker.
+[INFO] 13:03:47:372 BROKER/(11479:11484): Se conectó proceso de socket 8 al Broker.
+[INFO] 13:03:47:372 BROKER/(11479:11481): Se suscribió el proceso con socket 5 y con id 11470 a la cola de mensajes GET_POKEMON.
+[INFO] 13:03:47:372 BROKER/(11479:11483): Se suscribió el proceso con socket 7 y con id 11470 a la cola de mensajes CATCH_POKEMON.
+[INFO] 13:03:47:372 BROKER/(11479:11485): Se suscribió el proceso con socket 8 y con id 11470 a la cola de mensajes NEW_POKEMON.
+[INFO] 13:03:54:321 BROKER/(11479:11490): Se conectó proceso de socket 9 al Broker.
+[INFO] 13:03:54:321 BROKER/(11479:11490): Llegó un nuevo mensaje a la cola de mensajes LOCALIZED_POKEMON
+[INFO] 13:03:54:322 BROKER/(11479:11491): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 13:04:29:838 BROKER/(11479:11479): Se ejecutó el Dump de la cache
