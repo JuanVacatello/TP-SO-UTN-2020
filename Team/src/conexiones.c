@@ -118,8 +118,8 @@ void* serializar_paquete(t_paquete* paquete, int *bytes)
 
 //----------------------- COLAS A SUSCRIBIRSE -----------------------
 void appeared_pokemon_broker(){
+
 	int socket_broker = enviar_suscripcion_a_cola(APPEARED_POKEMON);
-	sem_post(&GET);
 
 	while(1){
 

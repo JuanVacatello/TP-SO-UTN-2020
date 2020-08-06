@@ -25,10 +25,11 @@ int main(void) {
 		pthread_create(&hilo_localized_pokemon, NULL , localized_pokemon_broker ,NULL);
 		pthread_detach(hilo_localized_pokemon);
 
+		informar_pokemones_a_atrapar(); //GET POKEMON
+
 		pthread_create(&hilo_appeared_pokemon, NULL , appeared_pokemon_broker ,NULL);
 		pthread_detach(hilo_appeared_pokemon);
 
-		informar_pokemones_a_atrapar(); //GET POKEMON
 
 		pthread_create(&hilo_planificador, NULL , planificacion ,NULL);
 		pthread_join(hilo_planificador,NULL);

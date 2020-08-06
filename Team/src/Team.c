@@ -217,7 +217,6 @@ bool deteccion_de_deadlock(){
 void informar_pokemones_a_atrapar(){
 	sem_wait(&GET);
 	sem_wait(&GET);
-	sem_wait(&GET);
 
 	t_list* pokemones_aux = list_create();
 	t_list* pokemones_a_atrapar = list_create();
