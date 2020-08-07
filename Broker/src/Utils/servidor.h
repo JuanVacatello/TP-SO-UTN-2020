@@ -58,6 +58,8 @@ sem_t MUTEX_GET;
 sem_t MUTEX_LOCALIZED;
 sem_t REENVIO;
 sem_t GUARDAR;
+sem_t LISTA_GENERAL;
+sem_t SUBS;
 
 // CONEXION CON CLIENTE
 void iniciar_servidor(void);

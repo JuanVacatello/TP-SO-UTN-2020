@@ -113,6 +113,7 @@ void process_request(op_code cod_op, int socket_cliente) {
 
 void atender_suscripcion(int socket_cliente)
 {
+	sem_wait(&SUBS);
 	uint32_t tamanio_buffer;
 	tamanio_buffer = recibir_tamanio_buffer(socket_cliente);
 
@@ -188,6 +189,7 @@ void suscribirse_a_cola(proceso* suscriptor, int socket, uint32_t tamanio_buffer
 
 		pthread_mutex_lock(&mutex_suscripcion);
 	}
+	sem_post(&SUBS);
 }
 
 void correr_tiempo_suscripcion(t_suscripcion* suscripcion){
@@ -575,11 +577,12 @@ void enviar_mensajes_al_nuevo_suscriptor_GP(t_list* mensajes_de_dicha_cola, int 
 		pthread_t hilo_ack;
 		pthread_create(&hilo_ack, NULL, recibir_ack, socket_suscriptor);
 		pthread_detach(hilo_ack);
-
+/*
 		free(paquete);
 		free(paquete->buffer);
 		free(stream);
 		free(pokemon);
+*/
 	}
 }
 
@@ -680,7 +683,7 @@ void enviar_mensajes_al_nuevo_suscriptor_LP(t_list* mensajes_de_dicha_cola, int 
 
 void recibir_new_pokemon(int socket_cliente)
 {
-	//sem_wait(&MUTEX_NEW);
+	sem_wait(&MUTEX_NEW);
 	uint32_t tamanio_buffer;
 	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
@@ -766,15 +769,15 @@ void recibir_new_pokemon(int socket_cliente)
 
 	guardar_mensaje_en_cola(mensajes_de_cola_new_pokemon, mensaje_nuevo, tamanio_buffer, NULL, pokemon, suscriptores_new_pokemon);
 
-	//sem_post(&MUTEX_NEW);
+	sem_post(&MUTEX_NEW);
 
-	free(bloque_a_agregar_en_memoria);
+//	free(bloque_a_agregar_en_memoria);
 	free(paquete);
 	free(paquete->buffer);
 }
 
 void recibir_appeared_pokemon(int socket_cliente){
-	//sem_wait(&MUTEX_APPEARED);
+	sem_wait(&MUTEX_APPEARED);
 
 	uint32_t tamanio_buffer;
 	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
@@ -856,16 +859,16 @@ void recibir_appeared_pokemon(int socket_cliente){
 
 	guardar_mensaje_en_cola(mensajes_de_cola_appeared_pokemon, mensaje_nuevo, tamanio_buffer_sin_id, NULL, pokemon, suscriptores_appeared_pokemon);
 
-	//sem_post(&MUTEX_APPEARED);
+	sem_post(&MUTEX_APPEARED);
 
-	free(bloque_a_agregar_en_memoria);
+//	free(bloque_a_agregar_en_memoria);
 	free(paquete->buffer);
 	free(paquete);
 
 }
 
 void recibir_catch_pokemon(int socket_cliente){
-	//sem_wait(&MUTEX_CATCH);
+	sem_wait(&MUTEX_CATCH);
 
 	uint32_t tamanio_buffer;
 	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
@@ -941,15 +944,15 @@ void recibir_catch_pokemon(int socket_cliente){
 
 	guardar_mensaje_en_cola(mensajes_de_cola_catch_pokemon, mensaje_nuevo, tamanio_buffer, NULL, pokemon, suscriptores_catch_pokemon);
 
-	//sem_post(&MUTEX_CATCH);
+	sem_post(&MUTEX_CATCH);
 
-	free(bloque_a_agregar_en_memoria);
+//	free(bloque_a_agregar_en_memoria);
 	free(paquete->buffer);
 	free(paquete);
 }
 
 void recibir_caught_pokemon(int socket_cliente){
-	//sem_wait(&MUTEX_CAUGHT);
+	sem_wait(&MUTEX_CAUGHT);
 	uint32_t tamanio_buffer;
 	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
@@ -1005,15 +1008,15 @@ void recibir_caught_pokemon(int socket_cliente){
 
 	guardar_mensaje_en_cola(mensajes_de_cola_caught_pokemon, mensaje_nuevo, tamanio_buffer, id_mensaje_correlativo, NULL, suscriptores_caught_pokemon);
 
-	//sem_post(&MUTEX_CAUGHT);
+	sem_post(&MUTEX_CAUGHT);
 
-	free(bloque_a_agregar_en_memoria);
+//	free(bloque_a_agregar_en_memoria);
 	free(paquete->buffer);
 	free(paquete);
 }
 
 void recibir_get_pokemon(int socket_cliente){
-	//sem_wait(&MUTEX_GET);
+	sem_wait(&MUTEX_GET);
 
 	uint32_t tamanio_buffer;
 	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
@@ -1071,15 +1074,15 @@ void recibir_get_pokemon(int socket_cliente){
 
 	guardar_mensaje_en_cola(mensajes_de_cola_get_pokemon, mensaje_nuevo, tamanio_buffer, NULL, pokemon, suscriptores_get_pokemon);
 
-	//sem_post(&MUTEX_GET);
+	sem_post(&MUTEX_GET);
 
-	free(bloque_a_agregar_en_memoria);
+	//free(bloque_a_agregar_en_memoria);
 	free(paquete->buffer);
 	free(paquete);
 }
 
 void recibir_localized_pokemon(int socket_cliente){
-	//sem_wait(&MUTEX_LOCALIZED);
+	sem_wait(&MUTEX_LOCALIZED);
 
 	uint32_t tamanio_buffer;
 	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
@@ -1178,10 +1181,10 @@ void recibir_localized_pokemon(int socket_cliente){
 
 	guardar_mensaje_en_cola(mensajes_de_cola_localized_pokemon, mensaje_nuevo, tamanio_buffer, id_mensaje_correlativo, pokemon, suscriptores_localized_pokemon);
 
-	//sem_post(&MUTEX_LOCALIZED);
+	sem_post(&MUTEX_LOCALIZED);
 
-	free(bloque_a_agregar_en_memoria);
-	free(posxposy);
+	//free(bloque_a_agregar_en_memoria);
+	//free(posxposy);
 	free(paquete);
 	free(paquete->buffer);
 }
@@ -1196,7 +1199,11 @@ void guardar_mensaje_en_cola(t_list* lista_mensajes, t_mensaje_guardado* mensaje
 	nuevo_mensaje->pokemon = pokemon;
 
 	list_add(lista_mensajes, nuevo_mensaje);
+
+	sem_wait(&LISTA_GENERAL);
 	list_add(lista_de_todos_los_mensajes, nuevo_mensaje);
+	sem_post(&LISTA_GENERAL);
+
 	sem_post(&GUARDAR);
 }
 
