@@ -227,11 +227,11 @@ void intentar_atrapar_pokemon(t_entrenador* entrenador){
 	efectuar_ciclo_cpu(entrenador, 1);
 	remover_entrenador_ready(entrenador);
 
-	if(entrenador->pudo_atrapar_pokemon == NULL){
+	/*if(entrenador->pudo_atrapar_pokemon == NULL){
 		pthread_create(&hilo_entrenador_esperando, NULL, recibir_CaughtPokemon, entrenador);
 		pthread_detach(hilo_entrenador_esperando);
 	}
-
+	*/
 	sem_post(&MUTEX_ENTRENADORES);
 
 }

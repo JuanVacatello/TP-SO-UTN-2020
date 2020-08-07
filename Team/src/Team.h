@@ -28,7 +28,7 @@ typedef enum{
 } op_planificacion;
 
 sem_t GET;
-sem_t GETT;
+sem_t ID;
 sem_t SUB;
 
 int cantidad_entrenadores(void);

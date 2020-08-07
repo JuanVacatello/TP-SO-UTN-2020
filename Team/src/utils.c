@@ -37,7 +37,7 @@ void iniciar_vg(){
 	sem_init(&MUTEX_ENTRENADORES,0,1);
 	sem_init(&MUTEX_MENSAJES_GB,0,1);
 	sem_init(&GET,0,1);
-	sem_init(&GETT,0,1);
+	sem_init(&ID,0,1);
 	sem_init(&SUB,0,1);
 
 	verificar_entrenadores();
