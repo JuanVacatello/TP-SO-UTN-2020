@@ -413,3 +413,531 @@ ID_MENSAJE: 15.
 ID_CORRELATIVO: 14.
 RESULTADO CATCH: OK.
 [INFO] 20:37:33:608 TEAM/(20704:20706): El entrenador B atrapó un Pikachu en la posicion 9|9.
+[INFO] 22:20:38:444 TEAM/(5496:5500): el socket de conexion es: 4.
+[INFO] 22:20:38:445 TEAM/(5496:5500): Se logró conectar con el BROKER de manera exitosa
+[INFO] 22:20:38:445 TEAM/(5496:5499): el socket de conexion es: 8.
+[INFO] 22:20:38:446 TEAM/(5496:5499): Se logró conectar con el BROKER de manera exitosa
+[INFO] 22:20:38:446 TEAM/(5496:5498): el socket de conexion es: 9.
+[INFO] 22:20:38:446 TEAM/(5496:5498): Se logró conectar con el BROKER de manera exitosa
+[INFO] 22:20:38:447 TEAM/(5496:5496): el socket de conexion es: 10.
+[INFO] 22:20:38:447 TEAM/(5496:5500): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 6. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 22:20:39:450 TEAM/(5496:5496): el socket de conexion es: 11.
+[INFO] 22:29:03:211 TEAM/(5826:5830): el socket de conexion es: 4.
+[INFO] 22:29:03:211 TEAM/(5826:5830): Se logró conectar con el BROKER de manera exitosa
+[INFO] 22:29:03:212 TEAM/(5826:5829): el socket de conexion es: 5.
+[INFO] 22:29:03:212 TEAM/(5826:5829): Se logró conectar con el BROKER de manera exitosa
+[INFO] 22:29:03:212 TEAM/(5826:5828): el socket de conexion es: 9.
+[INFO] 22:29:03:213 TEAM/(5826:5828): Se logró conectar con el BROKER de manera exitosa
+[INFO] 22:29:03:213 TEAM/(5826:5831): el socket de conexion es: 10.
+[INFO] 22:29:03:214 TEAM/(5826:5828): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 6. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 22:29:04:217 TEAM/(5826:5831): el socket de conexion es: 11.
+[INFO] 22:33:00:176 TEAM/(6022:6035): el socket de conexion es: 6.
+[INFO] 22:33:00:176 TEAM/(6022:6035): Se logró conectar con el BROKER de manera exitosa
+[INFO] 22:33:03:644 TEAM/(6022:6035): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 6. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 22:33:16:301 TEAM/(6022:6050): el socket de conexion es: 7.
+[INFO] 22:33:16:301 TEAM/(6022:6050): Se logró conectar con el BROKER de manera exitosa
+[INFO] 22:33:21:261 TEAM/(6022:6055): el socket de conexion es: 8.
+[INFO] 22:33:21:262 TEAM/(6022:6055): Se logró conectar con el BROKER de manera exitosa
+[INFO] 22:34:43:25 TEAM/(6022:6062): el socket de conexion es: 9.
+[INFO] 22:35:31:747 TEAM/(6022:6055): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 10. 
+ID_CORRELATIVO: 9.
+POKEMON: Pikachu. 
+CANTIDAD: 1. 
+POSICION EN X: 9. 
+POSICION EN Y: 9. 
+
+[INFO] 22:35:34:460 TEAM/(6022:6062): el socket de conexion es: 10.
+[INFO] 22:35:39:569 TEAM/(6022:6062): el socket de conexion es: 11.
+[INFO] 22:35:43:64 TEAM/(6022:6062): el socket de conexion es: 12.
+[INFO] 22:42:11:351 TEAM/(6022:6279): El entrenador C se movió a la posicion 4|2.
+[INFO] 22:42:12:359 TEAM/(6022:6282): El entrenador C se movió a la posicion 5|2.
+[INFO] 22:42:12:365 TEAM/(6022:6283): el socket de conexion es: 13.
+[INFO] 22:42:13:379 TEAM/(6022:6062): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 22:42:13:386 TEAM/(6022:6287): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 0. 
+ID_CORRELATIVO: 0.
+RESULTADO CATCH: OK.
+[INFO] 22:42:13:405 TEAM/(6022:6050): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 16. 
+ID_CORRELATIVO: 15.
+RESULTADO CATCH: OK.
+[INFO] 22:42:13:406 TEAM/(6022:6050): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 22:42:14:398 TEAM/(6022:6289): El entrenador B se movió a la posicion 3|3.
+[INFO] 22:42:15:408 TEAM/(6022:6292): El entrenador B se movió a la posicion 4|3.
+[INFO] 22:42:16:412 TEAM/(6022:6293): El entrenador B se movió a la posicion 5|3.
+[INFO] 22:42:17:418 TEAM/(6022:6294): El entrenador B se movió a la posicion 6|3.
+[INFO] 22:42:18:424 TEAM/(6022:6295): El entrenador B se movió a la posicion 7|3.
+[INFO] 22:42:19:436 TEAM/(6022:6296): El entrenador B se movió a la posicion 8|3.
+[INFO] 22:42:20:457 TEAM/(6022:6297): El entrenador B se movió a la posicion 9|3.
+[INFO] 22:42:21:468 TEAM/(6022:6298): El entrenador B se movió a la posicion 9|4.
+[INFO] 22:42:22:479 TEAM/(6022:6299): El entrenador B se movió a la posicion 9|5.
+[INFO] 22:42:23:497 TEAM/(6022:6300): El entrenador B se movió a la posicion 9|6.
+[INFO] 22:42:24:505 TEAM/(6022:6301): El entrenador B se movió a la posicion 9|7.
+[INFO] 22:42:25:510 TEAM/(6022:6302): El entrenador B se movió a la posicion 9|8.
+[INFO] 22:42:26:526 TEAM/(6022:6303): El entrenador B se movió a la posicion 9|9.
+[INFO] 22:42:26:538 TEAM/(6022:6304): el socket de conexion es: 14.
+[INFO] 22:42:27:560 TEAM/(6022:6308): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: -1208851596. 
+ID_CORRELATIVO: 0.
+RESULTADO CATCH: OK.
+[INFO] 23:10:23:602 TEAM/(7019:7028): el socket de conexion es: 4.
+[INFO] 23:10:23:610 TEAM/(7019:7028): Se logró conectar con el BROKER de manera exitosa
+[INFO] 23:10:23:611 TEAM/(7019:7027): el socket de conexion es: 7.
+[INFO] 23:10:23:611 TEAM/(7019:7027): Se logró conectar con el BROKER de manera exitosa
+[INFO] 23:10:23:613 TEAM/(7019:7026): el socket de conexion es: 8.
+[INFO] 23:10:23:613 TEAM/(7019:7026): Se logró conectar con el BROKER de manera exitosa
+[INFO] 23:10:23:620 TEAM/(7019:7029): el socket de conexion es: 9.
+[INFO] 23:10:23:625 TEAM/(7019:7026): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 6. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 23:10:24:632 TEAM/(7019:7029): el socket de conexion es: 10.
+[INFO] 23:15:41:562 TEAM/(7300:7304): el socket de conexion es: 4.
+[INFO] 23:15:41:562 TEAM/(7300:7304): Se logró conectar con el BROKER de manera exitosa
+[INFO] 23:15:41:563 TEAM/(7300:7303): el socket de conexion es: 5.
+[INFO] 23:15:41:563 TEAM/(7300:7303): Se logró conectar con el BROKER de manera exitosa
+[INFO] 23:15:41:563 TEAM/(7300:7302): el socket de conexion es: 9.
+[INFO] 23:15:41:564 TEAM/(7300:7302): Se logró conectar con el BROKER de manera exitosa
+[INFO] 23:15:41:564 TEAM/(7300:7305): el socket de conexion es: 10.
+[INFO] 23:15:41:565 TEAM/(7300:7302): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 6. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 23:15:42:568 TEAM/(7300:7305): el socket de conexion es: 11.
+[INFO] 23:15:43:569 TEAM/(7300:7305): el socket de conexion es: 12.
+[INFO] 23:15:44:571 TEAM/(7300:7305): el socket de conexion es: 13.
+[INFO] 23:15:46:577 TEAM/(7300:7328): El entrenador C se movió a la posicion 4|2.
+[INFO] 23:15:47:578 TEAM/(7300:7329): El entrenador C se movió a la posicion 5|2.
+[INFO] 23:15:47:578 TEAM/(7300:7330): el socket de conexion es: 14.
+[INFO] 23:16:10:571 TEAM/(7300:7303): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 14. 
+ID_CORRELATIVO: 13.
+RESULTADO CATCH: OK.
+[INFO] 23:16:10:571 TEAM/(7300:7303): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 23:16:19:405 TEAM/(7300:7304): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 15. 
+ID_CORRELATIVO: 9.
+POKEMON: Pikachu. 
+CANTIDAD: 1. 
+POSICION EN X: 9. 
+POSICION EN Y: 9. 
+
+[INFO] 23:16:20:411 TEAM/(7300:7355): El entrenador C se movió a la posicion 6|2.
+[INFO] 23:16:21:412 TEAM/(7300:7358): El entrenador C se movió a la posicion 7|2.
+[INFO] 23:16:22:418 TEAM/(7300:7360): El entrenador C se movió a la posicion 8|2.
+[INFO] 23:16:23:422 TEAM/(7300:7361): El entrenador C se movió a la posicion 9|2.
+[INFO] 23:16:24:426 TEAM/(7300:7362): El entrenador C se movió a la posicion 9|3.
+[INFO] 23:16:25:436 TEAM/(7300:7364): El entrenador C se movió a la posicion 9|4.
+[INFO] 23:16:26:451 TEAM/(7300:7365): El entrenador C se movió a la posicion 9|5.
+[INFO] 23:16:27:455 TEAM/(7300:7366): El entrenador C se movió a la posicion 9|6.
+[INFO] 23:16:28:458 TEAM/(7300:7368): El entrenador C se movió a la posicion 9|7.
+[INFO] 23:16:29:465 TEAM/(7300:7370): El entrenador C se movió a la posicion 9|8.
+[INFO] 23:16:30:470 TEAM/(7300:7372): El entrenador C se movió a la posicion 9|9.
+[INFO] 23:16:30:477 TEAM/(7300:7373): el socket de conexion es: 15.
+[INFO] 23:48:14:160 TEAM/(8805:8809): el socket de conexion es: 4.
+[INFO] 23:48:14:163 TEAM/(8805:8809): Se logró conectar con el BROKER de manera exitosa
+[INFO] 23:48:14:163 TEAM/(8805:8808): el socket de conexion es: 8.
+[INFO] 23:48:14:163 TEAM/(8805:8808): Se logró conectar con el BROKER de manera exitosa
+[INFO] 23:48:14:164 TEAM/(8805:8807): el socket de conexion es: 9.
+[INFO] 23:48:14:164 TEAM/(8805:8807): Se logró conectar con el BROKER de manera exitosa
+[INFO] 23:48:14:164 TEAM/(8805:8810): el socket de conexion es: 10.
+[INFO] 23:48:14:165 TEAM/(8805:8807): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 6. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 23:48:15:167 TEAM/(8805:8810): el socket de conexion es: 11.
+[INFO] 23:48:15:171 TEAM/(8805:8809): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 11. 
+ID_CORRELATIVO: 9.
+POKEMON: Pikachu. 
+CANTIDAD: 1. 
+POSICION EN X: 9. 
+POSICION EN Y: 9. 
+
+[INFO] 23:48:16:171 TEAM/(8805:8810): el socket de conexion es: 12.
+[INFO] 23:52:15:14 TEAM/(8805:8810): No se encontraron pokemones de la especie Onix en el mapa
+[INFO] 23:52:17:25 TEAM/(8805:8866): El entrenador C se movió a la posicion 4|2.
+[INFO] 23:52:18:33 TEAM/(8805:8867): El entrenador C se movió a la posicion 5|2.
+[INFO] 23:52:18:41 TEAM/(8805:8868): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 23:52:19:41 TEAM/(8805:8810): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 23:52:20:50 TEAM/(8805:8869): El entrenador B se movió a la posicion 3|3.
+[INFO] 23:52:21:57 TEAM/(8805:8870): El entrenador B se movió a la posicion 4|3.
+[INFO] 23:52:22:66 TEAM/(8805:8871): El entrenador B se movió a la posicion 5|3.
+[INFO] 23:52:23:74 TEAM/(8805:8872): El entrenador B se movió a la posicion 6|3.
+[INFO] 23:52:24:77 TEAM/(8805:8873): El entrenador B se movió a la posicion 7|3.
+[INFO] 23:52:25:80 TEAM/(8805:8874): El entrenador B se movió a la posicion 8|3.
+[INFO] 23:52:26:83 TEAM/(8805:8875): El entrenador B se movió a la posicion 9|3.
+[INFO] 23:52:27:89 TEAM/(8805:8876): El entrenador B se movió a la posicion 9|4.
+[INFO] 23:52:28:95 TEAM/(8805:8877): El entrenador B se movió a la posicion 9|5.
+[INFO] 23:52:29:98 TEAM/(8805:8878): El entrenador B se movió a la posicion 9|6.
+[INFO] 23:52:30:100 TEAM/(8805:8879): El entrenador B se movió a la posicion 9|7.
+[INFO] 23:52:31:110 TEAM/(8805:8880): El entrenador B se movió a la posicion 9|8.
+[INFO] 23:52:32:115 TEAM/(8805:8881): El entrenador B se movió a la posicion 9|9.
+[INFO] 23:52:32:122 TEAM/(8805:8882): El entrenador B atrapó un Pikachu en la posicion 9|9.
+[INFO] 23:53:54:799 TEAM/(8886:8890): NO se logró conectar con el BROKER
+[INFO] 23:53:54:799 TEAM/(8886:8890): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 23:54:13:399 TEAM/(8886:8896): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Pikachu. 
+POSICION EN X: 9. 
+POSICION EN Y: 9.
+[INFO] 23:54:13:400 TEAM/(8886:8898): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 6. 
+POSICION EN Y: 7.
+[INFO] 23:54:13:402 TEAM/(8886:8900): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Onix. 
+POSICION EN X: 2. 
+POSICION EN Y: 8.
+[INFO] 23:54:24:800 TEAM/(8886:8890): NO se logró conectar con el BROKER
+[INFO] 23:54:24:800 TEAM/(8886:8890): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 23:54:54:801 TEAM/(8886:8890): NO se logró conectar con el BROKER
+[INFO] 23:54:54:801 TEAM/(8886:8890): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 23:55:24:801 TEAM/(8886:8890): NO se logró conectar con el BROKER
+[INFO] 23:55:24:802 TEAM/(8886:8890): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 23:55:54:802 TEAM/(8886:8890): NO se logró conectar con el BROKER
+[INFO] 23:55:54:803 TEAM/(8886:8890): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 23:56:24:803 TEAM/(8886:8890): NO se logró conectar con el BROKER
+[INFO] 23:56:24:803 TEAM/(8886:8890): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 23:56:54:804 TEAM/(8886:8890): NO se logró conectar con el BROKER
+[INFO] 23:56:54:804 TEAM/(8886:8890): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 23:57:24:806 TEAM/(8886:8890): NO se logró conectar con el BROKER
+[INFO] 23:57:24:806 TEAM/(8886:8890): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 23:57:54:808 TEAM/(8886:8890): NO se logró conectar con el BROKER
+[INFO] 23:57:54:809 TEAM/(8886:8890): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 23:58:24:810 TEAM/(8886:8890): NO se logró conectar con el BROKER
+[INFO] 23:58:24:810 TEAM/(8886:8890): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 23:58:54:810 TEAM/(8886:8890): NO se logró conectar con el BROKER
+[INFO] 23:58:54:811 TEAM/(8886:8890): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 23:59:18:483 TEAM/(9188:9192): NO se logró conectar con el BROKER
+[INFO] 23:59:18:484 TEAM/(9188:9192): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 23:59:29:362 TEAM/(9188:9196): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Pikachu. 
+POSICION EN X: 9. 
+POSICION EN Y: 9.
+[INFO] 23:59:29:364 TEAM/(9188:9198): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 6. 
+POSICION EN Y: 7.
+[INFO] 23:59:29:366 TEAM/(9188:9200): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Onix. 
+POSICION EN X: 2. 
+POSICION EN Y: 8.
+[INFO] 00:00:47:369 TEAM/(9350:9355): No se encontraron pokemones de la especie Pikachu en el mapa
+[INFO] 00:00:47:369 TEAM/(9350:9354): NO se logró conectar con el BROKER
+[INFO] 00:00:47:369 TEAM/(9350:9354): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 00:00:48:370 TEAM/(9350:9355): No se encontraron pokemones de la especie Squirtle en el mapa
+[INFO] 00:00:49:370 TEAM/(9350:9355): No se encontraron pokemones de la especie Gengar en el mapa
+[INFO] 00:00:50:370 TEAM/(9350:9355): No se encontraron pokemones de la especie Onix en el mapa
+[INFO] 00:00:54:899 TEAM/(9350:9358): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Pikachu. 
+POSICION EN X: 9. 
+POSICION EN Y: 9.
+[INFO] 00:00:54:902 TEAM/(9350:9361): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Squirtle. 
+POSICION EN X: 6. 
+POSICION EN Y: 7.
+[INFO] 00:00:54:903 TEAM/(9350:9363): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 1804289383. 
+POKEMON: Onix. 
+POSICION EN X: 2. 
+POSICION EN Y: 8.
+[INFO] 00:00:55:900 TEAM/(9350:9360): El entrenador B se movió a la posicion 3|3.
+[INFO] 00:00:56:901 TEAM/(9350:9367): El entrenador B se movió a la posicion 4|3.
+[INFO] 00:00:57:902 TEAM/(9350:9368): El entrenador B se movió a la posicion 5|3.
+[INFO] 00:00:58:902 TEAM/(9350:9369): El entrenador B se movió a la posicion 6|3.
+[INFO] 00:00:59:903 TEAM/(9350:9370): El entrenador B se movió a la posicion 7|3.
+[INFO] 00:01:00:903 TEAM/(9350:9371): El entrenador B se movió a la posicion 8|3.
+[INFO] 00:01:01:904 TEAM/(9350:9372): El entrenador B se movió a la posicion 9|3.
+[INFO] 00:01:02:905 TEAM/(9350:9373): El entrenador B se movió a la posicion 9|4.
+[INFO] 00:01:03:905 TEAM/(9350:9374): El entrenador B se movió a la posicion 9|5.
+[INFO] 00:01:04:907 TEAM/(9350:9375): El entrenador B se movió a la posicion 9|6.
+[INFO] 00:04:13:112 TEAM/(9570:9575): el socket de conexion es: 4.
+[INFO] 00:04:13:112 TEAM/(9570:9574): el socket de conexion es: 5.
+[INFO] 00:04:13:113 TEAM/(9570:9574): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:04:13:113 TEAM/(9570:9573): el socket de conexion es: 7.
+[INFO] 00:04:13:113 TEAM/(9570:9573): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:04:13:114 TEAM/(9570:9572): el socket de conexion es: 8.
+[INFO] 00:04:13:114 TEAM/(9570:9572): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:13:37:142 TEAM/(9570:9575): No se encontraron pokemones de la especie Squirtle en el mapa
+[INFO] 00:15:57:289 TEAM/(10136:10140): el socket de conexion es: 5.
+[INFO] 00:15:57:289 TEAM/(10136:10141): el socket de conexion es: 4.
+[INFO] 00:15:57:291 TEAM/(10136:10140): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:15:57:291 TEAM/(10136:10139): el socket de conexion es: 9.
+[INFO] 00:15:57:291 TEAM/(10136:10139): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:15:57:292 TEAM/(10136:10138): el socket de conexion es: 10.
+[INFO] 00:15:57:292 TEAM/(10136:10138): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:15:57:293 TEAM/(10136:10138): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 6. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 00:21:07:4 TEAM/(10136:10141): No se encontraron pokemones de la especie Squirtle en el mapa
+[INFO] 00:23:21:393 TEAM/(10389:10391): el socket de conexion es: 4.
+[INFO] 00:23:21:394 TEAM/(10389:10391): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:23:21:395 TEAM/(10389:10394): el socket de conexion es: 8.
+[INFO] 00:23:21:395 TEAM/(10389:10394): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:23:21:396 TEAM/(10389:10391): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 6. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 00:23:21:397 TEAM/(10389:10397): el socket de conexion es: 10.
+[INFO] 00:23:21:397 TEAM/(10389:10398): el socket de conexion es: 9.
+[INFO] 00:23:21:397 TEAM/(10389:10397): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:26:33:894 TEAM/(10389:10398): No se encontraron pokemones de la especie Squirtle en el mapa
+[INFO] 00:26:34:895 TEAM/(10389:10398): No se encontraron pokemones de la especie Gengar en el mapa
+[INFO] 00:30:42:543 TEAM/(10727:10731): el socket de conexion es: 4.
+[INFO] 00:30:42:543 TEAM/(10727:10731): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:30:42:544 TEAM/(10727:10730): el socket de conexion es: 5.
+[INFO] 00:30:42:544 TEAM/(10727:10730): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:30:42:544 TEAM/(10727:10729): el socket de conexion es: 9.
+[INFO] 00:30:42:544 TEAM/(10727:10729): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:30:42:545 TEAM/(10727:10732): el socket de conexion es: 10.
+[INFO] 00:30:42:546 TEAM/(10727:10729): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 6. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 00:30:43:548 TEAM/(10727:10732): el socket de conexion es: 11.
+[INFO] 00:46:52:760 TEAM/(11341:11345): el socket de conexion es: 4.
+[INFO] 00:46:52:765 TEAM/(11341:11345): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:46:52:765 TEAM/(11341:11344): el socket de conexion es: 8.
+[INFO] 00:46:52:765 TEAM/(11341:11344): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:46:52:766 TEAM/(11341:11343): el socket de conexion es: 9.
+[INFO] 00:46:52:766 TEAM/(11341:11343): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:46:52:766 TEAM/(11341:11346): el socket de conexion es: 10.
+[INFO] 00:46:52:767 TEAM/(11341:11343): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 6. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 00:46:53:769 TEAM/(11341:11346): el socket de conexion es: 11.
+[INFO] 00:52:05:750 TEAM/(11341:11346): No se encontraron pokemones de la especie Gengar en el mapa
+[INFO] 00:52:06:755 TEAM/(11341:11346): No se encontraron pokemones de la especie Onix en el mapa
+[INFO] 00:52:08:766 TEAM/(11341:11503): El entrenador C se movió a la posicion 4|2.
+[INFO] 00:52:09:770 TEAM/(11341:11520): El entrenador C se movió a la posicion 5|2.
+[INFO] 00:52:09:774 TEAM/(11341:11521): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 00:56:18:213 TEAM/(11741:11745): el socket de conexion es: 4.
+[INFO] 00:56:18:214 TEAM/(11741:11745): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:56:18:215 TEAM/(11741:11744): el socket de conexion es: 8.
+[INFO] 00:56:18:215 TEAM/(11741:11744): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:56:18:215 TEAM/(11741:11743): el socket de conexion es: 9.
+[INFO] 00:56:18:216 TEAM/(11741:11743): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:56:18:218 TEAM/(11741:11746): el socket de conexion es: 10.
+[INFO] 00:56:18:220 TEAM/(11741:11743): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 6. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 00:56:19:221 TEAM/(11741:11746): el socket de conexion es: 11.
+[INFO] 00:56:19:224 TEAM/(11741:11745): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 11. 
+ID_CORRELATIVO: 9.
+POKEMON: Pikachu. 
+CANTIDAD: 1. 
+POSICION EN X: 9. 
+POSICION EN Y: 9. 
+
+[INFO] 00:56:20:223 TEAM/(11741:11746): el socket de conexion es: 12.
+[INFO] 00:56:21:226 TEAM/(11741:11746): el socket de conexion es: 13.
+[INFO] 00:56:23:228 TEAM/(11741:11773): El entrenador C se movió a la posicion 4|2.
+[INFO] 00:56:24:229 TEAM/(11741:11774): El entrenador C se movió a la posicion 5|2.
+[INFO] 00:56:24:230 TEAM/(11741:11775): el socket de conexion es: 14.
+[INFO] 00:56:25:679 TEAM/(11741:11746): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 00:56:26:690 TEAM/(11741:11779): El entrenador B se movió a la posicion 3|3.
+[INFO] 00:56:27:694 TEAM/(11741:11780): El entrenador B se movió a la posicion 4|3.
+[INFO] 00:56:28:702 TEAM/(11741:11781): El entrenador B se movió a la posicion 5|3.
+[INFO] 00:56:29:715 TEAM/(11741:11782): El entrenador B se movió a la posicion 6|3.
+[INFO] 00:56:30:724 TEAM/(11741:11783): El entrenador B se movió a la posicion 7|3.
+[INFO] 00:56:31:736 TEAM/(11741:11784): El entrenador B se movió a la posicion 8|3.
+[INFO] 00:56:32:742 TEAM/(11741:11785): El entrenador B se movió a la posicion 9|3.
+[INFO] 00:56:33:754 TEAM/(11741:11786): El entrenador B se movió a la posicion 9|4.
+[INFO] 00:56:34:767 TEAM/(11741:11787): El entrenador B se movió a la posicion 9|5.
+[INFO] 00:56:35:776 TEAM/(11741:11788): El entrenador B se movió a la posicion 9|6.
+[INFO] 00:56:36:782 TEAM/(11741:11789): El entrenador B se movió a la posicion 9|7.
+[INFO] 00:56:37:786 TEAM/(11741:11790): El entrenador B se movió a la posicion 9|8.
+[INFO] 00:56:38:794 TEAM/(11741:11791): El entrenador B se movió a la posicion 9|9.
+[INFO] 00:56:38:800 TEAM/(11741:11792): El entrenador B atrapó un Pikachu en la posicion 9|9.
+[INFO] 01:01:35:0 TEAM/(12048:12052): el socket de conexion es: 4.
+[INFO] 01:01:35:0 TEAM/(12048:12052): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:01:36:9 TEAM/(12048:12051): el socket de conexion es: 8.
+[INFO] 01:01:36:9 TEAM/(12048:12051): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:01:36:28 TEAM/(12048:12050): el socket de conexion es: 9.
+[INFO] 01:01:36:28 TEAM/(12048:12050): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:01:36:42 TEAM/(12048:12053): el socket de conexion es: 10.
+[INFO] 01:01:36:43 TEAM/(12048:12050): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 6. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 01:01:37:54 TEAM/(12048:12053): el socket de conexion es: 11.
+[INFO] 01:03:39:821 TEAM/(12048:12053): No se encontraron pokemones de la especie Gengar en el mapa
+[INFO] 01:03:40:822 TEAM/(12048:12053): No se encontraron pokemones de la especie Onix en el mapa
+[INFO] 01:03:42:833 TEAM/(12048:12227): El entrenador C se movió a la posicion 4|2.
+[INFO] 01:03:43:842 TEAM/(12048:12228): El entrenador C se movió a la posicion 5|2.
+[INFO] 01:03:43:849 TEAM/(12048:12229): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 01:06:48:309 TEAM/(12339:12343): el socket de conexion es: 4.
+[INFO] 01:06:48:309 TEAM/(12339:12343): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:06:48:324 TEAM/(12339:12342): el socket de conexion es: 8.
+[INFO] 01:06:48:324 TEAM/(12339:12342): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:06:48:338 TEAM/(12339:12341): el socket de conexion es: 9.
+[INFO] 01:06:48:339 TEAM/(12339:12341): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:06:48:359 TEAM/(12339:12344): el socket de conexion es: 10.
+[INFO] 01:06:48:361 TEAM/(12339:12341): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 6. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 01:06:49:379 TEAM/(12339:12344): el socket de conexion es: 11.
+[INFO] 01:08:53:620 TEAM/(12339:12344): No se encontraron pokemones de la especie Gengar en el mapa
+[INFO] 01:08:54:620 TEAM/(12339:12344): No se encontraron pokemones de la especie Onix en el mapa
+[INFO] 01:08:56:631 TEAM/(12339:12402): El entrenador C se movió a la posicion 4|2.
+[INFO] 01:08:57:636 TEAM/(12339:12403): El entrenador C se movió a la posicion 5|2.
+[INFO] 01:08:57:648 TEAM/(12339:12404): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 01:12:00:330 TEAM/(12542:12546): el socket de conexion es: 4.
+[INFO] 01:12:00:331 TEAM/(12542:12546): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:12:00:338 TEAM/(12542:12545): el socket de conexion es: 8.
+[INFO] 01:12:00:338 TEAM/(12542:12545): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:12:00:355 TEAM/(12542:12544): el socket de conexion es: 9.
+[INFO] 01:12:00:359 TEAM/(12542:12544): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:12:00:367 TEAM/(12542:12547): el socket de conexion es: 10.
+[INFO] 01:12:00:369 TEAM/(12542:12544): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 6. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 01:12:01:383 TEAM/(12542:12547): el socket de conexion es: 11.
+[INFO] 01:12:49:574 TEAM/(12542:12547): No se encontraron pokemones de la especie Gengar en el mapa
+[INFO] 01:12:50:575 TEAM/(12542:12547): No se encontraron pokemones de la especie Onix en el mapa
+[INFO] 01:12:52:584 TEAM/(12542:12567): El entrenador C se movió a la posicion 4|2.
+[INFO] 01:12:53:589 TEAM/(12542:12568): El entrenador C se movió a la posicion 5|2.
+[INFO] 01:12:53:597 TEAM/(12542:12569): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 01:27:29:643 TEAM/(13397:13401): el socket de conexion es: 4.
+[INFO] 01:27:29:644 TEAM/(13397:13401): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:27:29:644 TEAM/(13397:13400): el socket de conexion es: 8.
+[INFO] 01:27:29:645 TEAM/(13397:13400): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:27:29:645 TEAM/(13397:13399): el socket de conexion es: 9.
+[INFO] 01:27:29:645 TEAM/(13397:13399): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:27:29:646 TEAM/(13397:13402): el socket de conexion es: 10.
+[INFO] 01:27:29:646 TEAM/(13397:13399): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 6. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 01:27:30:648 TEAM/(13397:13402): el socket de conexion es: 11.
+[INFO] 01:32:41:355 TEAM/(13681:13685): el socket de conexion es: 4.
+[INFO] 01:32:41:355 TEAM/(13681:13685): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:32:41:355 TEAM/(13681:13684): el socket de conexion es: 5.
+[INFO] 01:32:41:355 TEAM/(13681:13684): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:32:41:356 TEAM/(13681:13683): el socket de conexion es: 9.
+[INFO] 01:32:41:356 TEAM/(13681:13683): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:32:41:356 TEAM/(13681:13686): el socket de conexion es: 10.
+[INFO] 01:32:41:357 TEAM/(13681:13683): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 6. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 01:32:42:359 TEAM/(13681:13686): el socket de conexion es: 11.
+[INFO] 01:32:55:461 TEAM/(13681:13686): No se encontraron pokemones de la especie Gengar en el mapa
+[INFO] 01:32:56:461 TEAM/(13681:13686): No se encontraron pokemones de la especie Onix en el mapa
+[INFO] 01:35:38:610 TEAM/(13891:13895): el socket de conexion es: 4.
+[INFO] 01:35:38:615 TEAM/(13891:13895): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:35:47:48 TEAM/(13891:13894): el socket de conexion es: 8.
+[INFO] 01:35:47:48 TEAM/(13891:13894): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:35:58:491 TEAM/(13891:13893): el socket de conexion es: 9.
+[INFO] 01:35:58:491 TEAM/(13891:13893): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:36:00:52 TEAM/(13891:13896): el socket de conexion es: 10.
+[INFO] 01:36:25:765 TEAM/(13891:13896): el socket de conexion es: 11.
+[INFO] 01:40:09:308 TEAM/(14101:14105): el socket de conexion es: 4.
+[INFO] 01:40:09:311 TEAM/(14101:14105): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:40:09:312 TEAM/(14101:14104): el socket de conexion es: 8.
+[INFO] 01:40:09:312 TEAM/(14101:14104): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:40:09:313 TEAM/(14101:14103): el socket de conexion es: 9.
+[INFO] 01:40:09:313 TEAM/(14101:14103): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:40:09:314 TEAM/(14101:14106): el socket de conexion es: 10.
+[INFO] 01:40:09:315 TEAM/(14101:14103): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 6. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 01:40:10:326 TEAM/(14101:14106): el socket de conexion es: 11.
+[INFO] 01:41:01:927 TEAM/(14101:14106): No se encontraron pokemones de la especie Gengar en el mapa
+[INFO] 01:41:02:928 TEAM/(14101:14106): No se encontraron pokemones de la especie Onix en el mapa
+[INFO] 01:41:04:938 TEAM/(14101:14138): El entrenador C se movió a la posicion 4|2.
+[INFO] 01:41:05:946 TEAM/(14101:14139): El entrenador C se movió a la posicion 5|2.
+[INFO] 01:41:05:957 TEAM/(14101:14140): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 01:44:36:536 TEAM/(14355:14359): el socket de conexion es: 4.
+[INFO] 01:44:36:537 TEAM/(14355:14359): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:44:36:538 TEAM/(14355:14358): el socket de conexion es: 8.
+[INFO] 01:44:36:539 TEAM/(14355:14358): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:44:36:539 TEAM/(14355:14357): el socket de conexion es: 9.
+[INFO] 01:44:36:540 TEAM/(14355:14360): el socket de conexion es: 10.
+[INFO] 01:44:36:540 TEAM/(14355:14357): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:48:23:500 TEAM/(14587:14591): el socket de conexion es: 4.
+[INFO] 01:48:23:501 TEAM/(14587:14591): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:48:23:502 TEAM/(14587:14590): el socket de conexion es: 8.
+[INFO] 01:48:23:502 TEAM/(14587:14590): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:48:23:502 TEAM/(14587:14592): el socket de conexion es: 9.
+[INFO] 01:48:23:503 TEAM/(14587:14589): el socket de conexion es: 10.
+[INFO] 01:48:23:503 TEAM/(14587:14589): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:51:23:146 TEAM/(14587:14592): No se encontraron pokemones de la especie Squirtle en el mapa
+[INFO] 01:51:24:150 TEAM/(14587:14592): No se encontraron pokemones de la especie Gengar en el mapa
+[INFO] 01:53:07:49 TEAM/(14890:14894): el socket de conexion es: 4.
+[INFO] 01:53:07:50 TEAM/(14890:14894): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:53:07:51 TEAM/(14890:14893): el socket de conexion es: 5.
+[INFO] 01:53:07:51 TEAM/(14890:14893): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:53:07:52 TEAM/(14890:14895): el socket de conexion es: 9.
+[INFO] 01:53:07:52 TEAM/(14890:14892): el socket de conexion es: 10.
+[INFO] 01:53:07:52 TEAM/(14890:14892): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:53:26:182 TEAM/(14890:14895): No se encontraron pokemones de la especie Squirtle en el mapa
+[INFO] 01:55:08:452 TEAM/(15063:15067): el socket de conexion es: 4.
+[INFO] 01:55:08:452 TEAM/(15063:15067): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:55:08:453 TEAM/(15063:15066): el socket de conexion es: 5.
+[INFO] 01:55:08:453 TEAM/(15063:15066): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:55:08:453 TEAM/(15063:15065): el socket de conexion es: 9.
+[INFO] 01:55:08:453 TEAM/(15063:15065): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:55:08:454 TEAM/(15063:15068): el socket de conexion es: 10.
+[INFO] 01:55:08:455 TEAM/(15063:15065): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 6. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 01:55:09:457 TEAM/(15063:15068): el socket de conexion es: 11.
+[INFO] 01:55:10:460 TEAM/(15063:15068): el socket de conexion es: 12.
+[INFO] 01:57:21:764 TEAM/(15239:15243): el socket de conexion es: 4.
+[INFO] 01:57:21:766 TEAM/(15239:15243): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:57:21:767 TEAM/(15239:15242): el socket de conexion es: 8.
+[INFO] 01:57:21:767 TEAM/(15239:15242): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:57:21:767 TEAM/(15239:15241): el socket de conexion es: 9.
+[INFO] 01:57:21:767 TEAM/(15239:15241): Se logró conectar con el BROKER de manera exitosa
+[INFO] 01:57:21:768 TEAM/(15239:15244): el socket de conexion es: 10.
+[INFO] 01:57:21:769 TEAM/(15239:15241): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 6. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 2.
+[INFO] 01:57:22:772 TEAM/(15239:15244): el socket de conexion es: 11.

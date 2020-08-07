@@ -120,7 +120,7 @@ void* serializar_paquete(t_paquete* paquete, int *bytes)
 void appeared_pokemon_broker(){
 
 	int socket_broker = enviar_suscripcion_a_cola(APPEARED_POKEMON);
-
+	sem_post(&GET);
 	while(1){
 
 		op_code cod_op = 10;
@@ -271,7 +271,7 @@ void enviar_CatchPokemon_a_broker(op_code codigo_operacion, t_entrenador* entren
 }
 
 void enviar_GetPokemon_a_broker(op_code codigo_operacion, char* pokemon)
-{
+{	sem_wait(&GET);
 	char* puerto_broker = obtener_puerto();
 	char* ip_broker = obtener_ip();
 	int id_correlativo = -1;
@@ -298,6 +298,7 @@ void enviar_GetPokemon_a_broker(op_code codigo_operacion, char* pokemon)
 
 		free(a_enviar);
 	}
+	sem_post(&GET);
 	ciclosCpuTotales++;
 	ciclos_de_cpu(1);
 }
@@ -482,7 +483,8 @@ void recibir_CaughtPokemon(int socket_broker){
 		uint32_t pudoAtraparlo;
 		recv(socket_broker, &pudoAtraparlo, sizeof(uint32_t), MSG_WAITALL);
 
-		t_entrenador* entrenador = buscar_entrenador_por_id_catch(id_correlativo);
+		t_entrenador* entrenador = NULL;
+		entrenador = buscar_entrenador_por_id_catch(id_correlativo);
 
 		if(entrenador != NULL){
 			log_llego_mensaje_nuevo_caught_pokemon(mensajeid, id_correlativo, pudoAtraparlo);
