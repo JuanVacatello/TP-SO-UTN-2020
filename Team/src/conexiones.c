@@ -529,9 +529,10 @@ void recibir_LocalizedPokemon(int socket_broker){
 			t_list* posicionesX = list_create();
 			t_list* posicionesY = list_create();
 
-
+			int se_respondio_ack = 0;
 
 			for(int i =0; i<cantidadPokemones; i++){
+
 				uint32_t posX;
 				recv(socket_broker, &posX, sizeof(uint32_t), MSG_WAITALL);
 				list_add(posicionesX, posX);
@@ -540,7 +541,10 @@ void recibir_LocalizedPokemon(int socket_broker){
 				recv(socket_broker, &posY, sizeof(uint32_t), MSG_WAITALL);
 				list_add(posicionesY, posY);
 
-				responder_ack(socket_broker,mensajeid);
+				if(se_respondio_ack == 0){
+					responder_ack(socket_broker,mensajeid);
+					se_respondio_ack = 1;
+				}
 
 				if(es_pokemon_requerido(pokemon)){
 					sem_wait(&CONTADOR_ENTRENADORES);
