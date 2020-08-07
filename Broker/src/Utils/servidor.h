@@ -60,6 +60,7 @@ sem_t REENVIO;
 sem_t GUARDAR;
 sem_t LISTA_GENERAL;
 sem_t SUBS;
+sem_t NOSE;
 
 // CONEXION CON CLIENTE
 void iniciar_servidor(void);

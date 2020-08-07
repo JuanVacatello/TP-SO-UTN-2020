@@ -54,7 +54,7 @@ void esperar_cliente(int socket_servidor)
 void serve_client(int* socket_proceso)
 {
 	log_conexion(*socket_proceso);
-
+	sem_wait(&NOSE);
 	op_code cod_op;
 	if(recv(*socket_proceso, &cod_op, sizeof(op_code), MSG_WAITALL) == -1){
 		pthread_exit(NULL);
@@ -75,37 +75,44 @@ void process_request(op_code cod_op, int socket_cliente) {
 			break;
 		case 1:
 			log_mensaje_nuevo(cod_op);
-			pthread_create(&hilo_newPokemon, NULL, recibir_new_pokemon, socket_cliente);
-			pthread_detach(hilo_newPokemon);
+			recibir_new_pokemon(socket_cliente);
+			//pthread_create(&hilo_newPokemon, NULL, recibir_new_pokemon, socket_cliente);
+			//pthread_detach(hilo_newPokemon);
 			break;
 		case 2:
 			log_mensaje_nuevo(cod_op);
-			pthread_create(&hilo_appearedPokemon, NULL, recibir_appeared_pokemon, socket_cliente);
-			pthread_detach(hilo_appearedPokemon);
+			recibir_appeared_pokemon(socket_cliente);
+			//pthread_create(&hilo_appearedPokemon, NULL, recibir_appeared_pokemon, socket_cliente);
+			//pthread_detach(hilo_appearedPokemon);
 			break;
 		case 3:
 			log_mensaje_nuevo(cod_op);
-			pthread_create(&hilo_catchPokemon, NULL, recibir_catch_pokemon, socket_cliente);
-			pthread_detach(hilo_catchPokemon);
+			recibir_catch_pokemon(socket_cliente);
+			//pthread_create(&hilo_catchPokemon, NULL, recibir_catch_pokemon, socket_cliente);
+			//pthread_detach(hilo_catchPokemon);
 			break;
 		case 4:
 			log_mensaje_nuevo(cod_op);
-			pthread_create(&hilo_caughtPokemon, NULL, recibir_caught_pokemon, socket_cliente);
-			pthread_detach(hilo_caughtPokemon);
+			recibir_caught_pokemon(socket_cliente);
+			//pthread_create(&hilo_caughtPokemon, NULL, recibir_caught_pokemon, socket_cliente);
+			//pthread_detach(hilo_caughtPokemon);
 			break;
 		case 5:
 			log_mensaje_nuevo(cod_op);
-			pthread_create(&hilo_getPokemon, NULL, recibir_get_pokemon, socket_cliente);
-			pthread_detach(hilo_getPokemon);
+			recibir_get_pokemon(socket_cliente);
+			//pthread_create(&hilo_getPokemon, NULL, recibir_get_pokemon, socket_cliente);
+			//pthread_detach(hilo_getPokemon);
 			break;
 		case 6:
 			log_mensaje_nuevo(cod_op);
-			pthread_create(&hilo_localizedPokemon, NULL, recibir_localized_pokemon, socket_cliente);
-			pthread_detach(hilo_localizedPokemon);
+			recibir_localized_pokemon(socket_cliente);
+			//pthread_create(&hilo_localizedPokemon, NULL, recibir_localized_pokemon, socket_cliente);
+			//pthread_detach(hilo_localizedPokemon);
 			break;
 		default:
 			break;
 	}
+	sem_post(&NOSE);
 }
 
 
@@ -190,6 +197,7 @@ void suscribirse_a_cola(proceso* suscriptor, int socket, uint32_t tamanio_buffer
 		pthread_mutex_lock(&mutex_suscripcion);
 	}
 	sem_post(&SUBS);
+//	sem_wait(&NOSE);
 }
 
 void correr_tiempo_suscripcion(t_suscripcion* suscripcion){

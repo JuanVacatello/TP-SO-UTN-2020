@@ -98,10 +98,10 @@ void log_particion_eliminada(int posicion_liberada){
 
 // 8.1. Ejecución de compactación para particiones dinámicas.
 void log_compactacion(){
-	int frecuencia_de_compactacion = obtener_frecuencia_compactacion();
-	char* log = string_from_format("Se compactó la memoria ya que la frecuencia de compactación es %d.", frecuencia_de_compactacion);
+	//int frecuencia_de_compactacion = obtener_frecuencia_compactacion();
+	char* log = "Se compactó la memoria.";//string_from_format("Se compactó la memoria ya que la frecuencia de compactación es %d.", frecuencia_de_compactacion);
 	completar_logger(log, "BROKER", LOG_LEVEL_INFO);
-	free(log);
+	//free(log);
 }
 
 // 8.2. Asociación de bloques para Buddy System (indicando qué particiones se asociaron, con posicion inicial de ambas).

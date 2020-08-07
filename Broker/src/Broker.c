@@ -68,6 +68,8 @@ void inicializacion_de_variables_globales(void){
 	sem_init(&GUARDAR,0,1);
 	sem_init(&LISTA_GENERAL,0,1);
 	sem_init(&SUBS,0,1);
+	sem_init(&NOSE,0,1);
+
 
 	pthread_mutex_init(&mutex_suscripcion, NULL);
 	pthread_mutex_lock(&mutex_suscripcion);
