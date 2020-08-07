@@ -27,6 +27,7 @@ t_mensaje_guardado* guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria
 	list_add(elementos_en_memoria, mensaje_nuevo);
 
 	log_almacenar_mensaje(mensaje_nuevo->byte_comienzo_ocupado);
+	actualizar_dump_cache(SIGUSR1);
 
 	sem_post(&MUTEX_MEMORIA);
 
@@ -242,7 +243,7 @@ void compactar_memoria(void){
 
 	log_compactacion();
 
-	free(memoria_copactada);
+	//free(memoria_copactada);
 	//free(mensaje_a_leer);
 
 }
@@ -316,15 +317,25 @@ int buscar_first_fit(int *encontrado, void* bloque_a_agregar_en_memoria, uint32_
 	t_list* lista_ordenada = list_duplicate(elementos_en_memoria);
 	list_sort(lista_ordenada, comparar_inicios_mensajes); // Ordena la lista de menor a mayor a partir de la posición de inicio donde están guardados los mensajes en memoria
 	int tamanio_lista = list_size(lista_ordenada);
+	int sumatoria = tamanio_a_agregar;
+
+	for(int i= 0; i <list_size(elementos_en_memoria); i++){
+
+		t_mensaje_guardado* mensaje_a_leer;
+		mensaje_a_leer = list_get(elementos_en_memoria, i);
+		sumatoria += mensaje_a_leer->tamanio_ocupado;
+	}
 
 	if(list_is_empty(elementos_en_memoria) || primera_posicion_vacia_y_entra(tamanio_a_agregar)){ // Si está vacía o la primera posición esta vacia, agregar al principio de la memoria
 
 		posicion_inicial_nuevo_mensaje = 0;
 		*encontrado = 1;
 	}
-	else {
+	else if(tamanio_a_agregar >= tamanio_de_memoria){
 
-
+		*encontrado = 0;
+	}
+	else{
 		for(int i=0; i<tamanio_lista; i++){ // Recorre para ver todos los mensajes guardados en la memoria principal
 
 			t_mensaje_guardado* mensaje_a_leer;
@@ -349,6 +360,7 @@ int buscar_first_fit(int *encontrado, void* bloque_a_agregar_en_memoria, uint32_
 					break;
 				}
 			}
+
 			if(*encontrado == 1)
 				break;
 		}
@@ -835,6 +847,7 @@ int entra_en_hueco(int tamanio_a_agregar, int posicion_libre){
 	int contador = 4; // Si está vacío el espacio siguiente, leerá ceros
 	int cero;
 	int desplazamiento = 0;
+	int sumatoria = tamanio_a_agregar;
 
 
 	memcpy(&cero, memoria_principal + posicion_libre, sizeof(int));
@@ -845,7 +858,13 @@ int entra_en_hueco(int tamanio_a_agregar, int posicion_libre){
 		contador+=4;
 	}
 
-	if(contador >= tamanio_a_agregar){
+	for(int i= 0; i <list_size(elementos_en_memoria); i++){
+		t_mensaje_guardado* mensaje_a_leer;
+		mensaje_a_leer = list_get(elementos_en_memoria, i);
+		sumatoria += mensaje_a_leer->tamanio_ocupado;
+	}
+
+	if(contador >= tamanio_a_agregar && sumatoria <= tamanio_de_memoria){
 		boolean = 1;
 	}
 

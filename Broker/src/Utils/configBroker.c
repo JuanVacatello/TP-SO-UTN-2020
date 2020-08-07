@@ -2,8 +2,8 @@
 
 void leer_config(void)
 {
-	configBroker = config_create("Broker.config"); // POR ECLIPSE
-	//configBroker = config_create("../Broker.config"); // POR CONSOLA
+	//configBroker = config_create("Broker.config"); // POR ECLIPSE
+	configBroker = config_create("../Broker.config"); // POR CONSOLA
 
 	if(configBroker == NULL){
 		printf("No se pudo leer el archivo de configuración del Broker. \n");
