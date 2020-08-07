@@ -39,8 +39,25 @@ typedef struct
 	int tiempo;
 } t_suscripcion;
 
+pthread_t hilo_suscripcion;
+pthread_t hilo_newPokemon;
+pthread_t hilo_appearedPokemon;
+pthread_t hilo_catchPokemon;
+pthread_t hilo_caughtPokemon;
+pthread_t hilo_getPokemon;
+pthread_t hilo_localizedPokemon;
+
 t_buffer* buffer;
 pthread_t thread;
+
+sem_t MUTEX_NEW;
+sem_t MUTEX_APPEARED;
+sem_t MUTEX_CATCH;
+sem_t MUTEX_CAUGHT;
+sem_t MUTEX_GET;
+sem_t MUTEX_LOCALIZED;
+sem_t REENVIO;
+sem_t GUARDAR;
 
 // CONEXION CON CLIENTE
 void iniciar_servidor(void);

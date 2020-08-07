@@ -167,9 +167,7 @@ int reemplazar_segun_FIFO(void){
 		particion = crear_nueva_particion(posicion_liberada, cantidad_liberada, (posicion_liberada+cantidad_liberada-1));
 	}
 
-	sem_wait(&MUTEX_MEM_PRIN);
 	memset(memoria_principal + posicion_liberada, 0, cantidad_liberada);
-	sem_post(&MUTEX_MEM_PRIN);
 
 	free(mensaje_a_eliminar);
 
@@ -197,9 +195,9 @@ int reemplazar_segun_LRU(void){
 		particion = crear_nueva_particion(posicion_liberada, cantidad_liberada, (posicion_liberada+cantidad_liberada-1));
 	}
 
-	sem_wait(&MUTEX_MEM_PRIN);
+
 	memset(memoria_principal + posicion_liberada, 0, cantidad_liberada);
-	sem_post(&MUTEX_MEM_PRIN);
+
 
 	//free(mensaje_aux);
 	free(mensaje_a_eliminar);
@@ -220,7 +218,7 @@ void compactar_memoria(void){
 	int inicio_mensaje;
 	int tamanio_mensaje;
 
-	sem_wait(&MUTEX_MEM_PRIN);
+
 	for(int i=0; i<tamanio_lista; i++){
 
 		mensaje_a_leer = list_get(lista_ordenada, i);
@@ -240,7 +238,7 @@ void compactar_memoria(void){
 	}
 
 	memcpy(memoria_principal, memoria_copactada, tamanio_de_memoria);
-	sem_post(&MUTEX_MEM_PRIN);
+
 
 	log_compactacion();
 
@@ -326,7 +324,7 @@ int buscar_first_fit(int *encontrado, void* bloque_a_agregar_en_memoria, uint32_
 	}
 	else {
 
-		//sem_wait(&MUTEX_MEM_PRIN);
+
 		for(int i=0; i<tamanio_lista; i++){ // Recorre para ver todos los mensajes guardados en la memoria principal
 
 			t_mensaje_guardado* mensaje_a_leer;
@@ -354,7 +352,7 @@ int buscar_first_fit(int *encontrado, void* bloque_a_agregar_en_memoria, uint32_
 			if(*encontrado == 1)
 				break;
 		}
-		//sem_post(&MUTEX_MEM_PRIN);
+
 	}
 
 	return posicion_inicial_nuevo_mensaje;
@@ -415,7 +413,7 @@ int buscar_best_fit(int *encontrado, void* bloque_a_agregar_en_memoria, uint32_t
 		*encontrado = 1;
 
 	} else {
-		//sem_wait(&MUTEX_MEM_PRIN);
+
 		while(*encontrado == 0 && tamanio_aceptable <= tamanio_de_memoria){
 
 			for(int i=0; i<tamanio_lista; i++){ // Recorre para ver todos los mensajes guardados en la memoria principal
@@ -445,7 +443,7 @@ int buscar_best_fit(int *encontrado, void* bloque_a_agregar_en_memoria, uint32_t
 		tamanio_aceptable++;
 
 		}
-		//sem_post(&MUTEX_MEM_PRIN);
+
 	}
 
 	return posicion_inicial_nuevo_mensaje;
@@ -768,7 +766,6 @@ void mostrar_memoria_principal(void){
 
 	int desplazamiento = 0;
 
-	sem_wait(&MUTEX_MEM_PRIN);
 	for(int i=0; i<tamanio_de_memoria; i+=sizeof(uint32_t)){
 		uint32_t valor;
 		memcpy(&valor, memoria_principal + desplazamiento, sizeof(uint32_t));
@@ -779,7 +776,7 @@ void mostrar_memoria_principal(void){
 		//printf("Valor en posicio %d: %d", i, valor);
 		desplazamiento += sizeof(uint32_t);
 	}
-	sem_post(&MUTEX_MEM_PRIN);
+
 
 }
 
@@ -801,14 +798,14 @@ int toda_la_memoria_esta_ocupada(void){
 	int contador_ocupado = 0;
 	int a_leer;
 
-	sem_wait(&MUTEX_MEM_PRIN);
+
 	for(int desplazamiento=0; desplazamiento<tamanio_lista; desplazamiento++){
 		memcpy(&a_leer, memoria_principal + desplazamiento, sizeof(int));
 		if(a_leer != 0){
 			contador_ocupado++;
 		}
 	}
-	sem_post(&MUTEX_MEM_PRIN);
+
 
 	if(contador_ocupado == tamanio_de_memoria){ // Quiere decir que toda la memoria está ocupada
 		booleano = 1;
@@ -839,7 +836,7 @@ int entra_en_hueco(int tamanio_a_agregar, int posicion_libre){
 	int cero;
 	int desplazamiento = 0;
 
-	sem_wait(&MUTEX_MEM_PRIN);
+
 	memcpy(&cero, memoria_principal + posicion_libre, sizeof(int));
 
 	while(cero == 0 && contador <= tamanio_a_agregar){
@@ -851,7 +848,6 @@ int entra_en_hueco(int tamanio_a_agregar, int posicion_libre){
 	if(contador >= tamanio_a_agregar){
 		boolean = 1;
 	}
-	sem_post(&MUTEX_MEM_PRIN);
 
 	return boolean;
 }
@@ -864,7 +860,7 @@ t_mensaje_guardado* guardar_en_posicion(void* bloque_a_agregar_en_memoria, uint3
 	mensaje_nuevo->byte_comienzo_ocupado = posicion;
 	mensaje_nuevo->tamanio_ocupado = tamanio_a_agregar;
 
-	//sem_post(&MUTEX_MEM_PRIN);
+
 
 	return mensaje_nuevo;
 }
