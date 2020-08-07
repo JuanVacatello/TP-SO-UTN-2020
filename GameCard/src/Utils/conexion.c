@@ -692,6 +692,20 @@ void* get_pokemon(char* pokemon, uint32_t *tamanio_void){
 
 // Enviar mensaje a Broker
 
+void recibir_mensaje_id(int socket_broker){
+
+	op_code codigo_de_operacion;
+	recv(socket_broker, &codigo_de_operacion, sizeof(op_code), MSG_WAITALL);
+
+	uint32_t buffer_size = 0;
+	recv(socket_broker, &buffer_size, sizeof(uint32_t), MSG_WAITALL);
+
+	uint32_t id_mensaje;
+	recv(socket_broker, &id_mensaje, buffer_size, MSG_WAITALL);
+
+	printf("El id del mensaje que fue recién enviado es %d \n", id_mensaje);
+}
+
 void enviar_appeared_pokemon(char* pokemon, uint32_t posX, uint32_t posY, uint32_t id_mensaje_correlativo){
 
 	char* puerto_broker = obtener_puerto_broker();
@@ -708,6 +722,8 @@ void enviar_appeared_pokemon(char* pokemon, uint32_t posX, uint32_t posY, uint32
 	if(send(socket_broker,a_enviar,tamanio_paquete,0) == -1){
 		printf("Error en enviar por el socket");
 	}
+
+	recibir_mensaje_id(socket_broker);
 }
 
 void* iniciar_paquete_serializado_AppearedPokemon(int* tamanio_paquete, char* pokemon, uint32_t posX, uint32_t posY, uint32_t id_mensaje_correlativo){
@@ -758,6 +774,8 @@ void enviar_caught_pokemon(uint32_t id_mensaje_correlativo, uint32_t se_pudo_atr
 	if(send(socket_broker,a_enviar,tamanio_paquete,0) == -1){
 		printf("Error en enviar por el socket");
 	}
+
+	recibir_mensaje_id(socket_broker);
 }
 
 void* iniciar_paquete_serializado_CaughtPokemon(int* tamanio_paquete, uint32_t id_mensaje_correlativo, uint32_t se_pudo_atrapar){
@@ -797,6 +815,8 @@ void enviar_localized_pokemon(void* cantidad_y_posiciones, uint32_t tamanio_void
 	if(send(socket_broker,a_enviar,tamanio_paquete,0) == -1){
 		printf("Error en enviar por el socket");
 	}
+
+	recibir_mensaje_id(socket_broker);
 }
 
 void* iniciar_paquete_serializado_LocalizedPokemon(int* tamanio_paquete, uint32_t id_mensaje_correlativo, char* pokemon, void* cantidad_y_posiciones, uint32_t tamanio_void){

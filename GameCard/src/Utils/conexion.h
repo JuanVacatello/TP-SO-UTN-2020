@@ -77,6 +77,7 @@ void new_pokemon(char* pokemon,int posX,int posY, int cantidad);
 int catch_pokemon(char* pokemon,int posX,int posY);
 void* get_pokemon(char* pokemon, uint32_t* tamanio_void);
 // Enviar mensaje a Broker
+void recibir_mensaje_id(int socket_broker);
 void enviar_appeared_pokemon(char* pokemon, uint32_t posX, uint32_t posY, uint32_t id_mensaje_correlativo);
 void* iniciar_paquete_serializado_AppearedPokemon(int* tamanio_paquete, char* pokemon, uint32_t posX, uint32_t posY, uint32_t id_mensaje_correlativo);
 void enviar_caught_pokemon(uint32_t id_mensaje_correlativo, uint32_t se_pudo_atrapar);
