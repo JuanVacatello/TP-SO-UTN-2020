@@ -767,7 +767,8 @@ void recibir_new_pokemon(int socket_cliente)
 
 	// Guardo información del mensaje
 
-	guardar_mensaje_en_cola(mensajes_de_cola_new_pokemon, mensaje_nuevo, tamanio_buffer, NULL, pokemon, suscriptores_new_pokemon);
+	uint32_t null = -1;
+	guardar_mensaje_en_cola(mensajes_de_cola_new_pokemon, mensaje_nuevo, tamanio_buffer, null, pokemon, suscriptores_new_pokemon);
 
 	sem_post(&MUTEX_NEW);
 
@@ -855,9 +856,9 @@ void recibir_appeared_pokemon(int socket_cliente){
 
 	// Guardo información del mensaje
 
-	int tamanio_buffer_sin_id = tamanio_buffer_sin_barra_n_ni_id + 1;
-
-	guardar_mensaje_en_cola(mensajes_de_cola_appeared_pokemon, mensaje_nuevo, tamanio_buffer_sin_id, NULL, pokemon, suscriptores_appeared_pokemon);
+	uint32_t tamanio_buffer_sin_id = tamanio_buffer_sin_barra_n_ni_id + 1;
+	uint32_t null = -1;
+	guardar_mensaje_en_cola(mensajes_de_cola_appeared_pokemon, mensaje_nuevo, tamanio_buffer_sin_id, null, pokemon, suscriptores_appeared_pokemon);
 
 	sem_post(&MUTEX_APPEARED);
 
@@ -941,8 +942,8 @@ void recibir_catch_pokemon(int socket_cliente){
 	reenviar_mensaje_a_suscriptores(a_enviar, tamanio_paquete, suscriptores_catch_pokemon, 3);
 
 	// Guardo información del mensaje
-
-	guardar_mensaje_en_cola(mensajes_de_cola_catch_pokemon, mensaje_nuevo, tamanio_buffer, NULL, pokemon, suscriptores_catch_pokemon);
+	uint32_t null = -1;
+	guardar_mensaje_en_cola(mensajes_de_cola_catch_pokemon, mensaje_nuevo, tamanio_buffer, null, pokemon, suscriptores_catch_pokemon);
 
 	sem_post(&MUTEX_CATCH);
 
@@ -1071,14 +1072,14 @@ void recibir_get_pokemon(int socket_cliente){
 	reenviar_mensaje_a_suscriptores(a_enviar, tamanio_paquete, suscriptores_get_pokemon, 5);
 
 	// Guardo información del mensaje
-
-	guardar_mensaje_en_cola(mensajes_de_cola_get_pokemon, mensaje_nuevo, tamanio_buffer, NULL, pokemon, suscriptores_get_pokemon);
+	uint32_t null = -1;
+	guardar_mensaje_en_cola(mensajes_de_cola_get_pokemon, mensaje_nuevo, tamanio_buffer, null, pokemon, suscriptores_get_pokemon);
 
 	sem_post(&MUTEX_GET);
 
 	//free(bloque_a_agregar_en_memoria);
-	free(paquete->buffer);
-	free(paquete);
+	//free(paquete->buffer);
+	//free(paquete);
 }
 
 void recibir_localized_pokemon(int socket_cliente){
