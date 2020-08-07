@@ -236,6 +236,8 @@ void* suscribirse_a_cola(int socket_broker, uint32_t cola_a_suscribirse, int* ta
 // Recibir mensajes de GameBoy y Broker
 
 void recibir_new_pokemon(int socket_cliente){
+	sem_wait(&MUTEX_NEW);
+
 	uint32_t tamanio_buffer;
 	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
@@ -276,10 +278,11 @@ void recibir_new_pokemon(int socket_cliente){
 
 	free(pokemon);
 
+	sem_post(&MUTEX_NEW);
 }
 
 void recibir_catch_pokemon(int socket_cliente){//RECIBE TODO PERFECTO (NO MUEVAN EL ORDEN DE LAS COSAS BOE)
-
+	sem_wait(&MUTEX_CATCH);
 	uint32_t tamanio_buffer;
 	recv(socket_cliente, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
@@ -313,6 +316,7 @@ void recibir_catch_pokemon(int socket_cliente){//RECIBE TODO PERFECTO (NO MUEVAN
 	enviar_caught_pokemon(mensaje_id, se_pudo_encontrar);
 
 	free(pokemon);
+	sem_post(&MUTEX_CATCH);
 }
 
 void recibir_get_pokemon(int socket_cliente){//RECIBE TODO PERFECTO (NO MUEVAN EL ORDEN DE LAS COSAS BOE)
@@ -816,7 +820,7 @@ void enviar_localized_pokemon(void* cantidad_y_posiciones, uint32_t tamanio_void
 		printf("Error en enviar por el socket");
 	}
 
-	recibir_mensaje_id(socket_broker);
+	//recibir_mensaje_id(socket_broker);
 }
 
 void* iniciar_paquete_serializado_LocalizedPokemon(int* tamanio_paquete, uint32_t id_mensaje_correlativo, char* pokemon, void* cantidad_y_posiciones, uint32_t tamanio_void){
