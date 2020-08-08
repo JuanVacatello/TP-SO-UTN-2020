@@ -51,7 +51,7 @@ cd
 
 #INICIO DE GAMEBOY
 
-cd home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/GameBoy/
+cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/GameBoy/
 
 if test -e GameBoy.config; then
 	rm GameBoy.config
@@ -75,7 +75,7 @@ make all
 cd
 
 #INICIO DE GAMECARD
-cd home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/GameCard
+cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/GameCard
 
 if test -e GameCard.config; then
 	rm GameCard.config
@@ -107,7 +107,7 @@ cd
 
 #CREO LOS BROKERS
 
-cd home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/
+cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/
 
 cp -r Broker/ Broker-Particiones-dinamicas-stress
 cp -r Broker/ Broker-BUDDY-SYSTEM-stress
@@ -116,7 +116,7 @@ cp -r Broker/ Broker-BUDDY-SYSTEM-stress
 
 #Configuro broker consolidacion Particiones dinamicas
 
-cd home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/Broker-Particiones-dinamicas-stress/
+cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/Broker-Particiones-dinamicas-stress/
 
 if test -e Broker.config; then
 	rm Broker.config
@@ -166,7 +166,7 @@ cd
 
 #CREO TEAMS
 
-cd home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/
+cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/
 
 cp -r Team/ Team-FIFO-stress
 cp -r Team/ Team-RR-stress
@@ -209,7 +209,7 @@ cd
 
 #Configuro team con RR -> Quantum = 1
 
-cd home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/Team-RR-stress
+cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/Team-RR-stress
 
 if test -e Team.config; then
 	rm Team.config
@@ -237,7 +237,7 @@ make all
 
 #Configuro team con SJF - SD
 
-cd home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/Team-SJF-SD-stress
+cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/Team-SJF-SD-stress
 
 if test -e Team.config; then
 	rm Team.config
@@ -265,7 +265,7 @@ make all
 
 #Configuro team con SJF - CD
 
-cd home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/Team-SJF-CD-stress
+cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/Team-SJF-CD-stress
 
 if test -e Team.config; then
 	rm Team.config
