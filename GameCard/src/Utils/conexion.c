@@ -717,17 +717,19 @@ void enviar_appeared_pokemon(char* pokemon, uint32_t posX, uint32_t posY, uint32
 	int socket_broker = crear_conexion(ip_broker,puerto_broker);
 
 	if(socket_broker == -1){
-		completar_logger("Error: No se puede conectar al broker para enviar un appeared, se continua la ejecucion","GAMECARD", LOG_LEVEL_INFO);
+		completar_logger("Error: No se puede conectar al broker para enviar un appeared, se continua la ejecucion\n","GAMECARD", LOG_LEVEL_INFO);
 	}
 
 	int tamanio_paquete = 0;
 	void* a_enviar = iniciar_paquete_serializado_AppearedPokemon(&tamanio_paquete, pokemon, posX, posY, id_mensaje_correlativo);
 
-	if(send(socket_broker,a_enviar,tamanio_paquete,0) == -1){
-		printf("Error en enviar por el socket");
+	if(send(socket_broker,a_enviar,tamanio_paquete,0) != -1){
+
+		recibir_mensaje_id(socket_broker);
 	}
 
-	recibir_mensaje_id(socket_broker);
+
+	
 }
 
 void* iniciar_paquete_serializado_AppearedPokemon(int* tamanio_paquete, char* pokemon, uint32_t posX, uint32_t posY, uint32_t id_mensaje_correlativo){
@@ -769,17 +771,16 @@ void enviar_caught_pokemon(uint32_t id_mensaje_correlativo, uint32_t se_pudo_atr
 	int socket_broker = crear_conexion(ip_broker,puerto_broker);
 
 	if(socket_broker == -1){
-		completar_logger("Error: No se puede conectar al broker para enviar un caught, se continua la ejecucion","GAMECARD", LOG_LEVEL_INFO);
+		completar_logger("Error: No se puede conectar al broker para enviar un caught, se continua la ejecucion\n","GAMECARD", LOG_LEVEL_INFO);
 	}
 
 	int tamanio_paquete = 0;
 	void* a_enviar = iniciar_paquete_serializado_CaughtPokemon(&tamanio_paquete, id_mensaje_correlativo, se_pudo_atrapar);
 
-	if(send(socket_broker,a_enviar,tamanio_paquete,0) == -1){
-		printf("Error en enviar por el socket");
-	}
+	if(send(socket_broker,a_enviar,tamanio_paquete,0) != -1){
 
-	recibir_mensaje_id(socket_broker);
+		recibir_mensaje_id(socket_broker);
+	}
 }
 
 void* iniciar_paquete_serializado_CaughtPokemon(int* tamanio_paquete, uint32_t id_mensaje_correlativo, uint32_t se_pudo_atrapar){
@@ -810,17 +811,16 @@ void enviar_localized_pokemon(void* cantidad_y_posiciones, uint32_t tamanio_void
 	int socket_broker = crear_conexion(ip_broker,puerto_broker);
 
 	if(socket_broker == -1){
-		completar_logger("Error: No se puede conectar al broker para enviar un localized, se continua la ejecucion","GAMECARD", LOG_LEVEL_INFO);
+		completar_logger("Error: No se puede conectar al broker para enviar un localized, se continua la ejecucion\n","GAMECARD", LOG_LEVEL_INFO);
 	}
 
 	int tamanio_paquete = 0;
 	void* a_enviar = iniciar_paquete_serializado_LocalizedPokemon(&tamanio_paquete, id_mensaje_correlativo, pokemon, cantidad_y_posiciones, tamanio_void);
 
-	if(send(socket_broker,a_enviar,tamanio_paquete,0) == -1){
-		printf("Error en enviar por el socket");
-	}
+	if(send(socket_broker,a_enviar,tamanio_paquete,0) != -1){
 
-	//recibir_mensaje_id(socket_broker);
+		recibir_mensaje_id(socket_broker);
+	}
 }
 
 void* iniciar_paquete_serializado_LocalizedPokemon(int* tamanio_paquete, uint32_t id_mensaje_correlativo, char* pokemon, void* cantidad_y_posiciones, uint32_t tamanio_void){
