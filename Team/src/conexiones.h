@@ -62,6 +62,7 @@ char* recibir_mensaje(int socket_cliente);
 void recibir_AppearedPokemon(int socket_cliente);
 void recibir_CaughtPokemon(int socket_cliente);
 void recibir_LocalizedPokemon(int socket_cliente);
+void recibir_id_correlativo_get(int socket_broker);
 
 //RECIBIR MENSAJES CON LOGS
 void recibir_appeared_pokemon_loggeo(void);

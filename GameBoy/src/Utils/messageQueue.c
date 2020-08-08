@@ -680,7 +680,7 @@ void recibir_mensajes_varios(int socket_cliente, uint32_t buffer_size){
 		uint32_t id_mensaje;
 		recv(socket_cliente, &id_mensaje, buffer_size, MSG_WAITALL);
 		printf("El id del mensaje enviado es %d \n", id_mensaje);
-		return;
+
 	}
 
 	if(buffer_size == 16){
@@ -698,14 +698,13 @@ void recibir_mensajes_varios(int socket_cliente, uint32_t buffer_size){
 
 		printf("El proceso de id %d confirmó la recepción del mensaje cuyo id es %d \n", proceso_id, mensaje_id_recibido);
 
-		return;
 	}
 
 	if(buffer_size != 4 && buffer_size != 16){
 		char* log = malloc(buffer_size);
 		recv(socket_cliente, log, buffer_size, MSG_WAITALL);
 		puts(log);
-		return;
+
 	}
 }
 

@@ -84,6 +84,7 @@ uint32_t mensaje_id;
 sem_t MUTEX_MENSAJE_ID;
 sem_t MUTEX_TIMESTAMP;
 sem_t MUTEX_MEM_PRIN;
+sem_t MUTEX_MEMORIA;
 
 // Guardado de mensaje en memoria
 t_mensaje_guardado* guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria, uint32_t tamanio_a_agregar, op_code cola);

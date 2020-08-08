@@ -4,7 +4,8 @@
 
 void leer_config(void)
 {
-	configGameCard = config_create("../GameCard.config"); // "../GameCard.config"
+	//configGameCard = config_create("GameCard.config"); // PARA CORRER POR ECLIPSE
+	configGameCard = config_create("../GameCard.config"); // PARA CORRER POR CON SOLA
 
 	if(configGameCard == NULL){
 		printf("No se pudo leer el archivo de configuración de la GameCard.\n");
@@ -52,30 +53,6 @@ int obtener_id_propio(void){
 	int process_id;
 	process_id = config_get_int_value(configGameCard,"PROCESS_ID");
 	return process_id;
-}
-
-void actualizar_path_files(char* path_files){
-
-	config_set_value(configGameCard, "PATH_FILES",path_files);
-	config_save(configGameCard);
-
-	leer_config();
-}
-
-void actualizar_path_metadata(char* path_metadata){
-
-	config_set_value(configGameCard, "PATH_METADATA",path_metadata);
-	config_save(configGameCard);
-
-	leer_config();
-}
-
-void actualizar_path_bloques(char* path_bloques){
-
-	config_set_value(configGameCard, "PATH_BLOQUES",path_bloques);
-	config_save(configGameCard);
-
-	leer_config();
 }
 
 char* obtener_path_files(){

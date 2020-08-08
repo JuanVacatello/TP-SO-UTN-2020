@@ -40,6 +40,7 @@ sem_t MUTEX_POKEMON_REQUERIDO;
 sem_t MUTEX_ENTRENADORES;
 sem_t CONTADOR_ENTRENADORES;
 sem_t MUTEX_MENSAJES_GB;
+sem_t GET;
 
 int ciclosCpuTotales;
 int	cambiosDeContexto;

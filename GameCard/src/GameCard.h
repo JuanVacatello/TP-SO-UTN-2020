@@ -20,13 +20,13 @@
 #include"Utils/logGameCard.h"
 #include"Utils/bloques.h"
 
-pthread_t hilo_gameboy;
 pthread_t hilo_new_pokemon;
 pthread_t hilo_catch_pokemon;
 pthread_t hilo_get_pokemon;
 
 sem_t MUTEX_PRUEBA;
 
+void inicializar_variables_globales(void);
 void inicializar_file_system(char* punto_montaje);
 char* concat(char* string1,char* string2);
 void inicializar_metadata(char* path_metadata, int block_size, int cant_bloques);

@@ -3,33 +3,8 @@
 
 int main(void) {
 
-	leer_config();
-	iniciar_logger();
+	inicializar_variables_globales();
 
-	sem_init(&MUTEX_MENSAJES_GB,0,1);
-	sem_init(&semaforo_bitmap,0,1);
-
-	char* punto_montaje = obtener_punto_montaje();
-	inicializar_file_system(punto_montaje);
-
-
-
-	iniciar_espera_mensajes_Gameboy();
-
-
-	/*
-	pthread_mutex_init(&MUTEX_BITMAP, NULL);
-
-	sem_init(&MUTEX_SUB,0,1);
-	sem_init(&MUTEX_PRUEBA,0,0);
-
-
-	while(1){
-		pthread_create(&hilo_gameboy, NULL, iniciar_espera_mensajes_Gameboy, NULL);
-		pthread_detach(hilo_gameboy);
-	}
-
-	/*
 	pthread_create(&hilo_new_pokemon, NULL, new_pokemon_broker, NULL);
 	pthread_detach(hilo_new_pokemon);
 
@@ -38,6 +13,72 @@ int main(void) {
 
 	pthread_create(&hilo_get_pokemon, NULL, get_pokemon_broker, NULL);
 	pthread_detach(hilo_get_pokemon);
+
+	iniciar_espera_mensajes_Gameboy();
+
+	return 0;
+
+	/*
+	new_pokemon("Pikachu",7,2,1);
+
+	catch_pokemon("Pikachu",7,2);
+
+	mostrar_contenido_bitmap();
+
+	new_pokemon("Pikachu",10,2,1);
+	new_pokemon("Pikachu",1,2,6);
+	catch_pokemon("Pikachu",7,2);
+	new_pokemon("Pikachu",200,2,3);
+	new_pokemon("Pikachu",10000000,2,1000000);
+	new_pokemon("Pikachu",5,2,2);
+	new_pokemon("Pikachu",11,9,2);
+
+	uint32_t tamanio_void;
+	get_pokemon("Pikachu", &tamanio_void);
+
+
+	//new_pokemon("Pikachu",7,2,1);
+	new_pokemon("Pikachu",7,2,5);
+
+	catch_pokemon("Pikachu",7,2);
+	catch_pokemon("Pikachu",7,2);
+	catch_pokemon("Pikachu",7,2);
+	catch_pokemon("Pikachu",7,2);
+	catch_pokemon("Pikachu",7,2);
+
+
+	new_pokemon("Pikachu",10,2,1);
+	new_pokemon("Pikachu",1,2,6);
+	new_pokemon("Pikachu",200,2,3);
+	new_pokemon("Pikachu",10000000,2,1000000);
+	new_pokemon("Pikachu",5,2,2);
+	new_pokemon("Pikachu",11,9,2);
+	new_pokemon("Pikachu",15,21,23);
+	new_pokemon("Pikachu",7,2,2);
+	new_pokemon("Pikachu",7,8,2);
+
+	catch_pokemon("Pikachu",10,2);
+
+	new_pokemon("Pikachu",10,2,1);
+
+	catch_pokemon("Pikachu",10,2);
+
+	catch_pokemon("Pikachu",6,7);
+	*/
+
+
+	//uint32_t tamanio_void;
+	//get_pokemon("Charmander", &tamanio_void);
+
+
+
+
+
+	/*
+	pthread_mutex_init(&MUTEX_BITMAP, NULL);
+
+	sem_init(&MUTEX_SUB,0,1);
+	sem_init(&MUTEX_PRUEBA,0,0);
 
 
 //	pthread_create(&HILO_PRINCIPAL, NULL , FUNCION_PRINCIPAL_GAMECARD (?) ,NULL);
@@ -56,13 +97,24 @@ int main(void) {
 
 */
 
-	//new_pokemon("Pikachu",10,2,1);
-	//catch_pokemon("Pikachu",6,7);
+
 	//uint32_t tamanio_void = 0;
 	//void* respuesta = get_pokemon("Pikachu", &tamanio_void);
+}
 
-	return 0;
+void inicializar_variables_globales(){
+	leer_config();
+	iniciar_logger();
 
+	sem_init(&MUTEX_MENSAJES_GB,0,1);
+	sem_init(&semaforo_bitmap,0,1);
+	sem_init(&MUTEX_SUB,0,1);
+	sem_init(&MUTEX_NEW,0,1);
+	sem_init(&MUTEX_CATCH,0,1);
+	sem_init(&MUTEX_GET,0,1);
+
+	char* punto_montaje = obtener_punto_montaje();
+	inicializar_file_system(punto_montaje);
 }
 
 
@@ -84,7 +136,6 @@ void inicializar_file_system(char* punto_montaje){
 		inicializar_metadata(path_metadata, obtener_tamanio_bloques(), obtener_cantidad_bloques());
 	}
 	path_metadata_global = path_metadata;
-	//actualizar_path_metadata(path_metadata);
 	leer_metadata_tall_grass(path_metadata);
 
 
@@ -97,7 +148,6 @@ void inicializar_file_system(char* punto_montaje){
 		inicializar_bloques(path_bloques);
 	}
 	path_bloques_global = path_bloques;
-	//actualizar_path_bloques(path_bloques);
 
 
 	//CREA FILES
@@ -109,7 +159,6 @@ void inicializar_file_system(char* punto_montaje){
 		inicializar_files(path_files);
 	}
 	path_files_global = path_files;
-	//actualizar_path_files(path_files);
 
 	//inicializa bitmap luego de crear los bloques y actualizar los paths
 	char* path_archivo_bitmap = string_new();
@@ -144,28 +193,23 @@ void inicializar_metadata(char* path_metadata, int block_size, int cant_bloques)
 	string_append(&sentencia_cantidad_bloques, cantidad_bloques);
 	string_append(&sentencia_cantidad_bloques, "\n");
 
+	char* sentencia_magic_number = string_new();
+	string_append(&sentencia_cantidad_bloques, "MAGIC_NUMBER=");
+	string_append(&sentencia_cantidad_bloques, obtener_magic_number());
+	string_append(&sentencia_cantidad_bloques, "\n");
+
 	txt_write_in_file(metadata, sentencia_tamanio_bloques);
 	txt_write_in_file(metadata, sentencia_cantidad_bloques);
-	txt_write_in_file(metadata, "MAGIC_NUMBER=TALL_GRASS\n");
+	txt_write_in_file(metadata, sentencia_magic_number);
 	txt_close_file(metadata);
 
 	free(tamanio_bloques);
 	free(cantidad_bloques);
 	free(sentencia_tamanio_bloques);
 	free(sentencia_cantidad_bloques);
+	free(sentencia_magic_number);
 	free(path_archivo_metadata);
 
-
-/*
-char* path_archivo_bitmap = string_new();
-string_append(&path_archivo_bitmap,path_metadata);
-string_append(&path_archivo_bitmap,"/bitmap.bin");
-
-//inicializa bitmap.bin
-		crear_bitmap(path_archivo_bitmap);
-
-		free(path_archivo_bitmap);
-*/
 }
 
 void inicializar_files(char* path_files){

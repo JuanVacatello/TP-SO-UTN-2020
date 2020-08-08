@@ -217,6 +217,10 @@ bool deteccion_de_deadlock(){
 //pokemonesAAtrapar = [Pikachu,Squirtle,Pikachu,Gengar,Squirtle,Onix]
 
 void informar_pokemones_a_atrapar(){
+	//sem_wait(&GET);
+	//sem_wait(&GET);
+	//sem_wait(&GET);
+
 	t_list* pokemones_aux = list_create();
 	t_list* pokemones_a_atrapar = list_create();
 	t_entrenador* entrenador_aux;
@@ -245,12 +249,42 @@ void informar_pokemones_a_atrapar(){
 
 	for(int indice = 0; indice < list_size(pokemones_a_atrapar); indice++){
 		pokemon = list_get(pokemones_a_atrapar, indice);
-		enviar_GetPokemon_a_broker(GET_POKEMON, pokemon);
+		enviar_GetPokemon_a_broker(5, pokemon);
+		ciclos_de_cpu(2);
+		sem_post(&GET);
 	}
 
 	//free(pokemones_aux);
 	//free(pokemones_a_atrapar);
 }
+
+bool terminaron_de_atrapar(){
+
+	t_entrenador* entrenador;
+	int tamanio_objetivos = 0;
+	int tamanio_atrapados = 0;
+	int contador_terminados = 0;
+
+	for(int i=0; i<list_size(lista_de_entrenadores); i++){
+
+		entrenador = list_get(lista_de_entrenadores, i);
+		tamanio_objetivos = list_size(entrenador->objetivo);
+		tamanio_atrapados = list_size(entrenador->atrapados);
+
+		if(tamanio_objetivos == tamanio_atrapados){
+			contador_terminados++;
+		}
+	}
+
+	if (contador_terminados == list_size(lista_de_entrenadores)){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
+
 
 bool terminoTeam(){
 	return list_all_satisfy(lista_de_entrenadores, esta_en_exit);

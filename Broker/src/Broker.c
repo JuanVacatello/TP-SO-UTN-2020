@@ -57,6 +57,19 @@ void inicializacion_de_variables_globales(void){
 	sem_init(&MUTEX_TIMESTAMP,0,1);
 	sem_init(&MUTEX_MEM_PRIN,0,1);
 	sem_init(&MUTEX_MENSAJE_ID,0,1);
+	sem_init(&MUTEX_MEMORIA,0,1);
+	sem_init(&MUTEX_NEW,0,1);
+	sem_init(&MUTEX_APPEARED,0,1);
+	sem_init(&MUTEX_CATCH,0,1);
+	sem_init(&MUTEX_CAUGHT,0,1);
+	sem_init(&MUTEX_GET,0,1);
+	sem_init(&MUTEX_LOCALIZED,0,1);
+	sem_init(&REENVIO,0,1);
+	sem_init(&GUARDAR,0,1);
+	sem_init(&LISTA_GENERAL,0,1);
+	sem_init(&SUBS,0,1);
+	sem_init(&NOSE,0,1);
+
 
 	pthread_mutex_init(&mutex_suscripcion, NULL);
 	pthread_mutex_lock(&mutex_suscripcion);

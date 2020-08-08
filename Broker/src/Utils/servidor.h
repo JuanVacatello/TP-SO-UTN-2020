@@ -14,7 +14,6 @@
 #include"memoria.h"
 #include"logBroker.h"
 
-
 typedef struct
 {
 	int id;
@@ -40,8 +39,28 @@ typedef struct
 	int tiempo;
 } t_suscripcion;
 
+pthread_t hilo_suscripcion;
+pthread_t hilo_newPokemon;
+pthread_t hilo_appearedPokemon;
+pthread_t hilo_catchPokemon;
+pthread_t hilo_caughtPokemon;
+pthread_t hilo_getPokemon;
+pthread_t hilo_localizedPokemon;
+
 t_buffer* buffer;
 pthread_t thread;
+
+sem_t MUTEX_NEW;
+sem_t MUTEX_APPEARED;
+sem_t MUTEX_CATCH;
+sem_t MUTEX_CAUGHT;
+sem_t MUTEX_GET;
+sem_t MUTEX_LOCALIZED;
+sem_t REENVIO;
+sem_t GUARDAR;
+sem_t LISTA_GENERAL;
+sem_t SUBS;
+sem_t NOSE;
 
 // CONEXION CON CLIENTE
 void iniciar_servidor(void);
@@ -84,7 +103,7 @@ int recibir_tamanio_buffer(int socket);
 // ENVIAR MENSAJE
 void enviar_mensaje(int socket_cliente, char* mensaje);
 void enviar_id_mensaje(uint32_t id_del_mensaje, int socket_cliente);
-
+/*
 pthread_t hilo_suscripcion;
 pthread_t hilo_newPokemon;
 pthread_t hilo_appearedPokemon;
@@ -92,7 +111,7 @@ pthread_t hilo_catchPokemon;
 pthread_t hilo_caughtPokemon;
 pthread_t hilo_getPokemon;
 pthread_t hilo_localizedPokemon;
-
+*/
 pthread_mutex_t mutex_suscripcion;
 
 #endif

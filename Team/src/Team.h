@@ -27,6 +27,9 @@ typedef enum{
 
 } op_planificacion;
 
+sem_t GET;
+sem_t ID;
+sem_t SUB;
 
 int cantidad_entrenadores(void);
 void armar_entrenadores(void);
@@ -39,13 +42,14 @@ bool es_pokemon_requerido( char* pokemon);
 void terminar_programa(int conexion, t_log* logger);
 bool deteccion_de_deadlock();
 t_accion* armar_accion(void(*accion)(void*), int ciclos);
-
+bool terminaron_de_atrapar();
 
 void eliminarPokemon(void* pokemon);
 void liberar_entrenador(t_entrenador* entrenador);
 void liberar_pokemon(t_pokemon* pokemon);
 void liberar_team();
 
+bool terminaron_de_atrapar();
 bool terminoTeam();
 void finalizoTeam();
 #endif /* TEAM_H_ */

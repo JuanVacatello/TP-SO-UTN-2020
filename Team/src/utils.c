@@ -16,8 +16,6 @@ void iniciar_vg(){
 	lista_ids_getPokemon = list_create();
 	lista_pokemonesNoRequeridos_enElMapa = list_create();
 
-	informar_pokemones_a_atrapar();
-
 	ciclosCpuTotales = 0;
 	cambiosDeContexto = 0;
 	deadlocksProducidos = 0;
@@ -38,6 +36,9 @@ void iniciar_vg(){
 	sem_init(&CONTADOR_ENTRENADORES,0,cantidad_entrenadores());
 	sem_init(&MUTEX_ENTRENADORES,0,1);
 	sem_init(&MUTEX_MENSAJES_GB,0,1);
+	sem_init(&GET,0,1);
+	sem_init(&ID,0,1);
+	sem_init(&SUB,0,1);
 
 	verificar_entrenadores();
 

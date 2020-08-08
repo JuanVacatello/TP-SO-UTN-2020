@@ -22,10 +22,8 @@
 #include"bloques.h"
 #include"metadata.h"
 #include"configGameCard.h"
+#include"logGameCard.h"
 
-
-
-// t_log *logger;
 t_bitarray *bitarray;
 int bitmap_fd;
 int flag_bloques_libres;
@@ -34,7 +32,6 @@ char *bitarrayContent;
 pthread_mutex_t MUTEX_BITMAP;
 
 sem_t semaforo_bitmap;
-
 
 
 #ifndef UTILS_BITMAP_H_

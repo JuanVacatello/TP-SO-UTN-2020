@@ -8,8 +8,6 @@ void planificar_fifo(void){
 
 	while(!terminoTeam()){
 
-		pthread_mutex_lock(&mutex_planificador);
-
 		while(!list_is_empty(lista_de_entrenadores_ready)){
 
 			sem_wait(&MUTEX_ENTRENADORES);
@@ -45,14 +43,14 @@ void planificar_fifo(void){
 				ejecutar_entrenador(entrenador);
 			}
 
-
-
 		}
 
 		if(terminoTeam()){
 			finalizoTeam();
 			exit(10);
 		}
+
+		pthread_mutex_lock(&mutex_planificador);
 
 	}
 }
@@ -65,8 +63,6 @@ void planificar_sjf_sd(void){
 	t_entrenador* entrenador;
 
 	while(!terminoTeam()){
-
-		pthread_mutex_lock(&mutex_planificador);
 
 		while(!list_is_empty(lista_de_entrenadores_ready)){
 
@@ -122,6 +118,7 @@ void planificar_sjf_sd(void){
 			exit(10);
 		}
 
+		pthread_mutex_lock(&mutex_planificador);
 	}
 
 }
@@ -230,7 +227,9 @@ void planificar_sjf_cd(void){
 				finalizoTeam();
 				exit(10);
 			}
-		}
+
+			pthread_mutex_lock(&mutex_planificador);
+	}
 }
 
 
@@ -277,6 +276,7 @@ void planificar_rr(void){
 					}
 					else{
 						accion_aux->ciclo_cpu -= quantum_remanente;
+						entrenador->ciclos_de_cpu_totales += quantum_remanente;  //CHEQUEAR ESTOO
 						list_replace_and_destroy_element(entrenador->cola_de_acciones, 0, accion_aux, destruir_accion);
 						quantum_remanente = 0;
 					}
@@ -325,6 +325,7 @@ void planificar_rr(void){
 					}
 					else{
 						accion_aux->ciclo_cpu -= quantum_remanente;
+						entrenador->ciclos_de_cpu_totales += quantum_remanente;  //CHEQUEAR ESTOO
 						list_replace_and_destroy_element(entrenador->cola_de_acciones, 0, accion_aux, destruir_accion);
 						quantum_remanente = 0;
 					}
@@ -336,11 +337,12 @@ void planificar_rr(void){
 						ejecutar_entrenador(entrenador);
 						quantum_remanente-= accion_aux->ciclo_cpu;
 						}
-						else{
-							accion_aux->ciclo_cpu -= quantum_remanente;
-							list_replace_and_destroy_element(entrenador->cola_de_acciones, 0, accion_aux, destruir_accion);
-							quantum_remanente = 0;
-							}
+					else{
+						accion_aux->ciclo_cpu -= quantum_remanente;
+						entrenador->ciclos_de_cpu_totales += quantum_remanente;	//CHEQUEAR ESTA LINEA
+						list_replace_and_destroy_element(entrenador->cola_de_acciones, 0, accion_aux, destruir_accion);
+						quantum_remanente = 0;
+						}
 
 				if(list_size(entrenador->cola_de_acciones) > 0 && quantum_remanente == 0){
 					entrenador->estado = READY;
@@ -360,6 +362,8 @@ void planificar_rr(void){
 			finalizoTeam();
 			exit(10);
 		}
+
+		pthread_mutex_lock(&mutex_planificador);
 	}
 }
 
