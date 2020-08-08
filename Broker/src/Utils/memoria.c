@@ -27,7 +27,6 @@ t_mensaje_guardado* guardar_mensaje_en_memoria(void* bloque_a_agregar_en_memoria
 	list_add(elementos_en_memoria, mensaje_nuevo);
 
 	log_almacenar_mensaje(mensaje_nuevo->byte_comienzo_ocupado);
-	actualizar_dump_cache(SIGUSR1);
 
 	sem_post(&MUTEX_MEMORIA);
 
