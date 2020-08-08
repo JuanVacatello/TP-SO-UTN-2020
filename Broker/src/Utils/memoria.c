@@ -331,7 +331,7 @@ int buscar_first_fit(int *encontrado, void* bloque_a_agregar_en_memoria, uint32_
 		posicion_inicial_nuevo_mensaje = 0;
 		*encontrado = 1;
 	}
-	else if(tamanio_a_agregar >= tamanio_de_memoria){
+	else if(sumatoria > tamanio_de_memoria){
 
 		*encontrado = 0;
 	}
@@ -419,12 +419,26 @@ int buscar_best_fit(int *encontrado, void* bloque_a_agregar_en_memoria, uint32_t
 	int tamanio_aceptable = tamanio_a_agregar; // Empieza buscando un tamaño igual al necesario, si no lo encuentra, busca uno mas grande por 1 byte, y asi
 	int posicion_inicial_nuevo_mensaje = -1;
 
+	int sumatoria = tamanio_a_agregar;
+
+	for(int i= 0; i <list_size(elementos_en_memoria); i++){
+
+		t_mensaje_guardado* mensaje_a_leer;
+		mensaje_a_leer = list_get(elementos_en_memoria, i);
+		sumatoria += mensaje_a_leer->tamanio_ocupado;
+	}
+
 	if(list_is_empty(elementos_en_memoria) || primera_posicion_vacia_y_entra(tamanio_a_agregar)){ // Si está vacía agregar al principio de la memoria
 
 		posicion_inicial_nuevo_mensaje = 0;
 		*encontrado = 1;
 
-	} else {
+	}
+	else if(sumatoria > tamanio_de_memoria){
+
+			*encontrado = 0;
+	}
+	else{
 
 		while(*encontrado == 0 && tamanio_aceptable <= tamanio_de_memoria){
 

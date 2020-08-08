@@ -54,7 +54,7 @@ void esperar_cliente(int socket_servidor)
 void serve_client(int* socket_proceso)
 {
 	log_conexion(*socket_proceso);
-	sem_wait(&NOSE);
+
 	op_code cod_op;
 	if(recv(*socket_proceso, &cod_op, sizeof(op_code), MSG_WAITALL) == -1){
 		pthread_exit(NULL);
@@ -69,8 +69,9 @@ void process_request(op_code cod_op, int socket_cliente) {
 
 	switch (cod_op) {
 		case 0:
-			pthread_create(&hilo_suscripcion, NULL, atender_suscripcion, socket_cliente);
-			pthread_detach(hilo_suscripcion);
+			atender_suscripcion(socket_cliente);
+			//pthread_create(&hilo_suscripcion, NULL, atender_suscripcion, socket_cliente);
+			//pthread_detach(hilo_suscripcion);
 			enviar_mensaje(socket_cliente, "Suscripto.");
 			break;
 		case 1:
@@ -112,7 +113,7 @@ void process_request(op_code cod_op, int socket_cliente) {
 		default:
 			break;
 	}
-	sem_post(&NOSE);
+
 }
 
 
@@ -144,7 +145,7 @@ void suscribirse_a_cola(proceso* suscriptor, int socket, uint32_t tamanio_buffer
 
 	uint32_t cola_a_suscribirse;
 	recv(socket, &cola_a_suscribirse, sizeof(uint32_t), MSG_WAITALL);
-
+	sem_wait(&MUTEX_MEMORIA);
 	switch(cola_a_suscribirse){
 		case 0:
 			break;
@@ -179,6 +180,7 @@ void suscribirse_a_cola(proceso* suscriptor, int socket, uint32_t tamanio_buffer
 			enviar_mensajes_al_nuevo_suscriptor_LP(mensajes_de_cola_localized_pokemon, suscriptor->socket_cliente);
 			break;
 	}
+	sem_post(&MUTEX_MEMORIA);
 
 	if(tamanio_buffer == 12){ // Entonces la suscripción es del GameBoy
 
@@ -197,7 +199,7 @@ void suscribirse_a_cola(proceso* suscriptor, int socket, uint32_t tamanio_buffer
 		pthread_mutex_lock(&mutex_suscripcion);
 	}
 	sem_post(&SUBS);
-//	sem_wait(&NOSE);
+
 }
 
 void correr_tiempo_suscripcion(t_suscripcion* suscripcion){
@@ -1232,7 +1234,7 @@ void reenviar_mensaje_a_suscriptores(void* a_enviar, int tamanio_paquete, t_list
 
 		log_envio_mensaje(socket_suscriptor,cola);
 
-		pthread_t hilo_ack;
+		pthread_t* hilo_ack;
 		pthread_create(&hilo_ack, NULL, recibir_ack, socket_suscriptor);
 		pthread_detach(hilo_ack);
 	}
