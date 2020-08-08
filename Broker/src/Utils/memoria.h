@@ -112,6 +112,7 @@ int for_first_fit_BS(int *encontrado, uint32_t tamanio_a_agregar);
 int particionar_buddy_system(uint32_t tamanio_a_agregar, int *tamanio_minimo, int index);
 t_mensaje_guardado* eliminar_y_consolidar_hasta_encontrar(uint32_t tamanio_a_agregar, void* bloque_a_agregar_en_memoria);
 void consolidar_buddy_system(int posicion_inicial_nuevo_mensaje);
+int es_mi_buddy(int tamanio_deseado, int posicion_izquierda);
 int evaluar_posible_consolidacion(int posicion_inicial_nuevo_mensaje, int* hay_que_consolidar);
 
 // AUXILIARES
