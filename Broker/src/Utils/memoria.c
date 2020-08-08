@@ -650,22 +650,75 @@ int evaluar_posible_consolidacion(int posicion_inicial_nuevo_mensaje, int* hay_q
 	t_particion_buddy* particion_nueva = list_get(elementos_en_buddy, index_nueva_part);
 	int espacio_liberado = particion_nueva->tam_particion;
 
-	for(int i=0; i<(list_size(elementos_en_buddy)); i++){
-		particion_a_leer = list_get(elementos_en_buddy, i);
+	if(particion_nueva->comienzo_particion == 0){
 
-		int particion_buddy_izquierda = particion_a_leer->comienzo_particion - particion_a_leer->tam_particion;
-		int particion_buddy_derecha = particion_a_leer->final_de_particion + 1;
+		for(int i=0; i<(list_size(elementos_en_buddy)); i++){
+			particion_a_leer = list_get(elementos_en_buddy, i);
 
-		if(espacio_liberado == particion_a_leer->tam_particion){
-			if(particion_buddy_izquierda == posicion_inicial_nuevo_mensaje || particion_buddy_derecha == posicion_inicial_nuevo_mensaje){
-				*hay_que_consolidar = 1;
-				index = i;
-				break;
+			int particion_buddy_izquierda = particion_a_leer->comienzo_particion - particion_a_leer->tam_particion;
+
+			if(espacio_liberado == particion_a_leer->tam_particion){
+				if(particion_buddy_izquierda == posicion_inicial_nuevo_mensaje){
+					*hay_que_consolidar = 1;
+					index = i;
+					return index;
+				}
 			}
 		}
 	}
 
-	return index;
+	else if(particion_nueva->final_de_particion == tamanio_de_memoria){
+
+		for(int i=0; i<(list_size(elementos_en_buddy)); i++){
+			particion_a_leer = list_get(elementos_en_buddy, i);
+
+			int particion_buddy_derecha = particion_a_leer->final_de_particion + 1;
+
+			if(espacio_liberado == particion_a_leer->tam_particion){
+				if(particion_buddy_derecha == posicion_inicial_nuevo_mensaje){
+					*hay_que_consolidar = 1;
+					index = i;
+					return index;
+				}
+			}
+		}
+	}
+	else{
+
+		for(int i=0; i<(list_size(elementos_en_buddy)); i++){
+			particion_a_leer = list_get(elementos_en_buddy, i);
+
+			if(espacio_liberado == particion_a_leer->tam_particion){
+
+				int particion_buddy_izquierda = particion_a_leer->final_de_particion + 1;
+				if(particion_buddy_izquierda == posicion_inicial_nuevo_mensaje){
+
+					if(es_mi_buddy(espacio_liberado, posicion_inicial_nuevo_mensaje)){
+						*hay_que_consolidar = 1;
+						index = i;
+						return index;
+					}
+				}
+
+				int particion_buddy_derecha = particion_a_leer->comienzo_particion - particion_a_leer->tam_particion;
+				if(particion_buddy_derecha == posicion_inicial_nuevo_mensaje){
+
+					if(!(es_mi_buddy(espacio_liberado, posicion_inicial_nuevo_mensaje))){
+						*hay_que_consolidar = 1;
+						index = i;
+						return index;
+					}
+				}
+			}
+		}
+	}
+}
+
+int es_mi_buddy(int tamanio_deseado, int posicion_izquierda){
+
+	int division_por_tamanio_deseado = posicion_izquierda/tamanio_deseado;
+
+	return division_por_tamanio_deseado % 2; //si es divisible por 2, no es mi buddy
 }
 
 int particionar_buddy_system(uint32_t tamanio_a_agregar, int *tamanio_minimo, int index){
