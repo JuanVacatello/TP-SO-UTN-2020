@@ -500,13 +500,13 @@ void recibir_CaughtPokemon(int socket_broker){
 		uint32_t pudoAtraparlo;
 		recv(socket_broker, &pudoAtraparlo, sizeof(uint32_t), MSG_WAITALL);
 
+		log_llego_mensaje_nuevo_caught_pokemon(mensajeid, id_correlativo, pudoAtraparlo);
 		responder_ack(socket_broker,mensajeid);
 
 		t_entrenador* entrenador = NULL;
 		entrenador = buscar_entrenador_por_id_catch(id_correlativo);
 
 		if(entrenador != NULL){
-			log_llego_mensaje_nuevo_caught_pokemon(mensajeid, id_correlativo, pudoAtraparlo);
 			entrenador->pudo_atrapar_pokemon = pudoAtraparlo;
 			entrenador->estado = EXEC;
 			atrapar_pokemon(entrenador);
@@ -552,6 +552,7 @@ void recibir_LocalizedPokemon(int socket_broker){
 			list_add(posicionesY, posY);
 
 		}
+
 		log_llego_mensaje_nuevo_localized_pokemon(mensajeid, id_correlativo, pokemon, cantidadPokemones, posicionesX, posicionesY);
 		responder_ack(socket_broker,mensajeid);
 

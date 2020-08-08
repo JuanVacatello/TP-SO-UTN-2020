@@ -4696,3 +4696,1263 @@ RESULTADO CATCH: OK.
 [INFO] 23:31:10:379 TEAM/(9855:9906): El entrenador C ejecutó 16 ciclos de cpu
 [INFO] 23:31:10:379 TEAM/(9855:9906): Se produjeron 2 deadlocks
 [INFO] 23:31:10:379 TEAM/(9855:9906): Se resolvieron 2 deadlocks
+[INFO] 23:45:28:338 TEAM/(10526:10526): el socket de conexion es: 4.
+[INFO] 23:45:28:342 TEAM/(10526:10528): el socket de conexion es: 5.
+[INFO] 23:45:28:343 TEAM/(10526:10528): Se logró conectar con el BROKER de manera exitosa
+[INFO] 23:45:29:344 TEAM/(10526:10528): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 10. 
+ID_CORRELATIVO: 9.
+POKEMON: Pikachu. 
+CANTIDAD: 1. 
+POSICION EN X: 9. 
+POSICION EN Y: 9. 
+
+[INFO] 23:45:30:344 TEAM/(10526:10526): No se encontraron pokemones de la especie Squirtle en el mapa
+[INFO] 23:45:32:345 TEAM/(10526:10526): No se encontraron pokemones de la especie Gengar en el mapa
+[INFO] 23:45:34:345 TEAM/(10526:10526): No se encontraron pokemones de la especie Onix en el mapa
+[INFO] 23:45:36:355 TEAM/(10526:10544): NO se logró conectar con el BROKER
+[INFO] 23:45:36:355 TEAM/(10526:10544): Reintentando conexion con BROKER en 30 segundos...
+[INFO] 23:45:37:356 TEAM/(10526:10546): El entrenador B se movió a la posicion 3|3.
+[INFO] 23:45:38:364 TEAM/(10526:10547): El entrenador B se movió a la posicion 4|3.
+[INFO] 23:45:39:373 TEAM/(10526:10548): El entrenador B se movió a la posicion 5|3.
+[INFO] 23:45:40:378 TEAM/(10526:10549): El entrenador B se movió a la posicion 6|3.
+[INFO] 23:45:41:383 TEAM/(10526:10550): El entrenador B se movió a la posicion 7|3.
+[INFO] 23:45:42:386 TEAM/(10526:10551): El entrenador B se movió a la posicion 8|3.
+[INFO] 23:54:06:707 TEAM/(11111:11111): el socket de conexion es: 4.
+[INFO] 23:54:06:722 TEAM/(11111:11113): el socket de conexion es: 5.
+[INFO] 23:54:06:722 TEAM/(11111:11113): Se logró conectar con el BROKER de manera exitosa
+[INFO] 23:54:07:783 TEAM/(11111:11113): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 12. 
+ID_CORRELATIVO: 10.
+POKEMON: Pikachu. 
+CANTIDAD: 1. 
+POSICION EN X: 9. 
+POSICION EN Y: 9. 
+
+[INFO] 23:54:08:708 TEAM/(11111:11111): el socket de conexion es: 9.
+[INFO] 23:54:08:772 TEAM/(11111:11113): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 14. 
+ID_CORRELATIVO: 11.
+POKEMON: Jolteon. 
+CANTIDAD: 1. 
+POSICION EN X: 2. 
+POSICION EN Y: 2. 
+
+[INFO] 23:54:09:774 TEAM/(11111:11113): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 16. 
+ID_CORRELATIVO: 13.
+POKEMON: Squirtle. 
+CANTIDAD: 1. 
+POSICION EN X: 5. 
+POSICION EN Y: 2. 
+
+[INFO] 23:54:10:709 TEAM/(11111:11111): el socket de conexion es: 10.
+[INFO] 23:54:10:767 TEAM/(11111:11113): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 18. 
+ID_CORRELATIVO: 15.
+POKEMON: Flareon. 
+CANTIDAD: 1. 
+POSICION EN X: 4. 
+POSICION EN Y: 6. 
+
+[INFO] 23:54:12:709 TEAM/(11111:11111): el socket de conexion es: 11.
+[INFO] 23:54:14:710 TEAM/(11111:11153): el socket de conexion es: 12.
+[INFO] 23:54:14:710 TEAM/(11111:11153): Se logró conectar con el BROKER de manera exitosa
+[INFO] 23:54:14:720 TEAM/(11111:11152): el socket de conexion es: 13.
+[INFO] 23:54:14:720 TEAM/(11111:11152): Se logró conectar con el BROKER de manera exitosa
+[INFO] 23:54:15:711 TEAM/(11111:11155): El entrenador B se movió a la posicion 3|3.
+[INFO] 23:54:16:714 TEAM/(11111:11164): El entrenador B se movió a la posicion 4|3.
+[INFO] 23:54:17:715 TEAM/(11111:11168): El entrenador B se movió a la posicion 5|3.
+[INFO] 23:54:18:716 TEAM/(11111:11172): El entrenador B se movió a la posicion 6|3.
+[INFO] 23:54:19:716 TEAM/(11111:11173): El entrenador B se movió a la posicion 7|3.
+[INFO] 23:54:20:717 TEAM/(11111:11174): El entrenador B se movió a la posicion 8|3.
+[INFO] 23:54:21:719 TEAM/(11111:11176): El entrenador B se movió a la posicion 9|3.
+[INFO] 23:54:22:720 TEAM/(11111:11177): El entrenador B se movió a la posicion 9|4.
+[INFO] 23:54:23:721 TEAM/(11111:11178): El entrenador B se movió a la posicion 9|5.
+[INFO] 23:54:24:723 TEAM/(11111:11179): El entrenador B se movió a la posicion 9|6.
+[INFO] 23:54:25:724 TEAM/(11111:11180): El entrenador B se movió a la posicion 9|7.
+[INFO] 23:54:26:725 TEAM/(11111:11181): El entrenador B se movió a la posicion 9|8.
+[INFO] 23:54:27:726 TEAM/(11111:11182): El entrenador B se movió a la posicion 9|9.
+[INFO] 23:54:27:727 TEAM/(11111:11183): el socket de conexion es: 14.
+[INFO] 23:54:28:753 TEAM/(11111:11152): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 25. 
+ID_CORRELATIVO: 24.
+RESULTADO CATCH: OK.
+[INFO] 23:54:28:753 TEAM/(11111:11152): El entrenador B atrapó un Pikachu en la posicion 9|9.
+[INFO] 23:54:29:736 TEAM/(11111:11154): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 23:54:30:737 TEAM/(11111:11189): El entrenador C se movió a la posicion 4|2.
+[INFO] 23:54:31:738 TEAM/(11111:11190): El entrenador C se movió a la posicion 5|2.
+[INFO] 23:54:31:738 TEAM/(11111:11191): el socket de conexion es: 15.
+[INFO] 23:54:32:763 TEAM/(11111:11152): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 27. 
+ID_CORRELATIVO: 26.
+RESULTADO CATCH: OK.
+[INFO] 23:54:32:764 TEAM/(11111:11152): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 00:00:07:86 TEAM/(11632:11632): el socket de conexion es: 4.
+[INFO] 00:00:07:89 TEAM/(11632:11634): el socket de conexion es: 5.
+[INFO] 00:00:07:89 TEAM/(11632:11634): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:00:08:91 TEAM/(11632:11634): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 10. 
+ID_CORRELATIVO: 9.
+POKEMON: Pikachu. 
+CANTIDAD: 1. 
+POSICION EN X: 9. 
+POSICION EN Y: 9. 
+
+[INFO] 00:00:09:87 TEAM/(11632:11632): el socket de conexion es: 9.
+[INFO] 00:00:10:93 TEAM/(11632:11634): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 13. 
+ID_CORRELATIVO: 12.
+POKEMON: Squirtle. 
+CANTIDAD: 1. 
+POSICION EN X: 5. 
+POSICION EN Y: 2. 
+
+[INFO] 00:00:11:88 TEAM/(11632:11632): el socket de conexion es: 10.
+[INFO] 00:00:11:898 TEAM/(11632:11634): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 16. 
+ID_CORRELATIVO: 14.
+POKEMON: Jolteon. 
+CANTIDAD: 1. 
+POSICION EN X: 2. 
+POSICION EN Y: 2. 
+
+[INFO] 00:00:13:89 TEAM/(11632:11632): el socket de conexion es: 11.
+[INFO] 00:00:13:898 TEAM/(11632:11634): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 19. 
+ID_CORRELATIVO: 17.
+POKEMON: Flareon. 
+CANTIDAD: 1. 
+POSICION EN X: 4. 
+POSICION EN Y: 6. 
+
+[INFO] 00:00:15:90 TEAM/(11632:11678): el socket de conexion es: 12.
+[INFO] 00:00:15:90 TEAM/(11632:11678): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:00:15:91 TEAM/(11632:11677): el socket de conexion es: 13.
+[INFO] 00:00:15:91 TEAM/(11632:11677): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:00:16:92 TEAM/(11632:11680): El entrenador B se movió a la posicion 3|3.
+[INFO] 00:00:17:94 TEAM/(11632:11683): El entrenador B se movió a la posicion 4|3.
+[INFO] 00:00:18:94 TEAM/(11632:11687): El entrenador B se movió a la posicion 5|3.
+[INFO] 00:00:19:96 TEAM/(11632:11688): El entrenador B se movió a la posicion 6|3.
+[INFO] 00:00:20:96 TEAM/(11632:11695): El entrenador B se movió a la posicion 7|3.
+[INFO] 00:00:21:97 TEAM/(11632:11697): El entrenador B se movió a la posicion 8|3.
+[INFO] 00:00:22:98 TEAM/(11632:11701): El entrenador B se movió a la posicion 9|3.
+[INFO] 00:00:23:99 TEAM/(11632:11706): El entrenador B se movió a la posicion 9|4.
+[INFO] 00:00:24:100 TEAM/(11632:11708): El entrenador B se movió a la posicion 9|5.
+[INFO] 00:00:25:101 TEAM/(11632:11712): El entrenador B se movió a la posicion 9|6.
+[INFO] 00:00:26:103 TEAM/(11632:11716): El entrenador B se movió a la posicion 9|7.
+[INFO] 00:00:27:104 TEAM/(11632:11717): El entrenador B se movió a la posicion 9|8.
+[INFO] 00:00:28:106 TEAM/(11632:11718): El entrenador B se movió a la posicion 9|9.
+[INFO] 00:00:28:107 TEAM/(11632:11719): el socket de conexion es: 14.
+[INFO] 00:00:29:113 TEAM/(11632:11677): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 27. 
+ID_CORRELATIVO: 26.
+RESULTADO CATCH: OK.
+[INFO] 00:00:29:113 TEAM/(11632:11677): El entrenador B atrapó un Pikachu en la posicion 9|9.
+[INFO] 00:00:30:110 TEAM/(11632:11679): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 00:00:31:112 TEAM/(11632:11725): El entrenador C se movió a la posicion 4|2.
+[INFO] 00:00:32:114 TEAM/(11632:11726): El entrenador C se movió a la posicion 5|2.
+[INFO] 00:00:32:115 TEAM/(11632:11727): el socket de conexion es: 15.
+[INFO] 00:00:33:120 TEAM/(11632:11677): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 29. 
+ID_CORRELATIVO: 28.
+RESULTADO CATCH: OK.
+[INFO] 00:00:33:120 TEAM/(11632:11677): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 00:00:40:295 TEAM/(11632:11678): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 36. 
+POKEMON: Onix. 
+POSICION EN X: 2. 
+POSICION EN Y: 8.
+[INFO] 00:00:41:295 TEAM/(11632:11753): El entrenador A se movió a la posicion 2|3.
+[INFO] 00:00:41:301 TEAM/(11632:11678): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 37. 
+POKEMON: Gengar. 
+POSICION EN X: 6. 
+POSICION EN Y: 6.
+[INFO] 00:00:41:316 TEAM/(11632:11678): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 38. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 5.
+[INFO] 00:00:42:296 TEAM/(11632:11756): El entrenador A se movió a la posicion 2|4.
+[INFO] 00:00:43:298 TEAM/(11632:11763): El entrenador A se movió a la posicion 2|5.
+[INFO] 00:00:44:298 TEAM/(11632:11772): El entrenador A se movió a la posicion 2|6.
+[INFO] 00:00:45:300 TEAM/(11632:11777): El entrenador A se movió a la posicion 2|7.
+[INFO] 00:00:46:301 TEAM/(11632:11782): El entrenador A se movió a la posicion 2|8.
+[INFO] 00:00:46:301 TEAM/(11632:11784): el socket de conexion es: 16.
+[INFO] 00:00:47:305 TEAM/(11632:11677): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 43. 
+ID_CORRELATIVO: 42.
+RESULTADO CATCH: OK.
+[INFO] 00:00:47:305 TEAM/(11632:11677): El entrenador A atrapó un Onix en la posicion 2|8.
+[INFO] 00:00:48:303 TEAM/(11632:11679): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 00:00:49:304 TEAM/(11632:11792): El entrenador C se movió a la posicion 6|2.
+[INFO] 00:00:50:306 TEAM/(11632:11794): El entrenador C se movió a la posicion 6|3.
+[INFO] 00:00:51:307 TEAM/(11632:11796): El entrenador C se movió a la posicion 6|4.
+[INFO] 00:00:52:308 TEAM/(11632:11798): El entrenador C se movió a la posicion 6|5.
+[INFO] 00:00:53:308 TEAM/(11632:11800): El entrenador C se movió a la posicion 6|6.
+[INFO] 00:00:53:309 TEAM/(11632:11802): el socket de conexion es: 17.
+[INFO] 00:00:54:318 TEAM/(11632:11677): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 46. 
+ID_CORRELATIVO: 44.
+RESULTADO CATCH: OK.
+[INFO] 00:00:54:318 TEAM/(11632:11677): El entrenador C atrapó un Gengar en la posicion 6|6.
+[INFO] 00:00:55:311 TEAM/(11632:11679): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 00:00:56:312 TEAM/(11632:11814): El entrenador B se movió a la posicion 8|9.
+[INFO] 00:00:57:314 TEAM/(11632:11821): El entrenador B se movió a la posicion 7|9.
+[INFO] 00:00:58:315 TEAM/(11632:11825): El entrenador B se movió a la posicion 6|9.
+[INFO] 00:00:59:320 TEAM/(11632:11830): El entrenador B se movió a la posicion 5|9.
+[INFO] 00:01:00:322 TEAM/(11632:11832): El entrenador B se movió a la posicion 5|8.
+[INFO] 00:01:01:324 TEAM/(11632:11834): El entrenador B se movió a la posicion 5|7.
+[INFO] 00:01:02:324 TEAM/(11632:11837): El entrenador B se movió a la posicion 5|6.
+[INFO] 00:01:03:326 TEAM/(11632:11839): El entrenador B se movió a la posicion 5|5.
+[INFO] 00:01:03:327 TEAM/(11632:11841): el socket de conexion es: 18.
+[INFO] 00:01:04:331 TEAM/(11632:11677): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 53. 
+ID_CORRELATIVO: 52.
+RESULTADO CATCH: OK.
+[INFO] 00:01:04:332 TEAM/(11632:11677): El entrenador B atrapó un Squirtle en la posicion 5|5.
+[INFO] 00:01:05:330 TEAM/(11632:11679): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 00:01:05:330 TEAM/(11632:11679): Se detecto que hay situacion de deadlock
+[INFO] 00:01:05:330 TEAM/(11632:11679): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 00:01:06:330 TEAM/(11632:11849): El entrenador A se movió a la posicion 3|8.
+[INFO] 00:01:07:331 TEAM/(11632:11853): El entrenador A se movió a la posicion 4|8.
+[INFO] 00:01:08:332 TEAM/(11632:11855): El entrenador A se movió a la posicion 5|8.
+[INFO] 00:01:09:333 TEAM/(11632:11857): El entrenador A se movió a la posicion 5|7.
+[INFO] 00:01:10:335 TEAM/(11632:11858): El entrenador A se movió a la posicion 5|6.
+[INFO] 00:01:11:337 TEAM/(11632:11859): El entrenador A se movió a la posicion 5|5.
+[INFO] 00:01:16:339 TEAM/(11632:11860): El entrenador A intercambio un Onix por un Squirtle del entrenador B
+[INFO] 00:01:16:339 TEAM/(11632:11679): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 00:01:16:339 TEAM/(11632:11679): Se detecto que hay situacion de deadlock
+[INFO] 00:01:16:339 TEAM/(11632:11679): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 00:01:17:340 TEAM/(11632:11865): El entrenador C se movió a la posicion 5|6.
+[INFO] 00:01:18:341 TEAM/(11632:11867): El entrenador C se movió a la posicion 5|5.
+[INFO] 00:01:23:343 TEAM/(11632:11868): El entrenador C intercambio un Gengar por un Onix del entrenador B
+[INFO] 00:01:23:344 TEAM/(11632:11679): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 00:01:23:344 TEAM/(11632:11679): No se detecto situacion de deadlock
+[INFO] 00:01:23:344 TEAM/(11632:11679): Finalizo el TEAM
+[INFO] 00:01:23:344 TEAM/(11632:11679): Se ejecutaron 66 ciclos de cpu
+[INFO] 00:01:23:344 TEAM/(11632:11679): Ocurrieron 7 cambios de contexto durante todo el team
+[INFO] 00:01:23:344 TEAM/(11632:11679): El entrenador A ejecutó 18 ciclos de cpu
+[INFO] 00:01:23:344 TEAM/(11632:11679): El entrenador B ejecutó 23 ciclos de cpu
+[INFO] 00:01:23:344 TEAM/(11632:11679): El entrenador C ejecutó 16 ciclos de cpu
+[INFO] 00:01:23:344 TEAM/(11632:11679): Se produjeron 2 deadlocks
+[INFO] 00:01:23:344 TEAM/(11632:11679): Se resolvieron 2 deadlocks
+[INFO] 00:06:23:37 TEAM/(12321:12321): el socket de conexion es: 4.
+[INFO] 00:06:23:39 TEAM/(12321:12323): el socket de conexion es: 5.
+[INFO] 00:06:23:39 TEAM/(12321:12323): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:06:24:42 TEAM/(12321:12323): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 10. 
+ID_CORRELATIVO: 9.
+POKEMON: Pikachu. 
+CANTIDAD: 1. 
+POSICION EN X: 9. 
+POSICION EN Y: 9. 
+
+[INFO] 00:06:25:38 TEAM/(12321:12321): el socket de conexion es: 9.
+[INFO] 00:06:26:43 TEAM/(12321:12323): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 13. 
+ID_CORRELATIVO: 12.
+POKEMON: Squirtle. 
+CANTIDAD: 1. 
+POSICION EN X: 5. 
+POSICION EN Y: 2. 
+
+[INFO] 00:06:27:40 TEAM/(12321:12321): el socket de conexion es: 10.
+[INFO] 00:06:27:571 TEAM/(12321:12323): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 16. 
+ID_CORRELATIVO: 14.
+POKEMON: Jolteon. 
+CANTIDAD: 1. 
+POSICION EN X: 2. 
+POSICION EN Y: 2. 
+
+[INFO] 00:06:29:41 TEAM/(12321:12321): el socket de conexion es: 11.
+[INFO] 00:06:29:574 TEAM/(12321:12323): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 19. 
+ID_CORRELATIVO: 17.
+POKEMON: Flareon. 
+CANTIDAD: 1. 
+POSICION EN X: 4. 
+POSICION EN Y: 6. 
+
+[INFO] 00:06:31:42 TEAM/(12321:12369): el socket de conexion es: 12.
+[INFO] 00:06:31:43 TEAM/(12321:12369): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:06:31:44 TEAM/(12321:12368): el socket de conexion es: 13.
+[INFO] 00:06:31:44 TEAM/(12321:12368): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:06:32:43 TEAM/(12321:12371): El entrenador C se movió a la posicion 4|2.
+[INFO] 00:06:33:44 TEAM/(12321:12374): El entrenador C se movió a la posicion 5|2.
+[INFO] 00:06:33:44 TEAM/(12321:12378): el socket de conexion es: 14.
+[INFO] 00:06:34:48 TEAM/(12321:12368): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 23. 
+ID_CORRELATIVO: 22.
+RESULTADO CATCH: OK.
+[INFO] 00:06:34:48 TEAM/(12321:12368): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 00:06:35:46 TEAM/(12321:12370): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 00:06:36:48 TEAM/(12321:12390): El entrenador B se movió a la posicion 3|3.
+[INFO] 00:06:37:49 TEAM/(12321:12392): El entrenador B se movió a la posicion 4|3.
+[INFO] 00:06:38:49 TEAM/(12321:12396): El entrenador B se movió a la posicion 5|3.
+[INFO] 00:06:39:50 TEAM/(12321:12401): El entrenador B se movió a la posicion 6|3.
+[INFO] 00:06:40:52 TEAM/(12321:12403): El entrenador B se movió a la posicion 7|3.
+[INFO] 00:06:41:53 TEAM/(12321:12407): El entrenador B se movió a la posicion 8|3.
+[INFO] 00:06:42:54 TEAM/(12321:12411): El entrenador B se movió a la posicion 9|3.
+[INFO] 00:06:43:56 TEAM/(12321:12412): El entrenador B se movió a la posicion 9|4.
+[INFO] 00:06:44:57 TEAM/(12321:12413): El entrenador B se movió a la posicion 9|5.
+[INFO] 00:06:45:58 TEAM/(12321:12414): El entrenador B se movió a la posicion 9|6.
+[INFO] 00:06:46:62 TEAM/(12321:12415): El entrenador B se movió a la posicion 9|7.
+[INFO] 00:06:47:63 TEAM/(12321:12416): El entrenador B se movió a la posicion 9|8.
+[INFO] 00:06:48:65 TEAM/(12321:12417): El entrenador B se movió a la posicion 9|9.
+[INFO] 00:06:48:66 TEAM/(12321:12418): el socket de conexion es: 15.
+[INFO] 00:06:49:72 TEAM/(12321:12368): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 29. 
+ID_CORRELATIVO: 28.
+RESULTADO CATCH: OK.
+[INFO] 00:06:49:72 TEAM/(12321:12368): El entrenador B atrapó un Pikachu en la posicion 9|9.
+[INFO] 00:08:39:492 TEAM/(12584:12584): el socket de conexion es: 4.
+[INFO] 00:08:39:494 TEAM/(12584:12586): el socket de conexion es: 5.
+[INFO] 00:08:39:494 TEAM/(12584:12586): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:08:40:496 TEAM/(12584:12586): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 10. 
+ID_CORRELATIVO: 9.
+POKEMON: Pikachu. 
+CANTIDAD: 1. 
+POSICION EN X: 9. 
+POSICION EN Y: 9. 
+
+[INFO] 00:08:41:493 TEAM/(12584:12584): el socket de conexion es: 9.
+[INFO] 00:08:42:498 TEAM/(12584:12586): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 13. 
+ID_CORRELATIVO: 12.
+POKEMON: Squirtle. 
+CANTIDAD: 1. 
+POSICION EN X: 5. 
+POSICION EN Y: 2. 
+
+[INFO] 00:08:43:495 TEAM/(12584:12584): el socket de conexion es: 10.
+[INFO] 00:08:43:821 TEAM/(12584:12586): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 16. 
+ID_CORRELATIVO: 14.
+POKEMON: Jolteon. 
+CANTIDAD: 1. 
+POSICION EN X: 2. 
+POSICION EN Y: 2. 
+
+[INFO] 00:08:45:496 TEAM/(12584:12584): el socket de conexion es: 11.
+[INFO] 00:08:45:821 TEAM/(12584:12586): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 19. 
+ID_CORRELATIVO: 17.
+POKEMON: Flareon. 
+CANTIDAD: 1. 
+POSICION EN X: 4. 
+POSICION EN Y: 6. 
+
+[INFO] 00:08:47:497 TEAM/(12584:12629): el socket de conexion es: 12.
+[INFO] 00:08:47:497 TEAM/(12584:12629): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:08:47:498 TEAM/(12584:12628): el socket de conexion es: 13.
+[INFO] 00:08:47:498 TEAM/(12584:12628): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:08:48:498 TEAM/(12584:12631): El entrenador C se movió a la posicion 4|2.
+[INFO] 00:08:49:499 TEAM/(12584:12634): El entrenador C se movió a la posicion 5|2.
+[INFO] 00:08:49:500 TEAM/(12584:12638): el socket de conexion es: 14.
+[INFO] 00:08:50:506 TEAM/(12584:12628): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 23. 
+ID_CORRELATIVO: 22.
+RESULTADO CATCH: OK.
+[INFO] 00:08:50:506 TEAM/(12584:12628): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 00:08:51:503 TEAM/(12584:12630): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 00:08:52:504 TEAM/(12584:12650): El entrenador B se movió a la posicion 3|3.
+[INFO] 00:08:53:505 TEAM/(12584:12654): El entrenador B se movió a la posicion 4|3.
+[INFO] 00:08:54:506 TEAM/(12584:12658): El entrenador B se movió a la posicion 5|3.
+[INFO] 00:08:55:507 TEAM/(12584:12660): El entrenador B se movió a la posicion 6|3.
+[INFO] 00:08:56:509 TEAM/(12584:12662): El entrenador B se movió a la posicion 7|3.
+[INFO] 00:08:57:510 TEAM/(12584:12664): El entrenador B se movió a la posicion 8|3.
+[INFO] 00:08:58:511 TEAM/(12584:12668): El entrenador B se movió a la posicion 9|3.
+[INFO] 00:08:59:511 TEAM/(12584:12672): El entrenador B se movió a la posicion 9|4.
+[INFO] 00:09:00:512 TEAM/(12584:12673): El entrenador B se movió a la posicion 9|5.
+[INFO] 00:09:01:514 TEAM/(12584:12674): El entrenador B se movió a la posicion 9|6.
+[INFO] 00:09:02:515 TEAM/(12584:12675): El entrenador B se movió a la posicion 9|7.
+[INFO] 00:09:03:516 TEAM/(12584:12681): El entrenador B se movió a la posicion 9|8.
+[INFO] 00:09:04:517 TEAM/(12584:12682): El entrenador B se movió a la posicion 9|9.
+[INFO] 00:09:04:517 TEAM/(12584:12683): el socket de conexion es: 15.
+[INFO] 00:09:05:521 TEAM/(12584:12628): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 29. 
+ID_CORRELATIVO: 28.
+RESULTADO CATCH: OK.
+[INFO] 00:09:05:522 TEAM/(12584:12628): El entrenador B atrapó un Pikachu en la posicion 9|9.
+[INFO] 00:13:45:965 TEAM/(13066:13066): el socket de conexion es: 4.
+[INFO] 00:13:45:967 TEAM/(13066:13068): el socket de conexion es: 5.
+[INFO] 00:13:45:967 TEAM/(13066:13068): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:13:46:970 TEAM/(13066:13068): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 10. 
+ID_CORRELATIVO: 9.
+POKEMON: Pikachu. 
+CANTIDAD: 1. 
+POSICION EN X: 9. 
+POSICION EN Y: 9. 
+
+[INFO] 00:13:47:966 TEAM/(13066:13066): el socket de conexion es: 9.
+[INFO] 00:13:48:970 TEAM/(13066:13068): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 13. 
+ID_CORRELATIVO: 11.
+POKEMON: Squirtle. 
+CANTIDAD: 1. 
+POSICION EN X: 5. 
+POSICION EN Y: 2. 
+
+[INFO] 00:13:49:966 TEAM/(13066:13066): el socket de conexion es: 10.
+[INFO] 00:13:51:357 TEAM/(13066:13068): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 16. 
+ID_CORRELATIVO: 15.
+POKEMON: Jolteon. 
+CANTIDAD: 1. 
+POSICION EN X: 2. 
+POSICION EN Y: 2. 
+
+[INFO] 00:13:51:967 TEAM/(13066:13066): el socket de conexion es: 11.
+[INFO] 00:13:53:357 TEAM/(13066:13068): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 19. 
+ID_CORRELATIVO: 18.
+POKEMON: Flareon. 
+CANTIDAD: 1. 
+POSICION EN X: 4. 
+POSICION EN Y: 6. 
+
+[INFO] 00:13:53:968 TEAM/(13066:13110): el socket de conexion es: 12.
+[INFO] 00:13:53:968 TEAM/(13066:13110): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:13:53:968 TEAM/(13066:13109): el socket de conexion es: 13.
+[INFO] 00:13:53:969 TEAM/(13066:13109): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:13:54:968 TEAM/(13066:13112): El entrenador C se movió a la posicion 4|2.
+[INFO] 00:13:55:969 TEAM/(13066:13119): El entrenador C se movió a la posicion 5|2.
+[INFO] 00:13:55:970 TEAM/(13066:13120): el socket de conexion es: 14.
+[INFO] 00:13:56:973 TEAM/(13066:13109): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 23. 
+ID_CORRELATIVO: 21.
+RESULTADO CATCH: OK.
+[INFO] 00:13:56:974 TEAM/(13066:13109): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 00:13:57:971 TEAM/(13066:13111): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 00:13:58:972 TEAM/(13066:13128): El entrenador B se movió a la posicion 3|3.
+[INFO] 00:13:59:972 TEAM/(13066:13136): El entrenador B se movió a la posicion 4|3.
+[INFO] 00:14:00:974 TEAM/(13066:13140): El entrenador B se movió a la posicion 5|3.
+[INFO] 00:14:01:976 TEAM/(13066:13144): El entrenador B se movió a la posicion 6|3.
+[INFO] 00:14:02:978 TEAM/(13066:13151): El entrenador B se movió a la posicion 7|3.
+[INFO] 00:14:03:979 TEAM/(13066:13153): El entrenador B se movió a la posicion 8|3.
+[INFO] 00:14:04:981 TEAM/(13066:13155): El entrenador B se movió a la posicion 9|3.
+[INFO] 00:14:05:981 TEAM/(13066:13159): El entrenador B se movió a la posicion 9|4.
+[INFO] 00:14:06:982 TEAM/(13066:13163): El entrenador B se movió a la posicion 9|5.
+[INFO] 00:14:07:983 TEAM/(13066:13166): El entrenador B se movió a la posicion 9|6.
+[INFO] 00:14:08:984 TEAM/(13066:13167): El entrenador B se movió a la posicion 9|7.
+[INFO] 00:14:09:985 TEAM/(13066:13168): El entrenador B se movió a la posicion 9|8.
+[INFO] 00:14:10:985 TEAM/(13066:13169): El entrenador B se movió a la posicion 9|9.
+[INFO] 00:14:10:986 TEAM/(13066:13170): el socket de conexion es: 15.
+[INFO] 00:14:11:990 TEAM/(13066:13109): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 29. 
+ID_CORRELATIVO: 28.
+RESULTADO CATCH: OK.
+[INFO] 00:14:11:990 TEAM/(13066:13109): El entrenador B atrapó un Pikachu en la posicion 9|9.
+[INFO] 00:21:45:395 TEAM/(13574:13574): el socket de conexion es: 4.
+[INFO] 00:21:45:396 TEAM/(13574:13576): el socket de conexion es: 5.
+[INFO] 00:21:45:396 TEAM/(13574:13576): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:21:47:397 TEAM/(13574:13574): el socket de conexion es: 9.
+[INFO] 00:21:48:403 TEAM/(13574:13576): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 11. 
+ID_CORRELATIVO: 10.
+POKEMON: Squirtle. 
+CANTIDAD: 1. 
+POSICION EN X: 5. 
+POSICION EN Y: 2. 
+
+[INFO] 00:21:49:400 TEAM/(13574:13574): el socket de conexion es: 10.
+[INFO] 00:21:49:798 TEAM/(13574:13576): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 14. 
+ID_CORRELATIVO: 12.
+POKEMON: Jolteon. 
+CANTIDAD: 1. 
+POSICION EN X: 2. 
+POSICION EN Y: 2. 
+
+[INFO] 00:21:51:402 TEAM/(13574:13574): el socket de conexion es: 11.
+[INFO] 00:21:51:801 TEAM/(13574:13576): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 17. 
+ID_CORRELATIVO: 15.
+POKEMON: Flareon. 
+CANTIDAD: 1. 
+POSICION EN X: 4. 
+POSICION EN Y: 6. 
+
+[INFO] 00:21:53:404 TEAM/(13574:13615): el socket de conexion es: 12.
+[INFO] 00:21:53:404 TEAM/(13574:13615): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:21:53:408 TEAM/(13574:13614): el socket de conexion es: 13.
+[INFO] 00:21:53:409 TEAM/(13574:13614): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:21:54:405 TEAM/(13574:13617): El entrenador C se movió a la posicion 4|2.
+[INFO] 00:21:55:406 TEAM/(13574:13620): El entrenador C se movió a la posicion 5|2.
+[INFO] 00:21:55:407 TEAM/(13574:13626): el socket de conexion es: 14.
+[INFO] 00:21:56:412 TEAM/(13574:13614): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 21. 
+ID_CORRELATIVO: 20.
+RESULTADO CATCH: OK.
+[INFO] 00:21:56:412 TEAM/(13574:13614): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 00:33:02:261 TEAM/(14429:14429): el socket de conexion es: 4.
+[INFO] 00:33:02:265 TEAM/(14429:14431): el socket de conexion es: 5.
+[INFO] 00:33:02:265 TEAM/(14429:14431): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:33:03:266 TEAM/(14429:14431): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 10. 
+ID_CORRELATIVO: 9.
+POKEMON: Pikachu. 
+CANTIDAD: 1. 
+POSICION EN X: 9. 
+POSICION EN Y: 9. 
+
+[INFO] 00:33:04:263 TEAM/(14429:14429): el socket de conexion es: 9.
+[INFO] 00:33:05:269 TEAM/(14429:14431): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 13. 
+ID_CORRELATIVO: 12.
+POKEMON: Squirtle. 
+CANTIDAD: 1. 
+POSICION EN X: 5. 
+POSICION EN Y: 2. 
+
+[INFO] 00:33:06:265 TEAM/(14429:14429): el socket de conexion es: 10.
+[INFO] 00:33:06:873 TEAM/(14429:14431): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 16. 
+ID_CORRELATIVO: 14.
+POKEMON: Jolteon. 
+CANTIDAD: 1. 
+POSICION EN X: 2. 
+POSICION EN Y: 2. 
+
+[INFO] 00:33:08:265 TEAM/(14429:14429): el socket de conexion es: 11.
+[INFO] 00:33:08:881 TEAM/(14429:14431): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 19. 
+ID_CORRELATIVO: 17.
+POKEMON: Flareon. 
+CANTIDAD: 1. 
+POSICION EN X: 4. 
+POSICION EN Y: 6. 
+
+[INFO] 00:33:10:266 TEAM/(14429:14476): el socket de conexion es: 12.
+[INFO] 00:33:10:266 TEAM/(14429:14476): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:33:10:267 TEAM/(14429:14475): el socket de conexion es: 13.
+[INFO] 00:33:10:267 TEAM/(14429:14475): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:33:11:267 TEAM/(14429:14478): El entrenador C se movió a la posicion 4|2.
+[INFO] 00:33:12:269 TEAM/(14429:14481): El entrenador C se movió a la posicion 5|2.
+[INFO] 00:33:12:269 TEAM/(14429:14485): el socket de conexion es: 14.
+[INFO] 00:33:13:273 TEAM/(14429:14475): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 23. 
+ID_CORRELATIVO: 22.
+RESULTADO CATCH: OK.
+[INFO] 00:33:13:274 TEAM/(14429:14475): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 00:33:14:273 TEAM/(14429:14477): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 00:33:15:275 TEAM/(14429:14502): El entrenador B se movió a la posicion 3|3.
+[INFO] 00:33:15:879 TEAM/(14429:14475): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 25. 
+ID_CORRELATIVO: 24.
+RESULTADO CATCH: OK.
+[INFO] 00:33:16:276 TEAM/(14429:14506): El entrenador B se movió a la posicion 4|3.
+[INFO] 00:33:17:278 TEAM/(14429:14510): El entrenador B se movió a la posicion 5|3.
+[INFO] 00:33:18:279 TEAM/(14429:14512): El entrenador B se movió a la posicion 6|3.
+[INFO] 00:33:19:279 TEAM/(14429:14514): El entrenador B se movió a la posicion 7|3.
+[INFO] 00:33:20:280 TEAM/(14429:14517): El entrenador B se movió a la posicion 8|3.
+[INFO] 00:33:20:887 TEAM/(14429:14475): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 27. 
+ID_CORRELATIVO: 26.
+RESULTADO CATCH: OK.
+[INFO] 00:33:21:281 TEAM/(14429:14522): El entrenador B se movió a la posicion 9|3.
+[INFO] 00:33:22:282 TEAM/(14429:14526): El entrenador B se movió a la posicion 9|4.
+[INFO] 00:33:23:284 TEAM/(14429:14527): El entrenador B se movió a la posicion 9|5.
+[INFO] 00:33:24:285 TEAM/(14429:14528): El entrenador B se movió a la posicion 9|6.
+[INFO] 00:33:25:286 TEAM/(14429:14529): El entrenador B se movió a la posicion 9|7.
+[INFO] 00:33:26:286 TEAM/(14429:14530): El entrenador B se movió a la posicion 9|8.
+[INFO] 00:33:27:288 TEAM/(14429:14531): El entrenador B se movió a la posicion 9|9.
+[INFO] 00:33:27:288 TEAM/(14429:14532): el socket de conexion es: 15.
+[INFO] 00:33:28:294 TEAM/(14429:14475): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 29. 
+ID_CORRELATIVO: 28.
+RESULTADO CATCH: OK.
+[INFO] 00:33:28:294 TEAM/(14429:14475): El entrenador B atrapó un Pikachu en la posicion 9|9.
+[INFO] 00:40:56:597 TEAM/(15012:15012): el socket de conexion es: 4.
+[INFO] 00:40:56:599 TEAM/(15012:15014): el socket de conexion es: 5.
+[INFO] 00:40:56:599 TEAM/(15012:15014): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:40:57:605 TEAM/(15012:15014): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 11. 
+ID_CORRELATIVO: 9.
+POKEMON: Pikachu. 
+CANTIDAD: 1. 
+POSICION EN X: 9. 
+POSICION EN Y: 9. 
+
+[INFO] 00:40:58:598 TEAM/(15012:15012): el socket de conexion es: 9.
+[INFO] 00:40:59:602 TEAM/(15012:15014): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 14. 
+ID_CORRELATIVO: 12.
+POKEMON: Squirtle. 
+CANTIDAD: 1. 
+POSICION EN X: 5. 
+POSICION EN Y: 2. 
+
+[INFO] 00:41:00:600 TEAM/(15012:15012): el socket de conexion es: 10.
+[INFO] 00:41:00:603 TEAM/(15012:15014): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 16. 
+ID_CORRELATIVO: 13.
+POKEMON: Jolteon. 
+CANTIDAD: 1. 
+POSICION EN X: 2. 
+POSICION EN Y: 2. 
+
+[INFO] 00:41:02:600 TEAM/(15012:15014): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 18. 
+ID_CORRELATIVO: 17.
+POKEMON: Flareon. 
+CANTIDAD: 1. 
+POSICION EN X: 4. 
+POSICION EN Y: 6. 
+
+[INFO] 00:41:02:601 TEAM/(15012:15012): el socket de conexion es: 11.
+[INFO] 00:41:04:602 TEAM/(15012:15057): el socket de conexion es: 12.
+[INFO] 00:41:04:602 TEAM/(15012:15057): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:41:04:603 TEAM/(15012:15056): el socket de conexion es: 13.
+[INFO] 00:41:04:603 TEAM/(15012:15056): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:41:05:603 TEAM/(15012:15059): El entrenador C se movió a la posicion 4|2.
+[INFO] 00:41:06:603 TEAM/(15012:15065): El entrenador C se movió a la posicion 5|2.
+[INFO] 00:41:06:605 TEAM/(15012:15066): el socket de conexion es: 14.
+[INFO] 00:41:07:612 TEAM/(15012:15056): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 23. 
+ID_CORRELATIVO: 22.
+RESULTADO CATCH: OK.
+[INFO] 00:41:07:612 TEAM/(15012:15056): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 00:41:08:607 TEAM/(15012:15058): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 00:41:09:602 TEAM/(15012:15056): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 25. 
+ID_CORRELATIVO: 24.
+RESULTADO CATCH: OK.
+[INFO] 00:41:09:608 TEAM/(15012:15083): El entrenador B se movió a la posicion 3|3.
+[INFO] 00:41:10:608 TEAM/(15012:15087): El entrenador B se movió a la posicion 4|3.
+[INFO] 00:41:11:610 TEAM/(15012:15089): El entrenador B se movió a la posicion 5|3.
+[INFO] 00:41:12:612 TEAM/(15012:15091): El entrenador B se movió a la posicion 6|3.
+[INFO] 00:41:13:612 TEAM/(15012:15093): El entrenador B se movió a la posicion 7|3.
+[INFO] 00:41:14:609 TEAM/(15012:15056): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 27. 
+ID_CORRELATIVO: 26.
+RESULTADO CATCH: OK.
+[INFO] 00:41:14:613 TEAM/(15012:15097): El entrenador B se movió a la posicion 8|3.
+[INFO] 00:41:15:614 TEAM/(15012:15101): El entrenador B se movió a la posicion 9|3.
+[INFO] 00:41:16:615 TEAM/(15012:15102): El entrenador B se movió a la posicion 9|4.
+[INFO] 00:41:17:617 TEAM/(15012:15103): El entrenador B se movió a la posicion 9|5.
+[INFO] 00:41:18:618 TEAM/(15012:15104): El entrenador B se movió a la posicion 9|6.
+[INFO] 00:41:19:619 TEAM/(15012:15105): El entrenador B se movió a la posicion 9|7.
+[INFO] 00:41:20:621 TEAM/(15012:15106): El entrenador B se movió a la posicion 9|8.
+[INFO] 00:41:21:623 TEAM/(15012:15107): El entrenador B se movió a la posicion 9|9.
+[INFO] 00:41:21:626 TEAM/(15012:15108): el socket de conexion es: 15.
+[INFO] 00:41:22:631 TEAM/(15012:15056): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 29. 
+ID_CORRELATIVO: 28.
+RESULTADO CATCH: OK.
+[INFO] 00:41:22:631 TEAM/(15012:15056): El entrenador B atrapó un Pikachu en la posicion 9|9.
+[INFO] 00:42:15:948 TEAM/(15012:15057): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 36. 
+POKEMON: Onix. 
+POSICION EN X: 2. 
+POSICION EN Y: 8.
+[INFO] 00:42:16:954 TEAM/(15012:15057): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 37. 
+POKEMON: Gengar. 
+POSICION EN X: 6. 
+POSICION EN Y: 6.
+[INFO] 00:42:16:962 TEAM/(15012:15057): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 38. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 5.
+[INFO] 00:42:17:956 TEAM/(15012:15139): El entrenador C se movió a la posicion 6|2.
+[INFO] 00:42:18:957 TEAM/(15012:15145): El entrenador C se movió a la posicion 6|3.
+[INFO] 00:42:19:959 TEAM/(15012:15149): El entrenador C se movió a la posicion 6|4.
+[INFO] 00:42:20:960 TEAM/(15012:15154): El entrenador C se movió a la posicion 6|5.
+[INFO] 00:42:21:962 TEAM/(15012:15160): El entrenador C se movió a la posicion 6|6.
+[INFO] 00:42:21:963 TEAM/(15012:15162): el socket de conexion es: 16.
+[INFO] 00:42:22:970 TEAM/(15012:15056): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 44. 
+ID_CORRELATIVO: 42.
+RESULTADO CATCH: OK.
+[INFO] 00:42:22:970 TEAM/(15012:15056): El entrenador C atrapó un Gengar en la posicion 6|6.
+[INFO] 00:42:23:966 TEAM/(15012:15058): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 00:42:23:974 TEAM/(15012:15056): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 45. 
+ID_CORRELATIVO: 43.
+RESULTADO CATCH: OK.
+[INFO] 00:42:24:967 TEAM/(15012:15171): El entrenador A se movió a la posicion 2|3.
+[INFO] 00:42:25:968 TEAM/(15012:15176): El entrenador A se movió a la posicion 2|4.
+[INFO] 00:42:26:969 TEAM/(15012:15178): El entrenador A se movió a la posicion 2|5.
+[INFO] 00:42:27:969 TEAM/(15012:15180): El entrenador A se movió a la posicion 2|6.
+[INFO] 00:42:27:0 TEAM/(15012:15056): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 47. 
+ID_CORRELATIVO: 46.
+RESULTADO CATCH: OK.
+[INFO] 00:42:28:971 TEAM/(15012:15184): El entrenador A se movió a la posicion 2|7.
+[INFO] 00:42:29:972 TEAM/(15012:15188): El entrenador A se movió a la posicion 2|8.
+[INFO] 00:42:29:973 TEAM/(15012:15190): el socket de conexion es: 17.
+[INFO] 00:42:30:978 TEAM/(15012:15056): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 49. 
+ID_CORRELATIVO: 48.
+RESULTADO CATCH: OK.
+[INFO] 00:42:30:978 TEAM/(15012:15056): El entrenador A atrapó un Onix en la posicion 2|8.
+[INFO] 00:42:31:976 TEAM/(15012:15058): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 00:42:32:976 TEAM/(15012:15198): El entrenador B se movió a la posicion 8|9.
+[INFO] 00:42:33:977 TEAM/(15012:15205): El entrenador B se movió a la posicion 7|9.
+[INFO] 00:42:34:9 TEAM/(15012:15056): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 51. 
+ID_CORRELATIVO: 50.
+RESULTADO CATCH: OK.
+[INFO] 00:42:34:977 TEAM/(15012:15209): El entrenador B se movió a la posicion 6|9.
+[INFO] 00:42:35:978 TEAM/(15012:15213): El entrenador B se movió a la posicion 5|9.
+[INFO] 00:42:36:978 TEAM/(15012:15215): El entrenador B se movió a la posicion 5|8.
+[INFO] 00:42:37:979 TEAM/(15012:15217): El entrenador B se movió a la posicion 5|7.
+[INFO] 00:42:38:981 TEAM/(15012:15219): El entrenador B se movió a la posicion 5|6.
+[INFO] 00:42:39:981 TEAM/(15012:15221): El entrenador B se movió a la posicion 5|5.
+[INFO] 00:42:39:982 TEAM/(15012:15223): el socket de conexion es: 18.
+[INFO] 00:42:40:990 TEAM/(15012:15056): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 53. 
+ID_CORRELATIVO: 52.
+RESULTADO CATCH: OK.
+[INFO] 00:42:40:990 TEAM/(15012:15056): El entrenador B atrapó un Squirtle en la posicion 5|5.
+[INFO] 00:42:41:985 TEAM/(15012:15058): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 00:42:41:985 TEAM/(15012:15058): Se detecto que hay situacion de deadlock
+[INFO] 00:42:41:985 TEAM/(15012:15058): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 00:42:42:986 TEAM/(15012:15231): El entrenador C se movió a la posicion 5|6.
+[INFO] 00:42:43:991 TEAM/(15012:15233): El entrenador C se movió a la posicion 4|6.
+[INFO] 00:42:44:992 TEAM/(15012:15235): El entrenador C se movió a la posicion 3|6.
+[INFO] 00:42:45:993 TEAM/(15012:15237): El entrenador C se movió a la posicion 2|6.
+[INFO] 00:42:46:995 TEAM/(15012:15239): El entrenador C se movió a la posicion 2|7.
+[INFO] 00:42:47:996 TEAM/(15012:15240): El entrenador C se movió a la posicion 2|8.
+[INFO] 00:42:52:996 TEAM/(15012:15241): El entrenador C intercambio un Gengar por un Onix del entrenador A
+[INFO] 00:42:52:997 TEAM/(15012:15058): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 00:42:52:997 TEAM/(15012:15058): Se detecto que hay situacion de deadlock
+[INFO] 00:42:52:997 TEAM/(15012:15058): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 00:42:53:997 TEAM/(15012:15245): El entrenador A se movió a la posicion 3|8.
+[INFO] 00:42:54:997 TEAM/(15012:15247): El entrenador A se movió a la posicion 4|8.
+[INFO] 00:42:55:998 TEAM/(15012:15249): El entrenador A se movió a la posicion 5|8.
+[INFO] 00:42:56:999 TEAM/(15012:15250): El entrenador A se movió a la posicion 5|7.
+[INFO] 00:42:57:0 TEAM/(15012:15251): El entrenador A se movió a la posicion 5|6.
+[INFO] 00:42:58:2 TEAM/(15012:15252): El entrenador A se movió a la posicion 5|5.
+[INFO] 00:43:03:2 TEAM/(15012:15253): El entrenador A intercambio un Gengar por un Squirtle del entrenador B
+[INFO] 00:43:03:3 TEAM/(15012:15058): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 00:43:03:3 TEAM/(15012:15058): No se detecto situacion de deadlock
+[INFO] 00:43:03:3 TEAM/(15012:15058): Finalizo el TEAM
+[INFO] 00:43:03:3 TEAM/(15012:15058): Se ejecutaron 70 ciclos de cpu
+[INFO] 00:43:03:3 TEAM/(15012:15058): Ocurrieron 7 cambios de contexto durante todo el team
+[INFO] 00:43:03:3 TEAM/(15012:15058): El entrenador A ejecutó 18 ciclos de cpu
+[INFO] 00:43:03:3 TEAM/(15012:15058): El entrenador B ejecutó 23 ciclos de cpu
+[INFO] 00:43:03:3 TEAM/(15012:15058): El entrenador C ejecutó 20 ciclos de cpu
+[INFO] 00:43:03:3 TEAM/(15012:15058): Se produjeron 2 deadlocks
+[INFO] 00:43:03:3 TEAM/(15012:15058): Se resolvieron 2 deadlocks
+[INFO] 00:46:49:701 TEAM/(15467:15467): el socket de conexion es: 4.
+[INFO] 00:46:49:704 TEAM/(15467:15469): el socket de conexion es: 5.
+[INFO] 00:46:49:704 TEAM/(15467:15469): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:46:50:708 TEAM/(15467:15469): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 11. 
+ID_CORRELATIVO: 9.
+POKEMON: Pikachu. 
+CANTIDAD: 1. 
+POSICION EN X: 9. 
+POSICION EN Y: 9. 
+
+[INFO] 00:46:51:701 TEAM/(15467:15467): el socket de conexion es: 9.
+[INFO] 00:46:52:713 TEAM/(15467:15469): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 14. 
+ID_CORRELATIVO: 12.
+POKEMON: Squirtle. 
+CANTIDAD: 1. 
+POSICION EN X: 5. 
+POSICION EN Y: 2. 
+
+[INFO] 00:46:53:702 TEAM/(15467:15467): el socket de conexion es: 10.
+[INFO] 00:46:53:711 TEAM/(15467:15469): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 16. 
+ID_CORRELATIVO: 13.
+POKEMON: Jolteon. 
+CANTIDAD: 1. 
+POSICION EN X: 2. 
+POSICION EN Y: 2. 
+
+[INFO] 00:46:55:491 TEAM/(15467:15469): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 18. 
+ID_CORRELATIVO: 17.
+POKEMON: Flareon. 
+CANTIDAD: 1. 
+POSICION EN X: 4. 
+POSICION EN Y: 6. 
+
+[INFO] 00:46:55:704 TEAM/(15467:15467): el socket de conexion es: 11.
+[INFO] 00:46:57:707 TEAM/(15467:15520): el socket de conexion es: 12.
+[INFO] 00:46:57:707 TEAM/(15467:15520): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:46:57:708 TEAM/(15467:15519): el socket de conexion es: 13.
+[INFO] 00:46:57:708 TEAM/(15467:15519): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:46:58:708 TEAM/(15467:15522): El entrenador C se movió a la posicion 4|2.
+[INFO] 00:46:59:719 TEAM/(15467:15528): El entrenador C se movió a la posicion 5|2.
+[INFO] 00:46:59:724 TEAM/(15467:15529): el socket de conexion es: 14.
+[INFO] 00:47:00:732 TEAM/(15467:15519): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 23. 
+ID_CORRELATIVO: 22.
+RESULTADO CATCH: OK.
+[INFO] 00:47:00:732 TEAM/(15467:15519): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 00:47:01:726 TEAM/(15467:15521): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 00:47:02:504 TEAM/(15467:15519): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 25. 
+ID_CORRELATIVO: 24.
+RESULTADO CATCH: OK.
+[INFO] 00:47:02:732 TEAM/(15467:15544): El entrenador B se movió a la posicion 3|3.
+[INFO] 00:47:03:736 TEAM/(15467:15548): El entrenador B se movió a la posicion 4|3.
+[INFO] 00:47:04:739 TEAM/(15467:15550): El entrenador B se movió a la posicion 5|3.
+[INFO] 00:47:05:745 TEAM/(15467:15552): El entrenador B se movió a la posicion 6|3.
+[INFO] 00:47:06:748 TEAM/(15467:15554): El entrenador B se movió a la posicion 7|3.
+[INFO] 00:47:07:525 TEAM/(15467:15519): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 27. 
+ID_CORRELATIVO: 26.
+RESULTADO CATCH: OK.
+[INFO] 00:47:07:751 TEAM/(15467:15558): El entrenador B se movió a la posicion 8|3.
+[INFO] 00:47:08:755 TEAM/(15467:15562): El entrenador B se movió a la posicion 9|3.
+[INFO] 00:47:09:759 TEAM/(15467:15563): El entrenador B se movió a la posicion 9|4.
+[INFO] 00:47:10:763 TEAM/(15467:15566): El entrenador B se movió a la posicion 9|5.
+[INFO] 00:47:11:767 TEAM/(15467:15567): El entrenador B se movió a la posicion 9|6.
+[INFO] 00:47:12:772 TEAM/(15467:15568): El entrenador B se movió a la posicion 9|7.
+[INFO] 00:47:13:775 TEAM/(15467:15569): El entrenador B se movió a la posicion 9|8.
+[INFO] 00:47:14:779 TEAM/(15467:15570): El entrenador B se movió a la posicion 9|9.
+[INFO] 00:47:14:783 TEAM/(15467:15571): el socket de conexion es: 15.
+[INFO] 00:47:15:794 TEAM/(15467:15519): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 29. 
+ID_CORRELATIVO: 28.
+RESULTADO CATCH: OK.
+[INFO] 00:47:15:794 TEAM/(15467:15519): El entrenador B atrapó un Pikachu en la posicion 9|9.
+[INFO] 00:47:22:519 TEAM/(15467:15520): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 36. 
+POKEMON: Onix. 
+POSICION EN X: 2. 
+POSICION EN Y: 8.
+[INFO] 00:47:23:527 TEAM/(15467:15520): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 37. 
+POKEMON: Gengar. 
+POSICION EN X: 6. 
+POSICION EN Y: 6.
+[INFO] 00:47:23:543 TEAM/(15467:15520): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 38. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 5.
+[INFO] 00:47:24:531 TEAM/(15467:15601): El entrenador C se movió a la posicion 6|2.
+[INFO] 00:47:25:536 TEAM/(15467:15607): El entrenador C se movió a la posicion 6|3.
+[INFO] 00:47:26:539 TEAM/(15467:15611): El entrenador C se movió a la posicion 6|4.
+[INFO] 00:47:27:545 TEAM/(15467:15616): El entrenador C se movió a la posicion 6|5.
+[INFO] 00:47:28:550 TEAM/(15467:15621): El entrenador C se movió a la posicion 6|6.
+[INFO] 00:47:28:555 TEAM/(15467:15623): el socket de conexion es: 16.
+[INFO] 00:47:29:565 TEAM/(15467:15519): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 44. 
+ID_CORRELATIVO: 42.
+RESULTADO CATCH: OK.
+[INFO] 00:47:29:566 TEAM/(15467:15519): El entrenador C atrapó un Gengar en la posicion 6|6.
+[INFO] 00:47:30:557 TEAM/(15467:15521): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 00:47:30:571 TEAM/(15467:15519): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 45. 
+ID_CORRELATIVO: 43.
+RESULTADO CATCH: OK.
+[INFO] 00:47:31:563 TEAM/(15467:15632): El entrenador A se movió a la posicion 2|3.
+[INFO] 00:47:32:567 TEAM/(15467:15637): El entrenador A se movió a la posicion 2|4.
+[INFO] 00:47:33:571 TEAM/(15467:15639): El entrenador A se movió a la posicion 2|5.
+[INFO] 00:47:34:577 TEAM/(15467:15641): El entrenador A se movió a la posicion 2|6.
+[INFO] 00:47:34:636 TEAM/(15467:15519): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 47. 
+ID_CORRELATIVO: 46.
+RESULTADO CATCH: OK.
+[INFO] 00:47:35:583 TEAM/(15467:15645): El entrenador A se movió a la posicion 2|7.
+[INFO] 00:47:36:587 TEAM/(15467:15649): El entrenador A se movió a la posicion 2|8.
+[INFO] 00:47:36:591 TEAM/(15467:15651): el socket de conexion es: 17.
+[INFO] 00:47:37:604 TEAM/(15467:15519): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 49. 
+ID_CORRELATIVO: 48.
+RESULTADO CATCH: OK.
+[INFO] 00:47:37:604 TEAM/(15467:15519): El entrenador A atrapó un Onix en la posicion 2|8.
+[INFO] 00:47:38:597 TEAM/(15467:15521): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 00:47:39:599 TEAM/(15467:15659): El entrenador B se movió a la posicion 8|9.
+[INFO] 00:47:40:603 TEAM/(15467:15661): El entrenador B se movió a la posicion 7|9.
+[INFO] 00:47:40:667 TEAM/(15467:15519): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 51. 
+ID_CORRELATIVO: 50.
+RESULTADO CATCH: OK.
+[INFO] 00:47:41:607 TEAM/(15467:15665): El entrenador B se movió a la posicion 6|9.
+[INFO] 00:47:42:610 TEAM/(15467:15669): El entrenador B se movió a la posicion 5|9.
+[INFO] 00:47:43:616 TEAM/(15467:15671): El entrenador B se movió a la posicion 5|8.
+[INFO] 00:47:44:619 TEAM/(15467:15673): El entrenador B se movió a la posicion 5|7.
+[INFO] 00:47:45:626 TEAM/(15467:15675): El entrenador B se movió a la posicion 5|6.
+[INFO] 00:47:46:631 TEAM/(15467:15677): El entrenador B se movió a la posicion 5|5.
+[INFO] 00:47:46:636 TEAM/(15467:15679): el socket de conexion es: 18.
+[INFO] 00:47:47:648 TEAM/(15467:15519): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 53. 
+ID_CORRELATIVO: 52.
+RESULTADO CATCH: OK.
+[INFO] 00:47:47:648 TEAM/(15467:15519): El entrenador B atrapó un Squirtle en la posicion 5|5.
+[INFO] 00:47:48:643 TEAM/(15467:15521): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 00:47:48:643 TEAM/(15467:15521): Se detecto que hay situacion de deadlock
+[INFO] 00:47:48:643 TEAM/(15467:15521): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 00:47:49:648 TEAM/(15467:15687): El entrenador C se movió a la posicion 5|6.
+[INFO] 00:47:50:651 TEAM/(15467:15689): El entrenador C se movió a la posicion 4|6.
+[INFO] 00:47:51:656 TEAM/(15467:15691): El entrenador C se movió a la posicion 3|6.
+[INFO] 00:47:52:659 TEAM/(15467:15693): El entrenador C se movió a la posicion 2|6.
+[INFO] 00:47:53:663 TEAM/(15467:15695): El entrenador C se movió a la posicion 2|7.
+[INFO] 00:47:54:668 TEAM/(15467:15696): El entrenador C se movió a la posicion 2|8.
+[INFO] 00:47:59:672 TEAM/(15467:15697): El entrenador C intercambio un Gengar por un Onix del entrenador A
+[INFO] 00:47:59:672 TEAM/(15467:15521): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 00:47:59:672 TEAM/(15467:15521): Se detecto que hay situacion de deadlock
+[INFO] 00:47:59:672 TEAM/(15467:15521): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 00:48:00:677 TEAM/(15467:15701): El entrenador A se movió a la posicion 3|8.
+[INFO] 00:48:01:679 TEAM/(15467:15703): El entrenador A se movió a la posicion 4|8.
+[INFO] 00:48:02:680 TEAM/(15467:15705): El entrenador A se movió a la posicion 5|8.
+[INFO] 00:48:03:682 TEAM/(15467:15706): El entrenador A se movió a la posicion 5|7.
+[INFO] 00:48:04:683 TEAM/(15467:15707): El entrenador A se movió a la posicion 5|6.
+[INFO] 00:48:05:684 TEAM/(15467:15713): El entrenador A se movió a la posicion 5|5.
+[INFO] 00:48:10:686 TEAM/(15467:15714): El entrenador A intercambio un Gengar por un Squirtle del entrenador B
+[INFO] 00:48:10:686 TEAM/(15467:15521): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 00:48:10:686 TEAM/(15467:15521): No se detecto situacion de deadlock
+[INFO] 00:48:10:686 TEAM/(15467:15521): Finalizo el TEAM
+[INFO] 00:48:10:686 TEAM/(15467:15521): Se ejecutaron 70 ciclos de cpu
+[INFO] 00:48:10:686 TEAM/(15467:15521): Ocurrieron 7 cambios de contexto durante todo el team
+[INFO] 00:48:10:686 TEAM/(15467:15521): El entrenador A ejecutó 18 ciclos de cpu
+[INFO] 00:48:10:686 TEAM/(15467:15521): El entrenador B ejecutó 23 ciclos de cpu
+[INFO] 00:48:10:686 TEAM/(15467:15521): El entrenador C ejecutó 20 ciclos de cpu
+[INFO] 00:48:10:686 TEAM/(15467:15521): Se produjeron 2 deadlocks
+[INFO] 00:48:10:686 TEAM/(15467:15521): Se resolvieron 2 deadlocks
+[INFO] 00:52:22:191 TEAM/(16064:16064): el socket de conexion es: 4.
+[INFO] 00:52:22:193 TEAM/(16064:16066): el socket de conexion es: 5.
+[INFO] 00:52:22:193 TEAM/(16064:16066): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:52:23:196 TEAM/(16064:16066): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 11. 
+ID_CORRELATIVO: 10.
+POKEMON: Pikachu. 
+CANTIDAD: 1. 
+POSICION EN X: 9. 
+POSICION EN Y: 9. 
+
+[INFO] 00:52:24:194 TEAM/(16064:16064): el socket de conexion es: 9.
+[INFO] 00:52:24:271 TEAM/(16064:16066): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 14. 
+ID_CORRELATIVO: 12.
+POKEMON: Jolteon. 
+CANTIDAD: 1. 
+POSICION EN X: 2. 
+POSICION EN Y: 2. 
+
+[INFO] 00:52:25:273 TEAM/(16064:16066): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 16. 
+ID_CORRELATIVO: 13.
+POKEMON: Squirtle. 
+CANTIDAD: 1. 
+POSICION EN X: 5. 
+POSICION EN Y: 2. 
+
+[INFO] 00:52:26:195 TEAM/(16064:16064): el socket de conexion es: 10.
+[INFO] 00:52:26:282 TEAM/(16064:16066): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 18. 
+ID_CORRELATIVO: 15.
+POKEMON: Flareon. 
+CANTIDAD: 1. 
+POSICION EN X: 4. 
+POSICION EN Y: 6. 
+
+[INFO] 00:52:28:195 TEAM/(16064:16064): el socket de conexion es: 11.
+[INFO] 00:52:30:198 TEAM/(16064:16108): el socket de conexion es: 12.
+[INFO] 00:52:30:198 TEAM/(16064:16108): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:52:30:199 TEAM/(16064:16106): el socket de conexion es: 13.
+[INFO] 00:52:30:199 TEAM/(16064:16106): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:52:31:199 TEAM/(16064:16110): El entrenador C se movió a la posicion 4|2.
+[INFO] 00:52:32:200 TEAM/(16064:16113): El entrenador C se movió a la posicion 5|2.
+[INFO] 00:52:32:201 TEAM/(16064:16120): el socket de conexion es: 14.
+[INFO] 00:52:33:205 TEAM/(16064:16106): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 24. 
+ID_CORRELATIVO: 22.
+RESULTADO CATCH: OK.
+[INFO] 00:52:33:206 TEAM/(16064:16106): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 00:52:34:204 TEAM/(16064:16109): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 00:52:34:207 TEAM/(16064:16106): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 25. 
+ID_CORRELATIVO: 23.
+RESULTADO CATCH: OK.
+[INFO] 00:52:35:205 TEAM/(16064:16129): El entrenador B se movió a la posicion 3|3.
+[INFO] 00:52:36:206 TEAM/(16064:16134): El entrenador B se movió a la posicion 4|3.
+[INFO] 00:52:37:207 TEAM/(16064:16136): El entrenador B se movió a la posicion 5|3.
+[INFO] 00:52:38:208 TEAM/(16064:16138): El entrenador B se movió a la posicion 6|3.
+[INFO] 00:52:38:284 TEAM/(16064:16106): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 27. 
+ID_CORRELATIVO: 26.
+RESULTADO CATCH: OK.
+[INFO] 00:52:39:208 TEAM/(16064:16142): El entrenador B se movió a la posicion 7|3.
+[INFO] 00:52:40:210 TEAM/(16064:16146): El entrenador B se movió a la posicion 8|3.
+[INFO] 00:52:41:211 TEAM/(16064:16147): El entrenador B se movió a la posicion 9|3.
+[INFO] 00:52:42:212 TEAM/(16064:16148): El entrenador B se movió a la posicion 9|4.
+[INFO] 00:52:43:212 TEAM/(16064:16149): El entrenador B se movió a la posicion 9|5.
+[INFO] 00:52:44:213 TEAM/(16064:16150): El entrenador B se movió a la posicion 9|6.
+[INFO] 00:52:45:214 TEAM/(16064:16151): El entrenador B se movió a la posicion 9|7.
+[INFO] 00:52:46:215 TEAM/(16064:16152): El entrenador B se movió a la posicion 9|8.
+[INFO] 00:52:47:215 TEAM/(16064:16153): El entrenador B se movió a la posicion 9|9.
+[INFO] 00:52:47:216 TEAM/(16064:16154): el socket de conexion es: 15.
+[INFO] 00:52:48:223 TEAM/(16064:16106): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 29. 
+ID_CORRELATIVO: 28.
+RESULTADO CATCH: OK.
+[INFO] 00:52:48:223 TEAM/(16064:16106): El entrenador B atrapó un Pikachu en la posicion 9|9.
+[INFO] 00:52:59:268 TEAM/(16064:16108): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 36. 
+POKEMON: Onix. 
+POSICION EN X: 2. 
+POSICION EN Y: 8.
+[INFO] 00:53:00:269 TEAM/(16064:16181): El entrenador A se movió a la posicion 2|3.
+[INFO] 00:53:00:274 TEAM/(16064:16108): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 37. 
+POKEMON: Gengar. 
+POSICION EN X: 6. 
+POSICION EN Y: 6.
+[INFO] 00:53:00:279 TEAM/(16064:16108): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 38. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 5.
+[INFO] 00:53:01:270 TEAM/(16064:16184): El entrenador A se movió a la posicion 2|4.
+[INFO] 00:53:02:271 TEAM/(16064:16191): El entrenador A se movió a la posicion 2|5.
+[INFO] 00:53:03:272 TEAM/(16064:16195): El entrenador A se movió a la posicion 2|6.
+[INFO] 00:53:04:273 TEAM/(16064:16200): El entrenador A se movió a la posicion 2|7.
+[INFO] 00:53:05:274 TEAM/(16064:16205): El entrenador A se movió a la posicion 2|8.
+[INFO] 00:53:05:274 TEAM/(16064:16207): el socket de conexion es: 16.
+[INFO] 00:53:06:279 TEAM/(16064:16106): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 44. 
+ID_CORRELATIVO: 42.
+RESULTADO CATCH: OK.
+[INFO] 00:53:06:279 TEAM/(16064:16106): El entrenador A atrapó un Onix en la posicion 2|8.
+[INFO] 00:53:07:277 TEAM/(16064:16109): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 00:53:07:280 TEAM/(16064:16106): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 45. 
+ID_CORRELATIVO: 43.
+RESULTADO CATCH: OK.
+[INFO] 00:53:08:279 TEAM/(16064:16216): El entrenador C se movió a la posicion 6|2.
+[INFO] 00:53:09:280 TEAM/(16064:16222): El entrenador C se movió a la posicion 6|3.
+[INFO] 00:53:10:280 TEAM/(16064:16227): El entrenador C se movió a la posicion 6|4.
+[INFO] 00:53:11:281 TEAM/(16064:16229): El entrenador C se movió a la posicion 6|5.
+[INFO] 00:53:11:313 TEAM/(16064:16106): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 47. 
+ID_CORRELATIVO: 46.
+RESULTADO CATCH: OK.
+[INFO] 00:53:12:283 TEAM/(16064:16233): El entrenador C se movió a la posicion 6|6.
+[INFO] 00:53:12:285 TEAM/(16064:16237): el socket de conexion es: 17.
+[INFO] 00:53:13:292 TEAM/(16064:16106): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 49. 
+ID_CORRELATIVO: 48.
+RESULTADO CATCH: OK.
+[INFO] 00:53:13:293 TEAM/(16064:16106): El entrenador C atrapó un Gengar en la posicion 6|6.
+[INFO] 00:53:14:290 TEAM/(16064:16109): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 00:53:15:292 TEAM/(16064:16246): El entrenador B se movió a la posicion 8|9.
+[INFO] 00:53:16:292 TEAM/(16064:16248): El entrenador B se movió a la posicion 7|9.
+[INFO] 00:53:17:293 TEAM/(16064:16250): El entrenador B se movió a la posicion 6|9.
+[INFO] 00:53:17:315 TEAM/(16064:16106): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 51. 
+ID_CORRELATIVO: 50.
+RESULTADO CATCH: OK.
+[INFO] 00:53:18:294 TEAM/(16064:16254): El entrenador B se movió a la posicion 5|9.
+[INFO] 00:53:19:295 TEAM/(16064:16258): El entrenador B se movió a la posicion 5|8.
+[INFO] 00:53:20:297 TEAM/(16064:16260): El entrenador B se movió a la posicion 5|7.
+[INFO] 00:53:21:298 TEAM/(16064:16262): El entrenador B se movió a la posicion 5|6.
+[INFO] 00:53:22:299 TEAM/(16064:16264): El entrenador B se movió a la posicion 5|5.
+[INFO] 00:53:22:300 TEAM/(16064:16266): el socket de conexion es: 18.
+[INFO] 00:53:23:305 TEAM/(16064:16106): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 53. 
+ID_CORRELATIVO: 52.
+RESULTADO CATCH: OK.
+[INFO] 00:53:23:305 TEAM/(16064:16106): El entrenador B atrapó un Squirtle en la posicion 5|5.
+[INFO] 00:53:24:302 TEAM/(16064:16109): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 00:53:24:303 TEAM/(16064:16109): Se detecto que hay situacion de deadlock
+[INFO] 00:53:24:303 TEAM/(16064:16109): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 00:53:25:303 TEAM/(16064:16274): El entrenador A se movió a la posicion 3|8.
+[INFO] 00:53:26:304 TEAM/(16064:16276): El entrenador A se movió a la posicion 4|8.
+[INFO] 00:53:27:306 TEAM/(16064:16278): El entrenador A se movió a la posicion 5|8.
+[INFO] 00:53:28:307 TEAM/(16064:16280): El entrenador A se movió a la posicion 5|7.
+[INFO] 00:53:29:309 TEAM/(16064:16282): El entrenador A se movió a la posicion 5|6.
+[INFO] 00:53:30:310 TEAM/(16064:16286): El entrenador A se movió a la posicion 5|5.
+[INFO] 00:53:35:312 TEAM/(16064:16287): El entrenador A intercambio un Onix por un Squirtle del entrenador B
+[INFO] 00:53:35:313 TEAM/(16064:16109): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 00:53:35:313 TEAM/(16064:16109): Se detecto que hay situacion de deadlock
+[INFO] 00:53:35:313 TEAM/(16064:16109): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 00:53:36:313 TEAM/(16064:16290): El entrenador C se movió a la posicion 5|6.
+[INFO] 00:53:37:314 TEAM/(16064:16292): El entrenador C se movió a la posicion 5|5.
+[INFO] 00:53:42:315 TEAM/(16064:16294): El entrenador C intercambio un Gengar por un Onix del entrenador B
+[INFO] 00:53:42:315 TEAM/(16064:16109): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 00:53:42:315 TEAM/(16064:16109): No se detecto situacion de deadlock
+[INFO] 00:53:42:315 TEAM/(16064:16109): Finalizo el TEAM
+[INFO] 00:53:42:315 TEAM/(16064:16109): Se ejecutaron 66 ciclos de cpu
+[INFO] 00:53:42:315 TEAM/(16064:16109): Ocurrieron 7 cambios de contexto durante todo el team
+[INFO] 00:53:42:315 TEAM/(16064:16109): El entrenador A ejecutó 18 ciclos de cpu
+[INFO] 00:53:42:315 TEAM/(16064:16109): El entrenador B ejecutó 23 ciclos de cpu
+[INFO] 00:53:42:315 TEAM/(16064:16109): El entrenador C ejecutó 16 ciclos de cpu
+[INFO] 00:53:42:315 TEAM/(16064:16109): Se produjeron 2 deadlocks
+[INFO] 00:53:42:315 TEAM/(16064:16109): Se resolvieron 2 deadlocks
+[INFO] 00:58:17:844 TEAM/(16435:16435): el socket de conexion es: 4.
+[INFO] 00:58:17:847 TEAM/(16435:16437): el socket de conexion es: 5.
+[INFO] 00:58:17:847 TEAM/(16435:16437): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:58:18:849 TEAM/(16435:16437): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 11. 
+ID_CORRELATIVO: 9.
+POKEMON: Pikachu. 
+CANTIDAD: 1. 
+POSICION EN X: 9. 
+POSICION EN Y: 9. 
+
+[INFO] 00:58:19:846 TEAM/(16435:16435): el socket de conexion es: 9.
+[INFO] 00:58:20:851 TEAM/(16435:16437): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 14. 
+ID_CORRELATIVO: 12.
+POKEMON: Squirtle. 
+CANTIDAD: 1. 
+POSICION EN X: 5. 
+POSICION EN Y: 2. 
+
+[INFO] 00:58:21:847 TEAM/(16435:16435): el socket de conexion es: 10.
+[INFO] 00:58:21:852 TEAM/(16435:16437): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 16. 
+ID_CORRELATIVO: 13.
+POKEMON: Jolteon. 
+CANTIDAD: 1. 
+POSICION EN X: 2. 
+POSICION EN Y: 2. 
+
+[INFO] 00:58:23:673 TEAM/(16435:16437): Llego un mensaje LOCALIZED_POKEMON:
+ID_MENSAJE: 18. 
+ID_CORRELATIVO: 17.
+POKEMON: Flareon. 
+CANTIDAD: 1. 
+POSICION EN X: 4. 
+POSICION EN Y: 6. 
+
+[INFO] 00:58:23:848 TEAM/(16435:16435): el socket de conexion es: 11.
+[INFO] 00:58:25:849 TEAM/(16435:16485): el socket de conexion es: 12.
+[INFO] 00:58:25:850 TEAM/(16435:16485): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:58:25:850 TEAM/(16435:16484): el socket de conexion es: 13.
+[INFO] 00:58:25:850 TEAM/(16435:16484): Se logró conectar con el BROKER de manera exitosa
+[INFO] 00:58:26:850 TEAM/(16435:16487): El entrenador C se movió a la posicion 4|2.
+[INFO] 00:58:27:851 TEAM/(16435:16493): El entrenador C se movió a la posicion 5|2.
+[INFO] 00:58:27:852 TEAM/(16435:16494): el socket de conexion es: 14.
+[INFO] 00:58:28:857 TEAM/(16435:16484): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 23. 
+ID_CORRELATIVO: 22.
+RESULTADO CATCH: OK.
+[INFO] 00:58:28:857 TEAM/(16435:16484): El entrenador C atrapó un Squirtle en la posicion 5|2.
+[INFO] 00:58:29:856 TEAM/(16435:16486): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 00:58:30:680 TEAM/(16435:16484): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 25. 
+ID_CORRELATIVO: 24.
+RESULTADO CATCH: OK.
+[INFO] 00:58:30:857 TEAM/(16435:16509): El entrenador B se movió a la posicion 3|3.
+[INFO] 00:58:31:858 TEAM/(16435:16513): El entrenador B se movió a la posicion 4|3.
+[INFO] 00:58:32:859 TEAM/(16435:16515): El entrenador B se movió a la posicion 5|3.
+[INFO] 00:58:33:860 TEAM/(16435:16517): El entrenador B se movió a la posicion 6|3.
+[INFO] 00:58:34:860 TEAM/(16435:16519): El entrenador B se movió a la posicion 7|3.
+[INFO] 00:58:35:686 TEAM/(16435:16484): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 27. 
+ID_CORRELATIVO: 26.
+RESULTADO CATCH: OK.
+[INFO] 00:58:35:861 TEAM/(16435:16523): El entrenador B se movió a la posicion 8|3.
+[INFO] 00:58:36:862 TEAM/(16435:16527): El entrenador B se movió a la posicion 9|3.
+[INFO] 00:58:37:863 TEAM/(16435:16528): El entrenador B se movió a la posicion 9|4.
+[INFO] 00:58:38:864 TEAM/(16435:16529): El entrenador B se movió a la posicion 9|5.
+[INFO] 00:58:39:866 TEAM/(16435:16530): El entrenador B se movió a la posicion 9|6.
+[INFO] 00:58:40:868 TEAM/(16435:16531): El entrenador B se movió a la posicion 9|7.
+[INFO] 00:58:41:868 TEAM/(16435:16532): El entrenador B se movió a la posicion 9|8.
+[INFO] 00:58:42:870 TEAM/(16435:16533): El entrenador B se movió a la posicion 9|9.
+[INFO] 00:58:42:870 TEAM/(16435:16534): el socket de conexion es: 15.
+[INFO] 00:58:43:875 TEAM/(16435:16484): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 29. 
+ID_CORRELATIVO: 28.
+RESULTADO CATCH: OK.
+[INFO] 00:58:43:875 TEAM/(16435:16484): El entrenador B atrapó un Pikachu en la posicion 9|9.
+[INFO] 00:58:55:192 TEAM/(16435:16485): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 36. 
+POKEMON: Onix. 
+POSICION EN X: 2. 
+POSICION EN Y: 8.
+[INFO] 00:58:56:193 TEAM/(16435:16622): El entrenador A se movió a la posicion 2|3.
+[INFO] 00:58:56:198 TEAM/(16435:16485): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 37. 
+POKEMON: Gengar. 
+POSICION EN X: 6. 
+POSICION EN Y: 6.
+[INFO] 00:58:56:202 TEAM/(16435:16485): Llegó un mensaje APPEARED_POKEMON con:
+ID_MENSAJE: 38. 
+POKEMON: Squirtle. 
+POSICION EN X: 5. 
+POSICION EN Y: 5.
+[INFO] 00:58:57:194 TEAM/(16435:16625): El entrenador A se movió a la posicion 2|4.
+[INFO] 00:58:58:195 TEAM/(16435:16632): El entrenador A se movió a la posicion 2|5.
+[INFO] 00:58:59:196 TEAM/(16435:16636): El entrenador A se movió a la posicion 2|6.
+[INFO] 00:59:00:198 TEAM/(16435:16641): El entrenador A se movió a la posicion 2|7.
+[INFO] 00:59:01:199 TEAM/(16435:16646): El entrenador A se movió a la posicion 2|8.
+[INFO] 00:59:01:200 TEAM/(16435:16649): el socket de conexion es: 16.
+[INFO] 00:59:02:203 TEAM/(16435:16484): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 44. 
+ID_CORRELATIVO: 42.
+RESULTADO CATCH: OK.
+[INFO] 00:59:02:203 TEAM/(16435:16484): El entrenador A atrapó un Onix en la posicion 2|8.
+[INFO] 00:59:03:202 TEAM/(16435:16486): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 00:59:03:206 TEAM/(16435:16484): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 45. 
+ID_CORRELATIVO: 43.
+RESULTADO CATCH: OK.
+[INFO] 00:59:04:202 TEAM/(16435:16663): El entrenador C se movió a la posicion 6|2.
+[INFO] 00:59:05:202 TEAM/(16435:16668): El entrenador C se movió a la posicion 6|3.
+[INFO] 00:59:06:204 TEAM/(16435:16670): El entrenador C se movió a la posicion 6|4.
+[INFO] 00:59:07:205 TEAM/(16435:16672): El entrenador C se movió a la posicion 6|5.
+[INFO] 00:59:07:254 TEAM/(16435:16484): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 47. 
+ID_CORRELATIVO: 46.
+RESULTADO CATCH: OK.
+[INFO] 00:59:08:206 TEAM/(16435:16702): El entrenador C se movió a la posicion 6|6.
+[INFO] 00:59:08:207 TEAM/(16435:16742): el socket de conexion es: 17.
+[INFO] 00:59:09:212 TEAM/(16435:16484): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 49. 
+ID_CORRELATIVO: 48.
+RESULTADO CATCH: OK.
+[INFO] 00:59:09:213 TEAM/(16435:16484): El entrenador C atrapó un Gengar en la posicion 6|6.
+[INFO] 00:59:10:210 TEAM/(16435:16486): Se cambio al entrenador B debido a que terminó de ejecutar el anterior
+[INFO] 00:59:11:211 TEAM/(16435:16752): El entrenador B se movió a la posicion 8|9.
+[INFO] 00:59:12:211 TEAM/(16435:16754): El entrenador B se movió a la posicion 7|9.
+[INFO] 00:59:13:212 TEAM/(16435:16756): El entrenador B se movió a la posicion 6|9.
+[INFO] 00:59:13:242 TEAM/(16435:16484): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 51. 
+ID_CORRELATIVO: 50.
+RESULTADO CATCH: OK.
+[INFO] 00:59:14:214 TEAM/(16435:16762): El entrenador B se movió a la posicion 5|9.
+[INFO] 00:59:15:215 TEAM/(16435:16766): El entrenador B se movió a la posicion 5|8.
+[INFO] 00:59:16:219 TEAM/(16435:16768): El entrenador B se movió a la posicion 5|7.
+[INFO] 00:59:17:221 TEAM/(16435:16770): El entrenador B se movió a la posicion 5|6.
+[INFO] 00:59:18:222 TEAM/(16435:16772): El entrenador B se movió a la posicion 5|5.
+[INFO] 00:59:18:223 TEAM/(16435:16774): el socket de conexion es: 18.
+[INFO] 00:59:19:232 TEAM/(16435:16484): Llego un mensaje CAUGHT_POKEMON:
+ID_MENSAJE: 53. 
+ID_CORRELATIVO: 52.
+RESULTADO CATCH: OK.
+[INFO] 00:59:19:232 TEAM/(16435:16484): El entrenador B atrapó un Squirtle en la posicion 5|5.
+[INFO] 00:59:20:224 TEAM/(16435:16486): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 00:59:20:225 TEAM/(16435:16486): Se detecto que hay situacion de deadlock
+[INFO] 00:59:20:225 TEAM/(16435:16486): Se cambio al entrenador A debido a que terminó de ejecutar el anterior
+[INFO] 00:59:21:225 TEAM/(16435:16783): El entrenador A se movió a la posicion 3|8.
+[INFO] 00:59:22:226 TEAM/(16435:16785): El entrenador A se movió a la posicion 4|8.
+[INFO] 00:59:23:227 TEAM/(16435:16787): El entrenador A se movió a la posicion 5|8.
+[INFO] 00:59:24:228 TEAM/(16435:16789): El entrenador A se movió a la posicion 5|7.
+[INFO] 00:59:25:229 TEAM/(16435:16791): El entrenador A se movió a la posicion 5|6.
+[INFO] 00:59:26:232 TEAM/(16435:16793): El entrenador A se movió a la posicion 5|5.
+[INFO] 00:59:31:233 TEAM/(16435:16794): El entrenador A intercambio un Onix por un Squirtle del entrenador B
+[INFO] 00:59:31:234 TEAM/(16435:16486): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 00:59:31:234 TEAM/(16435:16486): Se detecto que hay situacion de deadlock
+[INFO] 00:59:31:234 TEAM/(16435:16486): Se cambio al entrenador C debido a que terminó de ejecutar el anterior
+[INFO] 00:59:32:234 TEAM/(16435:16797): El entrenador C se movió a la posicion 5|6.
+[INFO] 00:59:33:236 TEAM/(16435:16804): El entrenador C se movió a la posicion 5|5.
+[INFO] 00:59:38:239 TEAM/(16435:16806): El entrenador C intercambio un Gengar por un Onix del entrenador B
+[INFO] 00:59:38:239 TEAM/(16435:16486): Inicio de algoritmo de deteccion de Deadlock
+[INFO] 00:59:38:239 TEAM/(16435:16486): No se detecto situacion de deadlock
+[INFO] 00:59:38:239 TEAM/(16435:16486): Finalizo el TEAM
+[INFO] 00:59:38:239 TEAM/(16435:16486): Se ejecutaron 66 ciclos de cpu
+[INFO] 00:59:38:239 TEAM/(16435:16486): Ocurrieron 7 cambios de contexto durante todo el team
+[INFO] 00:59:38:239 TEAM/(16435:16486): El entrenador A ejecutó 18 ciclos de cpu
+[INFO] 00:59:38:239 TEAM/(16435:16486): El entrenador B ejecutó 23 ciclos de cpu
+[INFO] 00:59:38:239 TEAM/(16435:16486): El entrenador C ejecutó 16 ciclos de cpu
+[INFO] 00:59:38:239 TEAM/(16435:16486): Se produjeron 2 deadlocks
+[INFO] 00:59:38:240 TEAM/(16435:16486): Se resolvieron 2 deadlocks
