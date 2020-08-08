@@ -36,12 +36,12 @@ cp -r tp-2020-1c-wRAPPERS/ /home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress
 
 #STRESS
 
-if test -d /home/utnso/Documentos/tallgrass-stress/; then
-	sudo rm -r /home/utnso/Documentos/tallgrass-stress/
+if test -d /home/utnso/Documentos/FILESYSTEM-STRESS/; then
+	sudo rm -r /home/utnso/Documentos/FILESYSTEM-STRESS/
 fi
 
 cd
-mkdir -p /home/utnso/Documentos/tallgrass-stress/
+mkdir -p /home/utnso/Documentos/FILESYSTEM-STRESS/
 
 #FIN STRESS
 
@@ -75,7 +75,7 @@ fi
 echo -e "BLOCKS=1024\n
 BLOCK_SIZE=64\n
 MAGIC_NUMBER=TALL_GRASS\n
-PUNTO_MONTAJE_TALLGRASS=/home/utnso/Documentos/tallgrass-stress\n
+PUNTO_MONTAJE_TALLGRASS=/home/utnso/Documentos/FILESYSTEM-STRESS\n
 TIEMPO_DE_REINTENTO_CONEXION=10\n
 TIEMPO_DE_REINTENTO_OPERACION=5\n
 TIEMPO_RETARDO_OPERACION=1\n
