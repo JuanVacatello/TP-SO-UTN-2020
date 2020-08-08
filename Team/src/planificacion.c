@@ -8,8 +8,6 @@ void planificar_fifo(void){
 
 	while(!terminoTeam()){
 
-		pthread_mutex_lock(&mutex_planificador);
-
 		while(!list_is_empty(lista_de_entrenadores_ready)){
 
 			sem_wait(&MUTEX_ENTRENADORES);
@@ -45,14 +43,14 @@ void planificar_fifo(void){
 				ejecutar_entrenador(entrenador);
 			}
 
-
-
 		}
 
 		if(terminoTeam()){
 			finalizoTeam();
 			exit(10);
 		}
+
+		pthread_mutex_lock(&mutex_planificador);
 
 	}
 }
@@ -65,8 +63,6 @@ void planificar_sjf_sd(void){
 	t_entrenador* entrenador;
 
 	while(!terminoTeam()){
-
-		pthread_mutex_lock(&mutex_planificador);
 
 		while(!list_is_empty(lista_de_entrenadores_ready)){
 
@@ -122,6 +118,7 @@ void planificar_sjf_sd(void){
 			exit(10);
 		}
 
+		pthread_mutex_lock(&mutex_planificador);
 	}
 
 }
@@ -230,7 +227,9 @@ void planificar_sjf_cd(void){
 				finalizoTeam();
 				exit(10);
 			}
-		}
+
+			pthread_mutex_lock(&mutex_planificador);
+	}
 }
 
 
@@ -363,6 +362,8 @@ void planificar_rr(void){
 			finalizoTeam();
 			exit(10);
 		}
+
+		pthread_mutex_lock(&mutex_planificador);
 	}
 }
 

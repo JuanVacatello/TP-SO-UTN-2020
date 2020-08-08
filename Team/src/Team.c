@@ -258,6 +258,34 @@ void informar_pokemones_a_atrapar(){
 	//free(pokemones_a_atrapar);
 }
 
+bool terminaron_de_atrapar(){
+
+	t_entrenador* entrenador;
+	int tamanio_objetivos = 0;
+	int tamanio_atrapados = 0;
+	int contador_terminados = 0;
+
+	for(int i=0; i<list_size(lista_de_entrenadores); i++){
+
+		entrenador = list_get(lista_de_entrenadores, i);
+		tamanio_objetivos = list_size(entrenador->objetivo);
+		tamanio_atrapados = list_size(entrenador->atrapados);
+
+		if(tamanio_objetivos == tamanio_atrapados){
+			contador_terminados++;
+		}
+	}
+
+	if (contador_terminados == list_size(lista_de_entrenadores)){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
+
+
 bool terminoTeam(){
 	return list_all_satisfy(lista_de_entrenadores, esta_en_exit);
 }

@@ -264,6 +264,7 @@ void enviar_CatchPokemon_a_broker(op_code codigo_operacion, t_entrenador* entren
 		id_correlativo = recibir_id_correlativo(socket_broker);
 		entrenador->ID_catch_pokemon = id_correlativo;
 
+		ciclos_de_cpu(1);
 		ciclosCpuTotales++;
 		free(a_enviar);
 	}
@@ -292,10 +293,9 @@ void enviar_GetPokemon_a_broker(op_code codigo_operacion, char* pokemon)
 			printf("Error en enviar por el socket");
 			exit(3);
 		}
-		sem_wait(&ID);
-		id_correlativo = recibir_id_correlativo(socket_broker);
-		list_add(lista_ids_getPokemon, id_correlativo);
-		sem_post(&ID);
+		pthread_t* hilo_id;
+		pthread_create(&hilo_id, NULL, recibir_id_correlativo_get, socket_broker);
+		pthread_detach(hilo_id);
 
 		free(a_enviar);
 	}
@@ -433,6 +433,22 @@ int recibir_id_correlativo(int socket_broker){
 	return id_correlativo;
 }
 
+void recibir_id_correlativo_get(int socket_broker){
+
+	op_code code_op;
+	recv(socket_broker, &code_op, sizeof(op_code), MSG_WAITALL);
+
+	uint32_t tamanio_buffer;
+	recv(socket_broker, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
+
+	uint32_t id_correlativo;
+	recv(socket_broker, &id_correlativo, tamanio_buffer, MSG_WAITALL);
+
+	sem_wait(&ID);
+	list_add(lista_ids_getPokemon, id_correlativo);
+	sem_post(&ID);
+}
+
 //----------------------- RECEPCION DE MENSAJES DE GAMEBOY -----------------------
 
 
@@ -504,8 +520,6 @@ void recibir_CaughtPokemon(int socket_broker){
 
 void recibir_LocalizedPokemon(int socket_broker){
 
-		t_pokemon* pokemon_nuevo = malloc(sizeof(t_pokemon));
-
 		uint32_t tamanio_buffer;
 		recv(socket_broker, &tamanio_buffer, sizeof(uint32_t), MSG_WAITALL);
 
@@ -515,40 +529,46 @@ void recibir_LocalizedPokemon(int socket_broker){
 		uint32_t id_correlativo;
 		recv(socket_broker, &id_correlativo, sizeof(uint32_t), MSG_WAITALL);
 
+		uint32_t caracteresPokemon;
+		recv(socket_broker, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
+
+		char* pokemon = (char*)malloc(caracteresPokemon);
+		recv(socket_broker, pokemon, caracteresPokemon, MSG_WAITALL);
+
+		uint32_t cantidadPokemones;
+		recv(socket_broker, &cantidadPokemones, sizeof(uint32_t), MSG_WAITALL);
+
+		t_list* posicionesX = list_create();
+		t_list* posicionesY = list_create();
+
+		for(int i =0; i<cantidadPokemones; i++){
+
+			uint32_t posX;
+			recv(socket_broker, &posX, sizeof(uint32_t), MSG_WAITALL);
+			list_add(posicionesX, posX);
+
+			uint32_t posY;
+			recv(socket_broker, &posY, sizeof(uint32_t), MSG_WAITALL);
+			list_add(posicionesY, posY);
+
+		}
+		log_llego_mensaje_nuevo_localized_pokemon(mensajeid, id_correlativo, pokemon, cantidadPokemones, posicionesX, posicionesY);
+		responder_ack(socket_broker,mensajeid);
+
 		if(existe_id_en_lista(id_correlativo)){
-
-			uint32_t caracteresPokemon;
-			recv(socket_broker, &caracteresPokemon, sizeof(uint32_t), MSG_WAITALL);
-
-			char* pokemon = (char*)malloc(caracteresPokemon);
-			recv(socket_broker, pokemon, caracteresPokemon, MSG_WAITALL);
-
-			uint32_t cantidadPokemones;
-			recv(socket_broker, &cantidadPokemones, sizeof(uint32_t), MSG_WAITALL);
-
-			t_list* posicionesX = list_create();
-			t_list* posicionesY = list_create();
-
-			int se_respondio_ack = 0;
 
 			for(int i =0; i<cantidadPokemones; i++){
 
 				uint32_t posX;
-				recv(socket_broker, &posX, sizeof(uint32_t), MSG_WAITALL);
-				list_add(posicionesX, posX);
-
+				posX = list_get(posicionesX,i);
 				uint32_t posY;
-				recv(socket_broker, &posY, sizeof(uint32_t), MSG_WAITALL);
-				list_add(posicionesY, posY);
+				posY = list_get(posicionesY,i);
 
-				if(se_respondio_ack == 0){
-					responder_ack(socket_broker,mensajeid);
-					se_respondio_ack = 1;
-				}
+				t_pokemon* pokemon_nuevo = malloc(sizeof(t_pokemon));
 
 				if(es_pokemon_requerido(pokemon)){
 					sem_wait(&CONTADOR_ENTRENADORES);
-					log_llego_mensaje_nuevo_localized_pokemon(mensajeid, id_correlativo, pokemon, cantidadPokemones, posicionesX, posicionesY);
+					//log_llego_mensaje_nuevo_localized_pokemon(mensajeid, id_correlativo, pokemon, cantidadPokemones, posicionesX, posicionesY);
 					t_pokemon* pokemonNuevo = armarPokemon(pokemon, posX, posY);
 					aparicion_pokemon(pokemonNuevo);
 					pthread_mutex_unlock(&mutex_planificador);
@@ -557,11 +577,15 @@ void recibir_LocalizedPokemon(int socket_broker){
 					t_pokemon* pokemonNuevo = armarPokemon(pokemon, posX, posY);
 					list_add(lista_pokemonesNoRequeridos_enElMapa, pokemonNuevo);
 				}
-
-				//free(posicionesX);
-				//free(posicionesY);
 			}
+
 		}
+		else{
+			free(pokemon);
+		}
+
+			list_destroy(posicionesX);
+			list_destroy(posicionesY);
 
 }
 

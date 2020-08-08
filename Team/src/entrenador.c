@@ -273,10 +273,12 @@ void atrapar_pokemon(t_entrenador* entrenador){
 		if(list_size(entrenador->objetivo) != list_size(entrenador->atrapados)){
 			sem_post(&CONTADOR_ENTRENADORES);
 		}
+
+		if(terminaron_de_atrapar()){
+			pthread_mutex_unlock(&mutex_planificador);
+		}
 	}
 }
-
-
 
 void verificar_estado_entrenador(t_entrenador* entrenador){
 
