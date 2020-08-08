@@ -55,7 +55,14 @@ if test -e GameBoy.config; then
 	rm GameBoy.config
 fi
 
-echo -e "IP_BROKER=127.0.0.1\nIP_TEAM=127.0.0.2\nIP_GAMECARD=127.0.0.4\nPUERTO_BROKER=4444\nPUERTO_TEAM=5555\nPUERTO_GAMECARD=7777\nLOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/GameBoy/GameBoy.log\nPROCESS_ID=2808" >> GameBoy.config
+echo -e "IP_BROKER=10.109.160.2\n
+IP_TEAM=10.109.160.3\n
+IP_GAMECARD=10.109.160.2\n
+PUERTO_BROKER=4444\n
+PUERTO_TEAM=5555\n
+PUERTO_GAMECARD=7777\n
+LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/GameBoy/GameBoy.log\n
+PROCESS_ID=2808" >> GameBoy.config
 
 cd Debug
 make clean
@@ -80,11 +87,11 @@ TIEMPO_DE_REINTENTO_CONEXION=10\n
 TIEMPO_DE_REINTENTO_OPERACION=5\n
 TIEMPO_RETARDO_OPERACION=1\n
 PUERTO_BROKER=4444\n
-IP_BROKER=127.0.0.1\n
+IP_BROKER=10.109.160.2\n
 PROCESS_ID=5678\n
 LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/GameCard/GameCard.log\n
 PUERTO_GAMECARD=7777\n
-IP_GAMECARD=127.0.0.4\n" >> GameCard.config
+IP_GAMECARD=10.109.160.2\n" >> GameCard.config
 
 cd Debug
 make clean
@@ -121,7 +128,7 @@ ALGORITMO_PARTICION_LIBRE=FF\n
 FRECUENCIA_COMPACTACION=1\n
 PATH_ARCHIVO_DUMP=/home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/Broker-Particiones-dinamicas-stress/Broker.dump\n
 LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/Broker-Particiones-dinamicas-stress/Broker.log\n
-IP_BROKER=127.0.0.1\n
+IP_BROKER=10.109.160.2\n
 PUERTO_BROKER=4444\n">> Broker.config
 
 cd Debug
@@ -145,7 +152,7 @@ ALGORITMO_PARTICION_LIBRE=FF\n
 FRECUENCIA_COMPACTACION=1\n
 PATH_ARCHIVO_DUMP=/home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/Broker-BUDDY-SYSTEM-stress/Broker.dump\n
 LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/Broker-BUDDY-SYSTEM-stress/Broker.log\n
-IP_BROKER=127.0.0.1\n
+IP_BROKER=10.109.160.2\n
 PUERTO_BROKER=4444\n">> Broker.config
 
 cd Debug
@@ -185,11 +192,11 @@ ALGORITMO_PLANIFICACION=FIFO\n
 QUANTUM=2\n
 ALPHA=0.5\n
 ESTIMACION_INICIAL=5\n
-IP_BROKER=127.0.0.1\n
+IP_BROKER=10.109.160.2\n
 PUERTO_BROKER=4444\n
 LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/Team-FIFO-stress/Team.log\n
 PROCESS_ID=1234\n
-IP_TEAM=127.0.0.2\n
+IP_TEAM=10.109.160.3\n
 PUERTO_TEAM=5555\n" >> Team.config
 
 cd Debug
@@ -215,11 +222,11 @@ ALGORITMO_PLANIFICACION=RR\n
 QUANTUM=1\n
 ALPHA=0.5\n
 ESTIMACION_INICIAL=5\n
-IP_BROKER=127.0.0.1\n
+IP_BROKER=10.109.160.2\n
 PUERTO_BROKER=4444\n
 LOG_FILE=home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/Team-RR-stress/Team.log\n
 PROCESS_ID=1234\n
-IP_TEAM=127.0.0.2\n
+IP_TEAM=10.109.160.3\n
 PUERTO_TEAM=5555\n" >> Team.config
 
 cd Debug
@@ -243,11 +250,11 @@ ALGORITMO_PLANIFICACION=SJF-SD\n
 QUANTUM=2\n
 ALPHA=0.5\n
 ESTIMACION_INICIAL=5\n
-IP_BROKER=127.0.0.1\n
+IP_BROKER=10.109.160.2\n
 PUERTO_BROKER=4444\n
 LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/Team-SJF-SD-stress/Team.log\n
 PROCESS_ID=1234\n
-IP_TEAM=127.0.0.2\n
+IP_TEAM=10.109.160.3\n
 PUERTO_TEAM=5555\n" >> Team.config
 
 cd Debug
@@ -271,11 +278,11 @@ ALGORITMO_PLANIFICACION=SJF-CD\n
 QUANTUM=1\n
 ALPHA=0.5\n
 ESTIMACION_INICIAL=5\n
-IP_BROKER=127.0.0.1\n
+IP_BROKER=10.109.160.2\n
 PUERTO_BROKER=4444\n
 LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/Team-SJF-CD-stress/Team.log\n
 PROCESS_ID=1235\n
-IP_TEAM=127.0.0.2\n
+IP_TEAM=10.109.160.3\n
 PUERTO_TEAM=5555\n" >> Team.config
 
 cd Debug
