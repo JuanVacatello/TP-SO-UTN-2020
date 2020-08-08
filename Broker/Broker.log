@@ -19556,3 +19556,909 @@
 [INFO] 00:59:19:232 BROKER/(16407:16778): Se le envió un mensaje al suscriptor de socket 36, a través de la cola CAUGHT_POKEMON.
 [INFO] 00:59:19:232 BROKER/(16407:16780): El suscriptor de id 1235 confirmó la recepción del mensaje con id 53.
 [INFO] 00:59:19:233 BROKER/(16407:16779): El suscriptor de id 1234 confirmó la recepción del mensaje con id 53.
+[INFO] 02:08:07:771 BROKER/(5349:5352): Se conectó proceso de socket 5 al Broker.
+[INFO] 02:08:07:800 BROKER/(5349:5352): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 02:08:07:800 BROKER/(5349:5352): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 02:08:07:802 BROKER/(5349:5352): Se ejecutó el Dump de la cache
+[INFO] 02:08:07:810 BROKER/(5349:5354): Se conectó proceso de socket 7 al Broker.
+[INFO] 02:08:07:811 BROKER/(5349:5354): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 02:08:07:812 BROKER/(5349:5354): Se almacenó un mensaje en la posición 4 de la memoria principal.
+[INFO] 02:08:07:813 BROKER/(5349:5354): Se ejecutó el Dump de la cache
+[INFO] 02:08:07:841 BROKER/(5349:5356): Se conectó proceso de socket 8 al Broker.
+[INFO] 02:08:07:842 BROKER/(5349:5356): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 02:08:07:842 BROKER/(5349:5356): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 02:08:07:843 BROKER/(5349:5356): Se ejecutó el Dump de la cache
+[INFO] 02:08:07:854 BROKER/(5349:5358): Se conectó proceso de socket 9 al Broker.
+[INFO] 02:08:07:854 BROKER/(5349:5358): Llegó un nuevo mensaje a la cola de mensajes CATCH_POKEMON
+[INFO] 02:08:07:854 BROKER/(5349:5358): Se almacenó un mensaje en la posición 16 de la memoria principal.
+[INFO] 02:08:07:855 BROKER/(5349:5358): Se ejecutó el Dump de la cache
+[INFO] 02:08:07:860 BROKER/(5349:5360): Se conectó proceso de socket 10 al Broker.
+[INFO] 02:08:07:861 BROKER/(5349:5360): Se suscribió el proceso con socket 10 y con id 9876 a la cola de mensajes NEW_POKEMON.
+[INFO] 02:08:07:863 BROKER/(5349:5360): Se le envió un mensaje al suscriptor de socket 10, a través de la cola NEW_POKEMON.
+[INFO] 02:08:07:864 BROKER/(5349:5362): El suscriptor de id 9876 confirmó la recepción del mensaje con id 3.
+[INFO] 02:08:17:885 BROKER/(5349:5365): Se conectó proceso de socket 11 al Broker.
+[INFO] 02:08:17:885 BROKER/(5349:5365): Llegó un nuevo mensaje a la cola de mensajes CATCH_POKEMON
+[INFO] 02:08:17:886 BROKER/(5349:5365): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 02:08:17:886 BROKER/(5349:5365): Se eliminó de memoria principal la partición que se encontraba en la posicion 4.
+[INFO] 02:08:17:886 BROKER/(5349:5365): Se asociaron las particiones que se encontraban en las posiciones 0 y 4.
+[INFO] 02:08:17:886 BROKER/(5349:5365): Se asociaron las particiones que se encontraban en las posiciones 0 y 8.
+[INFO] 02:08:17:887 BROKER/(5349:5365): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 02:08:17:887 BROKER/(5349:5365): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 02:08:17:887 BROKER/(5349:5365): Se ejecutó el Dump de la cache
+[INFO] 02:09:08:127 BROKER/(5542:5545): Se conectó proceso de socket 5 al Broker.
+[INFO] 02:09:08:136 BROKER/(5542:5545): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 02:09:08:136 BROKER/(5542:5545): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 02:09:08:144 BROKER/(5542:5545): Se ejecutó el Dump de la cache
+[INFO] 02:09:08:169 BROKER/(5542:5547): Se conectó proceso de socket 7 al Broker.
+[INFO] 02:09:08:169 BROKER/(5542:5547): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 02:09:08:170 BROKER/(5542:5547): Se almacenó un mensaje en la posición 4 de la memoria principal.
+[INFO] 02:09:08:170 BROKER/(5542:5547): Se ejecutó el Dump de la cache
+[INFO] 02:09:08:193 BROKER/(5542:5549): Se conectó proceso de socket 8 al Broker.
+[INFO] 02:09:08:198 BROKER/(5542:5549): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 02:09:08:201 BROKER/(5542:5549): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 02:09:08:201 BROKER/(5542:5549): Se ejecutó el Dump de la cache
+[INFO] 02:09:08:220 BROKER/(5542:5551): Se conectó proceso de socket 9 al Broker.
+[INFO] 02:09:08:221 BROKER/(5542:5551): Llegó un nuevo mensaje a la cola de mensajes CATCH_POKEMON
+[INFO] 02:09:08:221 BROKER/(5542:5551): Se almacenó un mensaje en la posición 16 de la memoria principal.
+[INFO] 02:09:08:221 BROKER/(5542:5551): Se ejecutó el Dump de la cache
+[INFO] 02:09:08:237 BROKER/(5542:5553): Se conectó proceso de socket 10 al Broker.
+[INFO] 02:09:08:237 BROKER/(5542:5553): Se suscribió el proceso con socket 10 y con id 9876 a la cola de mensajes NEW_POKEMON.
+[INFO] 02:09:08:237 BROKER/(5542:5553): Se le envió un mensaje al suscriptor de socket 10, a través de la cola NEW_POKEMON.
+[INFO] 02:09:08:242 BROKER/(5542:5555): El suscriptor de id 9876 confirmó la recepción del mensaje con id 3.
+[INFO] 02:09:18:251 BROKER/(5542:5558): Se conectó proceso de socket 11 al Broker.
+[INFO] 02:09:18:253 BROKER/(5542:5558): Llegó un nuevo mensaje a la cola de mensajes CATCH_POKEMON
+[INFO] 02:09:18:272 BROKER/(5542:5558): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 02:09:18:272 BROKER/(5542:5558): Se eliminó de memoria principal la partición que se encontraba en la posicion 4.
+[INFO] 02:09:18:272 BROKER/(5542:5558): Se asociaron las particiones que se encontraban en las posiciones 0 y 4.
+[INFO] 02:09:18:272 BROKER/(5542:5558): Se asociaron las particiones que se encontraban en las posiciones 0 y 8.
+[INFO] 02:09:18:272 BROKER/(5542:5558): Se eliminó de memoria principal la partición que se encontraba en la posicion 16.
+[INFO] 02:09:18:272 BROKER/(5542:5558): Se asociaron las particiones que se encontraban en las posiciones 0 y 16.
+[INFO] 02:09:18:272 BROKER/(5542:5558): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 02:09:18:273 BROKER/(5542:5558): Se ejecutó el Dump de la cache
+[INFO] 02:16:08:869 BROKER/(6317:6322): Se conectó proceso de socket 5 al Broker.
+[INFO] 02:16:08:883 BROKER/(6317:6322): Se suscribió el proceso con socket 5 y con id 6318 a la cola de mensajes GET_POKEMON.
+[INFO] 02:16:08:884 BROKER/(6317:6323): Se conectó proceso de socket 7 al Broker.
+[INFO] 02:16:08:885 BROKER/(6317:6323): Se suscribió el proceso con socket 7 y con id 6318 a la cola de mensajes CATCH_POKEMON.
+[INFO] 02:16:08:886 BROKER/(6317:6324): Se conectó proceso de socket 8 al Broker.
+[INFO] 02:16:08:886 BROKER/(6317:6324): Se suscribió el proceso con socket 8 y con id 6318 a la cola de mensajes NEW_POKEMON.
+[INFO] 02:16:13:389 BROKER/(6317:6327): Se conectó proceso de socket 9 al Broker.
+[INFO] 02:16:13:397 BROKER/(6317:6327): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 02:16:13:397 BROKER/(6317:6327): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 02:16:13:397 BROKER/(6317:6327): Se ejecutó el Dump de la cache
+[INFO] 02:16:13:399 BROKER/(6317:6327): Se le envió un mensaje al suscriptor de socket 8, a través de la cola NEW_POKEMON.
+[INFO] 02:16:13:409 BROKER/(6317:6329): El suscriptor de id 5678 confirmó la recepción del mensaje con id 1.
+[INFO] 02:16:13:415 BROKER/(6317:6330): Se conectó proceso de socket 10 al Broker.
+[INFO] 02:16:13:415 BROKER/(6317:6330): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 02:16:13:415 BROKER/(6317:6330): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 02:16:13:426 BROKER/(6317:6330): Se ejecutó el Dump de la cache
+[INFO] 02:16:13:427 BROKER/(6317:6330): Se le envió un mensaje al suscriptor de socket 8, a través de la cola NEW_POKEMON.
+[INFO] 02:16:13:437 BROKER/(6317:6333): Se conectó proceso de socket 11 al Broker.
+[INFO] 02:16:13:437 BROKER/(6317:6333): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 02:16:13:437 BROKER/(6317:6333): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 02:16:13:437 BROKER/(6317:6333): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 02:16:13:438 BROKER/(6317:6333): Se ejecutó el Dump de la cache
+[INFO] 02:16:13:441 BROKER/(6317:6333): Se le envió un mensaje al suscriptor de socket 8, a través de la cola NEW_POKEMON.
+[INFO] 02:16:13:442 BROKER/(6317:6336): Se conectó proceso de socket 12 al Broker.
+[INFO] 02:16:13:449 BROKER/(6317:6336): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 02:16:13:450 BROKER/(6317:6336): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 02:16:13:450 BROKER/(6317:6336): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 02:16:13:451 BROKER/(6317:6336): Se ejecutó el Dump de la cache
+[INFO] 02:16:13:451 BROKER/(6317:6336): Se le envió un mensaje al suscriptor de socket 8, a través de la cola NEW_POKEMON.
+[INFO] 02:16:14:402 BROKER/(6317:6338): Se conectó proceso de socket 13 al Broker.
+[INFO] 02:16:14:404 BROKER/(6317:6338): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 02:16:14:404 BROKER/(6317:6338): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 02:16:14:404 BROKER/(6317:6338): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 02:16:14:405 BROKER/(6317:6338): Se ejecutó el Dump de la cache
+[INFO] 02:16:14:407 BROKER/(6317:6332): El suscriptor de id 5678 confirmó la recepción del mensaje con id 2.
+[INFO] 02:16:15:412 BROKER/(6317:6339): Se conectó proceso de socket 14 al Broker.
+[INFO] 02:16:15:414 BROKER/(6317:6339): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 02:16:15:414 BROKER/(6317:6339): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 02:16:15:415 BROKER/(6317:6339): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 02:16:15:416 BROKER/(6317:6339): Se ejecutó el Dump de la cache
+[INFO] 02:16:15:419 BROKER/(6317:6335): El suscriptor de id 5678 confirmó la recepción del mensaje con id 3.
+[INFO] 02:16:16:470 BROKER/(6317:6340): Se conectó proceso de socket 15 al Broker.
+[INFO] 02:16:16:471 BROKER/(6317:6340): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 02:16:16:472 BROKER/(6317:6340): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 02:16:16:472 BROKER/(6317:6340): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 02:16:16:474 BROKER/(6317:6340): Se ejecutó el Dump de la cache
+[INFO] 02:16:16:476 BROKER/(6317:6337): El suscriptor de id 5678 confirmó la recepción del mensaje con id 4.
+[INFO] 02:16:17:485 BROKER/(6317:6341): Se conectó proceso de socket 16 al Broker.
+[INFO] 02:16:17:487 BROKER/(6317:6341): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 02:16:17:488 BROKER/(6317:6341): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 02:16:17:489 BROKER/(6317:6341): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 02:16:17:492 BROKER/(6317:6341): Se ejecutó el Dump de la cache
+[INFO] 02:16:44:210 BROKER/(6317:6377): Se conectó proceso de socket 17 al Broker.
+[INFO] 02:16:44:211 BROKER/(6317:6377): Llegó un nuevo mensaje a la cola de mensajes GET_POKEMON
+[INFO] 02:16:44:212 BROKER/(6317:6377): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 02:16:44:213 BROKER/(6317:6377): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 02:16:44:221 BROKER/(6317:6379): Se conectó proceso de socket 18 al Broker.
+[INFO] 02:16:44:224 BROKER/(6317:6377): Se ejecutó el Dump de la cache
+[INFO] 02:16:44:225 BROKER/(6317:6379): Se suscribió el proceso con socket 18 y con id 1234 a la cola de mensajes LOCALIZED_POKEMON.
+[INFO] 02:16:44:229 BROKER/(6317:6377): Se le envió un mensaje al suscriptor de socket 5, a través de la cola GET_POKEMON.
+[INFO] 02:16:44:236 BROKER/(6317:6380): El suscriptor de id 5678 confirmó la recepción del mensaje con id 9.
+[INFO] 02:16:45:236 BROKER/(6317:6381): Se conectó proceso de socket 19 al Broker.
+[INFO] 02:16:45:237 BROKER/(6317:6381): Llegó un nuevo mensaje a la cola de mensajes LOCALIZED_POKEMON
+[INFO] 02:16:45:238 BROKER/(6317:6381): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 02:16:45:242 BROKER/(6317:6381): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 02:16:45:255 BROKER/(6317:6381): Se ejecutó el Dump de la cache
+[INFO] 02:16:45:257 BROKER/(6317:6381): Se le envió un mensaje al suscriptor de socket 18, a través de la cola LOCALIZED_POKEMON.
+[INFO] 02:16:45:268 BROKER/(6317:6382): El suscriptor de id 1234 confirmó la recepción del mensaje con id 10.
+[INFO] 02:16:45:740 BROKER/(6317:6386): Se conectó proceso de socket 20 al Broker.
+[INFO] 02:16:45:741 BROKER/(6317:6386): Se suscribió el proceso con socket 21 y con id 1234 a la cola de mensajes LOCALIZED_POKEMON.
+[INFO] 02:16:45:742 BROKER/(6317:6386): Se le envió un mensaje al suscriptor de socket 21, a través de la cola LOCALIZED_POKEMON.
+[INFO] 02:16:45:747 BROKER/(6317:6388): Se conectó proceso de socket 21 al Broker.
+[INFO] 02:16:45:747 BROKER/(6317:6389): El suscriptor de id 5678 confirmó la recepción del mensaje con id 0.
+[INFO] 02:16:46:211 BROKER/(6317:6390): Se conectó proceso de socket 22 al Broker.
+[INFO] 02:16:46:211 BROKER/(6317:6390): Llegó un nuevo mensaje a la cola de mensajes GET_POKEMON
+[INFO] 02:16:46:211 BROKER/(6317:6390): Se almacenó un mensaje en la posición 16 de la memoria principal.
+[INFO] 02:16:46:212 BROKER/(6317:6390): Se ejecutó el Dump de la cache
+[INFO] 02:16:46:213 BROKER/(6317:6390): Se le envió un mensaje al suscriptor de socket 5, a través de la cola GET_POKEMON.
+[INFO] 02:16:46:213 BROKER/(6317:6392): El suscriptor de id 5678 confirmó la recepción del mensaje con id 11.
+[INFO] 02:16:47:215 BROKER/(6317:6393): Se conectó proceso de socket 23 al Broker.
+[INFO] 02:16:47:216 BROKER/(6317:6393): Llegó un nuevo mensaje a la cola de mensajes LOCALIZED_POKEMON
+[INFO] 02:16:47:217 BROKER/(6317:6393): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 02:16:47:217 BROKER/(6317:6393): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 02:16:47:218 BROKER/(6317:6393): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 02:16:47:219 BROKER/(6317:6393): Se ejecutó el Dump de la cache
+[INFO] 02:16:47:221 BROKER/(6317:6393): Se le envió un mensaje al suscriptor de socket 18, a través de la cola LOCALIZED_POKEMON.
+[INFO] 02:16:47:222 BROKER/(6317:6393): Se le envió un mensaje al suscriptor de socket 21, a través de la cola LOCALIZED_POKEMON.
+[INFO] 02:16:47:223 BROKER/(6317:6395): El suscriptor de id 1234 confirmó la recepción del mensaje con id 0.
+[INFO] 02:16:47:223 BROKER/(6317:6394): El suscriptor de id 1234 confirmó la recepción del mensaje con id 12.
+[INFO] 02:16:48:212 BROKER/(6317:6396): Se conectó proceso de socket 24 al Broker.
+[INFO] 02:16:48:213 BROKER/(6317:6396): Llegó un nuevo mensaje a la cola de mensajes GET_POKEMON
+[INFO] 02:16:48:214 BROKER/(6317:6396): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 02:16:48:214 BROKER/(6317:6396): Se ejecutó el Dump de la cache
+[INFO] 02:16:48:216 BROKER/(6317:6396): Se le envió un mensaje al suscriptor de socket 5, a través de la cola GET_POKEMON.
+[INFO] 02:16:48:217 BROKER/(6317:6398): El suscriptor de id 5678 confirmó la recepción del mensaje con id 13.
+[INFO] 02:16:50:214 BROKER/(6317:6399): Se conectó proceso de socket 25 al Broker.
+[INFO] 02:16:50:215 BROKER/(6317:6399): Llegó un nuevo mensaje a la cola de mensajes GET_POKEMON
+[INFO] 02:16:50:216 BROKER/(6317:6399): Se eliminó de memoria principal la partición que se encontraba en la posicion 16.
+[INFO] 02:16:50:217 BROKER/(6317:6399): Se almacenó un mensaje en la posición 16 de la memoria principal.
+[INFO] 02:16:50:219 BROKER/(6317:6399): Se ejecutó el Dump de la cache
+[INFO] 02:16:50:222 BROKER/(6317:6399): Se le envió un mensaje al suscriptor de socket 5, a través de la cola GET_POKEMON.
+[INFO] 02:16:50:223 BROKER/(6317:6401): El suscriptor de id 5678 confirmó la recepción del mensaje con id 14.
+[INFO] 02:16:52:219 BROKER/(6317:6406): Se conectó proceso de socket 26 al Broker.
+[INFO] 02:16:52:220 BROKER/(6317:6406): Se suscribió el proceso con socket 26 y con id 1234 a la cola de mensajes APPEARED_POKEMON.
+[INFO] 02:16:52:224 BROKER/(6317:6407): Se conectó proceso de socket 27 al Broker.
+[INFO] 02:16:52:225 BROKER/(6317:6407): Se suscribió el proceso con socket 27 y con id 1234 a la cola de mensajes CAUGHT_POKEMON.
+[INFO] 02:18:05:940 BROKER/(6534:6544): Se conectó proceso de socket 5 al Broker.
+[INFO] 02:18:05:941 BROKER/(6534:6544): Se suscribió el proceso con socket 5 y con id 6540 a la cola de mensajes GET_POKEMON.
+[INFO] 02:18:05:942 BROKER/(6534:6545): Se conectó proceso de socket 7 al Broker.
+[INFO] 02:18:05:942 BROKER/(6534:6545): Se suscribió el proceso con socket 7 y con id 6540 a la cola de mensajes CATCH_POKEMON.
+[INFO] 02:18:05:944 BROKER/(6534:6546): Se conectó proceso de socket 8 al Broker.
+[INFO] 02:18:05:944 BROKER/(6534:6546): Se suscribió el proceso con socket 8 y con id 6540 a la cola de mensajes NEW_POKEMON.
+[INFO] 02:18:09:860 BROKER/(6534:6560): Se conectó proceso de socket 9 al Broker.
+[INFO] 02:18:09:860 BROKER/(6534:6560): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 02:18:09:860 BROKER/(6534:6560): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 02:18:09:861 BROKER/(6534:6560): Se ejecutó el Dump de la cache
+[INFO] 02:18:09:862 BROKER/(6534:6560): Se le envió un mensaje al suscriptor de socket 8, a través de la cola NEW_POKEMON.
+[INFO] 02:18:09:864 BROKER/(6534:6562): El suscriptor de id 5678 confirmó la recepción del mensaje con id 1.
+[INFO] 02:18:09:865 BROKER/(6534:6563): Se conectó proceso de socket 10 al Broker.
+[INFO] 02:18:09:865 BROKER/(6534:6563): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 02:18:09:866 BROKER/(6534:6563): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 02:18:09:866 BROKER/(6534:6563): Se ejecutó el Dump de la cache
+[INFO] 02:18:09:867 BROKER/(6534:6563): Se le envió un mensaje al suscriptor de socket 8, a través de la cola NEW_POKEMON.
+[INFO] 02:18:09:881 BROKER/(6534:6566): Se conectó proceso de socket 11 al Broker.
+[INFO] 02:18:09:881 BROKER/(6534:6566): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 02:18:09:882 BROKER/(6534:6566): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 02:18:09:882 BROKER/(6534:6566): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 02:18:09:882 BROKER/(6534:6566): Se ejecutó el Dump de la cache
+[INFO] 02:18:09:896 BROKER/(6534:6566): Se le envió un mensaje al suscriptor de socket 8, a través de la cola NEW_POKEMON.
+[INFO] 02:18:09:901 BROKER/(6534:6569): Se conectó proceso de socket 12 al Broker.
+[INFO] 02:18:09:901 BROKER/(6534:6569): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 02:18:09:901 BROKER/(6534:6569): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 02:18:09:904 BROKER/(6534:6569): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 02:18:09:905 BROKER/(6534:6569): Se ejecutó el Dump de la cache
+[INFO] 02:18:09:920 BROKER/(6534:6569): Se le envió un mensaje al suscriptor de socket 8, a través de la cola NEW_POKEMON.
+[INFO] 02:18:10:914 BROKER/(6534:6571): Se conectó proceso de socket 13 al Broker.
+[INFO] 02:18:10:915 BROKER/(6534:6571): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 02:18:10:915 BROKER/(6534:6571): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 02:18:10:915 BROKER/(6534:6571): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 02:18:10:916 BROKER/(6534:6571): Se ejecutó el Dump de la cache
+[INFO] 02:18:10:916 BROKER/(6534:6565): El suscriptor de id 5678 confirmó la recepción del mensaje con id 2.
+[INFO] 02:18:11:954 BROKER/(6534:6572): Se conectó proceso de socket 14 al Broker.
+[INFO] 02:18:11:955 BROKER/(6534:6572): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 02:18:11:955 BROKER/(6534:6572): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 02:18:11:956 BROKER/(6534:6572): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 02:18:11:957 BROKER/(6534:6572): Se ejecutó el Dump de la cache
+[INFO] 02:18:11:959 BROKER/(6534:6568): El suscriptor de id 5678 confirmó la recepción del mensaje con id 3.
+[INFO] 02:18:12:989 BROKER/(6534:6573): Se conectó proceso de socket 15 al Broker.
+[INFO] 02:18:12:990 BROKER/(6534:6573): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 02:18:12:990 BROKER/(6534:6573): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 02:18:12:991 BROKER/(6534:6573): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 02:18:12:992 BROKER/(6534:6573): Se ejecutó el Dump de la cache
+[INFO] 02:18:12:995 BROKER/(6534:6570): El suscriptor de id 5678 confirmó la recepción del mensaje con id 4.
+[INFO] 02:18:14:55 BROKER/(6534:6574): Se conectó proceso de socket 16 al Broker.
+[INFO] 02:18:14:56 BROKER/(6534:6574): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 02:18:14:56 BROKER/(6534:6574): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 02:18:14:56 BROKER/(6534:6574): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 02:18:14:57 BROKER/(6534:6574): Se ejecutó el Dump de la cache
+[INFO] 02:18:16:469 BROKER/(6534:6578): Se conectó proceso de socket 17 al Broker.
+[INFO] 02:18:16:469 BROKER/(6534:6578): Llegó un nuevo mensaje a la cola de mensajes GET_POKEMON
+[INFO] 02:18:16:470 BROKER/(6534:6578): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 02:18:16:470 BROKER/(6534:6578): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 02:18:16:470 BROKER/(6534:6578): Se ejecutó el Dump de la cache
+[INFO] 02:18:16:471 BROKER/(6534:6578): Se le envió un mensaje al suscriptor de socket 5, a través de la cola GET_POKEMON.
+[INFO] 02:18:16:472 BROKER/(6534:6580): Se conectó proceso de socket 18 al Broker.
+[INFO] 02:18:16:473 BROKER/(6534:6580): Se suscribió el proceso con socket 18 y con id 1234 a la cola de mensajes LOCALIZED_POKEMON.
+[INFO] 02:18:16:473 BROKER/(6534:6581): El suscriptor de id 5678 confirmó la recepción del mensaje con id 9.
+[INFO] 02:18:18:440 BROKER/(6534:6585): Se conectó proceso de socket 19 al Broker.
+[INFO] 02:18:18:440 BROKER/(6534:6585): Llegó un nuevo mensaje a la cola de mensajes GET_POKEMON
+[INFO] 02:18:18:440 BROKER/(6534:6585): Se almacenó un mensaje en la posición 16 de la memoria principal.
+[INFO] 02:18:18:441 BROKER/(6534:6585): Se ejecutó el Dump de la cache
+[INFO] 02:18:18:442 BROKER/(6534:6585): Se le envió un mensaje al suscriptor de socket 5, a través de la cola GET_POKEMON.
+[INFO] 02:18:18:448 BROKER/(6534:6587): Se conectó proceso de socket 20 al Broker.
+[INFO] 02:18:18:448 BROKER/(6534:6587): Se suscribió el proceso con socket 20 y con id 1234 a la cola de mensajes LOCALIZED_POKEMON.
+[INFO] 02:18:18:448 BROKER/(6534:6588): El suscriptor de id 5678 confirmó la recepción del mensaje con id 10.
+[INFO] 02:18:18:481 BROKER/(6534:6589): Se conectó proceso de socket 21 al Broker.
+[INFO] 02:18:18:490 BROKER/(6534:6589): Llegó un nuevo mensaje a la cola de mensajes GET_POKEMON
+[INFO] 02:18:18:491 BROKER/(6534:6589): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 02:18:18:492 BROKER/(6534:6589): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 02:18:18:493 BROKER/(6534:6589): Se ejecutó el Dump de la cache
+[INFO] 02:18:18:497 BROKER/(6534:6589): Se le envió un mensaje al suscriptor de socket 5, a través de la cola GET_POKEMON.
+[INFO] 02:18:19:446 BROKER/(6534:6591): El suscriptor de id 5678 confirmó la recepción del mensaje con id 11.
+[INFO] 02:18:19:448 BROKER/(6534:6592): Se conectó proceso de socket 22 al Broker.
+[INFO] 02:18:19:448 BROKER/(6534:6592): Llegó un nuevo mensaje a la cola de mensajes LOCALIZED_POKEMON
+[INFO] 02:18:19:449 BROKER/(6534:6592): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 02:18:19:450 BROKER/(6534:6592): Se eliminó de memoria principal la partición que se encontraba en la posicion 16.
+[INFO] 02:18:19:450 BROKER/(6534:6592): Se asociaron las particiones que se encontraban en las posiciones 0 y 16.
+[INFO] 02:18:19:451 BROKER/(6534:6592): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 02:18:19:453 BROKER/(6534:6592): Se ejecutó el Dump de la cache
+[INFO] 02:18:19:473 BROKER/(6534:6592): Se le envió un mensaje al suscriptor de socket 18, a través de la cola LOCALIZED_POKEMON.
+[INFO] 02:21:59:758 BROKER/(6949:6986): Se conectó proceso de socket 5 al Broker.
+[INFO] 02:21:59:758 BROKER/(6949:6986): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 02:21:59:758 BROKER/(6949:6986): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 02:21:59:759 BROKER/(6949:6986): Se ejecutó el Dump de la cache
+[INFO] 02:22:43:521 BROKER/(7029:7031): Se conectó proceso de socket 5 al Broker.
+[INFO] 02:22:43:522 BROKER/(7029:7031): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 02:22:43:522 BROKER/(7029:7031): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 02:22:43:522 BROKER/(7029:7031): Se ejecutó el Dump de la cache
+[INFO] 02:23:06:11 BROKER/(7029:7034): Se conectó proceso de socket 7 al Broker.
+[INFO] 02:23:06:11 BROKER/(7029:7034): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 02:23:06:11 BROKER/(7029:7034): Se almacenó un mensaje en la posición 4 de la memoria principal.
+[INFO] 02:23:06:12 BROKER/(7029:7034): Se ejecutó el Dump de la cache
+[INFO] 02:24:15:279 BROKER/(7029:7068): Se conectó proceso de socket 8 al Broker.
+[INFO] 02:24:15:280 BROKER/(7029:7068): Llegó un nuevo mensaje a la cola de mensajes GET_POKEMON
+[INFO] 02:24:15:280 BROKER/(7029:7068): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 02:24:15:281 BROKER/(7029:7068): Se ejecutó el Dump de la cache
+[INFO] 02:25:26:754 BROKER/(7029:7119): Se conectó proceso de socket 9 al Broker.
+[INFO] 02:25:31:362 BROKER/(7029:7123): Se conectó proceso de socket 10 al Broker.
+[INFO] 02:25:31:369 BROKER/(7029:7123): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 02:25:31:369 BROKER/(7029:7123): Se almacenó un mensaje en la posición 16 de la memoria principal.
+[INFO] 02:25:31:370 BROKER/(7029:7123): Se ejecutó el Dump de la cache
+[INFO] 02:26:07:750 BROKER/(7029:7161): Se conectó proceso de socket 11 al Broker.
+[INFO] 02:26:07:751 BROKER/(7029:7161): Se suscribió el proceso con socket 11 y con id 9876 a la cola de mensajes CAUGHT_POKEMON.
+[INFO] 02:26:07:752 BROKER/(7029:7161): Se le envió un mensaje al suscriptor de socket 11, a través de la cola CAUGHT_POKEMON.
+[INFO] 02:26:07:753 BROKER/(7029:7161): Se le envió un mensaje al suscriptor de socket 11, a través de la cola CAUGHT_POKEMON.
+[INFO] 02:26:07:768 BROKER/(7029:7165): El suscriptor de id 9876 confirmó la recepción del mensaje con id 1.
+[INFO] 02:26:07:769 BROKER/(7029:7164): El suscriptor de id 9876 confirmó la recepción del mensaje con id 2.
+[INFO] 02:26:25:535 BROKER/(7029:7177): Se conectó proceso de socket 12 al Broker.
+[INFO] 02:26:25:536 BROKER/(7029:7177): Se suscribió el proceso con socket 12 y con id 9876 a la cola de mensajes CAUGHT_POKEMON.
+[INFO] 02:26:25:537 BROKER/(7029:7177): Se le envió un mensaje al suscriptor de socket 12, a través de la cola CAUGHT_POKEMON.
+[INFO] 02:26:25:538 BROKER/(7029:7177): Se le envió un mensaje al suscriptor de socket 12, a través de la cola CAUGHT_POKEMON.
+[INFO] 02:26:25:553 BROKER/(7029:7181): El suscriptor de id 9876 confirmó la recepción del mensaje con id 1.
+[INFO] 02:26:25:554 BROKER/(7029:7180): El suscriptor de id 9876 confirmó la recepción del mensaje con id 2.
+[INFO] 02:26:49:19 BROKER/(7029:7207): Se conectó proceso de socket 13 al Broker.
+[INFO] 02:26:49:20 BROKER/(7029:7207): Se suscribió el proceso con socket 13 y con id 9876 a la cola de mensajes CAUGHT_POKEMON.
+[INFO] 02:26:49:22 BROKER/(7029:7207): Se le envió un mensaje al suscriptor de socket 13, a través de la cola CAUGHT_POKEMON.
+[INFO] 02:26:49:23 BROKER/(7029:7207): Se le envió un mensaje al suscriptor de socket 13, a través de la cola CAUGHT_POKEMON.
+[INFO] 02:26:49:23 BROKER/(7029:7211): El suscriptor de id 9876 confirmó la recepción del mensaje con id 1.
+[INFO] 02:26:49:35 BROKER/(7029:7210): El suscriptor de id 9876 confirmó la recepción del mensaje con id 2.
+[INFO] 02:27:59:808 BROKER/(7029:7406): Se conectó proceso de socket 14 al Broker.
+[INFO] 02:27:59:809 BROKER/(7029:7406): Se suscribió el proceso con socket 14 y con id 9876 a la cola de mensajes APPEARED_POKEMON.
+[INFO] 02:27:59:809 BROKER/(7029:7406): Se le envió un mensaje al suscriptor de socket 14, a través de la cola APPEARED_POKEMON.
+[INFO] 02:28:00:603 BROKER/(7029:7408): El suscriptor de id 9876 confirmó la recepción del mensaje con id 4.
+[INFO] 02:28:29:808 BROKER/(7029:7466): Se conectó proceso de socket 15 al Broker.
+[INFO] 02:28:29:809 BROKER/(7029:7466): Se suscribió el proceso con socket 15 y con id 9876 a la cola de mensajes CAUGHT_POKEMON.
+[INFO] 02:28:29:810 BROKER/(7029:7466): Se le envió un mensaje al suscriptor de socket 15, a través de la cola CAUGHT_POKEMON.
+[INFO] 02:28:29:811 BROKER/(7029:7466): Se le envió un mensaje al suscriptor de socket 15, a través de la cola CAUGHT_POKEMON.
+[INFO] 02:28:29:825 BROKER/(7029:7470): El suscriptor de id 9876 confirmó la recepción del mensaje con id 1.
+[INFO] 02:28:29:826 BROKER/(7029:7469): El suscriptor de id 9876 confirmó la recepción del mensaje con id 2.
+[INFO] 02:29:17:56 BROKER/(7029:7496): Se conectó proceso de socket 16 al Broker.
+[INFO] 02:29:17:57 BROKER/(7029:7496): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 02:29:17:57 BROKER/(7029:7496): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 02:29:17:58 BROKER/(7029:7496): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 02:29:17:58 BROKER/(7029:7496): Se ejecutó el Dump de la cache
+[INFO] 02:29:50:644 BROKER/(7029:7515): Se conectó proceso de socket 17 al Broker.
+[INFO] 02:29:50:644 BROKER/(7029:7515): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 02:29:50:644 BROKER/(7029:7515): Se almacenó un mensaje en la posición 8 de la memoria principal.
+[INFO] 02:29:50:645 BROKER/(7029:7515): Se ejecutó el Dump de la cache
+[INFO] 02:29:53:515 BROKER/(7029:7519): Se conectó proceso de socket 18 al Broker.
+[INFO] 02:29:53:516 BROKER/(7029:7519): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 02:29:53:516 BROKER/(7029:7519): Se almacenó un mensaje en la posición 12 de la memoria principal.
+[INFO] 02:29:53:516 BROKER/(7029:7519): Se ejecutó el Dump de la cache
+[INFO] 02:35:44:73 BROKER/(7726:7739): Se conectó proceso de socket 5 al Broker.
+[INFO] 02:35:44:74 BROKER/(7726:7739): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 02:35:44:74 BROKER/(7726:7739): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 02:35:44:75 BROKER/(7726:7739): Se ejecutó el Dump de la cache
+[INFO] 02:57:00:539 BROKER/(8546:8559): Se conectó proceso de socket 5 al Broker.
+[INFO] 02:57:00:539 BROKER/(8546:8559): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 02:57:00:539 BROKER/(8546:8559): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 02:57:00:539 BROKER/(8546:8559): Se ejecutó el Dump de la cache
+[INFO] 02:57:00:546 BROKER/(8546:8562): Se conectó proceso de socket 7 al Broker.
+[INFO] 02:57:00:546 BROKER/(8546:8562): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 02:57:00:546 BROKER/(8546:8562): Se almacenó un mensaje en la posición 4 de la memoria principal.
+[INFO] 02:57:00:546 BROKER/(8546:8562): Se ejecutó el Dump de la cache
+[INFO] 02:57:00:547 BROKER/(8546:8565): Se conectó proceso de socket 8 al Broker.
+[INFO] 02:57:00:548 BROKER/(8546:8565): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 02:57:00:548 BROKER/(8546:8565): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 02:57:00:548 BROKER/(8546:8565): Se ejecutó el Dump de la cache
+[INFO] 02:57:00:551 BROKER/(8546:8567): Se conectó proceso de socket 9 al Broker.
+[INFO] 02:57:00:552 BROKER/(8546:8567): Llegó un nuevo mensaje a la cola de mensajes CATCH_POKEMON
+[INFO] 02:57:00:552 BROKER/(8546:8567): Se almacenó un mensaje en la posición 16 de la memoria principal.
+[INFO] 02:57:00:553 BROKER/(8546:8567): Se ejecutó el Dump de la cache
+[INFO] 02:57:00:561 BROKER/(8546:8569): Se conectó proceso de socket 10 al Broker.
+[INFO] 02:57:00:561 BROKER/(8546:8569): Se suscribió el proceso con socket 10 y con id 9876 a la cola de mensajes NEW_POKEMON.
+[INFO] 02:57:00:562 BROKER/(8546:8569): Se le envió un mensaje al suscriptor de socket 10, a través de la cola NEW_POKEMON.
+[INFO] 02:57:00:562 BROKER/(8546:8571): El suscriptor de id 9876 confirmó la recepción del mensaje con id 3.
+[INFO] 02:57:10:566 BROKER/(8546:8747): Se conectó proceso de socket 11 al Broker.
+[INFO] 02:57:10:571 BROKER/(8546:8747): Llegó un nuevo mensaje a la cola de mensajes CATCH_POKEMON
+[INFO] 02:57:10:573 BROKER/(8546:8747): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 02:57:10:573 BROKER/(8546:8747): Se eliminó de memoria principal la partición que se encontraba en la posicion 4.
+[INFO] 02:57:10:574 BROKER/(8546:8747): Se asociaron las particiones que se encontraban en las posiciones 0 y 4.
+[INFO] 02:57:10:574 BROKER/(8546:8747): Se asociaron las particiones que se encontraban en las posiciones 0 y 8.
+[INFO] 02:57:10:574 BROKER/(8546:8747): Se eliminó de memoria principal la partición que se encontraba en la posicion 16.
+[INFO] 02:57:10:575 BROKER/(8546:8747): Se asociaron las particiones que se encontraban en las posiciones 0 y 16.
+[INFO] 02:57:10:575 BROKER/(8546:8747): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 02:57:10:581 BROKER/(8546:8747): Se ejecutó el Dump de la cache
+[INFO] 02:57:38:942 BROKER/(8546:8764): Se conectó proceso de socket 12 al Broker.
+[INFO] 02:57:38:942 BROKER/(8546:8764): Llegó un nuevo mensaje a la cola de mensajes GET_POKEMON
+[INFO] 02:57:38:943 BROKER/(8546:8764): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 02:57:38:943 BROKER/(8546:8764): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 02:57:38:943 BROKER/(8546:8764): Se ejecutó el Dump de la cache
+[INFO] 02:57:42:696 BROKER/(8546:8769): Se conectó proceso de socket 13 al Broker.
+[INFO] 02:57:42:696 BROKER/(8546:8769): Llegó un nuevo mensaje a la cola de mensajes GET_POKEMON
+[INFO] 02:57:42:697 BROKER/(8546:8769): Se almacenó un mensaje en la posición 48 de la memoria principal.
+[INFO] 02:57:42:697 BROKER/(8546:8769): Se ejecutó el Dump de la cache
+[INFO] 02:57:47:167 BROKER/(8546:8773): Se conectó proceso de socket 14 al Broker.
+[INFO] 02:57:47:170 BROKER/(8546:8773): Llegó un nuevo mensaje a la cola de mensajes GET_POKEMON
+[INFO] 02:57:47:171 BROKER/(8546:8773): Se almacenó un mensaje en la posición 40 de la memoria principal.
+[INFO] 02:57:47:171 BROKER/(8546:8773): Se ejecutó el Dump de la cache
+[INFO] 02:57:54:525 BROKER/(8546:8777): Se conectó proceso de socket 15 al Broker.
+[INFO] 02:57:54:529 BROKER/(8546:8777): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 02:57:54:529 BROKER/(8546:8777): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 02:57:54:529 BROKER/(8546:8777): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 02:57:54:529 BROKER/(8546:8777): Se ejecutó el Dump de la cache
+[INFO] 02:59:11:763 BROKER/(8546:8797): Se conectó proceso de socket 16 al Broker.
+[INFO] 02:59:11:763 BROKER/(8546:8797): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 02:59:11:763 BROKER/(8546:8797): Se almacenó un mensaje en la posición 16 de la memoria principal.
+[INFO] 02:59:11:763 BROKER/(8546:8797): Se ejecutó el Dump de la cache
+[INFO] 02:59:58:868 BROKER/(8546:8821): Se conectó proceso de socket 17 al Broker.
+[INFO] 02:59:58:868 BROKER/(8546:8821): Llegó un nuevo mensaje a la cola de mensajes GET_POKEMON
+[INFO] 02:59:58:868 BROKER/(8546:8821): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 02:59:58:869 BROKER/(8546:8821): Se eliminó de memoria principal la partición que se encontraba en la posicion 48.
+[INFO] 02:59:58:869 BROKER/(8546:8821): Se almacenó un mensaje en la posición 48 de la memoria principal.
+[INFO] 02:59:58:869 BROKER/(8546:8821): Se ejecutó el Dump de la cache
+[INFO] 03:00:03:448 BROKER/(8546:8825): Se conectó proceso de socket 18 al Broker.
+[INFO] 03:00:03:448 BROKER/(8546:8825): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 03:00:03:448 BROKER/(8546:8825): Se almacenó un mensaje en la posición 4 de la memoria principal.
+[INFO] 03:00:03:449 BROKER/(8546:8825): Se ejecutó el Dump de la cache
+[INFO] 03:30:22:720 BROKER/(10618:10626): Se conectó proceso de socket 5 al Broker.
+[INFO] 03:30:22:751 BROKER/(10618:10626): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 03:30:22:753 BROKER/(10618:10626): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 03:30:22:754 BROKER/(10618:10626): Se ejecutó el Dump de la cache
+[INFO] 03:30:22:768 BROKER/(10618:10628): Se conectó proceso de socket 7 al Broker.
+[INFO] 03:30:22:769 BROKER/(10618:10628): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 03:30:22:770 BROKER/(10618:10628): Se almacenó un mensaje en la posición 4 de la memoria principal.
+[INFO] 03:30:22:771 BROKER/(10618:10628): Se ejecutó el Dump de la cache
+[INFO] 03:30:22:793 BROKER/(10618:10630): Se conectó proceso de socket 8 al Broker.
+[INFO] 03:30:22:793 BROKER/(10618:10630): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 03:30:22:794 BROKER/(10618:10630): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 03:30:22:795 BROKER/(10618:10630): Se ejecutó el Dump de la cache
+[INFO] 03:30:22:809 BROKER/(10618:10633): Se conectó proceso de socket 9 al Broker.
+[INFO] 03:30:22:812 BROKER/(10618:10633): Llegó un nuevo mensaje a la cola de mensajes CATCH_POKEMON
+[INFO] 03:30:22:812 BROKER/(10618:10633): Se almacenó un mensaje en la posición 16 de la memoria principal.
+[INFO] 03:30:22:813 BROKER/(10618:10633): Se ejecutó el Dump de la cache
+[INFO] 03:30:22:826 BROKER/(10618:10635): Se conectó proceso de socket 10 al Broker.
+[INFO] 03:30:22:827 BROKER/(10618:10635): Se suscribió el proceso con socket 10 y con id 9876 a la cola de mensajes NEW_POKEMON.
+[INFO] 03:30:22:832 BROKER/(10618:10635): Se le envió un mensaje al suscriptor de socket 10, a través de la cola NEW_POKEMON.
+[INFO] 03:30:22:833 BROKER/(10618:10638): El suscriptor de id 9876 confirmó la recepción del mensaje con id 3.
+[INFO] 03:30:32:836 BROKER/(10618:10642): Se conectó proceso de socket 11 al Broker.
+[INFO] 03:30:32:844 BROKER/(10618:10642): Llegó un nuevo mensaje a la cola de mensajes CATCH_POKEMON
+[INFO] 03:30:32:853 BROKER/(10618:10642): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 03:30:32:862 BROKER/(10618:10642): Se eliminó de memoria principal la partición que se encontraba en la posicion 4.
+[INFO] 03:30:32:868 BROKER/(10618:10642): Se asociaron las particiones que se encontraban en las posiciones 0 y 4.
+[INFO] 03:30:32:868 BROKER/(10618:10642): Se asociaron las particiones que se encontraban en las posiciones 0 y 8.
+[INFO] 03:30:32:868 BROKER/(10618:10642): Se eliminó de memoria principal la partición que se encontraba en la posicion 16.
+[INFO] 03:30:32:868 BROKER/(10618:10642): Se asociaron las particiones que se encontraban en las posiciones 0 y 16.
+[INFO] 03:30:32:868 BROKER/(10618:10642): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 03:30:32:869 BROKER/(10618:10642): Se ejecutó el Dump de la cache
+[INFO] 03:30:45:975 BROKER/(10618:10660): Se conectó proceso de socket 12 al Broker.
+[INFO] 03:30:45:979 BROKER/(10618:10660): Llegó un nuevo mensaje a la cola de mensajes GET_POKEMON
+[INFO] 03:30:45:980 BROKER/(10618:10660): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 03:30:45:980 BROKER/(10618:10660): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 03:30:45:980 BROKER/(10618:10660): Se ejecutó el Dump de la cache
+[INFO] 03:30:53:570 BROKER/(10618:10664): Se conectó proceso de socket 13 al Broker.
+[INFO] 03:30:53:574 BROKER/(10618:10664): Llegó un nuevo mensaje a la cola de mensajes GET_POKEMON
+[INFO] 03:30:53:574 BROKER/(10618:10664): Se almacenó un mensaje en la posición 48 de la memoria principal.
+[INFO] 03:30:53:575 BROKER/(10618:10664): Se ejecutó el Dump de la cache
+[INFO] 03:31:00:68 BROKER/(10618:10668): Se conectó proceso de socket 14 al Broker.
+[INFO] 03:31:00:69 BROKER/(10618:10668): Llegó un nuevo mensaje a la cola de mensajes GET_POKEMON
+[INFO] 03:31:00:69 BROKER/(10618:10668): Se almacenó un mensaje en la posición 40 de la memoria principal.
+[INFO] 03:31:00:69 BROKER/(10618:10668): Se ejecutó el Dump de la cache
+[INFO] 03:31:04:433 BROKER/(10618:10672): Se conectó proceso de socket 15 al Broker.
+[INFO] 03:31:04:433 BROKER/(10618:10672): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 03:31:04:433 BROKER/(10618:10672): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 03:31:04:433 BROKER/(10618:10672): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 03:31:04:434 BROKER/(10618:10672): Se ejecutó el Dump de la cache
+[INFO] 03:31:10:275 BROKER/(10618:10676): Se conectó proceso de socket 16 al Broker.
+[INFO] 03:31:10:275 BROKER/(10618:10676): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 03:31:10:275 BROKER/(10618:10676): Se almacenó un mensaje en la posición 16 de la memoria principal.
+[INFO] 03:31:10:275 BROKER/(10618:10676): Se ejecutó el Dump de la cache
+[INFO] 03:31:14:463 BROKER/(10618:10685): Se conectó proceso de socket 17 al Broker.
+[INFO] 03:31:14:464 BROKER/(10618:10685): Llegó un nuevo mensaje a la cola de mensajes GET_POKEMON
+[INFO] 03:31:14:464 BROKER/(10618:10685): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 03:31:14:464 BROKER/(10618:10685): Se eliminó de memoria principal la partición que se encontraba en la posicion 48.
+[INFO] 03:31:14:464 BROKER/(10618:10685): Se almacenó un mensaje en la posición 48 de la memoria principal.
+[INFO] 03:31:14:465 BROKER/(10618:10685): Se ejecutó el Dump de la cache
+[INFO] 03:34:26:587 BROKER/(7967:7972): Se conectó proceso de socket 5 al Broker.
+[INFO] 03:34:26:587 BROKER/(7967:7972): Se suscribió el proceso con socket 5 y con id 7968 a la cola de mensajes GET_POKEMON.
+[INFO] 03:34:26:588 BROKER/(7967:7973): Se conectó proceso de socket 7 al Broker.
+[INFO] 03:34:26:588 BROKER/(7967:7973): Se suscribió el proceso con socket 7 y con id 7968 a la cola de mensajes CATCH_POKEMON.
+[INFO] 03:34:26:588 BROKER/(7967:7974): Se conectó proceso de socket 8 al Broker.
+[INFO] 03:34:26:589 BROKER/(7967:7974): Se suscribió el proceso con socket 8 y con id 7968 a la cola de mensajes NEW_POKEMON.
+[INFO] 03:34:32:28 BROKER/(7967:7980): Se conectó proceso de socket 9 al Broker.
+[INFO] 03:34:32:29 BROKER/(7967:7980): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 03:34:32:29 BROKER/(7967:7980): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 03:34:32:29 BROKER/(7967:7980): Se ejecutó el Dump de la cache
+[INFO] 03:34:32:30 BROKER/(7967:7980): Se le envió un mensaje al suscriptor de socket 8, a través de la cola NEW_POKEMON.
+[INFO] 03:34:32:31 BROKER/(7967:7982): El suscriptor de id 5678 confirmó la recepción del mensaje con id 1.
+[INFO] 03:34:32:31 BROKER/(7967:7983): Se conectó proceso de socket 10 al Broker.
+[INFO] 03:34:32:31 BROKER/(7967:7983): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 03:34:32:31 BROKER/(7967:7983): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 03:34:32:32 BROKER/(7967:7983): Se ejecutó el Dump de la cache
+[INFO] 03:34:32:33 BROKER/(7967:7983): Se le envió un mensaje al suscriptor de socket 8, a través de la cola NEW_POKEMON.
+[INFO] 03:34:32:34 BROKER/(7967:7986): Se conectó proceso de socket 11 al Broker.
+[INFO] 03:34:32:34 BROKER/(7967:7986): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 03:34:32:34 BROKER/(7967:7986): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 03:34:32:34 BROKER/(7967:7986): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 03:34:32:35 BROKER/(7967:7986): Se ejecutó el Dump de la cache
+[INFO] 03:34:32:35 BROKER/(7967:7986): Se le envió un mensaje al suscriptor de socket 8, a través de la cola NEW_POKEMON.
+[INFO] 03:34:32:36 BROKER/(7967:7989): Se conectó proceso de socket 12 al Broker.
+[INFO] 03:34:32:36 BROKER/(7967:7989): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 03:34:32:36 BROKER/(7967:7989): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 03:34:32:36 BROKER/(7967:7989): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 03:34:32:36 BROKER/(7967:7989): Se ejecutó el Dump de la cache
+[INFO] 03:34:32:39 BROKER/(7967:7989): Se le envió un mensaje al suscriptor de socket 8, a través de la cola NEW_POKEMON.
+[INFO] 03:34:33:34 BROKER/(7967:7991): Se conectó proceso de socket 13 al Broker.
+[INFO] 03:34:33:34 BROKER/(7967:7991): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 03:34:33:34 BROKER/(7967:7991): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 03:34:33:35 BROKER/(7967:7991): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 03:34:33:35 BROKER/(7967:7991): Se ejecutó el Dump de la cache
+[INFO] 03:34:33:35 BROKER/(7967:7985): El suscriptor de id 5678 confirmó la recepción del mensaje con id 2.
+[INFO] 03:34:34:40 BROKER/(7967:7992): Se conectó proceso de socket 14 al Broker.
+[INFO] 03:34:34:40 BROKER/(7967:7992): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 03:34:34:40 BROKER/(7967:7992): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 03:34:34:40 BROKER/(7967:7992): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 03:34:34:40 BROKER/(7967:7992): Se ejecutó el Dump de la cache
+[INFO] 03:34:34:41 BROKER/(7967:7988): El suscriptor de id 5678 confirmó la recepción del mensaje con id 3.
+[INFO] 03:34:35:46 BROKER/(7967:7993): Se conectó proceso de socket 15 al Broker.
+[INFO] 03:34:35:46 BROKER/(7967:7993): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 03:34:35:46 BROKER/(7967:7993): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 03:34:35:46 BROKER/(7967:7993): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 03:34:35:46 BROKER/(7967:7993): Se ejecutó el Dump de la cache
+[INFO] 03:34:35:47 BROKER/(7967:7990): El suscriptor de id 5678 confirmó la recepción del mensaje con id 4.
+[INFO] 03:34:36:51 BROKER/(7967:7995): Se conectó proceso de socket 16 al Broker.
+[INFO] 03:34:36:52 BROKER/(7967:7995): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 03:34:36:52 BROKER/(7967:7995): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 03:34:36:52 BROKER/(7967:7995): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 03:34:36:52 BROKER/(7967:7995): Se ejecutó el Dump de la cache
+[INFO] 03:36:44:985 BROKER/(8115:8130): Se conectó proceso de socket 5 al Broker.
+[INFO] 03:36:44:985 BROKER/(8115:8130): Se suscribió el proceso con socket 5 y con id 8126 a la cola de mensajes GET_POKEMON.
+[INFO] 03:36:44:986 BROKER/(8115:8131): Se conectó proceso de socket 7 al Broker.
+[INFO] 03:36:44:986 BROKER/(8115:8131): Se suscribió el proceso con socket 7 y con id 8126 a la cola de mensajes CATCH_POKEMON.
+[INFO] 03:36:44:987 BROKER/(8115:8132): Se conectó proceso de socket 8 al Broker.
+[INFO] 03:36:44:987 BROKER/(8115:8132): Se suscribió el proceso con socket 8 y con id 8126 a la cola de mensajes NEW_POKEMON.
+[INFO] 03:36:49:428 BROKER/(8115:8135): Se conectó proceso de socket 9 al Broker.
+[INFO] 03:36:49:429 BROKER/(8115:8135): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 03:36:49:429 BROKER/(8115:8135): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 03:36:49:429 BROKER/(8115:8135): Se ejecutó el Dump de la cache
+[INFO] 03:36:49:430 BROKER/(8115:8135): Se le envió un mensaje al suscriptor de socket 8, a través de la cola NEW_POKEMON.
+[INFO] 03:36:49:431 BROKER/(8115:8137): El suscriptor de id 5678 confirmó la recepción del mensaje con id 1.
+[INFO] 03:36:49:432 BROKER/(8115:8138): Se conectó proceso de socket 10 al Broker.
+[INFO] 03:36:49:432 BROKER/(8115:8138): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 03:36:49:432 BROKER/(8115:8138): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 03:36:49:432 BROKER/(8115:8138): Se ejecutó el Dump de la cache
+[INFO] 03:36:49:433 BROKER/(8115:8138): Se le envió un mensaje al suscriptor de socket 8, a través de la cola NEW_POKEMON.
+[INFO] 03:36:49:434 BROKER/(8115:8141): Se conectó proceso de socket 11 al Broker.
+[INFO] 03:36:49:434 BROKER/(8115:8141): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 03:36:49:435 BROKER/(8115:8141): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 03:36:49:435 BROKER/(8115:8141): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 03:36:49:435 BROKER/(8115:8141): Se ejecutó el Dump de la cache
+[INFO] 03:36:49:435 BROKER/(8115:8141): Se le envió un mensaje al suscriptor de socket 8, a través de la cola NEW_POKEMON.
+[INFO] 03:36:49:436 BROKER/(8115:8144): Se conectó proceso de socket 12 al Broker.
+[INFO] 03:36:49:437 BROKER/(8115:8144): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 03:36:49:437 BROKER/(8115:8144): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 03:36:49:437 BROKER/(8115:8144): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 03:36:49:437 BROKER/(8115:8144): Se ejecutó el Dump de la cache
+[INFO] 03:36:49:437 BROKER/(8115:8144): Se le envió un mensaje al suscriptor de socket 8, a través de la cola NEW_POKEMON.
+[INFO] 03:36:50:431 BROKER/(8115:8146): Se conectó proceso de socket 13 al Broker.
+[INFO] 03:36:50:431 BROKER/(8115:8146): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 03:36:50:431 BROKER/(8115:8146): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 03:36:50:432 BROKER/(8115:8146): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 03:36:50:432 BROKER/(8115:8146): Se ejecutó el Dump de la cache
+[INFO] 03:36:51:436 BROKER/(8115:8147): Se conectó proceso de socket 14 al Broker.
+[INFO] 03:36:51:437 BROKER/(8115:8147): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 03:36:51:437 BROKER/(8115:8147): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 03:36:51:437 BROKER/(8115:8147): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 03:36:51:437 BROKER/(8115:8147): Se ejecutó el Dump de la cache
+[INFO] 03:36:52:440 BROKER/(8115:8148): Se conectó proceso de socket 15 al Broker.
+[INFO] 03:36:52:440 BROKER/(8115:8148): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 03:36:52:440 BROKER/(8115:8148): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 03:36:52:440 BROKER/(8115:8148): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 03:36:52:440 BROKER/(8115:8148): Se ejecutó el Dump de la cache
+[INFO] 03:36:53:443 BROKER/(8115:8149): Se conectó proceso de socket 16 al Broker.
+[INFO] 03:36:53:443 BROKER/(8115:8149): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 03:36:53:443 BROKER/(8115:8149): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 03:36:53:444 BROKER/(8115:8149): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 03:36:53:444 BROKER/(8115:8149): Se ejecutó el Dump de la cache
+[INFO] 03:38:18:183 BROKER/(8115:8367): Se conectó proceso de socket 17 al Broker.
+[INFO] 03:38:18:183 BROKER/(8115:8367): Llegó un nuevo mensaje a la cola de mensajes GET_POKEMON
+[INFO] 03:38:18:183 BROKER/(8115:8367): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 03:38:18:183 BROKER/(8115:8367): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 03:38:18:183 BROKER/(8115:8367): Se ejecutó el Dump de la cache
+[INFO] 03:38:18:185 BROKER/(8115:8367): Se le envió un mensaje al suscriptor de socket 5, a través de la cola GET_POKEMON.
+[INFO] 03:38:18:186 BROKER/(8115:8369): El suscriptor de id 5678 confirmó la recepción del mensaje con id 9.
+[INFO] 03:38:18:186 BROKER/(8115:8370): Se conectó proceso de socket 18 al Broker.
+[INFO] 03:38:18:186 BROKER/(8115:8370): Se suscribió el proceso con socket 18 y con id 1234 a la cola de mensajes LOCALIZED_POKEMON.
+[INFO] 03:38:18:831 BROKER/(8115:8374): Se conectó proceso de socket 19 al Broker.
+[INFO] 03:38:18:832 BROKER/(8115:8374): Llegó un nuevo mensaje a la cola de mensajes GET_POKEMON
+[INFO] 03:38:18:832 BROKER/(8115:8374): Se almacenó un mensaje en la posición 16 de la memoria principal.
+[INFO] 03:38:18:832 BROKER/(8115:8374): Se ejecutó el Dump de la cache
+[INFO] 03:38:18:832 BROKER/(8115:8374): Se le envió un mensaje al suscriptor de socket 5, a través de la cola GET_POKEMON.
+[INFO] 03:38:18:833 BROKER/(8115:8377): Se conectó proceso de socket 20 al Broker.
+[INFO] 03:38:18:833 BROKER/(8115:8377): Se suscribió el proceso con socket 20 y con id 1235 a la cola de mensajes LOCALIZED_POKEMON.
+[INFO] 03:38:19:187 BROKER/(8115:8376): El suscriptor de id 5678 confirmó la recepción del mensaje con id 10.
+[INFO] 03:38:19:187 BROKER/(8115:8378): Se conectó proceso de socket 21 al Broker.
+[INFO] 03:38:19:187 BROKER/(8115:8378): Llegó un nuevo mensaje a la cola de mensajes LOCALIZED_POKEMON
+[INFO] 03:38:19:187 BROKER/(8115:8378): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 03:38:19:187 BROKER/(8115:8378): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 03:38:19:187 BROKER/(8115:8378): Se ejecutó el Dump de la cache
+[INFO] 03:38:19:188 BROKER/(8115:8378): Se le envió un mensaje al suscriptor de socket 18, a través de la cola LOCALIZED_POKEMON.
+[INFO] 03:38:19:188 BROKER/(8115:8378): Se le envió un mensaje al suscriptor de socket 20, a través de la cola LOCALIZED_POKEMON.
+[INFO] 03:38:19:189 BROKER/(8115:8380): El suscriptor de id 1235 confirmó la recepción del mensaje con id 11.
+[INFO] 03:38:19:189 BROKER/(8115:8379): El suscriptor de id 1234 confirmó la recepción del mensaje con id 11.
+[INFO] 03:38:20:184 BROKER/(8115:8381): Se conectó proceso de socket 22 al Broker.
+[INFO] 03:38:20:184 BROKER/(8115:8381): Llegó un nuevo mensaje a la cola de mensajes GET_POKEMON
+[INFO] 03:38:20:184 BROKER/(8115:8381): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 03:38:20:184 BROKER/(8115:8381): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 03:38:20:184 BROKER/(8115:8381): Se ejecutó el Dump de la cache
+[INFO] 03:38:20:186 BROKER/(8115:8381): Se le envió un mensaje al suscriptor de socket 5, a través de la cola GET_POKEMON.
+[INFO] 03:38:20:186 BROKER/(8115:8383): El suscriptor de id 5678 confirmó la recepción del mensaje con id 12.
+[INFO] 03:38:20:832 BROKER/(8115:8384): Se conectó proceso de socket 23 al Broker.
+[INFO] 03:38:20:833 BROKER/(8115:8384): Llegó un nuevo mensaje a la cola de mensajes GET_POKEMON
+[INFO] 03:38:20:833 BROKER/(8115:8384): Se eliminó de memoria principal la partición que se encontraba en la posicion 16.
+[INFO] 03:38:20:833 BROKER/(8115:8384): Se almacenó un mensaje en la posición 16 de la memoria principal.
+[INFO] 03:38:20:833 BROKER/(8115:8384): Se ejecutó el Dump de la cache
+[INFO] 03:38:20:833 BROKER/(8115:8384): Se le envió un mensaje al suscriptor de socket 5, a través de la cola GET_POKEMON.
+[INFO] 03:38:21:190 BROKER/(8115:8386): El suscriptor de id 5678 confirmó la recepción del mensaje con id 13.
+[INFO] 03:38:21:190 BROKER/(8115:8387): Se conectó proceso de socket 24 al Broker.
+[INFO] 03:38:21:190 BROKER/(8115:8387): Llegó un nuevo mensaje a la cola de mensajes LOCALIZED_POKEMON
+[INFO] 03:38:21:190 BROKER/(8115:8387): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 03:38:21:190 BROKER/(8115:8387): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 03:38:21:190 BROKER/(8115:8387): Se ejecutó el Dump de la cache
+[INFO] 03:38:21:191 BROKER/(8115:8387): Se le envió un mensaje al suscriptor de socket 18, a través de la cola LOCALIZED_POKEMON.
+[INFO] 03:38:21:191 BROKER/(8115:8387): Se le envió un mensaje al suscriptor de socket 20, a través de la cola LOCALIZED_POKEMON.
+[INFO] 03:38:21:191 BROKER/(8115:8389): El suscriptor de id 1235 confirmó la recepción del mensaje con id 14.
+[INFO] 03:38:21:191 BROKER/(8115:8388): El suscriptor de id 1234 confirmó la recepción del mensaje con id 14.
+[INFO] 03:38:22:185 BROKER/(8115:8390): Se conectó proceso de socket 25 al Broker.
+[INFO] 03:38:22:185 BROKER/(8115:8390): Llegó un nuevo mensaje a la cola de mensajes GET_POKEMON
+[INFO] 03:38:22:185 BROKER/(8115:8390): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 03:38:22:185 BROKER/(8115:8390): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 03:38:22:186 BROKER/(8115:8390): Se ejecutó el Dump de la cache
+[INFO] 03:38:22:186 BROKER/(8115:8390): Se le envió un mensaje al suscriptor de socket 5, a través de la cola GET_POKEMON.
+[INFO] 03:38:22:192 BROKER/(8115:8392): El suscriptor de id 5678 confirmó la recepción del mensaje con id 15.
+[INFO] 03:38:22:192 BROKER/(8115:8393): Se conectó proceso de socket 26 al Broker.
+[INFO] 03:38:22:192 BROKER/(8115:8393): Llegó un nuevo mensaje a la cola de mensajes LOCALIZED_POKEMON
+[INFO] 03:38:22:192 BROKER/(8115:8393): Se eliminó de memoria principal la partición que se encontraba en la posicion 16.
+[INFO] 03:38:22:193 BROKER/(8115:8393): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 03:38:22:193 BROKER/(8115:8393): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 03:38:22:193 BROKER/(8115:8393): Se ejecutó el Dump de la cache
+[INFO] 03:38:22:194 BROKER/(8115:8393): Se le envió un mensaje al suscriptor de socket 18, a través de la cola LOCALIZED_POKEMON.
+[INFO] 03:38:22:195 BROKER/(8115:8393): Se le envió un mensaje al suscriptor de socket 20, a través de la cola LOCALIZED_POKEMON.
+[INFO] 03:38:22:198 BROKER/(8115:8395): El suscriptor de id 1235 confirmó la recepción del mensaje con id 16.
+[INFO] 03:38:22:198 BROKER/(8115:8394): El suscriptor de id 1234 confirmó la recepción del mensaje con id 16.
+[INFO] 03:38:22:833 BROKER/(8115:8396): Se conectó proceso de socket 27 al Broker.
+[INFO] 03:38:22:834 BROKER/(8115:8396): Llegó un nuevo mensaje a la cola de mensajes GET_POKEMON
+[INFO] 03:38:22:834 BROKER/(8115:8396): Se almacenó un mensaje en la posición 16 de la memoria principal.
+[INFO] 03:38:22:834 BROKER/(8115:8396): Se ejecutó el Dump de la cache
+[INFO] 03:38:22:835 BROKER/(8115:8396): Se le envió un mensaje al suscriptor de socket 5, a través de la cola GET_POKEMON.
+[INFO] 03:38:22:835 BROKER/(8115:8398): El suscriptor de id 5678 confirmó la recepción del mensaje con id 17.
+[INFO] 03:38:23:837 BROKER/(8115:8399): Se conectó proceso de socket 28 al Broker.
+[INFO] 03:38:23:837 BROKER/(8115:8399): Llegó un nuevo mensaje a la cola de mensajes LOCALIZED_POKEMON
+[INFO] 03:38:23:837 BROKER/(8115:8399): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 03:38:23:837 BROKER/(8115:8399): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 03:38:23:837 BROKER/(8115:8399): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 03:38:23:838 BROKER/(8115:8399): Se ejecutó el Dump de la cache
+[INFO] 03:38:23:838 BROKER/(8115:8399): Se le envió un mensaje al suscriptor de socket 18, a través de la cola LOCALIZED_POKEMON.
+[INFO] 03:38:23:838 BROKER/(8115:8399): Se le envió un mensaje al suscriptor de socket 20, a través de la cola LOCALIZED_POKEMON.
+[INFO] 03:38:23:839 BROKER/(8115:8401): El suscriptor de id 1235 confirmó la recepción del mensaje con id 18.
+[INFO] 03:38:23:839 BROKER/(8115:8400): El suscriptor de id 1234 confirmó la recepción del mensaje con id 18.
+[INFO] 03:38:24:185 BROKER/(8115:8402): Se conectó proceso de socket 29 al Broker.
+[INFO] 03:38:24:185 BROKER/(8115:8402): Llegó un nuevo mensaje a la cola de mensajes GET_POKEMON
+[INFO] 03:38:24:185 BROKER/(8115:8402): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 03:38:24:185 BROKER/(8115:8402): Se ejecutó el Dump de la cache
+[INFO] 03:38:24:186 BROKER/(8115:8402): Se le envió un mensaje al suscriptor de socket 5, a través de la cola GET_POKEMON.
+[INFO] 03:38:24:186 BROKER/(8115:8404): El suscriptor de id 5678 confirmó la recepción del mensaje con id 19.
+[INFO] 03:38:24:834 BROKER/(8115:8405): Se conectó proceso de socket 30 al Broker.
+[INFO] 03:38:24:834 BROKER/(8115:8405): Llegó un nuevo mensaje a la cola de mensajes GET_POKEMON
+[INFO] 03:38:24:834 BROKER/(8115:8405): Se eliminó de memoria principal la partición que se encontraba en la posicion 16.
+[INFO] 03:38:24:835 BROKER/(8115:8405): Se almacenó un mensaje en la posición 16 de la memoria principal.
+[INFO] 03:38:24:835 BROKER/(8115:8405): Se ejecutó el Dump de la cache
+[INFO] 03:38:24:835 BROKER/(8115:8405): Se le envió un mensaje al suscriptor de socket 5, a través de la cola GET_POKEMON.
+[INFO] 03:38:24:835 BROKER/(8115:8407): El suscriptor de id 5678 confirmó la recepción del mensaje con id 20.
+[INFO] 03:38:26:186 BROKER/(8115:8412): Se conectó proceso de socket 31 al Broker.
+[INFO] 03:38:26:186 BROKER/(8115:8412): Se suscribió el proceso con socket 31 y con id 1234 a la cola de mensajes APPEARED_POKEMON.
+[INFO] 03:38:26:187 BROKER/(8115:8413): Se conectó proceso de socket 32 al Broker.
+[INFO] 03:38:26:187 BROKER/(8115:8413): Se suscribió el proceso con socket 32 y con id 1234 a la cola de mensajes CAUGHT_POKEMON.
+[INFO] 03:38:26:835 BROKER/(8115:8414): Se conectó proceso de socket 33 al Broker.
+[INFO] 03:38:26:835 BROKER/(8115:8414): Llegó un nuevo mensaje a la cola de mensajes GET_POKEMON
+[INFO] 03:38:26:835 BROKER/(8115:8414): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 03:38:26:835 BROKER/(8115:8414): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 03:38:26:836 BROKER/(8115:8414): Se ejecutó el Dump de la cache
+[INFO] 03:38:26:836 BROKER/(8115:8414): Se le envió un mensaje al suscriptor de socket 5, a través de la cola GET_POKEMON.
+[INFO] 03:38:26:836 BROKER/(8115:8416): El suscriptor de id 5678 confirmó la recepción del mensaje con id 21.
+[INFO] 03:38:28:188 BROKER/(8115:8419): Se conectó proceso de socket 34 al Broker.
+[INFO] 03:38:28:188 BROKER/(8115:8419): Llegó un nuevo mensaje a la cola de mensajes CATCH_POKEMON
+[INFO] 03:38:28:188 BROKER/(8115:8419): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 03:38:28:188 BROKER/(8115:8419): Se asociaron las particiones que se encontraban en las posiciones 0 y 8.
+[INFO] 03:38:28:189 BROKER/(8115:8419): Se eliminó de memoria principal la partición que se encontraba en la posicion 16.
+[INFO] 03:38:28:189 BROKER/(8115:8419): Se asociaron las particiones que se encontraban en las posiciones 0 y 16.
+[INFO] 03:38:28:189 BROKER/(8115:8419): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 03:38:28:189 BROKER/(8115:8419): Se ejecutó el Dump de la cache
+[INFO] 03:38:28:190 BROKER/(8115:8419): Se le envió un mensaje al suscriptor de socket 7, a través de la cola CATCH_POKEMON.
+[INFO] 03:38:28:191 BROKER/(8115:8420): El suscriptor de id 5678 confirmó la recepción del mensaje con id 22.
+[INFO] 03:38:28:836 BROKER/(8115:8427): Se conectó proceso de socket 35 al Broker.
+[INFO] 03:38:28:837 BROKER/(8115:8427): Se suscribió el proceso con socket 35 y con id 1235 a la cola de mensajes APPEARED_POKEMON.
+[INFO] 03:38:28:837 BROKER/(8115:8428): Se conectó proceso de socket 36 al Broker.
+[INFO] 03:38:28:837 BROKER/(8115:8428): Se suscribió el proceso con socket 36 y con id 1235 a la cola de mensajes CAUGHT_POKEMON.
+[INFO] 03:38:29:192 BROKER/(8115:8429): Se conectó proceso de socket 37 al Broker.
+[INFO] 03:38:29:192 BROKER/(8115:8429): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 03:38:29:193 BROKER/(8115:8429): Se almacenó un mensaje en la posición 48 de la memoria principal.
+[INFO] 03:38:29:193 BROKER/(8115:8429): Se ejecutó el Dump de la cache
+[INFO] 03:38:29:194 BROKER/(8115:8429): Se le envió un mensaje al suscriptor de socket 32, a través de la cola CAUGHT_POKEMON.
+[INFO] 03:38:29:194 BROKER/(8115:8429): Se le envió un mensaje al suscriptor de socket 36, a través de la cola CAUGHT_POKEMON.
+[INFO] 03:38:29:194 BROKER/(8115:8431): El suscriptor de id 1235 confirmó la recepción del mensaje con id 23.
+[INFO] 03:38:29:194 BROKER/(8115:8430): El suscriptor de id 1234 confirmó la recepción del mensaje con id 23.
+[INFO] 03:38:29:837 BROKER/(8115:8433): Se conectó proceso de socket 38 al Broker.
+[INFO] 03:38:29:837 BROKER/(8115:8433): Llegó un nuevo mensaje a la cola de mensajes CATCH_POKEMON
+[INFO] 03:38:29:838 BROKER/(8115:8433): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 03:38:29:838 BROKER/(8115:8433): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 03:38:29:838 BROKER/(8115:8433): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 03:38:29:838 BROKER/(8115:8433): Se ejecutó el Dump de la cache
+[INFO] 03:38:29:840 BROKER/(8115:8433): Se le envió un mensaje al suscriptor de socket 7, a través de la cola CATCH_POKEMON.
+[INFO] 03:38:29:840 BROKER/(8115:8434): El suscriptor de id 5678 confirmó la recepción del mensaje con id 24.
+[INFO] 03:38:30:841 BROKER/(8115:8436): Se conectó proceso de socket 39 al Broker.
+[INFO] 03:38:30:841 BROKER/(8115:8436): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 03:38:30:841 BROKER/(8115:8436): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 03:38:30:841 BROKER/(8115:8436): Se ejecutó el Dump de la cache
+[INFO] 03:38:30:842 BROKER/(8115:8436): Se le envió un mensaje al suscriptor de socket 32, a través de la cola CAUGHT_POKEMON.
+[INFO] 03:38:30:842 BROKER/(8115:8436): Se le envió un mensaje al suscriptor de socket 36, a través de la cola CAUGHT_POKEMON.
+[INFO] 03:38:30:842 BROKER/(8115:8438): El suscriptor de id 1235 confirmó la recepción del mensaje con id 25.
+[INFO] 03:38:30:842 BROKER/(8115:8437): El suscriptor de id 1234 confirmó la recepción del mensaje con id 25.
+[INFO] 03:38:34:844 BROKER/(8115:8447): Se conectó proceso de socket 40 al Broker.
+[INFO] 03:38:34:844 BROKER/(8115:8447): Llegó un nuevo mensaje a la cola de mensajes CATCH_POKEMON
+[INFO] 03:38:34:844 BROKER/(8115:8447): Se eliminó de memoria principal la partición que se encontraba en la posicion 48.
+[INFO] 03:38:34:844 BROKER/(8115:8447): Se asociaron las particiones que se encontraban en las posiciones 48 y 52.
+[INFO] 03:38:34:845 BROKER/(8115:8447): Se asociaron las particiones que se encontraban en las posiciones 48 y 56.
+[INFO] 03:38:34:845 BROKER/(8115:8447): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 03:38:34:845 BROKER/(8115:8447): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 03:38:34:845 BROKER/(8115:8447): Se ejecutó el Dump de la cache
+[INFO] 03:38:34:846 BROKER/(8115:8447): Se le envió un mensaje al suscriptor de socket 7, a través de la cola CATCH_POKEMON.
+[INFO] 03:38:34:846 BROKER/(8115:8448): El suscriptor de id 5678 confirmó la recepción del mensaje con id 26.
+[INFO] 03:38:35:847 BROKER/(8115:8450): Se conectó proceso de socket 41 al Broker.
+[INFO] 03:38:35:847 BROKER/(8115:8450): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 03:38:35:847 BROKER/(8115:8450): Se almacenó un mensaje en la posición 36 de la memoria principal.
+[INFO] 03:38:35:848 BROKER/(8115:8450): Se ejecutó el Dump de la cache
+[INFO] 03:38:35:848 BROKER/(8115:8450): Se le envió un mensaje al suscriptor de socket 32, a través de la cola CAUGHT_POKEMON.
+[INFO] 03:38:35:849 BROKER/(8115:8450): Se le envió un mensaje al suscriptor de socket 36, a través de la cola CAUGHT_POKEMON.
+[INFO] 03:38:35:850 BROKER/(8115:8452): El suscriptor de id 1235 confirmó la recepción del mensaje con id 27.
+[INFO] 03:38:35:850 BROKER/(8115:8451): El suscriptor de id 1234 confirmó la recepción del mensaje con id 27.
+[INFO] 03:38:43:214 BROKER/(8115:8461): Se conectó proceso de socket 42 al Broker.
+[INFO] 03:38:43:214 BROKER/(8115:8461): Llegó un nuevo mensaje a la cola de mensajes CATCH_POKEMON
+[INFO] 03:38:43:214 BROKER/(8115:8461): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 03:38:43:214 BROKER/(8115:8461): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 03:38:43:214 BROKER/(8115:8461): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 03:38:43:215 BROKER/(8115:8461): Se ejecutó el Dump de la cache
+[INFO] 03:38:43:215 BROKER/(8115:8461): Se le envió un mensaje al suscriptor de socket 7, a través de la cola CATCH_POKEMON.
+[INFO] 03:38:43:216 BROKER/(8115:8462): El suscriptor de id 5678 confirmó la recepción del mensaje con id 28.
+[INFO] 03:38:44:218 BROKER/(8115:8463): Se conectó proceso de socket 43 al Broker.
+[INFO] 03:38:44:218 BROKER/(8115:8463): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 03:38:44:218 BROKER/(8115:8463): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 03:38:44:218 BROKER/(8115:8463): Se ejecutó el Dump de la cache
+[INFO] 03:38:44:219 BROKER/(8115:8463): Se le envió un mensaje al suscriptor de socket 32, a través de la cola CAUGHT_POKEMON.
+[INFO] 03:38:44:219 BROKER/(8115:8463): Se le envió un mensaje al suscriptor de socket 36, a través de la cola CAUGHT_POKEMON.
+[INFO] 03:38:44:219 BROKER/(8115:8465): El suscriptor de id 1235 confirmó la recepción del mensaje con id 29.
+[INFO] 03:38:44:219 BROKER/(8115:8464): El suscriptor de id 1234 confirmó la recepción del mensaje con id 29.
+[INFO] 03:39:02:222 BROKER/(8115:8468): Se conectó proceso de socket 44 al Broker.
+[INFO] 03:39:02:222 BROKER/(8115:8468): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 03:39:02:222 BROKER/(8115:8468): Se eliminó de memoria principal la partición que se encontraba en la posicion 36.
+[INFO] 03:39:02:222 BROKER/(8115:8468): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 03:39:02:223 BROKER/(8115:8468): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 03:39:02:223 BROKER/(8115:8468): Se ejecutó el Dump de la cache
+[INFO] 03:39:02:224 BROKER/(8115:8468): Se le envió un mensaje al suscriptor de socket 8, a través de la cola NEW_POKEMON.
+[INFO] 03:39:02:227 BROKER/(8115:8471): Se conectó proceso de socket 45 al Broker.
+[INFO] 03:39:02:227 BROKER/(8115:8471): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 03:39:02:227 BROKER/(8115:8471): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 03:39:02:227 BROKER/(8115:8471): Se asociaron las particiones que se encontraban en las posiciones 32 y 36.
+[INFO] 03:39:02:227 BROKER/(8115:8471): Se asociaron las particiones que se encontraban en las posiciones 32 y 40.
+[INFO] 03:39:02:227 BROKER/(8115:8471): Se asociaron las particiones que se encontraban en las posiciones 32 y 48.
+[INFO] 03:39:02:227 BROKER/(8115:8471): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 03:39:02:229 BROKER/(8115:8471): Se ejecutó el Dump de la cache
+[INFO] 03:39:02:232 BROKER/(8115:8471): Se le envió un mensaje al suscriptor de socket 8, a través de la cola NEW_POKEMON.
+[INFO] 03:39:02:236 BROKER/(8115:8474): Se conectó proceso de socket 46 al Broker.
+[INFO] 03:39:02:236 BROKER/(8115:8474): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 03:39:02:236 BROKER/(8115:8474): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 03:39:02:236 BROKER/(8115:8474): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 03:39:02:237 BROKER/(8115:8474): Se ejecutó el Dump de la cache
+[INFO] 03:39:02:237 BROKER/(8115:8474): Se le envió un mensaje al suscriptor de socket 8, a través de la cola NEW_POKEMON.
+[INFO] 03:39:02:238 BROKER/(8115:8477): Se conectó proceso de socket 47 al Broker.
+[INFO] 03:39:02:239 BROKER/(8115:8477): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 03:39:02:239 BROKER/(8115:8477): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 03:39:02:239 BROKER/(8115:8477): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 03:39:02:239 BROKER/(8115:8477): Se ejecutó el Dump de la cache
+[INFO] 03:39:02:239 BROKER/(8115:8477): Se le envió un mensaje al suscriptor de socket 8, a través de la cola NEW_POKEMON.
+[INFO] 03:39:02:241 BROKER/(8115:8480): Se conectó proceso de socket 48 al Broker.
+[INFO] 03:39:02:241 BROKER/(8115:8480): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 03:39:02:242 BROKER/(8115:8480): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 03:39:02:242 BROKER/(8115:8480): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 03:39:02:242 BROKER/(8115:8480): Se ejecutó el Dump de la cache
+[INFO] 03:39:02:242 BROKER/(8115:8480): Se le envió un mensaje al suscriptor de socket 8, a través de la cola NEW_POKEMON.
+[INFO] 03:39:02:244 BROKER/(8115:8483): Se conectó proceso de socket 49 al Broker.
+[INFO] 03:39:02:244 BROKER/(8115:8483): Llegó un nuevo mensaje a la cola de mensajes NEW_POKEMON
+[INFO] 03:39:02:244 BROKER/(8115:8483): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 03:39:02:244 BROKER/(8115:8483): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 03:39:02:245 BROKER/(8115:8483): Se ejecutó el Dump de la cache
+[INFO] 03:39:02:245 BROKER/(8115:8483): Se le envió un mensaje al suscriptor de socket 8, a través de la cola NEW_POKEMON.
+[INFO] 03:39:03:229 BROKER/(8115:8485): Se conectó proceso de socket 50 al Broker.
+[INFO] 03:39:03:230 BROKER/(8115:8485): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 03:39:03:230 BROKER/(8115:8485): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 03:39:03:230 BROKER/(8115:8485): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 03:39:03:230 BROKER/(8115:8485): Se ejecutó el Dump de la cache
+[INFO] 03:39:03:231 BROKER/(8115:8485): Se le envió un mensaje al suscriptor de socket 31, a través de la cola APPEARED_POKEMON.
+[INFO] 03:39:03:231 BROKER/(8115:8485): Se le envió un mensaje al suscriptor de socket 35, a través de la cola APPEARED_POKEMON.
+[INFO] 03:39:03:231 BROKER/(8115:8488): El suscriptor de id 1235 confirmó la recepción del mensaje con id 36.
+[INFO] 03:39:03:231 BROKER/(8115:8487): El suscriptor de id 1234 confirmó la recepción del mensaje con id 36.
+[INFO] 03:39:04:235 BROKER/(8115:8490): Se conectó proceso de socket 51 al Broker.
+[INFO] 03:39:04:235 BROKER/(8115:8490): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 03:39:04:235 BROKER/(8115:8490): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 03:39:04:235 BROKER/(8115:8490): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 03:39:04:235 BROKER/(8115:8490): Se ejecutó el Dump de la cache
+[INFO] 03:39:04:238 BROKER/(8115:8490): Se le envió un mensaje al suscriptor de socket 31, a través de la cola APPEARED_POKEMON.
+[INFO] 03:39:04:238 BROKER/(8115:8490): Se le envió un mensaje al suscriptor de socket 35, a través de la cola APPEARED_POKEMON.
+[INFO] 03:39:04:238 BROKER/(8115:8492): El suscriptor de id 1235 confirmó la recepción del mensaje con id 37.
+[INFO] 03:39:04:238 BROKER/(8115:8491): El suscriptor de id 1234 confirmó la recepción del mensaje con id 37.
+[INFO] 03:39:04:242 BROKER/(8115:8493): Se conectó proceso de socket 52 al Broker.
+[INFO] 03:39:04:242 BROKER/(8115:8493): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 03:39:04:242 BROKER/(8115:8493): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 03:39:04:242 BROKER/(8115:8493): Se asociaron las particiones que se encontraban en las posiciones 0 y 16.
+[INFO] 03:39:04:242 BROKER/(8115:8493): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 03:39:04:242 BROKER/(8115:8493): Se ejecutó el Dump de la cache
+[INFO] 03:39:04:249 BROKER/(8115:8493): Se le envió un mensaje al suscriptor de socket 31, a través de la cola APPEARED_POKEMON.
+[INFO] 03:39:04:249 BROKER/(8115:8493): Se le envió un mensaje al suscriptor de socket 35, a través de la cola APPEARED_POKEMON.
+[INFO] 03:39:04:249 BROKER/(8115:8495): El suscriptor de id 1235 confirmó la recepción del mensaje con id 38.
+[INFO] 03:39:04:250 BROKER/(8115:8494): El suscriptor de id 1234 confirmó la recepción del mensaje con id 38.
+[INFO] 03:39:05:251 BROKER/(8115:8497): Se conectó proceso de socket 53 al Broker.
+[INFO] 03:39:05:251 BROKER/(8115:8497): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 03:39:05:251 BROKER/(8115:8497): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 03:39:05:251 BROKER/(8115:8497): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 03:39:05:252 BROKER/(8115:8497): Se ejecutó el Dump de la cache
+[INFO] 03:39:05:252 BROKER/(8115:8497): Se le envió un mensaje al suscriptor de socket 31, a través de la cola APPEARED_POKEMON.
+[INFO] 03:39:05:253 BROKER/(8115:8497): Se le envió un mensaje al suscriptor de socket 35, a través de la cola APPEARED_POKEMON.
+[INFO] 03:39:05:253 BROKER/(8115:8499): El suscriptor de id 1235 confirmó la recepción del mensaje con id 39.
+[INFO] 03:39:05:253 BROKER/(8115:8498): El suscriptor de id 1234 confirmó la recepción del mensaje con id 39.
+[INFO] 03:39:06:255 BROKER/(8115:8501): Se conectó proceso de socket 54 al Broker.
+[INFO] 03:39:06:255 BROKER/(8115:8501): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 03:39:06:255 BROKER/(8115:8501): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 03:39:06:255 BROKER/(8115:8501): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 03:39:06:256 BROKER/(8115:8501): Se ejecutó el Dump de la cache
+[INFO] 03:39:06:257 BROKER/(8115:8501): Se le envió un mensaje al suscriptor de socket 31, a través de la cola APPEARED_POKEMON.
+[INFO] 03:39:06:257 BROKER/(8115:8501): Se le envió un mensaje al suscriptor de socket 35, a través de la cola APPEARED_POKEMON.
+[INFO] 03:39:06:258 BROKER/(8115:8504): El suscriptor de id 1235 confirmó la recepción del mensaje con id 40.
+[INFO] 03:39:06:258 BROKER/(8115:8502): El suscriptor de id 1234 confirmó la recepción del mensaje con id 40.
+[INFO] 03:39:07:266 BROKER/(8115:8507): Se conectó proceso de socket 55 al Broker.
+[INFO] 03:39:07:266 BROKER/(8115:8507): Llegó un nuevo mensaje a la cola de mensajes APPEARED_POKEMON
+[INFO] 03:39:07:266 BROKER/(8115:8507): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 03:39:07:266 BROKER/(8115:8507): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 03:39:07:266 BROKER/(8115:8507): Se ejecutó el Dump de la cache
+[INFO] 03:39:07:267 BROKER/(8115:8507): Se le envió un mensaje al suscriptor de socket 31, a través de la cola APPEARED_POKEMON.
+[INFO] 03:39:07:267 BROKER/(8115:8507): Se le envió un mensaje al suscriptor de socket 35, a través de la cola APPEARED_POKEMON.
+[INFO] 03:39:07:267 BROKER/(8115:8509): El suscriptor de id 1235 confirmó la recepción del mensaje con id 41.
+[INFO] 03:39:07:268 BROKER/(8115:8508): El suscriptor de id 1234 confirmó la recepción del mensaje con id 41.
+[INFO] 03:39:09:238 BROKER/(8115:8513): Se conectó proceso de socket 56 al Broker.
+[INFO] 03:39:09:238 BROKER/(8115:8513): Llegó un nuevo mensaje a la cola de mensajes CATCH_POKEMON
+[INFO] 03:39:09:238 BROKER/(8115:8513): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 03:39:09:238 BROKER/(8115:8513): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 03:39:09:239 BROKER/(8115:8513): Se ejecutó el Dump de la cache
+[INFO] 03:39:09:239 BROKER/(8115:8513): Se le envió un mensaje al suscriptor de socket 7, a través de la cola CATCH_POKEMON.
+[INFO] 03:39:09:240 BROKER/(8115:8514): El suscriptor de id 5678 confirmó la recepción del mensaje con id 42.
+[INFO] 03:39:09:263 BROKER/(8115:8516): Se conectó proceso de socket 57 al Broker.
+[INFO] 03:39:09:264 BROKER/(8115:8516): Llegó un nuevo mensaje a la cola de mensajes CATCH_POKEMON
+[INFO] 03:39:09:264 BROKER/(8115:8516): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 03:39:09:264 BROKER/(8115:8516): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 03:39:09:272 BROKER/(8115:8516): Se ejecutó el Dump de la cache
+[INFO] 03:39:09:274 BROKER/(8115:8516): Se le envió un mensaje al suscriptor de socket 7, a través de la cola CATCH_POKEMON.
+[INFO] 03:39:10:241 BROKER/(8115:8518): Se conectó proceso de socket 58 al Broker.
+[INFO] 03:39:10:241 BROKER/(8115:8518): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 03:39:10:241 BROKER/(8115:8518): Se almacenó un mensaje en la posición 16 de la memoria principal.
+[INFO] 03:39:10:241 BROKER/(8115:8518): Se ejecutó el Dump de la cache
+[INFO] 03:39:10:242 BROKER/(8115:8517): El suscriptor de id 5678 confirmó la recepción del mensaje con id 43.
+[INFO] 03:39:10:242 BROKER/(8115:8518): Se le envió un mensaje al suscriptor de socket 32, a través de la cola CAUGHT_POKEMON.
+[INFO] 03:39:10:242 BROKER/(8115:8518): Se le envió un mensaje al suscriptor de socket 36, a través de la cola CAUGHT_POKEMON.
+[INFO] 03:39:10:243 BROKER/(8115:8520): El suscriptor de id 1235 confirmó la recepción del mensaje con id 44.
+[INFO] 03:39:10:243 BROKER/(8115:8519): El suscriptor de id 1234 confirmó la recepción del mensaje con id 44.
+[INFO] 03:39:11:245 BROKER/(8115:8522): Se conectó proceso de socket 59 al Broker.
+[INFO] 03:39:11:245 BROKER/(8115:8522): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 03:39:11:245 BROKER/(8115:8522): Se almacenó un mensaje en la posición 20 de la memoria principal.
+[INFO] 03:39:11:246 BROKER/(8115:8522): Se ejecutó el Dump de la cache
+[INFO] 03:39:11:246 BROKER/(8115:8522): Se le envió un mensaje al suscriptor de socket 32, a través de la cola CAUGHT_POKEMON.
+[INFO] 03:39:11:247 BROKER/(8115:8522): Se le envió un mensaje al suscriptor de socket 36, a través de la cola CAUGHT_POKEMON.
+[INFO] 03:39:11:247 BROKER/(8115:8524): El suscriptor de id 1235 confirmó la recepción del mensaje con id 45.
+[INFO] 03:39:11:247 BROKER/(8115:8523): El suscriptor de id 1234 confirmó la recepción del mensaje con id 45.
+[INFO] 03:39:14:282 BROKER/(8115:8532): Se conectó proceso de socket 60 al Broker.
+[INFO] 03:39:14:282 BROKER/(8115:8532): Llegó un nuevo mensaje a la cola de mensajes CATCH_POKEMON
+[INFO] 03:39:14:282 BROKER/(8115:8532): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 03:39:14:282 BROKER/(8115:8532): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 03:39:14:283 BROKER/(8115:8532): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 03:39:14:283 BROKER/(8115:8532): Se ejecutó el Dump de la cache
+[INFO] 03:39:14:284 BROKER/(8115:8532): Se le envió un mensaje al suscriptor de socket 7, a través de la cola CATCH_POKEMON.
+[INFO] 03:39:14:284 BROKER/(8115:8533): El suscriptor de id 5678 confirmó la recepción del mensaje con id 46.
+[INFO] 03:39:15:286 BROKER/(8115:8535): Se conectó proceso de socket 61 al Broker.
+[INFO] 03:39:15:286 BROKER/(8115:8535): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 03:39:15:286 BROKER/(8115:8535): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 03:39:15:287 BROKER/(8115:8535): Se ejecutó el Dump de la cache
+[INFO] 03:39:15:287 BROKER/(8115:8535): Se le envió un mensaje al suscriptor de socket 32, a través de la cola CAUGHT_POKEMON.
+[INFO] 03:39:15:288 BROKER/(8115:8535): Se le envió un mensaje al suscriptor de socket 36, a través de la cola CAUGHT_POKEMON.
+[INFO] 03:39:15:288 BROKER/(8115:8537): El suscriptor de id 1235 confirmó la recepción del mensaje con id 47.
+[INFO] 03:39:15:288 BROKER/(8115:8536): El suscriptor de id 1234 confirmó la recepción del mensaje con id 47.
+[INFO] 03:39:16:249 BROKER/(8115:8539): Se conectó proceso de socket 62 al Broker.
+[INFO] 03:39:16:249 BROKER/(8115:8539): Llegó un nuevo mensaje a la cola de mensajes CATCH_POKEMON
+[INFO] 03:39:16:250 BROKER/(8115:8539): Se eliminó de memoria principal la partición que se encontraba en la posicion 16.
+[INFO] 03:39:16:250 BROKER/(8115:8539): Se eliminó de memoria principal la partición que se encontraba en la posicion 20.
+[INFO] 03:39:16:250 BROKER/(8115:8539): Se asociaron las particiones que se encontraban en las posiciones 16 y 20.
+[INFO] 03:39:16:250 BROKER/(8115:8539): Se asociaron las particiones que se encontraban en las posiciones 16 y 24.
+[INFO] 03:39:16:250 BROKER/(8115:8539): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 03:39:16:250 BROKER/(8115:8539): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 03:39:16:251 BROKER/(8115:8539): Se ejecutó el Dump de la cache
+[INFO] 03:39:16:252 BROKER/(8115:8539): Se le envió un mensaje al suscriptor de socket 7, a través de la cola CATCH_POKEMON.
+[INFO] 03:39:16:253 BROKER/(8115:8540): El suscriptor de id 5678 confirmó la recepción del mensaje con id 48.
+[INFO] 03:39:17:253 BROKER/(8115:8542): Se conectó proceso de socket 63 al Broker.
+[INFO] 03:39:17:253 BROKER/(8115:8542): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 03:39:17:253 BROKER/(8115:8542): Se almacenó un mensaje en la posición 4 de la memoria principal.
+[INFO] 03:39:17:253 BROKER/(8115:8542): Se ejecutó el Dump de la cache
+[INFO] 03:39:17:254 BROKER/(8115:8542): Se le envió un mensaje al suscriptor de socket 32, a través de la cola CAUGHT_POKEMON.
+[INFO] 03:39:17:254 BROKER/(8115:8542): Se le envió un mensaje al suscriptor de socket 36, a través de la cola CAUGHT_POKEMON.
+[INFO] 03:39:17:254 BROKER/(8115:8544): El suscriptor de id 1235 confirmó la recepción del mensaje con id 49.
+[INFO] 03:39:17:254 BROKER/(8115:8543): El suscriptor de id 1234 confirmó la recepción del mensaje con id 49.
+[INFO] 03:39:20:289 BROKER/(8115:8552): Se conectó proceso de socket 64 al Broker.
+[INFO] 03:39:20:289 BROKER/(8115:8552): Llegó un nuevo mensaje a la cola de mensajes CATCH_POKEMON
+[INFO] 03:39:20:289 BROKER/(8115:8552): Se eliminó de memoria principal la partición que se encontraba en la posicion 0.
+[INFO] 03:39:20:289 BROKER/(8115:8552): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 03:39:20:289 BROKER/(8115:8552): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 03:39:20:290 BROKER/(8115:8552): Se ejecutó el Dump de la cache
+[INFO] 03:39:20:290 BROKER/(8115:8552): Se le envió un mensaje al suscriptor de socket 7, a través de la cola CATCH_POKEMON.
+[INFO] 03:39:20:291 BROKER/(8115:8553): El suscriptor de id 5678 confirmó la recepción del mensaje con id 50.
+[INFO] 03:39:21:294 BROKER/(8115:8555): Se conectó proceso de socket 65 al Broker.
+[INFO] 03:39:21:295 BROKER/(8115:8555): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 03:39:21:295 BROKER/(8115:8555): Se almacenó un mensaje en la posición 0 de la memoria principal.
+[INFO] 03:39:21:295 BROKER/(8115:8555): Se ejecutó el Dump de la cache
+[INFO] 03:39:21:296 BROKER/(8115:8555): Se le envió un mensaje al suscriptor de socket 32, a través de la cola CAUGHT_POKEMON.
+[INFO] 03:39:21:296 BROKER/(8115:8555): Se le envió un mensaje al suscriptor de socket 36, a través de la cola CAUGHT_POKEMON.
+[INFO] 03:39:21:296 BROKER/(8115:8557): El suscriptor de id 1235 confirmó la recepción del mensaje con id 51.
+[INFO] 03:39:21:297 BROKER/(8115:8556): El suscriptor de id 1234 confirmó la recepción del mensaje con id 51.
+[INFO] 03:39:26:266 BROKER/(8115:8567): Se conectó proceso de socket 66 al Broker.
+[INFO] 03:39:26:267 BROKER/(8115:8567): Llegó un nuevo mensaje a la cola de mensajes CATCH_POKEMON
+[INFO] 03:39:26:267 BROKER/(8115:8567): Se eliminó de memoria principal la partición que se encontraba en la posicion 4.
+[INFO] 03:39:26:267 BROKER/(8115:8567): Se eliminó de memoria principal la partición que se encontraba en la posicion 32.
+[INFO] 03:39:26:267 BROKER/(8115:8567): Se almacenó un mensaje en la posición 32 de la memoria principal.
+[INFO] 03:39:26:267 BROKER/(8115:8567): Se ejecutó el Dump de la cache
+[INFO] 03:39:26:268 BROKER/(8115:8567): Se le envió un mensaje al suscriptor de socket 7, a través de la cola CATCH_POKEMON.
+[INFO] 03:39:26:268 BROKER/(8115:8568): El suscriptor de id 5678 confirmó la recepción del mensaje con id 52.
+[INFO] 03:39:27:271 BROKER/(8115:8570): Se conectó proceso de socket 67 al Broker.
+[INFO] 03:39:27:271 BROKER/(8115:8570): Llegó un nuevo mensaje a la cola de mensajes CAUGHT_POKEMON
+[INFO] 03:39:27:271 BROKER/(8115:8570): Se almacenó un mensaje en la posición 4 de la memoria principal.
+[INFO] 03:39:27:271 BROKER/(8115:8570): Se ejecutó el Dump de la cache
+[INFO] 03:39:27:272 BROKER/(8115:8570): Se le envió un mensaje al suscriptor de socket 32, a través de la cola CAUGHT_POKEMON.
+[INFO] 03:39:27:272 BROKER/(8115:8570): Se le envió un mensaje al suscriptor de socket 36, a través de la cola CAUGHT_POKEMON.
+[INFO] 03:39:27:272 BROKER/(8115:8572): El suscriptor de id 1235 confirmó la recepción del mensaje con id 53.
+[INFO] 03:39:27:273 BROKER/(8115:8571): El suscriptor de id 1234 confirmó la recepción del mensaje con id 53.
