@@ -23,83 +23,40 @@ int main(void) {
 
 	catch_pokemon("Pikachu",7,2);
 
-	mostrar_contenido_bitmap();
 
 	new_pokemon("Pikachu",10,2,1);
+
+	new_pokemon("Pikachu",7,2,2);
+
 	new_pokemon("Pikachu",1,2,6);
+	new_pokemon("Pikachu",650,2700,1);
+	catch_pokemon("Pikachu",650,2700);
+
+	catch_pokemon("Pikachu",7,2);
 	catch_pokemon("Pikachu",7,2);
 	new_pokemon("Pikachu",200,2,3);
 	new_pokemon("Pikachu",10000000,2,1000000);
 	new_pokemon("Pikachu",5,2,2);
 	new_pokemon("Pikachu",11,9,2);
+
+
+	new_pokemon("Pikachu",7,2,2);
+	new_pokemon("Pikachu",7,2,3);
+
+	catch_pokemon("Pikachu",7,2);
+	catch_pokemon("Pikachu",7,2);
+	catch_pokemon("Pikachu",7,2);
+	catch_pokemon("Pikachu",7,2);
+	catch_pokemon("Pikachu",7,2);
+
+
+	new_pokemon("Charmander",7,2,8);
+	new_pokemon("Charmander",2,2,1);
+	catch_pokemon("Charmander",2,2);
 
 	uint32_t tamanio_void;
 	get_pokemon("Pikachu", &tamanio_void);
-
-
-	//new_pokemon("Pikachu",7,2,1);
-	new_pokemon("Pikachu",7,2,5);
-
-	catch_pokemon("Pikachu",7,2);
-	catch_pokemon("Pikachu",7,2);
-	catch_pokemon("Pikachu",7,2);
-	catch_pokemon("Pikachu",7,2);
-	catch_pokemon("Pikachu",7,2);
-
-
-	new_pokemon("Pikachu",10,2,1);
-	new_pokemon("Pikachu",1,2,6);
-	new_pokemon("Pikachu",200,2,3);
-	new_pokemon("Pikachu",10000000,2,1000000);
-	new_pokemon("Pikachu",5,2,2);
-	new_pokemon("Pikachu",11,9,2);
-	new_pokemon("Pikachu",15,21,23);
-	new_pokemon("Pikachu",7,2,2);
-	new_pokemon("Pikachu",7,8,2);
-
-	catch_pokemon("Pikachu",10,2);
-
-	new_pokemon("Pikachu",10,2,1);
-
-	catch_pokemon("Pikachu",10,2);
-
-	catch_pokemon("Pikachu",6,7);
 	*/
-
-
-	//uint32_t tamanio_void;
-	//get_pokemon("Charmander", &tamanio_void);
-
-
-
-
-
-	/*
-	pthread_mutex_init(&MUTEX_BITMAP, NULL);
-
-	sem_init(&MUTEX_SUB,0,1);
-	sem_init(&MUTEX_PRUEBA,0,0);
-
-
-//	pthread_create(&HILO_PRINCIPAL, NULL , FUNCION_PRINCIPAL_GAMECARD (?) ,NULL);
-//	pthread_join(HILO_PRINCIPAL,NULL);
-
-	sem_wait(&MUTEX_PRUEBA);
-
-	new_pokemon("Pikachu",10,2,2);
-	new_pokemon("Pikachu",10,2,2);
-	new_pokemon("Pikachu",5,2,1);
-	new_pokemon("Pikachu",4,2,2);
-	new_pokemon("Pikachu",6,2,2);
-	catch_pokemon("Pikachu",10,2);
-	int respuesta = catch_pokemon("Pikachu",5,2);
-	printf("%d", respuesta);
-
-*/
-
-
-	//uint32_t tamanio_void = 0;
-	//void* respuesta = get_pokemon("Pikachu", &tamanio_void);
 }
 
 void inicializar_variables_globales(){

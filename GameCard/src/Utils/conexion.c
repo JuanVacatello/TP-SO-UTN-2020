@@ -387,8 +387,8 @@ void new_pokemon(char* pokemon,int posX,int posY, int cantidad){ //funciona
 			*/
 			cerrar_archivo_pokemon(metadata_pokemon);
 
-			//config_destroy(metadata_pokemon);
-			//free(bloques_en_string);
+			config_destroy(metadata_pokemon);
+			free(bloques_en_string);
 			//free(linea);
 		}
 		else{ // si tiene bloques asignados
@@ -409,9 +409,9 @@ void new_pokemon(char* pokemon,int posX,int posY, int cantidad){ //funciona
 				cerrar_archivo_pokemon(metadata_pokemon);
 
 				//free(linea);
-				//free(datos);
-				//config_destroy(metadata_pokemon);
-				//list_destroy_and_destroy_elements(lista_datos,free);
+				free(datos);
+				config_destroy(metadata_pokemon);
+				list_destroy_and_destroy_elements(lista_datos,free);
 			}
 
 			else{ // si existe la posicion
@@ -459,7 +459,7 @@ void new_pokemon(char* pokemon,int posX,int posY, int cantidad){ //funciona
 		txt_write_in_file(metadata, "OPEN=Y");
 		txt_close_file(metadata);
 
-		//free(bloque_string);
+		free(bloque_string);
 
 		t_config* metadata_pokemon = leer_metadata_pokemon(path_pokemon);
 
@@ -474,9 +474,9 @@ void new_pokemon(char* pokemon,int posX,int posY, int cantidad){ //funciona
 		sleep(tiempo_retardo);
 		cerrar_archivo_pokemon(metadata_pokemon);
 
-		//config_destroy(metadata_pokemon);
+		config_destroy(metadata_pokemon);
 
-		//free(path_metadata_pokemon);
+		free(path_metadata_pokemon);
 		//free(linea);
 	}
 
@@ -572,7 +572,7 @@ int catch_pokemon(char* pokemon,int posX,int posY){
 				free(datos);
 				list_destroy_and_destroy_elements(lista_datos,free);
 				free(path_pokemon);
-				//free(linea_modificada); //ESTE EL HIJO DE PUTA QUE ROMPE TE ODIOOOOO
+				//free(linea_modificada); //ESTE EL SORETE DE PUTA QUE ROMPE TE ODIOOOOO
 				config_destroy(metadata_pokemon);
 
 				return 1;
