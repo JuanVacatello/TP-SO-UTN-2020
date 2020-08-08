@@ -1036,15 +1036,67 @@ void llenar_el_dump_para_buddy_system(FILE* dump){
 	llenar_inicio_dump(dump);
 
 	int contador_de_particiones = 1;
-	int memoria_leida = 0;
+	//int memoria_leida = 0;
 
 	t_list* lista_ordenada_llenas = list_duplicate(elementos_en_memoria);
 	list_sort(lista_ordenada_llenas, comparar_inicios_mensajes);
 
 	t_list* lista_ordenada_vacias = list_duplicate(elementos_en_buddy);
 	list_sort(lista_ordenada_vacias, comparar_inicios_de_particiones);
+	//
 
-	t_mensaje_guardado* mensaje_a_leer = list_get(lista_ordenada_llenas, 0);
+	int cantidad_particiones = list_size(elementos_en_memoria) + list_size(elementos_en_buddy);
+
+	int ultima_posicion = 0;
+	for(int i = 0; i < cantidad_particiones; i++) {
+		t_mensaje_guardado* mensaje_lleno = NULL;
+		t_particion_buddy* mensaje_vacio = NULL;
+		if(list_size(lista_ordenada_llenas) > 0) {
+			mensaje_lleno = list_get(lista_ordenada_llenas, 0);
+		}
+		if(list_size(lista_ordenada_vacias) > 0) {
+			mensaje_vacio = list_get(lista_ordenada_vacias, 0);
+		}
+		char* linea_final = string_new();
+
+
+		if(mensaje_vacio != NULL && mensaje_vacio->comienzo_particion == ultima_posicion) {
+			char* linea_a_agregar = crear_linea_a_agregar_vacia(mensaje_vacio->comienzo_particion, mensaje_vacio->final_de_particion, mensaje_vacio->tam_particion);
+
+			string_append(&linea_final, "Partición ");
+			string_append_with_format(&linea_final, "%d: ", contador_de_particiones);
+			string_append(&linea_final, linea_a_agregar);
+			txt_write_in_file(dump, linea_final);
+
+			ultima_posicion = mensaje_vacio->final_de_particion + 1;
+			list_remove(lista_ordenada_vacias, 0);
+		} else if (mensaje_lleno != NULL && mensaje_lleno->byte_comienzo_ocupado == ultima_posicion){
+			string_append(&linea_final, "Partición ");
+			string_append_with_format(&linea_final, "%d: ", contador_de_particiones);
+
+			int inicio = mensaje_lleno->byte_comienzo_ocupado;
+			int tamanio = mensaje_lleno->tamanio_ocupado;
+			int final = inicio + tamanio - 1;
+			int lru = mensaje_lleno->ultima_referencia;
+			int cola = mensaje_lleno->cola;
+			int id = mensaje_lleno->id;
+
+			char* linea_a_agregar = crear_linea_a_agregar_ocupada(inicio, final, tamanio, lru, cola, id);
+			string_append(&linea_final, linea_a_agregar);
+			txt_write_in_file(dump, linea_final);
+
+			ultima_posicion = final + 1;
+			list_remove(lista_ordenada_llenas, 0);
+		} else {
+			break;
+		}
+
+		contador_de_particiones++;
+	}
+
+	//
+
+	/*t_mensaje_guardado* mensaje_a_leer = list_get(lista_ordenada_llenas, 0);
 	t_mensaje_guardado* siguiente_mensaje;
 
 	int index_vacia = 0;
@@ -1157,7 +1209,7 @@ void llenar_el_dump_para_buddy_system(FILE* dump){
 
 		index_vacia++;
 		}
-	}
+	}*/
 
 	char* guiones = string_repeat('-', 100);
 	txt_write_in_file(dump, guiones);
