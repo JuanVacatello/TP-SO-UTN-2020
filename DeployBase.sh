@@ -220,7 +220,7 @@ cd
 
 #Configuro Broker Buddy System
 
-cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS-base/Broker-BUDDY-SYSTEM-FIFO/
+cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS-base/Broker-BUDDY-SYSTEM-FIFO
 
 if test -e Broker.config; then
 	rm Broker.config
@@ -312,7 +312,7 @@ make all
 cd
 #Configuro Team con RR -> Quantum = 2
 
-cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS-base/Team-RR/
+cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS-base/Team-RR
 
 if test -e Team.config; then
 	rm Team.config

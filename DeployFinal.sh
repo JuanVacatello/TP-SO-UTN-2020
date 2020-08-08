@@ -179,7 +179,7 @@ cd
 
 #Configuro team con FIFO
 
-cd /home/utnso/Documentos/tp-2020-1c-C-aprueba-stress/Team-FIFO-stress/
+cd /home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/Team-FIFO-stress
 
 if test -e Team.config; then
 	rm Team.config
