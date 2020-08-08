@@ -58,8 +58,8 @@ if test -e GameBoy.config; then
 fi
 
 echo -e "IP_BROKER=10.109.160.2\n
-IP_TEAM=10.109.160.3\n
-IP_GAMECARD=10.109.160.2\n
+IP_TEAM=10.109.160.2\n
+IP_GAMECARD=10.109.160.3\n
 PUERTO_BROKER=4444\n
 PUERTO_TEAM=5555\n
 PUERTO_GAMECARD=7777\n
@@ -93,7 +93,7 @@ IP_BROKER=10.109.160.2\n
 PROCESS_ID=5678\n
 LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/GameCard/GameCard.log\n
 PUERTO_GAMECARD=7777\n
-IP_GAMECARD=10.109.160.2\n" >> GameCard.config
+IP_GAMECARD=10.109.160.3\n" >> GameCard.config
 
 cd Debug
 make clean
@@ -198,7 +198,7 @@ IP_BROKER=10.109.160.2\n
 PUERTO_BROKER=4444\n
 LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/Team-FIFO-stress/Team.log\n
 PROCESS_ID=1234\n
-IP_TEAM=10.109.160.3\n
+IP_TEAM=10.109.160.2\n
 PUERTO_TEAM=5555\n" >> Team.config
 
 cd Debug
@@ -228,8 +228,8 @@ IP_BROKER=10.109.160.2\n
 PUERTO_BROKER=4444\n
 LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/Team-RR-stress/Team.log\n
 PROCESS_ID=1234\n
-IP_TEAM=10.109.160.3\n
-PUERTO_TEAM=5555\n" >> Team.config
+IP_TEAM=10.109.160.2\n
+PUERTO_TEAM=5566\n" >> Team.config
 
 cd Debug
 make clean
@@ -256,7 +256,7 @@ IP_BROKER=10.109.160.2\n
 PUERTO_BROKER=4444\n
 LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/Team-SJF-SD-stress/Team.log\n
 PROCESS_ID=1234\n
-IP_TEAM=10.109.160.3\n
+IP_TEAM=10.109.160.2\n
 PUERTO_TEAM=5555\n" >> Team.config
 
 cd Debug
@@ -284,8 +284,8 @@ IP_BROKER=10.109.160.2\n
 PUERTO_BROKER=4444\n
 LOG_FILE=/home/utnso/Documentos/tp-2020-1c-wRAPPERS-stress/Team-SJF-CD-stress/Team.log\n
 PROCESS_ID=1235\n
-IP_TEAM=10.109.160.3\n
-PUERTO_TEAM=5555\n" >> Team.config
+IP_TEAM=10.109.160.2\n
+PUERTO_TEAM=5566\n" >> Team.config
 
 cd Debug
 make clean
