@@ -30,8 +30,8 @@ fi
 mkdir Documentos
 
 cd tp-2020-1c-wRAPPERS
-git checkout prueba --
-cd ..
+
+cd 
 cp -r tp-2020-1c-wRAPPERS/ /home/utnso/Documentos/tp-2020-1c-wRAPPERS-base
 
 #FIN DE COPIAR CARPETA
