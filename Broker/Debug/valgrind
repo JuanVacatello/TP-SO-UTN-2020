@@ -1,0 +1,2231 @@
+==11462== Memcheck, a memory error detector
+==11462== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==11462== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==11462== Command: ./Broker
+==11462== Parent PID: 3460
+==11462== 
+--11462-- 
+--11462-- Valgrind options:
+--11462--    --show-leak-kinds=all
+--11462--    --leak-check=full
+--11462--    -v
+--11462--    --log-file=valgrind
+--11462-- Contents of /proc/version:
+--11462--   Linux version 4.4.0-177-generic (buildd@lgw01-amd64-031) (gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) ) #207-Ubuntu SMP Mon Mar 16 01:15:50 UTC 2020
+--11462-- 
+--11462-- Arch and hwcaps: X86, LittleEndian, x86-mmxext-sse1-sse2-sse3
+--11462-- Page sizes: currently 4096, max supported 4096
+--11462-- Valgrind library directory: /usr/lib/valgrind
+--11462-- Reading syms from /lib/i386-linux-gnu/ld-2.23.so
+--11462--   Considering /lib/i386-linux-gnu/ld-2.23.so ..
+--11462--   .. CRC mismatch (computed f6bf32f6 wanted cd116314)
+--11462--   Considering /usr/lib/debug/lib/i386-linux-gnu/ld-2.23.so ..
+--11462--   .. CRC is valid
+--11462-- Reading syms from /home/utnso/Documentos/Delibird/Broker/tp-2020-1c-wRAPPERS/Broker/Debug/Broker
+--11462-- Reading syms from /usr/lib/valgrind/memcheck-x86-linux
+--11462--   Considering /usr/lib/valgrind/memcheck-x86-linux ..
+--11462--   .. CRC mismatch (computed 6036da3f wanted 652e483f)
+--11462--    object doesn't have a symbol table
+--11462--    object doesn't have a dynamic symbol table
+--11462-- Scheduler: using generic scheduler lock implementation.
+--11462-- Reading suppressions file: /usr/lib/valgrind/default.supp
+==11462== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-11462-by-utnso-on-???
+==11462== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-11462-by-utnso-on-???
+==11462== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-11462-by-utnso-on-???
+==11462== 
+==11462== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==11462== don't want to do, unless you know exactly what you're doing,
+==11462== or are doing some strange experiment):
+==11462==   /usr/lib/valgrind/../../bin/vgdb --pid=11462 ...command...
+==11462== 
+==11462== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==11462==   /path/to/gdb ./Broker
+==11462== and then give GDB the following command
+==11462==   target remote | /usr/lib/valgrind/../../bin/vgdb --pid=11462
+==11462== --pid is optional if only one valgrind process is running
+==11462== 
+--11462-- REDIR: 0x4019030 (ld-linux.so.2:strlen) redirected to 0x380490f2 (???)
+--11462-- REDIR: 0x4018df0 (ld-linux.so.2:index) redirected to 0x380490cd (???)
+--11462-- Reading syms from /usr/lib/valgrind/vgpreload_core-x86-linux.so
+--11462--   Considering /usr/lib/valgrind/vgpreload_core-x86-linux.so ..
+--11462--   .. CRC mismatch (computed 5b95c0c4 wanted 39e79efa)
+--11462--    object doesn't have a symbol table
+--11462-- Reading syms from /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so
+--11462--   Considering /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so ..
+--11462--   .. CRC mismatch (computed 4d5a1526 wanted 33571d5b)
+--11462--    object doesn't have a symbol table
+==11462== WARNING: new redirection conflicts with existing -- ignoring it
+--11462--     old: 0x04019030 (strlen              ) R-> (0000.0) 0x380490f2 ???
+--11462--     new: 0x04019030 (strlen              ) R-> (2007.0) 0x0402f410 strlen
+--11462-- Reading syms from /usr/lib/libcommons.so
+--11462-- Reading syms from /lib/i386-linux-gnu/libpthread-2.23.so
+--11462--   Considering /usr/lib/debug/.build-id/51/ddb6090511af5615d5f4af155a4403d2845346.debug ..
+--11462--   .. build-id is valid
+--11462-- Reading syms from /lib/i386-linux-gnu/libc-2.23.so
+--11462--   Considering /lib/i386-linux-gnu/libc-2.23.so ..
+--11462--   .. CRC mismatch (computed 05488cfc wanted a5215580)
+--11462--   Considering /usr/lib/debug/lib/i386-linux-gnu/libc-2.23.so ..
+--11462--   .. CRC is valid
+--11462-- REDIR: 0x40ef4b0 (libc.so.6:strncasecmp) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--11462-- REDIR: 0x40f6140 (libc.so.6:memrchr) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--11462-- REDIR: 0x4108b20 (libc.so.6:wcslen) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--11462-- REDIR: 0x40ee350 (libc.so.6:strstr) redirected to 0x4033700 (strstr)
+--11462-- REDIR: 0x40ed7e0 (libc.so.6:__GI_strrchr) redirected to 0x402ee00 (__GI_strrchr)
+--11462-- REDIR: 0x40e8f00 (libc.so.6:malloc) redirected to 0x402c110 (malloc)
+--11462-- REDIR: 0x40ed5c0 (libc.so.6:__GI_strlen) redirected to 0x402f390 (__GI_strlen)
+--11462-- REDIR: 0x40ef680 (libc.so.6:__GI_memcpy) redirected to 0x4030fb0 (__GI_memcpy)
+--11462-- REDIR: 0x40e9810 (libc.so.6:calloc) redirected to 0x402e010 (calloc)
+--11462-- REDIR: 0x40e9520 (libc.so.6:realloc) redirected to 0x402e250 (realloc)
+--11462-- REDIR: 0x40e9470 (libc.so.6:free) redirected to 0x402d2f0 (free)
+--11462-- REDIR: 0x40ed580 (libc.so.6:strlen) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--11462-- REDIR: 0x40f6440 (libc.so.6:__strlen_sse2_bsf) redirected to 0x402f370 (strlen)
+--11462-- REDIR: 0x40ed700 (libc.so.6:strncmp) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--11462-- REDIR: 0x41ad5c0 (libc.so.6:__strncmp_ssse3) redirected to 0x402fab0 (strncmp)
+--11462-- REDIR: 0x40eefc0 (libc.so.6:memset) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--11462-- REDIR: 0x419d4d0 (libc.so.6:__memset_sse2) redirected to 0x40327d0 (memset)
+--11462-- REDIR: 0x40ecee0 (libc.so.6:strcmp) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--11462-- REDIR: 0x41ac150 (libc.so.6:__strcmp_ssse3) redirected to 0x4030450 (strcmp)
+--11462-- REDIR: 0x40f1280 (libc.so.6:strchrnul) redirected to 0x40330b0 (strchrnul)
+--11462-- REDIR: 0x40ecae0 (libc.so.6:strcat) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--11462-- REDIR: 0x4101b30 (libc.so.6:__strcat_ssse3) redirected to 0x402f030 (strcat)
+--11462-- REDIR: 0x40ef0d0 (libc.so.6:__GI_mempcpy) redirected to 0x40332c0 (__GI_mempcpy)
+==11462== Thread 2:
+==11462== Use of uninitialised value of size 4
+==11462==    at 0x40B724B: _itoa_word (_itoa.c:179)
+==11462==    by 0x40BB221: vfprintf (vfprintf.c:1631)
+==11462==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==11462==    by 0x4054A1B: _string_append_with_format_list (string.c:239)
+==11462==    by 0x40541D3: string_from_vformat (string.c:65)
+==11462==    by 0x4054171: string_from_format (string.c:58)
+==11462==    by 0x8049671: log_conexion (logBroker.c:48)
+==11462==    by 0x804C701: serve_client (servidor.c:56)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== Conditional jump or move depends on uninitialised value(s)
+==11462==    at 0x40B7253: _itoa_word (_itoa.c:179)
+==11462==    by 0x40BB221: vfprintf (vfprintf.c:1631)
+==11462==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==11462==    by 0x4054A1B: _string_append_with_format_list (string.c:239)
+==11462==    by 0x40541D3: string_from_vformat (string.c:65)
+==11462==    by 0x4054171: string_from_format (string.c:58)
+==11462==    by 0x8049671: log_conexion (logBroker.c:48)
+==11462==    by 0x804C701: serve_client (servidor.c:56)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== Conditional jump or move depends on uninitialised value(s)
+==11462==    at 0x40BA7A4: vfprintf (vfprintf.c:1631)
+==11462==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==11462==    by 0x4054A1B: _string_append_with_format_list (string.c:239)
+==11462==    by 0x40541D3: string_from_vformat (string.c:65)
+==11462==    by 0x4054171: string_from_format (string.c:58)
+==11462==    by 0x8049671: log_conexion (logBroker.c:48)
+==11462==    by 0x804C701: serve_client (servidor.c:56)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== Conditional jump or move depends on uninitialised value(s)
+==11462==    at 0x40BACBD: vfprintf (vfprintf.c:1631)
+==11462==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==11462==    by 0x4054A1B: _string_append_with_format_list (string.c:239)
+==11462==    by 0x40541D3: string_from_vformat (string.c:65)
+==11462==    by 0x4054171: string_from_format (string.c:58)
+==11462==    by 0x8049671: log_conexion (logBroker.c:48)
+==11462==    by 0x804C701: serve_client (servidor.c:56)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== Conditional jump or move depends on uninitialised value(s)
+==11462==    at 0x40BAB04: vfprintf (vfprintf.c:1631)
+==11462==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==11462==    by 0x4054A1B: _string_append_with_format_list (string.c:239)
+==11462==    by 0x40541D3: string_from_vformat (string.c:65)
+==11462==    by 0x4054171: string_from_format (string.c:58)
+==11462==    by 0x8049671: log_conexion (logBroker.c:48)
+==11462==    by 0x804C701: serve_client (servidor.c:56)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== Conditional jump or move depends on uninitialised value(s)
+==11462==    at 0x40BAB4D: vfprintf (vfprintf.c:1631)
+==11462==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==11462==    by 0x4054A1B: _string_append_with_format_list (string.c:239)
+==11462==    by 0x40541D3: string_from_vformat (string.c:65)
+==11462==    by 0x4054171: string_from_format (string.c:58)
+==11462==    by 0x8049671: log_conexion (logBroker.c:48)
+==11462==    by 0x804C701: serve_client (servidor.c:56)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== Use of uninitialised value of size 4
+==11462==    at 0x40B724B: _itoa_word (_itoa.c:179)
+==11462==    by 0x40BB221: vfprintf (vfprintf.c:1631)
+==11462==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==11462==    by 0x4054A4D: _string_append_with_format_list (string.c:244)
+==11462==    by 0x40541D3: string_from_vformat (string.c:65)
+==11462==    by 0x4054171: string_from_format (string.c:58)
+==11462==    by 0x8049671: log_conexion (logBroker.c:48)
+==11462==    by 0x804C701: serve_client (servidor.c:56)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== Conditional jump or move depends on uninitialised value(s)
+==11462==    at 0x40B7253: _itoa_word (_itoa.c:179)
+==11462==    by 0x40BB221: vfprintf (vfprintf.c:1631)
+==11462==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==11462==    by 0x4054A4D: _string_append_with_format_list (string.c:244)
+==11462==    by 0x40541D3: string_from_vformat (string.c:65)
+==11462==    by 0x4054171: string_from_format (string.c:58)
+==11462==    by 0x8049671: log_conexion (logBroker.c:48)
+==11462==    by 0x804C701: serve_client (servidor.c:56)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== Conditional jump or move depends on uninitialised value(s)
+==11462==    at 0x40BA7A4: vfprintf (vfprintf.c:1631)
+==11462==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==11462==    by 0x4054A4D: _string_append_with_format_list (string.c:244)
+==11462==    by 0x40541D3: string_from_vformat (string.c:65)
+==11462==    by 0x4054171: string_from_format (string.c:58)
+==11462==    by 0x8049671: log_conexion (logBroker.c:48)
+==11462==    by 0x804C701: serve_client (servidor.c:56)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== Conditional jump or move depends on uninitialised value(s)
+==11462==    at 0x40BACBD: vfprintf (vfprintf.c:1631)
+==11462==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==11462==    by 0x4054A4D: _string_append_with_format_list (string.c:244)
+==11462==    by 0x40541D3: string_from_vformat (string.c:65)
+==11462==    by 0x4054171: string_from_format (string.c:58)
+==11462==    by 0x8049671: log_conexion (logBroker.c:48)
+==11462==    by 0x804C701: serve_client (servidor.c:56)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== Conditional jump or move depends on uninitialised value(s)
+==11462==    at 0x40BAB04: vfprintf (vfprintf.c:1631)
+==11462==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==11462==    by 0x4054A4D: _string_append_with_format_list (string.c:244)
+==11462==    by 0x40541D3: string_from_vformat (string.c:65)
+==11462==    by 0x4054171: string_from_format (string.c:58)
+==11462==    by 0x8049671: log_conexion (logBroker.c:48)
+==11462==    by 0x804C701: serve_client (servidor.c:56)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== Conditional jump or move depends on uninitialised value(s)
+==11462==    at 0x40BAB4D: vfprintf (vfprintf.c:1631)
+==11462==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==11462==    by 0x4054A4D: _string_append_with_format_list (string.c:244)
+==11462==    by 0x40541D3: string_from_vformat (string.c:65)
+==11462==    by 0x4054171: string_from_format (string.c:58)
+==11462==    by 0x8049671: log_conexion (logBroker.c:48)
+==11462==    by 0x804C701: serve_client (servidor.c:56)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+--11462-- REDIR: 0x40eec10 (libc.so.6:__GI_memcmp) redirected to 0x4031ef0 (__GI_memcmp)
+--11462-- REDIR: 0x40f11b0 (libc.so.6:__GI___rawmemchr) redirected to 0x4033110 (__GI___rawmemchr)
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804C72A: serve_client (servidor.c:59)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4e30310 is on thread 2's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+--11462-- REDIR: 0x40ef610 (libc.so.6:memcpy) redirected to 0x4026560 (_vgnU_ifunc_wrapper)
+--11462-- REDIR: 0x419fb70 (libc.so.6:__memcpy_ssse3) redirected to 0x4030cc0 (memcpy)
+==11462== Syscall param socketcall.send(args) points to uninitialised byte(s)
+==11462==    at 0x406A549: send (send.c:35)
+==11462==    by 0x804F513: enviar_mensaje (servidor.c:1354)
+==11462==    by 0x804C7BD: process_request (servidor.c:74)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4e302c0 is on thread 2's stack
+==11462==  in frame #0, created by send (send.c:29)
+==11462== 
+==11462== Thread 3:
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804F46D: recibir_tamanio_buffer (servidor.c:1338)
+==11462==    by 0x804C8B7: atender_suscripcion (servidor.c:125)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x56312f0 is on thread 3's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804C90E: modelar_proceso (servidor.c:136)
+==11462==    by 0x804C8C8: atender_suscripcion (servidor.c:127)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x56312f0 is on thread 3's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804C949: suscribirse_a_cola (servidor.c:146)
+==11462==    by 0x804C8DF: atender_suscripcion (servidor.c:129)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x56312d0 is on thread 3's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== Thread 2:
+==11462== Invalid read of size 4
+==11462==    at 0x804F528: enviar_mensaje (servidor.c:1357)
+==11462==    by 0x804C7BD: process_request (servidor.c:74)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x42369ac is 4 bytes inside a block of size 8 free'd
+==11462==    at 0x402D358: free (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F521: enviar_mensaje (servidor.c:1356)
+==11462==    by 0x804C7BD: process_request (servidor.c:74)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Block was alloc'd at
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F497: enviar_mensaje (servidor.c:1345)
+==11462==    by 0x804C7BD: process_request (servidor.c:74)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804DF19: recibir_new_pokemon (servidor.c:696)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x5631280 is on thread 2's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804DF2F: recibir_new_pokemon (servidor.c:699)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x5631280 is on thread 2's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804DF58: recibir_new_pokemon (servidor.c:702)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x5631280 is on thread 2's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804DF6E: recibir_new_pokemon (servidor.c:705)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x5631280 is on thread 2's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804DF84: recibir_new_pokemon (servidor.c:708)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x5631280 is on thread 2's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804DF9A: recibir_new_pokemon (servidor.c:711)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x5631280 is on thread 2's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== Syscall param socketcall.send(args) points to uninitialised byte(s)
+==11462==    at 0x406A549: send (send.c:35)
+==11462==    by 0x804F5DA: enviar_id_mensaje (servidor.c:1375)
+==11462==    by 0x804E063: recibir_new_pokemon (servidor.c:739)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x5631250 is on thread 2's stack
+==11462==  in frame #0, created by send (send.c:29)
+==11462== 
+==11462== Syscall param socketcall.send(args) points to uninitialised byte(s)
+==11462==    at 0x406A549: send (send.c:35)
+==11462==    by 0x804F0FD: reenviar_mensaje_a_suscriptores (servidor.c:1228)
+==11462==    by 0x804E195: recibir_new_pokemon (servidor.c:774)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x5631230 is on thread 2's stack
+==11462==  in frame #0, created by send (send.c:29)
+==11462== 
+==11462== Invalid read of size 4
+==11462==    at 0x804E1E6: recibir_new_pokemon (servidor.c:785)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x423a3bc is 4 bytes inside a block of size 8 free'd
+==11462==    at 0x402D358: free (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804E1DF: recibir_new_pokemon (servidor.c:784)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Block was alloc'd at
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804E070: recibir_new_pokemon (servidor.c:743)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== Thread 4:
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804F1B5: recibir_ack (servidor.c:1244)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4e30310 is on thread 4's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804F1CB: recibir_ack (servidor.c:1247)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4e30310 is on thread 4's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804F1E1: recibir_ack (servidor.c:1250)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4e30310 is on thread 4's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804F20A: recibir_ack (servidor.c:1253)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4e30310 is on thread 4's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804F220: recibir_ack (servidor.c:1256)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4e30310 is on thread 4's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804F236: recibir_ack (servidor.c:1259)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4e30310 is on thread 4's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== Invalid read of size 4
+==11462==    at 0x804A387: buscar_first_fit (memoria.c:341)
+==11462==    by 0x804A19B: agregar_segun_first_fit (memoria.c:276)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4233487 is 63 bytes inside a block of size 64 alloc'd
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F67C: inicializacion_de_variables_globales (Broker.c:20)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== Invalid write of size 1
+==11462==    at 0x4030F43: memcpy (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804B229: guardar_en_posicion (memoria.c:859)
+==11462==    by 0x804A1BA: agregar_segun_first_fit (memoria.c:278)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4233488 is 0 bytes after a block of size 64 alloc'd
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F67C: inicializacion_de_variables_globales (Broker.c:20)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== Thread 5:
+==11462== Invalid read of size 4
+==11462==    at 0x804A36C: buscar_first_fit (memoria.c:337)
+==11462==    by 0x804A19B: agregar_segun_first_fit (memoria.c:276)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x423348e is 6 bytes after a block of size 64 alloc'd
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F67C: inicializacion_de_variables_globales (Broker.c:20)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== Invalid read of size 1
+==11462==    at 0x4030F40: memcpy (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804A085: compactar_memoria (memoria.c:229)
+==11462==    by 0x804A1F1: agregar_segun_first_fit (memoria.c:287)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4233488 is 0 bytes after a block of size 64 alloc'd
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F67C: inicializacion_de_variables_globales (Broker.c:20)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== Invalid read of size 1
+==11462==    at 0x4030F4B: memcpy (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804A085: compactar_memoria (memoria.c:229)
+==11462==    by 0x804A1F1: agregar_segun_first_fit (memoria.c:287)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4233489 is 1 bytes after a block of size 64 alloc'd
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F67C: inicializacion_de_variables_globales (Broker.c:20)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== Invalid write of size 1
+==11462==    at 0x4030F43: memcpy (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804A0A0: compactar_memoria (memoria.c:231)
+==11462==    by 0x804A1F1: agregar_segun_first_fit (memoria.c:287)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x423fea8 is 0 bytes after a block of size 64 alloc'd
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804A00B: compactar_memoria (memoria.c:215)
+==11462==    by 0x804A1F1: agregar_segun_first_fit (memoria.c:287)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== Invalid read of size 4
+==11462==    at 0x804A36C: buscar_first_fit (memoria.c:337)
+==11462==    by 0x804A23B: agregar_segun_first_fit (memoria.c:297)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x423348e is 6 bytes after a block of size 64 alloc'd
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F67C: inicializacion_de_variables_globales (Broker.c:20)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== Invalid read of size 4
+==11462==    at 0x804A387: buscar_first_fit (memoria.c:341)
+==11462==    by 0x804A23B: agregar_segun_first_fit (memoria.c:297)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4233492 is 10 bytes after a block of size 64 alloc'd
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F67C: inicializacion_de_variables_globales (Broker.c:20)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== Invalid read of size 1
+==11462==    at 0x4030F40: memcpy (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804A085: compactar_memoria (memoria.c:229)
+==11462==    by 0x8049B79: eliminar_y_compactar_hasta_encontrar (memoria.c:65)
+==11462==    by 0x804A275: agregar_segun_first_fit (memoria.c:306)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4233488 is 0 bytes after a block of size 64 alloc'd
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F67C: inicializacion_de_variables_globales (Broker.c:20)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== Invalid read of size 1
+==11462==    at 0x4030F4B: memcpy (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804A085: compactar_memoria (memoria.c:229)
+==11462==    by 0x8049B79: eliminar_y_compactar_hasta_encontrar (memoria.c:65)
+==11462==    by 0x804A275: agregar_segun_first_fit (memoria.c:306)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4233489 is 1 bytes after a block of size 64 alloc'd
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F67C: inicializacion_de_variables_globales (Broker.c:20)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== Invalid read of size 4
+==11462==    at 0x804A387: buscar_first_fit (memoria.c:341)
+==11462==    by 0x8049BE2: eliminar_y_compactar_hasta_encontrar (memoria.c:76)
+==11462==    by 0x804A275: agregar_segun_first_fit (memoria.c:306)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4233487 is 63 bytes inside a block of size 64 alloc'd
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F67C: inicializacion_de_variables_globales (Broker.c:20)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804E23C: recibir_appeared_pokemon (servidor.c:792)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x6633280 is on thread 5's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804E252: recibir_appeared_pokemon (servidor.c:795)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x6633280 is on thread 5's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804E27B: recibir_appeared_pokemon (servidor.c:798)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x6633280 is on thread 5's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804E291: recibir_appeared_pokemon (servidor.c:801)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x6633280 is on thread 5's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804E2A7: recibir_appeared_pokemon (servidor.c:804)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x6633280 is on thread 5's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804E2BD: recibir_appeared_pokemon (servidor.c:807)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x6633280 is on thread 5's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== Syscall param socketcall.send(args) points to uninitialised byte(s)
+==11462==    at 0x406A549: send (send.c:35)
+==11462==    by 0x804F5DA: enviar_id_mensaje (servidor.c:1375)
+==11462==    by 0x804E377: recibir_appeared_pokemon (servidor.c:832)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x6633250 is on thread 5's stack
+==11462==  in frame #0, created by send (send.c:29)
+==11462== 
+==11462== 
+==11462== Process terminating with default action of signal 2 (SIGINT)
+==11462==    at 0x406A264: accept (accept.c:35)
+==11462==    by 0x804C699: esperar_cliente (servidor.c:48)
+==11462==    by 0x804C669: iniciar_servidor (servidor.c:39)
+==11462==    by 0x804F641: main (Broker.c:7)
+==11462== 
+==11462== HEAP SUMMARY:
+==11462==     in use at exit: 7,554 bytes in 238 blocks
+==11462==   total heap usage: 1,260 allocs, 1,022 frees, 64,327 bytes allocated
+==11462== 
+==11462== Searching for pointers to 238 not-freed blocks
+==11462== Checked 16,844,852 bytes
+==11462== 
+==11462== Thread 1:
+==11462== 1 bytes in 1 blocks are definitely lost in loss record 1 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x40ED2C5: strdup (strdup.c:42)
+==11462==    by 0x405409A: string_duplicate (string.c:42)
+==11462==    by 0x405412F: string_new (string.c:51)
+==11462==    by 0x804995B: cola_referida (logBroker.c:130)
+==11462==    by 0x80496AE: log_suscripcion_nueva (logBroker.c:55)
+==11462==    by 0x804CAB8: suscribirse_a_cola (servidor.c:173)
+==11462==    by 0x804C8DF: atender_suscripcion (servidor.c:129)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 1 bytes in 1 blocks are definitely lost in loss record 2 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x40ED2C5: strdup (strdup.c:42)
+==11462==    by 0x405409A: string_duplicate (string.c:42)
+==11462==    by 0x405412F: string_new (string.c:51)
+==11462==    by 0x804995B: cola_referida (logBroker.c:130)
+==11462==    by 0x80496AE: log_suscripcion_nueva (logBroker.c:55)
+==11462==    by 0x804CA22: suscribirse_a_cola (servidor.c:163)
+==11462==    by 0x804C8DF: atender_suscripcion (servidor.c:129)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 1 bytes in 1 blocks are definitely lost in loss record 3 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x40ED2C5: strdup (strdup.c:42)
+==11462==    by 0x405409A: string_duplicate (string.c:42)
+==11462==    by 0x405412F: string_new (string.c:51)
+==11462==    by 0x804995B: cola_referida (logBroker.c:130)
+==11462==    by 0x80496AE: log_suscripcion_nueva (logBroker.c:55)
+==11462==    by 0x804C98C: suscribirse_a_cola (servidor.c:153)
+==11462==    by 0x804C8DF: atender_suscripcion (servidor.c:129)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 4 bytes in 4 blocks are definitely lost in loss record 4 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x40ED2C5: strdup (strdup.c:42)
+==11462==    by 0x405409A: string_duplicate (string.c:42)
+==11462==    by 0x405412F: string_new (string.c:51)
+==11462==    by 0x804995B: cola_referida (logBroker.c:130)
+==11462==    by 0x8049704: log_mensaje_nuevo (logBroker.c:64)
+==11462==    by 0x804C7D1: process_request (servidor.c:77)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 4 bytes in 4 blocks are definitely lost in loss record 5 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x40ED2C5: strdup (strdup.c:42)
+==11462==    by 0x405409A: string_duplicate (string.c:42)
+==11462==    by 0x405412F: string_new (string.c:51)
+==11462==    by 0x804995B: cola_referida (logBroker.c:130)
+==11462==    by 0x8049757: log_envio_mensaje (logBroker.c:72)
+==11462==    by 0x804F134: reenviar_mensaje_a_suscriptores (servidor.c:1233)
+==11462==    by 0x804E195: recibir_new_pokemon (servidor.c:774)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 4 bytes in 4 blocks are definitely lost in loss record 6 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x40ED2C5: strdup (strdup.c:42)
+==11462==    by 0x405409A: string_duplicate (string.c:42)
+==11462==    by 0x405412F: string_new (string.c:51)
+==11462==    by 0x804995B: cola_referida (logBroker.c:130)
+==11462==    by 0x8049704: log_mensaje_nuevo (logBroker.c:64)
+==11462==    by 0x804C7F3: process_request (servidor.c:83)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 5 bytes in 1 blocks are still reachable in loss record 7 of 79
+==11462==    at 0x402E2CC: realloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x40540E7: string_append (string.c:46)
+==11462==    by 0x4054A5E: _string_append_with_format_list (string.c:246)
+==11462==    by 0x40541D3: string_from_vformat (string.c:65)
+==11462==    by 0x4054171: string_from_format (string.c:58)
+==11462==    by 0x4054214: string_itoa (string.c:70)
+==11462==    by 0x804945D: obtener_puerto_broker (configBroker.c:29)
+==11462==    by 0x804C591: iniciar_servidor (servidor.c:16)
+==11462==    by 0x804F641: main (Broker.c:7)
+==11462== 
+==11462== 7 bytes in 1 blocks are still reachable in loss record 8 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x40ED2C5: strdup (strdup.c:42)
+==11462==    by 0x405409A: string_duplicate (string.c:42)
+==11462==    by 0x4053C49: log_create (log.c:77)
+==11462==    by 0x8049583: iniciar_logger (logBroker.c:5)
+==11462==    by 0x804F664: inicializacion_de_variables_globales (Broker.c:17)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 8 bytes in 1 blocks are still reachable in loss record 9 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4056393: config_create (config.c:36)
+==11462==    by 0x80493BD: leer_config (configBroker.c:6)
+==11462==    by 0x804F65F: inicializacion_de_variables_globales (Broker.c:16)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 8 bytes in 1 blocks are still reachable in loss record 10 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4054E01: list_create (list.c:27)
+==11462==    by 0x804F6CA: inicializacion_de_variables_globales (Broker.c:29)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 8 bytes in 1 blocks are still reachable in loss record 11 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4054E01: list_create (list.c:27)
+==11462==    by 0x804F73D: inicializacion_de_variables_globales (Broker.c:40)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 8 bytes in 1 blocks are still reachable in loss record 12 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4054E01: list_create (list.c:27)
+==11462==    by 0x804F747: inicializacion_de_variables_globales (Broker.c:41)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 8 bytes in 1 blocks are still reachable in loss record 13 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4054E01: list_create (list.c:27)
+==11462==    by 0x804F751: inicializacion_de_variables_globales (Broker.c:42)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 8 bytes in 1 blocks are still reachable in loss record 14 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4054E01: list_create (list.c:27)
+==11462==    by 0x804F75B: inicializacion_de_variables_globales (Broker.c:43)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 8 bytes in 1 blocks are still reachable in loss record 15 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4054E01: list_create (list.c:27)
+==11462==    by 0x804F765: inicializacion_de_variables_globales (Broker.c:44)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 8 bytes in 1 blocks are still reachable in loss record 16 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4054E01: list_create (list.c:27)
+==11462==    by 0x804F76F: inicializacion_de_variables_globales (Broker.c:45)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 8 bytes in 1 blocks are still reachable in loss record 17 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4054E01: list_create (list.c:27)
+==11462==    by 0x804F779: inicializacion_de_variables_globales (Broker.c:47)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 8 bytes in 1 blocks are still reachable in loss record 18 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4054E01: list_create (list.c:27)
+==11462==    by 0x804F783: inicializacion_de_variables_globales (Broker.c:48)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 8 bytes in 1 blocks are still reachable in loss record 19 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4054E01: list_create (list.c:27)
+==11462==    by 0x804F78D: inicializacion_de_variables_globales (Broker.c:49)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 8 bytes in 1 blocks are still reachable in loss record 20 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4054E01: list_create (list.c:27)
+==11462==    by 0x804F797: inicializacion_de_variables_globales (Broker.c:50)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 8 bytes in 1 blocks are still reachable in loss record 21 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4054E01: list_create (list.c:27)
+==11462==    by 0x804F7A1: inicializacion_de_variables_globales (Broker.c:51)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 8 bytes in 1 blocks are still reachable in loss record 22 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4054E01: list_create (list.c:27)
+==11462==    by 0x804F7AB: inicializacion_de_variables_globales (Broker.c:52)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 8 bytes in 1 blocks are still reachable in loss record 23 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4054E01: list_create (list.c:27)
+==11462==    by 0x804F7B5: inicializacion_de_variables_globales (Broker.c:54)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 8 bytes in 1 blocks are still reachable in loss record 24 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4055905: list_create_element (list.c:312)
+==11462==    by 0x4054E3D: list_add (list.c:34)
+==11462==    by 0x804CA9E: suscribirse_a_cola (servidor.c:172)
+==11462==    by 0x804C8DF: atender_suscripcion (servidor.c:129)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 8 bytes in 1 blocks are still reachable in loss record 25 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4055905: list_create_element (list.c:312)
+==11462==    by 0x4054E3D: list_add (list.c:34)
+==11462==    by 0x804CA08: suscribirse_a_cola (servidor.c:162)
+==11462==    by 0x804C8DF: atender_suscripcion (servidor.c:129)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 8 bytes in 1 blocks are still reachable in loss record 26 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4055905: list_create_element (list.c:312)
+==11462==    by 0x4054E3D: list_add (list.c:34)
+==11462==    by 0x804C972: suscribirse_a_cola (servidor.c:152)
+==11462==    by 0x804C8DF: atender_suscripcion (servidor.c:129)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 8 bytes in 1 blocks are indirectly lost in loss record 27 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804E261: recibir_appeared_pokemon (servidor.c:797)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 11 bytes in 3 blocks are definitely lost in loss record 28 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F1F0: recibir_ack (servidor.c:1252)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 16 bytes in 1 blocks are still reachable in loss record 29 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x40559F7: dictionary_create (dictionary.c:38)
+==11462==    by 0x40563B6: config_create (config.c:39)
+==11462==    by 0x80493BD: leer_config (configBroker.c:6)
+==11462==    by 0x804F65F: inicializacion_de_variables_globales (Broker.c:16)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 16 bytes in 4 blocks are definitely lost in loss record 30 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F58D: enviar_id_mensaje (servidor.c:1367)
+==11462==    by 0x804E063: recibir_new_pokemon (servidor.c:739)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 16 bytes in 4 blocks are definitely lost in loss record 31 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F58D: enviar_id_mensaje (servidor.c:1367)
+==11462==    by 0x804E377: recibir_appeared_pokemon (servidor.c:832)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 17 bytes in 1 blocks are still reachable in loss record 32 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x40ED2C5: strdup (strdup.c:42)
+==11462==    by 0x40563A7: config_create (config.c:38)
+==11462==    by 0x80493BD: leer_config (configBroker.c:6)
+==11462==    by 0x804F65F: inicializacion_de_variables_globales (Broker.c:16)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 20 bytes in 1 blocks are still reachable in loss record 33 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4053BA3: log_create (log.c:54)
+==11462==    by 0x8049583: iniciar_logger (logBroker.c:5)
+==11462==    by 0x804F664: inicializacion_de_variables_globales (Broker.c:17)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 24 bytes in 3 blocks are still reachable in loss record 34 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4055905: list_create_element (list.c:312)
+==11462==    by 0x4054E3D: list_add (list.c:34)
+==11462==    by 0x8049A73: guardar_mensaje_en_memoria (memoria.c:27)
+==11462==    by 0x804E35F: recibir_appeared_pokemon (servidor.c:828)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 24 bytes in 3 blocks are still reachable in loss record 35 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4055905: list_create_element (list.c:312)
+==11462==    by 0x4054E3D: list_add (list.c:34)
+==11462==    by 0x804F03B: guardar_mensaje_en_cola (servidor.c:1210)
+==11462==    by 0x804E4C4: recibir_appeared_pokemon (servidor.c:869)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 24 bytes in 3 blocks are still reachable in loss record 36 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4055905: list_create_element (list.c:312)
+==11462==    by 0x4054E3D: list_add (list.c:34)
+==11462==    by 0x804F05F: guardar_mensaje_en_cola (servidor.c:1213)
+==11462==    by 0x804E4C4: recibir_appeared_pokemon (servidor.c:869)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 24 bytes in 3 blocks are indirectly lost in loss record 37 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4055905: list_create_element (list.c:312)
+==11462==    by 0x4054E3D: list_add (list.c:34)
+==11462==    by 0x4054EBE: _add_in_list.2211 (list.c:47)
+==11462==    by 0x4055148: list_iterate (list.c:107)
+==11462==    by 0x4054F2D: list_add_all (list.c:50)
+==11462==    by 0x4055873: list_duplicate (list.c:285)
+==11462==    by 0x8049FD3: compactar_memoria (memoria.c:211)
+==11462==    by 0x804A1F1: agregar_segun_first_fit (memoria.c:287)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462== 
+==11462== 24 bytes in 3 blocks are indirectly lost in loss record 38 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4055905: list_create_element (list.c:312)
+==11462==    by 0x4054E3D: list_add (list.c:34)
+==11462==    by 0x4054EBE: _add_in_list.2211 (list.c:47)
+==11462==    by 0x4055148: list_iterate (list.c:107)
+==11462==    by 0x4054F2D: list_add_all (list.c:50)
+==11462==    by 0x4055873: list_duplicate (list.c:285)
+==11462==    by 0x804A2C3: buscar_first_fit (memoria.c:316)
+==11462==    by 0x804A23B: agregar_segun_first_fit (memoria.c:297)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462== 
+==11462== 25 bytes in 3 blocks are still reachable in loss record 39 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804E261: recibir_appeared_pokemon (servidor.c:797)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 28 (20 direct, 8 indirect) bytes in 1 blocks are definitely lost in loss record 40 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804EFFB: guardar_mensaje_en_cola (servidor.c:1203)
+==11462==    by 0x804E4C4: recibir_appeared_pokemon (servidor.c:869)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 32 bytes in 4 blocks are still reachable in loss record 41 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804C8F5: modelar_proceso (servidor.c:134)
+==11462==    by 0x804C8C8: atender_suscripcion (servidor.c:127)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 32 (8 direct, 24 indirect) bytes in 1 blocks are definitely lost in loss record 42 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4054E01: list_create (list.c:27)
+==11462==    by 0x4055862: list_duplicate (list.c:284)
+==11462==    by 0x8049FD3: compactar_memoria (memoria.c:211)
+==11462==    by 0x804A1F1: agregar_segun_first_fit (memoria.c:287)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 32 (8 direct, 24 indirect) bytes in 1 blocks are definitely lost in loss record 43 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4054E01: list_create (list.c:27)
+==11462==    by 0x4055862: list_duplicate (list.c:284)
+==11462==    by 0x804A2C3: buscar_first_fit (memoria.c:316)
+==11462==    by 0x804A23B: agregar_segun_first_fit (memoria.c:297)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 33 bytes in 4 blocks are indirectly lost in loss record 44 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804DF3E: recibir_new_pokemon (servidor.c:701)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 40 (16 direct, 24 indirect) bytes in 2 blocks are definitely lost in loss record 45 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4054E01: list_create (list.c:27)
+==11462==    by 0x4055862: list_duplicate (list.c:284)
+==11462==    by 0x8049FD3: compactar_memoria (memoria.c:211)
+==11462==    by 0x8049B79: eliminar_y_compactar_hasta_encontrar (memoria.c:65)
+==11462==    by 0x804A275: agregar_segun_first_fit (memoria.c:306)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462== 
+==11462== 40 (16 direct, 24 indirect) bytes in 2 blocks are definitely lost in loss record 46 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4054E01: list_create (list.c:27)
+==11462==    by 0x4055862: list_duplicate (list.c:284)
+==11462==    by 0x804A2C3: buscar_first_fit (memoria.c:316)
+==11462==    by 0x8049BE2: eliminar_y_compactar_hasta_encontrar (memoria.c:76)
+==11462==    by 0x804A275: agregar_segun_first_fit (memoria.c:306)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462== 
+==11462== 48 bytes in 6 blocks are indirectly lost in loss record 47 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4055905: list_create_element (list.c:312)
+==11462==    by 0x4054E3D: list_add (list.c:34)
+==11462==    by 0x4054EBE: _add_in_list.2211 (list.c:47)
+==11462==    by 0x4055148: list_iterate (list.c:107)
+==11462==    by 0x4054F2D: list_add_all (list.c:50)
+==11462==    by 0x4055873: list_duplicate (list.c:285)
+==11462==    by 0x804A2C3: buscar_first_fit (memoria.c:316)
+==11462==    by 0x804A19B: agregar_segun_first_fit (memoria.c:276)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462== 
+==11462== 48 bytes in 4 blocks are definitely lost in loss record 48 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F3D8: serializar_paquete (servidor.c:1322)
+==11462==    by 0x804F5C3: enviar_id_mensaje (servidor.c:1373)
+==11462==    by 0x804E063: recibir_new_pokemon (servidor.c:739)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 48 bytes in 4 blocks are definitely lost in loss record 49 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F3D8: serializar_paquete (servidor.c:1322)
+==11462==    by 0x804F5C3: enviar_id_mensaje (servidor.c:1373)
+==11462==    by 0x804E377: recibir_appeared_pokemon (servidor.c:832)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 60 bytes in 3 blocks are still reachable in loss record 50 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804EFFB: guardar_mensaje_en_cola (servidor.c:1203)
+==11462==    by 0x804E4C4: recibir_appeared_pokemon (servidor.c:869)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 60 bytes in 3 blocks are still reachable in loss record 51 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804B209: guardar_en_posicion (memoria.c:857)
+==11462==    by 0x8049C37: eliminar_y_compactar_hasta_encontrar (memoria.c:84)
+==11462==    by 0x804A275: agregar_segun_first_fit (memoria.c:306)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E35F: recibir_appeared_pokemon (servidor.c:828)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 64 bytes in 1 blocks are still reachable in loss record 52 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F67C: inicializacion_de_variables_globales (Broker.c:20)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 72 bytes in 9 blocks are indirectly lost in loss record 53 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4055905: list_create_element (list.c:312)
+==11462==    by 0x4054E3D: list_add (list.c:34)
+==11462==    by 0x4054EBE: _add_in_list.2211 (list.c:47)
+==11462==    by 0x4055148: list_iterate (list.c:107)
+==11462==    by 0x4054F2D: list_add_all (list.c:50)
+==11462==    by 0x4055873: list_duplicate (list.c:285)
+==11462==    by 0x8049FD3: compactar_memoria (memoria.c:211)
+==11462==    by 0x8049B79: eliminar_y_compactar_hasta_encontrar (memoria.c:65)
+==11462==    by 0x804A275: agregar_segun_first_fit (memoria.c:306)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462== 
+==11462== 72 bytes in 9 blocks are indirectly lost in loss record 54 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4055905: list_create_element (list.c:312)
+==11462==    by 0x4054E3D: list_add (list.c:34)
+==11462==    by 0x4054EBE: _add_in_list.2211 (list.c:47)
+==11462==    by 0x4055148: list_iterate (list.c:107)
+==11462==    by 0x4054F2D: list_add_all (list.c:50)
+==11462==    by 0x4055873: list_duplicate (list.c:285)
+==11462==    by 0x804A2C3: buscar_first_fit (memoria.c:316)
+==11462==    by 0x8049BE2: eliminar_y_compactar_hasta_encontrar (memoria.c:76)
+==11462==    by 0x804A275: agregar_segun_first_fit (memoria.c:306)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462== 
+==11462== 72 bytes in 9 blocks are indirectly lost in loss record 55 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4055905: list_create_element (list.c:312)
+==11462==    by 0x4054E3D: list_add (list.c:34)
+==11462==    by 0x4054EBE: _add_in_list.2211 (list.c:47)
+==11462==    by 0x4055148: list_iterate (list.c:107)
+==11462==    by 0x4054F2D: list_add_all (list.c:50)
+==11462==    by 0x4055873: list_duplicate (list.c:285)
+==11462==    by 0x8049FD3: compactar_memoria (memoria.c:211)
+==11462==    by 0x804A1F1: agregar_segun_first_fit (memoria.c:287)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E35F: recibir_appeared_pokemon (servidor.c:828)
+==11462== 
+==11462== 72 bytes in 9 blocks are indirectly lost in loss record 56 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4055905: list_create_element (list.c:312)
+==11462==    by 0x4054E3D: list_add (list.c:34)
+==11462==    by 0x4054EBE: _add_in_list.2211 (list.c:47)
+==11462==    by 0x4055148: list_iterate (list.c:107)
+==11462==    by 0x4054F2D: list_add_all (list.c:50)
+==11462==    by 0x4055873: list_duplicate (list.c:285)
+==11462==    by 0x804A2C3: buscar_first_fit (memoria.c:316)
+==11462==    by 0x804A23B: agregar_segun_first_fit (memoria.c:297)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E35F: recibir_appeared_pokemon (servidor.c:828)
+==11462== 
+==11462== 72 (24 direct, 48 indirect) bytes in 3 blocks are definitely lost in loss record 57 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4054E01: list_create (list.c:27)
+==11462==    by 0x4055862: list_duplicate (list.c:284)
+==11462==    by 0x8049FD3: compactar_memoria (memoria.c:211)
+==11462==    by 0x8049B79: eliminar_y_compactar_hasta_encontrar (memoria.c:65)
+==11462==    by 0x804A275: agregar_segun_first_fit (memoria.c:306)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E35F: recibir_appeared_pokemon (servidor.c:828)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462== 
+==11462== 72 (24 direct, 48 indirect) bytes in 3 blocks are definitely lost in loss record 58 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4054E01: list_create (list.c:27)
+==11462==    by 0x4055862: list_duplicate (list.c:284)
+==11462==    by 0x804A2C3: buscar_first_fit (memoria.c:316)
+==11462==    by 0x8049BE2: eliminar_y_compactar_hasta_encontrar (memoria.c:76)
+==11462==    by 0x804A275: agregar_segun_first_fit (memoria.c:306)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E35F: recibir_appeared_pokemon (servidor.c:828)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462== 
+==11462== 76 bytes in 4 blocks are definitely lost in loss record 59 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F3D8: serializar_paquete (servidor.c:1322)
+==11462==    by 0x804F4FC: enviar_mensaje (servidor.c:1352)
+==11462==    by 0x804C7BD: process_request (servidor.c:74)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 77 bytes in 4 blocks are definitely lost in loss record 60 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804E2D4: recibir_appeared_pokemon (servidor.c:812)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 80 bytes in 1 blocks are still reachable in loss record 61 of 79
+==11462==    at 0x402E0B8: calloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4055A18: dictionary_create (dictionary.c:40)
+==11462==    by 0x40563B6: config_create (config.c:39)
+==11462==    by 0x80493BD: leer_config (configBroker.c:6)
+==11462==    by 0x804F65F: inicializacion_de_variables_globales (Broker.c:16)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 80 (32 direct, 48 indirect) bytes in 4 blocks are definitely lost in loss record 62 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4054E01: list_create (list.c:27)
+==11462==    by 0x4055862: list_duplicate (list.c:284)
+==11462==    by 0x804A2C3: buscar_first_fit (memoria.c:316)
+==11462==    by 0x804A19B: agregar_segun_first_fit (memoria.c:276)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 88 bytes in 11 blocks are indirectly lost in loss record 63 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4055905: list_create_element (list.c:312)
+==11462==    by 0x4054E3D: list_add (list.c:34)
+==11462==    by 0x4054EBE: _add_in_list.2211 (list.c:47)
+==11462==    by 0x4055148: list_iterate (list.c:107)
+==11462==    by 0x4054F2D: list_add_all (list.c:50)
+==11462==    by 0x4055873: list_duplicate (list.c:285)
+==11462==    by 0x804A2C3: buscar_first_fit (memoria.c:316)
+==11462==    by 0x804A19B: agregar_segun_first_fit (memoria.c:276)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E35F: recibir_appeared_pokemon (servidor.c:828)
+==11462== 
+==11462== 93 bytes in 4 blocks are definitely lost in loss record 64 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804DFB2: recibir_new_pokemon (servidor.c:717)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 96 (24 direct, 72 indirect) bytes in 3 blocks are definitely lost in loss record 65 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4054E01: list_create (list.c:27)
+==11462==    by 0x4055862: list_duplicate (list.c:284)
+==11462==    by 0x8049FD3: compactar_memoria (memoria.c:211)
+==11462==    by 0x804A1F1: agregar_segun_first_fit (memoria.c:287)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E35F: recibir_appeared_pokemon (servidor.c:828)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 96 (24 direct, 72 indirect) bytes in 3 blocks are definitely lost in loss record 66 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4054E01: list_create (list.c:27)
+==11462==    by 0x4055862: list_duplicate (list.c:284)
+==11462==    by 0x804A2C3: buscar_first_fit (memoria.c:316)
+==11462==    by 0x804A23B: agregar_segun_first_fit (memoria.c:297)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E35F: recibir_appeared_pokemon (servidor.c:828)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 97 bytes in 4 blocks are definitely lost in loss record 67 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804E3C4: recibir_appeared_pokemon (servidor.c:841)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 113 bytes in 4 blocks are definitely lost in loss record 68 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804E0B3: recibir_new_pokemon (servidor.c:748)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 113 (80 direct, 33 indirect) bytes in 4 blocks are definitely lost in loss record 69 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804EFFB: guardar_mensaje_en_cola (servidor.c:1203)
+==11462==    by 0x804E1C1: recibir_new_pokemon (servidor.c:779)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 120 (32 direct, 88 indirect) bytes in 4 blocks are definitely lost in loss record 70 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4054E01: list_create (list.c:27)
+==11462==    by 0x4055862: list_duplicate (list.c:284)
+==11462==    by 0x804A2C3: buscar_first_fit (memoria.c:316)
+==11462==    by 0x804A19B: agregar_segun_first_fit (memoria.c:276)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E35F: recibir_appeared_pokemon (servidor.c:828)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 129 bytes in 4 blocks are definitely lost in loss record 71 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F3D8: serializar_paquete (servidor.c:1322)
+==11462==    by 0x804E477: recibir_appeared_pokemon (servidor.c:862)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 136 bytes in 1 blocks are possibly lost in loss record 72 of 79
+==11462==    at 0x402E0B8: calloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4011726: allocate_dtv (dl-tls.c:322)
+==11462==    by 0x401214B: _dl_allocate_tls (dl-tls.c:539)
+==11462==    by 0x4061CC3: allocate_stack (allocatestack.c:588)
+==11462==    by 0x4061CC3: pthread_create@@GLIBC_2.1 (pthread_create.c:539)
+==11462==    by 0x804C6B4: esperar_cliente (servidor.c:50)
+==11462==    by 0x804C669: iniciar_servidor (servidor.c:39)
+==11462==    by 0x804F641: main (Broker.c:7)
+==11462== 
+==11462== 136 bytes in 1 blocks are possibly lost in loss record 73 of 79
+==11462==    at 0x402E0B8: calloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4011726: allocate_dtv (dl-tls.c:322)
+==11462==    by 0x401214B: _dl_allocate_tls (dl-tls.c:539)
+==11462==    by 0x4061CC3: allocate_stack (allocatestack.c:588)
+==11462==    by 0x4061CC3: pthread_create@@GLIBC_2.1 (pthread_create.c:539)
+==11462==    by 0x804C799: process_request (servidor.c:72)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 145 bytes in 4 blocks are definitely lost in loss record 74 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F3D8: serializar_paquete (servidor.c:1322)
+==11462==    by 0x804E17C: recibir_new_pokemon (servidor.c:772)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 160 bytes in 10 blocks are still reachable in loss record 75 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x4056004: dictionary_create_element (dictionary.c:231)
+==11462==    by 0x4055B3F: dictionary_put (dictionary.c:73)
+==11462==    by 0x40562D3: add_cofiguration.2909 (config.c:56)
+==11462==    by 0x4054846: string_iterate_lines (string.c:191)
+==11462==    by 0x4056444: config_create (config.c:61)
+==11462==    by 0x80493BD: leer_config (configBroker.c:6)
+==11462==    by 0x804F65F: inicializacion_de_variables_globales (Broker.c:16)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 178 bytes in 10 blocks are still reachable in loss record 76 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x40ED2C5: strdup (strdup.c:42)
+==11462==    by 0x4055B2D: dictionary_put (dictionary.c:73)
+==11462==    by 0x40562D3: add_cofiguration.2909 (config.c:56)
+==11462==    by 0x4054846: string_iterate_lines (string.c:191)
+==11462==    by 0x4056444: config_create (config.c:61)
+==11462==    by 0x80493BD: leer_config (configBroker.c:6)
+==11462==    by 0x804F65F: inicializacion_de_variables_globales (Broker.c:16)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 197 bytes in 10 blocks are still reachable in loss record 77 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x40ED2C5: strdup (strdup.c:42)
+==11462==    by 0x405409A: string_duplicate (string.c:42)
+==11462==    by 0x4054BA9: _string_split (string.c:273)
+==11462==    by 0x40546AF: string_n_split (string.c:157)
+==11462==    by 0x40562B0: add_cofiguration.2909 (config.c:55)
+==11462==    by 0x4054846: string_iterate_lines (string.c:191)
+==11462==    by 0x4056444: config_create (config.c:61)
+==11462==    by 0x80493BD: leer_config (configBroker.c:6)
+==11462==    by 0x804F65F: inicializacion_de_variables_globales (Broker.c:16)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 344 bytes in 1 blocks are still reachable in loss record 78 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x40D6359: __fopen_internal (iofopen.c:69)
+==11462==    by 0x40D641D: fopen@@GLIBC_2.1 (iofopen.c:97)
+==11462==    by 0x4053ADA: txt_open_for_append (txt.c:23)
+==11462==    by 0x4053BE3: log_create (log.c:64)
+==11462==    by 0x8049583: iniciar_logger (logBroker.c:5)
+==11462==    by 0x804F664: inicializacion_de_variables_globales (Broker.c:17)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 4,096 bytes in 1 blocks are still reachable in loss record 79 of 79
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F1F0: recibir_ack (servidor.c:1252)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== LEAK SUMMARY:
+==11462==    definitely lost: 1,192 bytes in 93 blocks
+==11462==    indirectly lost: 513 bytes in 64 blocks
+==11462==      possibly lost: 272 bytes in 2 blocks
+==11462==    still reachable: 5,577 bytes in 79 blocks
+==11462==         suppressed: 0 bytes in 0 blocks
+==11462== 
+==11462== Use --track-origins=yes to see where uninitialised values come from
+==11462== ERROR SUMMARY: 481 errors from 83 contexts (suppressed: 0 from 0)
+==11462== 
+==11462== 1 errors in context 1 of 83:
+==11462== Thread 5:
+==11462== Invalid read of size 4
+==11462==    at 0x804A387: buscar_first_fit (memoria.c:341)
+==11462==    by 0x8049BE2: eliminar_y_compactar_hasta_encontrar (memoria.c:76)
+==11462==    by 0x804A275: agregar_segun_first_fit (memoria.c:306)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4233487 is 63 bytes inside a block of size 64 alloc'd
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F67C: inicializacion_de_variables_globales (Broker.c:20)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 
+==11462== 3 errors in context 2 of 83:
+==11462== Thread 4:
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804F236: recibir_ack (servidor.c:1259)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4e30310 is on thread 4's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== 
+==11462== 3 errors in context 3 of 83:
+==11462== Thread 5:
+==11462== Invalid read of size 4
+==11462==    at 0x804A36C: buscar_first_fit (memoria.c:337)
+==11462==    by 0x804A23B: agregar_segun_first_fit (memoria.c:297)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x423348e is 6 bytes after a block of size 64 alloc'd
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F67C: inicializacion_de_variables_globales (Broker.c:20)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 
+==11462== 3 errors in context 4 of 83:
+==11462== Invalid read of size 4
+==11462==    at 0x804A36C: buscar_first_fit (memoria.c:337)
+==11462==    by 0x804A19B: agregar_segun_first_fit (memoria.c:276)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x423348e is 6 bytes after a block of size 64 alloc'd
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F67C: inicializacion_de_variables_globales (Broker.c:20)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 
+==11462== 3 errors in context 5 of 83:
+==11462== Thread 4:
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804F220: recibir_ack (servidor.c:1256)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4e30310 is on thread 4's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== 
+==11462== 3 errors in context 6 of 83:
+==11462== Thread 5:
+==11462== Invalid read of size 1
+==11462==    at 0x4030F40: memcpy (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804A085: compactar_memoria (memoria.c:229)
+==11462==    by 0x8049B79: eliminar_y_compactar_hasta_encontrar (memoria.c:65)
+==11462==    by 0x804A275: agregar_segun_first_fit (memoria.c:306)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4233488 is 0 bytes after a block of size 64 alloc'd
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F67C: inicializacion_de_variables_globales (Broker.c:20)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 
+==11462== 3 errors in context 7 of 83:
+==11462== Invalid read of size 1
+==11462==    at 0x4030F40: memcpy (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804A085: compactar_memoria (memoria.c:229)
+==11462==    by 0x804A1F1: agregar_segun_first_fit (memoria.c:287)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4233488 is 0 bytes after a block of size 64 alloc'd
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F67C: inicializacion_de_variables_globales (Broker.c:20)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 
+==11462== 4 errors in context 8 of 83:
+==11462== Thread 3:
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804C949: suscribirse_a_cola (servidor.c:146)
+==11462==    by 0x804C8DF: atender_suscripcion (servidor.c:129)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x56312d0 is on thread 3's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== 
+==11462== 4 errors in context 9 of 83:
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804C90E: modelar_proceso (servidor.c:136)
+==11462==    by 0x804C8C8: atender_suscripcion (servidor.c:127)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x56312f0 is on thread 3's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== 
+==11462== 4 errors in context 10 of 83:
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804F46D: recibir_tamanio_buffer (servidor.c:1338)
+==11462==    by 0x804C8B7: atender_suscripcion (servidor.c:125)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x56312f0 is on thread 3's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== 
+==11462== 4 errors in context 11 of 83:
+==11462== Thread 2:
+==11462== Invalid read of size 4
+==11462==    at 0x804F528: enviar_mensaje (servidor.c:1357)
+==11462==    by 0x804C7BD: process_request (servidor.c:74)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x42369ac is 4 bytes inside a block of size 8 free'd
+==11462==    at 0x402D358: free (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F521: enviar_mensaje (servidor.c:1356)
+==11462==    by 0x804C7BD: process_request (servidor.c:74)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Block was alloc'd at
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F497: enviar_mensaje (servidor.c:1345)
+==11462==    by 0x804C7BD: process_request (servidor.c:74)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 
+==11462== 4 errors in context 12 of 83:
+==11462== Syscall param socketcall.send(args) points to uninitialised byte(s)
+==11462==    at 0x406A549: send (send.c:35)
+==11462==    by 0x804F513: enviar_mensaje (servidor.c:1354)
+==11462==    by 0x804C7BD: process_request (servidor.c:74)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4e302c0 is on thread 2's stack
+==11462==  in frame #0, created by send (send.c:29)
+==11462== 
+==11462== 
+==11462== 4 errors in context 13 of 83:
+==11462== Thread 5:
+==11462== Syscall param socketcall.send(args) points to uninitialised byte(s)
+==11462==    at 0x406A549: send (send.c:35)
+==11462==    by 0x804F5DA: enviar_id_mensaje (servidor.c:1375)
+==11462==    by 0x804E377: recibir_appeared_pokemon (servidor.c:832)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x6633250 is on thread 5's stack
+==11462==  in frame #0, created by send (send.c:29)
+==11462== 
+==11462== 
+==11462== 4 errors in context 14 of 83:
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804E2BD: recibir_appeared_pokemon (servidor.c:807)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x6633280 is on thread 5's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== 
+==11462== 4 errors in context 15 of 83:
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804E2A7: recibir_appeared_pokemon (servidor.c:804)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x6633280 is on thread 5's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== 
+==11462== 4 errors in context 16 of 83:
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804E291: recibir_appeared_pokemon (servidor.c:801)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x6633280 is on thread 5's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== 
+==11462== 4 errors in context 17 of 83:
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804E27B: recibir_appeared_pokemon (servidor.c:798)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x6633280 is on thread 5's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== 
+==11462== 4 errors in context 18 of 83:
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804E252: recibir_appeared_pokemon (servidor.c:795)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x6633280 is on thread 5's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== 
+==11462== 4 errors in context 19 of 83:
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804E23C: recibir_appeared_pokemon (servidor.c:792)
+==11462==    by 0x804C801: process_request (servidor.c:84)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x6633280 is on thread 5's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== 
+==11462== 4 errors in context 20 of 83:
+==11462== Thread 4:
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804F20A: recibir_ack (servidor.c:1253)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4e30310 is on thread 4's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== 
+==11462== 4 errors in context 21 of 83:
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804F1E1: recibir_ack (servidor.c:1250)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4e30310 is on thread 4's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== 
+==11462== 4 errors in context 22 of 83:
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804F1CB: recibir_ack (servidor.c:1247)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4e30310 is on thread 4's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== 
+==11462== 4 errors in context 23 of 83:
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804F1B5: recibir_ack (servidor.c:1244)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4e30310 is on thread 4's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== 
+==11462== 4 errors in context 24 of 83:
+==11462== Thread 2:
+==11462== Invalid read of size 4
+==11462==    at 0x804E1E6: recibir_new_pokemon (servidor.c:785)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x423a3bc is 4 bytes inside a block of size 8 free'd
+==11462==    at 0x402D358: free (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804E1DF: recibir_new_pokemon (servidor.c:784)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Block was alloc'd at
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804E070: recibir_new_pokemon (servidor.c:743)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 
+==11462== 4 errors in context 25 of 83:
+==11462== Syscall param socketcall.send(args) points to uninitialised byte(s)
+==11462==    at 0x406A549: send (send.c:35)
+==11462==    by 0x804F0FD: reenviar_mensaje_a_suscriptores (servidor.c:1228)
+==11462==    by 0x804E195: recibir_new_pokemon (servidor.c:774)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x5631230 is on thread 2's stack
+==11462==  in frame #0, created by send (send.c:29)
+==11462== 
+==11462== 
+==11462== 4 errors in context 26 of 83:
+==11462== Syscall param socketcall.send(args) points to uninitialised byte(s)
+==11462==    at 0x406A549: send (send.c:35)
+==11462==    by 0x804F5DA: enviar_id_mensaje (servidor.c:1375)
+==11462==    by 0x804E063: recibir_new_pokemon (servidor.c:739)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x5631250 is on thread 2's stack
+==11462==  in frame #0, created by send (send.c:29)
+==11462== 
+==11462== 
+==11462== 4 errors in context 27 of 83:
+==11462== Thread 5:
+==11462== Invalid read of size 1
+==11462==    at 0x4030F4B: memcpy (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804A085: compactar_memoria (memoria.c:229)
+==11462==    by 0x8049B79: eliminar_y_compactar_hasta_encontrar (memoria.c:65)
+==11462==    by 0x804A275: agregar_segun_first_fit (memoria.c:306)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4233489 is 1 bytes after a block of size 64 alloc'd
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F67C: inicializacion_de_variables_globales (Broker.c:20)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 
+==11462== 4 errors in context 28 of 83:
+==11462== Invalid read of size 1
+==11462==    at 0x4030F4B: memcpy (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804A085: compactar_memoria (memoria.c:229)
+==11462==    by 0x804A1F1: agregar_segun_first_fit (memoria.c:287)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4233489 is 1 bytes after a block of size 64 alloc'd
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F67C: inicializacion_de_variables_globales (Broker.c:20)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 
+==11462== 4 errors in context 29 of 83:
+==11462== Thread 2:
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804DF9A: recibir_new_pokemon (servidor.c:711)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x5631280 is on thread 2's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== 
+==11462== 4 errors in context 30 of 83:
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804DF84: recibir_new_pokemon (servidor.c:708)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x5631280 is on thread 2's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== 
+==11462== 4 errors in context 31 of 83:
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804DF6E: recibir_new_pokemon (servidor.c:705)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x5631280 is on thread 2's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== 
+==11462== 4 errors in context 32 of 83:
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804DF58: recibir_new_pokemon (servidor.c:702)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x5631280 is on thread 2's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== 
+==11462== 4 errors in context 33 of 83:
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804DF2F: recibir_new_pokemon (servidor.c:699)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x5631280 is on thread 2's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== 
+==11462== 4 errors in context 34 of 83:
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804DF19: recibir_new_pokemon (servidor.c:696)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x5631280 is on thread 2's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== 
+==11462== 6 errors in context 35 of 83:
+==11462== Thread 5:
+==11462== Invalid read of size 4
+==11462==    at 0x804A387: buscar_first_fit (memoria.c:341)
+==11462==    by 0x804A23B: agregar_segun_first_fit (memoria.c:297)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4233492 is 10 bytes after a block of size 64 alloc'd
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F67C: inicializacion_de_variables_globales (Broker.c:20)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 
+==11462== 7 errors in context 36 of 83:
+==11462== Invalid write of size 1
+==11462==    at 0x4030F43: memcpy (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804A0A0: compactar_memoria (memoria.c:231)
+==11462==    by 0x804A1F1: agregar_segun_first_fit (memoria.c:287)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x423fea8 is 0 bytes after a block of size 64 alloc'd
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804A00B: compactar_memoria (memoria.c:215)
+==11462==    by 0x804A1F1: agregar_segun_first_fit (memoria.c:287)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 
+==11462== 7 errors in context 37 of 83:
+==11462== Thread 4:
+==11462== Invalid write of size 1
+==11462==    at 0x4030F43: memcpy (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804B229: guardar_en_posicion (memoria.c:859)
+==11462==    by 0x804A1BA: agregar_segun_first_fit (memoria.c:278)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4233488 is 0 bytes after a block of size 64 alloc'd
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F67C: inicializacion_de_variables_globales (Broker.c:20)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 
+==11462== 9 errors in context 38 of 83:
+==11462== Invalid read of size 4
+==11462==    at 0x804A387: buscar_first_fit (memoria.c:341)
+==11462==    by 0x804A19B: agregar_segun_first_fit (memoria.c:276)
+==11462==    by 0x804A135: administracion_de_memoria_particiones (memoria.c:259)
+==11462==    by 0x8049A1A: guardar_mensaje_en_memoria (memoria.c:17)
+==11462==    by 0x804E04B: recibir_new_pokemon (servidor.c:735)
+==11462==    by 0x804C7DF: process_request (servidor.c:78)
+==11462==    by 0x804C74E: serve_client (servidor.c:63)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4233487 is 63 bytes inside a block of size 64 alloc'd
+==11462==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==11462==    by 0x804F67C: inicializacion_de_variables_globales (Broker.c:20)
+==11462==    by 0x804F63C: main (Broker.c:5)
+==11462== 
+==11462== 
+==11462== 13 errors in context 39 of 83:
+==11462== Thread 2:
+==11462== Syscall param socketcall.recv(args) points to uninitialised byte(s)
+==11462==    at 0x406A389: recv (recv.c:35)
+==11462==    by 0x804C72A: serve_client (servidor.c:59)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462==  Address 0x4e30310 is on thread 2's stack
+==11462==  in frame #0, created by recv (recv.c:29)
+==11462== 
+==11462== 
+==11462== 20 errors in context 40 of 83:
+==11462== Conditional jump or move depends on uninitialised value(s)
+==11462==    at 0x40BAB4D: vfprintf (vfprintf.c:1631)
+==11462==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==11462==    by 0x4054A4D: _string_append_with_format_list (string.c:244)
+==11462==    by 0x40541D3: string_from_vformat (string.c:65)
+==11462==    by 0x4054171: string_from_format (string.c:58)
+==11462==    by 0x8049671: log_conexion (logBroker.c:48)
+==11462==    by 0x804C701: serve_client (servidor.c:56)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 
+==11462== 20 errors in context 41 of 83:
+==11462== Conditional jump or move depends on uninitialised value(s)
+==11462==    at 0x40BAB04: vfprintf (vfprintf.c:1631)
+==11462==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==11462==    by 0x4054A4D: _string_append_with_format_list (string.c:244)
+==11462==    by 0x40541D3: string_from_vformat (string.c:65)
+==11462==    by 0x4054171: string_from_format (string.c:58)
+==11462==    by 0x8049671: log_conexion (logBroker.c:48)
+==11462==    by 0x804C701: serve_client (servidor.c:56)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 
+==11462== 20 errors in context 42 of 83:
+==11462== Conditional jump or move depends on uninitialised value(s)
+==11462==    at 0x40BACBD: vfprintf (vfprintf.c:1631)
+==11462==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==11462==    by 0x4054A4D: _string_append_with_format_list (string.c:244)
+==11462==    by 0x40541D3: string_from_vformat (string.c:65)
+==11462==    by 0x4054171: string_from_format (string.c:58)
+==11462==    by 0x8049671: log_conexion (logBroker.c:48)
+==11462==    by 0x804C701: serve_client (servidor.c:56)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 
+==11462== 20 errors in context 43 of 83:
+==11462== Conditional jump or move depends on uninitialised value(s)
+==11462==    at 0x40BA7A4: vfprintf (vfprintf.c:1631)
+==11462==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==11462==    by 0x4054A4D: _string_append_with_format_list (string.c:244)
+==11462==    by 0x40541D3: string_from_vformat (string.c:65)
+==11462==    by 0x4054171: string_from_format (string.c:58)
+==11462==    by 0x8049671: log_conexion (logBroker.c:48)
+==11462==    by 0x804C701: serve_client (servidor.c:56)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 
+==11462== 20 errors in context 44 of 83:
+==11462== Conditional jump or move depends on uninitialised value(s)
+==11462==    at 0x40BAB4D: vfprintf (vfprintf.c:1631)
+==11462==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==11462==    by 0x4054A1B: _string_append_with_format_list (string.c:239)
+==11462==    by 0x40541D3: string_from_vformat (string.c:65)
+==11462==    by 0x4054171: string_from_format (string.c:58)
+==11462==    by 0x8049671: log_conexion (logBroker.c:48)
+==11462==    by 0x804C701: serve_client (servidor.c:56)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 
+==11462== 20 errors in context 45 of 83:
+==11462== Conditional jump or move depends on uninitialised value(s)
+==11462==    at 0x40BAB04: vfprintf (vfprintf.c:1631)
+==11462==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==11462==    by 0x4054A1B: _string_append_with_format_list (string.c:239)
+==11462==    by 0x40541D3: string_from_vformat (string.c:65)
+==11462==    by 0x4054171: string_from_format (string.c:58)
+==11462==    by 0x8049671: log_conexion (logBroker.c:48)
+==11462==    by 0x804C701: serve_client (servidor.c:56)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 
+==11462== 20 errors in context 46 of 83:
+==11462== Conditional jump or move depends on uninitialised value(s)
+==11462==    at 0x40BACBD: vfprintf (vfprintf.c:1631)
+==11462==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==11462==    by 0x4054A1B: _string_append_with_format_list (string.c:239)
+==11462==    by 0x40541D3: string_from_vformat (string.c:65)
+==11462==    by 0x4054171: string_from_format (string.c:58)
+==11462==    by 0x8049671: log_conexion (logBroker.c:48)
+==11462==    by 0x804C701: serve_client (servidor.c:56)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 
+==11462== 20 errors in context 47 of 83:
+==11462== Conditional jump or move depends on uninitialised value(s)
+==11462==    at 0x40BA7A4: vfprintf (vfprintf.c:1631)
+==11462==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==11462==    by 0x4054A1B: _string_append_with_format_list (string.c:239)
+==11462==    by 0x40541D3: string_from_vformat (string.c:65)
+==11462==    by 0x4054171: string_from_format (string.c:58)
+==11462==    by 0x8049671: log_conexion (logBroker.c:48)
+==11462==    by 0x804C701: serve_client (servidor.c:56)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 
+==11462== 30 errors in context 48 of 83:
+==11462== Conditional jump or move depends on uninitialised value(s)
+==11462==    at 0x40B7253: _itoa_word (_itoa.c:179)
+==11462==    by 0x40BB221: vfprintf (vfprintf.c:1631)
+==11462==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==11462==    by 0x4054A4D: _string_append_with_format_list (string.c:244)
+==11462==    by 0x40541D3: string_from_vformat (string.c:65)
+==11462==    by 0x4054171: string_from_format (string.c:58)
+==11462==    by 0x8049671: log_conexion (logBroker.c:48)
+==11462==    by 0x804C701: serve_client (servidor.c:56)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 
+==11462== 30 errors in context 49 of 83:
+==11462== Use of uninitialised value of size 4
+==11462==    at 0x40B724B: _itoa_word (_itoa.c:179)
+==11462==    by 0x40BB221: vfprintf (vfprintf.c:1631)
+==11462==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==11462==    by 0x4054A4D: _string_append_with_format_list (string.c:244)
+==11462==    by 0x40541D3: string_from_vformat (string.c:65)
+==11462==    by 0x4054171: string_from_format (string.c:58)
+==11462==    by 0x8049671: log_conexion (logBroker.c:48)
+==11462==    by 0x804C701: serve_client (servidor.c:56)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 
+==11462== 30 errors in context 50 of 83:
+==11462== Conditional jump or move depends on uninitialised value(s)
+==11462==    at 0x40B7253: _itoa_word (_itoa.c:179)
+==11462==    by 0x40BB221: vfprintf (vfprintf.c:1631)
+==11462==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==11462==    by 0x4054A1B: _string_append_with_format_list (string.c:239)
+==11462==    by 0x40541D3: string_from_vformat (string.c:65)
+==11462==    by 0x4054171: string_from_format (string.c:58)
+==11462==    by 0x8049671: log_conexion (logBroker.c:48)
+==11462==    by 0x804C701: serve_client (servidor.c:56)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== 
+==11462== 30 errors in context 51 of 83:
+==11462== Use of uninitialised value of size 4
+==11462==    at 0x40B724B: _itoa_word (_itoa.c:179)
+==11462==    by 0x40BB221: vfprintf (vfprintf.c:1631)
+==11462==    by 0x40DE3DE: vsnprintf (vsnprintf.c:114)
+==11462==    by 0x4054A1B: _string_append_with_format_list (string.c:239)
+==11462==    by 0x40541D3: string_from_vformat (string.c:65)
+==11462==    by 0x4054171: string_from_format (string.c:58)
+==11462==    by 0x8049671: log_conexion (logBroker.c:48)
+==11462==    by 0x804C701: serve_client (servidor.c:56)
+==11462==    by 0x4061294: start_thread (pthread_create.c:333)
+==11462==    by 0x415F0AD: clone (clone.S:114)
+==11462== 
+==11462== ERROR SUMMARY: 481 errors from 83 contexts (suppressed: 0 from 0)

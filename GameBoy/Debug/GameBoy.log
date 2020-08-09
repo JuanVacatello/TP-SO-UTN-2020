@@ -1,0 +1,6 @@
+[INFO] 16:38:35:67 GAMEBOY/(5285:5285): GameBoy se conectó exitosamente al proceso Broker.
+[INFO] 16:39:31:826 GAMEBOY/(5402:5402): GameBoy se conectó exitosamente al proceso Broker.
+[INFO] 17:16:16:567 GAMEBOY/(6789:6789): GameBoy se conectó exitosamente al proceso Broker.
+[INFO] 17:33:54:956 GAMEBOY/(7468:7468): GameBoy se conectó exitosamente al proceso Broker.
+[INFO] 17:34:13:66 GAMEBOY/(7480:7480): GameBoy se suscribió exitosamente a la cola APPEARED_POKEMON.
+[INFO] 17:34:25:635 GAMEBOY/(7487:7487): GameBoy se suscribió exitosamente a la cola APPEARED_POKEMON.

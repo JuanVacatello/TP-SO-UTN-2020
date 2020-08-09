@@ -1,0 +1,1151 @@
+==14183== Helgrind, a thread error detector
+==14183== Copyright (C) 2007-2015, and GNU GPL'd, by OpenWorks LLP et al.
+==14183== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==14183== Command: ./Team
+==14183== Parent PID: 14080
+==14183== 
+==14183== ---Thread-Announcement------------------------------------------
+==14183== 
+==14183== Thread #7 was created
+==14183==    at 0x4164091: clone (clone.S:88)
+==14183==    by 0x40651AD: create_thread (createthread.c:102)
+==14183==    by 0x406699E: pthread_create@@GLIBC_2.1 (pthread_create.c:679)
+==14183==    by 0x4032043: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x804A050: esperar_cliente (conexiones.c:76)
+==14183==    by 0x804A005: iniciar_servidor (conexiones.c:65)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183== 
+==14183== ---Thread-Announcement------------------------------------------
+==14183== 
+==14183== Thread #3 was created
+==14183==    at 0x4164091: clone (clone.S:88)
+==14183==    by 0x40651AD: create_thread (createthread.c:102)
+==14183==    by 0x406699E: pthread_create@@GLIBC_2.1 (pthread_create.c:679)
+==14183==    by 0x4032043: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x8049D25: main (Test.c:26)
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during read of size 1 at 0x4239DF8 by thread #7
+==14183== Locks held: none
+==14183==    at 0x40360BF: __GI_memcmp (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x411EBC9: __tzstring_len (tzset.c:101)
+==14183==    by 0x411ED3C: parse_tzname (tzset.c:205)
+==14183==    by 0x411F1DD: __tzset_parse_tz (tzset.c:357)
+==14183==    by 0x412098E: __tzfile_compute (tzfile.c:691)
+==14183==    by 0x411F735: __tz_convert (tzset.c:624)
+==14183==    by 0x411DD2D: localtime_r (localtime.c:30)
+==14183==    by 0x405B8F5: temporal_get_string_time (temporal.c:38)
+==14183==    by 0x4058F17: _log_write_in_level (log.c:126)
+==14183==    by 0x4058D8D: log_info (log.c:91)
+==14183==    by 0x804C6DD: completar_logger (logTeam.c:22)
+==14183==    by 0x804A0E0: serve_client (conexiones.c:87)
+==14183==  Address 0x4239df8 is 8 bytes inside a block of size 12 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x411EBE6: __tzstring_len (tzset.c:106)
+==14183==    by 0x411FED6: __tzfile_read (tzfile.c:466)
+==14183==    by 0x411F3AA: tzset_internal (tzset.c:441)
+==14183==    by 0x411F699: __tz_convert (tzset.c:621)
+==14183==    by 0x411DD2D: localtime_r (localtime.c:30)
+==14183==    by 0x405B8F5: temporal_get_string_time (temporal.c:38)
+==14183==    by 0x4058F17: _log_write_in_level (log.c:126)
+==14183==    by 0x4058D8D: log_info (log.c:91)
+==14183==    by 0x804C6DD: completar_logger (logTeam.c:22)
+==14183==    by 0x8049EDA: crear_conexion (conexiones.c:29)
+==14183==    by 0x804A3DF: enviar_suscripcion_a_cola (conexiones.c:192)
+==14183==  Block was alloc'd by thread #3
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during read of size 1 at 0x4239E79 by thread #7
+==14183== Locks held: none
+==14183==    at 0x40360D5: __GI_memcmp (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x411EBC9: __tzstring_len (tzset.c:101)
+==14183==    by 0x411ED3C: parse_tzname (tzset.c:205)
+==14183==    by 0x411F1DD: __tzset_parse_tz (tzset.c:357)
+==14183==    by 0x412098E: __tzfile_compute (tzfile.c:691)
+==14183==    by 0x411F735: __tz_convert (tzset.c:624)
+==14183==    by 0x411DD2D: localtime_r (localtime.c:30)
+==14183==    by 0x405B8F5: temporal_get_string_time (temporal.c:38)
+==14183==    by 0x4058F17: _log_write_in_level (log.c:126)
+==14183==    by 0x4058D8D: log_info (log.c:91)
+==14183==    by 0x804C6DD: completar_logger (logTeam.c:22)
+==14183==    by 0x804A0E0: serve_client (conexiones.c:87)
+==14183==  Address 0x4239e79 is 9 bytes inside a block of size 12 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x411EBE6: __tzstring_len (tzset.c:106)
+==14183==    by 0x411FED6: __tzfile_read (tzfile.c:466)
+==14183==    by 0x411F3AA: tzset_internal (tzset.c:441)
+==14183==    by 0x411F699: __tz_convert (tzset.c:621)
+==14183==    by 0x411DD2D: localtime_r (localtime.c:30)
+==14183==    by 0x405B8F5: temporal_get_string_time (temporal.c:38)
+==14183==    by 0x4058F17: _log_write_in_level (log.c:126)
+==14183==    by 0x4058D8D: log_info (log.c:91)
+==14183==    by 0x804C6DD: completar_logger (logTeam.c:22)
+==14183==    by 0x8049EDA: crear_conexion (conexiones.c:29)
+==14183==    by 0x804A3DF: enviar_suscripcion_a_cola (conexiones.c:192)
+==14183==  Block was alloc'd by thread #3
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during read of size 1 at 0x423B2CE by thread #7
+==14183== Locks held: none
+==14183==    at 0x4036E33: __GI___rawmemchr (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x40E97B5: _IO_str_init_static_internal (strops.c:41)
+==14183==    by 0x40DD6F0: vsscanf (iovsscanf.c:40)
+==14183==    by 0x40D83C3: sscanf (sscanf.c:32)
+==14183==    by 0x411EDCF: parse_offset (tzset.c:236)
+==14183==    by 0x411F1EC: __tzset_parse_tz (tzset.c:357)
+==14183==    by 0x412098E: __tzfile_compute (tzfile.c:691)
+==14183==    by 0x411F735: __tz_convert (tzset.c:624)
+==14183==    by 0x411DD2D: localtime_r (localtime.c:30)
+==14183==    by 0x405B8F5: temporal_get_string_time (temporal.c:38)
+==14183==    by 0x4058F17: _log_write_in_level (log.c:126)
+==14183==    by 0x4058D8D: log_info (log.c:91)
+==14183==  Address 0x423b2ce is 14 bytes inside a block of size 15 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x411EC51: __tzstring_len (tzset.c:106)
+==14183==    by 0x4120075: __tzfile_read (tzfile.c:454)
+==14183==    by 0x411F3AA: tzset_internal (tzset.c:441)
+==14183==    by 0x411F699: __tz_convert (tzset.c:621)
+==14183==    by 0x411DD2D: localtime_r (localtime.c:30)
+==14183==    by 0x405B8F5: temporal_get_string_time (temporal.c:38)
+==14183==    by 0x4058F17: _log_write_in_level (log.c:126)
+==14183==    by 0x4058D8D: log_info (log.c:91)
+==14183==    by 0x804C6DD: completar_logger (logTeam.c:22)
+==14183==    by 0x8049EDA: crear_conexion (conexiones.c:29)
+==14183==    by 0x804A3DF: enviar_suscripcion_a_cola (conexiones.c:192)
+==14183==  Block was alloc'd by thread #3
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during read of size 1 at 0x4239EBB by thread #7
+==14183== Locks held: none
+==14183==    at 0x4033CA3: __GI_strlen (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x411EB50: update_vars (tzset.c:161)
+==14183==    by 0x411F1F5: __tzset_parse_tz (tzset.c:391)
+==14183==    by 0x412098E: __tzfile_compute (tzfile.c:691)
+==14183==    by 0x411F735: __tz_convert (tzset.c:624)
+==14183==    by 0x411DD2D: localtime_r (localtime.c:30)
+==14183==    by 0x405B8F5: temporal_get_string_time (temporal.c:38)
+==14183==    by 0x4058F17: _log_write_in_level (log.c:126)
+==14183==    by 0x4058D8D: log_info (log.c:91)
+==14183==    by 0x804C6DD: completar_logger (logTeam.c:22)
+==14183==    by 0x804A0E0: serve_client (conexiones.c:87)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==  Address 0x4239ebb is 11 bytes inside a block of size 12 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x411EBE6: __tzstring_len (tzset.c:106)
+==14183==    by 0x411FED6: __tzfile_read (tzfile.c:466)
+==14183==    by 0x411F3AA: tzset_internal (tzset.c:441)
+==14183==    by 0x411F699: __tz_convert (tzset.c:621)
+==14183==    by 0x411DD2D: localtime_r (localtime.c:30)
+==14183==    by 0x405B8F5: temporal_get_string_time (temporal.c:38)
+==14183==    by 0x4058F17: _log_write_in_level (log.c:126)
+==14183==    by 0x4058D8D: log_info (log.c:91)
+==14183==    by 0x804C6DD: completar_logger (logTeam.c:22)
+==14183==    by 0x8049EDA: crear_conexion (conexiones.c:29)
+==14183==    by 0x804A3DF: enviar_suscripcion_a_cola (conexiones.c:192)
+==14183==  Block was alloc'd by thread #3
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during read of size 4 at 0x4E35298 by thread #7
+==14183== Locks held: none
+==14183==    at 0x804A0E7: serve_client (conexiones.c:89)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Address 0x4e35298 is on thread #2's stack
+==14183== 
+==14183== ---Thread-Announcement------------------------------------------
+==14183== 
+==14183== Thread #9 was created
+==14183==    at 0x4164091: clone (clone.S:88)
+==14183==    by 0x40651AD: create_thread (createthread.c:102)
+==14183==    by 0x406699E: pthread_create@@GLIBC_2.1 (pthread_create.c:679)
+==14183==    by 0x4032043: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x804A050: esperar_cliente (conexiones.c:76)
+==14183==    by 0x804A005: iniciar_servidor (conexiones.c:65)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183== 
+==14183== ---Thread-Announcement------------------------------------------
+==14183== 
+==14183== Thread #1 is the program's root thread
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Thread #9 unlocked lock at 0x8051148 currently held by thread #1
+==14183==    at 0x4030758: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x804AC14: recibir_AppearedPokemon (conexiones.c:450)
+==14183==    by 0x804A154: process_request (conexiones.c:103)
+==14183==    by 0x804A0F5: serve_client (conexiones.c:89)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Lock at 0x8051148 was first observed
+==14183==    at 0x4032F68: pthread_mutex_init (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x804D581: iniciar_vg (utils.c:26)
+==14183==    by 0x8049CCB: main (Test.c:18)
+==14183==  Address 0x8051148 is 0 bytes inside data symbol "mutex_planificador"
+==14183== 
+==14183== 
+==14183== ---Thread-Announcement------------------------------------------
+==14183== 
+==14183== Thread #6 was created
+==14183==    at 0x4164091: clone (clone.S:88)
+==14183==    by 0x40651AD: create_thread (createthread.c:102)
+==14183==    by 0x406699E: pthread_create@@GLIBC_2.1 (pthread_create.c:679)
+==14183==    by 0x4032043: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x8049D9A: main (Test.c:35)
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Thread #6: Bug in libpthread: write lock granted on mutex/rwlock which is currently wr-held by a different thread
+==14183==    at 0x40303FC: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x804CC9A: planificar_fifo (planificacion.c:10)
+==14183==    by 0x8049720: planificacion (Team.c:131)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during read of size 4 at 0x4238D74 by thread #6
+==14183== Locks held: none
+==14183==    at 0x405A315: list_size (list.c:156)
+==14183==    by 0x405A337: list_is_empty (list.c:160)
+==14183==    by 0x804CD30: planificar_fifo (planificacion.c:14)
+==14183==    by 0x8049720: planificacion (Team.c:131)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183== 
+==14183== This conflicts with a previous write of size 4 by thread #9
+==14183== Locks held: none
+==14183==    at 0x4059E8B: list_add (list.c:41)
+==14183==    by 0x8049824: aparicion_pokemon (Team.c:167)
+==14183==    by 0x804AC04: recibir_AppearedPokemon (conexiones.c:448)
+==14183==    by 0x804A154: process_request (conexiones.c:103)
+==14183==    by 0x804A0F5: serve_client (conexiones.c:89)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Address 0x4238d74 is 4 bytes inside a block of size 8 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4059E01: list_create (list.c:27)
+==14183==    by 0x804D531: iniciar_vg (utils.c:15)
+==14183==    by 0x8049CCB: main (Test.c:18)
+==14183==  Block was alloc'd by thread #1
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during read of size 4 at 0x4238D74 by thread #6
+==14183== Locks held: none
+==14183==    at 0x405A940: list_get_element (list.c:321)
+==14183==    by 0x4059F65: list_get (list.c:54)
+==14183==    by 0x804CCCF: planificar_fifo (planificacion.c:18)
+==14183==    by 0x8049720: planificacion (Team.c:131)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183== 
+==14183== This conflicts with a previous write of size 4 by thread #9
+==14183== Locks held: none
+==14183==    at 0x4059E8B: list_add (list.c:41)
+==14183==    by 0x8049824: aparicion_pokemon (Team.c:167)
+==14183==    by 0x804AC04: recibir_AppearedPokemon (conexiones.c:448)
+==14183==    by 0x804A154: process_request (conexiones.c:103)
+==14183==    by 0x804A0F5: serve_client (conexiones.c:89)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Address 0x4238d74 is 4 bytes inside a block of size 8 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4059E01: list_create (list.c:27)
+==14183==    by 0x804D531: iniciar_vg (utils.c:15)
+==14183==    by 0x8049CCB: main (Test.c:18)
+==14183==  Block was alloc'd by thread #1
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during read of size 4 at 0x4238D70 by thread #6
+==14183== Locks held: none
+==14183==    at 0x405A951: list_get_element (list.c:322)
+==14183==    by 0x4059F65: list_get (list.c:54)
+==14183==    by 0x804CCCF: planificar_fifo (planificacion.c:18)
+==14183==    by 0x8049720: planificacion (Team.c:131)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183== 
+==14183== This conflicts with a previous write of size 4 by thread #9
+==14183== Locks held: none
+==14183==    at 0x4059E54: list_add (list.c:37)
+==14183==    by 0x8049824: aparicion_pokemon (Team.c:167)
+==14183==    by 0x804AC04: recibir_AppearedPokemon (conexiones.c:448)
+==14183==    by 0x804A154: process_request (conexiones.c:103)
+==14183==    by 0x804A0F5: serve_client (conexiones.c:89)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Address 0x4238d70 is 0 bytes inside a block of size 8 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4059E01: list_create (list.c:27)
+==14183==    by 0x804D531: iniciar_vg (utils.c:15)
+==14183==    by 0x8049CCB: main (Test.c:18)
+==14183==  Block was alloc'd by thread #1
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during read of size 4 at 0x423A870 by thread #6
+==14183== Locks held: none
+==14183==    at 0x4059F75: list_get (list.c:55)
+==14183==    by 0x804CCCF: planificar_fifo (planificacion.c:18)
+==14183==    by 0x8049720: planificacion (Team.c:131)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Address 0x423a870 is 0 bytes inside a block of size 8 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x405A905: list_create_element (list.c:312)
+==14183==    by 0x4059E3D: list_add (list.c:34)
+==14183==    by 0x8049824: aparicion_pokemon (Team.c:167)
+==14183==    by 0x804AC04: recibir_AppearedPokemon (conexiones.c:448)
+==14183==    by 0x804A154: process_request (conexiones.c:103)
+==14183==    by 0x804A0F5: serve_client (conexiones.c:89)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Block was alloc'd by thread #9
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during write of size 4 at 0x42376CC by thread #6
+==14183== Locks held: none
+==14183==    at 0x804CCD9: planificar_fifo (planificacion.c:19)
+==14183==    by 0x8049720: planificacion (Team.c:131)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183== 
+==14183== This conflicts with a previous write of size 4 by thread #9
+==14183== Locks held: none
+==14183==    at 0x80497D5: aparicion_pokemon (Team.c:159)
+==14183==    by 0x804AC04: recibir_AppearedPokemon (conexiones.c:448)
+==14183==    by 0x804A154: process_request (conexiones.c:103)
+==14183==    by 0x804A0F5: serve_client (conexiones.c:89)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Address 0x42376cc is 12 bytes inside a block of size 60 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x804B62F: armar_entrenador (entrenador.c:29)
+==14183==    by 0x8049406: armar_entrenadores (Team.c:35)
+==14183==    by 0x804D518: iniciar_vg (utils.c:11)
+==14183==    by 0x8049CCB: main (Test.c:18)
+==14183==  Block was alloc'd by thread #1
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during read of size 4 at 0x42368EC by thread #6
+==14183== Locks held: none
+==14183==    at 0x405A315: list_size (list.c:156)
+==14183==    by 0x804CD0B: planificar_fifo (planificacion.c:22)
+==14183==    by 0x8049720: planificacion (Team.c:131)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183== 
+==14183== This conflicts with a previous write of size 4 by thread #9
+==14183== Locks held: none
+==14183==    at 0x4059E8B: list_add (list.c:41)
+==14183==    by 0x804CC75: armar_movimiento (movimiento.c:84)
+==14183==    by 0x80497E6: aparicion_pokemon (Team.c:162)
+==14183==    by 0x804AC04: recibir_AppearedPokemon (conexiones.c:448)
+==14183==    by 0x804A154: process_request (conexiones.c:103)
+==14183==    by 0x804A0F5: serve_client (conexiones.c:89)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==  Address 0x42368ec is 4 bytes inside a block of size 8 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4059E01: list_create (list.c:27)
+==14183==    by 0x804B713: armar_entrenador (entrenador.c:60)
+==14183==    by 0x8049406: armar_entrenadores (Team.c:35)
+==14183==    by 0x804D518: iniciar_vg (utils.c:11)
+==14183==    by 0x8049CCB: main (Test.c:18)
+==14183==  Block was alloc'd by thread #1
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during read of size 4 at 0x42368E8 by thread #6
+==14183== Locks held: none
+==14183==    at 0x405A17E: list_remove (list.c:116)
+==14183==    by 0x804BA68: ejecutar_entrenador (entrenador.c:210)
+==14183==    by 0x804CCF9: planificar_fifo (planificacion.c:23)
+==14183==    by 0x8049720: planificacion (Team.c:131)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183== 
+==14183== This conflicts with a previous write of size 4 by thread #9
+==14183== Locks held: none
+==14183==    at 0x4059E54: list_add (list.c:37)
+==14183==    by 0x804CC75: armar_movimiento (movimiento.c:84)
+==14183==    by 0x80497E6: aparicion_pokemon (Team.c:162)
+==14183==    by 0x804AC04: recibir_AppearedPokemon (conexiones.c:448)
+==14183==    by 0x804A154: process_request (conexiones.c:103)
+==14183==    by 0x804A0F5: serve_client (conexiones.c:89)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==  Address 0x42368e8 is 0 bytes inside a block of size 8 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4059E01: list_create (list.c:27)
+==14183==    by 0x804B713: armar_entrenador (entrenador.c:60)
+==14183==    by 0x8049406: armar_entrenadores (Team.c:35)
+==14183==    by 0x804D518: iniciar_vg (utils.c:11)
+==14183==    by 0x8049CCB: main (Test.c:18)
+==14183==  Block was alloc'd by thread #1
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during read of size 4 at 0x423A7C8 by thread #6
+==14183== Locks held: none
+==14183==    at 0x405A1A2: list_remove (list.c:119)
+==14183==    by 0x804BA68: ejecutar_entrenador (entrenador.c:210)
+==14183==    by 0x804CCF9: planificar_fifo (planificacion.c:23)
+==14183==    by 0x8049720: planificacion (Team.c:131)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Address 0x423a7c8 is 0 bytes inside a block of size 8 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x405A905: list_create_element (list.c:312)
+==14183==    by 0x4059E3D: list_add (list.c:34)
+==14183==    by 0x804CC75: armar_movimiento (movimiento.c:84)
+==14183==    by 0x80497E6: aparicion_pokemon (Team.c:162)
+==14183==    by 0x804AC04: recibir_AppearedPokemon (conexiones.c:448)
+==14183==    by 0x804A154: process_request (conexiones.c:103)
+==14183==    by 0x804A0F5: serve_client (conexiones.c:89)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Block was alloc'd by thread #9
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during read of size 4 at 0x423A7CC by thread #6
+==14183== Locks held: none
+==14183==    at 0x405A1B0: list_remove (list.c:122)
+==14183==    by 0x804BA68: ejecutar_entrenador (entrenador.c:210)
+==14183==    by 0x804CCF9: planificar_fifo (planificacion.c:23)
+==14183==    by 0x8049720: planificacion (Team.c:131)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Address 0x423a7cc is 4 bytes inside a block of size 8 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x405A905: list_create_element (list.c:312)
+==14183==    by 0x4059E3D: list_add (list.c:34)
+==14183==    by 0x804CC75: armar_movimiento (movimiento.c:84)
+==14183==    by 0x80497E6: aparicion_pokemon (Team.c:162)
+==14183==    by 0x804AC04: recibir_AppearedPokemon (conexiones.c:448)
+==14183==    by 0x804A154: process_request (conexiones.c:103)
+==14183==    by 0x804A0F5: serve_client (conexiones.c:89)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Block was alloc'd by thread #9
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during write of size 4 at 0x42368E8 by thread #6
+==14183== Locks held: none
+==14183==    at 0x405A1B6: list_remove (list.c:122)
+==14183==    by 0x804BA68: ejecutar_entrenador (entrenador.c:210)
+==14183==    by 0x804CCF9: planificar_fifo (planificacion.c:23)
+==14183==    by 0x8049720: planificacion (Team.c:131)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183== 
+==14183== This conflicts with a previous write of size 4 by thread #9
+==14183== Locks held: none
+==14183==    at 0x4059E54: list_add (list.c:37)
+==14183==    by 0x804CC75: armar_movimiento (movimiento.c:84)
+==14183==    by 0x80497E6: aparicion_pokemon (Team.c:162)
+==14183==    by 0x804AC04: recibir_AppearedPokemon (conexiones.c:448)
+==14183==    by 0x804A154: process_request (conexiones.c:103)
+==14183==    by 0x804A0F5: serve_client (conexiones.c:89)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==  Address 0x42368e8 is 0 bytes inside a block of size 8 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4059E01: list_create (list.c:27)
+==14183==    by 0x804B713: armar_entrenador (entrenador.c:60)
+==14183==    by 0x8049406: armar_entrenadores (Team.c:35)
+==14183==    by 0x804D518: iniciar_vg (utils.c:11)
+==14183==    by 0x8049CCB: main (Test.c:18)
+==14183==  Block was alloc'd by thread #1
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during write of size 4 at 0x42368EC by thread #6
+==14183== Locks held: none
+==14183==    at 0x405A1F3: list_remove (list.c:128)
+==14183==    by 0x804BA68: ejecutar_entrenador (entrenador.c:210)
+==14183==    by 0x804CCF9: planificar_fifo (planificacion.c:23)
+==14183==    by 0x8049720: planificacion (Team.c:131)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183== 
+==14183== This conflicts with a previous write of size 4 by thread #9
+==14183== Locks held: none
+==14183==    at 0x4059E8B: list_add (list.c:41)
+==14183==    by 0x804CC75: armar_movimiento (movimiento.c:84)
+==14183==    by 0x80497E6: aparicion_pokemon (Team.c:162)
+==14183==    by 0x804AC04: recibir_AppearedPokemon (conexiones.c:448)
+==14183==    by 0x804A154: process_request (conexiones.c:103)
+==14183==    by 0x804A0F5: serve_client (conexiones.c:89)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==  Address 0x42368ec is 4 bytes inside a block of size 8 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4059E01: list_create (list.c:27)
+==14183==    by 0x804B713: armar_entrenador (entrenador.c:60)
+==14183==    by 0x8049406: armar_entrenadores (Team.c:35)
+==14183==    by 0x804D518: iniciar_vg (utils.c:11)
+==14183==    by 0x8049CCB: main (Test.c:18)
+==14183==  Block was alloc'd by thread #1
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during read of size 4 at 0x423A794 by thread #6
+==14183== Locks held: none
+==14183==    at 0x804BA78: ejecutar_entrenador (entrenador.c:211)
+==14183==    by 0x804CCF9: planificar_fifo (planificacion.c:23)
+==14183==    by 0x8049720: planificacion (Team.c:131)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Address 0x423a794 is 4 bytes inside a block of size 8 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x804CB6C: armar_movimiento (movimiento.c:42)
+==14183==    by 0x80497E6: aparicion_pokemon (Team.c:162)
+==14183==    by 0x804AC04: recibir_AppearedPokemon (conexiones.c:448)
+==14183==    by 0x804A154: process_request (conexiones.c:103)
+==14183==    by 0x804A0F5: serve_client (conexiones.c:89)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Block was alloc'd by thread #9
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during read of size 4 at 0x423A790 by thread #6
+==14183== Locks held: none
+==14183==    at 0x804BA9A: ejecutar_entrenador (entrenador.c:214)
+==14183==    by 0x804CCF9: planificar_fifo (planificacion.c:23)
+==14183==    by 0x8049720: planificacion (Team.c:131)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Address 0x423a790 is 0 bytes inside a block of size 8 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x804CB6C: armar_movimiento (movimiento.c:42)
+==14183==    by 0x80497E6: aparicion_pokemon (Team.c:162)
+==14183==    by 0x804AC04: recibir_AppearedPokemon (conexiones.c:448)
+==14183==    by 0x804A154: process_request (conexiones.c:103)
+==14183==    by 0x804A0F5: serve_client (conexiones.c:89)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Block was alloc'd by thread #9
+==14183== 
+==14183== ---Thread-Announcement------------------------------------------
+==14183== 
+==14183== Thread #2 was created
+==14183==    at 0x4164091: clone (clone.S:88)
+==14183==    by 0x40651AD: create_thread (createthread.c:102)
+==14183==    by 0x406699E: pthread_create@@GLIBC_2.1 (pthread_create.c:679)
+==14183==    by 0x4032043: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x8049CFE: main (Test.c:23)
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during write of size 4 at 0x423A4E0 by thread #6
+==14183== Locks held: none
+==14183==    at 0x4036545: memset (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066820: get_cached_stack (allocatestack.c:251)
+==14183==    by 0x4066820: allocate_stack (allocatestack.c:501)
+==14183==    by 0x4066820: pthread_create@@GLIBC_2.1 (pthread_create.c:539)
+==14183==    by 0x4032043: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x804BAAA: ejecutar_entrenador (entrenador.c:214)
+==14183==    by 0x804CCF9: planificar_fifo (planificacion.c:23)
+==14183==    by 0x8049720: planificacion (Team.c:131)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Address 0x423a4e0 is 8 bytes inside a block of size 136 alloc'd
+==14183==    at 0x402F2A8: calloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4011726: allocate_dtv (dl-tls.c:322)
+==14183==    by 0x401214B: _dl_allocate_tls (dl-tls.c:539)
+==14183==    by 0x4066CC3: allocate_stack (allocatestack.c:588)
+==14183==    by 0x4066CC3: pthread_create@@GLIBC_2.1 (pthread_create.c:539)
+==14183==    by 0x4032043: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x804A050: esperar_cliente (conexiones.c:76)
+==14183==    by 0x804A005: iniciar_servidor (conexiones.c:65)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Block was alloc'd by thread #2
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during write of size 1 at 0x423A4EC by thread #6
+==14183== Locks held: none
+==14183==    at 0x4036545: memset (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066820: get_cached_stack (allocatestack.c:251)
+==14183==    by 0x4066820: allocate_stack (allocatestack.c:501)
+==14183==    by 0x4066820: pthread_create@@GLIBC_2.1 (pthread_create.c:539)
+==14183==    by 0x4032043: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x804BAAA: ejecutar_entrenador (entrenador.c:214)
+==14183==    by 0x804CCF9: planificar_fifo (planificacion.c:23)
+==14183==    by 0x8049720: planificacion (Team.c:131)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Address 0x423a4ec is 20 bytes inside a block of size 136 alloc'd
+==14183==    at 0x402F2A8: calloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4011726: allocate_dtv (dl-tls.c:322)
+==14183==    by 0x401214B: _dl_allocate_tls (dl-tls.c:539)
+==14183==    by 0x4066CC3: allocate_stack (allocatestack.c:588)
+==14183==    by 0x4066CC3: pthread_create@@GLIBC_2.1 (pthread_create.c:539)
+==14183==    by 0x4032043: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x804A050: esperar_cliente (conexiones.c:76)
+==14183==    by 0x804A005: iniciar_servidor (conexiones.c:65)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Block was alloc'd by thread #2
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during write of size 2 at 0x423A4EE by thread #6
+==14183== Locks held: none
+==14183==    at 0x4036545: memset (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066820: get_cached_stack (allocatestack.c:251)
+==14183==    by 0x4066820: allocate_stack (allocatestack.c:501)
+==14183==    by 0x4066820: pthread_create@@GLIBC_2.1 (pthread_create.c:539)
+==14183==    by 0x4032043: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x804BAAA: ejecutar_entrenador (entrenador.c:214)
+==14183==    by 0x804CCF9: planificar_fifo (planificacion.c:23)
+==14183==    by 0x8049720: planificacion (Team.c:131)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Address 0x423a4ee is 22 bytes inside a block of size 136 alloc'd
+==14183==    at 0x402F2A8: calloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4011726: allocate_dtv (dl-tls.c:322)
+==14183==    by 0x401214B: _dl_allocate_tls (dl-tls.c:539)
+==14183==    by 0x4066CC3: allocate_stack (allocatestack.c:588)
+==14183==    by 0x4066CC3: pthread_create@@GLIBC_2.1 (pthread_create.c:539)
+==14183==    by 0x4032043: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x804A050: esperar_cliente (conexiones.c:76)
+==14183==    by 0x804A005: iniciar_servidor (conexiones.c:65)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Block was alloc'd by thread #2
+==14183== 
+==14183== ---Thread-Announcement------------------------------------------
+==14183== 
+==14183== Thread #10 was created
+==14183==    at 0x4164091: clone (clone.S:88)
+==14183==    by 0x40651AD: create_thread (createthread.c:102)
+==14183==    by 0x406699E: pthread_create@@GLIBC_2.1 (pthread_create.c:679)
+==14183==    by 0x4032043: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x804BAAA: ejecutar_entrenador (entrenador.c:214)
+==14183==    by 0x804CCF9: planificar_fifo (planificacion.c:23)
+==14183==    by 0x8049720: planificacion (Team.c:131)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during write of size 4 at 0x42376D8 by thread #10
+==14183== Locks held: none
+==14183==    at 0x804CAEF: moverse_arriba (movimiento.c:23)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183== 
+==14183== This conflicts with a previous read of size 4 by thread #9
+==14183== Locks held: none
+==14183==    at 0x804B92A: entrenador_mas_cercano (entrenador.c:157)
+==14183==    by 0x804974A: aparicion_pokemon (Team.c:147)
+==14183==    by 0x804AC04: recibir_AppearedPokemon (conexiones.c:448)
+==14183==    by 0x804A154: process_request (conexiones.c:103)
+==14183==    by 0x804A0F5: serve_client (conexiones.c:89)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Address 0x42376d8 is 24 bytes inside a block of size 60 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x804B62F: armar_entrenador (entrenador.c:29)
+==14183==    by 0x8049406: armar_entrenadores (Team.c:35)
+==14183==    by 0x804D518: iniciar_vg (utils.c:11)
+==14183==    by 0x8049CCB: main (Test.c:18)
+==14183==  Block was alloc'd by thread #1
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during read of size 4 at 0x7E3BB54 by thread #10
+==14183== Locks held: none
+==14183==    at 0x405914F: string_from_format (string.c:54)
+==14183==    by 0x804C74D: log_movimiento_entrenador (logTeam.c:58)
+==14183==    by 0x804CB09: moverse_arriba (movimiento.c:25)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183== 
+==14183== This conflicts with a previous write of size 4 by thread #6
+==14183== Locks held: none
+==14183==    at 0x406692B: pthread_create@@GLIBC_2.1 (pthread_create.c:591)
+==14183==    by 0x4032043: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x804BAAA: ejecutar_entrenador (entrenador.c:214)
+==14183==    by 0x804CCF9: planificar_fifo (planificacion.c:23)
+==14183==    by 0x8049720: planificacion (Team.c:131)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Address 0x7e3bb54 is on thread #10's stack
+==14183== 
+==14183== ---Thread-Announcement------------------------------------------
+==14183== 
+==14183== Thread #11 was created
+==14183==    at 0x4164091: clone (clone.S:88)
+==14183==    by 0x40651AD: create_thread (createthread.c:102)
+==14183==    by 0x406699E: pthread_create@@GLIBC_2.1 (pthread_create.c:679)
+==14183==    by 0x4032043: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x804BAAA: ejecutar_entrenador (entrenador.c:214)
+==14183==    by 0x804CCF9: planificar_fifo (planificacion.c:23)
+==14183==    by 0x8049720: planificacion (Team.c:131)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during write of size 4 at 0x42376CC by thread #11
+==14183== Locks held: none
+==14183==    at 0x804BADC: intentar_atrapar_pokemon (entrenador.c:226)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183== 
+==14183== This conflicts with a previous write of size 4 by thread #6
+==14183== Locks held: none
+==14183==    at 0x804CCD9: planificar_fifo (planificacion.c:19)
+==14183==    by 0x8049720: planificacion (Team.c:131)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Address 0x42376cc is 12 bytes inside a block of size 60 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x804B62F: armar_entrenador (entrenador.c:29)
+==14183==    by 0x8049406: armar_entrenadores (Team.c:35)
+==14183==    by 0x804D518: iniciar_vg (utils.c:11)
+==14183==    by 0x8049CCB: main (Test.c:18)
+==14183==  Block was alloc'd by thread #1
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during read of size 4 at 0x7E3BB54 by thread #11
+==14183== Locks held: none
+==14183==    at 0x804A5C2: enviar_CatchPokemon_a_broker (conexiones.c:252)
+==14183==    by 0x804BAEF: intentar_atrapar_pokemon (entrenador.c:227)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183== 
+==14183== This conflicts with a previous write of size 4 by thread #6
+==14183== Locks held: none
+==14183==    at 0x406692B: pthread_create@@GLIBC_2.1 (pthread_create.c:591)
+==14183==    by 0x4032043: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x804BAAA: ejecutar_entrenador (entrenador.c:214)
+==14183==    by 0x804CCF9: planificar_fifo (planificacion.c:23)
+==14183==    by 0x8049720: planificacion (Team.c:131)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Address 0x7e3bb54 is on thread #11's stack
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during read of size 4 at 0x7E3BB54 by thread #11
+==14183== Locks held: none
+==14183==    at 0x405914F: string_from_format (string.c:54)
+==14183==    by 0x8049EC2: crear_conexion (conexiones.c:28)
+==14183==    by 0x804A5EA: enviar_CatchPokemon_a_broker (conexiones.c:256)
+==14183==    by 0x804BAEF: intentar_atrapar_pokemon (entrenador.c:227)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183== 
+==14183== This conflicts with a previous write of size 4 by thread #6
+==14183== Locks held: none
+==14183==    at 0x406692B: pthread_create@@GLIBC_2.1 (pthread_create.c:591)
+==14183==    by 0x4032043: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x804BAAA: ejecutar_entrenador (entrenador.c:214)
+==14183==    by 0x804CCF9: planificar_fifo (planificacion.c:23)
+==14183==    by 0x8049720: planificacion (Team.c:131)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Address 0x7e3bb54 is on thread #11's stack
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during read of size 4 at 0x42376E0 by thread #11
+==14183== Locks held: none
+==14183==    at 0x804A7B3: iniciar_paquete_serializado_CatchPokemon (conexiones.c:321)
+==14183==    by 0x804A63D: enviar_CatchPokemon_a_broker (conexiones.c:271)
+==14183==    by 0x804BAEF: intentar_atrapar_pokemon (entrenador.c:227)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183== 
+==14183== This conflicts with a previous write of size 4 by thread #9
+==14183== Locks held: none
+==14183==    at 0x80497CF: aparicion_pokemon (Team.c:158)
+==14183==    by 0x804AC04: recibir_AppearedPokemon (conexiones.c:448)
+==14183==    by 0x804A154: process_request (conexiones.c:103)
+==14183==    by 0x804A0F5: serve_client (conexiones.c:89)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Address 0x42376e0 is 32 bytes inside a block of size 60 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x804B62F: armar_entrenador (entrenador.c:29)
+==14183==    by 0x8049406: armar_entrenadores (Team.c:35)
+==14183==    by 0x804D518: iniciar_vg (utils.c:11)
+==14183==    by 0x8049CCB: main (Test.c:18)
+==14183==  Block was alloc'd by thread #1
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during read of size 4 at 0x423A358 by thread #11
+==14183== Locks held: none
+==14183==    at 0x804A7B6: iniciar_paquete_serializado_CatchPokemon (conexiones.c:321)
+==14183==    by 0x804A63D: enviar_CatchPokemon_a_broker (conexiones.c:271)
+==14183==    by 0x804BAEF: intentar_atrapar_pokemon (entrenador.c:227)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Address 0x423a358 is 0 bytes inside a block of size 12 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x804B199: armarPokemon (conexiones.c:610)
+==14183==    by 0x804ABE3: recibir_AppearedPokemon (conexiones.c:446)
+==14183==    by 0x804A154: process_request (conexiones.c:103)
+==14183==    by 0x804A0F5: serve_client (conexiones.c:89)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Block was alloc'd by thread #9
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during read of size 1 at 0x42395E0 by thread #11
+==14183== Locks held: none
+==14183==    at 0x4033C78: strlen (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x804A7C6: iniciar_paquete_serializado_CatchPokemon (conexiones.c:322)
+==14183==    by 0x804A63D: enviar_CatchPokemon_a_broker (conexiones.c:271)
+==14183==    by 0x804BAEF: intentar_atrapar_pokemon (entrenador.c:227)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Address 0x42395e0 is 0 bytes inside a block of size 5 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x804AB73: recibir_AppearedPokemon (conexiones.c:435)
+==14183==    by 0x804A154: process_request (conexiones.c:103)
+==14183==    by 0x804A0F5: serve_client (conexiones.c:89)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Block was alloc'd by thread #9
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during read of size 1 at 0x42395E1 by thread #11
+==14183== Locks held: none
+==14183==    at 0x4033C83: strlen (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x804A7C6: iniciar_paquete_serializado_CatchPokemon (conexiones.c:322)
+==14183==    by 0x804A63D: enviar_CatchPokemon_a_broker (conexiones.c:271)
+==14183==    by 0x804BAEF: intentar_atrapar_pokemon (entrenador.c:227)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Address 0x42395e1 is 1 bytes inside a block of size 5 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x804AB73: recibir_AppearedPokemon (conexiones.c:435)
+==14183==    by 0x804A154: process_request (conexiones.c:103)
+==14183==    by 0x804A0F5: serve_client (conexiones.c:89)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Block was alloc'd by thread #9
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during read of size 4 at 0x423A35C by thread #11
+==14183== Locks held: none
+==14183==    at 0x804A7D6: iniciar_paquete_serializado_CatchPokemon (conexiones.c:324)
+==14183==    by 0x804A63D: enviar_CatchPokemon_a_broker (conexiones.c:271)
+==14183==    by 0x804BAEF: intentar_atrapar_pokemon (entrenador.c:227)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Address 0x423a35c is 4 bytes inside a block of size 12 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x804B199: armarPokemon (conexiones.c:610)
+==14183==    by 0x804ABE3: recibir_AppearedPokemon (conexiones.c:446)
+==14183==    by 0x804A154: process_request (conexiones.c:103)
+==14183==    by 0x804A0F5: serve_client (conexiones.c:89)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Block was alloc'd by thread #9
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during read of size 4 at 0x423A360 by thread #11
+==14183== Locks held: none
+==14183==    at 0x804A7E2: iniciar_paquete_serializado_CatchPokemon (conexiones.c:325)
+==14183==    by 0x804A63D: enviar_CatchPokemon_a_broker (conexiones.c:271)
+==14183==    by 0x804BAEF: intentar_atrapar_pokemon (entrenador.c:227)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Address 0x423a360 is 8 bytes inside a block of size 12 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x804B199: armarPokemon (conexiones.c:610)
+==14183==    by 0x804ABE3: recibir_AppearedPokemon (conexiones.c:446)
+==14183==    by 0x804A154: process_request (conexiones.c:103)
+==14183==    by 0x804A0F5: serve_client (conexiones.c:89)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Block was alloc'd by thread #9
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during read of size 4 at 0x4238D74 by thread #11
+==14183== Locks held: none
+==14183==    at 0x405A315: list_size (list.c:156)
+==14183==    by 0x804BE88: remover_entrenador_ready (entrenador.c:330)
+==14183==    by 0x804BB4F: intentar_atrapar_pokemon (entrenador.c:236)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183== 
+==14183== This conflicts with a previous write of size 4 by thread #9
+==14183== Locks held: none
+==14183==    at 0x4059E8B: list_add (list.c:41)
+==14183==    by 0x8049824: aparicion_pokemon (Team.c:167)
+==14183==    by 0x804AC04: recibir_AppearedPokemon (conexiones.c:448)
+==14183==    by 0x804A154: process_request (conexiones.c:103)
+==14183==    by 0x804A0F5: serve_client (conexiones.c:89)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Address 0x4238d74 is 4 bytes inside a block of size 8 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4059E01: list_create (list.c:27)
+==14183==    by 0x804D531: iniciar_vg (utils.c:15)
+==14183==    by 0x8049CCB: main (Test.c:18)
+==14183==  Block was alloc'd by thread #1
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during read of size 4 at 0x4238D70 by thread #11
+==14183== Locks held: none
+==14183==    at 0x405A951: list_get_element (list.c:322)
+==14183==    by 0x4059F65: list_get (list.c:54)
+==14183==    by 0x804BE47: remover_entrenador_ready (entrenador.c:331)
+==14183==    by 0x804BB4F: intentar_atrapar_pokemon (entrenador.c:236)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183== 
+==14183== This conflicts with a previous write of size 4 by thread #9
+==14183== Locks held: none
+==14183==    at 0x4059E54: list_add (list.c:37)
+==14183==    by 0x8049824: aparicion_pokemon (Team.c:167)
+==14183==    by 0x804AC04: recibir_AppearedPokemon (conexiones.c:448)
+==14183==    by 0x804A154: process_request (conexiones.c:103)
+==14183==    by 0x804A0F5: serve_client (conexiones.c:89)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Address 0x4238d70 is 0 bytes inside a block of size 8 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4059E01: list_create (list.c:27)
+==14183==    by 0x804D531: iniciar_vg (utils.c:15)
+==14183==    by 0x8049CCB: main (Test.c:18)
+==14183==  Block was alloc'd by thread #1
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during read of size 4 at 0x423A870 by thread #11
+==14183== Locks held: none
+==14183==    at 0x4059F75: list_get (list.c:55)
+==14183==    by 0x804BE47: remover_entrenador_ready (entrenador.c:331)
+==14183==    by 0x804BB4F: intentar_atrapar_pokemon (entrenador.c:236)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Address 0x423a870 is 0 bytes inside a block of size 8 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x405A905: list_create_element (list.c:312)
+==14183==    by 0x4059E3D: list_add (list.c:34)
+==14183==    by 0x8049824: aparicion_pokemon (Team.c:167)
+==14183==    by 0x804AC04: recibir_AppearedPokemon (conexiones.c:448)
+==14183==    by 0x804A154: process_request (conexiones.c:103)
+==14183==    by 0x804A0F5: serve_client (conexiones.c:89)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Block was alloc'd by thread #9
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during read of size 4 at 0x423A874 by thread #11
+==14183== Locks held: none
+==14183==    at 0x405A1B0: list_remove (list.c:122)
+==14183==    by 0x804BE6E: remover_entrenador_ready (entrenador.c:333)
+==14183==    by 0x804BB4F: intentar_atrapar_pokemon (entrenador.c:236)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Address 0x423a874 is 4 bytes inside a block of size 8 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x405A905: list_create_element (list.c:312)
+==14183==    by 0x4059E3D: list_add (list.c:34)
+==14183==    by 0x8049824: aparicion_pokemon (Team.c:167)
+==14183==    by 0x804AC04: recibir_AppearedPokemon (conexiones.c:448)
+==14183==    by 0x804A154: process_request (conexiones.c:103)
+==14183==    by 0x804A0F5: serve_client (conexiones.c:89)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Block was alloc'd by thread #9
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during write of size 4 at 0x4238D70 by thread #11
+==14183== Locks held: none
+==14183==    at 0x405A1B6: list_remove (list.c:122)
+==14183==    by 0x804BE6E: remover_entrenador_ready (entrenador.c:333)
+==14183==    by 0x804BB4F: intentar_atrapar_pokemon (entrenador.c:236)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183== 
+==14183== This conflicts with a previous read of size 4 by thread #6
+==14183== Locks held: none
+==14183==    at 0x405A951: list_get_element (list.c:322)
+==14183==    by 0x4059F65: list_get (list.c:54)
+==14183==    by 0x804CCCF: planificar_fifo (planificacion.c:18)
+==14183==    by 0x8049720: planificacion (Team.c:131)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Address 0x4238d70 is 0 bytes inside a block of size 8 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4059E01: list_create (list.c:27)
+==14183==    by 0x804D531: iniciar_vg (utils.c:15)
+==14183==    by 0x8049CCB: main (Test.c:18)
+==14183==  Block was alloc'd by thread #1
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during write of size 4 at 0x4238D74 by thread #11
+==14183== Locks held: none
+==14183==    at 0x405A1F3: list_remove (list.c:128)
+==14183==    by 0x804BE6E: remover_entrenador_ready (entrenador.c:333)
+==14183==    by 0x804BB4F: intentar_atrapar_pokemon (entrenador.c:236)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183== 
+==14183== This conflicts with a previous read of size 4 by thread #6
+==14183== Locks held: none
+==14183==    at 0x405A315: list_size (list.c:156)
+==14183==    by 0x405A337: list_is_empty (list.c:160)
+==14183==    by 0x804CD30: planificar_fifo (planificacion.c:14)
+==14183==    by 0x8049720: planificacion (Team.c:131)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Address 0x4238d74 is 4 bytes inside a block of size 8 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4059E01: list_create (list.c:27)
+==14183==    by 0x804D531: iniciar_vg (utils.c:15)
+==14183==    by 0x8049CCB: main (Test.c:18)
+==14183==  Block was alloc'd by thread #1
+==14183== 
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Possible data race during read of size 4 at 0x42376CC by thread #6
+==14183== Locks held: none
+==14183==    at 0x804C511: esta_en_exit (entrenador.c:548)
+==14183==    by 0x405A521: _add_if_apply.2339 (list.c:212)
+==14183==    by 0x405A148: list_iterate (list.c:107)
+==14183==    by 0x405A5AF: list_filter (list.c:217)
+==14183==    by 0x405A7C2: list_count_satisfying (list.c:269)
+==14183==    by 0x405A836: list_all_satisfy (list.c:280)
+==14183==    by 0x8049B45: terminoTeam (Team.c:289)
+==14183==    by 0x804CDA6: planificar_fifo (planificacion.c:41)
+==14183==    by 0x8049720: planificacion (Team.c:131)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183== 
+==14183== This conflicts with a previous write of size 4 by thread #11
+==14183== Locks held: none
+==14183==    at 0x804BADC: intentar_atrapar_pokemon (entrenador.c:226)
+==14183==    by 0x40321E2: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x4066294: start_thread (pthread_create.c:333)
+==14183==    by 0x41640AD: clone (clone.S:114)
+==14183==  Address 0x42376cc is 12 bytes inside a block of size 60 alloc'd
+==14183==    at 0x402D36C: malloc (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x804B62F: armar_entrenador (entrenador.c:29)
+==14183==    by 0x8049406: armar_entrenadores (Team.c:35)
+==14183==    by 0x804D518: iniciar_vg (utils.c:11)
+==14183==    by 0x8049CCB: main (Test.c:18)
+==14183==  Block was alloc'd by thread #1
+==14183== 
+==14183== 
+==14183== Process terminating with default action of signal 2 (SIGINT)
+==14183==    at 0x40673FB: pthread_join (pthread_join.c:90)
+==14183==    by 0x4030149: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x8049DAD: main (Test.c:36)
+==14183== ----------------------------------------------------------------
+==14183== 
+==14183== Thread #1: Exiting thread still holds 1 lock
+==14183==    at 0x40673FB: pthread_join (pthread_join.c:90)
+==14183==    by 0x4030149: ??? (in /usr/lib/valgrind/vgpreload_helgrind-x86-linux.so)
+==14183==    by 0x8049DAD: main (Test.c:36)
+==14183== 
+==14183== 
+==14183== For counts of detected and suppressed errors, rerun with: -v
+==14183== Use --history-level=approx or =none to gain increased speed, at
+==14183== the cost of reduced accuracy of conflicting-access information
+==14183== ERROR SUMMARY: 256 errors from 42 contexts (suppressed: 2492 from 331)
